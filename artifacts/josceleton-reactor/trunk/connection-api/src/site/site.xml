@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Maven">
+	<body>
+		<menu name="Josceleton Core Impl">
+			<item name="Introduction" href="index.html" />
+		</menu>
+		<menu ref="reports" />
+	</body>
+</project>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId} (${project.version})</name>
+    <description>The reactor project for all POMS except corporate-pom.</description>
+    <packaging>pom</packaging>
+    
+    <artifactId>poms-reactor</artifactId><version>0.1-SNAPSHOT</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+        <groupId>net.sf.josceleton</groupId>
+        <artifactId>corporate-pom</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                            M O D U L E S                            -->
+    <!-- ******************************************************************* -->
+    
+    <modules>
+    	<module>josceleton-checkstyle-config</module>
+    	<module>guice-dependencies</module>
+    	<module>java-abstract-pom</module>
+    	<module>java-pom</module>
+    </modules>
+    
+</project>

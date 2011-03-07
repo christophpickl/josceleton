@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId} (${project.version})</name>
+    <description>
+    	Simple purpose of this artifact is to keep checkstyle configurations (and suppressions) in a single location.
+    	Simply add in project.build.plugins.plugin[maven-checkstyle-plugin].dependencies a dependency to this artifact.
+    </description>
+    <packaging>jar</packaging>
+    
+    <artifactId>josceleton-checkstyle-config</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+    	<groupId>net.sf.josceleton</groupId>
+	    <artifactId>corporate-pom</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+    
+</project>

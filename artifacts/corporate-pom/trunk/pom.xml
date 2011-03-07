@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId} (${project.version})</name>
+    <description>The super POM for all josceleton artifacts.</description>
+    <url>http://josceleton.sourceforge.net</url>
+    <inceptionYear>2011</inceptionYear>
+    <packaging>pom</packaging>
+    
+    <groupId>net.sf.josceleton</groupId>
+    <artifactId>corporate-pom</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    
+    
+    <prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+    
+    <!-- no CI yet :( -->
+<!--	<ciManagement></ciManagement>-->
+
+    
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+    
+    <properties>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                              B U I L D                              -->
+    <!-- ******************************************************************* -->
+    
+    <build>
+    	<pluginManagement>
+    		<plugins>
+    			
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.1</version>
+				</plugin>
+				
+				<!-- no maven3 switch (to 2.2) necessary, as maven 3.0 as prerequisite nevertheless -->
+            	<plugin>
+            		<artifactId>maven-site-plugin</artifactId>
+            		<version>3.0-beta-3</version>
+            	</plugin>
+            	
+            	<!-- LUXURY @POM DEPLOY do we need to sign our jars with gpg? -->
+<!--            	<plugin>-->
+<!--            		<artifactId>maven-gpg-plugin</artifactId>-->
+<!--            		<version>1.1</version>-->
+<!--           		</plugin>-->
+           		
+    		</plugins>
+    	</pluginManagement>
+    	
+    	<plugins>
+    	
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-descriptor</id>
+                        <goals>
+                            <goal>attach-descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+    	</plugins>
+    </build>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+    
+    <!-- FIXME @POM add "distribution management" -->
+<!--    <distributionManagement>-->
+<!--    	<downloadUrl></downloadUrl>-->
+<!--		<relocation></relocation>-->
+<!--		<repository></repository>-->
+<!--		<site>-->
+<!--			<id>josceleton-site-server</id>-->
+<!--			<name></name>-->
+<!--			<url>scp://sourceforge/p/</url>-->
+<!--		</site>-->
+<!--		<snapshotRepository></snapshotRepository>-->
+<!--		<status></status>-->
+<!--    </distributionManagement>-->
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    	<!-- FIXME @POM add "scm paths" -->
+<!--    <scm>-->
+<!--        <connection>scm:svn:http://sf/p/josceleton/artifacts/corporate-pom/trunk</connection>-->
+<!--        <developerConnection>scm:svn:https://sf/p/josceleton/artifacts/corporate-pom/trunk</developerConnection>-->
+<!--        <url>http://sf/p/josceleton/artifacts/corporate-pom/trunk</url>-->
+<!--    </scm>-->
+    
+	
+     
+    <!-- ******************************************************************* -->
+    <!--                   I S S U E   M A N A G E M E N T                   -->
+    <!-- ******************************************************************* -->
+    
+    <!-- MINOR @POM issue management mantis -->
+<!--     <issueManagement>-->
+<!--     	<url></url>-->
+<!--     	<system>Mantis</system>-->
+<!--     </issueManagement>-->
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       O R G A N I Z A T I O N                       -->
+    <!-- ******************************************************************* -->
+     
+     <organization>
+     	<name>Josceleton</name>
+     	<url>${project.url}</url>
+     </organization>
+     
+     
+    <!-- ******************************************************************* -->
+    <!--                           L I C E N S E S                           -->
+    <!-- ******************************************************************* -->
+    
+    <licenses>
+        <license>
+            <name>BSD License</name>
+            <!-- MINOR @POM somehow get license.txt deployed in site (as well as copy in distribution package) -->
+<!--            <url>http://josceleton.sourceforge.net/LICENSE.txt</url>-->
+            <url>http://www.opensource.org/licenses/bsd-license.php</url>
+
+
+     		<!-- LUXURY @POM what to do with license distribution option "manual" vs "repo"? -->
+<!--     		This describes how the project may be legally distributed.-->
+<!--				The two stated methods are repo (they may be downloaded from a Maven repository) or-->
+<!--				manual (they must be manually installed).-->
+<!--     		<distribution>manual</distribution>-->
+			
+			<!-- MINOR @POM should pom inline license text? (would result in less ext. dep.) -->
+<!--     		<comments>???</comments>-->
+<!--    <comments>-->
+<!--    <![CDATA[-->
+<!--    Josceleton-->
+<!--Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:-->
+<!---->
+<!--Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.-->
+<!--Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.-->
+<!--Neither the name of Kristoffer Kvam nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.-->
+<!---->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
+<!---->
+<!--See licence.txt for dependancies to other open projects.-->
+<!--      ]]>-->
+<!--    </comments>-->
+
+        </license>
+    </licenses>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                         D E V E L O P E R S                         -->
+    <!-- ******************************************************************* -->
+    
+    <developers>
+    
+        <developer>
+            <id>cpickl</id>
+            <name>Christoph Pickl</name>
+            <email>christoph.pickl@gmail.com</email>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Everything</role>
+            </roles>
+        </developer>
+        
+    </developers>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       C O N T R I B U T O R S                       -->
+    <!-- ******************************************************************* -->
+    
+    <contributors>
+    
+		<contributor>
+			<name>Thomas Hirt</name>
+			<url>http://thomas-hirt.at/</url>
+			<email>info@thomas-hirt.at</email>
+			<timezone>+1</timezone>
+			<roles>
+				<role>Ideas Contributer</role>
+			</roles>
+		</contributor>
+		
+	</contributors>
+    
+</project>
