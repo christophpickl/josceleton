@@ -1,0 +1,79 @@
+
+- aus sich des users denken: wie wird er josceleton einbinden?
+	* plain: mit Josceleton (static) facade
+	* guice: sehr gut, is schon einzelnes (Private)Module verfuegbar gestellt
+		!! @FACADE http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/PrivateModule.html
+!!! * !!!SPRING!!! bruecke schreiben, um in spring alle josceleton guice zur verfuegung zu haben
+ 
+- tasktags gscheit einteilen:
+	HIGH   ... FIXME, DRY (includes REFACTOR)
+	NORMAL ... TODO, REFACTOR, DESIGN, ???, POM
+	between-in ... TEST
+	LOW    ... TEST, (AOP (includes REFACTOR)), MINOR, SITE, JAVADOC
+	// tags: exception
+			@TEST{ mock }
+			@POM{ dependency, deploy }
+			@AOP{ contract }
+	// eigentlich auch sowas wie mixins (oder halt pures tagging): "TEST ???"
+
+==========================================
+TODO * upcoming *
+==========================================
+!!!!! checkstyle.xml hat hardcoded pfad drinnen, da maven ${config_loc} nicht fressen wollte :(
+!!!! checkstyle MethodCount wird nicht vom mvn-plugin gefressen (sogar nicht neueste 2.6 version); wird aber von eclipse-cs gesetzt :(
+!!! setup hoster // downloads muessen unbedingt mitgezaehlt werden!
+	* setup mantis: alle ideen/todos als kleine tasks organisieren, und WIRKLICH mantis einsetzen, fuer (ziemlich) ALLES !!!
+	* setup mvn repo:
+		- deployment of own artifacts (bin, src, site)
+		- automatic script to deploy all thirdparty artifacts;
+		- add repository reference in ~/.m2/settings.xml + server id
+			* add guide how to do it in site documentation (<repository>) 
+
+! @eclipse plugin metafile generation
+	* how to disable coverage statistics for src/test/java permanently
+	* how to set order of main vs test
+
+!! setup site (reports, mvn repo/coordinates samples, diagrams)
+- include checkstyle rule check-for-existing-javadoc for all API classes
+!! TEST BUILD when running tests, maybe append own log4j logger (programatically? something like a regular overwriting file appender)
+
+==========================================
+??? QUESTIONS ???
+==========================================
+- have factories also to be declared with Scope SINGLETON?
+- @TEST best practice?: create impl instantance directly, or use guice factory/provider?
+
+==========================================
+TODO * code *
+==========================================
+!!! should equals/hashCode/toString be final? (check all value objects!)
+!! write some javadoc for api classes
+! TEST nothing is leaking (close, removeListener) => ebenfalls system-tests dafuer
+! check all custom equals implementations, if they are checking instanceof against interface, not *Impl!!! (and if they have shortcut check "if(this == other)")
+! ueberall lizenz zeugs header + checkstyle checken lassen ob eh da ist
+
+==========================================
+TODO * build *
+==========================================
+!! improve deployment packages // no one wants to download javadoc ;)
+	* (mvn repo -eh klar)
+	* jar-with-dependencies
+	* zip-with-all-single-modules (optionally dependency libs as jar)
+	* sources only (including test source)
+	* full package: sources, site (javadoc) and binaries of all josceleton artifacts
+!! introduce more profiles
+	* disables tests
+	* sourceCheck/validations
+	* site
+	* etc...
+	=> eclipse:eclipse, install, ?test?, ?site?
+- properly add license.txt file
+ 
+==========================================
+IDEAS
+==========================================
+- @hitwall gesture
+	- auch beine/kopf dazunehmen
+	- vertikal volumen ... oder so?
+	- nicht absolut, sondern relativ (vom torso) ist wall entfernt
+- one could merge api and impl projects into one reactor project => josceleton-reactor { commons, core {core-api, core-impl}, connection {...}, josceleton, ... }

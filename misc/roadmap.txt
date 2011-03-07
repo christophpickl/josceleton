@@ -1,0 +1,62 @@
+VERSION 0.0 <<PRE-RELEASE>>
+=========================
+A. mvn site ganz wenig herrichten (reports)
+B. pom distribution/scm tags einfuehren
+
+
+VERSION 0.1 - "introducing basic osceleton connection"
+=========================
+EXT- establish connection to osceleton
+EXT- dispatch joint messages (bodypart, coordinate)
+EXT- dispatch user messages (user, new state)
+INT- high code quality standards: 100% coverage (line and branch!), zero warnings of PMD, CPD, FindBugs, Checkstyle, TaskTags
+
+VERSION 0.2 - "introducing connection services"
+=========================
+v0.2={ connection services (UserManager, MotionTracker, RecentMotionStorage) }
+EXT- manage users correctly (artificial user login)
+EXT- store (recent) movement in motion tracker
+EXT- josceleton facade modul introducen + guice's Privatemodule
+INT- add integration tests (using guice for object wiring but leaving out osceleton)
+
+VERSION 0.3 - "new gestures module"
+=========================
+v0.3={ extension module for MotionCapturer (gestures, positions) }
+EXT- add basic movement detections (gestures and positions)
+	// and stable value provider? eg: fire volume constantly via x-coordinate
+INT- extend legacy code (AsyncFor, Builder)
+
+VERSION 0.4 - "code quality improvement only release"
+=========================
+INT- add system tests (starting osceleton process and replaying recorded data)
+INT- enhanced all tests by looking at each of them by hand
+INT- added more maven plugins checking code; fine tuned checkstyle/pmd/... configurations
+INT- eclipse IDE only code checking tools (komplexitaet plugin da) (evtl auch metriken fuer build verfuegbar?)
+EXT- generating more reports (u.a. auch code quali; zb jdepend)
+
+VERSION 0.5
+=========================
+
+
+??? in between
+=========================
+EXT- improved downloadable distribution packages
+EXT- spring DI bridge
+INT- introduced aop
+	EXT- with aop, improved log output
+INT- introduced design by contract
+EXT- registered josceleton.org
+
+VERSION 0.8
+=========================
+- 
+
+VERSION 0.9
+=========================
+EXT- add samples module 
+EXT- write detailed documentation: enhanced mvn site (also with more samples), javadoc (also with more samples)
+ 
+ VERISON 1.>1
+ =========================
+ EXT- add joconsole gui module (a.k.a. old "mkinector-debugger")
+ 

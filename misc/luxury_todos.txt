@@ -1,0 +1,57 @@
+- register domain josceleton.org
+
+- idea concerning Utils: introduce UtilFacade class: "UtilFacade f = ...; f.String().trim()" or "f.Reflect().findConstructor(Class, Object[] argValues/*internally translated to argTypes*/)"
+	=> see DynamicInstantiatorImpl and ReflectUtil
+
+<!-- concerning maven 3 site plugin unfug -->
+<!-- see: http://maven.apache.org/plugins/maven-site-plugin-3.0-beta-3/maven-3.html -->
+<!-- supported plugin versions by maven-site 3.0-beta [https://cwiki.apache.org/MAVEN/maven-3x-and-site-plugin.html] -->
+
+==========================================
+TEST
+==========================================
+@TEST: da ja sogar VOs interfaces sind => fuer tests only Factory zur verfuegung stellen a la:
+	"userFactory.create(2, 1)" => intern: "mock(User.class); expectations{ user.___allowing___(getId()); willReturn(pId); ... }"
+	... damit wird testen einfacher, und umgeht (in dem fall) "umstaendliches" design von puren interfaces :)
+
+==========================================
+BUILD
+==========================================
+- @eclipse: add java sources of dependencies + also deploy (guice!) sources into repo, so to have them available in eclipse
+- improve javadoc:
+	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
+	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags
+	* @doclava: make since tag appear; officially not supported, but guice doc has it!!!
+- cleanup mvn build output: get rid of warnings, eg eclipse workspace warning
+- investigieren, ob andere sprachen fuer pom kuhl sind
+- have a look at following fancy checkstyle configuration:
+	<artifactId>maven-checkstyle-plugin</artifactId><version>2.5</version>
+	<executions><execution>
+		<goals><goal>checkstyle</goal><goal>check</goal></goals>
+		<phase>package</phase>
+
+==========================================
+AOP
+==========================================
+- read about guice + AOP: http://devsurf.wordpress.com/
+- aop verwenden: @NotNull, ... (evtl auch @Memorizable wieder ;))
+		=> @Log(level=warn, argumentsXy=...): LOG.debug("instantiate(clazz.name=" + clazz.getName() + ", arguments.length=" + arguments.length + ")");
+			!!!! in jedem konstruktor ein log einfuegen mit trace level (am schluss hat man gute uebersicht ueber objekt erstellungen)
+				- haeufige rausnehmen wie: JointMessage, Coordinate ...
+					- IDEE: evtl Coordinate aus performance/memory gruenden aufsplitten in 3 rohe float werte?!
+		=> @GenerateToString ... field annotated with @IncludeInToString
+	- IDEE: @ReturnsNotNull
+		- contraction java lib ding wieder anschauen (design by contract)
+			zb: http://jcontractor.sourceforge.net/
+- @tests: would be nice to automatically test ALL methods (via AOP) if passing null values, some test fails (except those annotated with special annotation)
+- @closeable (bzw eigentlich Connection und dgl): die close() methode  ...
+	any further method calls (addListener) will throw IllegalStateException ==> somehow can be enforced?
+- marker interfaces could be replaced by annotations (just maybe... think carefully => marker interfaces are usefull as well, definetely!)
+	* as well once thought about a ValueObject marker interface for all specified VO classes in josceleton (had thoughts about equals/hashcode/tostring)
+	
+==========================================
+VEEEEERY LUXURY
+==========================================
+- create custom maven site skin
+- HARDCORE LUXURY also build osgi bundle
+@CHECKSTYLE would be nice to annotate a class with custom suppression annotation, and then based on this generate suppression.xml file ;)

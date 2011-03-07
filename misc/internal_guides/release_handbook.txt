@@ -1,0 +1,25 @@
+
+==========================================
+RELEASE HANDBOOK
+==========================================
+
+- preconditions
+	* code compiles
+	* unit tests are green
+	* coverage 100%
+	* metrics are below threshold (minimal tasktags, warnings (checkstyle, eclipse), pmd, cpd, findbugs)
+	* system tests are green
+	* finally: manual tests ==> create manual tests handbook
+
+- execute
+	* figure out proper versions
+	* tag versions according to necessary version bumps
+	* package new tag
+		- deploy artifacts and sites to mvn repo
+		- upload artifacts to projecthoster
+
+- afterwards
+	* check updated pom versions/references
+	* check website linking current version
+	* check downloads section shows current version
+	* download and run minimalistic manual tests
