@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId} (${project.version})</name>
+    <description>Google Guice dependency wrapper.</description>
+    <packaging>pom</packaging>
+    
+    <groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
+    <artifactId>guice-dependencies</artifactId>
+    <version>2.0</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+    	<groupId>net.sf.josceleton</groupId>
+	    <artifactId>corporate-pom</artifactId>
+        <version>0.1</version>
+    </parent>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+    
+    <properties>
+    	<!-- looks like a repetition, doesnt it? project.groupId eq this one.
+    	     but this one is declared during deployment of thirdparty libs, so it is good the way it is :) -->
+    	<thirdparty.guice.groupId>net.sf.josceleton.thirdparty.com.google.code.guice</thirdparty.guice.groupId>
+    	<thirdparty.guice.version>2.0</thirdparty.guice.version>
+    </properties>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       D E P E N D E N C I E S                       -->
+    <!-- ******************************************************************* -->
+
+	<dependencies>
+	        
+        <dependency>
+            <groupId>${thirdparty.guice.groupId}</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>${thirdparty.guice.groupId}</groupId>
+            <artifactId>guice</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
+        
+        <dependency>
+         	<groupId>${thirdparty.guice.groupId}</groupId>
+            <artifactId>guice-assistedinject</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>${thirdparty.guice.groupId}</groupId>
+            <artifactId>guice-grapher</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
+        
+    </dependencies>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/guice-dependencies-2.0</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/guice-dependencies-2.0</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/guice-dependencies-2.0</url>
+    </scm>
+    
+</project>
