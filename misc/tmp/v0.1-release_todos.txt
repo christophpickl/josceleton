@@ -1,13 +1,11 @@
-===> http://josceleton.sourceforge.net/artifacts/net.sf.josceleton/corporate-pom/0.1-SNAPSHOT/
-
 ****************************** setup projecthost
 1. DONE checkin whole subversion code
 2. DONE checkout code and re-setup eclipse workspace
 3. DONE maven POM distribute section for site
 4. DONE maven POM distribute (snapshot, release) section for code
-5. DONE maven profile um wieder zu bekommmen
 
-6. SCM SECTION for all artifacts
+5. maven 2/3 workaround: site and deploying-over-scp issue!
+6. SCM section for all artifacts
 7. create mvn deploy shellscript for 3rd party libs (deploy instead of install)
 
 ****************************** first RELEASE

@@ -15,11 +15,12 @@ RELEASE HANDBOOK
 	* figure out proper versions
 	* tag versions according to necessary version bumps
 	* package new tag
-		- deploy artifacts and sites to mvn repo
-		- upload artifacts to projecthoster
+		- deploy artifacts (poms, jars, test-jars, sources, javadoc) to mvn repo
+		- upload artifacts to projecthoster (downloadable binary files)
+	* update redirect for index.html to point to new josceleton-reactor version
 
 - afterwards
-	* check updated pom versions/references
-	* check website linking current version
-	* check downloads section shows current version
+	* validate updated pom versions/references
+	* validate website linking current version
+	* validate downloads section on sf shows current version
 	* download and run minimalistic manual tests

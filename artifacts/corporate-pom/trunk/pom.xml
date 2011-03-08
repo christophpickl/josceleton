@@ -11,14 +11,8 @@
     <artifactId>corporate-pom</artifactId>
     <version>0.1-SNAPSHOT</version>
     
+    <!-- no prerequisites, as we are supporting maven 2 and 3 concurrently; hell yeah :) -->
     
-<!--    <prerequisites>-->
-<!--		<maven>3.0</maven>-->
-<!--	</prerequisites>-->
-    
-    <!-- no CI yet :( -->
-<!--	<ciManagement></ciManagement>-->
-
     
     <!-- ******************************************************************* -->
     <!--                         P R O P E R T I E S                         -->
@@ -26,6 +20,21 @@
     
     <properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	
+    	<version.deploy-plugin>2.5</version.deploy-plugin>
+    	<version.release-plugin>2.1</version.release-plugin>
+    	<version.antrun-plugin>1.6</version.antrun-plugin>
+    	
+    	<!-- mvn3 will be enabled automagically if mvn3 is used ;) -->
+    	<version.mvn_being_used>2</version.mvn_being_used>
+    	<version.site-plugin.mvn2>2.2</version.site-plugin.mvn2>
+    	<version.site-plugin.mvn3>3.0-beta-3</version.site-plugin.mvn3>
+    	<version.site-plugin>${version.site-plugin.mvn2}</version.site-plugin>
+    	
+    	<verison.project-info-reports-plugin.mvn2>2.2</verison.project-info-reports-plugin.mvn2>
+    	<verison.project-info-reports-plugin.mvn3>2.3.1</verison.project-info-reports-plugin.mvn3>
+    	<verison.project-info-reports-plugin>${verison.project-info-reports-plugin.mvn2}</verison.project-info-reports-plugin>
+    	
     </properties>
     
     
@@ -34,32 +43,23 @@
     <!-- ******************************************************************* -->
     
     <build>
+    
     	<pluginManagement>
     		<plugins>
     			
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.5</version>
-<!--					<dependencies>-->
-<!--						<dependency>-->
-<!--							<groupId>org.apache.maven.wagon</groupId>-->
-<!--							<artifactId>wagon-ssh-external</artifactId>-->
-<!--							<version>1.0-beta-7</version>-->
-<!--							<type>pom</type>-->
-<!--						</dependency>-->
-<!--					</dependencies>-->
+					<version>${version.deploy-plugin}</version>
 				</plugin>
 				
 				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>2.1</version>
+					<version>${version.release-plugin}</version>
 				</plugin>
 				
-				<!-- no maven3 switch (to 2.2) necessary, as maven 3.0 as prerequisite nevertheless -->
             	<plugin>
             		<artifactId>maven-site-plugin</artifactId>
-            		<version>2.2</version>
-<!--            		FIXME MVN3 issue <version>3.0-beta-3</version>-->
+            		<version>${version.site-plugin}</version>
             	</plugin>
             	
             	<!-- LUXURY @POM DEPLOY do we need to sign our jars with gpg? -->
@@ -71,50 +71,146 @@
     		</plugins>
     	</pluginManagement>
     	
-    	<plugins>
     	
+    	<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${version.antrun-plugin}</version>
+				<executions>
+					<!-- not nice solved: adding execution separately for compile and site  -->
+					<execution>
+						<id>print-maven3-profile-message @initialize</id><phase>initialize</phase>
+						<configuration><target><echo message="INFORMATION: using josceleton detected maven version ${version.mvn_being_used}" /></target></configuration><goals><goal>run</goal></goals>
+					</execution>
+					<execution>
+						<id>print-maven3-profile-message @pre-site</id><phase>pre-site</phase>
+						<configuration><target><echo message="INFORMATION: using josceleton detected maven version ${version.mvn_being_used}" /></target></configuration><goals><goal>run</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+		
+    </build>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                          R E P O R T I N G                          -->
+    <!-- ******************************************************************* -->
+    
+    <!--
+    "And the subtler difference is that a plugin configuration under the reporting element works as build plugin configuration,
+    although the opposite is not true (a build plugin configuration does not affect a reporting plugin)."
+      ... source: [http://maven.apache.org/pom.html#Plugin_Management]
+    -->
+    <reporting>
+        <plugins>
+			
             <plugin>
-                <artifactId>maven-site-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-descriptor</id>
-                        <goals>
-                            <goal>attach-descriptor</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            
-    	</plugins>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${verison.project-info-reports-plugin}</version>
+                <reportSets>
+                    <reportSet>
+	                    <!--
+		                    available reports:
+		                    *********************
+		                    LUXURY @POM SITE enable more reports
+		                    ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
+		                    MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
+		                    WHAT FOR: help, index, dependency-convergence, 
+		                    DEFINETELY NOT: mailing-list, cim 
+	                    -->
+                        <reports>
+                        <!-- FIXME @POM re-enable "dependencies report" -->
+<!--                            <report>dependencies</report>-->
+                            <report>project-team</report>
+                            <report>issue-tracking</report>
+                            <report>license</report>
+                            <report>scm</report>
+                            <report>summary</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+			</plugin>
+		</plugins>
+		
+	</reporting>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                           P R O F I L E S                           -->
+    <!-- ******************************************************************* -->
+    
+	<profiles>
+		<profile>
+			<id>maven-3</id>
+			<activation>
+				<file>
+					<!-- This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
+					<exists>${basedir}</exists>
+				</file>
+			</activation>
+			
+			<properties>
+				<version.mvn_being_used>3</version.mvn_being_used>
+				<version.site-plugin>${version.site-plugin.mvn3}</version.site-plugin>
+    			<verison.project-info-reports-plugin>${verison.project-info-reports-plugin.mvn3}</verison.project-info-reports-plugin>
+			</properties>
+			
+			<build>
+				<!--
+				MINOR @POM mvn3 deploy does not work (but mvn3 site:deploy does) because of not working scp support :(
+				for wagon help see: http://maven.apache.org/wagon/wagon-providers/wagon-scm/usage.html 
+				-->
 
-		<!-- wagon help see: http://maven.apache.org/wagon/wagon-providers/wagon-scm/usage.html -->
-		<!-- NO: already defined for deploy plugin only; see above ??? -->
+				<pluginManagement>
+					<plugins>
+							<!-- sadly this does not work... :( though it is officially said to workaround this way -->
+<!--						<plugin>-->
+<!--							<artifactId>maven-deploy-plugin</artifactId>-->
+<!--							<version>${version.deploy-plugin}</version>-->
+<!--							<dependencies>-->
+<!--								<dependency>-->
+<!--									<groupId>org.apache.maven.wagon</groupId>-->
+<!--									<artifactId>wagon-ssh-external</artifactId>-->
+<!--									<version>1.0-beta-7</version>-->
+<!--									<type>pom</type>-->
+<!--								</dependency>-->
+<!--							</dependencies>-->
+<!--						</plugin>-->
+						
+					</plugins>
+				</pluginManagement>
+
+				<plugins>
+				
+					<plugin>
+						<artifactId>maven-site-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-descriptor</id>
+								<goals>
+									<goal>attach-descriptor</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					
+				</plugins>
+				
+			<!-- or register wagon ssh/scp provider as extension (more global than specifying as dependency for plugin only -->
 <!--		<extensions>-->
 <!--			<extension>-->
 <!--				<groupId>org.apache.maven.wagon</groupId>-->
 <!--				<artifactId>wagon-ssh-external</artifactId>-->
 <!--				<version>1.0-beta-7</version> -->
 <!--			</extension>-->
-			
-<!--			      <extension>-->
-<!--        <groupId>org.apache.maven.wagon</groupId>-->
-<!--        <artifactId>wagon-scm</artifactId>-->
-<!--        <version>1.0-beta-7</version>-->
-<!--      </extension>-->
-<!--      <extension>-->
-<!--        <groupId>org.apache.maven.scm</groupId>-->
-<!--        <artifactId>maven-scm-manager-plexus</artifactId>-->
-<!--        <version>1.4</version>-->
-<!--      </extension>-->
-<!--      <extension>-->
-<!--        <groupId>org.apache.maven.scm</groupId>-->
-<!--        <artifactId>maven-scm-provider-svnexe</artifactId>-->
-<!--        <version>1.0-beta-7</version>-->
-<!--      </extension>-->
-			
 <!--		</extensions>-->
-    	
-    </build>
+
+			</build>
+		</profile>
+	</profiles>
     
     
     <!-- ******************************************************************* -->
@@ -126,7 +222,6 @@
 		<snapshotRepository>
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton maven snapshot repository @sourceforge</name>
-			<!-- FIXME !!!!!!!!!!! have to use mvn2 for deployment (therefore also change site version; and maybe others as well...)  -->
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/maven/snapshot</url>
 
 			<!-- * save some diskspace and overwrite snapshot versions -->
@@ -150,7 +245,10 @@
 			<name>josceleton site server @sourceforge</name>
 			<!-- TODO @POM outsource site url part as property (could be the case submodule wants to override) -->
 			
-			<!-- needs an open shell: ssh -t christoph_pickl,josceleton@shell.sf.net create -->
+			<!--
+			needs an open shell:
+			$ ssh -t christoph_pickl,josceleton@shell.sf.net create
+			-->
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>
 
 			<!-- using web.sf.net host ... mkdir failed (though would not dependent on terminal hacking... as shell.sf.net) -->
@@ -169,9 +267,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/trunk</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/trunk</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/corporate-pom/trunk/trunk</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/corporate-pom/trunk/</url>
     </scm>
     
     
@@ -179,7 +277,7 @@
     <!--                   I S S U E   M A N A G E M E N T                   -->
     <!-- ******************************************************************* -->
     
-    <!-- MINOR @POM issue management mantis -->
+    <!-- FIXME @POM issue management mantis -->
 <!--     <issueManagement>-->
 <!--     	<url></url>-->
 <!--     	<system>Mantis</system>-->

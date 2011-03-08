@@ -6,5 +6,8 @@
 06.03. - 16:00 -  6h - wrapping up v0.1: tasktags, unit tests, javadoc
               ~~ 30h~~
 06.03. - 22:00 -  8h - wrapping up v0.1: tasktags, improved build, site, javadoc
-07.03. - 22:00 -  h - setting up sourceforge project
-              ~~ 38h~~
+07.03. - 22:00 -  2h - setting up sourceforge project
+              ~~ 40h~~
+08.03. - 00:00 -  4h - setting up sourceforge project, getting mvn deploy/site:deploy working
+08.03. - 12:00 -  2h - got maven site/site:deploy/deploy working with mvn version 2 and 3 (deploy not working for mvn3!)
+              ~~ 46h~~

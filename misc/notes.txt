@@ -1,3 +1,5 @@
+1. rename other file "notes-maven_deploy..." as it sucks for "notes.txt" :)
+2. maybe good idea to rename eclipse projects { corporate, misc, ... } to also start with "net.sf.josceleton."
 
 - aus sich des users denken: wie wird er josceleton einbinden?
 	* plain: mit Josceleton (static) facade
@@ -16,6 +18,7 @@
 			@AOP{ contract }
 	// eigentlich auch sowas wie mixins (oder halt pures tagging): "TEST ???"
 
+- move some /misc stuff directly into /josceleton-reactor/_misc
 
 ****************** new unsorted 1 ("NACHDEM v0.1 released ist")
 
@@ -32,6 +35,7 @@
 	- menuitem "download" {maven, distribution packages}
 	- menuitem "code quality" (auflistung was alles gechecked wird, und dass 100% coverage pflicht ist)
 @site release report: auch (neben test coverage, tasktags, pmd, metriken static code analyse, etc) auch anzahl der tests mit auflisten
+@site: wenn an site arbeitet von josceleton-reactor, dann muss es schnell gehen -> eigenes profil um alle module wegzuschalten "-PnoModules" ;)
 
 ****************** new unsorted 2
 

@@ -430,28 +430,7 @@
     	source: http://maven.apache.org/pom.html#Plugin_Management
     -->
     <reporting>
-    
         <plugins>
-			
-            <plugin>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <!-- we are using old version (2.2) instead of (2.3.1) to be compatible with site-plugin 3.0-beta-3 -->
-                <version>2.2</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                        <!-- FIXME @POM re-enable "dependencies report" -->
-<!--                            <report>dependencies</report>-->
-                            <report>project-team</report>
-<!--                            <report>mailing-list</report>-->
-<!--                            <report>cim</report>-->
-                            <report>issue-tracking</report>
-                            <report>license</report>
-                            <report>scm</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-			</plugin>
 
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
