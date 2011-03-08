@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     
     <artifactId>core-api</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -46,9 +46,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/tags/josceleton-reactor-0.1/core-api</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/tags/josceleton-reactor-0.1/core-api</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/tags/josceleton-reactor-0.1/core-api</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/core-api/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/core-api/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/core-api/</url>
     </scm>
     
 </project>
