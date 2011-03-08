@@ -29,6 +29,8 @@ BUILD
 	<executions><execution>
 		<goals><goal>checkstyle</goal><goal>check</goal></goals>
 		<phase>package</phase>
+- EMMA mvn plugin (what for?)
+	<plugin><groupId>org.codehaus.mojo</groupId><artifactId>emma-maven-plugin</artifactId><version>1.0-alpha-1</version></plugin>
 
 ==========================================
 AOP
@@ -55,3 +57,25 @@ VEEEEERY LUXURY
 - create custom maven site skin
 - HARDCORE LUXURY also build osgi bundle
 @CHECKSTYLE would be nice to annotate a class with custom suppression annotation, and then based on this generate suppression.xml file ;)
+
+
+resolve mvn build warning
+==========================================
+JAR [WARNING] Artifact net.sf.josceleton:connection-api:test-jar:tests:0.1-SNAPSHOT 	
+SITE [WARNING] Artifact net.sf.josceleton:connection-impl:xml:site:0.1-SNAPSHOT already attached to project, ignoring duplicate
+SOURCE [WARNING] Artifact net.sf.josceleton:connection-impl:java-source:sources:0.1-SNAPSHOT already attached to project, ignoring duplicate
+
+enhance reporting
+==========================================
+    <reporting>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-changes-plugin</artifactId>
+          <version>2.1</version>
+          <reportSets>
+            <reportSet>
+              <reports>
+                <report>changes-report</report>
+
+

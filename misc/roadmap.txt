@@ -1,3 +1,6 @@
+!!! FOCUS! - zuerst ext.services + gestures fertig machen, dann rundherum (mvn build a la javadoc, etc)
+
+
 VERSION 0.0 <<PRE-RELEASE>>
 =========================
 A. mvn site ganz wenig herrichten (reports)

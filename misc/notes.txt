@@ -16,6 +16,38 @@
 			@AOP{ contract }
 	// eigentlich auch sowas wie mixins (oder halt pures tagging): "TEST ???"
 
+
+****************** new unsorted 1 ("NACHDEM v0.1 released ist")
+
+!!! in allen poms url ersetzen mit: http://josceleton.sf.net/
+!!! move internal guideline/books (release guide, coding guideline) into mvn site!
+	@coding guideline ... fluent interfaces, no classes just interfaces (especially for public APIs), immutability, testability, SoC, DRY ~KISS, decoupling,
+				max size violation(methods, classes, packages, modules, reactors, projects)
+!!! move maven-project-info-reports-plugin from abstract-pom to corporate pom (especially the verson, as it generates a serious WARNING in output)
+!!! remove checkstyle absolute path to suppression file, in checkstyle.xml => use some ${var} instead
+- directory listing auf sf webserver enablen
+- @organization: manche tasktags koennen verschoben werden in luxury.txt (muss halt dann zusaetzlich referenz dazu schreiben, woher dieses tasktag kommt)
+- @site: es gibt eine haupt mvn site (alle anderen sind eher unwichtig; oder wie besser strukturieren?)
+	- menuitem "samples"
+	- menuitem "download" {maven, distribution packages}
+	- menuitem "code quality" (auflistung was alles gechecked wird, und dass 100% coverage pflicht ist)
+@site release report: auch (neben test coverage, tasktags, pmd, metriken static code analyse, etc) auch anzahl der tests mit auflisten
+
+****************** new unsorted 2
+
+- reports (wenn moeglich) aggregieren
+	-> {javadoc} ... am schoensten waere aggregat mit nur public modules (zb !nicht! *-impl)
+	// was macht man mit javadoc von klasse die man nicht zu sehen bekommt?!
+- metriken im build enforcen: (zumindest wenn release dann andere (haertere) werte nehmen)
+	* tasktags  (zumindest keine FIXMEs in release)
+	* pmd/cpd/findbugs??
+
+- @release handbook:
+	* in site metriken updaten; zu jedem release mehrere werte pro modul + gesamt:
+		- task tags, coverage, anzahlen (#klassen, zeilen, komplexitaet), pmd/cpd/findbugs errors
+
+- maven-checkstyle-plugin leute frage ob/wann MethodCount unterstuetzt wird
+
 ==========================================
 TODO * upcoming *
 ==========================================
@@ -36,6 +68,17 @@ TODO * upcoming *
 !! setup site (reports, mvn repo/coordinates samples, diagrams)
 - include checkstyle rule check-for-existing-javadoc for all API classes
 !! TEST BUILD when running tests, maybe append own log4j logger (programatically? something like a regular overwriting file appender)
+
+SHELLSCRIPT
+====================================
+LUXURY: kleines gui bauen, wo man mvn schnell ausfuehren kann:
+	1. enter mvn command
+	2. select (checkbox) artifacts to apply to
+	2b. oder besser buttons, a la: "install poms-reactor"
+- write report at end (which succeeded/failed; also could count time)
+- could provide argument only which will be used as non-default MVN_CMD
+- could then also register in PATH, and then just enter "mvnj <mvn_command> [specific artifacts/or all by default]"
+- when failing, write file. after fixing problems, could rerun this script and dont rebuild already successfully built projects
 
 ==========================================
 ??? QUESTIONS ???
