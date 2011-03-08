@@ -12,9 +12,9 @@
     <version>0.1-SNAPSHOT</version>
     
     
-    <prerequisites>
-		<maven>3.0</maven>
-	</prerequisites>
+<!--    <prerequisites>-->
+<!--		<maven>3.0</maven>-->
+<!--	</prerequisites>-->
     
     <!-- no CI yet :( -->
 <!--	<ciManagement></ciManagement>-->
@@ -40,6 +40,14 @@
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>2.5</version>
+<!--					<dependencies>-->
+<!--						<dependency>-->
+<!--							<groupId>org.apache.maven.wagon</groupId>-->
+<!--							<artifactId>wagon-ssh-external</artifactId>-->
+<!--							<version>1.0-beta-7</version>-->
+<!--							<type>pom</type>-->
+<!--						</dependency>-->
+<!--					</dependencies>-->
 				</plugin>
 				
 				<plugin>
@@ -50,7 +58,8 @@
 				<!-- no maven3 switch (to 2.2) necessary, as maven 3.0 as prerequisite nevertheless -->
             	<plugin>
             		<artifactId>maven-site-plugin</artifactId>
-            		<version>3.0-beta-3</version>
+            		<version>2.2</version>
+<!--            		FIXME MVN3 issue <version>3.0-beta-3</version>-->
             	</plugin>
             	
             	<!-- LUXURY @POM DEPLOY do we need to sign our jars with gpg? -->
@@ -77,6 +86,34 @@
             </plugin>
             
     	</plugins>
+
+		<!-- wagon help see: http://maven.apache.org/wagon/wagon-providers/wagon-scm/usage.html -->
+		<!-- NO: already defined for deploy plugin only; see above ??? -->
+<!--		<extensions>-->
+<!--			<extension>-->
+<!--				<groupId>org.apache.maven.wagon</groupId>-->
+<!--				<artifactId>wagon-ssh-external</artifactId>-->
+<!--				<version>1.0-beta-7</version> -->
+<!--			</extension>-->
+			
+<!--			      <extension>-->
+<!--        <groupId>org.apache.maven.wagon</groupId>-->
+<!--        <artifactId>wagon-scm</artifactId>-->
+<!--        <version>1.0-beta-7</version>-->
+<!--      </extension>-->
+<!--      <extension>-->
+<!--        <groupId>org.apache.maven.scm</groupId>-->
+<!--        <artifactId>maven-scm-manager-plexus</artifactId>-->
+<!--        <version>1.4</version>-->
+<!--      </extension>-->
+<!--      <extension>-->
+<!--        <groupId>org.apache.maven.scm</groupId>-->
+<!--        <artifactId>maven-scm-provider-svnexe</artifactId>-->
+<!--        <version>1.0-beta-7</version>-->
+<!--      </extension>-->
+			
+<!--		</extensions>-->
+    	
     </build>
     
     
@@ -84,34 +121,60 @@
     <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
     <!-- ******************************************************************* -->
     
-    <!-- FIXME @POM add "distribution management" -->
-<!--    <distributionManagement>-->
+    <distributionManagement>
+
+		<snapshotRepository>
+			<id>josceleton-sourceforge-server</id>
+			<name>josceleton maven snapshot repository @sourceforge</name>
+			<!-- FIXME !!!!!!!!!!! have to use mvn2 for deployment (therefore also change site version; and maybe others as well...)  -->
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/maven/snapshot</url>
+
+			<!-- * save some diskspace and overwrite snapshot versions -->
+			<!-- * or maybe not: "The setting <uniqueVersion>false</uniqueVersion> for a distribution repository has no effect in version 3.x, snapshot artifacts will always be deployed using a timestamped version." -->
+			<!--   // see: https://cwiki.apache.org/MAVEN/maven-3x-compatibility-notes.html -->
+<!--			<uniqueVersion>false</uniqueVersion>-->
+
+<!--			<layout></layout>-->
+		</snapshotRepository>
+
+		<repository>
+			<id>josceleton-sourceforge-server</id>
+			<name>josceleton maven release repository @sourceforge</name>
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/maven/release</url>
+<!--			<uniqueVersion></uniqueVersion>-->
+<!--			<layout></layout>-->
+		</repository>
+    
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<name>josceleton site server @sourceforge</name>
+			<!-- TODO @POM outsource site url part as property (could be the case submodule wants to override) -->
+			
+			<!-- needs an open shell: ssh -t christoph_pickl,josceleton@shell.sf.net create -->
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>
+
+			<!-- using web.sf.net host ... mkdir failed (though would not dependent on terminal hacking... as shell.sf.net) -->
+<!--			<url>scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>-->
+		</site>
+
+<!--		<status></status>-->
 <!--    	<downloadUrl></downloadUrl>-->
 <!--		<relocation></relocation>-->
-<!--		<repository></repository>-->
-<!--		<site>-->
-<!--			<id>josceleton-site-server</id>-->
-<!--			<name></name>-->
-<!--			<url>scp://sourceforge/p/</url>-->
-<!--		</site>-->
-<!--		<snapshotRepository></snapshotRepository>-->
-<!--		<status></status>-->
-<!--    </distributionManagement>-->
+
+    </distributionManagement>
     
     
     <!-- ******************************************************************* -->
     <!--                                S C M                                -->
     <!-- ******************************************************************* -->
     
-    	<!-- FIXME @POM add "scm paths" -->
-<!--    <scm>-->
-<!--        <connection>scm:svn:http://sf/p/josceleton/artifacts/corporate-pom/trunk</connection>-->
-<!--        <developerConnection>scm:svn:https://sf/p/josceleton/artifacts/corporate-pom/trunk</developerConnection>-->
-<!--        <url>http://sf/p/josceleton/artifacts/corporate-pom/trunk</url>-->
-<!--    </scm>-->
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/trunk</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/trunk</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/corporate-pom/trunk/trunk</url>
+    </scm>
     
-	
-     
+    
     <!-- ******************************************************************* -->
     <!--                   I S S U E   M A N A G E M E N T                   -->
     <!-- ******************************************************************* -->
