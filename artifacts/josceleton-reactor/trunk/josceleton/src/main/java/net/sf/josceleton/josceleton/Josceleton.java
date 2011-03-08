@@ -1,15 +1,26 @@
 package net.sf.josceleton.josceleton;
 
+import net.sf.josceleton.connection.api.Connection;
 
-public final class Josceleton {
+import com.google.inject.Guice;
+
+
+public final class Josceleton /*statically implements JosceletonFacade */ {
 	
-//	private static final JosceletonFacade FACADE = new JosceletonFacadeImpl();
-//	
-//	private Josceleton() {
-//		// non instantiable, as just static methods available
-//	}
+	private static final JosceletonFacade FACADE =
+		new JosceletonFacadeImpl(
+			Guice.createInjector(
+				new JosceletonGuiceModule()));
 	
-//	public static Connection openConnection() {
-//		return FACADE.openConnection();
-//	}
+	private Josceleton() {
+		// non instantiable, as just static methods available
+	}
+	
+	public static Connection openConnection() {
+		return FACADE.openConnection();
+	}
+	
+	public static Connection openConnectionOnPort(final int port) {
+		return FACADE.openConnectionOnPort(port);
+	}
 }
