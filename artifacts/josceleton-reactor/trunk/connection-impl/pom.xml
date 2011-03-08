@@ -76,4 +76,15 @@
 	    
     </dependencies>
     
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/connection-impl/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/connection-impl/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/connection-impl/</url>
+    </scm>
+    
 </project>

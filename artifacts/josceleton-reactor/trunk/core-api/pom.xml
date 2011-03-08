@@ -39,4 +39,15 @@
 	   	
 	</dependencies>
     
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/core-api/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/core-api/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/core-api/</url>
+    </scm>
+    
 </project>

@@ -5,7 +5,8 @@
     <description>Common stuff, not specific to josceleton by used by its modules.</description>
     <packaging>jar</packaging>
     
-    <artifactId>commons</artifactId><version>0.1-SNAPSHOT</version>
+    <artifactId>commons</artifactId>
+    <version>0.1-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -19,5 +20,15 @@
         <relativePath>../../java-pom/pom.xml</relativePath>
     </parent>
     
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/commons/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/commons/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/commons/</url>
+    </scm>
     
 </project>

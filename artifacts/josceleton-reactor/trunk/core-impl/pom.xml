@@ -5,7 +5,8 @@
     <description>Implementation of Core API (should not be used by user).</description>
     <packaging>jar</packaging>
     
-    <artifactId>core-impl</artifactId><version>0.1-SNAPSHOT</version>
+    <artifactId>core-impl</artifactId>
+    <version>0.1-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -29,14 +30,39 @@
 	    <!-- I N T E R N A L -->
     	<!-- *********************************************************** -->
     	
-		<dependency><groupId>${project.groupId}</groupId><artifactId>core-api</artifactId></dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core-api</artifactId>
+		</dependency>
 	    
 	    <!-- T E S T -->
     	<!-- *********************************************************** -->
-    	
-	    <dependency><groupId>${project.groupId}</groupId><artifactId>commons</artifactId><type>test-jar</type><scope>test</scope></dependency>
-	    <dependency><groupId>${project.groupId}</groupId><artifactId>core-api</artifactId><type>test-jar</type><scope>test</scope></dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>commons</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core-api</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
 	    	    
 	</dependencies>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/core-impl/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/core-impl/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/core-impl/</url>
+    </scm>
 	
 </project>

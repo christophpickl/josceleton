@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>${project.artifactId} (${project.version})</name>
     <description>The super POM for all josceleton artifacts.</description>
-    <url>http://josceleton.sourceforge.net</url>
+    <url>http://josceleton.sf.net</url>
     <inceptionYear>2011</inceptionYear>
     <packaging>pom</packaging>
     
@@ -24,6 +24,7 @@
     	<version.deploy-plugin>2.5</version.deploy-plugin>
     	<version.release-plugin>2.1</version.release-plugin>
     	<version.antrun-plugin>1.6</version.antrun-plugin>
+    	<version.changes-plugin>2.3</version.changes-plugin>
     	
     	<!-- mvn3 will be enabled automagically if mvn3 is used ;) -->
     	<version.mvn_being_used>2</version.mvn_being_used>
@@ -68,11 +69,33 @@
 <!--            		<version>1.1</version>-->
 <!--           		</plugin>-->
            		
+				<plugin>
+					<artifactId>maven-changes-plugin</artifactId>
+					<version>${version.changes-plugin}</version>          
+				</plugin>
+				
     		</plugins>
     	</pluginManagement>
-    	
-    	
+
+
     	<plugins>
+    	
+			<plugin>
+				<artifactId>maven-changes-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>validate-changes</id>
+						<phase>pre-site</phase>
+						<goals>
+							<goal>changes-validate</goal>
+						</goals>
+						<configuration>
+							<failOnError>true</failOnError>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+    	
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -118,7 +141,7 @@
 		                    LUXURY @POM SITE enable more reports
 		                    ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
 		                    MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
-		                    WHAT FOR: help, index, dependency-convergence, 
+		                    WHAT FOR: help, index, dependency-convergence
 		                    DEFINETELY NOT: mailing-list, cim 
 	                    -->
                         <reports>
@@ -133,6 +156,21 @@
                     </reportSet>
                 </reportSets>
 			</plugin>
+
+			<plugin>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>${version.changes-plugin}</version>
+				<!-- for configuration options see: [http://maven.apache.org/plugins/maven-changes-plugin/changes-report-mojo.html] -->
+				<!-- could configure automatically sending mails: [http://maven.apache.org/plugins/maven-changes-plugin/usage.html] -->
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>changes-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			
 		</plugins>
 		
 	</reporting>
@@ -277,11 +315,10 @@
     <!--                   I S S U E   M A N A G E M E N T                   -->
     <!-- ******************************************************************* -->
     
-    <!-- FIXME @POM issue management mantis -->
-<!--     <issueManagement>-->
-<!--     	<url></url>-->
-<!--     	<system>Mantis</system>-->
-<!--     </issueManagement>-->
+    <issueManagement>
+		<url>https://sourceforge.net/apps/mantisbt/josceleton/</url>
+		<system>Mantis</system>
+	</issueManagement>
     
     
     <!-- ******************************************************************* -->

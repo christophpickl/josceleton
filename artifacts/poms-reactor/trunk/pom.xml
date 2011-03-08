@@ -5,7 +5,8 @@
     <description>The reactor project for all POMS except corporate-pom.</description>
     <packaging>pom</packaging>
     
-    <artifactId>poms-reactor</artifactId><version>0.1-SNAPSHOT</version>
+    <artifactId>poms-reactor</artifactId>
+    <version>0.1-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -29,5 +30,16 @@
     	<module>java-abstract-pom</module>
     	<module>java-pom</module>
     </modules>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/trunk/</url>
+    </scm>
     
 </project>
