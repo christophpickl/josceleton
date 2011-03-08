@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Download</title>
+	</properties>
+	<body>
+	
+		<section name="Download Artifacts">
+			
+			<p>
+				None yet, but soon more is coming -stay tuned :)
+			</p>
+			
+		</section>
+		
+		<section name="For Maven Users">
+			
+			<p>Add following in your <code>~/.m2/settings.xml</code> file:</p>
+			
+			<source><![CDATA[
+<settings ...>
+
+  <activeProfiles>
+    <activeProfile>josceleton-profile</activeProfile>
+  </activeProfiles>
+
+  <profiles>
+
+    <profile>
+      <id>josceleton-profile</id>
+      <repositories>
+        <repository>
+          <id>josceleton-repo-snapshot</id>
+          <url>http://josceleton.sourceforge.net/maven/snapshot/</url>
+          <releases><enabled>false</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>josceleton-repo-release</id>
+          <url>http://josceleton.sourceforge.net/maven/release/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+      </repositories>
+    </profile>
+
+  </profiles>
+
+</settings>
+]]></source>
+			
+			<p>And then just declare a common dependency in your <code>pom.xml</code>:</p>
+			
+			<source><![CDATA[
+<project ...>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>net.sf.josceleton</groupId>
+      <artifactId>josceleton</artifactId>
+      <version>0.1</version>
+    </dependency>
+
+  </dependencies>
+
+</project>
+]]></source>
+			
+		</section>
+		
+	</body>
+</document>
+
