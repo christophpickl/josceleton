@@ -79,6 +79,22 @@
 
 
     	<plugins>
+			<plugin>
+				
+	    		<!-- 
+		    		release:prepare ... config options see: [http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html]
+		    		release:perform ... config options see: [http://maven.apache.org/plugins/maven-release-plugin/perform-mojo.html]
+	    		-->
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<username>${env.JOSCELETON_RELEASE_USER}</username>
+					<password>${env.JOSCELETON_RELEASE_PWD}</password>
+					
+					<preparationGoals>clean verify</preparationGoals><!-- default: "clean verify" -->
+					<allowTimestampedSnapshots>false</allowTimestampedSnapshots>
+					<!-- checkModificationExcludeList -->
+				</configuration>
+			</plugin>
     	
 			<plugin>
 				<artifactId>maven-changes-plugin</artifactId>
@@ -274,21 +290,17 @@
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton maven release repository @sourceforge</name>
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/maven/release</url>
-<!--			<uniqueVersion></uniqueVersion>-->
-<!--			<layout></layout>-->
 		</repository>
     
 		<site>
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton site server @sourceforge</name>
 			<!-- TODO @POM outsource site url part as property (could be the case submodule wants to override) -->
-			
 			<!--
 			needs an open shell:
 			$ ssh -t christoph_pickl,josceleton@shell.sf.net create
 			-->
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>
-
 			<!-- using web.sf.net host ... mkdir failed (though would not dependent on terminal hacking... as shell.sf.net) -->
 <!--			<url>scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>-->
 		</site>

@@ -142,8 +142,8 @@
                 	
 <!--	                    <headerLocation>LICENSE.txt</headerLocation>-->
 <!--						<xrefLocation>${project.reporting.outputDirectory}/xref</xrefLocation>-->
-					<!-- MINOR @POM set checkstyle fails on error as property (release=>true) -->
-	                	<!-- for configuration options see: http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle-mojo.html -->
+					<!-- set checkstyle fails on error as property (release=>true) !NOOOO! checkstyle should ALWAYS fail, not only for release -->
+	                <!-- for configuration options see: http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle-mojo.html -->
 					
                 	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
 	                <configuration>
