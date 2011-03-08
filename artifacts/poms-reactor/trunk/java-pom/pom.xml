@@ -15,7 +15,7 @@
     <parent>
         <groupId>net.sf.josceleton</groupId>
         <artifactId>java-abstract-pom</artifactId>
-        <version>0.1</version>
+        <version>0.2-SNAPSHOT</version>
         <relativePath>../java-abstract-pom/</relativePath>
     </parent>
     
@@ -34,12 +34,14 @@
         <!-- V E R S I O N S -->
    		<!-- *********************************************************** -->
    		
-    	<version.josceleton.commons>0.1</version.josceleton.commons>
-    	<version.josceleton.core-api>0.1</version.josceleton.core-api>
-    	<version.josceleton.core-impl>0.1</version.josceleton.core-impl>
-    	<version.josceleton.connection-api>0.1</version.josceleton.connection-api>
-    	<version.josceleton.connection-impl>0.1</version.josceleton.connection-impl>
-   		<version.josceleton-checkstyle-config>0.1</version.josceleton-checkstyle-config>
+    	<version.josceleton.guice>2.1-SNAPSHOT</version.josceleton.guice>
+    	
+    	<version.josceleton.commons>0.2-SNAPSHOT</version.josceleton.commons>
+    	<version.josceleton.core-api>0.2-SNAPSHOT</version.josceleton.core-api>
+    	<version.josceleton.core-impl>0.2-SNAPSHOT</version.josceleton.core-impl>
+    	<version.josceleton.connection-api>0.2-SNAPSHOT</version.josceleton.connection-api>
+    	<version.josceleton.connection-impl>0.2-SNAPSHOT</version.josceleton.connection-impl>
+   		<version.josceleton-checkstyle-config>0.2-SNAPSHOT</version.josceleton-checkstyle-config>
     	<version.javaosc>1.0-20060402-josceleton</version.javaosc>
     	
     </properties>
@@ -122,7 +124,7 @@
 			<dependency>
 				<groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
 				<artifactId>guice-dependencies</artifactId>
-				<version>2.1-SNAPSHOT</version>
+				<version>${version.josceleton.guice}</version>
 				<type>pom</type>
 			</dependency>
 			
@@ -150,7 +152,7 @@
 			<exclusions>
 				<!-- we dont need grapher functionality -->
 				<exclusion>
-		            <groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
+		            <groupId>com.google.code.guice</groupId>
 		            <artifactId>guice-grapher</artifactId>
 				</exclusion>
 			</exclusions>

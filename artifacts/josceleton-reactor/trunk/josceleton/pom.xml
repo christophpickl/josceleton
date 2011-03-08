@@ -16,9 +16,18 @@
     <parent>
 		<groupId>net.sf.josceleton</groupId>
 		<artifactId>java-pom</artifactId>
-		<version>0.1</version>
+		<version>0.2-SNAPSHOT</version>
     	<relativePath>../../poms-reactor/java-pom/</relativePath>
 	</parent>
+	
+	
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+	
+    <properties>
+    	<the.hell.we.aim.for.hundred.percent.coverage>0</the.hell.we.aim.for.hundred.percent.coverage>
+    </properties>
     
     
     <!-- ******************************************************************* -->

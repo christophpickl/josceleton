@@ -27,7 +27,8 @@
     	<version.changes-plugin>2.3</version.changes-plugin>
     	
     	<!-- mvn3 will be enabled automagically if mvn3 is used ;) -->
-    	<version.mvn_being_used>2</version.mvn_being_used>
+    	<version.mvn_being_used>2</version.mvn_being_used><!-- used to print to console -->
+    	
     	<version.site-plugin.mvn2>2.2</version.site-plugin.mvn2>
     	<version.site-plugin.mvn3>3.0-beta-3</version.site-plugin.mvn3>
     	<version.site-plugin>${version.site-plugin.mvn2}</version.site-plugin>
