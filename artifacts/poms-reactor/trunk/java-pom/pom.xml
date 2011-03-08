@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>${project.artifactId} (${project.version})</name>
-    <description>The super POM for all josceleton artifacts.</description>
+    <description>The super POM for all josceleton java artifacts.</description>
     <packaging>pom</packaging>
     
     <artifactId>java-pom</artifactId>
@@ -15,7 +15,7 @@
     <parent>
         <groupId>net.sf.josceleton</groupId>
         <artifactId>java-abstract-pom</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.1</version>
         <relativePath>../java-abstract-pom/</relativePath>
     </parent>
     
@@ -26,6 +26,7 @@
     
     <properties>
     	
+    	<!-- TODO @POM outsource per-user configuration properties (eclipse workspace,..) -->
     	<checkstyle-config-name>josceleton-checkstyle-config</checkstyle-config-name>
     	<eclipse-workspace-path>/Users/phudy/_dev/pulse</eclipse-workspace-path>
     	
@@ -33,11 +34,13 @@
         <!-- V E R S I O N S -->
    		<!-- *********************************************************** -->
    		
-    	<version.josceleton.commons>0.1-SNAPSHOT</version.josceleton.commons>
-    	<version.josceleton.core-api>0.1-SNAPSHOT</version.josceleton.core-api>
-    	<version.josceleton.connection-api>0.1-SNAPSHOT</version.josceleton.connection-api>
+    	<version.josceleton.commons>0.1</version.josceleton.commons>
+    	<version.josceleton.core-api>0.1</version.josceleton.core-api>
+    	<version.josceleton.core-impl>0.1</version.josceleton.core-impl>
+    	<version.josceleton.connection-api>0.1</version.josceleton.connection-api>
+    	<version.josceleton.connection-impl>0.1</version.josceleton.connection-impl>
+   		<version.josceleton-checkstyle-config>0.1</version.josceleton-checkstyle-config>
     	<version.javaosc>1.0-20060402</version.javaosc>
-   		<version.josceleton-checkstyle-config>0.1-SNAPSHOT</version.josceleton-checkstyle-config>
     	
     </properties>
     
@@ -70,7 +73,6 @@
 				<artifactId>core-api</artifactId>
 				<version>${version.josceleton.core-api}</version>
 			</dependency>
-			
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>core-api</artifactId>
@@ -81,7 +83,13 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>core-impl</artifactId>
-				<version>0.1-SNAPSHOT</version>
+				<version>${version.josceleton.core-impl}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>core-impl</artifactId>
+				<version>${version.josceleton.core-impl}</version>
+				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
@@ -89,7 +97,6 @@
 				<artifactId>connection-api</artifactId>
 				<version>${version.josceleton.connection-api}</version>
 			</dependency>
-			
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>connection-api</artifactId>
@@ -100,7 +107,13 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>connection-impl</artifactId>
-				<version>0.1-SNAPSHOT</version>
+				<version>${version.josceleton.connection-impl}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>connection-impl</artifactId>
+				<version>${version.josceleton.connection-impl}</version>
+				<type>test-jar</type>
 			</dependency>
     		
 	        <!-- P S E U D O   E X T E R N A L -->
