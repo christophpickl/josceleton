@@ -3,7 +3,7 @@ package net.sf.josceleton.core.impl.entity.message;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryProvider;
 
-public class CoreImplMessageGuiceModule extends AbstractModule {
+public class JosceletonCoreImplEntityMessageGuiceModule extends AbstractModule {
 
 	@Override protected final void configure() {
 		

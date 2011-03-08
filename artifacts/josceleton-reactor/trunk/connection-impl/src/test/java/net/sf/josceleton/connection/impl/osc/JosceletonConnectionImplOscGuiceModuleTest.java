@@ -4,10 +4,10 @@ import net.sf.josceleton.commons.test.AbstractGuiceModuleTest;
 
 import com.google.inject.Module;
 
-public class ConnectionImplOscGuiceModuleTest extends AbstractGuiceModuleTest {
+public class JosceletonConnectionImplOscGuiceModuleTest extends AbstractGuiceModuleTest {
 
 	@Override protected final Module createTestee() {
-		return new ConnectionImplOscGuiceModule();
+		return new JosceletonConnectionImplOscGuiceModule();
 	}
 
 }

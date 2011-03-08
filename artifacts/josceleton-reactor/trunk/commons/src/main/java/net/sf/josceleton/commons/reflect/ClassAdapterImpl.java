@@ -2,6 +2,9 @@ package net.sf.josceleton.commons.reflect;
 
 import java.lang.reflect.Constructor;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * Briding Java's reflection classes to Josceleton's pure interface world ;)
  */
@@ -9,17 +12,18 @@ public class ClassAdapterImpl<T> implements ClassAdapter<T> {
 	
 	private static final long serialVersionUID = 5544384595420106807L;
 
+	public static final ClassAdapterImpl<String> STRING = new ClassAdapterImpl<String>(String.class);
+	
 	private final Class<T> innerClass;
+
 	
-	public static final ClassAdapterImpl<String> STRING = ClassAdapterImpl.create(String.class);
-	
-	public static <X> ClassAdapterImpl<X> create(final Class<X> innerClass) {
-		return new ClassAdapterImpl<X>(innerClass);
+	@Inject public ClassAdapterImpl(@Assisted final Class<T> innerClass) {
+		this.innerClass = innerClass;
 	}
 	
-	// TODO ??? is it possible to create ClassAdapterFactory and inject it?
-	protected ClassAdapterImpl(final Class<T> innerClass) {
-		this.innerClass = innerClass;
+	@Deprecated
+	public static <X> ClassAdapterImpl<X> create(final Class<X> innerClass) {
+		return new ClassAdapterImpl<X>(innerClass);
 	}
 	
 	/** {@inheritDoc} from {@link ClassAdapter} */
