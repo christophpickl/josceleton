@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
     
     <artifactId>java-pom</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
     
     <!-- ******************************************************************* -->
     <!--                             P A R E N T                             -->
@@ -275,7 +275,7 @@
     <!-- MINOR @TEST POM enable integration tests -->
 <!--	<profiles>-->
 <!--		<profile>-->
-<!---->
+
 <!--			<id>run-integration-tests</id>-->
 <!--			<activation>-->
 <!--				<property>-->
@@ -283,7 +283,7 @@
 <!--					<value>!true</value>-->
 <!--				</property>-->
 <!--			</activation>-->
-<!---->
+
 <!--			<build>-->
 <!--				<plugins>-->
 <!--					<plugin>-->
@@ -291,7 +291,7 @@
 <!--						<artifactId>maven-invoker-plugin</artifactId>-->
 <!--						<version>1.5</version>-->
 <!--						<executions>-->
-<!---->
+
 <!--							<execution>-->
 <!--								<id>integration-test</id>-->
 <!--								<phase>integration-test</phase>-->
@@ -299,7 +299,7 @@
 <!--									<goal>install</goal>-->
 <!--									<goal>run</goal>-->
 <!--								</goals>-->
-<!---->
+
 <!--								<configuration>-->
 <!--									<debug>true</debug>-->
 <!--									<projectsDirectory>src/it</projectsDirectory>-->
@@ -307,7 +307,7 @@
 <!--									<pomIncludes>-->
 <!--										<pomInclude>*/pom.xml</pomInclude>-->
 <!--									</pomIncludes>-->
-<!---->
+
 <!--									<localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>-->
 <!--									<settingsFile>src/it/settings.xml</settingsFile>-->
 <!--									<showErrors>true</showErrors>-->
@@ -315,7 +315,7 @@
 <!--							</execution>-->
 <!--						</executions>-->
 <!--					</plugin>-->
-<!---->
+
 <!--				</plugins>-->
 <!--			</build>-->
 <!--		</profile>-->
@@ -327,9 +327,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-pom/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-pom/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/trunk/java-pom/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/java-pom-0.1</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/java-pom-0.1</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/java-pom-0.1</url>
     </scm>
     
 </project>
