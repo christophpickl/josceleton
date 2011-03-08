@@ -5,7 +5,8 @@
     <description>Core API containing common types such as for async and other entities (messages, user, body).</description>
     <packaging>jar</packaging>
     
-    <artifactId>core-api</artifactId><version>0.1-SNAPSHOT</version>
+    <artifactId>core-api</artifactId>
+    <version>0.1-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -15,7 +16,7 @@
     <parent>
     	<groupId>net.sf.josceleton</groupId>
     	<artifactId>java-pom</artifactId>
-    	<version>0.1-SNAPSHOT</version>
+    	<version>0.1</version>
     	<relativePath>../../poms-reactor/java-pom/</relativePath>
    	</parent>
     

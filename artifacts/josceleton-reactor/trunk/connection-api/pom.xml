@@ -13,7 +13,12 @@
     <!--                             P A R E N T                             -->
     <!-- ******************************************************************* -->
     
-    <parent><groupId>net.sf.josceleton</groupId><artifactId>java-pom</artifactId><version>0.1-SNAPSHOT</version></parent>
+    <parent>
+    	<groupId>net.sf.josceleton</groupId>
+    	<artifactId>java-pom</artifactId>
+    	<version>0.1</version>
+    	<relativePath>../../poms-reactor/java-pom/</relativePath>
+    </parent>
     
     
     <!-- ******************************************************************* -->
@@ -21,16 +26,19 @@
     <!-- ******************************************************************* -->
     
     <dependencies>
+    
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core-api</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>commons</artifactId>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
     
     
