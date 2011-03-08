@@ -5,7 +5,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: josceleton-checkstyle-config
+    Checkstyle-Configuration: josceleton-checkstyle
     Description: none
 -->
 <module name="Checker">
@@ -129,6 +129,14 @@
       <property name="severity" value="error"/>
       <property name="excludes" value="org.hamcrest.MatcherAssert.*,org.hamcrest.Matchers.*,net.sf.josceleton.commons.test.matcher.JosceletonMatchers.*"/>
     </module>
+<!--    <module name="MethodCount">-->
+<!--      <property name="severity" value="warning"/>-->
+<!--      <property name="maxTotal" value="8"/>-->
+<!--      <property name="maxPrivate" value="7"/>-->
+<!--      <property name="maxPackage" value="5"/>-->
+<!--      <property name="maxProtected" value="5"/>-->
+<!--      <property name="maxPublic" value="7"/>-->
+<!--    </module>-->
     <module name="GenericWhitespace">
       <property name="severity" value="warning"/>
     </module>
@@ -167,7 +175,8 @@
     <property name="message" value="Line has trailing spaces."/>
     <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
   </module>
-  <module name="SuppressionFilter">
-    <property name="file" value="/Users/phudy/_dev/pulse/josceleton-poms-reactor/josceleton-checkstyle-config/src/main/resources/checkstyle_suppression.xml"/>
-  </module>
+<!--  <module name="SuppressionFilter">-->
+<!--    <property name="file" value="${config_loc}/checkstyle_suppression.xml"/>-->
+<!--    <property name="file" value="checkstyle_suppression.xml"/>-->
+<!--  </module>-->
 </module>

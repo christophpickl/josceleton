@@ -6,4 +6,5 @@
 06.03. - 16:00 -  6h - wrapping up v0.1: tasktags, unit tests, javadoc
               ~~ 30h~~
 06.03. - 22:00 -  8h - wrapping up v0.1: tasktags, improved build, site, javadoc
+07.03. - 22:00 -  h - setting up sourceforge project
               ~~ 38h~~

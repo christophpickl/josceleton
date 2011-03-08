@@ -178,7 +178,7 @@
 <!--					LUXURY @AOP POM enable ajdt plugin for eclipse (<ajdtVersion>1.6</ajdtVersion>)-->
 					
 					<!-- with groupid set, we can reuse eg "java-pom" in josceleton and other projects (pulse); but have to get sure the workspace config for project refs still works -->
-<!--					<addGroupIdToProjectName>true</addGroupIdToProjectName>-->
+					<addGroupIdToProjectName>true</addGroupIdToProjectName>
 <!--					<addVersionToProjectName>true</addVersionToProjectName>-->
 					
 					<!-- maven looks into workspace and set project references if project name matched instead of linked m2repo jar -->

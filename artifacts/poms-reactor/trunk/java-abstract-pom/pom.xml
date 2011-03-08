@@ -31,14 +31,9 @@
         <!-- V E R S I O N S -->
    		<!-- *********************************************************** -->
    		
-    	<!-- we are using old version (2.4.3) instead of (2.7.2) to be compatible with site-plugin 3.0-beta-3 -->
-    	<version.surefire>2.4.3</version.surefire>
-		
-		<!-- we are using old version (2.5) instead of (2.6) to be compatible with site-plugin 3.0-beta-3 -->
-    	<verison.checkstyle>2.4</verison.checkstyle>
-    	
-		<!-- we are using old version (2.3) instead of (2.4) to be compatible with site-plugin 3.0-beta-3 -->
-    	<version.cobertura>2.3</version.cobertura>
+    	<version.surefire>2.4.3</version.surefire><!-- 2.4.3 is compatible with site3.0-beta (current is 2.7.2) -->
+    	<verison.checkstyle>2.5</verison.checkstyle><!-- 2.5 is compatible with site3.0-beta (current is 2.6) -->
+    	<version.cobertura>2.3</version.cobertura><!-- 2.3 is compatible with site3.0-beta (current is 2.4) -->
     	
     	<!-- emma would be 1.0-alpha-2 for site-plugin-3.0-beta-3 -->
     	
