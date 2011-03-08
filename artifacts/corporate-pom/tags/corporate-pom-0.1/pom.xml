@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId} (${project.version})</name>
+    <description>The super POM for all josceleton artifacts.</description>
+    <url>http://josceleton.sf.net</url>
+    <inceptionYear>2011</inceptionYear>
+    <packaging>pom</packaging>
+    
+    <groupId>net.sf.josceleton</groupId>
+    <artifactId>corporate-pom</artifactId>
+    <version>0.1</version>
+    
+    <!-- no prerequisites, as we are supporting maven 2 and 3 concurrently; hell yeah :) -->
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+    
+    <properties>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	
+    	<version.deploy-plugin>2.5</version.deploy-plugin>
+    	<version.release-plugin>2.1</version.release-plugin>
+    	<version.antrun-plugin>1.6</version.antrun-plugin>
+    	<version.changes-plugin>2.3</version.changes-plugin>
+    	
+    	<!-- mvn3 will be enabled automagically if mvn3 is used ;) -->
+    	<version.mvn_being_used>2</version.mvn_being_used>
+    	<version.site-plugin.mvn2>2.2</version.site-plugin.mvn2>
+    	<version.site-plugin.mvn3>3.0-beta-3</version.site-plugin.mvn3>
+    	<version.site-plugin>${version.site-plugin.mvn2}</version.site-plugin>
+    	
+    	<verison.project-info-reports-plugin.mvn2>2.2</verison.project-info-reports-plugin.mvn2>
+    	<verison.project-info-reports-plugin.mvn3>2.3.1</verison.project-info-reports-plugin.mvn3>
+    	<verison.project-info-reports-plugin>${verison.project-info-reports-plugin.mvn2}</verison.project-info-reports-plugin>
+    	
+    </properties>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                              B U I L D                              -->
+    <!-- ******************************************************************* -->
+    
+    <build>
+    
+    	<pluginManagement>
+    		<plugins>
+    			
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${version.deploy-plugin}</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${version.release-plugin}</version>
+				</plugin>
+				
+            	<plugin>
+            		<artifactId>maven-site-plugin</artifactId>
+            		<version>${version.site-plugin}</version>
+            	</plugin>
+            	
+            	<!-- LUXURY @POM DEPLOY do we need to sign our jars with gpg? -->
+<!--            	<plugin>-->
+<!--            		<artifactId>maven-gpg-plugin</artifactId>-->
+<!--            		<version>1.1</version>-->
+<!--           		</plugin>-->
+           		
+				<plugin>
+					<artifactId>maven-changes-plugin</artifactId>
+					<version>${version.changes-plugin}</version>          
+				</plugin>
+				
+    		</plugins>
+    	</pluginManagement>
+
+
+    	<plugins>
+			<plugin>
+				
+	    		<!-- 
+		    		release:prepare ... config options see: [http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html]
+		    		release:perform ... config options see: [http://maven.apache.org/plugins/maven-release-plugin/perform-mojo.html]
+	    		-->
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<username>${env.JOSCELETON_RELEASE_USER}</username>
+					<password>${env.JOSCELETON_RELEASE_PWD}</password>
+					
+					<preparationGoals>clean verify</preparationGoals><!-- default: "clean verify" -->
+					<allowTimestampedSnapshots>false</allowTimestampedSnapshots>
+					<!-- checkModificationExcludeList -->
+				</configuration>
+			</plugin>
+    	
+			<plugin>
+				<artifactId>maven-changes-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>validate-changes</id>
+						<phase>pre-site</phase>
+						<goals>
+							<goal>changes-validate</goal>
+						</goals>
+						<configuration>
+							<failOnError>true</failOnError>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+    	
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${version.antrun-plugin}</version>
+				<executions>
+					<!-- not nice solved: adding execution separately for compile and site  -->
+					<execution>
+						<id>print-maven3-profile-message @initialize</id><phase>initialize</phase>
+						<configuration><target><echo message="INFORMATION: using josceleton detected maven version ${version.mvn_being_used}" /></target></configuration><goals><goal>run</goal></goals>
+					</execution>
+					<execution>
+						<id>print-maven3-profile-message @pre-site</id><phase>pre-site</phase>
+						<configuration><target><echo message="INFORMATION: using josceleton detected maven version ${version.mvn_being_used}" /></target></configuration><goals><goal>run</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+		
+    </build>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                          R E P O R T I N G                          -->
+    <!-- ******************************************************************* -->
+    
+    <!--
+    "And the subtler difference is that a plugin configuration under the reporting element works as build plugin configuration,
+    although the opposite is not true (a build plugin configuration does not affect a reporting plugin)."
+      ... source: [http://maven.apache.org/pom.html#Plugin_Management]
+    -->
+    <reporting>
+        <plugins>
+			
+            <plugin>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${verison.project-info-reports-plugin}</version>
+                <reportSets>
+                    <reportSet>
+	                    <!--
+		                    available reports:
+		                    *********************
+		                    LUXURY @POM SITE enable more reports
+		                    ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
+		                    MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
+		                    WHAT FOR: help, index, dependency-convergence
+		                    DEFINETELY NOT: mailing-list, cim 
+	                    -->
+                        <reports>
+                        <!-- FIXME @POM re-enable "dependencies report" -->
+<!--                            <report>dependencies</report>-->
+                            <report>project-team</report>
+                            <report>issue-tracking</report>
+                            <report>license</report>
+                            <report>scm</report>
+                            <report>summary</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>${version.changes-plugin}</version>
+				<!-- for configuration options see: [http://maven.apache.org/plugins/maven-changes-plugin/changes-report-mojo.html] -->
+				<!-- could configure automatically sending mails: [http://maven.apache.org/plugins/maven-changes-plugin/usage.html] -->
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>changes-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			
+		</plugins>
+		
+	</reporting>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                           P R O F I L E S                           -->
+    <!-- ******************************************************************* -->
+    
+	<profiles>
+		<profile>
+			<id>maven-3</id>
+			<activation>
+				<file>
+					<!-- This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
+					<exists>${basedir}</exists>
+				</file>
+			</activation>
+			
+			<properties>
+				<version.mvn_being_used>3</version.mvn_being_used>
+				<version.site-plugin>${version.site-plugin.mvn3}</version.site-plugin>
+    			<verison.project-info-reports-plugin>${verison.project-info-reports-plugin.mvn3}</verison.project-info-reports-plugin>
+			</properties>
+			
+			<build>
+				<!--
+				MINOR @POM mvn3 deploy does not work (but mvn3 site:deploy does) because of not working scp support :(
+				for wagon help see: http://maven.apache.org/wagon/wagon-providers/wagon-scm/usage.html 
+				-->
+
+				<pluginManagement>
+					<plugins>
+							<!-- sadly this does not work... :( though it is officially said to workaround this way -->
+<!--						<plugin>-->
+<!--							<artifactId>maven-deploy-plugin</artifactId>-->
+<!--							<version>${version.deploy-plugin}</version>-->
+<!--							<dependencies>-->
+<!--								<dependency>-->
+<!--									<groupId>org.apache.maven.wagon</groupId>-->
+<!--									<artifactId>wagon-ssh-external</artifactId>-->
+<!--									<version>1.0-beta-7</version>-->
+<!--									<type>pom</type>-->
+<!--								</dependency>-->
+<!--							</dependencies>-->
+<!--						</plugin>-->
+						
+					</plugins>
+				</pluginManagement>
+
+				<plugins>
+				
+					<plugin>
+						<artifactId>maven-site-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-descriptor</id>
+								<goals>
+									<goal>attach-descriptor</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					
+				</plugins>
+				
+			<!-- or register wagon ssh/scp provider as extension (more global than specifying as dependency for plugin only -->
+<!--		<extensions>-->
+<!--			<extension>-->
+<!--				<groupId>org.apache.maven.wagon</groupId>-->
+<!--				<artifactId>wagon-ssh-external</artifactId>-->
+<!--				<version>1.0-beta-7</version> -->
+<!--			</extension>-->
+<!--		</extensions>-->
+
+			</build>
+		</profile>
+	</profiles>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+    
+    <distributionManagement>
+
+		<snapshotRepository>
+			<id>josceleton-sourceforge-server</id>
+			<name>josceleton maven snapshot repository @sourceforge</name>
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/maven/snapshot</url>
+
+			<!-- * save some diskspace and overwrite snapshot versions -->
+			<!-- * or maybe not: "The setting <uniqueVersion>false</uniqueVersion> for a distribution repository has no effect in version 3.x, snapshot artifacts will always be deployed using a timestamped version." -->
+			<!--   // see: https://cwiki.apache.org/MAVEN/maven-3x-compatibility-notes.html -->
+<!--			<uniqueVersion>false</uniqueVersion>-->
+
+<!--			<layout></layout>-->
+		</snapshotRepository>
+
+		<repository>
+			<id>josceleton-sourceforge-server</id>
+			<name>josceleton maven release repository @sourceforge</name>
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/maven/release</url>
+		</repository>
+    
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<name>josceleton site server @sourceforge</name>
+			<!-- TODO @POM outsource site url part as property (could be the case submodule wants to override) -->
+			<!--
+			needs an open shell:
+			$ ssh -t christoph_pickl,josceleton@shell.sf.net create
+			-->
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>
+			<!-- using web.sf.net host ... mkdir failed (though would not dependent on terminal hacking... as shell.sf.net) -->
+<!--			<url>scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>-->
+		</site>
+
+<!--		<status></status>-->
+<!--    	<downloadUrl></downloadUrl>-->
+<!--		<relocation></relocation>-->
+
+    </distributionManagement>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/tags/corporate-pom-0.1</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/tags/corporate-pom-0.1</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/corporate-pom/tags/corporate-pom-0.1</url>
+    </scm>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                   I S S U E   M A N A G E M E N T                   -->
+    <!-- ******************************************************************* -->
+    
+    <issueManagement>
+		<url>https://sourceforge.net/apps/mantisbt/josceleton/</url>
+		<system>Mantis</system>
+	</issueManagement>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       O R G A N I Z A T I O N                       -->
+    <!-- ******************************************************************* -->
+     
+     <organization>
+     	<name>Josceleton</name>
+     	<url>${project.url}</url>
+     </organization>
+     
+     
+    <!-- ******************************************************************* -->
+    <!--                           L I C E N S E S                           -->
+    <!-- ******************************************************************* -->
+    
+    <licenses>
+        <license>
+            <name>BSD License</name>
+            <!-- MINOR @POM somehow get license.txt deployed in site (as well as copy in distribution package) -->
+<!--            <url>http://josceleton.sourceforge.net/LICENSE.txt</url>-->
+            <url>http://www.opensource.org/licenses/bsd-license.php</url>
+
+
+     		<!-- LUXURY @POM what to do with license distribution option "manual" vs "repo"? -->
+<!--     		This describes how the project may be legally distributed.-->
+<!--				The two stated methods are repo (they may be downloaded from a Maven repository) or-->
+<!--				manual (they must be manually installed).-->
+<!--     		<distribution>manual</distribution>-->
+			
+			<!-- MINOR @POM should pom inline license text? (would result in less ext. dep.) -->
+<!--     		<comments>???</comments>-->
+<!--    <comments>-->
+<!--    <![CDATA[-->
+<!--    Josceleton-->
+<!--Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:-->
+
+<!--Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.-->
+<!--Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.-->
+<!--Neither the name of Kristoffer Kvam nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.-->
+
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
+
+<!--See licence.txt for dependancies to other open projects.-->
+<!--      ]]>-->
+<!--    </comments>-->
+
+        </license>
+    </licenses>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                         D E V E L O P E R S                         -->
+    <!-- ******************************************************************* -->
+    
+    <developers>
+    
+        <developer>
+            <id>cpickl</id>
+            <name>Christoph Pickl</name>
+            <email>christoph.pickl@gmail.com</email>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Everything</role>
+            </roles>
+        </developer>
+        
+    </developers>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       C O N T R I B U T O R S                       -->
+    <!-- ******************************************************************* -->
+    
+    <contributors>
+    
+		<contributor>
+			<name>Thomas Hirt</name>
+			<url>http://thomas-hirt.at/</url>
+			<email>info@thomas-hirt.at</email>
+			<timezone>+1</timezone>
+			<roles>
+				<role>Ideas Contributer</role>
+			</roles>
+		</contributor>
+		
+	</contributors>
+    
+</project>
