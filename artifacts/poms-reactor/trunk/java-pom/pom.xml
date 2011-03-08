@@ -40,7 +40,7 @@
     	<version.josceleton.connection-api>0.1</version.josceleton.connection-api>
     	<version.josceleton.connection-impl>0.1</version.josceleton.connection-impl>
    		<version.josceleton-checkstyle-config>0.1</version.josceleton-checkstyle-config>
-    	<version.javaosc>1.0-20060402</version.javaosc>
+    	<version.javaosc>1.0-20060402-josceleton</version.javaosc>
     	
     </properties>
     
@@ -119,14 +119,44 @@
 	        <!-- P S E U D O   E X T E R N A L -->
     		<!-- *********************************************************** -->
     		
+			<dependency>
+				<groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
+				<artifactId>guice-dependencies</artifactId>
+				<version>2.1-SNAPSHOT</version>
+				<type>pom</type>
+			</dependency>
+			
 	        <dependency>
-		        <groupId>net.sf.josceleton.thirdparty.com.illposed</groupId>
+		        <groupId>com.illposed</groupId>
 		        <artifactId>javaosc</artifactId>
 		        <version>${version.javaosc}</version>
 	        </dependency>
 	        
     	</dependencies>
     </dependencyManagement>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       D E P E N D E N C I E S                       -->
+    <!-- ******************************************************************* -->
+    
+    <dependencies>
+    
+        <!-- has to be defined in here as TestNG comes with its own guice2 dependency -->
+		<dependency>
+			<groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
+			<artifactId>guice-dependencies</artifactId>
+			<type>pom</type>
+			<exclusions>
+				<!-- we dont need grapher functionality -->
+				<exclusion>
+		            <groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
+		            <artifactId>guice-grapher</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+    
+    </dependencies>
     
     
     <!-- ******************************************************************* -->

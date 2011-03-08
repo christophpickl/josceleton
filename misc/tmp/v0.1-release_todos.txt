@@ -4,38 +4,17 @@
 3. DONE maven POM distribute section for site
 4. DONE maven POM distribute (snapshot, release) section for code
 5. DONE maven 2/3 workaround: site and deploying-over-scp issue!
-
-6. SCM section for all artifacts
-7. create mvn deploy shellscript for 3rd party libs (deploy instead of install)
+6. DONE SCM section for all artifacts
 
 ****************************** first RELEASE
 
-1. figure out proper maven-RELEASE PLUGIN usage
-2. TAG everything (get rid of snapshot deps) // which will also deploy to m2repo
-3. POST-setup: upload release-files to sf, {minor update mvn site, update sf site}=changelog overview mit metriken
-	// @sf download/files: eher nach artifakt (als nach version) ordnerstruktur machen; oder evtl doch nach version? wie machens andere?
+1. DONE figure out proper maven-RELEASE PLUGIN usage
+2. DONE tag everything (get rid of snapshot deps) // which will also deploy to m2repo
+3. NO! upload release-files to sf
+4. NO! minor update mvn site, changelog overview mit metriken
+5. DONE create mvn deploy shellscript for 3rd party libs (deploy instead of install)
+6. DONE update sf site
 
 ****************************** organisation
-1. setup MANTIS ==> https://sourceforge.net/apps/mantisbt/josceleton/manage_user_page.php
+1. DONE setup MANTIS ==> https://sourceforge.net/apps/mantisbt/josceleton/manage_user_page.php
 	// mantis help: http://www.mantisbt.org/documentation.php
-!!! @site schreiben dass man repository section in ~.me/settings.xml machen soll fuer josceleton eigenes repo fuer dependency
-! nicht vergessen build scripts zur verfuegung zu stellen (osceleton & co installation); evtl fertige binaries von osceleton?
-- manage sf "file releases" // frs.sourceforge.net
-
-
-NOOOOO for v0.1 maven build only - no other distribution packages !!!!! 1. mvn enhanced distribution (some jars standalone runnable => with deps; in same folder/jar?)
-
-
-
-      <!-- We need version 2.0 of the release plugin for bzr support -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-	<version>2.0</version>
-	<configuration>
-	  <!-- Due to MRELEASE-459 this doesn't work, and you need to
-	  specify the "release" profile manually on the command line
-	  -->
-	  <releaseProfiles>release</releaseProfiles>
-	  <!-- Workaround for MGPG-9 -->
-	  <mavenExecutorId>forked-path</mavenExecutorId>

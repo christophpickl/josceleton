@@ -74,18 +74,6 @@
 	        	<version>1.2.14</version>
         	</dependency>
 			
-			
-	        <!-- P S E U D O   E X T E R N A L -->
-    		<!-- *********************************************************** -->
-    		
-			<dependency>
-				<groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
-				<artifactId>guice-dependencies</artifactId>
-				<version>2.0</version>
-				<type>pom</type>
-			</dependency>
-			
-			
 	        <!-- T E S T -->
     		<!-- *********************************************************** -->
     	
@@ -110,22 +98,6 @@
     <!-- ******************************************************************* -->
     
     <dependencies>
-        
-	    <!-- G U I C E -->
-    	<!-- *********************************************************** -->
-    	
-        <!-- has to be defined in here as TestNG comes with its own guice2 dependency -->
-		<dependency>
-			<groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
-			<artifactId>guice-dependencies</artifactId>
-			<type>pom</type>
-			<exclusions>
-				<exclusion>
-		            <groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
-		            <artifactId>guice-grapher</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 		
 	    <!-- L O G G I N G -->
     	<!-- *********************************************************** -->

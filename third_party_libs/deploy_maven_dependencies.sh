@@ -2,4 +2,4 @@
 
 source common_include.sh
 
-mvn_install
+mvn_deploy

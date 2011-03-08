@@ -71,7 +71,9 @@
            		
 				<plugin>
 					<artifactId>maven-changes-plugin</artifactId>
-					<version>${version.changes-plugin}</version>          
+					<version>${version.changes-plugin}</version>
+					<!-- FIXME @POM changes-plugin produces warning about missing changes.xml file -->
+					<!-- /Users/phudy/_dev/pulse/josceleton-corporate-pom/target/checkout/src/changes/changes.xml does not exist  -->          
 				</plugin>
 				
     		</plugins>
@@ -82,17 +84,24 @@
 			<plugin>
 				
 	    		<!-- 
-		    		release:prepare ... config options see: [http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html]
-		    		release:perform ... config options see: [http://maven.apache.org/plugins/maven-release-plugin/perform-mojo.html]
+		    		release:prepare ... http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html
+		    		release:perform ... http://maven.apache.org/plugins/maven-release-plugin/perform-mojo.html
 	    		-->
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
+					<!-- common configuration -->
 					<username>${env.JOSCELETON_RELEASE_USER}</username>
 					<password>${env.JOSCELETON_RELEASE_PWD}</password>
 					
+					<!-- release:prepare configuration -->
 					<preparationGoals>clean verify</preparationGoals><!-- default: "clean verify" -->
 					<allowTimestampedSnapshots>false</allowTimestampedSnapshots>
+					<autoVersionSubmodules>false</autoVersionSubmodules><!-- default: "false" -->
 					<!-- checkModificationExcludeList -->
+					
+					<!-- release:perform configuration -->
+					<goals>deploy site-deploy</goals>
+<!--					<releaseProfiles></releaseProfiles>-->
 				</configuration>
 			</plugin>
     	

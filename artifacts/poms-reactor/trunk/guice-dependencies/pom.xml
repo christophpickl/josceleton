@@ -26,10 +26,7 @@
     <!-- ******************************************************************* -->
     
     <properties>
-    	<!-- looks like a repetition, doesnt it? project.groupId eq this one.
-    	     but this one is declared during deployment of thirdparty libs, so it is good the way it is :) -->
-    	<thirdparty.guice.groupId>net.sf.josceleton.thirdparty.com.google.code.guice</thirdparty.guice.groupId>
-    	<thirdparty.guice.version>2.0</thirdparty.guice.version>
+    	<thirdparty.guice.version>2.0-josceleton</thirdparty.guice.version>
     </properties>
     
     
@@ -38,27 +35,27 @@
     <!-- ******************************************************************* -->
 
 	<dependencies>
+        
+        <dependency>
+            <groupId>com.google.code.guice</groupId>
+            <artifactId>guice</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
 	        
         <dependency>
-            <groupId>${thirdparty.guice.groupId}</groupId>
+            <groupId>com.google.code.guice</groupId>
             <artifactId>aopalliance</artifactId>
             <version>${thirdparty.guice.version}</version>
         </dependency>
         
         <dependency>
-            <groupId>${thirdparty.guice.groupId}</groupId>
-            <artifactId>guice</artifactId>
-            <version>${thirdparty.guice.version}</version>
-        </dependency>
-        
-        <dependency>
-         	<groupId>${thirdparty.guice.groupId}</groupId>
+            <groupId>com.google.code.guice</groupId>
             <artifactId>guice-assistedinject</artifactId>
             <version>${thirdparty.guice.version}</version>
         </dependency>
         
         <dependency>
-            <groupId>${thirdparty.guice.groupId}</groupId>
+            <groupId>com.google.code.guice</groupId>
             <artifactId>guice-grapher</artifactId>
             <version>${thirdparty.guice.version}</version>
         </dependency>

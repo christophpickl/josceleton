@@ -10,4 +10,6 @@
               ~~ 40h~~
 08.03. - 00:00 -  4h - setting up sourceforge project, getting mvn deploy/site:deploy working
 08.03. - 12:00 -  2h - got maven site/site:deploy/deploy working with mvn version 2 and 3 (deploy not working for mvn3!)
-              ~~ 46h~~
+08.03. - 14:00 -  4h - finished releasing v0.1
+              ~~ 50h~~
+08.03. - 18:00 -  h - mantis setup

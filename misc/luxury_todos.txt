@@ -29,8 +29,30 @@ BUILD
 	<executions><execution>
 		<goals><goal>checkstyle</goal><goal>check</goal></goals>
 		<phase>package</phase>
-- EMMA mvn plugin (what for?)
-	<plugin><groupId>org.codehaus.mojo</groupId><artifactId>emma-maven-plugin</artifactId><version>1.0-alpha-1</version></plugin>
+- EMMA mvn plugin (what for?) ... <plugin><groupId>org.codehaus.mojo</groupId><artifactId>emma-maven-plugin</artifactId><version>1.0-alpha-1</version></plugin>
+- someone reported a bug with release-plugin 2.0 (using other mavenExecutorId "forked-path") => 
+	  <!-- Due to MRELEASE-459 this doesn't work, and you need to specify the "release" profile manually on the command line -->
+	  <profiles|releaseProfiles>release</profiles|releaseProfiles>
+	  <mavenExecutorId>forked-path</mavenExecutorId><!-- Workaround for MGPG-9 -->
+
+FROM: http://www.sonatype.com/books/mvnref-book/reference/profiles-sect-maven-profiles.html
+	<profiles>1
+	    <profile>
+	      <id>production</id>2
+	      <build>3
+	        <plugins>
+	          <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <configuration>
+	              <debug>false</debug>4
+	              <optimize>true</optimize>
+	            </configuration>
+	          </plugin>
+	        </plugins>
+	      </build>
+	    </profile>
+	  </profiles>
 
 ==========================================
 AOP

@@ -1,3 +1,5 @@
+!!! @site schreiben dass man repository section in ~.me/settings.xml machen soll fuer josceleton eigenes repo fuer dependency
+
 1. rename other file "notes-maven_deploy..." as it sucks for "notes.txt" :)
 2. maybe good idea to rename eclipse projects { corporate, misc, ... } to also start with "net.sf.josceleton."
 
@@ -36,6 +38,24 @@
 	- menuitem "code quality" (auflistung was alles gechecked wird, und dass 100% coverage pflicht ist)
 @site release report: auch (neben test coverage, tasktags, pmd, metriken static code analyse, etc) auch anzahl der tests mit auflisten
 @site: wenn an site arbeitet von josceleton-reactor, dann muss es schnell gehen -> eigenes profil um alle module wegzuschalten "-PnoModules" ;)
+FIXME @BUILD RELEASEN: wie behandelt man reactor (josceleton-reactor) projekte?
+	A. einfach mvn release:prepare in reactor => gibts error
+	B. per submodul (haendisch, aufwaendig)
+	!!!!! + was mitm reactor machen?
+		(brauch zb src/site auch getagged)
+		// mittels profil submodule raus is ja auch nicht das wahre...
+	=> es muss aber gehen, dass man einzelne submodule nicht tagged (wenn zb nur in connection-impl was anderes, commons aber bleibt) => dh doch auf reactor ebene ausfuehren, aber dann einzelne module interaktiv nein sagen koennen
+
+
+FIXME!!!!!!!!
+	<!-- to be able to deploy this reactor (and its attached site) disable submodules temporarily (will be solved differently in future) -->
+	dh: site einfach an josceleton-reactor/josceleton dranhaengen, nicht am reaktor! ;)
+
+READ: http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
+
+@SYSTEM TEST (conditional submodule): komplett anders loesen, siehe hier: http://happygiraffe.net/blog/2009/07/26/conditional-maven-modules/
+
+
 
 ****************** new unsorted 2
 
@@ -51,6 +71,29 @@
 		- task tags, coverage, anzahlen (#klassen, zeilen, komplexitaet), pmd/cpd/findbugs errors
 
 - maven-checkstyle-plugin leute frage ob/wann MethodCount unterstuetzt wird
+@sf download/files: eher nach artifakt (als nach version) ordnerstruktur machen; oder evtl doch nach version? wie machens andere?
+! nicht vergessen build scripts zur verfuegung zu stellen (osceleton & co installation); evtl fertige binaries von osceleton?
+- manage sf "file releases" // frs.sourceforge.net
+- @site: let josceleton-reactor deploy site twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
+- @pom: bwin pom structure wieder herholen (nachzeichnen & auf wand aufhaengen)
+- LUXURY @POM could load properties (versions, etc) from property-file via maven-properties-plugin
+- @site: custom 404er page
+- wohl doch... @POM java-abstract-pom, alle versionsnr als property
+@SITE: grossen link zu https://sourceforge.net/projects/josceleton/
+@SITE:		
+		<dependency>
+			<groupId>net.sf.josceleton</groupId>
+			<artifactId>josceleton</artifactId>
+			<exclusions>
+				<!-- exclude josceleton's own guice dependency -->
+				<exclusion>
+		            <groupId> net.sf.josceleton.thirdparty.com.google.code.guice </groupId>
+		            <artifactId> guice-dependencies </artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>com.google.code.guice -- guice -- 2.0</dependency>
 
 ==========================================
 TODO * upcoming *

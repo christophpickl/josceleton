@@ -1,26 +1,29 @@
-
+// TODO outsource to mvn site
 ==========================================
 RELEASE HANDBOOK
 ==========================================
 
-- preconditions
+PRE-TASKS
 	* code compiles
 	* unit tests are green
 	* coverage 100%
 	* metrics are below threshold (minimal tasktags, warnings (checkstyle, eclipse), pmd, cpd, findbugs)
 	* system tests are green
 	* finally: manual tests ==> create manual tests handbook
+	* figure out proper versions to use
+	* update pom version (parent, dependencies) if necessary and checkin changes
 
-- execute
-	* figure out proper versions
-	* tag versions according to necessary version bumps
-	* package new tag
-		- deploy artifacts (poms, jars, test-jars, sources, javadoc) to mvn repo
-		- upload artifacts to projecthoster (downloadable binary files)
+EXECTION
+	* release new version with maven release plugin
+		ATTENTION: release submodules directly (NO reactor projects!)
+		// tag versions according to necessary version bumps
+		-> will deploy artifacts (poms, jars, test-jars, sources, javadoc) to mvn repo
+		-> will deploy generated site
+
+POST-TASKS
+	* update versions numbers in POM; eg: parent, dependencies to josceleton
 	* update redirect for index.html to point to new josceleton-reactor version
-
-- afterwards
-	* validate updated pom versions/references
+	* upload artifacts to projecthoster (downloadable binary files)
 	* validate website linking current version
 	* validate downloads section on sf shows current version
 	* download and run minimalistic manual tests
