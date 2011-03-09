@@ -44,8 +44,9 @@
 						<configuration>
 							<source>${basedir}/src/main/script/process_checkstyle_xml.groovy</source>
 							<properties>
-								<checkstyleXmlPath>src/main/resources/checkstyle.xml</checkstyleXmlPath>
-								<targetXmlFilePath>target/classes/checkstyle.xml</targetXmlFilePath>
+								<checkstyleXmlPath>${basedir}/src/main/resources/checkstyle.xml</checkstyleXmlPath>
+<!--								<checkstyleXmlPath>src/main/resources/checkstyle.xml</checkstyleXmlPath>-->
+								<targetXmlFilePath>${basedir}/target/classes/checkstyle.xml</targetXmlFilePath>
 							</properties>
 						</configuration>
 					</execution>
