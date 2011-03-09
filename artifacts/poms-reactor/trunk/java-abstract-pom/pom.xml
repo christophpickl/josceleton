@@ -290,6 +290,8 @@
             
             <plugin>
             	<artifactId>maven-surefire-plugin</artifactId>
+            	<!-- LUXURY @POM prevent tests running twice with surefire-plugin enabled -->
+            	<!-- see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIpreventtestsfromrunningtwice%2Cafteraddingaconfigurationforthesurefireplugin%3F -->
             	<configuration>
             	<!-- LUXURY @POM what is "surefire.redirectTestOutputToFile" good for? -->
 <!--            		<redirectTestOutputToFile>true</redirectTestOutputToFile>-->
@@ -422,7 +424,9 @@
 
            <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${version.surefire}</version>
             </plugin>
+            
             <!-- LUXURY @POM or use emma for coverage test report? -->
 <!--            <plugin>-->
 <!--                <groupId>org.codehaus.mojo</groupId>-->
@@ -431,6 +435,7 @@
 <!--            </plugin>-->
             
             <plugin>
+            	<!-- (remark: javadoc-plugin configuration should stay in reporting, and not moved to build section) -->
                 <artifactId>maven-javadoc-plugin</artifactId>
             	<version>2.6.1</version><!-- supported 2.6.1, available 2.7 -->
             	<configuration>
@@ -452,7 +457,8 @@
                     <keywords>true</keywords>
                     <locale>en</locale>
             		
-<!--                    <excludePackageNames>_templates:org:javax</excludePackageNames>-->
+<!--                    MINOR @POM <excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->
+
 <!--                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>-->
 <!--                    <noqualifier>all</noqualifier>    Omit qualifying package name before class names in output. -->
             		

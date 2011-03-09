@@ -36,8 +36,47 @@
     	<module>josceleton</module>
 <!--    	<module>(system-)tests</module>-->
 <!--    	<module>samples</module>-->
+
+<!--    	<module>commons-gui</module>-->
+<!--    	<module>joscelton-debugger-reactor {joscelton-debugger-app/-logic/-view/-model}</module>-->
     </modules>
     
+    <!-- TODO @POM build proper assemblies/packages for josceleton reactor -->
+    <!-- see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIexecutetheassemblypluginwithdifferentconfigurations -->
+<!--   <build>-->
+<!--  <plugins>-->
+<!--    <plugin>-->
+<!--      <groupId>org.apache.maven.plugins</groupId>-->
+<!--      <artifactId>maven-assembly-plugin</artifactId>-->
+<!--      <executions>-->
+<!--        <execution>-->
+<!--          <id>1</id>-->
+<!--          <phase>install</phase>-->
+<!--          <goals>-->
+<!--            <goal>assembly</goal>-->
+<!--          </goals>-->
+<!--          <configuration>-->
+<!--            <descriptor>src/main/descriptors/bin.xml</descriptor>-->
+<!--            <finalName>${project.build.finalName}-bin</finalName>-->
+<!--          </configuration>-->
+<!--        </execution>-->
+<!---->
+<!--        <execution>-->
+<!--          <id>2</id>-->
+<!--          <phase>install</phase>-->
+<!--          <goals>-->
+<!--            <goal>assembly</goal>-->
+<!--          </goals>-->
+<!--          <configuration>-->
+<!--            <descriptor>src/main/descriptors/src.xml</descriptor>-->
+<!--            <finalName>${project.build.finalName}-src</finalName>-->
+<!--          </configuration>-->
+<!--        </execution>-->
+<!--      </executions>-->
+<!--    </plugin>-->
+<!--  </plugins>-->
+<!--</build>-->
+   
     
     <!-- ******************************************************************* -->
     <!--                                S C M                                -->

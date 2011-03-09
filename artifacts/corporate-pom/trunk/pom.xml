@@ -105,6 +105,7 @@
 
 
     	<plugins>
+    		<!-- FIXME @POM add plugin to check if peruser properties (defined in settings.xml) are all correctly set -->
     	
             <!-- // configure (and activate) technology-independent plugins  -->
             <!-- *********************************************************** -->
@@ -151,6 +152,7 @@
     	
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
+				<version>${version.resources-plugin}</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
@@ -206,6 +208,8 @@
                         <reports>
                         <!-- FIXME @POM re-enable "dependencies report" -->
 <!--                            <report>dependencies</report>-->
+							<!-- generates a default index.html page -->
+							<report>index</report>
                             <report>project-team</report>
                             <report>issue-tracking</report>
                             <report>license</report>

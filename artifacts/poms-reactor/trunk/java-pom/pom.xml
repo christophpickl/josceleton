@@ -27,8 +27,6 @@
     <properties>
     	
     	<!-- TODO @POM outsource per-user configuration properties (eclipse workspace,..) -->
-    	<checkstyle-config-name>josceleton-checkstyle-config</checkstyle-config-name>
-    	<eclipse-workspace-path>/Users/phudy/_dev/pulse</eclipse-workspace-path>
     	
     	
         <!-- V E R S I O N S -->
@@ -227,7 +225,7 @@
 					<addVersionToProjectName>true</addVersionToProjectName>
 					
 					<!-- maven looks into workspace and set project references if project name matched instead of linked m2repo jar -->
-					<workspace>${eclipse-workspace-path}</workspace>
+					<workspace>${josceleton-peruser.eclipse.workspace.path}</workspace>
 					
 					<!-- configure eclise-checkstyle plugin -->
 					<additionalBuildcommands>
@@ -245,7 +243,7 @@
 							<content>
 			                	<![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
-  <fileset name="all" enabled="true" check-config-name="${checkstyle-config-name}" local="false">
+  <fileset name="all" enabled="true" check-config-name="${josceleton-peruser.checkstyle.configuration.name}" local="false">
     <file-match-pattern match-pattern="." include-pattern="true" />
   </fileset>
   <filter name="NonSrcDirs" enabled="true" />
