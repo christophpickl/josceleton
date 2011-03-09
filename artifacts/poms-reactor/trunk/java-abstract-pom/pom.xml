@@ -29,6 +29,8 @@
 	
     <properties>
     	
+    	<cobertura.haltOnFailure>true</cobertura.haltOnFailure>
+    	
         <!-- V E R S I O N S -->
    		<!-- *********************************************************** -->
    		
@@ -217,12 +219,6 @@
 				</plugin>
 				
 				<plugin>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>2.8</version>
-<!--					<version>2.5.1</version>-->
-				</plugin>
-				
-				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>2.3.1</version>
 				</plugin>
@@ -303,7 +299,7 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <configuration>
                     <check>
-                        <haltOnFailure>true</haltOnFailure>
+                        <haltOnFailure>${cobertura.haltOnFailure}</haltOnFailure>
                         
                         <branchRate>${cobertura.coverage.branchrate}</branchRate>
                         <lineRate>${cobertura.coverage.linerate}</lineRate>
@@ -612,6 +608,42 @@
 			
 		</plugins>
 	</reporting>
+	
+    
+    <!-- ******************************************************************* -->
+    <!--                           P R O F I L E S                           -->
+    <!-- ******************************************************************* -->
+    
+	<profiles>
+	
+		<profile>
+			<id>disable-cobertura-when-testskip</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>maven.test.skip</name>
+					<value>true</value>
+				</property>
+			</activation>
+		    <properties>
+	    		<cobertura.haltOnFailure>false</cobertura.haltOnFailure>
+	    	</properties>
+	    	<build>
+	    		<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>print-disable-cobertura-profile-message @test</id><phase>test</phase>
+								<configuration><target><echo message="INFORMATION: cobertura haltOnFailure set to false (as tests were skipped)" /></target></configuration><goals><goal>run</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+	    		</plugins>
+	    	</build>
+		</profile>
+		
+	</profiles>
     
     
     <!-- ******************************************************************* -->
