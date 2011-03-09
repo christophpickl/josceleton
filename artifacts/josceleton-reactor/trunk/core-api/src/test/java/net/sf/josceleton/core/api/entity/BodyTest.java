@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 public class BodyTest {
 	
 	@Test
-	public final void hasSinglePrivateConstructorDeclared() {
+	public final void hasSinglePrivateNullifiedConstructor() {
 		assertThat(Body.class, hasSinglePrivateNullifiedConstructorAndInvokeIt());
 	}
 	

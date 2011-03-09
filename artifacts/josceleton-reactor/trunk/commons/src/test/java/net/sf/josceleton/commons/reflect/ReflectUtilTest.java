@@ -20,7 +20,7 @@ public class ReflectUtilTest {
 	
 	private static final String MOCKED_CLASS_NAME = "MockedClassName";
 	
-	@Test public final void properUtilityConstructor() {
+	@Test public final void hasSinglePrivateNullifiedConstructor() {
 		assertThat(ReflectUtil.class, hasSinglePrivateNullifiedConstructorAndInvokeIt());
 	}
 	
