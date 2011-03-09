@@ -2,7 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>${project.artifactId} (${project.version})</name>
-    <description>The super POM for all josceleton artifacts.</description>
+    <description>
+    	The super POM for each and every josceleton artifact without exception.
+    	There is not any technology-specific configuration in here,
+    	as it could be used as a base for non-Java projects too (and it leads to a cleaner separation).
+    	Direct descendants are, for example, reactor projects or an abstract technology-specific POM (e.g.: "java-super-pom").
+    </description>
     <url>http://josceleton.sf.net</url>
     <inceptionYear>2011</inceptionYear>
     <packaging>pom</packaging>
@@ -11,7 +16,16 @@
     <artifactId>corporate-pom</artifactId>
     <version>0.2-SNAPSHOT</version>
     
-    <!-- no prerequisites, as we are supporting maven 2 and 3 concurrently; hell yeah :) -->
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                      P R E R E Q U I S I T E S                      -->
+    <!-- ******************************************************************* -->
+    
+    <prerequisites>
+    	<!-- we are supporting maven 2 and 3 concurrently; hell yeah :) see maven3-profile below -->	
+        <maven>2.0.9</maven>
+    </prerequisites>
     
     
     <!-- ******************************************************************* -->
@@ -19,12 +33,14 @@
     <!-- ******************************************************************* -->
     
     <properties>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sourceEncoding>UTF-8</sourceEncoding><!-- for mvn3 -->
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!-- for mvn2 -->
     	
     	<version.deploy-plugin>2.5</version.deploy-plugin>
     	<version.release-plugin>2.1</version.release-plugin>
     	<version.antrun-plugin>1.6</version.antrun-plugin>
     	<version.changes-plugin>2.3</version.changes-plugin>
+    	<version.resources-plugin>2.4.3</version.resources-plugin>
     	
     	<!-- mvn3 will be enabled automagically if mvn3 is used ;) -->
     	<version.mvn_being_used>2</version.mvn_being_used><!-- used to print to console -->
@@ -45,10 +61,12 @@
     <!-- ******************************************************************* -->
     
     <build>
-    
     	<pluginManagement>
     		<plugins>
-    			
+        	
+	            <!-- // define versions for technology-independent maven plugins -->
+	            <!-- *********************************************************** -->
+            
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>${version.deploy-plugin}</version>
@@ -57,6 +75,11 @@
 				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
 					<version>${version.release-plugin}</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-recources-plugin</artifactId>
+					<version>${version.resources-plugin}</version>
 				</plugin>
 				
             	<plugin>
@@ -82,13 +105,16 @@
 
 
     	<plugins>
+    	
+            <!-- // configure (and activate) technology-independent plugins  -->
+            <!-- *********************************************************** -->
+            
 			<plugin>
-				
+				<artifactId>maven-release-plugin</artifactId>
 	    		<!-- 
 		    		release:prepare ... http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html
 		    		release:perform ... http://maven.apache.org/plugins/maven-release-plugin/perform-mojo.html
 	    		-->
-				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
 					<!-- common configuration -->
 					<username>${env.JOSCELETON_RELEASE_USER}</username>
@@ -102,7 +128,8 @@
 					
 					<!-- release:perform configuration -->
 					<goals>deploy site-deploy</goals>
-<!--					<releaseProfiles></releaseProfiles>-->
+					<!-- MINOR @POM make use of release profiles -->
+					<!--<releaseProfiles></releaseProfiles>-->
 				</configuration>
 			</plugin>
     	
@@ -123,7 +150,14 @@
 			</plugin>
     	
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+			</plugin>
+    	
+			<plugin>
+				<!-- print currently used maven version to console -->
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>${version.antrun-plugin}</version>
 				<executions>
@@ -140,7 +174,6 @@
 			</plugin>
 			
 		</plugins>
-		
     </build>
     
     
@@ -208,7 +241,7 @@
     
 	<profiles>
 		<profile>
-			<id>maven-3</id>
+			<id>maven3-profile</id>
 			<activation>
 				<file>
 					<!-- This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
@@ -363,7 +396,7 @@
             <!-- MINOR @POM somehow get license.txt deployed in site (as well as copy in distribution package) -->
 <!--            <url>http://josceleton.sourceforge.net/LICENSE.txt</url>-->
             <url>http://www.opensource.org/licenses/bsd-license.php</url>
-
+<!--			<url>http://josceleton.sf.net/LICENSE.txt</url>-->
 
      		<!-- LUXURY @POM what to do with license distribution option "manual" vs "repo"? -->
 <!--     		This describes how the project may be legally distributed.-->
@@ -404,7 +437,9 @@
             <email>christoph.pickl@gmail.com</email>
             <timezone>+1</timezone>
             <roles>
-                <role>Everything</role>
+                <role>Project Founder</role>
+<!--                <role>Architect</role>-->
+<!--                <role>Developer</role>-->
             </roles>
         </developer>
         

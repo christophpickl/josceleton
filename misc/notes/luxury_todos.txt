@@ -16,7 +16,8 @@ VEEEEERY LUXURY
 - create custom maven site skin
 - @CHECKSTYLE would be nice to annotate a class with custom suppression annotation, and then based on this generate suppression.xml file ;)
 - spring bruecke schreiben, um in spring alle josceleton guice zur verfuegung zu haben
-- not really... also build osgi bundle
+-  build osgi bundle: <plugin><groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><extensions>true</extensions>
+	<configuration><instructions><Export-Package>javolution.*,javax.realtime</Export-Package><Private-Package>!*</Private-Package></instructions>
 
 @SHELLSCRIPT
 	LUXURY: kleines gui bauen, wo man mvn schnell ausfuehren kann:

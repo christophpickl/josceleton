@@ -256,6 +256,7 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
             
@@ -345,8 +346,8 @@
 				<artifactId>maven-source-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>create-sources-jar</id>
-<!--						what for? usually people dont do it-->
+						<id>attach-sources-jar</id>
+						<!-- MINOR @POM why should one attach sources-plugin explicitly to package pahse? (usually people dont do it) -->
 <!--						<phase>package</phase>-->
 						<goals>
 							<goal>jar</goal>
@@ -354,6 +355,20 @@
 					</execution>
 				</executions>
 			</plugin>
+            
+            <!-- LUXURY @POM customize javadoc style -->
+<!--            <plugin>-->
+<!--                <groupId>javolution</groupId>-->
+<!--                <artifactId>colapi</artifactId>-->
+<!--                <version>1.0.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>colorize</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 			
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -405,6 +420,16 @@
     <reporting>
         <plugins>
 
+           <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <!-- LUXURY @POM or use emma for coverage test report? -->
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>emma-maven-plugin</artifactId>-->
+<!--                <version>1.0-alpha-1</version>-->
+<!--            </plugin>-->
+            
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
             	<version>2.6.1</version><!-- supported 2.6.1, available 2.7 -->
@@ -413,6 +438,23 @@
             		
             		<!-- in community software we dont want to show up names, it belongs to all of us -->
             		<author>false</author> 
+					<!-- shuts off non-error and non-warning messages -->
+                    <quiet>true</quiet>
+                    <!-- enables javadoc to handle more recent language features -->
+                    <source>1.6</source>
+					<!-- set encoding of (java) source files -->
+                    <encoding>UTF-8</encoding>
+					<!-- set encoding of generated HTML files -->
+                    <docencoding>UTF-8</docencoding>
+                    <!-- specify the HTML character set for this document -->
+                    <charset>UTF-8</charset>
+					<!-- adds HTML meta keyword tags to the generated files -->
+                    <keywords>true</keywords>
+                    <locale>en</locale>
+            		
+<!--                    <excludePackageNames>_templates:org:javax</excludePackageNames>-->
+<!--                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>-->
+<!--                    <noqualifier>all</noqualifier>    Omit qualifying package name before class names in output. -->
             		
 					<!-- LUXURY @POM SITE JAVADOC UML include graphs -->
 					<!--        eg: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html -->
@@ -421,6 +463,7 @@
 					<!--        http://docs.codehaus.org/display/MAVENUSER/Reporting+Plugins -->
 					<!-- NO (default "protected" is just fine): <show>private</show>-->
 					
+					<!-- ............ customize skin ............... -->
 <!--					<docletArtifact>-->
 <!--						 nice doclet, see: http://code.google.com/p/doclava/ -->
 <!--						<groupId>com.google.doclava</groupId>-->
@@ -428,7 +471,6 @@
 <!--						<version>1.0.2</version>-->
 <!--					</docletArtifact>-->
 <!--					<doclet>com.google.doclava.Doclava</doclet>-->
-<!--				-->
 <!--					 bootclasspath required by Sun's JVM -->
 <!--					<bootclasspath>${sun.boot.class.path}</bootclasspath>-->
 <!--					<additionalparam>-->
