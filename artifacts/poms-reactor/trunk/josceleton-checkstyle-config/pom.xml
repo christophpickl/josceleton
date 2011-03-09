@@ -4,7 +4,10 @@
     <name>${project.artifactId} (${project.version})</name>
     <description>
     	Simple purpose of this artifact is to keep checkstyle configurations (and suppressions) in a single location.
-    	Simply add in project.build.plugins.plugin[maven-checkstyle-plugin].dependencies a dependency to this artifact.
+    	Simply add in your POM project.build.plugins.plugin[maven-checkstyle-plugin].dependencies a dependency to this artifact.
+    	
+    	There is some magic going on, to be able to use checkstyle files from both, eclipse and maven simultaneously.
+    	A groovy script removes the SuppressionFilter module, as maven will configure this independently (and path would not work for maven). 
     </description>
     <packaging>jar</packaging>
     
@@ -20,7 +23,38 @@
     	<groupId>net.sf.josceleton</groupId>
 	    <artifactId>corporate-pom</artifactId>
         <version>0.2-SNAPSHOT</version>
+<!--        <relativePath>../../[josceleton-]corporate-pom/</relativePath>-->
     </parent>
+    
+    <build>
+    	
+    	<!-- magic: invoke groovy script removing SuppressionFilter module from checkstyle.xml -->
+    	 <plugins>
+			<plugin>
+				<groupId>org.codehaus.groovy.maven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<id>process-checkstyle_xml-groovyscript</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<source>${basedir}/src/main/script/process_checkstyle_xml.groovy</source>
+							<properties>
+								<checkstyleXmlPath>src/main/resources/checkstyle.xml</checkstyleXmlPath>
+								<targetXmlFilePath>target/classes/checkstyle.xml</targetXmlFilePath>
+							</properties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		
+		</plugins>
+    	 
+    </build>
     
     
     <!-- ******************************************************************* -->
