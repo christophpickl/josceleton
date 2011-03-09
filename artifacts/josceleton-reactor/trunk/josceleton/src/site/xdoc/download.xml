@@ -80,7 +80,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>com.google.code.guice -- guice -- 2.0</dependency>
+		<dependency>com.google.code.guice _ guice _ 2.0</dependency>
 		-->
 			
 		</section>

@@ -178,6 +178,7 @@
 	            <plugin>
 	                <artifactId>maven-checkstyle-plugin</artifactId>
 					
+					<!-- TODO @POM can checkstyle plugin config be moved from pluginMgmt to plugin? -->
 					<!-- the following dependency contains the checkstyle config and suppresion XMLs in its src/main/resources folder -->
 					<dependencies>
 						<dependency>
@@ -282,40 +283,67 @@
         
     </build>
     
-    
-    <!-- ******************************************************************* -->
-    <!--                          R E P O R T I N G                          -->
-    <!-- ******************************************************************* -->
-    
-    <reporting>
-    	<plugins>
-        
-            <plugin>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${verison.checkstyle}</version>
-                
-               	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
-                <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
-                    <suppressionsLocation>checkstyle_suppression.xml</suppressionsLocation>
-                    <failsOnError>true</failsOnError>
-                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
-                    <enableRulesSummary>false</enableRulesSummary>
-                </configuration>
-               	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
-                
-            </plugin>
-    	</plugins>
-    </reporting>
-    
-
+	
     <!-- ******************************************************************* -->
     <!--                           P R O F I L E S                           -->
     <!-- ******************************************************************* -->
     
-    <!-- TODO @POM use profile and maven.test.skip property check, to DISABLE COVERAGE (so no more need of -DdisableTests) -->
-    <!-- MINOR @TEST POM enable integration tests -->
-<!--	<profiles>-->
+	<profiles>
+		<profile>
+			<id>create-reports-java-pom</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>report.skip</name>
+					<value>!true</value>
+				</property>
+			</activation>
+	    	<build>
+	    		<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>create-reports-java-pom-message</id><phase>pre-site</phase>
+								<configuration><target>
+									<echo message="[JOSCELETON] [java-pom] Creating enhanced site reports." />
+									<echo message="[JOSCELETON] [java-pom] (disable by using: &quot;mvn xxx -Dreport.skip&quot;)" />
+									<echo message="[JOSCELETON] [java-pom] ==============================================================" />
+								</target></configuration><goals><goal>run</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+	    		</plugins>
+	    	</build>
+	    	
+		    <!-- ******************************************************************* -->
+		    <!--                          R E P O R T I N G                          -->
+		    <!-- ******************************************************************* -->
+		    
+		    <reporting>
+		    	<plugins>
+		        
+		            <plugin>
+		                <artifactId>maven-checkstyle-plugin</artifactId>
+		                <version>${verison.checkstyle}</version>
+		                
+		               	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
+		                <configuration>
+		                    <configLocation>checkstyle.xml</configLocation>
+		                    <suppressionsLocation>checkstyle_suppression.xml</suppressionsLocation>
+		                    <failsOnError>true</failsOnError>
+		                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
+		                    <enableRulesSummary>false</enableRulesSummary>
+		                </configuration>
+		               	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
+		                
+		            </plugin>
+		    	</plugins>
+		    </reporting>
+	    </profile>
+	    
+	
+    	<!-- MINOR @TEST POM enable integration tests -->
 <!--		<profile>-->
 
 <!--			<id>run-integration-tests</id>-->
@@ -361,7 +389,7 @@
 <!--				</plugins>-->
 <!--			</build>-->
 <!--		</profile>-->
-<!--	</profiles>-->
+	</profiles>
     
     
     <!-- ******************************************************************* -->

@@ -28,7 +28,7 @@
     <!-- ******************************************************************* -->
 	
     <properties>
-    	
+    	<josceleton.create.reports>true</josceleton.create.reports>
     	<cobertura.haltOnFailure>true</cobertura.haltOnFailure>
     	
         <!-- V E R S I O N S -->
@@ -404,210 +404,6 @@
 			
 		</plugins>
     </build>
-    
-    
-    <!-- ******************************************************************* -->
-    <!--                          R E P O R T I N G                          -->
-    <!-- ******************************************************************* -->
-    
-    <!--
-    "And the subtler difference is that a plugin configuration under the reporting element works as build plugin configuration,
-    although the opposite is not true (a build plugin configuration does not affect a reporting plugin)."
-    	source: http://maven.apache.org/pom.html#Plugin_Management
-    -->
-    <reporting>
-        <plugins>
-
-           <plugin>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>${version.surefire}</version>
-            </plugin>
-            
-            <!-- LUXURY @POM or use emma for coverage test report? -->
-<!--            <plugin>-->
-<!--                <groupId>org.codehaus.mojo</groupId>-->
-<!--                <artifactId>emma-maven-plugin</artifactId>-->
-<!--                <version>1.0-alpha-1</version>-->
-<!--            </plugin>-->
-            
-            <plugin>
-            	<!-- (remark: javadoc-plugin configuration should stay in reporting, and not moved to build section) -->
-                <artifactId>maven-javadoc-plugin</artifactId>
-            	<version>2.6.1</version><!-- supported 2.6.1, available 2.7 -->
-            	<configuration>
-            		<!-- for configuration options see: http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html -->
-            		
-            		<!-- in community software we dont want to show up names, it belongs to all of us -->
-            		<author>false</author> 
-					<!-- shuts off non-error and non-warning messages -->
-                    <quiet>true</quiet>
-                    <!-- enables javadoc to handle more recent language features -->
-                    <source>1.6</source>
-					<!-- set encoding of (java) source files -->
-                    <encoding>UTF-8</encoding>
-					<!-- set encoding of generated HTML files -->
-                    <docencoding>UTF-8</docencoding>
-                    <!-- specify the HTML character set for this document -->
-                    <charset>UTF-8</charset>
-					<!-- adds HTML meta keyword tags to the generated files -->
-                    <keywords>true</keywords>
-                    <locale>en</locale>
-            		
-<!--                    MINOR @POM <excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->
-
-<!--                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>-->
-<!--                    <noqualifier>all</noqualifier>    Omit qualifying package name before class names in output. -->
-            		
-					<!-- LUXURY @POM SITE JAVADOC UML include graphs -->
-					<!--        eg: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html -->
-					<!--        ... or generate diagrams with APIviz: http://code.google.com/p/apiviz/ -->
-					<!-- LUXURY @POM SITE JAVADOC UML use multiple javadoc reports (plain + for graphs) -->
-					<!--        http://docs.codehaus.org/display/MAVENUSER/Reporting+Plugins -->
-					<!-- NO (default "protected" is just fine): <show>private</show>-->
-					
-					<!-- ............ customize skin ............... -->
-<!--					<docletArtifact>-->
-<!--						 nice doclet, see: http://code.google.com/p/doclava/ -->
-<!--						<groupId>com.google.doclava</groupId>-->
-<!--						<artifactId>doclava</artifactId>-->
-<!--						<version>1.0.2</version>-->
-<!--					</docletArtifact>-->
-<!--					<doclet>com.google.doclava.Doclava</doclet>-->
-<!--					 bootclasspath required by Sun's JVM -->
-<!--					<bootclasspath>${sun.boot.class.path}</bootclasspath>-->
-<!--					<additionalparam>-->
-<!--						-quiet-->
-<!--						-federate JDK http://download.oracle.com/javase/6/docs/api/index.html?-->
-<!--						-federationxml JDK-->
-<!--						http://doclava.googlecode.com/svn/static/api/openjdk-6.xml-->
-<!--						-hdf project.name "${project.artifactId}"-->
-<!--						-d ${project.build.directory}/site/apidocs-->
-<!--					</additionalparam>-->
-<!--					 -d ${project.build.directory}/apidocs -->
-<!--					 LUXURY @POM SITE JAVADOC add an overview page (-overview <yourpage.html>) -->
-<!--					-->
-<!--					<useStandardDocletOptions>false</useStandardDocletOptions>-->
-<!--					 Apple's JVM sometimes requires more memory -->
-<!--					<additionalJOption>-J-Xmx1024m</additionalJOption>-->
-            	</configuration>
-            	
-            	<reportSets>
-            		<reportSet>
-            			<id>javadoc-nontest</id>
-            			<!-- no custom configuration needed -->
-            			<reports>
-            				<report>javadoc</report>
-            			</reports>
-            		</reportSet>
-            	</reportSets>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>${version.cobertura}</version>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.1</version>
-            </plugin>
-			
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>taglist-maven-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <tagListOptions>
-                        <tagClasses>
-                        	<!-- enforce correct order by prefixing with number ;) -->
-                            <tagClass>
-                                <displayName>1. FIXME - Heavy issues which need to be solved immediately!</displayName>
-                                <tags><tag><matchString>FIXME</matchString><matchType>ignoreCase</matchType></tag>
-                                </tags>
-                            </tagClass>
-                            <tagClass>
-                                <displayName>2. TODO - General issue to work on sooner or later.</displayName>
-                                <tags><tag><matchString>TODO</matchString><matchType>ignoreCase</matchType></tag></tags>
-                            </tagClass>
-                            <tagClass>
-                                <displayName>3. MINORs - Little enhancements, not really important.</displayName>
-                                <tags><tag><matchString>MINOR</matchString><matchType>ignoreCase</matchType></tag></tags>
-                            </tagClass>
-                            <tagClass>
-                                <displayName>4. LUXURYs - Additional stuff which would be cool to have, but not mandatory anyway.</displayName>
-                                <tags><tag><matchString>LUXURY</matchString><matchType>ignoreCase</matchType></tag></tags>
-                            </tagClass>
-                        </tagClasses>
-                    </tagListOptions>
-                </configuration>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>2.3.1</version>
-                <configuration>
-                	<!-- for configuration options see: http://mojo.codehaus.org/findbugs-maven-plugin/2.3.1/findbugs-mojo.html -->
-					<threshold>High</threshold>
-					<effort>Max</effort>
-					<xmlOutput>true</xmlOutput>
-					<findbugsXmlOutput>true</findbugsXmlOutput>
-					<!-- default xref location is: ${project.reporting.outputDirectory}/xref --> 
-					<xrefLocation>${project.reporting.outputDirectory}/site/xref</xrefLocation>
-					<!-- default xref location is: ${project.reporting.outputDirectory}/xref-test --> 
-					<xrefTestLocation>${project.reporting.outputDirectory}/site/xref-ref</xrefTestLocation>
-                </configuration>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <targetJdk>1.6</targetJdk>
-                    <includeTests>false</includeTests>
-<!--					<rulesets>-->
-<!--						<ruleset>/rulesets/basic.xml</ruleset>-->
-<!--						<ruleset>/rulesets/controversial.xml</ruleset>-->
-<!--					</rulesets>-->
-<!--					<format>xml</format>-->
-					<linkXref>true</linkXref>
-					<sourceEncoding>utf-8</sourceEncoding>
-<!--					<minimumTokens>100</minimumTokens>-->
-                </configuration>
-            </plugin>
-            
-			<!-- LUXURY @POM SITE include more reporting plugins -->
-			
-<!--			<plugin>-->
-<!--				<groupId>org.codehaus.mojo</groupId>-->
-<!--				<artifactId>jxr-maven-plugin</artifactId>-->
-<!--			</plugin>-->
-            
-<!--			<plugin>-->
-<!--				<artifactId>maven-surefire-plugin</artifactId>-->
-<!--			</plugin>-->
-
-<!--			<plugin>-->
-<!--				<artifactId>maven-clover-plugin</artifactId>-->
-<!--			</plugin>-->
-			
-<!--			<plugin>-->
-<!--				<groupId>org.codehaus.mojo</groupId>-->
-<!--				<artifactId>changes-maven-plugin</artifactId>-->
-<!--				<version>2.1</version>-->
-<!--			</plugin>-->
-
-<!--			<plugin>-->
-<!--				<groupId>org.codehaus.mojo</groupId>-->
-<!--				<artifactId>changelog-maven-plugin</artifactId>-->
-<!--				<version>2.1</version>-->
-<!--			</plugin>-->
-			
-		</plugins>
-	</reporting>
 	
     
     <!-- ******************************************************************* -->
@@ -617,7 +413,7 @@
 	<profiles>
 	
 		<profile>
-			<id>disable-cobertura-when-testskip</id>
+			<id>disable-cobertura-when-testskip-profile</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 				<property>
@@ -635,12 +431,247 @@
 						<executions>
 							<execution>
 								<id>print-disable-cobertura-profile-message @test</id><phase>test</phase>
-								<configuration><target><echo message="INFORMATION: cobertura haltOnFailure set to false (as tests were skipped)" /></target></configuration><goals><goal>run</goal></goals>
+								<configuration><target>
+									<echo message="[JOSCELETON] [java-abstract-pom] cobertura haltOnFailure set to false (as tests were skipped)" />
+									<echo message="[JOSCELETON] [java-abstract-pom] ==============================================================" />
+								</target></configuration><goals><goal>run</goal></goals>
 							</execution>
 						</executions>
 					</plugin>
 	    		</plugins>
 	    	</build>
+		</profile>
+		
+		
+		<profile>
+			<id>create-reports-java-abstract-pom</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>report.skip</name>
+					<value>!true</value>
+				</property>
+			</activation>
+	    	<build>
+	    		<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>create-reports-java-abstract-pom-message</id><phase>pre-site</phase>
+								<configuration><target>
+									<echo message="[JOSCELETON] [java-abstract-pom] Creating enhanced site reports." />
+									<echo message="[JOSCELETON] [java-abstract-pom] (disable by using: &quot;mvn xxx -Dreport.skip&quot;)" />
+									<echo message="[JOSCELETON] [java-abstract-pom] ==============================================================" />
+								</target></configuration><goals><goal>run</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+	    		</plugins>
+	    	</build>
+    
+		    <!-- ******************************************************************* -->
+		    <!--                          R E P O R T I N G                          -->
+		    <!-- ******************************************************************* -->
+		    
+		    <!--
+		    "And the subtler difference is that a plugin configuration under the reporting element works as build plugin configuration,
+		    although the opposite is not true (a build plugin configuration does not affect a reporting plugin)."
+		    	source: http://maven.apache.org/pom.html#Plugin_Management
+		    -->
+		    <reporting>
+		        <plugins>
+		
+		           <plugin>
+		                <artifactId>maven-surefire-report-plugin</artifactId>
+		                <version>${version.surefire}</version>
+		            </plugin>
+		            
+		            <!-- LUXURY @POM or use emma for coverage test report? -->
+		<!--            <plugin>-->
+		<!--                <groupId>org.codehaus.mojo</groupId>-->
+		<!--                <artifactId>emma-maven-plugin</artifactId>-->
+		<!--                <version>1.0-alpha-1</version>-->
+		<!--            </plugin>-->
+		            
+		            <plugin>
+		            	<!-- (remark: javadoc-plugin configuration should stay in reporting, and not moved to build section) -->
+		                <artifactId>maven-javadoc-plugin</artifactId>
+		            	<version>2.6.1</version><!-- supported 2.6.1, available 2.7 -->
+		            	<configuration>
+		            		<!-- for configuration options see: http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html -->
+		            		
+		            		<!-- in community software we dont want to show up names, it belongs to all of us -->
+		            		<author>false</author> 
+							<!-- shuts off non-error and non-warning messages -->
+		                    <quiet>true</quiet>
+		                    <!-- enables javadoc to handle more recent language features -->
+		                    <source>1.6</source>
+							<!-- set encoding of (java) source files -->
+		                    <encoding>UTF-8</encoding>
+							<!-- set encoding of generated HTML files -->
+		                    <docencoding>UTF-8</docencoding>
+		                    <!-- specify the HTML character set for this document -->
+		                    <charset>UTF-8</charset>
+							<!-- adds HTML meta keyword tags to the generated files -->
+		                    <keywords>true</keywords>
+		                    <locale>en</locale>
+		            		
+		<!--                    MINOR @POM <excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->
+		
+		<!--                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>-->
+		<!--                    <noqualifier>all</noqualifier>    Omit qualifying package name before class names in output. -->
+		            		
+							<!-- LUXURY @POM SITE JAVADOC UML include graphs -->
+							<!--        eg: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html -->
+							<!--        ... or generate diagrams with APIviz: http://code.google.com/p/apiviz/ -->
+							<!-- LUXURY @POM SITE JAVADOC UML use multiple javadoc reports (plain + for graphs) -->
+							<!--        http://docs.codehaus.org/display/MAVENUSER/Reporting+Plugins -->
+							<!-- NO (default "protected" is just fine): <show>private</show>-->
+							
+							<!-- ............ customize skin ............... -->
+		<!--					<docletArtifact>-->
+		<!--						 nice doclet, see: http://code.google.com/p/doclava/ -->
+		<!--						<groupId>com.google.doclava</groupId>-->
+		<!--						<artifactId>doclava</artifactId>-->
+		<!--						<version>1.0.2</version>-->
+		<!--					</docletArtifact>-->
+		<!--					<doclet>com.google.doclava.Doclava</doclet>-->
+		<!--					 bootclasspath required by Sun's JVM -->
+		<!--					<bootclasspath>${sun.boot.class.path}</bootclasspath>-->
+		<!--					<additionalparam>-->
+		<!--						-quiet-->
+		<!--						-federate JDK http://download.oracle.com/javase/6/docs/api/index.html?-->
+		<!--						-federationxml JDK-->
+		<!--						http://doclava.googlecode.com/svn/static/api/openjdk-6.xml-->
+		<!--						-hdf project.name "${project.artifactId}"-->
+		<!--						-d ${project.build.directory}/site/apidocs-->
+		<!--					</additionalparam>-->
+		<!--					 -d ${project.build.directory}/apidocs -->
+		<!--					 LUXURY @POM SITE JAVADOC add an overview page (-overview <yourpage.html>) -->
+		<!--					-->
+		<!--					<useStandardDocletOptions>false</useStandardDocletOptions>-->
+		<!--					 Apple's JVM sometimes requires more memory -->
+		<!--					<additionalJOption>-J-Xmx1024m</additionalJOption>-->
+		            	</configuration>
+		            	
+		            	<reportSets>
+		            		<reportSet>
+		            			<id>javadoc-nontest</id>
+		            			<!-- no custom configuration needed -->
+		            			<reports>
+		            				<report>javadoc</report>
+		            			</reports>
+		            		</reportSet>
+		            	</reportSets>
+		            </plugin>
+		            
+		            <plugin>
+		                <groupId>org.codehaus.mojo</groupId>
+		                <artifactId>cobertura-maven-plugin</artifactId>
+		                <version>${version.cobertura}</version>
+		            </plugin>
+		            
+		            <plugin>
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-jxr-plugin</artifactId>
+		                <version>2.1</version>
+		            </plugin>
+					
+		            <plugin>
+		                <groupId>org.codehaus.mojo</groupId>
+		                <artifactId>taglist-maven-plugin</artifactId>
+		                <version>2.4</version>
+		                <configuration>
+		                    <tagListOptions>
+		                        <tagClasses>
+		                        	<!-- enforce correct order by prefixing with number ;) -->
+		                            <tagClass>
+		                                <displayName>1. FIXME - Heavy issues which need to be solved immediately!</displayName>
+		                                <tags><tag><matchString>FIXME</matchString><matchType>ignoreCase</matchType></tag>
+		                                </tags>
+		                            </tagClass>
+		                            <tagClass>
+		                                <displayName>2. TODO - General issue to work on sooner or later.</displayName>
+		                                <tags><tag><matchString>TODO</matchString><matchType>ignoreCase</matchType></tag></tags>
+		                            </tagClass>
+		                            <tagClass>
+		                                <displayName>3. MINORs - Little enhancements, not really important.</displayName>
+		                                <tags><tag><matchString>MINOR</matchString><matchType>ignoreCase</matchType></tag></tags>
+		                            </tagClass>
+		                            <tagClass>
+		                                <displayName>4. LUXURYs - Additional stuff which would be cool to have, but not mandatory anyway.</displayName>
+		                                <tags><tag><matchString>LUXURY</matchString><matchType>ignoreCase</matchType></tag></tags>
+		                            </tagClass>
+		                        </tagClasses>
+		                    </tagListOptions>
+		                </configuration>
+		            </plugin>
+		            
+		            <plugin>
+		                <groupId>org.codehaus.mojo</groupId>
+		                <artifactId>findbugs-maven-plugin</artifactId>
+		                <version>2.3.1</version>
+		                <configuration>
+		                	<!-- for configuration options see: http://mojo.codehaus.org/findbugs-maven-plugin/2.3.1/findbugs-mojo.html -->
+							<threshold>High</threshold>
+							<effort>Max</effort>
+							<xmlOutput>true</xmlOutput>
+							<findbugsXmlOutput>true</findbugsXmlOutput>
+							<!-- default xref location is: ${project.reporting.outputDirectory}/xref --> 
+							<xrefLocation>${project.reporting.outputDirectory}/site/xref</xrefLocation>
+							<!-- default xref location is: ${project.reporting.outputDirectory}/xref-test --> 
+							<xrefTestLocation>${project.reporting.outputDirectory}/site/xref-ref</xrefTestLocation>
+		                </configuration>
+		            </plugin>
+		            
+		            <plugin>
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-pmd-plugin</artifactId>
+		                <version>2.4</version>
+		                <configuration>
+		                    <targetJdk>1.6</targetJdk>
+		                    <includeTests>false</includeTests>
+		<!--					<rulesets>-->
+		<!--						<ruleset>/rulesets/basic.xml</ruleset>-->
+		<!--						<ruleset>/rulesets/controversial.xml</ruleset>-->
+		<!--					</rulesets>-->
+		<!--					<format>xml</format>-->
+							<linkXref>true</linkXref>
+							<sourceEncoding>utf-8</sourceEncoding>
+		<!--					<minimumTokens>100</minimumTokens>-->
+		                </configuration>
+		            </plugin>
+		            
+					<!-- LUXURY @POM SITE include more reporting plugins -->
+					
+		<!--			<plugin>-->
+		<!--				<groupId>org.codehaus.mojo</groupId>-->
+		<!--				<artifactId>jxr-maven-plugin</artifactId>-->
+		<!--			</plugin>-->
+		            
+		<!--			<plugin>-->
+		<!--				<artifactId>maven-surefire-plugin</artifactId>-->
+		<!--			</plugin>-->
+		
+		<!--			<plugin>-->
+		<!--				<artifactId>maven-clover-plugin</artifactId>-->
+		<!--			</plugin>-->
+					
+		<!--			<plugin>-->
+		<!--				<groupId>org.codehaus.mojo</groupId>-->
+		<!--				<artifactId>changes-maven-plugin</artifactId>-->
+		<!--				<version>2.1</version>-->
+		<!--			</plugin>-->
+		
+		<!--			<plugin>-->
+		<!--				<groupId>org.codehaus.mojo</groupId>-->
+		<!--				<artifactId>changelog-maven-plugin</artifactId>-->
+		<!--				<version>2.1</version>-->
+		<!--			</plugin>-->
+					
+				</plugins>
+			</reporting>
 		</profile>
 		
 	</profiles>

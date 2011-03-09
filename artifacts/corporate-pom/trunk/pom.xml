@@ -135,22 +135,6 @@
 			</plugin>
     	
 			<plugin>
-				<artifactId>maven-changes-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>validate-changes</id>
-						<phase>pre-site</phase>
-						<goals>
-							<goal>changes-validate</goal>
-						</goals>
-						<configuration>
-							<failOnError>true</failOnError>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-    	
-			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>${version.resources-plugin}</version>
                 <configuration>
@@ -166,11 +150,17 @@
 					<!-- not nice solved: adding execution separately for compile and site  -->
 					<execution>
 						<id>print-maven3-profile-message @initialize</id><phase>initialize</phase>
-						<configuration><target><echo message="INFORMATION: using josceleton detected maven version ${version.mvn_being_used}" /></target></configuration><goals><goal>run</goal></goals>
+						<configuration><target>
+							<echo message="[JOSCELETON] [corporate-pom] using josceleton detected maven version ${version.mvn_being_used}" />
+<!--							<echo message="[JOSCELETON] [corporate-pom] ==============================================================" />-->
+						</target></configuration><goals><goal>run</goal></goals>
 					</execution>
 					<execution>
 						<id>print-maven3-profile-message @pre-site</id><phase>pre-site</phase>
-						<configuration><target><echo message="INFORMATION: using josceleton detected maven version ${version.mvn_being_used}" /></target></configuration><goals><goal>run</goal></goals>
+						<configuration><target>
+							<echo message="[JOSCELETON] [corporate-pom] using josceleton detected maven version ${version.mvn_being_used}" />
+<!--							<echo message="[JOSCELETON] [corporate-pom] ==============================================================" />-->
+						</target></configuration><goals><goal>run</goal></goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -183,59 +173,19 @@
     <!--                          R E P O R T I N G                          -->
     <!-- ******************************************************************* -->
     
-    <!--
-    "And the subtler difference is that a plugin configuration under the reporting element works as build plugin configuration,
-    although the opposite is not true (a build plugin configuration does not affect a reporting plugin)."
-      ... source: [http://maven.apache.org/pom.html#Plugin_Management]
-    -->
     <reporting>
         <plugins>
-			
             <plugin>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>${verison.project-info-reports-plugin}</version>
                 <reportSets>
                     <reportSet>
-	                    <!--
-		                    available reports:
-		                    *********************
-		                    LUXURY @POM SITE enable more reports
-		                    ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
-		                    MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
-		                    WHAT FOR: help, index, dependency-convergence
-		                    DEFINETELY NOT: mailing-list, cim 
-	                    -->
                         <reports>
-                        <!-- FIXME @POM re-enable "dependencies report" -->
-<!--                            <report>dependencies</report>-->
-							<!-- generates a default index.html page -->
-							<report>index</report>
-                            <report>project-team</report>
-                            <report>issue-tracking</report>
-                            <report>license</report>
-                            <report>scm</report>
-                            <report>summary</report>
                         </reports>
                     </reportSet>
                 </reportSets>
 			</plugin>
-
-			<plugin>
-				<artifactId>maven-changes-plugin</artifactId>
-				<version>${version.changes-plugin}</version>
-				<!-- for configuration options see: [http://maven.apache.org/plugins/maven-changes-plugin/changes-report-mojo.html] -->
-				<!-- could configure automatically sending mails: [http://maven.apache.org/plugins/maven-changes-plugin/usage.html] -->
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>changes-report</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			
 		</plugins>
-		
 	</reporting>
     
     
@@ -311,6 +261,115 @@
 
 			</build>
 		</profile>
+		
+		
+		<profile>
+			<id>create-reports-corporate-pom</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>report.skip</name>
+					<value>!true</value>
+				</property>
+			</activation>
+	    	<build>
+	    		<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>create-reports-corporate-pom-message</id><phase>pre-site</phase>
+								<configuration><target>
+									<echo message="[JOSCELETON] [corporate-pom] Creating enhanced site reports." />
+									<echo message="[JOSCELETON] [corporate-pom] (disable by using: &quot;mvn xxx -Dreport.skip&quot;)" />
+									<echo message="[JOSCELETON] [corporate-pom] ==============================================================" />
+								</target></configuration><goals><goal>run</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+					
+					
+		    <!-- ******************************************************************* -->
+		    <!--                          R E P O R T I N G                          -->
+		    <!-- ******************************************************************* -->
+		    
+					<plugin>
+						<artifactId>maven-changes-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>validate-changes</id>
+								<phase>pre-site</phase>
+								<goals>
+									<goal>changes-validate</goal>
+								</goals>
+								<configuration>
+									<failOnError>true</failOnError>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					
+	    		</plugins>
+	    	</build>
+		    
+		    <!--
+		    "And the subtler difference is that a plugin configuration under the reporting element works as build plugin configuration,
+		    although the opposite is not true (a build plugin configuration does not affect a reporting plugin)."
+		      ... source: [http://maven.apache.org/pom.html#Plugin_Management]
+		    -->
+		    
+		    <reporting>
+		        <plugins>
+					
+		            <plugin>
+		                <artifactId>maven-project-info-reports-plugin</artifactId>
+		                <version>${verison.project-info-reports-plugin}</version>
+		                <reportSets>
+		                    <reportSet>
+			                    <!--
+				                    available reports:
+				                    *********************
+				                    LUXURY @POM SITE enable more reports
+				                    ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
+				                    MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
+				                    WHAT FOR: help, index, dependency-convergence
+				                    DEFINETELY NOT: mailing-list, cim 
+			                    -->
+		                        <reports>
+		                        <!-- FIXME @POM re-enable "dependencies report" -->
+		<!--                            <report>dependencies</report>-->
+									<!-- generates a default index.html page -->
+									<report>index</report>
+		                            <report>project-team</report>
+		                            <report>issue-tracking</report>
+		                            <report>license</report>
+		                            <report>scm</report>
+		                            <report>summary</report>
+		                        </reports>
+		                    </reportSet>
+		                </reportSets>
+					</plugin>
+		
+					<plugin>
+						<artifactId>maven-changes-plugin</artifactId>
+						<version>${version.changes-plugin}</version>
+						<!-- for configuration options see: [http://maven.apache.org/plugins/maven-changes-plugin/changes-report-mojo.html] -->
+						<!-- could configure automatically sending mails: [http://maven.apache.org/plugins/maven-changes-plugin/usage.html] -->
+						<reportSets>
+							<reportSet>
+								<reports>
+									<report>changes-report</report>
+								</reports>
+							</reportSet>
+						</reportSets>
+					</plugin>
+					
+				</plugins>
+				
+			</reporting>
+	    	
+	    </profile>
+	    
 	</profiles>
     
     

@@ -1,4 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Usage</title>
+	</properties>
+	<body>
+	
+		<section name="Foobar">
+			
+			<p>
+				TODO
+			</p>
+		
 
+		</section>
+		
+	</body>
+</document>
+
+
+<!--
 	// TODO @SITE somewhere document how josceleton can be accessed (as guice is used internally)
 	// following options are possible, on how to access josceleton:
 	//		a) invoke logic directly via static Josceleton facade (bad style, bad for testing, static cling)
@@ -45,4 +66,4 @@
 		
 //		as we are dealing with an async message (event) driven environment, have to close connection "somewhen"
 //		connection.close();
-	}
+	}-->
