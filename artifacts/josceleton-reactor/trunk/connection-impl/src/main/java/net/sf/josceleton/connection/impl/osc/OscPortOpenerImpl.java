@@ -1,7 +1,6 @@
 package net.sf.josceleton.connection.impl.osc;
 
 import net.sf.josceleton.commons.reflect.ClassAdapter;
-import net.sf.josceleton.commons.reflect.ClassAdapterImpl;
 import net.sf.josceleton.commons.reflect.DynamicInstantiationException;
 import net.sf.josceleton.commons.reflect.DynamicInstantiator;
 
@@ -24,12 +23,12 @@ class OscPortOpenerImpl implements OscPortOpener {
 	
 	@Inject OscPortOpenerImpl(
 			final DynamicInstantiator instantiator,
-			final OscPortFactory portFactory
-//			@OSCPortInAdapter final ClassAdapter<OSCPortIn> oscPortInType
+			final OscPortFactory portFactory,
+			final ClassAdapter<OSCPortIn> oscPortInType
 			) {
 		this.instantiator = instantiator;
 		this.portFactory = portFactory;
-		this.oscPortInType = ClassAdapterImpl.create(OSCPortIn.class);
+		this.oscPortInType = oscPortInType;
 	}
 
 	/** {@inheritDoc} from {@link OscPortOpener} */

@@ -23,6 +23,7 @@ public final class Josceleton /*statically implements JosceletonFacade */ {
 				System.out.println("onJointMessage(message=" + message + ")");
 			}
 		});
+		System.out.println("Running ...");
 //		connection.close();
 	}
 	

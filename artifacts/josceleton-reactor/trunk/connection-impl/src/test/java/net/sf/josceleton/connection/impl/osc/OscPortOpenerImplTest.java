@@ -39,7 +39,7 @@ public class OscPortOpenerImplTest {
 			will(returnValue(mockedOscPort));
 		} });
 
-		final OscPortOpener opener = new OscPortOpenerImpl(mockedInstantiator, mockedPortFactory); //FIXME oscPortInAdapter);
+		final OscPortOpener opener = new OscPortOpenerImpl(mockedInstantiator, mockedPortFactory, oscPortInAdapter);
 		final OscPort actualOscPort = opener.connect(expectedPortNumber);
 
 		assertThat(actualOscPort, is(mockedOscPort));
@@ -63,7 +63,7 @@ public class OscPortOpenerImplTest {
 //			will(throwException(new SocketException("Blah blah ... already bound to " + expectedPortNumber + "!")));
 		} });
 
-		final OscPortOpener opener = new OscPortOpenerImpl(mockedInstantiator, mockedPortFactory); // FIXME oscPortInAdapter);
+		final OscPortOpener opener = new OscPortOpenerImpl(mockedInstantiator, mockedPortFactory, oscPortInAdapter);
 		opener.connect(expectedPortNumber);
 	}
 	
