@@ -11,25 +11,6 @@ BUILD
 - tasktags gscheit einteilen: fixme/todo/minor, luxury, dry, design, refactor, pom, test, aop, site, javadoc, future
 
 ==========================================
-@AOP
-==========================================
-- read about guice + AOP: http://devsurf.wordpress.com/
-- aop verwenden: @NotNull, ... (evtl auch @Memorizable wieder ;))
-		=> @Log(level=warn, argumentsXy=...): LOG.debug("instantiate(clazz.name=" + clazz.getName() + ", arguments.length=" + arguments.length + ")");
-			!!!! in jedem konstruktor ein log einfuegen mit trace level (am schluss hat man gute uebersicht ueber objekt erstellungen)
-				- haeufige rausnehmen wie: JointMessage, Coordinate ...
-					- IDEE: evtl Coordinate aus performance/memory gruenden aufsplitten in 3 rohe float werte?!
-		=> @GenerateToString ... field annotated with @IncludeInToString
-	- IDEE: @ReturnsNotNull
-		- contraction java lib ding wieder anschauen (design by contract)
-			zb: http://jcontractor.sourceforge.net/
-- @tests: would be nice to automatically test ALL methods (via AOP) if passing null values, some test fails (except those annotated with special annotation)
-- @closeable (bzw eigentlich Connection und dgl): die close() methode  ...
-	any further method calls (addListener) will throw IllegalStateException ==> somehow can be enforced?
-- marker interfaces could be replaced by annotations (just maybe... think carefully => marker interfaces are usefull as well, definetely!)
-	* as well once thought about a ValueObject marker interface for all specified VO classes in josceleton (had thoughts about equals/hashcode/tostring)
-
-==========================================
 VEEEEERY LUXURY
 ==========================================
 - create custom maven site skin

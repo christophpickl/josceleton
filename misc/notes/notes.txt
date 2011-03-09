@@ -20,7 +20,6 @@ TODO * code *
 ==========================================
 ! check all custom equals implementations, if they are checking instanceof against interface, not *Impl!!! (and if they have shortcut check "if(this == other)")
 - should equals/hashCode/toString be final? (check all value objects!)
-
 ? have factories also to be declared with Scope SINGLETON?
 - idea concerning Utils (ReflectUtil): introduce UtilFacade class: "UtilFacade f = ...; f.String().trim()" or "f.Reflect().findConstructor(Class, Object[] argValues/*internally translated to argTypes*/)"
 	=> see DynamicInstantiatorImpl and ReflectUtil
@@ -28,11 +27,9 @@ TODO * code *
 ==========================================
 BUILD
 ==========================================
-!! site generation has to be faster (maybe add profile to disable reports; or disabled by default, and only when releasing its activated)
 !! resolve mvn build warnings
 	* already attached project: [WARNING] Artifact net.sf.josceleton:connection-impl:java-source:sources:0.1-SNAPSHOT already attached to project, ignoring duplicate
 	*  eclipse workspace warning
-! -Pmaven.test.skip=true ==> soll auch coverage disablen!
 ! introduce more profiles: disables tests, sourceCheck/validations, site, ..
 ! metriken im build enforcen: (zumindest wenn release dann andere (haertere) werte nehmen) * tasktags  (zumindest keine FIXMEs in release) * pmd/cpd/findbugs??
 ! @eclipse: add java sources of dependencies + also deploy (guice!) sources into repo, so to have them available in eclipse
@@ -57,7 +54,6 @@ DOCUMENTATION
 ! reports (wenn moeglich) aggregieren, vor allem javadoc (pure API javadoc von allen josceleton modulen)
 - let josceleton-reactor deploy site twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
 	?? oder wie sonst loesen, ausser wie daweil mit redirect?
-- custom 404er page
 - improve javadoc:
 	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
 	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags

@@ -1,36 +1,10 @@
 
-developer environment enhancement
-========================================================================
-	* checkstyle.xml hat hardcoded pfad drinnen, da maven ${config_loc} nicht fressen wollte :(
-	* @eclipse plugin metafile generation
-		* how to disable coverage statistics for src/test/java permanently
-		* how to set order of main vs test
-
-improve deployment packages // no one wants to download javadoc ;)
-========================================================================
-	* (mvn repo -eh klar)
-	* jar-with-dependencies
-	* zip-with-all-single-modules (optionally dependency libs as jar)
-	* sources only (including test source)
-	* full package: sources, site (javadoc) and binaries of all josceleton artifacts
 
 enhance build
 ========================================================================
-	* move maven-project-info-reports-plugin from abstract-pom to corporate pom (especially the version, as it generates a serious WARNING in output)
-	* remove checkstyle absolute path to suppression file, in checkstyle.xml => use some ${var} instead
-	* set different compiler settings in release profile: http://www.sonatype.com/books/mvnref-book/reference/profiles-sect-maven-profiles.html
-		<profile><id>production</id><build><plugins><plugin>
-		<artifactId>maven-compiler-plugin</artifactId><configuration><debug>false</debug>4<optimize>true</optimize></configuration>
-
-enhance documentation
-========================================================================
-	* schreiben dass man repository section in ~.m2/settings.xml machen soll fuer josceleton eigenes repo fuer dependency
-	* add diagram of architecture
-	* grossen link zu sourceforge projekt seite: https://sourceforge.net/projects/josceleton/
-	* move internal guideline/books (release guide, coding guideline) into mvn site!
-		@coding guideline ... fluent interfaces, no classes just interfaces (especially for public APIs), immutability, testability, SoC, DRY ~KISS, decoupling,
-			max size violation(methods, classes, packages, modules, reactors, projects)
-
-provide osceleton (NITE/etc) via buildscripts/binaries/installer-packages
-========================================================================
-	* ... damit man gleich ./osceleton laufen lassen kann ...
+* move project-info-report -plugin from abstract-pom to corporate-pom
+  (especially move the version as it generates a warning in output)
+* set different compiler settings in release profile
+  see: http://www.sonatype.com/books/mvnref-book/reference/profiles-sect-maven-profiles.html
+  eg: <profile><id>production</id><build><plugins><plugin>
+      <artifactId>maven-compiler-plugin</artifactId><configuration><debug>false</debug>4<optimize>true</optimize></configuration>
