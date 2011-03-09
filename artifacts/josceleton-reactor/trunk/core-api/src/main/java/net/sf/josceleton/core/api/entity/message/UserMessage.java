@@ -1,5 +1,6 @@
 package net.sf.josceleton.core.api.entity.message;
 
+import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 
 /**
@@ -7,6 +8,11 @@ import net.sf.josceleton.core.api.entity.UserState;
  */
 public interface UserMessage extends GenericMessage {
 
+	/**
+	 * @since 0.1
+	 */
+	User getUser();
+	
 	/**
 	 * @since 0.1
 	 */

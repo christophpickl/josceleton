@@ -11,8 +11,8 @@ abstract class GenericMessageImpl implements GenericMessage {
 		this.user = user;
 	}
 
-	/** {@inheritDoc} from {@link GenericMessage} */
-	@Override public final User getUser() {
+	/** Default implementation for {@link JointMessage} and {@link UserMessage}. */
+	public final User getUser() {
 		return this.user;
 	}
 	
