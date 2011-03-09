@@ -1,0 +1,59 @@
+
+==========================================
+BUILD
+==========================================
+- in distributions legal stuff dazu (license.txt/readme.txt)
+- ueberall lizenz header reingeben + checkstyle checken lassen ob eh da ist
+- investigieren, ob andere sprachen fuer pom kuhl sind
+? why bind checkstyle to package phase? <artifactId>maven-checkstyle-plugin</artifactId><version>2.5</version><executions><execution><goals><goal>checkstyle</goal><goal>check</goal></goals><phase>package</phase>
+? what is EMMA mvn plugin good for? ... <plugin><groupId>org.codehaus.mojo</groupId><artifactId>emma-maven-plugin</artifactId><version>1.0-alpha-1</version></plugin>
+- someone reported a bug with release-plugin 2.0 (using other mavenExecutorId "forked-path") => <!-- Due to MRELEASE-459 this doesn't work, and you need to specify the "release" profile manually on the command line --><profiles|releaseProfiles>release</profiles|releaseProfiles><mavenExecutorId>forked-path</mavenExecutorId><!-- Workaround for MGPG-9 -->
+- tasktags gscheit einteilen: fixme/todo/minor, luxury, dry, design, refactor, pom, test, aop, site, javadoc, future
+
+==========================================
+@AOP
+==========================================
+- read about guice + AOP: http://devsurf.wordpress.com/
+- aop verwenden: @NotNull, ... (evtl auch @Memorizable wieder ;))
+		=> @Log(level=warn, argumentsXy=...): LOG.debug("instantiate(clazz.name=" + clazz.getName() + ", arguments.length=" + arguments.length + ")");
+			!!!! in jedem konstruktor ein log einfuegen mit trace level (am schluss hat man gute uebersicht ueber objekt erstellungen)
+				- haeufige rausnehmen wie: JointMessage, Coordinate ...
+					- IDEE: evtl Coordinate aus performance/memory gruenden aufsplitten in 3 rohe float werte?!
+		=> @GenerateToString ... field annotated with @IncludeInToString
+	- IDEE: @ReturnsNotNull
+		- contraction java lib ding wieder anschauen (design by contract)
+			zb: http://jcontractor.sourceforge.net/
+- @tests: would be nice to automatically test ALL methods (via AOP) if passing null values, some test fails (except those annotated with special annotation)
+- @closeable (bzw eigentlich Connection und dgl): die close() methode  ...
+	any further method calls (addListener) will throw IllegalStateException ==> somehow can be enforced?
+- marker interfaces could be replaced by annotations (just maybe... think carefully => marker interfaces are usefull as well, definetely!)
+	* as well once thought about a ValueObject marker interface for all specified VO classes in josceleton (had thoughts about equals/hashcode/tostring)
+
+==========================================
+VEEEEERY LUXURY
+==========================================
+- create custom maven site skin
+- @CHECKSTYLE would be nice to annotate a class with custom suppression annotation, and then based on this generate suppression.xml file ;)
+- spring bruecke schreiben, um in spring alle josceleton guice zur verfuegung zu haben
+- not really... also build osgi bundle
+
+@SHELLSCRIPT
+	LUXURY: kleines gui bauen, wo man mvn schnell ausfuehren kann:
+		1. enter mvn command
+		2. select (checkbox) artifacts to apply to
+		2b. oder besser buttons, a la: "install poms-reactor"
+	- write report at end (which succeeded/failed; also could count time)
+	- could provide argument only which will be used as non-default MVN_CMD
+	- could then also register in PATH, and then just enter "mvnj <mvn_command> [specific artifacts/or all by default]"
+	- when failing, write file. after fixing problems, could rerun this script and dont rebuild already successfully built projects
+
+==========================================
+UNIMPORTANT
+==========================================
+- register domain josceleton.org
+- manage sf "file releases" // frs.sourceforge.net
+- URLs wegen mvn3 site plugin mess:
+	* http://maven.apache.org/plugins/maven-site-plugin-3.0-beta-3/maven-3.html
+	* supported plugin versions https://cwiki.apache.org/MAVEN/maven-3x-and-site-plugin.html
+- read pom best practices: http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
+	

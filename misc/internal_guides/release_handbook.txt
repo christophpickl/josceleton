@@ -27,3 +27,10 @@ POST-TASKS
 	* validate website linking current version
 	* validate downloads section on sf shows current version
 	* download and run minimalistic manual tests
+
+	
+	
+	
+
+//// in site metriken updaten; zu jedem release mehrere werte pro modul + gesamt:
+		- task tags, coverage, anzahlen (#klassen, zeilen, komplexitaet), pmd/cpd/findbugs errors

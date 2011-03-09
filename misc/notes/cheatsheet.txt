@@ -1,0 +1,18 @@
+
+==========================================
+COMMANDS
+==========================================
+
+	* ssh -t christoph_pickl,josceleton@shell.sf.net create
+
+
+==========================================
+PATHS
+==========================================
+
+
+==========================================
+LINKS
+==========================================
+
+	* mantis - https://sourceforge.net/apps/mantisbt/josceleton/manage_proj_edit_page.php?project_id=1

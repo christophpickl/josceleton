@@ -4,7 +4,7 @@
 <!--	<version position="none" /> -->
 
 	<bannerLeft>
-		<name>Corporate POM</name>
+		<name>Josceleton Corporate POM</name>
 	</bannerLeft>
 	
 	<!-- MINOR @SITE add to supported banner: maven and sourceforge  -->

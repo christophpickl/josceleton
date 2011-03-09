@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Josceleton">
 
+	<bannerLeft>
+		<name>Josceleton</name>
+	</bannerLeft>
+	
 	<body>
 		
 		<menu name="Overview (for Users)">
 			<item name="Introduction" href="index.html" />
-			<item name="Roadmap" href="roadmap.html" />
+<!--			<item name="Download" href="roadmap.html" /> maven dependency, distribution packages (via sourceforge) -->
+<!--			<item name="Samples" href="index.html" />-->
 		</menu>
 		
 		<menu name="Internal (for Developers)">
+			<item name="Roadmap" href="roadmap.html" />
 			<item name="Releasing Guideline" href="releasing_guideline.html" />
 			<item name="Coding Guideline" href="coding_guideline.html" />
 		</menu>

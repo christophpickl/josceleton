@@ -67,6 +67,21 @@
 
 </project>
 ]]></source>
+<!-- TODO @SITE
+
+		<dependency>
+			<groupId>net.sf.josceleton</groupId>
+			<artifactId>josceleton</artifactId>
+			<exclusions>
+				::COMMENT:: exclude josceleton's own guice dependency ::COMMENT::
+				<exclusion>
+		            <groupId> net.sf.josceleton.thirdparty.com.google.code.guice </groupId>
+		            <artifactId> guice-dependencies </artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>com.google.code.guice -- guice -- 2.0</dependency>
+		-->
 			
 		</section>
 		

@@ -1,0 +1,74 @@
+
+
+
+
+==========================================
+TODO * upcoming *
+==========================================
+!!! viele tasktags koennen verschoben werden in luxury.txt (muss halt dann zusaetzlich referenz dazu schreiben, woher dieses tasktag kommt)
+! move some /misc stuff directly into /josceleton-reactor/_misc; zb todo lists (damit sie auch mitgetagged werden)
+??? wenn released, wie behandelt man reactor (josceleton-reactor) projekte?
+	A. einfach mvn release:prepare in reactor => gibts error
+	B. per submodul (haendisch, aufwaendig)
+	!!!!! + was mitm reactor machen? (brauch zb src/site auch getagged) // mittels profil submodule raus is ja auch nicht das wahre...
+		=> es muss aber gehen, dass man einzelne submodule nicht tagged (wenn zb nur in connection-impl was anderes, commons aber bleibt) => dh doch auf reactor ebene ausfuehren, aber dann einzelne module interaktiv nein sagen koennen
+! pom structure wie von bwin zettel wieder herholen (nachzeichnen & auf wand aufhaengen)
+- maven-checkstyle-plugin leute frage ob/wann MethodCount unterstuetzt wird // wird nicht vom mvn-plugin gefressen (sogar nicht neueste 2.6 version); wird aber von eclipse-cs gesetzt :(
+
+==========================================
+TODO * code *
+==========================================
+! check all custom equals implementations, if they are checking instanceof against interface, not *Impl!!! (and if they have shortcut check "if(this == other)")
+- should equals/hashCode/toString be final? (check all value objects!)
+
+? have factories also to be declared with Scope SINGLETON?
+- idea concerning Utils (ReflectUtil): introduce UtilFacade class: "UtilFacade f = ...; f.String().trim()" or "f.Reflect().findConstructor(Class, Object[] argValues/*internally translated to argTypes*/)"
+	=> see DynamicInstantiatorImpl and ReflectUtil
+
+==========================================
+BUILD
+==========================================
+!! site generation has to be faster (maybe add profile to disable reports; or disabled by default, and only when releasing its activated)
+!! resolve mvn build warnings
+	* already attached project: [WARNING] Artifact net.sf.josceleton:connection-impl:java-source:sources:0.1-SNAPSHOT already attached to project, ignoring duplicate
+	*  eclipse workspace warning
+! -Pmaven.test.skip=true ==> soll auch coverage disablen!
+! introduce more profiles: disables tests, sourceCheck/validations, site, ..
+! metriken im build enforcen: (zumindest wenn release dann andere (haertere) werte nehmen) * tasktags  (zumindest keine FIXMEs in release) * pmd/cpd/findbugs??
+! @eclipse: add java sources of dependencies + also deploy (guice!) sources into repo, so to have them available in eclipse
+- load properties (versions, etc) from property-file via maven-properties-plugin
+- include checkstyle rule check-for-existing-javadoc for all API classes
+- wohl doch... @POM java-abstract-pom, alle versionsnr als property
+
+==========================================
+TEST
+==========================================
+! ensure nothing is leaking (close, removeListener) => ebenfalls system-tests dafuer
+! @build when running tests, maybe append own log4j logger (programatically? something like a regular overwriting file appender)
+??? best practice?: create impl instantance directly, or use guice factory/provider?
+- @systemtest: (conditional submodule): komplett anders loesen, siehe hier: http://happygiraffe.net/blog/2009/07/26/conditional-maven-modules/
+- da ja sogar VOs interfaces sind => fuer tests only Factory zur verfuegung stellen a la:
+	"userFactory.create(2, 1)" => intern: "mock(User.class); expectations{ user.___allowing___(getId()); willReturn(pId); ... }"
+	... damit wird testen einfacher, und umgeht (in dem fall) "umstaendliches" design von puren interfaces :)
+
+==========================================
+DOCUMENTATION
+==========================================
+! reports (wenn moeglich) aggregieren, vor allem javadoc (pure API javadoc von allen josceleton modulen)
+- let josceleton-reactor deploy site twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
+	?? oder wie sonst loesen, ausser wie daweil mit redirect?
+- custom 404er page
+- improve javadoc:
+	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
+	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags
+	* @doclava: make since tag appear; officially not supported, but guice doc has it!!!
+
+==========================================
+IDEAS
+==========================================
+- aus sicht des users denken: wie wird er josceleton einbinden?
+	* plain: mit Josceleton (static) facade
+	* guice: sehr gut, is schon einzelnes (Private)Module verfuegbar gestellt
+		!! @FACADE http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/PrivateModule.html
+- @hitwall gesture: auch beine/kopf dazunehmen; vertikal volumen ... oder so?; nicht absolut, sondern relativ (vom torso) ist wall entfernt
+- one could merge api and impl projects into one reactor project => josceleton-reactor { commons, core {core-api, core-impl}, connection {...}, josceleton, ... }

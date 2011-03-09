@@ -7,9 +7,6 @@
 		
 		<menu name="Overview">
 			<item name="Home" href="index.html" />
-			<item name="Download" href="download.html" />
-<!--			<item name="Usage" href="xx" />-->
-<!--			<item name="Code Quality" href="xx" />-->
 		</menu>
 		
 		<menu ref="reports" />
