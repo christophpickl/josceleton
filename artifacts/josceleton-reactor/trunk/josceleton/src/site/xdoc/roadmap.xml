@@ -15,27 +15,27 @@
 			<h3>Version 1.x</h3>
 			<p>&quot;<i>xxx.</i>&quot;</p>
 			<ul>
-				<li>add joconsole gui module (a.k.a. old "mkinector-debugger")</li>
+				<li>??? got any really luxury features in mind ???</li>
 			</ul>
  
 			<h3>Version 0.9</h3>
 			<p>&quot;<i>xxx.</i>&quot;</p>
 			<ul>
 				<li>add samples module</li>
-				<li>write detailed documentation: enhanced mvn site (also with more samples), javadoc (also with more samples)</li>
+				<li>wrap up documentation: enhanced mvn site (+samples), javadoc (+samples)</li>
 			</ul>
  
 			<h3>Version 0.x</h3>
 			<p>&quot;<i>xxx.</i>&quot;</p>
 			<ul>
-				<li>improved downloadable distribution packages</li>
-				<li>spring DI bridge</li>
+				<li>downloadable distribution packages</li>
 				<li>introduced aop (improved log output)</li>
 				<li>introduced design by contract</li>
+				<li>add joconsole gui module (a.k.a. old "mkinector-debugger")</li>
 			</ul>
 			
 			<h3>Version 0.4</h3>
-			<p>&quot;<i>code quality improvement only release.</i>&quot;</p>
+			<p>&quot;<i>Code quality improvement only release.</i>&quot;</p>
 			<ul>
 				<li>add system tests (starting osceleton process and replaying recorded data)</li>
 				<li>enhanced all tests by looking at each of them by hand</li>
@@ -45,7 +45,7 @@
 			</ul>
 			
 			<h3>Version 0.3</h3>
-			<p>&quot;<i>detecting positions.</i>&quot;</p>
+			<p>&quot;<i>Detecting positions.</i>&quot;</p>
 			<ul>
 				<li>extend legacy code (AsyncFor, Builder)</li>
 				<li>add new movement detection module and implement basic position detections (and stable value provider? eg: fire volume constantly via x-coordinate)</li>
@@ -53,7 +53,7 @@
 			</ul>
 			
 			<h3>Version 0.2</h3>
-			<p>&quot;<i>introducing connection services.</i>&quot;</p>
+			<p>&quot;<i>Introducing connection services.</i>&quot;</p>
 			<ul>
 				<li>manage users correctly (artificial user login)</li>
 				<li>store (recent) movement in motion tracker</li>

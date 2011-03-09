@@ -9,9 +9,9 @@ import net.sf.josceleton.core.impl.entity.message.JosceletonCoreImplEntityMessag
 import com.google.inject.AbstractModule;
 
 /**
- * Contains all submodules necessary to work with Josceleton.
+ * Contains all <a href="http://code.google.com/p/google-guice/" target="_blank">Google Guice</a> submodules.
  * 
- * Internally just uses the {@link #install(com.google.inject.Module)} method to accomplish this.
+ * Internally uses the {@link #install(com.google.inject.Module)} method to provide access to all Josceleton classes.
  * 
  * @since 0.2
  */

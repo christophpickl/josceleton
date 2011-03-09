@@ -8,20 +8,26 @@ import net.sf.josceleton.core.api.entity.message.UserMessage;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-
 /**
+ * Facade class with static methods, acting as a single point of entry.
+ * 
+ * It is highly recommended to NOT make use of this class. Only exception is quick hacky code...
+ * Please see documentation on the website for further help about this topic.
+ * 
  * @since 0.2
  */
 public final class Josceleton /* statically implements JosceletonFacade */ {
 	
+	/** Just some sample code. */
 	public static void main(final String[] args) {
 		final Connection connection = Josceleton.openConnection();
 		connection.addListener(new ConnectionListener() {
 			@Override public void onUserMessage(final UserMessage message) {
-				System.out.println("onUserMessage(message=" + message + ")");
+				System.out.println("Received a user message: " + message);
 			}
 			@Override public void onJointMessage(final JointMessage message) {
-				System.out.println("onJointMessage(message=" + message + ")");
+				// this will be invoked quiet often ;)
+				System.out.println("Received a joint message: " + message);
 			}
 		});
 		System.out.println("Running ...");

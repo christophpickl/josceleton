@@ -1,6 +1,11 @@
 
-
-
+!!! @BodyRecentStorage.getBodyPartCoordinate(BodyPart):Coordinate THROWS NoCoordinatesDataAvailableException == CheckedException!
+	... es kann ja sein, dass noch gar keine daten verfuegbar sind, wenn zb kamera fuesse no net gsehn hat, und man fussdaten haben will
+! rename java-pom to java-super-pom (also rethink naming of java-abstract-pom ... could also split it up into several parts while doing this)
+-- fuer alle klassen (nicht nur in api) ein @since tag drauf geben (doc wird nachher eh nicht einsehbar sein vom user)
+! @JAVADOC: wenn alles zam-aggregiert ist, sollen *-impl modulklassen nicht sichtbar sein
+	=> YES: do this by setting javadoc-plugin config option; eg ~"<docExcludes>"
+	// NO: dann muss auch in allen *-impl modulen alle public klassen ein ~"@NoJavadoc" annotation draufhaben
 
 ==========================================
 TODO * upcoming *
@@ -27,12 +32,6 @@ TODO * code *
 ==========================================
 BUILD
 ==========================================
-!! resolve mvn build warnings
-	* already attached project: [WARNING] Artifact net.sf.josceleton:connection-impl:java-source:sources:0.1-SNAPSHOT already attached to project, ignoring duplicate
-	*  eclipse workspace warning
-! introduce more profiles: disables tests, sourceCheck/validations, site, ..
-! metriken im build enforcen: (zumindest wenn release dann andere (haertere) werte nehmen) * tasktags  (zumindest keine FIXMEs in release) * pmd/cpd/findbugs??
-! @eclipse: add java sources of dependencies + also deploy (guice!) sources into repo, so to have them available in eclipse
 - load properties (versions, etc) from property-file via maven-properties-plugin
 - include checkstyle rule check-for-existing-javadoc for all API classes
 - wohl doch... @POM java-abstract-pom, alle versionsnr als property

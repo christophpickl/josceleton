@@ -13,6 +13,7 @@ BUILD
 ==========================================
 VEEEEERY LUXURY
 ==========================================
+- use BUILDSERVER (hudson) // evtl sogar auch nexus repo
 - create custom maven site skin
 - @CHECKSTYLE would be nice to annotate a class with custom suppression annotation, and then based on this generate suppression.xml file ;)
 - spring bruecke schreiben, um in spring alle josceleton guice zur verfuegung zu haben
