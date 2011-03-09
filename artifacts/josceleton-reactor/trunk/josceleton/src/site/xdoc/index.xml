@@ -7,6 +7,12 @@
 	<body>
 		<section name="section 1">
 			<p>Hi!</p>
+			<!-- startseite sehr kompakt halten:
+			1. grosses nettes bild "kinect + java = josceleton" // evtl video
+			2. kurzer beschreibender text was es tut
+			3. wie gehts weiter, weiterfuehrende links
+			-->
+			
 		</section>
 	</body>
 </document>

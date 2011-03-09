@@ -10,7 +10,21 @@
 	
 		<section name="Roadmap">
 		
-			<p>Hi!</p>
+			<p>This page contains a very rough and high-level view of upcoming milestones.</p>
+			
+			<h3>Version 0.1</h3>
+			
+			<ul>
+				<li>connector</li>
+				<li>receive messages</li>
+			</ul>
+			
+			<h3>Version 0.0 (<i>Preversion</i>)</h3>
+			
+			<ul>
+				<li>Setup basic project structure</li>
+				<li>Setup Maven build</li>
+			</ul>
 			
 		</section>
 		
