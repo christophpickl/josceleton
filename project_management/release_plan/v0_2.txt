@@ -1,0 +1,78 @@
+
+	// REMEMBER to keep release guide updated!
+
+	/*******************************************************************\
+	|  PREPARATIONS                                                     |
+	\*******************************************************************/
+
+	CLEANUP CODE
+	=====================================================================
+XXXX	* resolve all warnings from: eclipse, compiler, checkstyle
+XXXX	* resolve "extended" warnings from: findbugs, pmd, cpd, ...
+XXXX	* resolve tasktags: NO high-prio tasks ("FIXMEs"), preferrably no med-prio ("TODOs")
+	
+	UPDATE DOCUMENTATION
+	=====================================================================
+		// no new planning, just freezing things
+XXXX	* update changelog (metrics!)
+XXXX	* update roadmap
+	
+	UPDATE MAVEN VERSIONS
+	=====================================================================
+XXXX	* update pom versions for parent references and dependencies
+
+
+	/*******************************************************************\
+	|  CREATE TAGS                                                      |
+	\*******************************************************************/
+
+	FINAL VERIFICATIONS
+	=====================================================================
+XXXX	* get sure everything is updated to head
+XXXX	* get sure you have really nothing forgotten!
+	
+	TAG WITH RELEASE PLUGIN
+	=====================================================================
+		// usually not for reactors
+		?????????????????? anything else ???????????????
+XXXX	* figure out proper release plugin commands
+XXXX	* release:prepare
+XXXX	* release:perform // will deploy artifact and site
+
+
+	/*******************************************************************\
+	|  POSTPARATIONS                                                    |
+	\*******************************************************************/
+
+	MANUAL VERIFICATION
+	=====================================================================
+XXXX	* check everything was deployed (www./maven/release/xx, www./documentation/xx)
+XXXX	* check site (links are working, samples compile and run, referenced versions are all up2date)
+XXXX	* clean local mvn repo and give it a shot yourself
+	
+	
+	ASSEMBLY DISTRIBUTION PACKAGES
+	=====================================================================
+		????????????????
+	
+	UPDATE SOURCEFORGE PROJECT
+	=====================================================================		
+XXXX	* create news entry
+		!!!!!!!!!!!! upload release files
+
+
+	/*******************************************************************\
+	|  PLAN NEW RELEASE (optional)                                      |
+	\*******************************************************************/
+
+	CLEANUP ALL KIND OF TODOS
+	=====================================================================
+XXXX	* reorganize/reprioritize tasktags; move time into todo textfiles ("notes.txt") 
+XXXX	* reorganize luxury todos ("luxury_todos.txt")
+XXXX	* move issues (simple ones should be merged in packages) to mantis queue
+	
+	CREATE ROADMAPS
+	=====================================================================
+XXXX	* create mantis issues based on mantis queue
+XXXX	* set proper target version for issues
+XXXX	* update documentation roadmap ("roadmap.xml") based on mantis roadmap

@@ -20,15 +20,20 @@
 				<li>Configure your framework of choice to inject <code>JosceletonFacade</code> instance.</li>
 			</ol>
 						
-			<subsection name="Josceleton static Facade">
+			<subsection name="Use the static Facade">
+			
+				<p style="font-size:1.3em;"><!-- MINOR @DOC link to javadoc -->
+					<code>Josceleton.openConnection()</code>
+				</p>
+				
 				<p>
 					The following code snippet uses the facade class <code>Josceleton</code> to open a connection
-					(on the default port 7110) and add a listener for arbitrary messages and any user:
+					(on the default port <code>7110</code>) and add a listener for arbitrary messages and any user:
 				</p>
 				
 				<table>
 					<caption align="bottom">
-						Sourcecode: Establish a basic connection by using the <code>Josceleton</code> facade.
+						Sourcecode: Establish a basic connection by using the <code>Josceleton</code> facade
 					</caption>
 					<tr valign="middle"><td align="center" style="background-color:white;text-align:left;font-size:10pt;">
 						<source><![CDATA[
@@ -66,7 +71,11 @@ System.out.println("Running ...");
 				
 			</subsection>
 			
-			<subsection name="Passing JosceletonFacade instance">
+			<subsection name="Pass an interface typed instance">
+				
+				<p style="font-size:1.3em;"><!-- MINOR @DOC link to javadoc -->
+					<code>Josceleton.newFacade()</code>
+				</p>
 				
 				<p>
 					Create a <code>JosceletonFacade</code> instance and pass it (or inject it) into your classes as needed.
@@ -80,27 +89,27 @@ System.out.println("Running ...");
 				
 				<table>
 					<caption align="bottom">
-						Sourcecode: Using the non-static facade and it&apos;s internal working.
+						Sourcecode: Usage of the non-static facade and it&apos;s internal structure
 					</caption>
 					<tr valign="middle"><td align="center" style="background-color:white;text-align:left;font-size:10pt;">
 						<source><![CDATA[
-// #1 - this is the final, recommended approach
+// #1 - this is the most common way you will use (recommended approach)
 // ===============================================================================
 JosceletonFacade facade = Josceleton.newFacade();
 ... = facade.openConnection();
 
-// #2 - use static factory method to instantiate injector
+// #2 - internally instantiates a facade implementation
 // ===============================================================================
 JosceletonFacade facade = new JosceletonFacadeImpl(Josceleton.newGuiceInjector());
 ... = facade.openConnection();
 
-// #3 - outline module instantiation
+// #3 - then invokes guice directly to create an injector
 // ===============================================================================
 Injector injector = Guice.createInjector(new JosceletonGuiceModule());
 JosceletonFacade facade = new JosceletonFacadeImpl(injector);
 ... = facade.openConnection();
 
-// #4 - create instances directly (this represents what actually is done internally)
+// #4 - tweak: outline module creation (this represents what is actually done internally)
 // ===============================================================================
 Module module = new JosceletonGuiceModule();
 Injector injector = Guice.createInjector(module);

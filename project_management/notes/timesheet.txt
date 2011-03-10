@@ -19,3 +19,6 @@
 09.03. - 18:00 -  4h - #3 build: finished checkstyle path, m2eclipse, fast builds via profiles
 09.03. - 21:00 -  6h - #4 site: finished setting up some pages
               ~~ 70h~~
+10.03. - 14:00 -  5h - #4 site: yet more minor improvements
+10.03. - 19:00 -  h - 
+              ~~ 75h~~

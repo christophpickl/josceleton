@@ -31,7 +31,7 @@
 	<body>
 		<links>
 			<item name="Mantis Bugtracker" href="https://sourceforge.net/apps/mantisbt/josceleton" />
-			<item name="Sourceforge Project" href="https://sourceforge.net/projects/josceleton" />
+			<item name="SourceForge Project" href="https://sourceforge.net/projects/josceleton" />
 		</links>
 		
 		<menu name="Overview">

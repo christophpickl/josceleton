@@ -8,49 +8,55 @@
 	
 	<body>
 	
-		<section name="A picture is worth a thousand words ...">
-		
+		<section name="Introduction">
+				
+			<p>
+				A picture is worth a thousand words:
+			</p>
+			
 			<table>
 				<caption align="bottom">
-					Image: Kinect and Java, combined via Josceleton (copyright by 
+					Image: Kinect and Java (by 
 					<a href="http://flickr.com/photos/dekuwa/4699355300/" target="_blank">Dekuwa</a> and 
-					<a href="http://flickr.com/photos/silveiraneto/2270445344/" target="_blank">Silveira Neto</a>).
+					<a href="http://flickr.com/photos/silveiraneto/2270445344/" target="_blank">Silveira Neto</a>)
 				</caption>
 				<tr valign="middle"><td align="center" style="background-color:white;">
 					<img src="image/kinect_plus_java.jpg" alt="kinect plus java" title="Josceleton, a library which combines the Kinect with Java" width="700" height="190" />
 				</td></tr>
 			</table>
 			
-			<subsection name="About">
+			<p>
+				To put it simple Josceleton is a Java library to access data sent by the 
+				<a href="http://xbox.com/kinect" target="_blank">Microsoft Kinect</a> device:
+			</p>
+			<p align="center">
+				<i>&quot; ... it enables users to control and interact, 
+						  ... through a natural user interface using gestures ...
+				&quot;</i> 
+					-- <a href="http://en.wikipedia.org/wiki/Kinect" target="_blank">Wikipedia</a>
+			</p>
 			
-				<p>
-					Josceleton is a Java library to access data sent by the Microsoft Kinect sensors.
-				</p>
-				<p align="center">
-					<i>&quot; ... it enables users to control and interact, ... through a natural user interface using gestures&quot;</i>, 
-						from <a href="http://en.wikipedia.org/wiki/Kinect" target="_blank">Wikipedia</a>.
-				</p>
-			
-				<table>
-					<caption align="bottom">
-						Video: XBox Kinect OSCeleton showcase (copyright by <a href="http://vimeo.com/17978808">Tiago Serra</a>).
-					</caption>
-					<tr valign="middle"><td align="center" style="background-color:white;">
-						
-						<iframe src="http://player.vimeo.com/video/17978808" width="400" height="225" frameborder="0"></iframe>
-						
-					</td></tr>
-				</table>
+			<p>
+				Technicaly speaking this library relies on a running
+				<a href="https://github.com/Sensebloom/OSCeleton" target="_blank">OSceleton</a>
+				server and is built upon the OSC 
+				(<a href="http://en.wikipedia.org/wiki/OpenSound_Control" target="_blank">Open Sound Control Protocol</a>) 
+				library
+				<a href="http://illposed.com/software/javaosc.html" target="_blank">Java OSC</a>,
+				which has not to be provided by you.
+			</p>
+		
+			<table>
+				<caption align="bottom">
+					Video: XBox Kinect OSCeleton Showcase (by <a href="http://vimeo.com/17978808">Tiago Serra</a>)
+				</caption>
+				<tr valign="middle"><td align="center" style="background-color:white;">
+					
+					<iframe src="http://player.vimeo.com/video/17978808" width="400" height="225" frameborder="0"></iframe>
+					
+				</td></tr>
+			</table>
 				
-				<p>
-					Technicaly speaking this library relies on a running 
-					<a href="https://github.com/Sensebloom/OSCeleton" target="_blank">OSceleton</a> server instance. To 
-					be able to talk to this server, the OSC protocol implementation 
-					<a href="http://illposed.com/software/javaosc.html" target="_blank">Java OSC</a> is used.
-				</p>
-				
-			</subsection>
-			
 		</section>
 		
 	</body>

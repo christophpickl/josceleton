@@ -11,8 +11,10 @@
 			<h4>Project Specific</h4>
 			
 			<ul>
-				<li><b>SourceForge</b> - <a href="https://sourceforge.net/projects/josceleton">https://sourceforge.net/projects/josceleton</a></li>
-				<li><b>Mantis</b> - <a href="https://sourceforge.net/apps/mantisbt/josceleton">https://sourceforge.net/apps/mantisbt/josceleton</a></li>
+				<li><b>SourceForge Project</b> - <a href="https://sourceforge.net/projects/josceleton">https://sourceforge.net/projects/josceleton</a></li>
+				<li><b>Mantis Bugtracker</b> - <a href="https://sourceforge.net/apps/mantisbt/josceleton">https://sourceforge.net/apps/mantisbt/josceleton</a></li>
+				<li><b>View Sourcecode</b> - <a href="http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts">http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts</a></li>
+				
 					<!-- TODO @DOC in site in xmls geht nicht ${project.version} -->
 <!--				<li>Sources - -->
 						<!-- statt ${foobar.version} ==> das muss als <property> daherkommen von <version.dependency.josceleton.core-api -->

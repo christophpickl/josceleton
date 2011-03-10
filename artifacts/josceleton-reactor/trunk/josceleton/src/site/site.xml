@@ -8,7 +8,7 @@
 	<body>
 		
 		<menu name="Overview (for Users)">
-			<item name="Introduction" href="index.html" />
+			<item name="Introduction" href="index.html" /><!-- a.k.a. "about", "home" -->
 			<item name="Download" href="download.html" /> 
 			<item name="Samples" href="samples.html" />
 <!--			<item name="FAQ/Help/Contact" href="..." />-->
@@ -18,10 +18,10 @@
 		<menu name="Internal (for Developers)">
 			<item name="Changelog" href="development/changelog.html" />
 			<item name="Roadmap" href="development/roadmap.html" />
+			<item name="Release Handbook" href="development/release_handbook.html" />
 			
 <!--			<item name="Workspace Setup" href="development/workspace_setup.html" />-->
 <!--			<item name="Coding Policy" href="development/coding_policy.html" />-->
-<!--			<item name="Releasing Guideline" href="development/releasing_guideline.html" />-->
 		</menu>
 		
 		<!-- TODO @SITE submodules; not, this is the reason a reactor should be deployed here => also relativ (version _independent_) href paths would be possible! -->
