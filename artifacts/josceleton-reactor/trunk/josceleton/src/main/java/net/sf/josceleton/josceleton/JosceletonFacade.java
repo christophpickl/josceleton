@@ -17,7 +17,7 @@ public interface JosceletonFacade {
 	 */
 	Connection openConnectionOnPort(int port);
 	
-	// FIXME introduce FUTURE tasktag (get rid of either MINOR or LUXURY)
+	// MINOR introduce FUTURE tasktag (get rid of either MINOR or LUXURY)
 	
 	// FUTURE HitWallGesture gesture = facade.create(HitWallGesture.class).propertyX(xValue).build();
 	

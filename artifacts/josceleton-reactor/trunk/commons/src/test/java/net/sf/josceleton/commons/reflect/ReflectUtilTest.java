@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.nullValue;
 
 import java.lang.reflect.Constructor;
 
-import net.sf.josceleton.commons.test.ClassMockery;
+import net.sf.josceleton.commons.test.jmock.ClassMockery;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -89,7 +89,7 @@ public class ReflectUtilTest {
 			new Object[] { Long.class, Long.TYPE },
 			new Object[] { Float.class, Float.TYPE },
 			new Object[] { Double.class, Double.TYPE }
-			// TODO ??? @TEST reflect necessary for arrays as well? how to handle them?
+			// MINOR ??? @TEST reflect necessary for arrays as well? how to handle them?
 		};
 	}
 	@Test(dataProvider = "provideAssignablePrimitiveTypes")

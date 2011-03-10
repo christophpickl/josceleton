@@ -8,12 +8,12 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.sf.josceleton.commons.test.AbstractMockeryTest;
+import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
+import net.sf.josceleton.commons.test.jmock.ExpectationsProvider;
 import net.sf.josceleton.commons.test.util.TestUtil;
 import net.sf.josceleton.connection.api.ConnectionListener;
 import net.sf.josceleton.connection.impl.osc.OscMessageTransformer;
 import net.sf.josceleton.connection.impl.osc.OscPort;
-import net.sf.josceleton.connection.impl.test.ExpectationsProvider;
 import net.sf.josceleton.connection.impl.test.OSCMessageX;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;

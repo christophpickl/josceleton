@@ -3,7 +3,7 @@ package net.sf.josceleton.connection.api;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import net.sf.josceleton.commons.test.AbstractMockeryTest;
+import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 
 import org.testng.annotations.Test;
 

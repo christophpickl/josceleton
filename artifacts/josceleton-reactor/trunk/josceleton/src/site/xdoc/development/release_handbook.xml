@@ -14,32 +14,11 @@
 			
 			<h4>Process Overview</h4>
 			
-<!--			<table cellspacing="0" cellpadding="0">-->
-<!--				<caption align="bottom">Listing: Release Process Overview</caption>-->
-<!--				<colgroup>-->
-<!--					<col width="30" />-->
-<!--					<col width="*" />-->
-<!--				</colgroup>-->
-<!--				<tr style="background-color:white;font-weight:bold;"><td>1</td>  <td>Preprations</td></tr>-->
-<!--				<tr style="background-color:white;"><td>1.1</td><td>Cleanup Code</td></tr>-->
-<!--				<tr style="background-color:white;"><td>1.2</td><td>Update Documentation</td></tr>-->
-<!--				<tr style="background-color:white;"><td>1.3</td><td>Update Maven Versions</td></tr>-->
-<!--				<tr style="background-color:white;"><td>2</td>  <td>Create Tag</td></tr>-->
-<!--				<tr style="background-color:white;"><td>2.1</td><td>Final Checks</td></tr>-->
-<!--				<tr style="background-color:white;"><td>2.2</td><td>Tag</td></tr>-->
-<!--				<tr style="background-color:white;"><td>3</td>  <td><i>Postparations</i></td></tr>-->
-<!--				<tr style="background-color:white;"><td>3.1</td><td>Manual Checks</td></tr>-->
-<!--				<tr style="background-color:white;"><td>3.2</td><td>Distribution Packages</td></tr>-->
-<!--				<tr style="background-color:white;"><td>3.3</td><td>Update SourceForge/Documentation</td></tr>-->
-<!--				<tr style="background-color:white;"><td>4</td>  <td>Plan new Release (optional)</td></tr>-->
-<!--				<tr style="background-color:white;"><td>4.1</td><td>Cleanup ToDos</td></tr>-->
-<!--				<tr style="background-color:white;"><td>4.2</td><td>Update Roadmaps</td></tr>-->
-<!--			</table>-->
 			<ol>
 				<li><b>Preprations:</b> Cleanup Code, Update Documentation, Update Maven Versions</li>
 				<li><b>Create Tag:</b> Final Checks, Create Subversion Tags with Release Plugin</li>
 				<li><b>Postparations:</b> Manual Checks, Upload Distribution Packages, Update SourceForge</li>
-				<li><b>Plan new Release (optional):</b> Cleanup ToDos, Update Roadmaps</li>
+				<li><b>Plan new Release (optional):</b> Cleanup To Dos, Update Roadmaps</li>
 			</ol>
 			
 			<h4>Release Plan Template</h4>

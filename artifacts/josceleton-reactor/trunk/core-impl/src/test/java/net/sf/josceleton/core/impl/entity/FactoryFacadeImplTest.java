@@ -2,7 +2,7 @@ package net.sf.josceleton.core.impl.entity;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import net.sf.josceleton.commons.test.AbstractMockeryTest;
+import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;

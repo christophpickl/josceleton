@@ -6,7 +6,7 @@ import net.sf.josceleton.commons.reflect.ClassAdapter;
 import net.sf.josceleton.commons.reflect.ClassAdapterImpl;
 import net.sf.josceleton.commons.reflect.DynamicInstantiationException;
 import net.sf.josceleton.commons.reflect.DynamicInstantiator;
-import net.sf.josceleton.commons.test.ClassMockery;
+import net.sf.josceleton.commons.test.jmock.ClassMockery;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;

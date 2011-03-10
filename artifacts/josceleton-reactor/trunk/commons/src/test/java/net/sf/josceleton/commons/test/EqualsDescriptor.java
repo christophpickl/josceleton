@@ -1,5 +1,8 @@
 package net.sf.josceleton.commons.test;
 
+/**
+ * @see AbstractEqualsTest#createEqualsDescriptor()
+ */
 public class EqualsDescriptor<E> {
 	
 	private final E sameA;

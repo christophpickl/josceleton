@@ -67,20 +67,13 @@
 	    <!-- T E S T -->
     	<!-- *********************************************************** -->
     	
-<!--	    <dependency>-->
-<!--			<groupId>${project.groupId}</groupId>-->
-<!--			<artifactId>commons</artifactId>-->
-<!--			<type>test-jar</type>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
+	    <dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>commons</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>${project.groupId}</groupId>-->
-<!--			<artifactId>connection-api</artifactId>-->
-<!--			<type>test-jar</type>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
-	    
     </dependencies>
 	
     
@@ -92,7 +85,7 @@
 		<site>
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton site server @sourceforge</name>
-			<!-- FIXME @POM possible to deploy site to two different locations? -->
+			<!-- MINOR @POM possible to deploy site to two different locations? -->
 <!--			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>-->
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
 		</site>

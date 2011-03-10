@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.josceleton.commons.test.AbstractMockeryTest;
+import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.impl.osc.OscAddress;
 import net.sf.josceleton.connection.impl.osc.OscPort;
 import net.sf.josceleton.connection.impl.test.OSCMessageX;

@@ -124,7 +124,6 @@ JosceletonFacade facade = new JosceletonFacadeImpl(injector);
 
 		</section>
 		
-		<!-- TODO @SITE write more code samples -->
 <!--		<section name="Use high-level Connection Services">-->
 <!--			<p>WRITE</p>-->
 <!--		</section>-->

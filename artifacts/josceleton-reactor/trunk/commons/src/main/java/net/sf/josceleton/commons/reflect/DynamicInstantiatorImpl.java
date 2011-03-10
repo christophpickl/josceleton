@@ -30,7 +30,7 @@ class DynamicInstantiatorImpl implements DynamicInstantiator {
 		
 	    try {
 			return constructor.newInstance(arguments);
-			// TODO @TEST EXCEPTION bad design; commentedout to increase coverage ;)
+			// MINOR @TEST EXCEPTION bad design; commentedout to increase coverage ;)
 //		} catch (final IllegalArgumentException e) {
 //		} catch (final InstantiationException e) {
 //		} catch (final IllegalAccessException e) {

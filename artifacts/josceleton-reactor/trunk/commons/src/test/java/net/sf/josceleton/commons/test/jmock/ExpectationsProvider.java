@@ -1,4 +1,4 @@
-package net.sf.josceleton.connection.impl.test;
+package net.sf.josceleton.commons.test.jmock;
 
 import org.jmock.Expectations;
 

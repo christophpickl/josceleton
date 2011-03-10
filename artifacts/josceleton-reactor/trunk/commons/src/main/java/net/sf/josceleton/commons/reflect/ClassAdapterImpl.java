@@ -21,7 +21,7 @@ public class ClassAdapterImpl<T> implements ClassAdapter<T> {
 		this.innerClass = innerClass;
 	}
 	
-	@Deprecated
+	// FIXME @Deprecated avoid static factory method ClassAdapterImpl.create()
 	public static <X> ClassAdapterImpl<X> create(final Class<X> innerClass) {
 		return new ClassAdapterImpl<X>(innerClass);
 	}

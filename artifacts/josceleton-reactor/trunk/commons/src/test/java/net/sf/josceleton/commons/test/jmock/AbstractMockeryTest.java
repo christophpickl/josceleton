@@ -1,4 +1,5 @@
-package net.sf.josceleton.commons.test;
+package net.sf.josceleton.commons.test.jmock;
+
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;

@@ -1,7 +1,7 @@
 package net.sf.josceleton.connection.impl.osc;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
-import net.sf.josceleton.commons.test.AbstractMockeryTest;
+import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.impl.test.OSCMessageX;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;

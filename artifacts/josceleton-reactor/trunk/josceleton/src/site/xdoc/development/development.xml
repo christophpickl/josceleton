@@ -52,6 +52,17 @@
 ]]></source>
 			</subsection>
 			
+			<subsection name="Test Utilities">
+				<p>
+					Custom matchers: hasSinglePrivateNullifiedConstructorAndInvokeIt;
+					Abstract classes ...;
+					properly dealing with mocks;
+					make use of dataproviders;
+					// @guideline: never outcomment tests, only disable via annotation
+					advanced mock creation with ExpectationsProvider;
+				</p>
+			</subsection>
+			
 			<subsection name="Cheatsheet">
 				
 				<h4>Regularly used Commands</h4>

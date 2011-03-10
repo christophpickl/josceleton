@@ -8,7 +8,7 @@
     <artifactId>java-abstract-pom</artifactId>
     <version>0.2-SNAPSHOT</version>
     
-    <!-- TODO @POM REFACTOR split up java-abstract-pom into java-abstract-abstract-pom -->
+    <!-- MINOR @POM REFACTOR split up java-abstract-pom into java-abstract-abstract-pom -->
     <!-- abstract-abstract-pom ... slim core pom with building section (one can only inherit from here, eg to speed up things) -->
     <!-- abstract-pom ... only contains "additional"/unncessary stuff (like reporting) -->
     
@@ -244,7 +244,7 @@
         
         <plugins>
         
-        <!-- FIXME @POM enforce code metrics during build! (verify these checks are working) -->
+        <!-- TODO @POM enforce code metrics during build! (verify these checks are working) -->
 <!--          <plugin>-->
 <!--              <groupId>org.apache.maven.plugins</groupId>-->
 <!--              <artifactId>maven-pmd-plugin</artifactId>-->
@@ -733,7 +733,7 @@
 		<!--					<format>xml</format>-->
 							<linkXref>true</linkXref>
 							<sourceEncoding>utf-8</sourceEncoding>
-		<!--					<minimumTokens>100</minimumTokens> TODO @POM what good for? -->
+		<!--					<minimumTokens>100</minimumTokens> TODO @POM what is pmd.minimumTokens config good for? -->
 		                </configuration>
 		            </plugin>
 		            

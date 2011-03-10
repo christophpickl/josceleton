@@ -96,7 +96,7 @@
 				<plugin>
 					<artifactId>maven-changes-plugin</artifactId>
 					<version>${version.changes-plugin}</version>
-					<!-- FIXME @POM changes-plugin produces warning about missing changes.xml file -->
+					<!-- MINOR @DOC POM changes-plugin produces warning about missing changes.xml file -->
 					<!-- /Users/phudy/_dev/pulse/josceleton-corporate-pom/target/checkout/src/changes/changes.xml does not exist  -->          
 				</plugin>
 				
@@ -105,7 +105,7 @@
 
 
     	<plugins>
-    		<!-- FIXME @POM add plugin to check if peruser properties (defined in settings.xml) are all correctly set -->
+    		<!-- TODO @POM add plugin to check if peruser properties (defined in settings.xml) are all correctly set -->
     	
             <!-- // configure (and activate) technology-independent plugins  -->
             <!-- *********************************************************** -->
@@ -348,10 +348,9 @@
 				                    DEFINETELY NOT: mailing-list, cim 
 			                    -->
 		                        <reports>
-		                        <!-- FIXME @POM re-enable "dependencies report" -->
-		<!--                            <report>dependencies</report>-->
 									<!-- generates a default index.html page; but we always have our own and to suppress About menu entry referencing same index.html (duplicate references in navi) -->
 <!--									<report>index</report>-->
+		                            <report>dependencies</report>
 		                            <report>project-team</report>
 		                            <report>issue-tracking</report>
 		                            <report>license</report>

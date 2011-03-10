@@ -2,7 +2,7 @@ package net.sf.josceleton.core.api.entity.body;
 
 final class OsceletonJointConstants {
 	
-	// TODO actually there is also a Osceleton(Message)Jonstants class, providing "new_user", etc...
+	// TODO @CODE actually there is also a Osceleton(Message)Jonstants class, providing "new_user", etc...
 	
 	static final String HEAD = "head";
 	static final String NECK = "neck";

@@ -1,7 +1,7 @@
 package net.sf.josceleton.connection.impl.osc;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
-import net.sf.josceleton.commons.test.AbstractMockeryTest;
+import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.commons.test.util.TestUtil;
 
 import org.jmock.Expectations;
