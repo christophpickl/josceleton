@@ -1,0 +1,51 @@
+
+REMEMBER to keep release guide updated!
+
+****************************** preparations
+
+	============= cleanup code
+		* resolve all warnings from: eclipse, compiler, checkstyle
+		* resolve "extended" warnings from: findbugs, pmd, cpd, ...
+		* resolve tasktags: NO high-prio tasks ("FIXMEs"), preferrably no med-prio ("TODOs")
+	
+	============= update versions
+		* update pom versions for parent references and dependencies
+
+
+****************************** create release
+
+	============= for each artifact (usually not for reactors)
+		?????????????????? WAS NOCH ???????????????
+		* release:prepare
+		* release:perform
+		
+	============= !!!!!!! assembly distribution packages
+	
+	============= !!!!!!! update sourceforge project site
+		* create news entry
+		* upload release files !!!!!!!!!!!!
+
+
+****************************** postparations
+
+	============= manual verification
+		* check everything was deployed (www./maven/release/xx, www./documentation/xx)
+		* check site (links are working, samples compile and run, referenced versions are all up2date)
+		// * clean local mvn repo and give it a shot yourself (download
+		
+	============= update documentation
+		* 
+
+****************************** plan new release (optional)
+
+	============= cleanup all kind of todos
+		* go through all tasktags
+			- reorganize (reprioritize) them roughly
+			- move them into todo textfiles ("notes.txt")
+		* reorganize luxury todos ("luxury_todos.txt")
+		* move issues (simple ones should be merged in packages) to mantis queue
+		
+	============= create roadmap
+		* create mantis issues based on mantis queue
+		* set proper target version for issues
+		* update documentation roadmap ("roadmap.xml") based on mantis roadmap

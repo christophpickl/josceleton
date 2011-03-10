@@ -14,7 +14,8 @@
 <!--	<bannerRight>-->
 <!--		<src>http://maven.apache.org/images/maven-small.gif</src>-->
 <!--	</bannerRight>-->
-
+	
+	<!-- MINOR @POM publishDate should be with time for snapshots ("yyyy-MM-dd HH:mm") -->
 	<publishDate position="right" format="yyyy-MM-dd" />
 	
 	<poweredBy>
