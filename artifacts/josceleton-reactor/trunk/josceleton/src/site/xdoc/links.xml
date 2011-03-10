@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Links</title>
+	</properties>
+	<body>
+	
+		<section name="Links">
+			
+			<h4>Project specific (Internal)</h4>
+			
+			<ul>
+				<li><b>SourceForge</b> - <a href="https://sourceforge.net/projects/josceleton/">https://sourceforge.net/projects/josceleton/</a></li>
+				<li><b>Mantis</b> - <a href="https://sourceforge.net/apps/mantisbt/josceleton">https://sourceforge.net/apps/mantisbt/josceleton</a></li>
+				<li>Maven Snapshot Repository - <a href="http://josceleton.sf.net/maven/release/">http://josceleton.sf.net/maven/release/</a></li>
+				<li>Maven Release Repository - <a href="http://josceleton.sf.net/maven/snapshot">http://josceleton.sf.net/maven/snapshot/</a></li>
+				<li>Documentation Repository - <a href="http://josceleton.sf.net/artifacts/">http://josceleton.sf.net/artifacts/</a></li>
+			</ul>
+		
+<!--			<h4>Kinect Hacks</h4>-->
+<!--			<ul>-->
+<!--				<li> - <a href="" taget="_blank"></a></li>-->
+<!--				<li>Video of ... - <a href="" target="_blank"></a></li>-->
+<!--			</ul>-->
+			
+		</section>
+		
+	</body>
+</document>

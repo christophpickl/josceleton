@@ -5,16 +5,95 @@
 		<title>Index</title>
 	</properties>
 	<body>
-		<section name="section 1">
-			<p>Hi!</p>
-			<!--
-			FIXME pro version in tabellenform:
-			* test coverage
-			* tasktags
-			* pmd
-			* metriken static code analyse
-			* metriken static code analyseanzahl der tests mit auflisten
-			-->
+		<section name="Metrics Overview">
+			
+			<table>
+				<caption align="bottom">Table 1: Overview of miscellaneous code metrics like tests, warnings and LoC for each version</caption>
+				<colgroup>
+					<col width="*" />
+					<col width="80" />
+					<col width="80" />
+				</colgroup>
+				<thead>
+					<tr><th></th><th>Version 0.1</th><th>Version 0.2</th></tr>
+				</thead>
+				<tbody>
+					
+					<tr><th colspan="3" style="background-color:#CCCCCC">Size</th></tr>
+					<tr><td>Total Number of Classes</td><td>?</td><td>?</td></tr>
+					<tr><td>Total Lines of Code</td><td>?</td><td>?</td></tr>
+					
+					<tr><th colspan="3" style="background-color:#CCCCCC">Test</th></tr>
+					<tr><td>Code Coverage</td><td>100%</td><td>100%</td></tr>
+					<tr><td>Number of Tests</td><td>?</td><td>?</td></tr>
+					
+					<tr><th colspan="3" style="background-color:#CCCCCC">Static Code Analyzation</th></tr>
+					<tr><td>TaskTags</td><td>?</td><td>?</td></tr>
+					<tr><td>PMD Warnings found</td><td>?</td><td>?</td></tr>
+					<tr><td>CPD Warnings found</td><td>?</td><td>?</td></tr>
+					<tr><td>FindBugs Warnings found</td><td>?</td><td>?</td></tr>
+					
+					<tr><th colspan="3" style="background-color:#CCCCCC">Miscellaneous</th></tr>
+					<tr><td>Time to Build</td><td>??:??</td><td>??:??</td></tr>
+					
+				</tbody>
+			</table>
+			
+		</section>
+		
+		<section name="Detailed Version Descriptions">
+		
+			<subsection name="Version 0.1">
+				<p>
+					<b>Release Date</b> 2011-03-08 
+					<a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.1/josceleton-reactor/index.html">Documentation</a>
+				</p>
+				<p>
+					Initial version providing simple access to a OSCeleton server.<br/>
+					Mostly working on project setup and build management.
+				</p>
+				
+				<h4 style="margin-top:0px;">Feature List</h4>
+				<ul>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=12">#0000012</a> 
+						<code>[API Enhancement]</code> Implement basic connection to OSCeleton</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=13">#0000013</a> 
+						<code>[Code Quality]</code> Comply with comprehensive Coding Policies</li>
+				</ul>
+			</subsection>
+			
+		
+			<subsection name="Version 0.2">
+				<p><b>Release Date</b> N/A</p>
+				<p>
+					Introducing Josceleton Facade providing a simplified access to the API. This module also provides a 
+					<a href="http://code.google.com/p/google-guice/" target="_blank">Guice</a> module for immediate usage.
+				</p>
+				
+				<h4 style="margin-top:0px;">Feature List</h4>
+				<ul>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=10">#0000010</a> 
+						<code>[API Enhancement]</code> Implement new Josceleton Facade Module</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=3">#0000003</a> 
+						<code>[Build Management]</code> Enhance developer environment</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=4">#0000004</a> 
+						<code>[Documentation]</code> Setup initial documentation</li>
+				</ul>
+			</subsection>
+		
+			
+			<subsection name="Version 0.3">
+				<p><b>Release Date</b> N/A</p>
+				<p>
+					Introducing services working on top of connection: UserManager to manage users correctly through an 
+					artifical user login, MotionTracker and RecentMotionStorage to store (most recent) body movements.
+				</p>
+				
+				<h4 style="margin-top:0px;">Feature List</h4>
+				<ul>
+					<li>N/A</li>
+				</ul>
+			</subsection>
 			
 		</section>
 	</body>

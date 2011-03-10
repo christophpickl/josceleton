@@ -206,7 +206,7 @@
 	                    <suppressionsLocation>checkstyle_suppression.xml</suppressionsLocation>
 	                    <failsOnError>true</failsOnError>
 	                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
-	                    <enableRulesSummary>false</enableRulesSummary>
+	                    <enableRulesSummary>true</enableRulesSummary>
 	                </configuration>
                 	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
                 	
@@ -333,7 +333,7 @@
 		                    <suppressionsLocation>checkstyle_suppression.xml</suppressionsLocation>
 		                    <failsOnError>true</failsOnError>
 		                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
-		                    <enableRulesSummary>false</enableRulesSummary>
+		                    <enableRulesSummary>true</enableRulesSummary>
 		                </configuration>
 		               	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
 		                

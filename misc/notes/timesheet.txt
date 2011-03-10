@@ -14,5 +14,8 @@
               ~~ 50h~~
 08.03. - 18:00 -  6h - mantis setup, tasks organized, roadmap, started implementing josceleton facade module
 09.03. - 14:00 -  2h - meeting with thomas
-09.03. - 16:00 -  h - 
-              ~~ 58h~~
+09.03. - 16:00 -  2h - #10 josceleton facade: finished issue
+              ~~ 60h~~
+09.03. - 18:00 -  4h - #3 build: finished checkstyle path, m2eclipse, fast builds via profiles
+09.03. - 21:00 -  6h - #4 site: finished setting up some pages
+              ~~ 70h~~

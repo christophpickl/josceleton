@@ -18,10 +18,11 @@
 <!--	</bannerRight>-->
 	<publishDate position="right" format="yyyy-MM-dd" />
 	
-<!--	<poweredBy>-->
-<!--    	<logo name="Maven" href="http://maven.apache.org/" img="http://maven.apache.org/images/logos/maven-feather.png"/>-->
-    	<!-- MINOR @SITE add javaosc and osceleton in site -->
-<!--	</poweredBy>-->
+	<poweredBy>
+    	<logo name="SourceForge" href="https://sourceforge.net/projects/josceleton/" img="http://josceleton.sourceforge.net/static/image/sourceforge_logo.gif" />
+    	<!-- got an ugly "built by" logo ... -->
+<!--    	<logo name="Maven" href="http://maven.apache.org/" img="http://josceleton.sourceforge.net/static/image/maven-built_by.png" />-->
+	</poweredBy>
 	
 	<skin>
 		<groupId>org.apache.tapestry</groupId>
@@ -31,12 +32,12 @@
 
 	<body>
 		<links>
-			<item name="Java OSC" href="http://www.illposed.com/software/javaosc.html" />
-			<item name="OSCeleton" href="https://github.com/Sensebloom/OSCeleton" />
+			<item name="Mantis Bugtracker" href="https://sourceforge.net/apps/mantisbt/josceleton" />
+			<item name="Sourceforge Project" href="https://sourceforge.net/projects/josceleton/" />
 		</links>
 		
 		<menu name="Overview">
-			<item name="Home" href="index.html" />
+			<item name="Introduction" href="index.html" />
 		</menu>
 		
 		<menu ref="reports" />

@@ -338,8 +338,8 @@
 		                        <reports>
 		                        <!-- FIXME @POM re-enable "dependencies report" -->
 		<!--                            <report>dependencies</report>-->
-									<!-- generates a default index.html page -->
-									<report>index</report>
+									<!-- generates a default index.html page; but we always have our own and to suppress About menu entry referencing same index.html (duplicate references in navi) -->
+<!--									<report>index</report>-->
 		                            <report>project-team</report>
 		                            <report>issue-tracking</report>
 		                            <report>license</report>
@@ -456,34 +456,8 @@
     <licenses>
         <license>
             <name>BSD License</name>
-            <!-- MINOR @POM somehow get license.txt deployed in site (as well as copy in distribution package) -->
-<!--            <url>http://josceleton.sourceforge.net/LICENSE.txt</url>-->
             <url>http://www.opensource.org/licenses/bsd-license.php</url>
-<!--			<url>http://josceleton.sf.net/LICENSE.txt</url>-->
-
-     		<!-- LUXURY @POM what to do with license distribution option "manual" vs "repo"? -->
-<!--     		This describes how the project may be legally distributed.-->
-<!--				The two stated methods are repo (they may be downloaded from a Maven repository) or-->
-<!--				manual (they must be manually installed).-->
-<!--     		<distribution>manual</distribution>-->
-			
-			<!-- MINOR @POM should pom inline license text? (would result in less ext. dep.) -->
-<!--     		<comments>???</comments>-->
-<!--    <comments>-->
-<!--    <![CDATA[-->
-<!--    Josceleton-->
-<!--Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:-->
-
-<!--Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.-->
-<!--Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.-->
-<!--Neither the name of Kristoffer Kvam nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.-->
-
-<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
-
-<!--See licence.txt for dependancies to other open projects.-->
-<!--      ]]>-->
-<!--    </comments>-->
-
+<!--     		<comments>Text displayed below "BSD License" title, below "Project License" header.</comments>-->
         </license>
     </licenses>
     
@@ -500,9 +474,7 @@
             <email>christoph.pickl@gmail.com</email>
             <timezone>+1</timezone>
             <roles>
-                <role>Project Founder</role>
-<!--                <role>Architect</role>-->
-<!--                <role>Developer</role>-->
+                <role>Project Founder, Build Engineer, Architect, Developer, Tester, Release Engineer, Documentator</role>
             </roles>
         </developer>
         

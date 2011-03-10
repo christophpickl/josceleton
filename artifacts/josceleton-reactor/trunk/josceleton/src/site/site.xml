@@ -9,15 +9,26 @@
 		
 		<menu name="Overview (for Users)">
 			<item name="Introduction" href="index.html" />
-<!--			<item name="Download" href="roadmap.html" /> maven dependency, distribution packages (via sourceforge) -->
-<!--			<item name="Samples" href="index.html" />-->
+			<item name="Download" href="download.html" /> 
+			<item name="Samples" href="samples.html" />
+<!--			<item name="FAQ/Help/Contact" href="..." />-->
+			<item name="Links" href="links.html" />
 		</menu>
 		
 		<menu name="Internal (for Developers)">
+			<item name="Changelog" href="changelog.html" />
 			<item name="Roadmap" href="roadmap.html" />
-			<item name="Releasing Guideline" href="releasing_guideline.html" />
-			<item name="Coding Guideline" href="coding_guideline.html" />
+			
+<!--			<item name="Workspace Setup" href="workspace_setup.html" />-->
+<!--			<item name="Releasing Guideline" href="releasing_guideline.html" />-->
+<!--			<item name="Coding Guideline" href="coding_guideline.html" />-->
 		</menu>
+		
+		<!-- TODO @SITE submodules; not, this is the reason a reactor should be deployed here => also relativ (version _independent_) href paths would be possible! -->
+<!--		<menu name="Submodules">-->
+<!--			<item name="Core Implementation" href="/artifacts/net.sf.josceleton/core-impl/0.1-SNAPSHOT/java-abstract-pom/java-pom/core-impl/" />-->
+<!--			<item name="Core Implementation" href="xxxxx.html" /> -->
+<!--		</menu>-->
 		
 		<menu ref="reports" />
 	</body>

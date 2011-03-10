@@ -1,11 +1,6 @@
 
-!!! @BodyRecentStorage.getBodyPartCoordinate(BodyPart):Coordinate THROWS NoCoordinatesDataAvailableException == CheckedException!
-	... es kann ja sein, dass noch gar keine daten verfuegbar sind, wenn zb kamera fuesse no net gsehn hat, und man fussdaten haben will
-! rename java-pom to java-super-pom (also rethink naming of java-abstract-pom ... could also split it up into several parts while doing this)
--- fuer alle klassen (nicht nur in api) ein @since tag drauf geben (doc wird nachher eh nicht einsehbar sein vom user)
-! @JAVADOC: wenn alles zam-aggregiert ist, sollen *-impl modulklassen nicht sichtbar sein
-	=> YES: do this by setting javadoc-plugin config option; eg ~"<docExcludes>"
-	// NO: dann muss auch in allen *-impl modulen alle public klassen ein ~"@NoJavadoc" annotation draufhaben
+- shelled (eclipse shellscript editor plugin) installation failed... :(
+
 
 ==========================================
 TODO * upcoming *
@@ -23,6 +18,9 @@ TODO * upcoming *
 ==========================================
 TODO * code *
 ==========================================
+- maybe rename user.getId() to user.getUniqueId() ... otherwise one could be confused what id is, compared to osceletonId
+!!! @code: BodyRecentStorage.getBodyPartCoordinate(BodyPart):Coordinate THROWS NoCoordinatesDataAvailableException == CheckedException!
+	... es kann ja sein, dass noch gar keine daten verfuegbar sind, wenn zb kamera fuesse no net gsehn hat, und man fussdaten haben will
 ! check all custom equals implementations, if they are checking instanceof against interface, not *Impl!!! (and if they have shortcut check "if(this == other)")
 - should equals/hashCode/toString be final? (check all value objects!)
 ? have factories also to be declared with Scope SINGLETON?
@@ -32,6 +30,9 @@ TODO * code *
 ==========================================
 BUILD
 ==========================================
+!! ?was ist unterschied, wenn man plugin configured in build/pluginsMgmt oder in build/plugins?
+! difference cobertura und emma?
+! anstatt antrun-plugin fuer echo message verwenden => eigenes mojo schreiben (preformatted text, predefined message templaste zb fuer "createing enhanced reports (disable bla bla)"
 - load properties (versions, etc) from property-file via maven-properties-plugin
 - include checkstyle rule check-for-existing-javadoc for all API classes
 - wohl doch... @POM java-abstract-pom, alle versionsnr als property
@@ -50,8 +51,23 @@ TEST
 ==========================================
 DOCUMENTATION
 ==========================================
+! mehr reports: welche datei wurde am haeufigsten veraendert (changesets, changelist, oder dgl)
+!! es kann doch josceleton (und nicht josceleton-reactor) hin deployen,
+	er hat ja in properties.version.josceleton-core-api zb schon versionsnr drinnen => josceleton.sf.net/artifacts]/../${version}/,
+	von daher kann man aus josceleton doc her, alle anderen (korrekt) module verweisen
+! publish only aggregated reports... even possible?
+	- otherwise dont make josceleton (facade) module deploy to webroot,
+		but rather another one (empty, e.g. reactor ;)) without (java) reports on it
+- document components <source><![CDATA[Josceleton > Java OSC > OSCeleton > OpenNI & Co > Kinect Hardwere]]></source>
+
+!! how to colorize code samples in doc
+! in doc alle klassenreferenzen mit javadoc verlinken
+-- @JAVADOC fuer alle klassen (nicht nur in api) ein @since tag drauf geben (doc wird nachher eh nicht einsehbar sein vom user)
+! @JAVADOC: wenn alles zam-aggregiert ist, sollen *-impl modulklassen nicht sichtbar sein
+	=> YES: do this by setting javadoc-plugin config option; eg ~"<docExcludes>"
+	// NO: dann muss auch in allen *-impl modulen alle public klassen ein ~"@NoJavadoc" annotation draufhaben
 ! reports (wenn moeglich) aggregieren, vor allem javadoc (pure API javadoc von allen josceleton modulen)
-- let josceleton-reactor deploy site twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
+- let josceleton-reactor deploy doc twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
 	?? oder wie sonst loesen, ausser wie daweil mit redirect?
 - improve javadoc:
 	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html

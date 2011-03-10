@@ -1,19 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	
 	<properties>
 		<title>Introduction</title>
 	</properties>
+	
 	<body>
-		<section name="Bilder sagen mehr als tausend worte">
-			<p>Grosses kinect bild mit java unsw</p>
-			<p>youtube video von rohdatenzeugsl</p>
-			<!-- startseite sehr kompakt halten:
-			1. grosses nettes bild "kinect + java = josceleton" // evtl video
-			2. kurzer beschreibender text was es tut
-			3. wie gehts weiter, weiterfuehrende links
-			-->
-			<!-- MINOR @SITE youtube video einbinden von blauem skelet demo (evtl sogar ganz eigenen account anlegen dort und mehrere -eigene- videos hochladen) -->
+	
+		<section name="A picture is worth a thousand words ...">
+		
+			<table>
+				<caption align="bottom">
+					Image: Kinect and Java, combined via Josceleton (pictures by 
+					<a href="http://www.flickr.com/photos/dekuwa/4699355300/" target="_blank">Dekuwa</a> and 
+					<a href="http://www.flickr.com/photos/silveiraneto/2270445344/" target="_blank">Silveira Neto</a>).
+				</caption>
+				<tr valign="middle"><td align="center" style="background-color:white;">
+					<img src="image/kinect_plus_java.jpg" alt="kinect plus java" title="Josceleton, a library which combines the Kinect with Java" width="700" height="190" />
+				</td></tr>
+			</table>
+			
+			<subsection name="About">
+			
+				<p>
+					Josceleton is a Java library to access data sent by the Microsoft Kinect sensors.
+				</p>
+				<p align="center">
+					<i>&quot; ... it enables users to control and interact, ... through a natural user interface using gestures&quot;</i>, 
+						from <a href="http://en.wikipedia.org/wiki/Kinect" target="_blank">Wikipedia</a>.
+				</p>
+			
+				<table>
+					<caption align="bottom">
+						Video: XBox Kinect OSCeleton showcase (by <a href="http://vimeo.com/17978808">Tiago Serra</a>).
+					</caption>
+					<tr valign="middle"><td align="center" style="background-color:white;">
+						
+						<iframe src="http://player.vimeo.com/video/17978808" width="400" height="225" frameborder="0"></iframe>
+						
+					</td></tr>
+				</table>
+				
+				<p>
+					Technicaly speaking this library relies on a running 
+					<a href="https://github.com/Sensebloom/OSCeleton" target="_blank">OSceleton</a> server instance. To 
+					be able to talk to this server, the OSC protocol implementation 
+					<a href="http://www.illposed.com/software/javaosc.html" target="_blank">Java OSC</a> is used.
+				</p>
+				
+			</subsection>
+			
 		</section>
+		
 	</body>
 </document>

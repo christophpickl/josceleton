@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Samples</title>
+	</properties>
+	<body>
+	
+		<section name="Open a Josceleton Connection">
+			
+			<p>
+				Following section provides samples about connecting to Josceleton with different approaches, which are:
+			</p>
+			
+			<ol>
+				<li>Invoke logic directly via the static <code>Josceleton</code> facade class (<i>bad style, bad for testing, static cling</i>).</li>
+				<li>Instantiate <code>JosceletonFacade</code> statically once, then pass instance further (<i>good enough, but could be still improved</i>)</li>
+				<li>Use the same Dependency Injection framework as Josceleton does: <a href="http://code.google.com/p/google-guice/" target="_blank">Guice</a></li>
+				<!-- LUXURY use spring bridge or something -->
+				<li>Configure your framework of choice to inject <code>JosceletonFacade</code> instance.</li>
+			</ol>
+						
+			<subsection name="Josceleton static Facade">
+				<p>
+					The following code snippet uses the facade class <code>Josceleton</code> to open a connection
+					(on the default port 7110) and add a listener for arbitrary messages and any user:
+				</p>
+				
+				<table>
+					<caption align="bottom">
+						Sourcecode: Establish a basic connection by using the <code>Josceleton</code> facade.
+					</caption>
+					<tr valign="middle"><td align="center" style="background-color:white;text-align:left;font-size:10pt;">
+						<source><![CDATA[
+public static void main(final String[] args) {
+  Connection connection = Josceleton.openConnection();
+
+  connection.addListener(new ConnectionListener() {
+    public void onUserMessage(UserMessage message) {
+      System.out.println("Received a user message: " + message);
+    }
+    public void onJointMessage(JointMessage message) {
+      // this will be invoked quiet often ;)
+      System.out.println("Received a joint message: " + message);
+    }
+  });
+
+  System.out.println("Running ...");
+  
+  // as the connection is asynchronously we have to close it as well some time later
+  // connection.close();
+}
+]]></source>
+					</td></tr>
+				</table>
+				
+			</subsection>
+			
+			<subsection name="Passing JosceletonFacade instance">
+				
+				<p>
+					Create a <code>JosceletonFacade</code> instance and pass it (or inject it) into your classes as needed.
+					This approach is slightly better, as the static access is reduced to one single location.
+				</p>
+				
+				<p>
+					The following snippet shows the evolution process of how to access such an instance in four steps.
+					The final step is actually equivalent to the first one; this is just what is going on behind the scenes.
+				</p>
+				
+				<table>
+					<caption align="bottom">
+						Sourcecode: Using the non-static facade and it&apos;s internal working.
+					</caption>
+					<tr valign="middle"><td align="center" style="background-color:white;text-align:left;font-size:10pt;">
+						<source><![CDATA[
+// #1 - this is the final, recommended approach
+// ===============================================================================
+JosceletonFacade facade = Josceleton.newFacade();
+... = facade.openConnection();
+
+// #2 - use static factory method to instantiate injector
+// ===============================================================================
+JosceletonFacade facade = new JosceletonFacadeImpl(Josceleton.newGuiceInjector());
+... = facade.openConnection();
+
+// #3 - outline module instantiation
+// ===============================================================================
+Injector injector = Guice.createInjector(new JosceletonGuiceModule());
+JosceletonFacade facade = new JosceletonFacadeImpl(injector);
+... = facade.openConnection();
+
+// #4 - create instances directly (this represents what actually is done internally)
+// ===============================================================================
+Module module = new JosceletonGuiceModule();
+Injector injector = Guice.createInjector(module);
+JosceletonFacade facade = new JosceletonFacadeImpl(injector);
+... = facade.openConnection();
+]]></source>
+					</td></tr>
+				</table>
+				
+			</subsection>
+			
+
+		</section>
+		
+		<!-- TODO @SITE write more code samples -->
+<!--		<section name="Use high-level Connection Services">-->
+<!--			<p>WRITE</p>-->
+<!--		</section>-->
+<!--		<section name="Registering a Position Detector">-->
+<!--			<p>WRITE</p>-->
+<!--		</section>-->
+		
+	</body>
+</document>
+

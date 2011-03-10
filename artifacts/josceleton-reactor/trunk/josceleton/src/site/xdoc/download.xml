@@ -6,29 +6,31 @@
 	</properties>
 	<body>
 	
-		<section name="Download Artifacts">
+		<section name="Download">
 			
-			<p>
-				None yet, but soon more is coming -stay tuned :)
-			</p>
+			<h3>Ready to use Binary Packages</h3>
 			
-		</section>
-		
-		<section name="For Maven Users">
+				<p>
+					None yet, but soon more is coming -stay tuned :)
+				</p>
 			
-			<p>Add following in your <code>~/.m2/settings.xml</code> file:</p>
+			<h3>Maven Dependency Management</h3>
 			
-			<source><![CDATA[
-<settings ...>
-
-  <activeProfiles>
-    <activeProfile>josceleton-profile</activeProfile>
-  </activeProfiles>
-
+				<h4>Add external Repositories</h4>
+				
+				<p>
+					To be able to use Josceleton artifacts via Maven, you first have to configure two repositories in your <code>~/.m2/settings.xml</code> file:
+				</p>
+				
+				<source><![CDATA[
+<settings>
   <profiles>
 
     <profile>
       <id>josceleton-profile</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <repositories>
         <repository>
           <id>josceleton-repo-snapshot</id>
@@ -46,15 +48,16 @@
     </profile>
 
   </profiles>
-
 </settings>
+
 ]]></source>
 			
-			<p>And then just declare a common dependency in your <code>pom.xml</code>:</p>
-			
-			<source><![CDATA[
-<project ...>
-
+				<h4>Add Dependency</h4>
+				
+				<p>Declare a common Maven dependency for Josceleton in your <code>pom.xml</code> file:</p>
+				
+				<source><![CDATA[
+<project>
   <dependencies>
 
     <dependency>
@@ -64,9 +67,9 @@
     </dependency>
 
   </dependencies>
-
 </project>
 ]]></source>
+				
 <!-- TODO @SITE
 
 		<dependency>

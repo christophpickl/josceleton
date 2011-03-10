@@ -1,4 +1,4 @@
-scp index.html <user>@shell.sf.net:/home/project-web/josceleton/htdocs/index.html
+
 
 MY fuer SITE:DEPLOY
 ********************
