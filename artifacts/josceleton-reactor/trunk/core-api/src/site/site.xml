@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Maven">
+<project name="Josceleton Core API">
+	
+	<bannerLeft>
+		<name>Josceleton Core API</name>
+	</bannerLeft>
+	
 	<body>
-		<menu name="Josceleton Core Impl">
+
+		<menu name="Overview">
+		
 			<item name="Introduction" href="index.html" />
+			
 		</menu>
+
 		<menu ref="reports" />
+
 	</body>
+	
 </project>

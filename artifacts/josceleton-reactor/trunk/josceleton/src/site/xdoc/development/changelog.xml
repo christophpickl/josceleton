@@ -64,7 +64,10 @@
 			
 		
 			<subsection name="Version 0.2">
-				<p><b>Release Date</b> N/A</p>
+				<p>
+					<b>Release Date</b> 2011-03-10
+					<a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.2/josceleton-reactor/index.html">Documentation</a>
+				</p>
 				<p>
 					Introducing Josceleton Facade providing a simplified access to the API. This module also provides a 
 					<a href="http://code.google.com/p/google-guice/" target="_blank">Guice</a> module for immediate usage.
@@ -80,20 +83,33 @@
 						<code>[Documentation]</code> Setup initial documentation</li>
 				</ul>
 			</subsection>
-		
 			
-			<subsection name="Version 0.3">
-				<p><b>Release Date</b> N/A</p>
-				<p>
-					Introducing services working on top of connection: UserManager to manage users correctly through an 
-					artifical user login, MotionTracker and RecentMotionStorage to store (most recent) body movements.
-				</p>
-				
-				<h4 style="margin-top:0px;">Feature List</h4>
-				<ul>
-					<li>N/A</li>
-				</ul>
-			</subsection>
+			
+<!--			<subsection name="Version 0.3">-->
+<!--				<p><b>Release Date</b> N/A</p>-->
+<!--				<p>-->
+<!--					Introducing services working on top of connection: UserManager to manage users correctly through an -->
+<!--					artifical user login, MotionTracker and RecentMotionStorage to store (most recent) body movements.-->
+<!--				</p>-->
+<!--				-->
+<!--				<h4 style="margin-top:0px;">Feature List</h4>-->
+<!--				<ul>-->
+<!--					<li>N/A</li>-->
+<!--				</ul>-->
+<!--			</subsection>-->
+			
+			
+<!--			<subsection name="Version 0.4">-->
+<!--				<p><b>Release Date</b> N/A</p>-->
+<!--				<p>-->
+<!--					N/A-->
+<!--				</p>-->
+<!--				-->
+<!--				<h4 style="margin-top:0px;">Feature List</h4>-->
+<!--				<ul>-->
+<!--					<li>N/A</li>-->
+<!--				</ul>-->
+<!--			</subsection>-->
 			
 		</section>
 	</body>

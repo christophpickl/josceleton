@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Josceleton Reactor">
-
+	
+	<bannerLeft>
+		<name>Josceleton Reactor</name>
+	</bannerLeft>
+	
 	<body>
 	
 		<menu ref="modules" />
-		
+
 		<menu name="Overview">
-			<item name="Introduction" href="index.html" />
-		</menu>
 		
+			<item name="Introduction" href="index.html" />
+			
+		</menu>
+
 		<menu ref="reports" />
+
 	</body>
 	
 </project>

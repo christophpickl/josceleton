@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Maven">
+<project name="Josceleton Connection Implementation">
+	
+	<bannerLeft>
+		<name>Josceleton Connection Implementation</name>
+	</bannerLeft>
+	
 	<body>
-		<menu name="Josceleton Core Impl">
+
+		<menu name="Overview">
+		
 			<item name="Introduction" href="index.html" />
+			
 		</menu>
+
 		<menu ref="reports" />
+
 	</body>
+	
 </project>
