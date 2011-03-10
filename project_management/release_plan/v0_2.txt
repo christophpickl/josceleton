@@ -15,11 +15,13 @@ DONE	* resolve tasktags: NO high-prio tasks ("FIXMEs"), preferrably no med-prio 
 	=====================================================================
 		// no new planning, just freezing things ;)
 DONE	* update roadmap site: remove section about currently deploying version
-DONE	* update changelog site: add metrics, add subsection about new version
+DONE	* update changelog site: add subsection about new version
+~DONE	* update changelog site: update (aggregated and per-project) metrics
 	
 	UPDATE MAVEN VERSIONS
 	=====================================================================
-XXXX	* update pom versions for parent references and dependencies
+DONE	* update pom versions for parent references and dependencies
+			// especially pay attention to java-pom
 
 
 	/*******************************************************************\
