@@ -14,7 +14,7 @@
     
     <groupId>net.sf.josceleton</groupId>
     <artifactId>corporate-pom</artifactId>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
     
     
     
@@ -434,9 +434,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/tags/corporate-pom-0.2</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/tags/corporate-pom-0.2</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/corporate-pom/tags/corporate-pom-0.2</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/corporate-pom/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/corporate-pom/trunk/</url>
     </scm>
     
     
