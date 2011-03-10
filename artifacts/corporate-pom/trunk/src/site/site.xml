@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Josceleton Corporate POM">
+<project name="Josceleton - Corporate POM">
 	
-<!--	<version position="none" /> -->
-
 	<bannerLeft>
-		<name>Josceleton Corporate POM</name>
+		<name>Josceleton - Corporate POM</name>
 	</bannerLeft>
 	
 	<!-- MINOR @SITE add to supported banner: maven and sourceforge  -->
@@ -16,12 +14,11 @@
 <!--	<bannerRight>-->
 <!--		<src>http://maven.apache.org/images/maven-small.gif</src>-->
 <!--	</bannerRight>-->
+
 	<publishDate position="right" format="yyyy-MM-dd" />
 	
 	<poweredBy>
     	<logo name="SourceForge" href="https://sourceforge.net/projects/josceleton/" img="http://josceleton.sourceforge.net/static/image/sourceforge_logo.gif" />
-    	<!-- got an ugly "built by" logo ... -->
-<!--    	<logo name="Maven" href="http://maven.apache.org/" img="http://josceleton.sourceforge.net/static/image/maven-built_by.png" />-->
 	</poweredBy>
 	
 	<skin>
@@ -33,7 +30,7 @@
 	<body>
 		<links>
 			<item name="Mantis Bugtracker" href="https://sourceforge.net/apps/mantisbt/josceleton" />
-			<item name="Sourceforge Project" href="https://sourceforge.net/projects/josceleton/" />
+			<item name="Sourceforge Project" href="https://sourceforge.net/projects/josceleton" />
 		</links>
 		
 		<menu name="Overview">
@@ -42,7 +39,6 @@
 		
 		<menu ref="reports" />
 <!--		<menu name="Reports" inherits="none">-->
-<!--			<item name="ASDoc" href="asdoc/" />-->
 <!--			<item name="Sources" href="source-repository.html" />-->
 <!--			<item name="Unit Tests" href="surefire-report.html" />-->
 <!--			<item name="Dependencies" href="dependencies.html" />-->

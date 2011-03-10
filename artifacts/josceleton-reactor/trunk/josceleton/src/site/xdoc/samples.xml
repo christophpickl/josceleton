@@ -32,24 +32,34 @@
 					</caption>
 					<tr valign="middle"><td align="center" style="background-color:white;text-align:left;font-size:10pt;">
 						<source><![CDATA[
-public static void main(final String[] args) {
-  Connection connection = Josceleton.openConnection();
+Connection connection = Josceleton.openConnection();
 
-  connection.addListener(new ConnectionListener() {
-    public void onUserMessage(UserMessage message) {
-      System.out.println("Received a user message: " + message);
-    }
-    public void onJointMessage(JointMessage message) {
-      // this will be invoked quiet often ;)
-      System.out.println("Received a joint message: " + message);
-    }
-  });
+connection.addListener(new ConnectionListener() {
+  public void onUserMessage(UserMessage userMessage) {
+    String output = "[user " + userMessage.getUser().getOsceletonId() + "] ";
+    output += userMessage.getUserState().name();
+    System.out.println(output); // prints "[user 1] WAITING" (or PROCESSING, DEAD)
+  }
 
-  System.out.println("Running ...");
-  
-  // as the connection is asynchronously we have to close it as well some time later
-  // connection.close();
-}
+  public void onJointMessage(JointMessage jointMessage) {
+    // this will be invoked quiet often ;)
+
+    String output = "[user " + jointMessage.getUser().getOsceletonId() + "] moved";
+    if(jointMessage.getJointPart() == Body.HAND().LEFT()) {
+  	  output += "left hand: ";
+    }
+
+    output += jointMessage.getCoordinate().x() + "/";
+    output += jointMessage.getCoordinate().y() + "/";
+    output += jointMessage.getCoordinate().z();
+    System.out.println(output); // prints "[user 1] moved left hand: 0.342/0.981/1.524"
+  }
+});
+
+System.out.println("Running ...");
+
+// as the connection is asynchronously we have to close it as well some time later
+// connection.close();
 ]]></source>
 					</td></tr>
 				</table>

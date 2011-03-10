@@ -43,13 +43,13 @@
         <!-- C O D E   Q U A L I T Y -->
    		<!-- *********************************************************** -->
    		
-    	<the.hell.we.aim.for.hundred.percent.coverage>100</the.hell.we.aim.for.hundred.percent.coverage>
-    	<cobertura.coverage.branchrate>${the.hell.we.aim.for.hundred.percent.coverage}</cobertura.coverage.branchrate>
-    	<cobertura.coverage.linerate>${the.hell.we.aim.for.hundred.percent.coverage}</cobertura.coverage.linerate>
-    	<cobertura.coverage.packagelinerate>${the.hell.we.aim.for.hundred.percent.coverage}</cobertura.coverage.packagelinerate>
-    	<cobertura.coverage.packagebranchrate>${the.hell.we.aim.for.hundred.percent.coverage}</cobertura.coverage.packagebranchrate>
-    	<cobertura.coverage.totalbranchrate>${the.hell.we.aim.for.hundred.percent.coverage}</cobertura.coverage.totalbranchrate>
-    	<cobertura.coverage.totallinerate>${the.hell.we.aim.for.hundred.percent.coverage}</cobertura.coverage.totallinerate>
+    	<coverage.percent>100</coverage.percent>
+    	<cobertura.coverage.branchrate>${coverage.percent}</cobertura.coverage.branchrate>
+    	<cobertura.coverage.linerate>${coverage.percent}</cobertura.coverage.linerate>
+    	<cobertura.coverage.packagelinerate>${coverage.percent}</cobertura.coverage.packagelinerate>
+    	<cobertura.coverage.packagebranchrate>${coverage.percent}</cobertura.coverage.packagebranchrate>
+    	<cobertura.coverage.totalbranchrate>${coverage.percent}</cobertura.coverage.totalbranchrate>
+    	<cobertura.coverage.totallinerate>${coverage.percent}</cobertura.coverage.totallinerate>
     	
     </properties>
     

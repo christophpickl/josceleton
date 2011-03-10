@@ -6,7 +6,7 @@
 		<menu ref="modules" />
 		
 		<menu name="Overview">
-			<item name="Home" href="index.html" />
+			<item name="Introduction" href="index.html" />
 		</menu>
 		
 		<menu ref="reports" />

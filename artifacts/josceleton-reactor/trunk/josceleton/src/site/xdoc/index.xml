@@ -12,9 +12,9 @@
 		
 			<table>
 				<caption align="bottom">
-					Image: Kinect and Java, combined via Josceleton (pictures by 
-					<a href="http://www.flickr.com/photos/dekuwa/4699355300/" target="_blank">Dekuwa</a> and 
-					<a href="http://www.flickr.com/photos/silveiraneto/2270445344/" target="_blank">Silveira Neto</a>).
+					Image: Kinect and Java, combined via Josceleton (copyright by 
+					<a href="http://flickr.com/photos/dekuwa/4699355300/" target="_blank">Dekuwa</a> and 
+					<a href="http://flickr.com/photos/silveiraneto/2270445344/" target="_blank">Silveira Neto</a>).
 				</caption>
 				<tr valign="middle"><td align="center" style="background-color:white;">
 					<img src="image/kinect_plus_java.jpg" alt="kinect plus java" title="Josceleton, a library which combines the Kinect with Java" width="700" height="190" />
@@ -33,7 +33,7 @@
 			
 				<table>
 					<caption align="bottom">
-						Video: XBox Kinect OSCeleton showcase (by <a href="http://vimeo.com/17978808">Tiago Serra</a>).
+						Video: XBox Kinect OSCeleton showcase (copyright by <a href="http://vimeo.com/17978808">Tiago Serra</a>).
 					</caption>
 					<tr valign="middle"><td align="center" style="background-color:white;">
 						
@@ -46,7 +46,7 @@
 					Technicaly speaking this library relies on a running 
 					<a href="https://github.com/Sensebloom/OSCeleton" target="_blank">OSceleton</a> server instance. To 
 					be able to talk to this server, the OSC protocol implementation 
-					<a href="http://www.illposed.com/software/javaosc.html" target="_blank">Java OSC</a> is used.
+					<a href="http://illposed.com/software/javaosc.html" target="_blank">Java OSC</a> is used.
 				</p>
 				
 			</subsection>

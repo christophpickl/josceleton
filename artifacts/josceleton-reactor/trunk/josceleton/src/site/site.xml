@@ -21,7 +21,7 @@
 			
 <!--			<item name="Workspace Setup" href="workspace_setup.html" />-->
 <!--			<item name="Releasing Guideline" href="releasing_guideline.html" />-->
-<!--			<item name="Coding Guideline" href="coding_guideline.html" />-->
+<!--			<item name="Coding Policy" href="coding_policy.html" />-->
 		</menu>
 		
 		<!-- TODO @SITE submodules; not, this is the reason a reactor should be deployed here => also relativ (version _independent_) href paths would be possible! -->

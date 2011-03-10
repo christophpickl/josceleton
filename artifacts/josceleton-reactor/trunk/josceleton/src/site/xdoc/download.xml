@@ -8,7 +8,7 @@
 	
 		<section name="Download">
 			
-			<h3>Ready to use Binary Packages</h3>
+			<h3>Binary Packages</h3>
 			
 				<p>
 					None yet, but soon more is coming -stay tuned :)
@@ -16,11 +16,13 @@
 			
 			<h3>Maven Dependency Management</h3>
 			
-				<h4>Add external Repositories</h4>
+				<h4>Add Remote Repositories</h4>
 				
 				<p>
 					To be able to use Josceleton artifacts via Maven, you first have to configure two repositories in your <code>~/.m2/settings.xml</code> file:
 				</p>
+				<!-- MINOR @DOC anmerken unterschied profile.activeByDefault vs activeProfiles.activeProfile -->
+				<!-- + bsp schreiben + sagen, dass (anscheinbar) keinen unterschied gibt + vertrauenswuerdige url fuer diese tatsache liefern -->
 				
 				<source><![CDATA[
 <settings>
@@ -70,7 +72,7 @@
 </project>
 ]]></source>
 				
-<!-- TODO @SITE
+<!-- MINOR @SITE pom sample, dass wenn leute selber guice verwenden (aop & assisted) verwenden, dann excluden
 
 		<dependency>
 			<groupId>net.sf.josceleton</groupId>

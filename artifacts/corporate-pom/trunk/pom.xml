@@ -8,7 +8,7 @@
     	as it could be used as a base for non-Java projects too (and it leads to a cleaner separation).
     	Direct descendants are, for example, reactor projects or an abstract technology-specific POM (e.g.: "java-super-pom").
     </description>
-    <url>http://josceleton.sf.net</url>
+    <url>http://josceleton.sf.net/</url>
     <inceptionYear>2011</inceptionYear>
     <packaging>pom</packaging>
     
@@ -181,9 +181,21 @@
                 <reportSets>
                     <reportSet>
                         <reports>
+                        	<!-- disable all reports, as they will be included if not given "-Dreport.skip" -->
                         </reports>
                     </reportSet>
                 </reportSets>
+				<configuration>
+					<!-- site:site ... http://maven.apache.org/plugins/maven-site-plugin/site-mojo.html -->
+					
+					<!-- does not work properly :( still using -Dreport.skip to fasten up site build -->
+					<generateReports>true</generateReports>
+					<!-- this page only lists menu items in expanded form (we dont have any nested items yet, so turn it off) -->
+<!--					<generateSitemap>true</generateSitemap>-->
+					  
+					<validate>true</validate>
+					<!-- MINOR @SITE use custom template (maybe for skin) <templateFile> -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>
@@ -406,7 +418,7 @@
 			needs an open shell:
 			$ ssh -t christoph_pickl,josceleton@shell.sf.net create
 			-->
-			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/documentation/${project.artifactId}/${project.version}/</url>
 			<!-- using web.sf.net host ... mkdir failed (though would not dependent on terminal hacking... as shell.sf.net) -->
 <!--			<url>scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>-->
 		</site>
@@ -445,7 +457,7 @@
      
      <organization>
      	<name>Josceleton</name>
-     	<url>${project.url}</url>
+     	<url>http://josceleton.sf.net</url>
      </organization>
      
      

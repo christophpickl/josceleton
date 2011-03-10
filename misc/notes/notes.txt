@@ -1,4 +1,13 @@
-
+! @doc metriken updaten; ueber tests zu finden unter: http://josceleton.sourceforge.net/surefire-report.html (muss halt noch aggregiert werden, halt haendisch machen, ka problem)
+? use clover, cobertura, or emma ?
+	// clover kann aggregieren (checkstyle und javadoc auch)
+- @site: hide email addresses via captcha (https://maven.apache.org/plugins/maven-project-info-reports-plugin/faq.html#How_to_hide_developercontributor_addresses)
+* jira site report ist kuhl: http://mojo.codehaus.org/taglist-maven-plugin/jira-report.html
+* changelog plugin, siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changelog.html
+* changes plugin siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changes-report.html
+-- developer activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/dev-activity.html
+* file activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/file-activity.html
+- @build fix that tests are not run twice because of surefire: https://maven.apache.org/plugins/maven-surefire-report-plugin/faq.html
 - shelled (eclipse shellscript editor plugin) installation failed... :(
 
 
@@ -51,6 +60,7 @@ TEST
 ==========================================
 DOCUMENTATION
 ==========================================
+* add multimedia stuff: diagram of architecture
 ! mehr reports: welche datei wurde am haeufigsten veraendert (changesets, changelist, oder dgl)
 !! es kann doch josceleton (und nicht josceleton-reactor) hin deployen,
 	er hat ja in properties.version.josceleton-core-api zb schon versionsnr drinnen => josceleton.sf.net/artifacts]/../${version}/,

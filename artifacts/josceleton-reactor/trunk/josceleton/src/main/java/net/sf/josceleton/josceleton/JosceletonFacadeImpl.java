@@ -9,7 +9,7 @@ import com.google.inject.Injector;
  * @since 0.2
  */
 public class JosceletonFacadeImpl implements JosceletonFacade {
-	
+
 	private final Injector injector;
 	
 	private final Connector connector;
