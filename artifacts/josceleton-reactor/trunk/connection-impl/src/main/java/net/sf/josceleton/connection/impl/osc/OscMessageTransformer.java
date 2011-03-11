@@ -8,8 +8,8 @@ import com.illposed.osc.OSCMessage;
 
 public interface OscMessageTransformer {
 	
-	JointMessage transformJointMessage(OSCMessage oscMessage, UserStore userManager);
+	JointMessage transformJointMessage(OSCMessage oscMessage, UserStore userStore);
 	
-	UserMessage transformUserMessage(OSCMessage oscMessage, UserStore userManager);
+	UserMessage transformUserMessage(OSCMessage oscMessage, UserStore userStore);
 	
 }

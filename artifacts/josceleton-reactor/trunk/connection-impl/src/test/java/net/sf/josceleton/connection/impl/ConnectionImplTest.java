@@ -10,7 +10,7 @@ import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.ConnectionListener;
 import net.sf.josceleton.connection.impl.osc.OscMessageTransformer;
 import net.sf.josceleton.connection.impl.osc.OscPort;
-import net.sf.josceleton.connection.impl.service.UserManagerInternal;
+import net.sf.josceleton.connection.impl.service.UserServiceInternal;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 
@@ -144,9 +144,9 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 			this.checking(transformerProvider.provide(mockedTransformer));
 		}
 		
-		final UserManagerInternal mockedUserManager = this.mock(UserManagerInternal.class);
+		final UserServiceInternal mockedUserService = this.mock(UserServiceInternal.class);
 		
-		return new ConnectionImpl(mockedOscPort, mockedRouter, mockedTransformer,  mockedUserManager);
+		return new ConnectionImpl(mockedOscPort, mockedRouter, mockedTransformer,  mockedUserService);
 	}
 	
 	@Test
@@ -157,7 +157,7 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 			this.mock(OscPort.class, oscPortToString),
 			this.mock(OscMessageAddressRouter.class),
 			this.mock(OscMessageTransformer.class),
-			this.mock(UserManagerInternal.class)
+			this.mock(UserServiceInternal.class)
 		);
 		TestUtil.assertObjectToString(connection, "yetClosed", "false", oscPortToString);
 	}

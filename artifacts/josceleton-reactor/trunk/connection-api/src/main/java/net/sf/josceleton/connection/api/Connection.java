@@ -1,6 +1,6 @@
 package net.sf.josceleton.connection.api;
 
-import net.sf.josceleton.connection.api.service.UserManager;
+import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.core.api.async.Async;
 import net.sf.josceleton.core.api.async.Closeable;
 
@@ -13,7 +13,13 @@ import net.sf.josceleton.core.api.async.Closeable;
  * @since 0.1
  */
 public interface Connection extends Async<ConnectionListener>, Closeable {
-
-	UserManager getUserManager();
+	
+	/**
+	 * Simple getter method.
+	 * 
+	 * @return the internal connection specific user service.
+	 * @since 0.3
+	 */
+	UserService getUserService();
 	
 }

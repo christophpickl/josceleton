@@ -3,7 +3,7 @@ package net.sf.josceleton.connection.impl.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.josceleton.connection.api.service.UserManagerListener;
+import net.sf.josceleton.connection.api.service.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.impl.async.AsyncDelegator;
@@ -17,11 +17,11 @@ import com.google.inject.Inject;
 /**
  * @since 0.3
  */
-class UserManagerImpl
-	extends AsyncDelegator<UserManagerListener>
-	implements UserManagerInternal /* == { UserManager, UserStore } */ {
+class UserServiceImpl
+	extends AsyncDelegator<UserServiceListener>
+	implements UserServiceInternal /* == { UserService, UserStore } */ {
 	
-	private static final Log LOG = LogFactory.getLog(UserManagerImpl.class);
+	private static final Log LOG = LogFactory.getLog(UserServiceImpl.class);
 	
 	private final UserFactory factory;
 	
@@ -31,10 +31,11 @@ class UserManagerImpl
 //	
 //	private final Collection<User> availableUsers = new HashSet<User>();
 	
-	@Inject UserManagerImpl(final UserFactory factory) {
+	@Inject UserServiceImpl(final UserFactory factory) {
 		this.factory = factory;
 	}
 
+	/** {@inheritDoc} from {@link UserStore} */
 	@Override public final User lookupUserForJointMessage(final Integer osceletonUserId) {
 		final User storedUser = this.usersById.get(osceletonUserId);
 		if(storedUser != null) {
@@ -44,6 +45,7 @@ class UserManagerImpl
 		return null; // FIXME
 	}
 
+	/** {@inheritDoc} from {@link UserStore} */
 	@Override public final User lookupUserForUserMessage(final Integer osceletonUserId, final UserState userState) {
 		if(userState == UserState.WAITING) {
 			if(this.usersById.containsKey(osceletonUserId) == true) {
@@ -89,19 +91,19 @@ class UserManagerImpl
 	
 	
 	private void dispatchWaitingUser(final User user) {
-		for (final UserManagerListener listener : this.getListeners()) {
+		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserWaiting(user);
 		}
 	}
 	
 	private void dispatchProcessingUser(final User user) {
-		for (final UserManagerListener listener : this.getListeners()) {
+		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserProcessing(user);
 		}
 	}
 	
 	private void dispatchDeadUser(final User user) {
-		for (final UserManagerListener listener : this.getListeners()) {
+		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserDead(user);
 		}
 	}

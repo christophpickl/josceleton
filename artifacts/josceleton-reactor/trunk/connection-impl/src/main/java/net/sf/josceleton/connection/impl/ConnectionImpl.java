@@ -3,10 +3,10 @@ package net.sf.josceleton.connection.impl;
 import java.util.Date;
 
 import net.sf.josceleton.connection.api.ConnectionListener;
-import net.sf.josceleton.connection.api.service.UserManager;
+import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.impl.osc.OscMessageTransformer;
 import net.sf.josceleton.connection.impl.osc.OscPort;
-import net.sf.josceleton.connection.impl.service.UserManagerInternal;
+import net.sf.josceleton.connection.impl.service.UserServiceInternal;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.async.CloseableAndAsyncSkeleton;
@@ -25,7 +25,7 @@ class ConnectionImpl
 	
 	private final OscMessageTransformer transformer;
 	
-	private final UserManagerInternal userManager;
+	private final UserServiceInternal userService;
 	
 	/** state-full property */
 	private boolean yetEstablished = false;
@@ -35,12 +35,12 @@ class ConnectionImpl
 			@Assisted final OscPort oscPort,
 			final OscMessageAddressRouter addressRouter,
 			final OscMessageTransformer transformer,
-			final UserManagerInternal userManager
+			final UserServiceInternal userService
 			) {
 		this.oscPort = oscPort;
 		this.addressRouter = addressRouter;
 		this.transformer = transformer;
-		this.userManager = userManager;
+		this.userService = userService;
 	}
 	
 	/** {@inheritDoc} from {@link ConnectionInternal} */
@@ -60,7 +60,7 @@ class ConnectionImpl
 		// NO: assert(yetClosed == false) ... already done by skeleton
 		// assert(yetEstablished == true);
 		
-		// if(userMgr != null) removeListener(userMgr) ?
+		// if(userService != null) removeListener(userService) ?
 		// or maybe just removeAllListeners()... no, would have no effect,
 		// as OscPort will not dispatch anything anymore (at, least ... should not ;)
 		
@@ -70,14 +70,14 @@ class ConnectionImpl
 	/** {@inheritDoc} from {@link OscMessageAddressRouterCallback} */
 	@Override public final void onAcceptedJointMessage(final Date date, final OSCMessage oscMessage) {
 		// assert(yetClosed == false); && assert(yetEstablished == true);
-		final JointMessage message = this.transformer.transformJointMessage(oscMessage, this.userManager);
+		final JointMessage message = this.transformer.transformJointMessage(oscMessage, this.userService);
 		this.dispatchJointMessage(message);
 	}
 
 	/** {@inheritDoc} from {@link OscMessageAddressRouterCallback} */
 	@Override public final void onAcceptedUserMessage(final Date date, final OSCMessage oscMessage) {
 		// assert(yetClosed == false); && assert(yetEstablished == true);
-		final UserMessage message = this.transformer.transformUserMessage(oscMessage, this.userManager);
+		final UserMessage message = this.transformer.transformUserMessage(oscMessage, this.userService);
 		this.dispatchUserMessage(message);
 	}
 	
@@ -94,8 +94,8 @@ class ConnectionImpl
 	}
 
 	/** {@inheritDoc} from {@link Connection} */
-	@Override public final UserManager getUserManager() {
-		return this.userManager;
+	@Override public final UserService getUserService() {
+		return this.userService;
 	}
 	
 	@Override public final String toString() {
