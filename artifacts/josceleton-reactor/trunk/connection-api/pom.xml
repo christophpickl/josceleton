@@ -27,11 +27,17 @@
     
     <dependencies>
     
+	    <!-- I N T E R N A L -->
+    	<!-- *********************************************************** -->
+    	
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core-api</artifactId>
 		</dependency>
 		
+	    <!-- T E S T -->
+    	<!-- *********************************************************** -->
+    	
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>commons</artifactId>
