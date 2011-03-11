@@ -87,17 +87,9 @@
             		<version>${version.site-plugin}</version>
             	</plugin>
             	
-            	<!-- LUXURY @POM DEPLOY do we need to sign our jars with gpg? -->
-<!--            	<plugin>-->
-<!--            		<artifactId>maven-gpg-plugin</artifactId>-->
-<!--            		<version>1.1</version>-->
-<!--           		</plugin>-->
-           		
 				<plugin>
 					<artifactId>maven-changes-plugin</artifactId>
 					<version>${version.changes-plugin}</version>
-					<!-- MINOR @DOC POM changes-plugin produces warning about missing changes.xml file -->
-					<!-- /Users/phudy/_dev/pulse/josceleton-corporate-pom/target/checkout/src/changes/changes.xml does not exist  -->          
 				</plugin>
 				
     		</plugins>
@@ -105,7 +97,6 @@
 
 
     	<plugins>
-    		<!-- TODO @POM add plugin to check if peruser properties (defined in settings.xml) are all correctly set -->
     	
             <!-- // configure (and activate) technology-independent plugins  -->
             <!-- *********************************************************** -->
@@ -194,7 +185,6 @@
 <!--					<generateSitemap>true</generateSitemap>-->
 					  
 					<validate>true</validate>
-					<!-- MINOR @SITE use custom template (maybe for skin) <templateFile> -->
 				</configuration>
 			</plugin>
 		</plugins>
@@ -338,18 +328,10 @@
 		                <version>${verison.project-info-reports-plugin}</version>
 		                <reportSets>
 		                    <reportSet>
-			                    <!--
-				                    available reports:
-				                    *********************
-				                    LUXURY @POM SITE enable more reports
-				                    ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
-				                    MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
-				                    WHAT FOR: help, index, dependency-convergence
-				                    DEFINETELY NOT: mailing-list, cim 
-			                    -->
 		                        <reports>
-									<!-- generates a default index.html page; but we always have our own and to suppress About menu entry referencing same index.html (duplicate references in navi) -->
-<!--									<report>index</report>-->
+									<!-- generates a default index.html page; but we always have our own and to suppress
+										 About menu entry referencing same index.html (duplicate references in navi) -->
+									<!-- <report>index</report> -->
 		                            <report>dependencies</report>
 		                            <report>project-team</report>
 		                            <report>issue-tracking</report>
@@ -364,8 +346,7 @@
 					<plugin>
 						<artifactId>maven-changes-plugin</artifactId>
 						<version>${version.changes-plugin}</version>
-						<!-- for configuration options see: [http://maven.apache.org/plugins/maven-changes-plugin/changes-report-mojo.html] -->
-						<!-- could configure automatically sending mails: [http://maven.apache.org/plugins/maven-changes-plugin/usage.html] -->
+						<!-- configuration: http://maven.apache.org/plugins/maven-changes-plugin/changes-report-mojo.html -->
 						<reportSets>
 							<reportSet>
 								<reports>
@@ -412,11 +393,6 @@
 		<site>
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton site server @sourceforge</name>
-			<!-- TODO @POM outsource site url part as property (could be the case submodule wants to override) -->
-			<!--
-			needs an open shell:
-			$ ssh -t christoph_pickl,josceleton@shell.sf.net create
-			-->
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/documentation/${project.artifactId}/${project.version}/</url>
 			<!-- using web.sf.net host ... mkdir failed (though would not dependent on terminal hacking... as shell.sf.net) -->
 <!--			<url>scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>-->

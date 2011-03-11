@@ -1,5 +1,15 @@
 
+===== TODOS post release tasks for v0.2 (cleaning up tasktags)
+
+
+
 ===== TODOS while building v0.2
+
+- CLEAN UP BUILD OUTPUT:
+	1. log4j while testing ("log4j:WARN No appenders")
+	2. some sys.err message in surefire tests (for core-impl)
+		WARN   addListener, Not added listener [net.sf.josceleton.core.api.test.DummyListener@2cba5bdb] as it was yet added!
+		WARN   removeListener, Not removed listener [net.sf.josceleton.core.api.test.DummyListener@2cba5bdb] as it was not yet added!
 * m2eclipse plugin fine tunen
 - write handbook on how to execute manual tests after release built
 ! getaggte version 0.1 alles auschecken, und neu alles deployen!

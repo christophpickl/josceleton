@@ -16,8 +16,6 @@ import com.illposed.osc.OSCPortIn;
 
 public class OscPortOpenerImplTest {
 	
-	// MINOR @TEST DRY refactor these two tests
-	
 	@SuppressWarnings("boxing")
 	@Test
 	public final void simpleTest() {

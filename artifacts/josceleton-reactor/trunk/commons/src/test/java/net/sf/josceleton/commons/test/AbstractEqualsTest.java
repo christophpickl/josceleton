@@ -6,8 +6,6 @@ import static org.hamcrest.Matchers.not;
 
 import org.testng.annotations.Test;
 
-// MINOR @TEST DESIGN REFACTOR abstract Test super classes
-//						====> into non-extending-needed style => utility methods / hamcrest matchers
 @SuppressWarnings("boxing")
 public abstract class AbstractEqualsTest<E> {
 	
@@ -31,7 +29,6 @@ public abstract class AbstractEqualsTest<E> {
 	}
 	
 
-	// MINOR @TEST how to generically and properly -!!!- test equals and hashCode? this is not yet used everywhere!
 	protected abstract EqualsDescriptor<E> createEqualsDescriptor();
 	
 	@Test

@@ -7,7 +7,6 @@
 	</properties>
 	
 	<body>
-		<!-- MINOR @DOC code metrics: display figures for each module AND aggregated -->
 		<section name="Code Metrics">
 			
 			<table>
@@ -68,7 +67,6 @@
 				</tbody>
 			</table>
 			
-			<!-- MINOR @DOC add links to generated reports (and also to changes/changelog report) -->
 		</section>
 		
 	</body>

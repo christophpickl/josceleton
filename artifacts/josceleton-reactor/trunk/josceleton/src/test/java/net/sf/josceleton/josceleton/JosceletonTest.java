@@ -30,7 +30,7 @@ public class JosceletonTest extends AbstractMockeryTest {
 
 	@Test public final void openConnectionOnPortSuccessfully() throws Exception {
 		final Connection expectedConnection = this.mock(Connection.class);
-		final Integer expectedPort = Integer.valueOf(42); // MINOR @TEST same here: validate range of parameter Port
+		final Integer expectedPort = Integer.valueOf(42);
 		this.forceStaticMockedFacade(expectedConnection, expectedPort);
 		final Connection actualConnection = Josceleton.openConnectionOnPort(expectedPort.intValue());
 		

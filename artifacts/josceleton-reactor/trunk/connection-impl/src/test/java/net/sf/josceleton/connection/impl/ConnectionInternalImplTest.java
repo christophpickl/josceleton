@@ -85,10 +85,6 @@ public class ConnectionInternalImplTest extends AbstractMockeryTest {
 		assertThat(connectionListener.getReceivedUserMessages().get(0), is(sentUserMessage2));
 	}
 	
-	// MINOR @TEST write more tests for ConnectionImpl
-	//      establish connection, send messages, listener collects, ok; now ...
-	//      ... close, artifical send messages, connection should not pass further
-	
 	static class ConnectionListenerCollector implements ConnectionListener {
 		private final List<JointMessage> receivedJointMessages = new LinkedList<JointMessage>();
 		private final List<UserMessage> receivedUserMessages = new LinkedList<UserMessage>();

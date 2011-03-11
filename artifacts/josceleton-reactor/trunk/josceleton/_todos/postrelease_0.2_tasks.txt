@@ -1,0 +1,141 @@
+CODE
+==========================================
+!! @OscPortImpl#addListenerFor: DESIGN maybe OSCListener listener should not be directly listening to openedPort, but rather...
+	... have own dispatching pool, and act as a mediator.
+	=> side effect: if close() invoked, we really have message dispatching under full control!
+- @DynamicInstantiatorImpl#create: REFACTOR outsource array-check-for-null-values
+- @ConnectorImpl: REFACTOR outsource default osceleton port from code into some property/build related artifact
+- @OscMessageTransformerImpl REFACTOR outsource string to userstate/bodypart conversion from transformer ("USER_STATE_BY_ADDRESS")
+-- REALLY LUXURY @OscPortImpl#checkYetClosed: EXCEPTION could have stored invoker of close() method by analyzing stacktrace ;)
+- @ReflectUtil#isAssignable: @EXCEPTION dont throw runtime ex but custom josceleton ex
+- @GenericMessageImpl: DRY shouldnt be skeleton implementations of equals/hash/tostring in here? (to reuse it)
+- @OsceletonJointConstants actually there is also a Osceleton(Message)Jonstants class, providing "new_user", etc...
+- @OscMessageTransformerImpl#transformUserMessage: EXCEPTION could use a custom exception (same as above)
+
+BUILD
+==========================================
+!!! @java-abstract-pom: enforce code metrics during build! (verify these checks are working)
+	===> see separate file "build_metrics_config.pom.txt"
+- @changes plugin report: could configure automatically sending mails
+	see: http://maven.apache.org/plugins/maven-changes-plugin/usage.html
+- what is "surefire.configuration.redirectTestOutputToFile=true" good for?
+- changes-plugin produces warning about missing changes.xml file
+	- /Users/phudy/_dev/pulse/josceleton-corporate-pom/target/checkout/src/changes/changes.xml does not exist
+- SUREFIRE prevent tests from running twice with surefire-plugin enabled
+	 see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIpreventtestsfromrunningtwice%2Cafteraddingaconfigurationforthesurefireplugin%3F
+- DEPLOY do we need to sign our jars with gpg? 
+	<plugin><artifactId>maven-gpg-plugin</artifactId><version>1.1</version></plugin>
+- @java-abstract-pom/clean-plugin: sometimes the testng outputfolder folder does not get deleted
+- @java-abstract-pom/animal-sniffer: change check from java 1.5 to 1.6
+- @java-abstract-pom/dependencies/logging-stuff: how to solve dependencies for logging (so outside will not be effected, but can enable)
+	if someone relies on josceleton, he should not be forced to depend on log4j, or commons-loggin;  -->
+	maybe via: dependencies.dependency(log4j).<optional>true</optional> ?
+!! @POMs split up java-abstract-pom into java-abstract-abstract-pom 
+     abstract-abstract-pom ... slim core pom with building section (one can only inherit from here, eg to speed up things) 
+     abstract-pom ... only contains "additional"/unncessary stuff (like reporting)
+- @jar-plugin: what has to be configured?
+	<archive><manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+	<addMavenDescriptor>false</addMavenDescriptor></archive>
+! @POM add plugin to check if peruser properties (defined in settings.xml) are all correctly set
+- @java-pom: @checkstyle can plugin config be moved from pluginMgmt to plugin?
+- @pmd: what is config.minimumTokens=100 good for?
+- @BodyPart: DESIGN glitch: osceleton ID should not be part of this interface, as it is only used internally (for transformation) ...!
+- @Async: is Async.removeAllListeners() needed??
+! @OscPortImpl.yetClosed: REFACTOR DRY closed/established state already in CloseableAndAsyncSkeleton (see ConnectionInternalImpl)
+! @(Reflect)Util: REFACTOR DESIGN get rid of util class! there should be no utils at all in josceleton. refactor properly + dependency for DynamicInstantiatior.
+- @java-pom/checkstyle: maybe load plugin configurations from properties file? advantage? 
+	 see: http://maven.apache.org/plugins/maven-checkstyle-plugin/faq.html 
+	<propertiesLocation>path/to/checkstyle-plugin-configuration.properties</propertiesLocation>
+-- @ClassAdapter#getConstructors(): REFACTOR should return ConstructorAdapter instead of Constructor
+
+DOC
+==========================================
+!! @Links: in site in xmls geht nicht ${project.version}
+- @Download: anmerken unterschied profile.activeByDefault vs activeProfiles.activeProfile
+	+ bsp schreiben + sagen, dass (anscheinbar) keinen unterschied gibt + vertrauenswuerdige url fuer diese tatsache liefern
+- @Code Metrics: display figures for each module AND aggregated
+- check everything if references in site two classes should be linked to javadoc
+	eg: Samples
+- @Release Handbook: would be nice to have a "copy-to-clipboard button" on page, to copy release plan template
+- @Josceleton/src/site.xml: how to reference (other) josceleton modules submodules? maybe this way:
+	<menu name="Submodules"><item name="Core Implementation" href="/documentation/core-impl/${some.var}/" /></menu>
+- @Code Metrics: add links to generated reports (and also to changes/changelog report)
+- @site.xml: publishDate should be with time for snapshots ("yyyy-MM-dd HH:mm")
+- @Download pom sample, dass wenn leute selber guice verwenden (aop & assisted) verwenden, dann excluden
+	<dependency><groupId>net.sf.josceleton</groupId><artifactId>josceleton</artifactId>
+	<exclusions><!-- exclude josceleton's own guice dependency --><exclusion><groupId> net.sf.josceleton.thirdparty.com.google.code.guice </groupId>
+	<artifactId> guice-dependencies </artifactId></exclusion></exclusions></dependency><dependency>com.google.code.guice _ guice _ 2.0</dependency>
+- @project-info-reports-plugin: use custom template (maybe for skin) configuration.<templateFile>
+
+SITE POM
+==========================================
+! carefully think about solution how to deploy everything (exception reactors of course) into /documentation/<artifactId>/<version>/
+	AND got a second release version to josceleton.sf.net/ root?
+	maybe: outsource site url part as property (could be the case submodule wants to override)
+	==> better: manually (semi manually, could be heavily automated) deploy a second time to a different url
+- use emma for coverage test report? 
+	<plugin><groupId>org.codehaus.mojo</groupId><artifactId>emma-maven-plugin</artifactId><version>1.0-alpha-1</version></plugin>
+- enable more reports:
+	ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
+	MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
+	WHAT FOR: help, index, dependency-convergence
+	DEFINETELY NOT: mailing-list, cim
+- include more reporting plugins:
+	org.codehaus.mojo :: jxr-maven-plugin
+	maven-clover-plugin
+	org.codehaus.mojo :: changes-maven-plugin
+	org.codehaus.mojo :: changelog-maven-plugin
+	org.codehaus.mojo :: simian-report-maven-plugin (configuration.minimumThreshold=2)
+
+TEST
+==========================================
+- @TestUtil is it possible to mock toString()?
+	can not mock toString, even not with {{ setImposteriser(ClassImposteriser.INSTANCE); }};
+- REFACTOR @TestUtil methods as a custom matcher
+- @DynamicInstantiatorImplTest: remove nested classes and use mocks (of ClassAdapter) instead
+	.... or the other way round: use in other tests nested classes for test purpose as well ;)
+- @DynamicInstantiatorImplTest how to handle exceptions correctly (IllegalArgumentException, InstantiationException, IllegalAccessException)
+	//	(have to artificial throw these to fix it)
+- @UserMessageTest/UserState: MOCK would be nice to mock enums as well (UserState)
+	a la: UserState mockedUserState = mockery.mock(UserState.class);
+- @AbstractMockeryTest: always returning class mockery; is it okay this way?
+- @JosceletonFacadeImplTest.onPort: check Connector.openConnectionOnPort(x) for illegal arguments (negative ports, ports > 65... max range!)
+	- @JosceletonTest same here: validate range of parameter Port
+- @AbstractEqualsTest REFACTOR abstract Test super classes ==> into non-extending-needed style => utility methods / hamcrest matchers
+!! how to generically and properly -!!!- test equals and hashCode? this is not yet used everywhere! (@AbstractEqualsTest)
+- DRY @StringUtil merge two methods together
+- @Connection[Internal]Impl: write more tests
+	establish connection, send messages, listener collects, ok; now ...
+	... close, artifical send messages, connection should not pass further
+
+!! DRY complete type hierarchy refactoring necessary!!
+	- @AbstractMessageTest MessageTests should extends EqualsTest AND MockeryTest
+	- mess with all AbstractXyzTest classes
+	- use matchers instead! (or if not possible otherwise with TestUtils)
+- how to handle exception messages for tests correctly? (XyzException.MESSAGE_FORMAT_FOR ...?)
+	(@OscMessageTransformerImplTest)
+- @OscMessageRouterImplTest#rerouteDispatchesCorrectly REFACTOR test for different addresses/messages, and invalid address
+- @EnumTestUtil REFACTOR to hamcrest matcher
+- @ConnectorTest#abstractTestOpenConnectionMaybeOnPort
+	- let abstract create() also return expected(Raw)Connection to check if they are equal
+	- also cleanup test
+- @DynamicInstantiatorImpl: EXCEPTION bad design; simple exception handling ...
+	- done to increase coverage and avoid having to test for each and every exception ;)
+- @OscPortOpenerImplTest: DRY refactor tests
+- @OscPortImplTest DRY outsource part of this into common CloseableTest
+
+JAVADOC
+==========================================
+
+- exclude non-api/impl.* classes in javadoc
+	<excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->
+- aggregate from submodules
+	see: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/aggregate-dependency-sources.html
+- customize style 
+	<plugin><groupId>javolution</groupId><artifactId>colapi</artifactId><version>1.0.0</version>
+    <executions><execution><goals><goal>colorize</goal></goals></execution></executions</plugin>
+- include UML graphs 
+	eg: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html 
+	... or generate diagrams with APIviz: http://code.google.com/p/apiviz/ 
+- use multiple javadoc reports (plain + for UML graphs)
+	see: http://docs.codehaus.org/display/MAVENUSER/Reporting+Plugins

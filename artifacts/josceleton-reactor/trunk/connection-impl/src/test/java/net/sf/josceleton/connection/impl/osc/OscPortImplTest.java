@@ -12,8 +12,6 @@ import com.illposed.osc.OSCPortIn;
 
 public class OscPortImplTest extends AbstractMockeryTest {
 	
-	// MINOR @TEST DRY outsource part of this into common CloseableTest
-
 	@Test(expectedExceptions = InvalidArgumentException.class,
 			expectedExceptionsMessageRegExp = ".*listener.*null.*")
 	public final void addListenerForNullifiedListerFails() {

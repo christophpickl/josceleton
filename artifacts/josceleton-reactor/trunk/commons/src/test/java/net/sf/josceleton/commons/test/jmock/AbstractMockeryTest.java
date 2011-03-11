@@ -1,6 +1,5 @@
 package net.sf.josceleton.commons.test.jmock;
 
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.testng.annotations.AfterMethod;
@@ -11,7 +10,7 @@ public class AbstractMockeryTest {
 	private Mockery mockery;
 	
 	@BeforeMethod public final void mockerySetUp() {
-		this.mockery = new ClassMockery(); // MINOR @TEST always returning class mockery; is it okay this way?
+		this.mockery = new ClassMockery(); 
 	}
 	
 	@AfterMethod public final void mockeryTearDown() {

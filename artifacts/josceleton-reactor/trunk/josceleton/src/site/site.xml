@@ -25,12 +25,6 @@
 <!--			<item name="Coding Policy" href="development/coding_policy.html" />-->
 		</menu>
 		
-		<!-- TODO @SITE submodules; not, this is (maybe not!) the reason a reactor should be deployed here => also relativ (version _independent_) href paths would be possible! -->
-<!--		<menu name="Submodules">-->
-<!--			<item name="Core Implementation" href="/artifacts/net.sf.josceleton/core-impl/0.1-SNAPSHOT/java-abstract-pom/java-pom/core-impl/" />-->
-<!--			<item name="Core Implementation" href="....html" /> -->
-<!--		</menu>-->
-		
 		<menu ref="reports" />
 		
 	</body>

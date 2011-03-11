@@ -16,6 +16,4 @@ abstract class GenericMessageImpl implements GenericMessage {
 		return this.user;
 	}
 	
-	// MINOR @DRY shouldnt be skeleton implementations of equals/hash/tostring in here? (to reuse it)
-	
 }

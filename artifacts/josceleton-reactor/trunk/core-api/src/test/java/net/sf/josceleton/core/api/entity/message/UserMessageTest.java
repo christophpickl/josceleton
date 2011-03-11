@@ -50,8 +50,6 @@ public abstract class UserMessageTest extends AbstractMessageTest<UserMessage> {
 		final Mockery mockery = new Mockery();
 		
 		final User mockedUser = mockery.mock(User.class);
-		// LUXURY @TEST MOCK would be nice to mock enums as well (UserState)
-//		final UserState mockedUserState = mockery.mock(UserState.class); 
 		final UserState expectedUserState = UserState.DEAD;
 		
 		final UserMessage message = this.createTestee(mockedUser, expectedUserState);

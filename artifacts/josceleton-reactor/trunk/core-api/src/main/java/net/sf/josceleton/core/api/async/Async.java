@@ -15,6 +15,4 @@ public interface Async<L extends Listener> {
 	 */
 	void removeListener(L listener);
 	
-//	void removeAllListeners(); // MINOR ??? is Async.removeAllListeners() needed?
-	
 }

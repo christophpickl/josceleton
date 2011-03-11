@@ -2,8 +2,6 @@ package net.sf.josceleton.core.api.entity.body;
 
 final class OsceletonJointConstants {
 	
-	// TODO @CODE actually there is also a Osceleton(Message)Jonstants class, providing "new_user", etc...
-	
 	static final String HEAD = "head";
 	static final String NECK = "neck";
 	static final String TORSO = "torso";

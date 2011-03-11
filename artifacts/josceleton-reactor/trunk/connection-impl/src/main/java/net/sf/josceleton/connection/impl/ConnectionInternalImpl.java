@@ -13,12 +13,6 @@ import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.illposed.osc.OSCMessage;
 
-
-// LUXURY @AOP CONTRACT? inject pre-method state check of yetEstablished (do same for closeable things)
-// checks (especially for joint msgs) consumes lot of CPU cycles ==> therefore disable AOP in releases!
-
-//LUXURY @AOP established state is similar to ("single"=inherited) from CloseableAsyncDelegator
-
 class ConnectionInternalImpl
 	extends CloseableAndAsyncSkeleton<ConnectionListener>
 	implements ConnectionInternal, OscMessageRouterCallback {

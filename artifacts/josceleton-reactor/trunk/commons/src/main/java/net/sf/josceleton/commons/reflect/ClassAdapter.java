@@ -14,7 +14,7 @@ public interface ClassAdapter<T> extends Serializable {
 	 */
 	boolean isAssignableFrom(ClassAdapter<?> targetType);
 
-	Constructor<?>[] getConstructors(); // LUXURY @REFACTOR ClassAdapter should actually return ConstructorAdapter
+	Constructor<?>[] getConstructors();
 
 	String getName();
 	

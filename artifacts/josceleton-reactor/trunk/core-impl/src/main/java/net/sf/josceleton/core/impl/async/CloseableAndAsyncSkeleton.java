@@ -2,7 +2,6 @@ package net.sf.josceleton.core.impl.async;
 
 import net.sf.josceleton.core.api.async.Listener;
 
-// LUXURY @AOP skeleton for closeable and async mixin (CloseableAndAsyncSkeleton)
 /**
  * Child should protect any non-private method with a pre-condtion by invoking validateNotYetClosed() as the first stmt!
  */
@@ -31,7 +30,7 @@ public abstract class CloseableAndAsyncSkeleton<L extends Listener>
 	
 	/** {@inheritDoc} from {@link Closeable} */
 	@Override public final void close() {
-		// assert(yetClosed == false); // LUXURY @AOP check yet closed
+		// assert(yetClosed == false); AOP
 		this.validateNotYetClosed();
 		this.prepareToClose();
 		this.yetClosed = true;

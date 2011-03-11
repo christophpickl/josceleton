@@ -19,7 +19,7 @@ class DynamicInstantiatorImpl implements DynamicInstantiator {
 	@Override public final <T> T create(final ClassAdapter<T> clazz, final Object... arguments) {
 		LOG.debug("instantiate(clazz.name=" + clazz.getName() + ", arguments.length=" + arguments.length + ")");
 		
-		for (int i = 0; i < arguments.length; i++) { // MINOR @REFACTOR outsource array-check-for-null-values
+		for (int i = 0; i < arguments.length; i++) {
 			final Object currentArgument = arguments[i];
 			if(currentArgument == null) {
 				throw InvalidArgumentException.newNotNull("arguments[]@" + i);
@@ -30,11 +30,8 @@ class DynamicInstantiatorImpl implements DynamicInstantiator {
 		
 	    try {
 			return constructor.newInstance(arguments);
-			// MINOR @TEST EXCEPTION bad design; commentedout to increase coverage ;)
-//		} catch (final IllegalArgumentException e) {
-//		} catch (final InstantiationException e) {
-//		} catch (final IllegalAccessException e) {
-//		} catch (final InvocationTargetException e) {
+			// !!! bad design; simple exception handling ...
+			//     done to increase coverage and avoid having to test for each and every exception ;)
 		} catch (final Exception e) {
 			throw DynamicInstantiationException.newForInstantiation(clazz, arguments, e);
 		}

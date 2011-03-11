@@ -21,7 +21,6 @@ import com.illposed.osc.OSCMessage;
 @SuppressWarnings("boxing")
 class OscMessageTransformerImpl implements OscMessageTransformer {
 	
-	// MINOR @REFACTOR outsource string to userstate/bodypart conversion from transformer
 	private static final Map<String, UserState> USER_STATE_BY_ADDRESS;
 	static {
 		final Map<String, UserState> tmp = new HashMap<String, UserState>();
@@ -88,7 +87,6 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 		final String address = oscMessage.getAddress();
 		final UserState userState = USER_STATE_BY_ADDRESS.get(address);
 		if(userState == null) {
-			// MINOR @EXCEPTION could use a custom exception (same as above)
 			throw new RuntimeException("Invalid user message address [" + address + "]!");
 		}
 		

@@ -18,7 +18,6 @@
 				<li><b>Mantis Bugtracker</b> - <a href="https://sourceforge.net/apps/mantisbt/josceleton">https://sourceforge.net/apps/mantisbt/josceleton</a></li>
 				<li><b>View Sourcecode</b> - <a href="http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts">http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts</a></li>
 				
-					<!-- TODO @DOC in site in xmls geht nicht ${project.version} -->
 <!--				<li>Sources - -->
 						<!-- statt ${foobar.version} ==> das muss als <property> daherkommen von <version.dependency.josceleton.core-api -->
 						<!-- sollte eigentlich aggregiert werden... :( -->

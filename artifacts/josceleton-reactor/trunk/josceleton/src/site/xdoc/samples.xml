@@ -16,14 +16,14 @@
 				<li>Invoke logic directly via the static <code>Josceleton</code> facade class (<i>bad style, bad for testing, static cling</i>).</li>
 				<li>Instantiate <code>JosceletonFacade</code> statically once, then pass instance further (<i>good enough, but could be still improved</i>)</li>
 				<li>Use the same Dependency Injection framework as Josceleton does: <a href="http://code.google.com/p/google-guice/" target="_blank">Guice</a></li>
-				<!-- LUXURY use spring bridge or something -->
+				<!-- use spring bridge or something else ... -->
 				<li>Configure your framework of choice to inject <code>JosceletonFacade</code> instance.</li>
 			</ol>
 						
 			<subsection name="Use the static Facade">
 			
-				<p style="font-size:1.3em;"><!-- MINOR @DOC link to javadoc -->
-					<code>Josceleton.openConnection()</code>
+				<p style="font-size:1.3em;">
+					<code>Josceleton.openConnection()</code><!-- !!! link to javadoc -->
 				</p>
 				
 				<p>
@@ -73,7 +73,7 @@ System.out.println("Running ...");
 			
 			<subsection name="Pass an interface typed instance">
 				
-				<p style="font-size:1.3em;"><!-- MINOR @DOC link to javadoc -->
+				<p style="font-size:1.3em;"><!-- !!! link to javadoc -->
 					<code>Josceleton.newFacade()</code>
 				</p>
 				

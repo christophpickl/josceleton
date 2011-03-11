@@ -27,7 +27,7 @@ public abstract class ConnectorTest extends AbstractMockeryTest {
 			this.createTesteeForPort(givenPort.intValue()) :
 			this.createTesteeWithoutPort();
 		
-		// MINOR @TEST let abstract create() also return expected(Raw)Connection to check if they are equal
+		// !!! let abstract create() also return expected(Raw)Connection to check if they are equal
 		final Connection actualRawConnection;
 		if(givenPort != null) {
 			actualRawConnection = connector.openConnectionOnPort(givenPort.intValue());

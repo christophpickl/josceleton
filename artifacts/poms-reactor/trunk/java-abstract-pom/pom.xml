@@ -8,9 +8,6 @@
     <artifactId>java-abstract-pom</artifactId>
     <version>0.3-SNAPSHOT</version>
     
-    <!-- MINOR @POM REFACTOR split up java-abstract-pom into java-abstract-abstract-pom -->
-    <!-- abstract-abstract-pom ... slim core pom with building section (one can only inherit from here, eg to speed up things) -->
-    <!-- abstract-pom ... only contains "additional"/unncessary stuff (like reporting) -->
     
     <!-- ******************************************************************* -->
     <!--                             P A R E N T                             -->
@@ -112,10 +109,6 @@
         <dependency>
         	<groupId>log4j</groupId>
         	<artifactId>log4j</artifactId>
-        	
-        	<!-- MINOR @POM how to solve dependencies for logging (so outside will not be effected, but can enable)
-        	if someone relies on josceleton, he should not be forced to depend on log4j, or commons-loggin;  -->
-<!--        	<optional>true</optional>-->
         </dependency>
         
 	    <!-- T E S T -->
@@ -243,94 +236,6 @@
         </pluginManagement>
         
         <plugins>
-        
-        <!-- TODO @POM enforce code metrics during build! (verify these checks are working) -->
-<!--          <plugin>-->
-<!--              <groupId>org.apache.maven.plugins</groupId>-->
-<!--              <artifactId>maven-pmd-plugin</artifactId>-->
-<!--              <some version></some version-->
-<!--              <executions>-->
-<!--            <execution>-->
-<!--              <id>verify_pmd</id> -->
-<!--              <phase>verify</phase> -->
-<!--              <goals>-->
-<!--                <goal>pmd</goal> -->
-<!--             </goals>-->
-<!--              <configuration>-->
-<!--                <minimumTokens>20</minimumTokens> -->
-<!--             </configuration>-->
-<!--           </execution>-->
-<!--         </executions>-->
-<!--        <plugin>-->
-<!--          <groupId>org.codehaus.mojo</groupId> -->
-<!--          <artifactId>cobertura-maven-plugin</artifactId> -->
-<!--          <executions>-->
-<!--            <execution>-->
-<!--              <id>verify_cobertura</id> -->
-<!--              <phase>verify</phase> -->
-<!--              <goals>-->
-<!--                <goal>cobertura</goal> -->
-<!--             </goals>-->
-<!--              <configuration>-->
-<!--                <formats>-->
-<!--                  <format>xml</format> -->
-<!--                  <format>html</format> -->
-<!--               </formats>-->
-<!--             </configuration>-->
-<!--           </execution>-->
-<!--         </executions>-->
-<!--       </plugin>-->
-<!--        -->
-<!--        <plugin>     -->
-<!--          <groupId>org.apache.maven.plugins</groupId> -->
-<!--          <artifactId>maven-checkstyle-plugin</artifactId> -->
-<!--          <executions>-->
-<!--            <execution>-->
-<!--              <id>verify_checkstyle</id> -->
-<!--              <phase>verify</phase> -->
-<!--              <goals>-->
-<!--                <goal>checkstyle</goal> -->
-<!--             </goals>-->
-<!--           </execution>-->
-<!--         </executions>-->
-<!--       </plugin>-->
-<!--        <plugin>-->
-<!--          <groupId>org.codehaus.mojo</groupId> -->
-<!--          <artifactId>findbugs-maven-plugin</artifactId> -->
-<!--          <version>1.0-SNAPSHOT</version> -->
-<!--          <executions>-->
-<!--            <execution>-->
-<!--              <id>verify_findbugs</id> -->
-<!--              <phase>verify</phase> -->
-<!--              <goals>-->
-<!--                <goal>findbugs</goal> -->
-<!--             </goals>-->
-<!--              <configuration>-->
-<!--                <reportFormat>xml</reportFormat> -->
-<!--             </configuration>-->
-<!--           </execution>-->
-<!--         </executions>-->
-<!--       </plugin>-->
-
-<!--        <plugin>-->
-<!--          <groupId>org.codehaus.mojo</groupId> -->
-<!--          <artifactId>simian-report-maven-plugin</artifactId> -->
-<!--          <version>1.0-SNAPSHOT</version> -->
-<!--          <executions>-->
-<!--            <execution>-->
-<!--              <id>verify_simian</id> -->
-<!--              <phase>verify</phase> -->
-<!--              <goals>-->
-<!--                <goal>simian</goal> -->
-<!--             </goals>-->
-<!--              <configuration>-->
-<!--                <minimumThreshold>2</minimumThreshold> -->
-<!--             </configuration>-->
-<!--           </execution>-->
-<!--         </executions>-->
-<!--       </plugin>-->
-
-
         	
             <!-- COMPILE -->
             <!-- *********************************************************** -->
@@ -344,7 +249,6 @@
                 </configuration>
             </plugin>
             
-            <!-- check for java 1.5 only --><!-- MINOR @POM animal sniffer change to java v1.6 -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>animal-sniffer-maven-plugin</artifactId>
@@ -352,7 +256,7 @@
 				<configuration>
 					<signature>
 						<groupId>org.codehaus.mojo.signature</groupId>
-						<artifactId>java15</artifactId>
+						<artifactId>java15</artifactId><!-- check for java 1.5 only -->
 						<version>1.0</version>
 					</signature>
 				</configuration>
@@ -374,12 +278,6 @@
             
             <plugin>
             	<artifactId>maven-surefire-plugin</artifactId>
-            	<!-- LUXURY @POM prevent tests running twice with surefire-plugin enabled -->
-            	<!-- see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIpreventtestsfromrunningtwice%2Cafteraddingaconfigurationforthesurefireplugin%3F -->
-            	<configuration>
-            	<!-- LUXURY @POM what is "surefire.redirectTestOutputToFile" good for? -->
-<!--            		<redirectTestOutputToFile>true</redirectTestOutputToFile>-->
-            	</configuration>
             </plugin>
             
             <plugin>
@@ -425,9 +323,6 @@
             <!-- BUILD -->
             <!-- *********************************************************** -->
             
-            <!-- LUXURY @POM SITE JAVADOC configure plugins to also provide javadoc for other modules -->
-            <!-- as stated in: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/aggregate-dependency-sources.html -->
-            
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
 				<executions>
@@ -442,27 +337,11 @@
 				</executions>
 			</plugin>
             
-            <!-- LUXURY @POM customize javadoc style -->
-<!--            <plugin>-->
-<!--                <groupId>javolution</groupId>-->
-<!--                <artifactId>colapi</artifactId>-->
-<!--                <version>1.0.0</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>colorize</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-			
+		
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
-<!--					<archive>--><!-- MINOR @POM what has to be done for the maven-jar-plugin? -->
-<!--						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>-->
-<!--						<addMavenDescriptor>false</addMavenDescriptor>-->
-<!--					</archive>-->
+					<!-- ??? -->
 				</configuration>
 				<executions>
 					<execution>
@@ -480,8 +359,7 @@
                         <fileset>
                             <directory>${basedir}</directory>
                             <includes>
-                                <!-- when cleaning, also delete the TestNG output folder -->
-                                <!-- TODO @POM EASY sometimes the testng outputfolder folder does not get deleted... :( -->
+                                <!-- also delete the TestNG output folder when cleaning up -->
                                 <include>test-output</include>
                             </includes>
                             <followSymlinks>true</followSymlinks>
@@ -575,13 +453,6 @@
 		                <version>${version.surefire}</version>
 		            </plugin>
 		            
-		            <!-- LUXURY @POM or use emma for coverage test report? -->
-		<!--            <plugin>-->
-		<!--                <groupId>org.codehaus.mojo</groupId>-->
-		<!--                <artifactId>emma-maven-plugin</artifactId>-->
-		<!--                <version>1.0-alpha-1</version>-->
-		<!--            </plugin>-->
-		            
 		            <plugin>
 		            	<!-- (remark: javadoc-plugin configuration should stay in reporting, and not moved to build section) -->
 		                <artifactId>maven-javadoc-plugin</artifactId>
@@ -607,19 +478,12 @@
 		                    
 		                    <minmemory>128m</minmemory> 
               				<maxmemory>512m</maxmemory> 
+							<!-- NO (default "protected" is just fine): <show>private</show>-->
 		            		
-		<!--                    MINOR @POM <excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->
 		
 		<!--                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>-->
 		<!--                    <noqualifier>all</noqualifier>    Omit qualifying package name before class names in output. -->
 		            		
-							<!-- LUXURY @POM SITE JAVADOC UML include graphs -->
-							<!--        eg: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html -->
-							<!--        ... or generate diagrams with APIviz: http://code.google.com/p/apiviz/ -->
-							<!-- LUXURY @POM SITE JAVADOC UML use multiple javadoc reports (plain + for graphs) -->
-							<!--        http://docs.codehaus.org/display/MAVENUSER/Reporting+Plugins -->
-							<!-- NO (default "protected" is just fine): <show>private</show>-->
-							
 							<!-- ............ customize skin ............... -->
 		<!--					<docletArtifact>-->
 		<!--						 nice doclet, see: http://code.google.com/p/doclava/ -->
@@ -639,7 +503,7 @@
 		<!--						-d ${project.build.directory}/site/apidocs-->
 		<!--					</additionalparam>-->
 		<!--					 -d ${project.build.directory}/apidocs -->
-		<!--					 LUXURY @POM SITE JAVADOC add an overview page (-overview <yourpage.html>) -->
+		<!--					....... add an overview page (-overview <yourpage.html>) -->
 		<!--					-->
 		<!--					<useStandardDocletOptions>false</useStandardDocletOptions>-->
 		<!--					 Apple's JVM sometimes requires more memory -->
@@ -733,45 +597,9 @@
 		<!--					<format>xml</format>-->
 							<linkXref>true</linkXref>
 							<sourceEncoding>utf-8</sourceEncoding>
-		<!--					<minimumTokens>100</minimumTokens> TODO @POM what is pmd.minimumTokens config good for? -->
 		                </configuration>
 		            </plugin>
 		            
-					<!-- LUXURY @POM SITE include more reporting plugins -->
-					
-		<!--			<plugin>-->
-		<!--				<groupId>org.codehaus.mojo</groupId>-->
-		<!--				<artifactId>jxr-maven-plugin</artifactId>-->
-		<!--			</plugin>-->
-		            
-		<!--			<plugin>-->
-		<!--				<artifactId>maven-surefire-plugin</artifactId>-->
-		<!--			</plugin>-->
-		
-		<!--			<plugin>-->
-		<!--				<artifactId>maven-clover-plugin</artifactId>-->
-		<!--			</plugin>-->
-					
-		<!--			<plugin>-->
-		<!--				<groupId>org.codehaus.mojo</groupId>-->
-		<!--				<artifactId>changes-maven-plugin</artifactId>-->
-		<!--				<version>2.1</version>-->
-		<!--			</plugin>-->
-		
-		<!--			<plugin>-->
-		<!--				<groupId>org.codehaus.mojo</groupId>-->
-		<!--				<artifactId>changelog-maven-plugin</artifactId>-->
-		<!--				<version>2.1</version>-->
-		<!--			</plugin>-->
-<!--		         <plugin>-->
-<!--           <groupId>org.codehaus.mojo</groupId> -->
-<!--           <artifactId>simian-report-maven-plugin</artifactId> -->
-<!--           <version>1.0-SNAPSHOT</version> -->
-<!--           <configuration>-->
-<!--             <minimumThreshold>2</minimumThreshold> -->
-<!--          </configuration>-->
-<!--        </plugin>-->
-
 <!-- MINOR @POM The easiest way you can configure the qalab mojos for Merge is as follows if you have accepted the default settings for the qa tools. -->
 <!-- see: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/faq.html -->
 <!--         <plugin>-->

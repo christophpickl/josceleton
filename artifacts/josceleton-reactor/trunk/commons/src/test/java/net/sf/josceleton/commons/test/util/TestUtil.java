@@ -10,8 +10,6 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
-// LUXURY @TEST REFACTOR TestUtil methods as a custom matcher
-
 public final class TestUtil {
 	
 	private TestUtil() { /* utility class*/ }
@@ -28,8 +26,6 @@ public final class TestUtil {
 		return count;
 	}
 
-	// LUXURY @TEST MOCK possible to mock toString()?
-	//					 can not mock toString, even not with {{ setImposteriser(ClassImposteriser.INSTANCE); }};
 	@SuppressWarnings("unchecked")
 	public static <T> void assertObjectToString(final T type, final String... subParts) {
 		final List<Matcher<String>> list = new LinkedList<Matcher<String>>();

@@ -36,12 +36,11 @@ class OscPortOpenerImpl implements OscPortOpener {
 		
 		final OSCPortIn oscPortIn;
 		try {
-			LOG.debug("Connecting to OSCPortIn with port number [" + port + "] ...");
+			LOG.debug("Connecting to OSCPortIn with port number [" + port + "] ..."); // replace with AOP
 			
 			// a.k.a. new OSCPortIn(port);
 			oscPortIn = this.instantiator.create(this.oscPortInType, Integer.valueOf(port));
 			
-			// LUXURY @AOP LOG statements around method could be injected
 			LOG.debug("Connection to OSCPortIn established.");
 			
 		} catch (final DynamicInstantiationException e) {

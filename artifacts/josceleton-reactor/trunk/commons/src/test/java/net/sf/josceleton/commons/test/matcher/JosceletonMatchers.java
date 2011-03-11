@@ -3,7 +3,7 @@ package net.sf.josceleton.commons.test.matcher;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
-import net.sf.josceleton.commons.test.util.TypeUtil;
+import net.sf.josceleton.commons.test.util.TestTypeUtil;
 
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
@@ -16,12 +16,12 @@ import org.hamcrest.TypeSafeMatcher;
 public class JosceletonMatchers extends TypeSafeMatcher<Class<?>> {
 
 	@Override public final boolean matchesSafely(final Class<?> clazz) {
-		if(TypeUtil.hasSingleConstructorWithVisibility(clazz, Modifier.PRIVATE) == false) { return false; }
+		if(TestTypeUtil.hasSingleConstructorWithVisibility(clazz, Modifier.PRIVATE) == false) { return false; }
 		
 		final Constructor<?> singleDeclaredConstructor = clazz.getDeclaredConstructors()[0];
 		
 		if(singleDeclaredConstructor.getParameterTypes().length != 0) { return false; }
-		TypeUtil.breakUpAndInvokeUnvisibleNullifiedConstructor(clazz, singleDeclaredConstructor);
+		TestTypeUtil.breakUpAndInvokeUnvisibleNullifiedConstructor(clazz, singleDeclaredConstructor);
 		
 		return true;
 	}
@@ -54,7 +54,7 @@ public class JosceletonMatchers extends TypeSafeMatcher<Class<?>> {
 		}
 
 		@Override public final boolean matchesSafely(final Class<?> clazz) {
-			return TypeUtil.hasSingleConstructorWithVisibility(clazz, this.visibilityModifier);
+			return TestTypeUtil.hasSingleConstructorWithVisibility(clazz, this.visibilityModifier);
 		}
 		
 		@Override public final void describeTo(final Description description) {

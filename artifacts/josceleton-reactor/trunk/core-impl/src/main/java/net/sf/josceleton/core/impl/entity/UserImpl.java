@@ -14,8 +14,6 @@ class UserImpl implements User {
 	
 	
 	@Inject UserImpl(@Assisted("id") final int id, @Assisted("osceletonId") final int osceletonId) {
-		// LUXURY @AOP CONTRACT add precondition argument check
-		//                  maybe not for coordinate, as too many instances will be created (performance, you know...)
 		if(id < 1) {
 			throw InvalidArgumentException.newInstance("id", Integer.valueOf(id), "< 1");
 		}

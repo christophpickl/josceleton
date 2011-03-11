@@ -20,7 +20,7 @@ public final class StringUtil {
 		builder.append("]");
 		return builder.toString();
 	}
-	// MINOR @TEST DRY @StringUtil merge two methods together
+	
 	public static String toStringObjectsWithType(final Object[] objects) {
 		final StringBuilder builder = new StringBuilder();
 		builder.append("[");

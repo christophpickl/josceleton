@@ -5,9 +5,9 @@ import java.lang.reflect.InvocationTargetException;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
 
-public final class TypeUtil {
+public final class TestTypeUtil {
 	
-	private TypeUtil() {
+	private TestTypeUtil() {
 		// utility classes should not be instantiable
 	}
 	
@@ -32,7 +32,6 @@ public final class TypeUtil {
 			final Class<?> clazz,
 			final Constructor<?> constructor) {
 		
-		// LUXURY @AOP CONTRACT use it to check preconditions / validating arguments
 		if(constructor.getParameterTypes().length != 0) {
 			throw InvalidArgumentException.newInstance("constructor.parameterTypes.length",
 				Integer.valueOf(constructor.getParameterTypes().length), "!= 0");

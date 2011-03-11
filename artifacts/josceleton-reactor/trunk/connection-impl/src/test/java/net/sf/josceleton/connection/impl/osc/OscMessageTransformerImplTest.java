@@ -28,7 +28,7 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 		final OSCMessage oscMessage = OSCMessageX.newMockSafeOSCMessage(this.getMockery(), new Object[] { 1, 2, 3 });
 		transformer.transformJointMessage(oscMessage);
 	}
-	// MINOR @TEST how to handle exception messages for tests correctly? (XyzException.MESSAGE_FORMAT_FOR ...?)
+	
 	@Test(expectedExceptions = InvalidArgumentException.class,
 			expectedExceptionsMessageRegExp = "Passed illegal argument \\[oscMessage.arguments.length\\] with value: " +
 					"\\[0\\]! \\(condition was: ==1\\)")

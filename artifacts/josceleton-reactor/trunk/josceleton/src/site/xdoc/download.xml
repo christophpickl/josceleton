@@ -21,8 +21,6 @@
 				<p>
 					To be able to use Josceleton artifacts via Maven, you first have to configure two repositories in your <code>~/.m2/settings.xml</code> file:
 				</p>
-				<!-- MINOR @DOC anmerken unterschied profile.activeByDefault vs activeProfiles.activeProfile -->
-				<!-- + bsp schreiben + sagen, dass (anscheinbar) keinen unterschied gibt + vertrauenswuerdige url fuer diese tatsache liefern -->
 				
 				<source><![CDATA[
 <settings>
@@ -71,22 +69,6 @@
   </dependencies>
 </project>
 ]]></source>
-				
-<!-- MINOR @SITE pom sample, dass wenn leute selber guice verwenden (aop & assisted) verwenden, dann excluden
-
-		<dependency>
-			<groupId>net.sf.josceleton</groupId>
-			<artifactId>josceleton</artifactId>
-			<exclusions>
-				::COMMENT:: exclude josceleton's own guice dependency ::COMMENT::
-				<exclusion>
-		            <groupId> net.sf.josceleton.thirdparty.com.google.code.guice </groupId>
-		            <artifactId> guice-dependencies </artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>com.google.code.guice _ guice _ 2.0</dependency>
-		-->
 			
 		</section>
 		

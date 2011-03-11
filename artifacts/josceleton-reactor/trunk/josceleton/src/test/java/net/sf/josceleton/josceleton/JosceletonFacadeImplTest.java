@@ -23,7 +23,6 @@ public class JosceletonFacadeImplTest extends AbstractMockeryTest {
 	
 	@Test public final void openConnectionOnPortSuccessfully() {
 		final Connection expectedConnection = this.mock(Connection.class);
-		// MINOR @TEST check Connector.openConnectionOnPort(x) for illegal arguments (negative ports, ports > 65... max range!)
 		final Integer expectedPort = Integer.valueOf(42);
 		final JosceletonFacade facade = this.createTestee(expectedConnection, expectedPort );
 		final Connection actualConnection = facade.openConnectionOnPort(expectedPort.intValue());

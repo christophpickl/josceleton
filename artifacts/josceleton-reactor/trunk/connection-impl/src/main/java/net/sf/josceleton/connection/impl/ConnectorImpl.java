@@ -14,7 +14,6 @@ public class ConnectorImpl implements Connector {
 	
 	private static final Log LOG = LogFactory.getLog(ConnectorImpl.class);
 	
-	// MINOR @REFACTOR outsource default osceleton port from code into some property/build related artifact
 	private static final int DEFAULT_OSCELETON_PORT = 7110;
 	
 	private final OscPortOpener portOpener;

@@ -184,7 +184,6 @@
 	            <plugin>
 	                <artifactId>maven-checkstyle-plugin</artifactId>
 					
-					<!-- TODO @POM can checkstyle plugin config be moved from pluginMgmt to plugin? -->
 					<!-- the following dependency contains the checkstyle config and suppresion XMLs in its src/main/resources folder -->
 					<dependencies>
 						<dependency>
@@ -202,10 +201,6 @@
 					<!-- set checkstyle fails on error as property (release=>true) !NOOOO! checkstyle should ALWAYS fail, not only for release -->
 	                <!-- for configuration options see: http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle-mojo.html -->
 					
-					<!-- LUXURY @POM maybe load checkstyle plugin configurations from properties file? advantage? -->
-					<!-- see: http://maven.apache.org/plugins/maven-checkstyle-plugin/faq.html -->
-<!--					<propertiesLocation>path/to/checkstyle-plugin-configuration.properties</propertiesLocation>-->
-
                 	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
 	                <configuration>
 	                    <configLocation>checkstyle.xml</configLocation>

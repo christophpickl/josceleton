@@ -16,7 +16,6 @@ class OscPortImpl implements OscPort {
 	
 	private final OSCPortIn openedPort;
 	
-	// LUXURY @REFACTOR DRY closed/established state already in CloseableAndAsyncSkeleton (see ConnectionInternalImpl)
 	private boolean yetClosed = false;
 
 	private boolean yetEstablished = false;
@@ -48,9 +47,7 @@ class OscPortImpl implements OscPort {
 		
 		this.checkYetEstablished();
 		this.checkYetClosed();
-		// TODO @DESIGN HEAVY maybe OSCListener listener should not be directly listening to openedPort, but rather...
-		//        ... have own dispatching pool, and act as a mediator.
-		//        => side effect: if close() invoked, we really have message dispatching under full control!
+		// !!! maybe this should be refactored
 		this.openedPort.addListener(address.getAddress(), listener);
 	}
 
@@ -67,7 +64,6 @@ class OscPortImpl implements OscPort {
 
 	private void checkYetClosed() {
 		if(this.yetClosed == true) {
-			// REALLY LUXURY @EXCEPTION SIMPLE could have stored invoker of close() method by analyzing stacktrace ;)
 			throw new IllegalStateException("Connection already closed!");
 		}
 	}

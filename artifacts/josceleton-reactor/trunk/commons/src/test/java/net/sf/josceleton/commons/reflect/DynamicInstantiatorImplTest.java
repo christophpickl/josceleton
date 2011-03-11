@@ -12,15 +12,6 @@ import org.testng.annotations.Test;
 @SuppressWarnings("boxing")
 public class DynamicInstantiatorImplTest {
 	
-//	LUXURY @TEST handle exceptions correctly
-//	(have to artificial throw these to fix it)
-//		} catch (IllegalArgumentException e) {
-//			throw DynamicInstantiationException.newForInstantiation(clazz, arguments, e);
-//		} catch (InstantiationException e) {
-//			throw DynamicInstantiationException.newForInstantiation(clazz, arguments, e);
-//		} catch (IllegalAccessException e) {
-//			throw DynamicInstantiationException.newForInstantiation(clazz, arguments, e);
-	
 	private DynamicInstantiator instantiator;
 
 	@BeforeMethod public final void setUp() {
@@ -31,8 +22,6 @@ public class DynamicInstantiatorImplTest {
 		this.instantiator = null;
 	}
 	
-	// LUXURY @TEST REFACTOR remove nested classes and use mocks (of ClassAdapter) instead
-	//       .... or the other way round: use in other tests nested classes for test purpose as well ;)
 	static class ProperArgumentsStoreDummy { private final String arg1; private final int arg2;
 		public ProperArgumentsStoreDummy(final String arg1, final int arg2) { this.arg1 = arg1; this.arg2 = arg2; } }
 	

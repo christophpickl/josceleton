@@ -58,7 +58,7 @@ public class OscMessageRouterImplTest extends AbstractMockeryTest {
 		listeners.get(OscAddress.JOINT).acceptMessage(date, oscMsg3);
 		listeners.get(OscAddress.LOST_USER).acceptMessage(date, oscMsg4);
 		
-		// MINOR @TEST REFACTOR test for different addresses/messages, and invalid address
+		// REFACTOR test for different addresses/messages, and invalid address
 		
 		final List<OSCMessage> actualJoints = callback.getReceivedJointMessages();
 		final List<OSCMessage> actualUsers = callback.getReceiveduserMessages();

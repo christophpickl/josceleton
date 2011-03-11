@@ -6,7 +6,6 @@ import static org.hamcrest.Matchers.equalTo;
 import org.hamcrest.Matchers;
 
 public final class EnumTestUtil {
-	// MINOR @TEST REFACTOR EnumTestUtil to hamcrest matcher
 
 	private EnumTestUtil() { /* utility class*/ }
 

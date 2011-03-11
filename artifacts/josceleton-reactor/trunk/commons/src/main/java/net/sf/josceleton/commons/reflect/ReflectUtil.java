@@ -5,9 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-// LUXURY @REFACTOR DESIGN get rid of util class! there should be no utils at all in josceleton.
-//        refactor properly + dependency for DynamicInstantiatior.
-
 /**
  * @since 0.1
  */
@@ -85,7 +82,6 @@ public final class ReflectUtil {
 		
 		final Class<?> boxedSourceType = PRIMITIVES_TO_BOXED.get(superType.getInnerClass());
 		if(boxedSourceType == null) {
-			// MINOR @EXCEPTION dont throw runtime ex but custom josceleton ex
 			throw new RuntimeException("Could not find assignable for primitive type [" + superType + "]!");
 		}
 		
