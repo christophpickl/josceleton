@@ -25,7 +25,7 @@ public class OscMessageRouterImplTest extends AbstractMockeryTest {
 
 	@Test
 	public final void rerouteAddsOneListenerForEachAddress() {
-		final OscMessageRouter router = new OscMessageRouterImpl();
+		final OscMessageAddressRouter router = new OscMessageAddressRouterImpl();
 		final OscPort oscPort = this.mock(OscPort.class);
 		this.checking(new Expectations() { {
 			exactly(1).of(oscPort).addListenerFor(with(equal(OscAddress.JOINT)), with(any(OSCListener.class)));
@@ -34,7 +34,7 @@ public class OscMessageRouterImplTest extends AbstractMockeryTest {
 			exactly(1).of(oscPort).addListenerFor(with(equal(OscAddress.LOST_USER)), with(any(OSCListener.class)));
 		}});
 		
-		router.reroute(oscPort, this.mock(OscMessageRouterCallback.class));
+		router.reroute(oscPort, this.mock(OscMessageAddressRouterCallback.class));
 		// assert via mockery is satisfied
 	}
 
@@ -45,7 +45,7 @@ public class OscMessageRouterImplTest extends AbstractMockeryTest {
 		final OSCMessage oscMsg3 = new OSCMessageX("/joint", 42, 0.1F, 0.2F, 0.3F);
 		final OSCMessage oscMsg4 = new OSCMessageX("/lost_user", 42);
 		
-		final OscMessageRouter router = new OscMessageRouterImpl();
+		final OscMessageAddressRouter router = new OscMessageAddressRouterImpl();
 		final OscPortX oscPort = new OscPortX();
 		
 		final OscMessageRouterCallbackCollector callback = new OscMessageRouterCallbackCollector();

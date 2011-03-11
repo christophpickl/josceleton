@@ -26,6 +26,10 @@ public class AbstractMockeryTest {
 		return this.mockery.mock(typeToMock);
 	}
 
+	protected final <T> T mock(final Class<T> typeToMock, final String name) {
+		return this.mockery.mock(typeToMock, name);
+	}
+
 	protected final void checking(final Expectations expectations) {
 		this.mockery.checking(expectations);
 	}

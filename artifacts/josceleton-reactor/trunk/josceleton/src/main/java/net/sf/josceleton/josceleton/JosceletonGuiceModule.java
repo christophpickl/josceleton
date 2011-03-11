@@ -26,7 +26,9 @@ public class JosceletonGuiceModule
 		this.install(new JosceletonCoreImplEntityGuiceModule());
 		
 		this.install(new JosceletonConnectionImplOscGuiceModule());
+//		FIXME this.install(new JosceletonConnectionImplServiceGuiceModule());
 		this.install(new JosceletonConnectionImplGuiceModule());
+		
 	}
 
 }

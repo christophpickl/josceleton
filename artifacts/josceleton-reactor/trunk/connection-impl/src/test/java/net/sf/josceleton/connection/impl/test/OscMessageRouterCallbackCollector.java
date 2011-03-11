@@ -4,11 +4,11 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.sf.josceleton.connection.impl.OscMessageRouterCallback;
+import net.sf.josceleton.connection.impl.OscMessageAddressRouterCallback;
 
 import com.illposed.osc.OSCMessage;
 
-public class OscMessageRouterCallbackCollector implements OscMessageRouterCallback {
+public class OscMessageRouterCallbackCollector implements OscMessageAddressRouterCallback {
 	
 	private final List<OSCMessage> receivedJointMessages = new LinkedList<OSCMessage>();
 	

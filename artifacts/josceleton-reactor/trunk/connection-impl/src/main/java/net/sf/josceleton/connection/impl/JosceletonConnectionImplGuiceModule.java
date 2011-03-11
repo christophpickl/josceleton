@@ -11,10 +11,10 @@ public class JosceletonConnectionImplGuiceModule extends AbstractModule {
 	@Override protected final void configure() {
 		
 		bind(Connector.class).to(ConnectorImpl.class).in(Scopes.SINGLETON);
-		bind(OscMessageRouter.class).to(OscMessageRouterImpl.class).in(Scopes.SINGLETON);
+		bind(OscMessageAddressRouter.class).to(OscMessageAddressRouterImpl.class).in(Scopes.SINGLETON);
 		
-		bind(ConnectionInternalFactory.class).toProvider(
-				FactoryProvider.newFactory(ConnectionInternalFactory.class, ConnectionInternalImpl.class));
+		bind(ConnectionFactory.class).toProvider(
+				FactoryProvider.newFactory(ConnectionFactory.class, ConnectionImpl.class));
 		
 	}
 

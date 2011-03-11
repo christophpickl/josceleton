@@ -1,5 +1,6 @@
 package net.sf.josceleton.connection.api;
 
+import net.sf.josceleton.connection.api.service.UserManager;
 import net.sf.josceleton.core.api.async.Async;
 import net.sf.josceleton.core.api.async.Closeable;
 
@@ -13,10 +14,6 @@ import net.sf.josceleton.core.api.async.Closeable;
  */
 public interface Connection extends Async<ConnectionListener>, Closeable {
 
-//	UserManager getUserManager();
+	UserManager getUserManager();
 	
-//	MotionTracker getMotionTracker();
-	
-//	RecentMotionStorage getRecentMotionStorage();
-
 }

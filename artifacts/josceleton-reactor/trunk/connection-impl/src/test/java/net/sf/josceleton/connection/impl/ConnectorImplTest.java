@@ -22,7 +22,7 @@ public class ConnectorImplTest extends ConnectorTest {
 		
 		final OscPortOpener oscPortOpener = this.mock(OscPortOpener.class);
 		final OscPort oscPort = this.mock(OscPort.class);
-		final ConnectionInternalFactory connectionFactory = this.mock(ConnectionInternalFactory.class);
+		final ConnectionFactory connectionFactory = this.mock(ConnectionFactory.class);
 		final ConnectionInternal expectedConnection = this.mock(ConnectionInternal.class);
 		
 		this.checking(new Expectations() { {

@@ -19,13 +19,13 @@ public class ConnectorImpl implements Connector {
 	private final OscPortOpener portOpener;
 
 	
-	private final ConnectionInternalFactory connectionFactory;
+	private final ConnectionFactory connectionFactory;
 	
 	
 	@Inject
 	public ConnectorImpl(
 			final OscPortOpener portOpener,
-			final ConnectionInternalFactory connectionFactory
+			final ConnectionFactory connectionFactory
 			) {
 		this.portOpener = portOpener;
 		this.connectionFactory = connectionFactory;

@@ -12,7 +12,7 @@ public interface ConnectionInternal extends Connection {
 	 * 
 	 * @throws IllegalStateException if invoked more than one time.
 	 * @see OscPort#establish()
-	 * $see {@link OscMessageRouter#reroute(OscPort, OscMessageRouterCallback)}
+	 * $see {@link OscMessageAddressRouter#reroute(OscPort, OscMessageRouterCallback)}
 	 */
 	void establish();
 	

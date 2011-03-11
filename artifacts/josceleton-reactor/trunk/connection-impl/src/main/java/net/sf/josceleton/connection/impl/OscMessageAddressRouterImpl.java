@@ -10,10 +10,10 @@ import net.sf.josceleton.connection.impl.osc.OscPort;
 import com.illposed.osc.OSCListener;
 import com.illposed.osc.OSCMessage;
 
-class OscMessageRouterImpl implements OscMessageRouter {
+class OscMessageAddressRouterImpl implements OscMessageAddressRouter {
 
-	/** {@inheritDoc} from {@link OscMessageRouter} */
-	@Override public final void reroute(final OscPort oscPort, final OscMessageRouterCallback callback) {
+	/** {@inheritDoc} from {@link OscMessageAddressRouter} */
+	@Override public final void reroute(final OscPort oscPort, final OscMessageAddressRouterCallback callback) {
 		final Map<OscAddress, OSCListener> map = this.createListenerMap(callback);
 		
 		for(final OscAddress address : OscAddress.values()) {
@@ -21,7 +21,7 @@ class OscMessageRouterImpl implements OscMessageRouter {
 		}
 	}
 
-	private Map<OscAddress, OSCListener> createListenerMap(final OscMessageRouterCallback callback) {
+	private Map<OscAddress, OSCListener> createListenerMap(final OscMessageAddressRouterCallback callback) {
 		final Map<OscAddress, OSCListener> map = new HashMap<OscAddress, OSCListener>();
 		
 		map.put(OscAddress.JOINT, new OSCListener() {
@@ -35,6 +35,8 @@ class OscMessageRouterImpl implements OscMessageRouter {
 		map.put(OscAddress.NEW_USER, userListener);
 		map.put(OscAddress.NEW_SKEL, userListener);
 		map.put(OscAddress.LOST_USER, userListener);
+		
+		// assert(for each OscAddress.enum => map.value exists)
 		
 		return map;
 	}

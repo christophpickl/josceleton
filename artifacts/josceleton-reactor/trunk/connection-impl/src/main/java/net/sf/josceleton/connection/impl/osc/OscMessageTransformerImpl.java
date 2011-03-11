@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
+import net.sf.josceleton.connection.impl.service.UserStore;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
@@ -13,7 +14,6 @@ import net.sf.josceleton.core.api.entity.body.BodyPart;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.entity.FactoryFacade;
-import net.sf.josceleton.core.impl.entity.UserFactory;
 
 import com.google.inject.Inject;
 import com.illposed.osc.OSCMessage;
@@ -42,16 +42,15 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 	
 	private final FactoryFacade factory;
 	
-	private final UserFactory userFactory;
-	
-	@Inject OscMessageTransformerImpl(final FactoryFacade factory, final UserFactory userFactory) {
+	@Inject OscMessageTransformerImpl(final FactoryFacade factory) {
 		this.factory = factory;
-		this.userFactory = userFactory;
 	}
 	
 
 	/** {@inheritDoc} from {@link OscMessageTransformer} */
-	@Override public final JointMessage transformJointMessage(final OSCMessage oscMessage) {
+	@Override public final JointMessage transformJointMessage(
+			final OSCMessage oscMessage,
+			final UserStore userStore) {
 		final Object[] messageArgs = oscMessage.getArguments();
 
 		if(messageArgs.length != 5) {
@@ -63,10 +62,9 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 		if(jointPart == null) {
 			throw new RuntimeException("Invalid joint ID [" + rawBodyJointType + "]!");
 		}
+		
 		final Integer osceletonUserId = (Integer) messageArgs[1];
-
-		// this.userStore.retrieveUserForJointMessage(osceletonUserId);
-		final User user = this.userFactory.create(137, osceletonUserId.intValue());
+		final User user = userStore.lookupUserForJointMessage(osceletonUserId);
 		
 		final float x = ((Float) messageArgs[2]).floatValue();
 		final float y = ((Float) messageArgs[3]).floatValue();
@@ -77,7 +75,10 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 	}
 
 	/** {@inheritDoc} from {@link OscMessageTransformer} */
-	@Override public final UserMessage transformUserMessage(final OSCMessage oscMessage) {
+	@Override public final UserMessage transformUserMessage(
+			final OSCMessage oscMessage,
+			final UserStore userStore) {
+		
 		final Object[] messageArgs = oscMessage.getArguments();
 
 		if(messageArgs.length != 1) {
@@ -91,9 +92,7 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 		}
 		
 		final Integer osceletonUserId = (Integer) messageArgs[0];
-		
-		// this.userStore.retrieveUserForUserMessage(osceletonUserId, userState);
-		final User user = this.userFactory.create(137, osceletonUserId.intValue());
+		final User user = userStore.lookupUserForUserMessage(osceletonUserId, userState);
 		
 		return this.factory.createUserMessage(user, userState);
 	}
