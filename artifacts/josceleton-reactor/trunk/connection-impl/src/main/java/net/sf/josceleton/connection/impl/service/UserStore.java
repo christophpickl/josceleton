@@ -11,7 +11,10 @@ import net.sf.josceleton.core.api.entity.UserState;
 public interface UserStore {
 
 	User lookupUserForJointMessage(Integer osceletonUserId);
-
+	
+	/**
+	 * @return can be null in only one special case: /lost_user received for unkown user (really rare case).
+	 */
 	User lookupUserForUserMessage(Integer osceletonUserId, UserState userState);
 
 }

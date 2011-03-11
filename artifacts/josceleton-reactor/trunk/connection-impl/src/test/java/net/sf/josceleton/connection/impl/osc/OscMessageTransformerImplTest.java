@@ -95,7 +95,7 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 			this.checking(new Expectations() { {
 				
 				
-				oneOf(userFactory).create(with(any(int.class)), with(osceletonUserId.intValue()));
+				oneOf(userFactory).create(with(osceletonUserId.intValue()));
 				will(returnValue(user));
 			}});
 		}

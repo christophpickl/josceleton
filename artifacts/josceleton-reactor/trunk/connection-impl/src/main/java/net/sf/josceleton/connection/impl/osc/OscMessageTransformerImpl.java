@@ -93,7 +93,7 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 		
 		final Integer osceletonUserId = (Integer) messageArgs[0];
 		final User user = userStore.lookupUserForUserMessage(osceletonUserId, userState);
-		
+		System.out.println("xxxxx: " + user);
 		return this.factory.createUserMessage(user, userState);
 	}
 

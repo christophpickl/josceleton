@@ -1,7 +1,5 @@
 package net.sf.josceleton.connection.impl.service;
 
-import net.sf.josceleton.connection.api.service.UserService;
-
 import com.google.inject.AbstractModule;
 
 /**
@@ -10,7 +8,7 @@ import com.google.inject.AbstractModule;
 public class JosceletionConnectionImplServiceGuiceModule extends AbstractModule {
 
 	@Override protected final void configure() {
-		bind(UserService.class).to(UserServiceImpl.class);
+		bind(UserServiceInternal.class).to(UserServiceImpl.class);
 	}
 
 }

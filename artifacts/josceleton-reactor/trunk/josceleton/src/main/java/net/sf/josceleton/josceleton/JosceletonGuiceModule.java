@@ -3,6 +3,7 @@ package net.sf.josceleton.josceleton;
 import net.sf.josceleton.commons.reflect.JosceletonCommonsReflectGuiceModule;
 import net.sf.josceleton.connection.impl.JosceletonConnectionImplGuiceModule;
 import net.sf.josceleton.connection.impl.osc.JosceletonConnectionImplOscGuiceModule;
+import net.sf.josceleton.connection.impl.service.JosceletionConnectionImplServiceGuiceModule;
 import net.sf.josceleton.core.impl.entity.JosceletonCoreImplEntityGuiceModule;
 import net.sf.josceleton.core.impl.entity.message.JosceletonCoreImplEntityMessageGuiceModule;
 
@@ -26,7 +27,7 @@ public class JosceletonGuiceModule
 		this.install(new JosceletonCoreImplEntityGuiceModule());
 		
 		this.install(new JosceletonConnectionImplOscGuiceModule());
-//		FIXME this.install(new JosceletonConnectionImplServiceGuiceModule());
+		this.install(new JosceletionConnectionImplServiceGuiceModule());
 		this.install(new JosceletonConnectionImplGuiceModule());
 		
 	}

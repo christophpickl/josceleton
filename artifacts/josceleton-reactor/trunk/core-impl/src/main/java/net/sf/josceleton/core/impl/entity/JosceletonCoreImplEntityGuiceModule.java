@@ -1,6 +1,7 @@
 package net.sf.josceleton.core.impl.entity;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
 import com.google.inject.assistedinject.FactoryProvider;
 
 /**
@@ -14,10 +15,9 @@ public class JosceletonCoreImplEntityGuiceModule extends AbstractModule {
 		bind(CoordinateFactory.class).toProvider(
 			FactoryProvider.newFactory(CoordinateFactory.class, CoordinateImpl.class));
 		
-		bind(UserFactory.class).toProvider(
-				FactoryProvider.newFactory(UserFactory.class, UserImpl.class));
+		bind(UserFactory.class).to(UserFactoryImpl.class).in(Scopes.SINGLETON);
 
-		bind(FactoryFacade.class).to(FactoryFacadeImpl.class);
+		bind(FactoryFacade.class).to(FactoryFacadeImpl.class).in(Scopes.SINGLETON);
 		
 	}
 

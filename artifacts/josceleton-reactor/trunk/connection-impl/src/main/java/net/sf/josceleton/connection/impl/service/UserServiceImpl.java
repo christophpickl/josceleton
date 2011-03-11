@@ -9,9 +9,6 @@ import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.impl.async.AsyncDelegator;
 import net.sf.josceleton.core.impl.entity.UserFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.google.inject.Inject;
 
 /**
@@ -21,8 +18,6 @@ class UserServiceImpl
 	extends AsyncDelegator<UserServiceListener>
 	implements UserServiceInternal /* == { UserService, UserStore } */ {
 	
-	private static final Log LOG = LogFactory.getLog(UserServiceImpl.class);
-	
 	private final UserFactory factory;
 	
 	private final Map<Integer, User> usersById = new HashMap<Integer, User>();
@@ -30,6 +25,7 @@ class UserServiceImpl
 //	private final Collection<User> waitingUsers = new HashSet<User>();
 //	
 //	private final Collection<User> availableUsers = new HashSet<User>();
+	
 	
 	@Inject UserServiceImpl(final UserFactory factory) {
 		this.factory = factory;
@@ -41,70 +37,92 @@ class UserServiceImpl
 		if(storedUser != null) {
 			return storedUser;
 		}
-		
-		return null; // FIXME
+
+		// artificially invoke one state step before; this is a common case.
+		final User artificalUser = this.lookupProcessingUser(osceletonUserId);
+		return artificalUser;
 	}
 
 	/** {@inheritDoc} from {@link UserStore} */
 	@Override public final User lookupUserForUserMessage(final Integer osceletonUserId, final UserState userState) {
 		if(userState == UserState.WAITING) {
-			if(this.usersById.containsKey(osceletonUserId) == true) {
-				throw new IllegalStateException("Already add new user with ID [" + osceletonUserId + "]! " +
-						"Registered user is: " + this.usersById.get(osceletonUserId));
-			}
-			
-			final User newUser = this.createWaitingUser(osceletonUserId);
-			this.dispatchWaitingUser(newUser);
-			return newUser;
+			return lookupWaitingUser(osceletonUserId);
 			
 		} else if(userState == UserState.PROCESSING) {
-			final User storedUser = this.usersById.get(osceletonUserId);
-			final User processingUser;
-			if(storedUser != null) {
-				processingUser = storedUser;
-			} else {
-				processingUser = this.createWaitingUser(osceletonUserId);
-				this.dispatchWaitingUser(processingUser);
-			}
-			
-			this.dispatchProcessingUser(processingUser);
-			return processingUser;
+			return lookupProcessingUser(osceletonUserId);
 			
 		} else if(userState == UserState.DEAD) {
-			final User removedUser = this.usersById.remove(osceletonUserId);
-			if(removedUser == null) {
-				LOG.warn("Received lost message for user with ID [" + osceletonUserId + "], " +
-						"though user was not yet registered!");
-			}
-			this.dispatchDeadUser(removedUser);
-			return removedUser;
+			return lookupDeadUser(osceletonUserId);
 			
-		} else {
+		} else { // TODO @CODE DESIGN if-else cascade for UserState enum (use callback interface instead, as used previously)
 			throw new RuntimeException("Unhandled user state [" + userState + "]!");
 		}
 	}
+
+	private User lookupDeadUser(final Integer osceletonUserId) {
+		final User removedUser = this.usersById.remove(osceletonUserId);
+		
+		final User userToDispatch;
+		if(removedUser != null) {
+			userToDispatch = removedUser;
+		} else {
+			// this is an EXPECTED state; kinect detected user before josceleton started listening, but lost again.
+//			LOG.warn("Received lost message for user with ID [" + osceletonUserId + "], " +
+//				"though user was not yet registered!");
+			
+			// artificially invoke one state step before
+			userToDispatch = this.lookupProcessingUser(osceletonUserId);
+		}
+		
+		// dispatchDeadUser(dispatchingUser);
+		for (final UserServiceListener listener : this.getListeners()) {
+			listener.onUserDead(userToDispatch);
+		}
+		
+		return userToDispatch;
+	}
+
+	private User lookupProcessingUser(final Integer osceletonUserId) {
+		final User storedUser = this.usersById.get(osceletonUserId);
+		final User processingUser;
+		
+		if(storedUser != null) {
+			processingUser = storedUser;
+		} else {
+			// artificially invoke one state step before
+			processingUser = this.newWaitingUser(osceletonUserId);
+			this.dispatchWaitingUser(processingUser);
+		}
+		
+		// dispatchProcessingUser(processingUser);
+		for (final UserServiceListener listener : this.getListeners()) {
+			listener.onUserProcessing(processingUser);
+		}
+		
+		return processingUser;
+	}
+
+	private User lookupWaitingUser(final Integer osceletonUserId) {
+		if(this.usersById.containsKey(osceletonUserId) == true) {
+			throw new IllegalStateException("Already add new user with ID [" + osceletonUserId + "]! " +
+					"Registered user is: " + this.usersById.get(osceletonUserId));
+		}
+		
+		final User newUser = this.newWaitingUser(osceletonUserId);
+		this.dispatchWaitingUser(newUser);
+		return newUser;
+	}
 	
-	private User createWaitingUser(final Integer osceletonUserId) {
-		final int xxx = 42; // FIXME create proper unique id
-		return this.factory.create(xxx, osceletonUserId.intValue());
+	private User newWaitingUser(final Integer osceletonUserId) {
+		final User newUser = this.factory.create(osceletonUserId.intValue());
+		this.usersById.put(osceletonUserId, newUser);
+		return newUser;
 	}
 	
 	
 	private void dispatchWaitingUser(final User user) {
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserWaiting(user);
-		}
-	}
-	
-	private void dispatchProcessingUser(final User user) {
-		for (final UserServiceListener listener : this.getListeners()) {
-			listener.onUserProcessing(user);
-		}
-	}
-	
-	private void dispatchDeadUser(final User user) {
-		for (final UserServiceListener listener : this.getListeners()) {
-			listener.onUserDead(user);
 		}
 	}
 	
