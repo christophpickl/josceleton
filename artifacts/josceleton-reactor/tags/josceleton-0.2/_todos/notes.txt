@@ -1,0 +1,95 @@
+! @doc metriken updaten; ueber tests zu finden unter: http://josceleton.sourceforge.net/surefire-report.html (muss halt noch aggregiert werden, halt haendisch machen, ka problem)
+? use clover, cobertura, or emma ?
+	// clover kann aggregieren (checkstyle und javadoc auch)
+- @site: hide email addresses via captcha (https://maven.apache.org/plugins/maven-project-info-reports-plugin/faq.html#How_to_hide_developercontributor_addresses)
+* jira site report ist kuhl: http://mojo.codehaus.org/taglist-maven-plugin/jira-report.html
+* changelog plugin, siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changelog.html
+* changes plugin siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changes-report.html
+-- developer activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/dev-activity.html
+* file activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/file-activity.html
+- @build fix that tests are not run twice because of surefire: https://maven.apache.org/plugins/maven-surefire-report-plugin/faq.html
+- shelled (eclipse shellscript editor plugin) installation failed... :(
+
+
+==========================================
+TODO * upcoming *
+==========================================
+!!! viele tasktags koennen verschoben werden in luxury.txt (muss halt dann zusaetzlich referenz dazu schreiben, woher dieses tasktag kommt)
+! move some /misc stuff directly into /josceleton-reactor/_misc; zb todo lists (damit sie auch mitgetagged werden)
+??? wenn released, wie behandelt man reactor (josceleton-reactor) projekte?
+	A. einfach mvn release:prepare in reactor => gibts error
+	B. per submodul (haendisch, aufwaendig)
+	!!!!! + was mitm reactor machen? (brauch zb src/site auch getagged) // mittels profil submodule raus is ja auch nicht das wahre...
+		=> es muss aber gehen, dass man einzelne submodule nicht tagged (wenn zb nur in connection-impl was anderes, commons aber bleibt) => dh doch auf reactor ebene ausfuehren, aber dann einzelne module interaktiv nein sagen koennen
+! pom structure wie von bwin zettel wieder herholen (nachzeichnen & auf wand aufhaengen)
+- maven-checkstyle-plugin leute frage ob/wann MethodCount unterstuetzt wird // wird nicht vom mvn-plugin gefressen (sogar nicht neueste 2.6 version); wird aber von eclipse-cs gesetzt :(
+
+==========================================
+TODO * code *
+==========================================
+- maybe rename user.getId() to user.getUniqueId() ... otherwise one could be confused what id is, compared to osceletonId
+!!! @code: BodyRecentStorage.getBodyPartCoordinate(BodyPart):Coordinate THROWS NoCoordinatesDataAvailableException == CheckedException!
+	... es kann ja sein, dass noch gar keine daten verfuegbar sind, wenn zb kamera fuesse no net gsehn hat, und man fussdaten haben will
+! check all custom equals implementations, if they are checking instanceof against interface, not *Impl!!! (and if they have shortcut check "if(this == other)")
+- should equals/hashCode/toString be final? (check all value objects!)
+? have factories also to be declared with Scope SINGLETON?
+- idea concerning Utils (ReflectUtil): introduce UtilFacade class: "UtilFacade f = ...; f.String().trim()" or "f.Reflect().findConstructor(Class, Object[] argValues/*internally translated to argTypes*/)"
+	=> see DynamicInstantiatorImpl and ReflectUtil
+
+==========================================
+BUILD
+==========================================
+!! ?was ist unterschied, wenn man plugin configured in build/pluginsMgmt oder in build/plugins?
+! difference cobertura und emma?
+! anstatt antrun-plugin fuer echo message verwenden => eigenes mojo schreiben (preformatted text, predefined message templaste zb fuer "createing enhanced reports (disable bla bla)"
+- load properties (versions, etc) from property-file via maven-properties-plugin
+- include checkstyle rule check-for-existing-javadoc for all API classes
+- wohl doch... @POM java-abstract-pom, alle versionsnr als property
+
+==========================================
+TEST
+==========================================
+! ensure nothing is leaking (close, removeListener) => ebenfalls system-tests dafuer
+! @build when running tests, maybe append own log4j logger (programatically? something like a regular overwriting file appender)
+??? best practice?: create impl instantance directly, or use guice factory/provider?
+- @systemtest: (conditional submodule): komplett anders loesen, siehe hier: http://happygiraffe.net/blog/2009/07/26/conditional-maven-modules/
+- da ja sogar VOs interfaces sind => fuer tests only Factory zur verfuegung stellen a la:
+	"userFactory.create(2, 1)" => intern: "mock(User.class); expectations{ user.___allowing___(getId()); willReturn(pId); ... }"
+	... damit wird testen einfacher, und umgeht (in dem fall) "umstaendliches" design von puren interfaces :)
+
+==========================================
+DOCUMENTATION
+==========================================
+* add multimedia stuff: diagram of architecture
+! mehr reports: welche datei wurde am haeufigsten veraendert (changesets, changelist, oder dgl)
+!! es kann doch josceleton (und nicht josceleton-reactor) hin deployen,
+	er hat ja in properties.version.josceleton-core-api zb schon versionsnr drinnen => josceleton.sf.net/artifacts]/../${version}/,
+	von daher kann man aus josceleton doc her, alle anderen (korrekt) module verweisen
+! publish only aggregated reports... even possible?
+	- otherwise dont make josceleton (facade) module deploy to webroot,
+		but rather another one (empty, e.g. reactor ;)) without (java) reports on it
+- document components <source><![CDATA[Josceleton > Java OSC > OSCeleton > OpenNI & Co > Kinect Hardwere]]></source>
+
+!! how to colorize code samples in doc
+! in doc alle klassenreferenzen mit javadoc verlinken
+-- @JAVADOC fuer alle klassen (nicht nur in api) ein @since tag drauf geben (doc wird nachher eh nicht einsehbar sein vom user)
+! @JAVADOC: wenn alles zam-aggregiert ist, sollen *-impl modulklassen nicht sichtbar sein
+	=> YES: do this by setting javadoc-plugin config option; eg ~"<docExcludes>"
+	// NO: dann muss auch in allen *-impl modulen alle public klassen ein ~"@NoJavadoc" annotation draufhaben
+! reports (wenn moeglich) aggregieren, vor allem javadoc (pure API javadoc von allen josceleton modulen)
+- let josceleton-reactor deploy doc twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
+	?? oder wie sonst loesen, ausser wie daweil mit redirect?
+- improve javadoc:
+	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
+	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags
+	* @doclava: make since tag appear; officially not supported, but guice doc has it!!!
+
+==========================================
+IDEAS
+==========================================
+- aus sicht des users denken: wie wird er josceleton einbinden?
+	* plain: mit Josceleton (static) facade
+	* guice: sehr gut, is schon einzelnes (Private)Module verfuegbar gestellt
+		!! @FACADE http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/PrivateModule.html
+- @hitwall gesture: auch beine/kopf dazunehmen; vertikal volumen ... oder so?; nicht absolut, sondern relativ (vom torso) ist wall entfernt
+- one could merge api and impl projects into one reactor project => josceleton-reactor { commons, core {core-api, core-impl}, connection {...}, josceleton, ... }

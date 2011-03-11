@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Links</title>
+	</properties>
+	<body>
+	
+		<section name="Links">
+			
+			<h4>Project Specific</h4>
+			
+			<ul>
+				<li><b>SourceForge Project</b> - <a href="https://sourceforge.net/projects/josceleton">https://sourceforge.net/projects/josceleton</a></li>
+				<li><b>Mantis Bugtracker</b> - <a href="https://sourceforge.net/apps/mantisbt/josceleton">https://sourceforge.net/apps/mantisbt/josceleton</a></li>
+				<li><b>View Sourcecode</b> - <a href="http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts">http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts</a></li>
+				
+					<!-- TODO @DOC in site in xmls geht nicht ${project.version} -->
+<!--				<li>Sources - -->
+						<!-- statt ${foobar.version} ==> das muss als <property> daherkommen von <version.dependency.josceleton.core-api -->
+						<!-- sollte eigentlich aggregiert werden... :( -->
+<!--					<a href="http://josceleton.sourceforge.net/documentation/core-api/${foobar1}>/xref/">Core API 0.x</a> -->
+<!--					<a href="http://josceleton.sourceforge.net/documentation/josceleton/${foobar2}/xref/">Facade 0.y</a> -->
+<!--					<br/></li>-->
+					<!--
+						sources http:// .... should be aggregated
+						test-sources http:// .... should be aggregated
+						javadoc http:// .... should be aggregated
+						coverage http:// .... should be aggregated
+						... tasktags, pmd, cpd, findbugs, etc possible as well?
+					-->
+<!--				<li>Documentation Version- <a href="http://josceleton.sourceforge.net/documentation/josceleton/${foobar1}/core-api">Core API</a>, etc-->
+<!--					<br/><br/></li>-->
+
+				<li>Documentation Repository - <a href="http://josceleton.sf.net/documentation">http://josceleton.sf.net/documentation</a></li>
+				<li>Maven Snapshot Repository - <a href="http://josceleton.sf.net/maven/release">http://josceleton.sf.net/maven/release</a></li>
+				<li>Maven Release Repository - <a href="http://josceleton.sf.net/maven/snapshot">http://josceleton.sf.net/maven/snapshot</a></li>
+			</ul>
+		
+			<h4>Backstage Tools</h4>
+			
+			<ul>
+				<li><b>OSCeleton</b> - <a href="https://github.com/Sensebloom/OSCeleton" target="_blank">https://github.com/Sensebloom/OSCeleton</a></li>
+				<li><b>Java OSC</b> - <a href="http://illposed.com/software/javaosc.html" target="_blank">http://illposed.com/software/javaosc.html</a></li>
+				<li>Apache Maven - <a href="http://maven.apache.org" target="_blank">http://maven.apache.org</a></li>
+				<li>Google Guice - <a href="http://code.google.com/p/google-guice" target="_blank">http://code.google.com/p/google-guice</a></li>
+				<li>TestNG - <a href="http://testng.org" target="_blank">http://testng.org</a></li>
+				<li>JMock - <a href="http://jmock.org" target="_blank">http://jmock.org</a></li>
+<!--				<li><b></b> - <a href="" target="_blank"></a></li>-->
+			</ul>
+			
+<!--			<h4>Kinect Hacks</h4>-->
+<!--			<ul>-->
+<!--				<li> - <a href="" taget="_blank"></a></li>-->
+<!--				<li>Video of ... - <a href="" target="_blank"></a></li>-->
+<!--			</ul>-->
+			
+		</section>
+		
+	</body>
+</document>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Download</title>
+	</properties>
+	<body>
+	
+		<section name="Download">
+			
+			<h3>Binary Packages</h3>
+			
+				<p>
+					None yet, but soon more is coming -stay tuned :)
+				</p>
+			
+			<h3>Maven Dependency Management</h3>
+			
+				<h4>Add Remote Repositories</h4>
+				
+				<p>
+					To be able to use Josceleton artifacts via Maven, you first have to configure two repositories in your <code>~/.m2/settings.xml</code> file:
+				</p>
+				<!-- MINOR @DOC anmerken unterschied profile.activeByDefault vs activeProfiles.activeProfile -->
+				<!-- + bsp schreiben + sagen, dass (anscheinbar) keinen unterschied gibt + vertrauenswuerdige url fuer diese tatsache liefern -->
+				
+				<source><![CDATA[
+<settings>
+  <profiles>
+
+    <profile>
+      <id>josceleton-profile</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>josceleton-repo-snapshot</id>
+          <url>http://josceleton.sourceforge.net/maven/snapshot/</url>
+          <releases><enabled>false</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>josceleton-repo-release</id>
+          <url>http://josceleton.sourceforge.net/maven/release/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+      </repositories>
+    </profile>
+
+  </profiles>
+</settings>
+
+]]></source>
+			
+				<h4>Add Dependency</h4>
+				
+				<p>Declare a common Maven dependency for Josceleton in your <code>pom.xml</code> file:</p>
+				
+				<source><![CDATA[
+<project>
+  <dependencies>
+
+    <dependency>
+      <groupId>net.sf.josceleton</groupId>
+      <artifactId>josceleton</artifactId>
+      <version>0.1</version>
+    </dependency>
+
+  </dependencies>
+</project>
+]]></source>
+				
+<!-- MINOR @SITE pom sample, dass wenn leute selber guice verwenden (aop & assisted) verwenden, dann excluden
+
+		<dependency>
+			<groupId>net.sf.josceleton</groupId>
+			<artifactId>josceleton</artifactId>
+			<exclusions>
+				::COMMENT:: exclude josceleton's own guice dependency ::COMMENT::
+				<exclusion>
+		            <groupId> net.sf.josceleton.thirdparty.com.google.code.guice </groupId>
+		            <artifactId> guice-dependencies </artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>com.google.code.guice _ guice _ 2.0</dependency>
+		-->
+			
+		</section>
+		
+	</body>
+</document>
+

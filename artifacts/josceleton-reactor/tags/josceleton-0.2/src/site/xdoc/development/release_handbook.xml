@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Release Handbook</title>
+	</properties>
+	<body>
+	
+		<section name="Release Handbook">
+			
+			<p>
+				This handbook is realized by providing a template one should use when creating a new release.
+			</p>
+			
+			<h4>Process Overview</h4>
+			
+			<ol>
+				<li><b>Preprations:</b> Cleanup Code, Update Documentation, Update Maven Versions</li>
+				<li><b>Create Tag:</b> Final Checks, Create Subversion Tags with Release Plugin</li>
+				<li><b>Postparations:</b> Manual Checks, Upload Distribution Packages, Update SourceForge</li>
+				<li><b>Plan new Release (optional):</b> Cleanup To Dos, Update Roadmaps</li>
+			</ol>
+			
+			<h4>Release Plan Template</h4>
+			
+			<p>
+				Copy the form below and create a new release plan in subversion, e.g.: 
+			</p>
+			
+			<p align="center">
+				<a href="http://josceleton.svn.sourceforge.net/viewvc/josceleton/project_management/release_plan/v0_2.txt">
+					<code>https://josceleton.svn.sourceforge.net/svnroot/josceleton/project_management/release_plan/v0_2.txt</code>
+				</a>
+			</p>
+			
+			<!-- MINOR @DOC would be nice to have a "copy-to-clipboard button" on page, to copy release plan template -->
+			<source>
+
+	// REMEMBER to keep release guide updated!
+
+	/*******************************************************************\
+	|  PREPARATIONS                                                     |
+	\*******************************************************************/
+
+	CLEANUP CODE
+	=====================================================================
+XXXX	* resolve all warnings from: eclipse, compiler, checkstyle
+XXXX	* resolve "extended" warnings from: findbugs, pmd, cpd, ...
+XXXX	* resolve tasktags: NO high-prio tasks ("FIXMEs"), preferrably no med-prio ("TODOs")
+	
+	UPDATE DOCUMENTATION
+	=====================================================================
+		// no new planning, just freezing things
+XXXX	* update changelog (metrics!)
+XXXX	* update roadmap
+	
+	UPDATE MAVEN VERSIONS
+	=====================================================================
+XXXX	* update pom versions for parent references and dependencies
+
+
+	/*******************************************************************\
+	|  CREATE TAGS                                                      |
+	\*******************************************************************/
+
+	FINAL VERIFICATIONS
+	=====================================================================
+XXXX	* get sure everything is updated to head
+XXXX	* get sure you have really nothing forgotten!
+	
+	TAG WITH RELEASE PLUGIN
+	=====================================================================
+		// usually not for reactors
+		?????????????????? anything else ???????????????
+XXXX	* figure out proper release plugin commands
+XXXX	* release:prepare
+XXXX	* release:perform // will deploy artifact and site
+
+
+	/*******************************************************************\
+	|  POSTPARATIONS                                                    |
+	\*******************************************************************/
+
+	MANUAL VERIFICATION
+	=====================================================================
+XXXX	* check everything was deployed (www./maven/release/xx, www./documentation/xx)
+XXXX	* check site (links are working, samples compile and run, referenced versions are all up2date)
+XXXX	* clean local mvn repo and give it a shot yourself
+	
+	
+	ASSEMBLY DISTRIBUTION PACKAGES
+	=====================================================================
+		????????????????
+	
+	UPDATE SOURCEFORGE PROJECT
+	=====================================================================		
+XXXX	* create news entry
+		!!!!!!!!!!!! upload release files
+
+
+	/*******************************************************************\
+	|  PLAN NEW RELEASE (optional)                                      |
+	\*******************************************************************/
+
+	CLEANUP ALL KIND OF TODOS
+	=====================================================================
+XXXX	* reorganize/reprioritize tasktags; move time into todo textfiles ("notes.txt") 
+XXXX	* reorganize luxury todos ("luxury_todos.txt")
+XXXX	* move issues (simple ones should be merged in packages) to mantis queue
+	
+	CREATE ROADMAPS
+	=====================================================================
+XXXX	* create mantis issues based on mantis queue
+XXXX	* set proper target version for issues
+XXXX	* update documentation roadmap ("roadmap.xml") based on mantis roadmap
+
+</source>
+
+		</section>
+		
+	</body>
+</document>

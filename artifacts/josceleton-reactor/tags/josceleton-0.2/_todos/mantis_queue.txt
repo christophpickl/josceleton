@@ -1,0 +1,10 @@
+
+
+enhance build
+========================================================================
+* move project-info-report -plugin from abstract-pom to corporate-pom
+  (especially move the version as it generates a warning in output)
+* set different compiler settings in release profile
+  see: http://www.sonatype.com/books/mvnref-book/reference/profiles-sect-maven-profiles.html
+  eg: <profile><id>production</id><build><plugins><plugin>
+      <artifactId>maven-compiler-plugin</artifactId><configuration><debug>false</debug>4<optimize>true</optimize></configuration>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	
+	<properties>
+		<title>Not Found</title>
+	</properties>
+	
+	<body>
+	
+		<section name="Error 404 - Not found">
+		
+			<p>
+				Unfortunately your requested page could not be found :(
+			</p>
+			<p>
+				Please try the <a href="http://josceleton.sf.net/">start page</a> to get back on the right track ;)
+			</p>
+		
+		</section>
+		
+	</body>
+	
+</document>
+ 

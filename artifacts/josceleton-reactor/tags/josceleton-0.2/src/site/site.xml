@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Josceleton">
+
+	<bannerLeft>
+		<name>Josceleton</name>
+	</bannerLeft>
+	
+	<body>
+		
+		<menu name="Overview (for Users)">
+			<item name="Introduction" href="index.html" /><!-- a.k.a. "about", "home" -->
+			<item name="Download" href="download.html" /> 
+			<item name="Samples" href="samples.html" />
+<!--			<item name="FAQ/Help/Contact" href="..." />-->
+			<item name="Links" href="links.html" />
+		</menu>
+		
+		<menu name="Internals (for Developers)">
+			<item name="Changelog" href="development/changelog.html" />
+			<item name="Roadmap" href="development/roadmap.html" />
+			<item name="Release Handbook" href="development/release_handbook.html" />
+			<item name="Code Metrics" href="development/code_metrics.html" />
+			
+<!--			<item name="Development" href="development/development.html" />-->
+<!--			<item name="Coding Policy" href="development/coding_policy.html" />-->
+		</menu>
+		
+		<!-- TODO @SITE submodules; not, this is (maybe not!) the reason a reactor should be deployed here => also relativ (version _independent_) href paths would be possible! -->
+<!--		<menu name="Submodules">-->
+<!--			<item name="Core Implementation" href="/artifacts/net.sf.josceleton/core-impl/0.1-SNAPSHOT/java-abstract-pom/java-pom/core-impl/" />-->
+<!--			<item name="Core Implementation" href="....html" /> -->
+<!--		</menu>-->
+		
+		<menu ref="reports" />
+		
+	</body>
+	
+</project>
