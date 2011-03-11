@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     
     <artifactId>connection-api</artifactId>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -47,9 +47,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/tags/connection-api-0.2</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/tags/connection-api-0.2</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/tags/connection-api-0.2</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/connection-api/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/connection-api/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/connection-api/</url>
     </scm>
     
 </project>
