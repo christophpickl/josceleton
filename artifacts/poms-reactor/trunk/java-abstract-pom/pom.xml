@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
     
     <artifactId>java-abstract-pom</artifactId>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
     
     <!-- MINOR @POM REFACTOR split up java-abstract-pom into java-abstract-abstract-pom -->
     <!-- abstract-abstract-pom ... slim core pom with building section (one can only inherit from here, eg to speed up things) -->
@@ -805,9 +805,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/java-abstract-pom-0.2</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/java-abstract-pom-0.2</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/java-abstract-pom-0.2</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-abstract-pom/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-abstract-pom/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/trunk/java-abstract-pom/</url>
     </scm>
 	
 </project>
