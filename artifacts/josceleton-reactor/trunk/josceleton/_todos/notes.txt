@@ -1,3 +1,43 @@
+
+===== TODOS while building v0.2
+* m2eclipse plugin fine tunen
+- write handbook on how to execute manual tests after release built
+! getaggte version 0.1 alles auschecken, und neu alles deployen!
+* LUXURY @DOC welche properties kann man fuer xdoc seiten alles angeben?
+* LUXURY @DOC page fuer internal devs: (aehnlich wie "workspace setup") ssh command, welche shellscripts nuetzlich sein koennen, welche profile es gibt + was machen sie, ...
+- "josceleton gui debug app" ist ein subprojekt (in mantis), und hat komplett separate versionierung!
+* LUXURY @BUILD diese mvn plugins anschaun: help-plugin, idea-plugin, one-plugin, verifier-plugin 
+*site, info about styles
+	h3 == subsection ... pfeil icon, grey bg, black font
+	h4 ... underlined, white bg, grey font
+@site: viele direkt style-attribute zuweisungs hacks => style anpassen und gscheit mit style-klassen arbeiten!
+* @midi rerouter module: das hat josceleton nur als optional=true dependency drinnen!
+- @checkstyle: es gibt kein warning, wenn man static members nicht voll qualifiziert
+- @build: introduce -Pfast profile (disables sites + tests + other checks)
+! @site: can sourceforge web analyzer anschalten?
+* add multimedia stuff: diagram of architecture,
+  @coding guideline ... fluent interfaces, no classes just interfaces (especially for public APIs), immutability, testability, SoC, DRY ~KISS, decoupling, max size violation(methods, classes, packages, modules, reactors, projects), ...
+- um metrik "static methods/classes" runterzubekommen, irgendwie das Body enum besser ausloesen (oder ganz oarg: ganz rausgeben aus jocseleton reactor ;)
+* am besten aus ganze metriken ein (mehrere) flex chart(s) machen, und als swf einbinden
+- @oorporate-pom: README.txt mit inhalt fuellen (gscheit ueberall distributen)
+!!!! unbedingt java-abstract-pom (800 Lines) aufsplitten
+	!! inzwischen auch schon bei corporate-pom (500 Lines) notwendig // java-pom hat noch vertraegliche 400 Lines
+-- mvn2_and_3_parallel-setmvn.sh als site dokumentieren/ersetzen
+- @Shellscript: write output to timestamped log file
+! @Shellscript: fuer ./release.sh auch in config schon versionen angeben, damit voll interaktiv ist
+! @Shellscript: release und for_all script haben duplikaten code; waere auch gut fuer release.sh eine duration message zu haben
+! @Shellscript: das ganze kann man ueberhaupt fett ausbauen
+	... fast schon ganzen release process automatisieren
+		eigentlich, wenn man alles interaktiv macht, mit einfach meldung ausgeben "please confirm bla bla x y", und dann mit <enter> weiter gehen und confirmen
+	* man kann sich viele paths ersparen, weil man vorher mit svn alles ausgecheckt => braucht also nur (temporary) workspace // sowas wie merger-manager ;)
+// INFO: ein voller build mit release.sh hat fuer v0.2 45min gebraucht
+* bzgl spinoffs
+	!! ~"debug gui" ... FIX!
+	- josceleton+midi rerouter ... JA, fuern hirt
+	- josceleton+mindstorm ... LUXURY, NICE ;)
+	- NO maven invoker ... LUXURY, NAJA => m2eclipse anschaun!
+
+===== UNSORTED OLD
 ! @doc metriken updaten; ueber tests zu finden unter: http://josceleton.sourceforge.net/surefire-report.html (muss halt noch aggregiert werden, halt haendisch machen, ka problem)
 ? use clover, cobertura, or emma ?
 	// clover kann aggregieren (checkstyle und javadoc auch)
@@ -12,7 +52,7 @@
 
 
 ==========================================
-TODO * upcoming *
+TODO * OLD upcoming *
 ==========================================
 !!! viele tasktags koennen verschoben werden in luxury.txt (muss halt dann zusaetzlich referenz dazu schreiben, woher dieses tasktag kommt)
 ! move some /misc stuff directly into /josceleton-reactor/_misc; zb todo lists (damit sie auch mitgetagged werden)

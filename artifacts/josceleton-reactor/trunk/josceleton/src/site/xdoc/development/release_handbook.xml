@@ -1,122 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
-	<properties>
-		<title>Release Handbook</title>
-	</properties>
-	<body>
+    xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+    <properties>
+        <title>Release Handbook</title>
+    </properties>
+    <body>
+    
+        <section name="Release Handbook">
+            
+            <p>
+                This handbook is realized by providing a template one should use when creating a new release.
+            </p>
+            
+            <h4>Process Overview</h4>
+            
+            <ol>
+                <li><b>Preprations:</b> Cleanup Code, Update Documentation, Update Maven Versions</li>
+                <li><b>Create Tag:</b> Final Checks, Create Subversion Tags with Release Plugin</li>
+                <li><b>Postparations:</b> Manual Checks, Upload Distribution Packages, Update SourceForge</li>
+                <li><b>Plan new Release (optional):</b> Cleanup To Dos, Update Roadmaps</li>
+            </ol>
+            
+            <h4>Release Plan Template</h4>
+            
+            <p>
+                Copy the form below and create a new release plan in subversion, e.g.: 
+            </p>
+            
+            <p align="center">
+                <a href="http://josceleton.svn.sourceforge.net/viewvc/josceleton/project_management/release_plan/v0_2.txt">
+                    <code>https://josceleton.svn.sourceforge.net/svnroot/josceleton/project_management/release_plan/v0_2.txt</code>
+                </a>
+            </p>
+            
+            <!-- MINOR @DOC would be nice to have a "copy-to-clipboard button" on page, to copy release plan template -->
+            <source><![CDATA[
+    // REMEMBER to keep release guide updated!
+
+     /*******************************************************************\
+     |  PREPARATIONS                                                     |
+     \*******************************************************************/
+
+     CLEANUP CODE
+     =====================================================================
+XXXX * resolve all warnings from: eclipse, compiler, checkstyle
+XXXX * resolve "extended" warnings from: findbugs, pmd, cpd, ...
+XXXX * resolve tasktags: NO high-prio tasks ("FIXMEs"), preferrably no med-prio ("TODOs")
+XXXX * ensure stable build "mvn verify" // use provided release shellscript
+    
+     UPDATE DOCUMENTATION
+     =====================================================================
+     // no new planning, just freezing things ;)
+XXXX * update roadmap site: remove section about currently deploying version
+XXXX * update changelog site: add subsection about new version
+XXXX * update changelog site: update (aggregated and per-project) metrics
+    
+     UPDATE MAVEN VERSIONS - FIXATE
+     =====================================================================
+XXXX * figure out proper artifacts which have to be bumped up (note version numbers)
+XXXX * reference future tagged release versions (for parent and dependencies) and commit changes
+       // pay special attention to java-pom
+
+
+     /*******************************************************************\
+     |  CREATE TAGS                                                      |
+     \*******************************************************************/
+
+     FINAL VERIFICATIONS
+     =====================================================================
+XXXX * ensure workspace is updated to head (if not using a fresh checkout)
+XXXX * again ensure stable build "mvn verify" // use provided release shellscript
+XXXX * ensure you have really nothing forgotten :)
+    
+     TAG WITH RELEASE PLUGIN
+     =====================================================================
+     // ATTENTION: !!! maven 2 only !!! do not tag reactors; only submodules directly !!!
+XXXX * configure shellscript data for mvn_scripts/release.sh
+XXXX * open shell; e.g.: $ ssh -t christoph_pickl,josceleton@shell.sf.net create
+XXXX * please check again all pom versions are correct (you dont want to mess up the build, its not worth your time ;)
+
+XXXX * execute mvn_scripts/release.sh and have a cup of tea, this can take a while ...
+       ... actually not, you still have to confirm (the default) version numbers; yes, there is room for improvement!
+       // release-plugin will create tags, deploy artifacts, bump up versions and commit changes for you
+       // artifacts == site, poms, jars, test-jars, sources, javadoc
+
+
+     /*******************************************************************\
+     |  MANUAL CHECKS                                                    |
+     \*******************************************************************/
 	
-		<section name="Release Handbook">
-			
-			<p>
-				This handbook is realized by providing a template one should use when creating a new release.
-			</p>
-			
-			<h4>Process Overview</h4>
-			
-			<ol>
-				<li><b>Preprations:</b> Cleanup Code, Update Documentation, Update Maven Versions</li>
-				<li><b>Create Tag:</b> Final Checks, Create Subversion Tags with Release Plugin</li>
-				<li><b>Postparations:</b> Manual Checks, Upload Distribution Packages, Update SourceForge</li>
-				<li><b>Plan new Release (optional):</b> Cleanup To Dos, Update Roadmaps</li>
-			</ol>
-			
-			<h4>Release Plan Template</h4>
-			
-			<p>
-				Copy the form below and create a new release plan in subversion, e.g.: 
-			</p>
-			
-			<p align="center">
-				<a href="http://josceleton.svn.sourceforge.net/viewvc/josceleton/project_management/release_plan/v0_2.txt">
-					<code>https://josceleton.svn.sourceforge.net/svnroot/josceleton/project_management/release_plan/v0_2.txt</code>
-				</a>
-			</p>
-			
-			<!-- MINOR @DOC would be nice to have a "copy-to-clipboard button" on page, to copy release plan template -->
-			<source>
-
-	// REMEMBER to keep release guide updated!
-
-	/*******************************************************************\
-	|  PREPARATIONS                                                     |
-	\*******************************************************************/
-
-	CLEANUP CODE
-	=====================================================================
-XXXX	* resolve all warnings from: eclipse, compiler, checkstyle
-XXXX	* resolve "extended" warnings from: findbugs, pmd, cpd, ...
-XXXX	* resolve tasktags: NO high-prio tasks ("FIXMEs"), preferrably no med-prio ("TODOs")
+	// yes... one should do it :)
 	
-	UPDATE DOCUMENTATION
-	=====================================================================
-		// no new planning, just freezing things
-XXXX	* update changelog (metrics!)
-XXXX	* update roadmap
-	
-	UPDATE MAVEN VERSIONS
-	=====================================================================
-XXXX	* update pom versions for parent references and dependencies
+     QUICK LINKS
+     =====================================================================
+XXXX * subversion tag existing:
+       http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/tags/josceleton-<VERSION>/
+XXXX * release artifact was deployed:
+       http://josceleton.sourceforge.net/maven/release/net/sf/josceleton/josceleton/<VERSION>/
+XXXX * site documentation was deployed:
+       http://josceleton.sourceforge.net/documentation/corporate-pom/<VERSION>/
+       
+     SITE DOCUMENTATION
+     =====================================================================
+XXXX * main site was deployed: (clean cache, and compare version numbers)
+       http://josceleton.sf.net
+XXXX * go through site (links are working, samples compile and run, referenced versions are all up2date)
+
+     DISTRIBUTION PACKAGES
+     =====================================================================
+XXXX * create dummy project in eclipse and use jar-with-dependencies-imploded.jar for a quick test
+XXXX * ... do same for lib-exploded jar
+XXXX * clean local mvn repo (rm repo/net/sf/josceleton/*) and run ~"some maven sample app"
+    
+
+     /*******************************************************************\
+     |  POSTPARATIONS                                                    |
+     \*******************************************************************/
+     
+     UPDATE MAVEN VERSIONS - SNAPSHOT
+     =====================================================================
+XXXX * reference new snapshot versions (for parent and dependencies) and commit changes
+       // pay special attention to java-pom
+    
+     ASSEMBLY DISTRIBUTION PACKAGES
+     =====================================================================
+     N/A ... something like: 
+     
+    
+     UPDATE SOURCEFORGE PROJECT
+     =====================================================================        
+XXXX * create news entry
+     * N/A upload release files // go into /target/checkout/xyz/target/assemblies and pick files
 
 
-	/*******************************************************************\
-	|  CREATE TAGS                                                      |
-	\*******************************************************************/
+     /*******************************************************************\
+     |  PREPARE NEW RELEASE (optional)                                   |
+     \*******************************************************************/
 
-	FINAL VERIFICATIONS
-	=====================================================================
-XXXX	* get sure everything is updated to head
-XXXX	* get sure you have really nothing forgotten!
-	
-	TAG WITH RELEASE PLUGIN
-	=====================================================================
-		// usually not for reactors
-		?????????????????? anything else ???????????????
-XXXX	* figure out proper release plugin commands
-XXXX	* release:prepare
-XXXX	* release:perform // will deploy artifact and site
-
-
-	/*******************************************************************\
-	|  POSTPARATIONS                                                    |
-	\*******************************************************************/
-
-	MANUAL VERIFICATION
-	=====================================================================
-XXXX	* check everything was deployed (www./maven/release/xx, www./documentation/xx)
-XXXX	* check site (links are working, samples compile and run, referenced versions are all up2date)
-XXXX	* clean local mvn repo and give it a shot yourself
-	
-	
-	ASSEMBLY DISTRIBUTION PACKAGES
-	=====================================================================
-		????????????????
-	
-	UPDATE SOURCEFORGE PROJECT
-	=====================================================================		
-XXXX	* create news entry
-		!!!!!!!!!!!! upload release files
+     CLEANUP ALL KIND OF TODOS
+     =====================================================================
+XXXX * reorganize/reprioritize tasktags; move time into todo textfiles ("notes.txt") 
+XXXX * reorganize luxury todos ("luxury_todos.txt")
+XXXX * move issues (simple ones should be merged in packages) to mantis queue
+    
+     CREATE ROADMAPS
+     =====================================================================
+XXXX * create mantis issues based on mantis queue
+XXXX * set proper target version for issues
+XXXX * update documentation roadmap ("roadmap.xml") based on mantis roadmap
 
 
-	/*******************************************************************\
-	|  PLAN NEW RELEASE (optional)                                      |
-	\*******************************************************************/
+     [INFO] BUILD SUCCESSFUL :)
+]]></source>
 
-	CLEANUP ALL KIND OF TODOS
-	=====================================================================
-XXXX	* reorganize/reprioritize tasktags; move time into todo textfiles ("notes.txt") 
-XXXX	* reorganize luxury todos ("luxury_todos.txt")
-XXXX	* move issues (simple ones should be merged in packages) to mantis queue
-	
-	CREATE ROADMAPS
-	=====================================================================
-XXXX	* create mantis issues based on mantis queue
-XXXX	* set proper target version for issues
-XXXX	* update documentation roadmap ("roadmap.xml") based on mantis roadmap
-
-</source>
-
-		</section>
-		
-	</body>
+        </section>
+        
+    </body>
 </document>
