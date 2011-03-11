@@ -17,6 +17,7 @@
         <groupId>net.sf.josceleton</groupId>
         <artifactId>corporate-pom</artifactId>
         <version>0.3-SNAPSHOT</version>
+        <relativePath>../josceleton-corporate-pom/</relativePath>
     </parent>
     
     

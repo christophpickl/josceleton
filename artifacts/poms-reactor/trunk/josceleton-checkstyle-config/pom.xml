@@ -22,7 +22,7 @@
     <parent>
     	<groupId>net.sf.josceleton</groupId>
 	    <artifactId>corporate-pom</artifactId>
-        <version>0.2</version>
+        <version>0.3-SNAPSHOT</version>
 <!--        <relativePath>../../[josceleton-]corporate-pom/</relativePath>-->
     </parent>
     
@@ -33,7 +33,7 @@
 			<plugin>
 				<groupId>org.codehaus.groovy.maven</groupId>
 				<artifactId>gmaven-plugin</artifactId>
-				<version>1.0</version>
+				<version>1.0</version><!-- MINOR @POM move all version numbers centrally in properties section -->
 				<executions>
 					<execution>
 						<id>process-checkstyle_xml-groovyscript</id>

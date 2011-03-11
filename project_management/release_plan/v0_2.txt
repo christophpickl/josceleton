@@ -18,10 +18,10 @@ DONE	* update roadmap site: remove section about currently deploying version
 DONE	* update changelog site: add subsection about new version
 ~DONE	* update changelog site: update (aggregated and per-project) metrics
 	
-	UPDATE MAVEN VERSIONS
+	UPDATE MAVEN VERSIONS - FIXATE
 	=====================================================================
 DONE	* figure out proper artifacts which have to be bumped up
-DONE	* update pom versions for parent references and dependencies
+DONE	* reference future tagged release versions (for parent and dependencies)
 			// especially pay attention to java-pom
 
 
@@ -42,7 +42,7 @@ DONE	* configure shellscript data for mvn_scripts/release.sh
 DONE	* open shell; e.g.: $ ssh -t christoph_pickl,josceleton@shell.sf.net create
 DONE	* please check again all pom versions are correct (you dont want to mess up the build, its not worth your time ;)
 
-XXXX	* execute mvn_scripts/release.sh and have a cup of tea, this can take a while ...
+DONE	* execute mvn_scripts/release.sh and have a cup of tea, this can take a while ...
 		  ... actually not, you still have to confirm (the default) version numbers
 		// release-plugin will create tags, deploy artifact and site, bump up versions and commit
 
@@ -53,12 +53,22 @@ XXXX	* execute mvn_scripts/release.sh and have a cup of tea, this can take a whi
 
 	MANUAL CHECKS
 	=====================================================================
-XXXX	* release artifact was deployed: http://josceleton.sourceforge.net/maven/release/net/sf/josceleton/josceleton-reactor/<VERSION>/
-XXXX	* site documentation was deployed: http://josceleton.sourceforge.net/documentation/corporate-pom/<VERSION>/
-XXXX	* main site was deployed: http://josceleton.sf.net
-XXXX	* subversion tag existing: http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/tags/josceleton-<VERSION>/
-XXXX	* go through site (links are working, samples compile and run, referenced versions are all up2date)
-XXXX	* clean local mvn repo (rm repo/net/sf/josceleton/*) and run some maven sample app
+DONE	* subversion tag existing:
+			http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/tags/josceleton-<VERSION>/
+DONE	* release artifact was deployed:
+			http://josceleton.sourceforge.net/maven/release/net/sf/josceleton/josceleton/<VERSION>/
+DONE	* site documentation was deployed:
+			http://josceleton.sourceforge.net/documentation/corporate-pom/<VERSION>/
+DONE	* main site was deployed: (clean cache, and compare version numbers)
+			http://josceleton.sf.net
+DONE	* go through site (links are working, samples compile and run, referenced versions are all up2date)
+!!!! some links broken, in samples referenced old 0.1 version
+DONE	* clean local mvn repo (rm repo/net/sf/josceleton/*) and run some maven sample app
+	
+	UPDATE MAVEN VERSIONS - SNAPSHOT
+	=====================================================================
+DONE	* reference new snapshot versions (for parent and dependencies)
+! josceleton facade module got coverage overridden with 0%; it was 100% nevertheless ;) 
 	
 	ASSEMBLY DISTRIBUTION PACKAGES
 	=====================================================================
@@ -66,7 +76,7 @@ XXXX	* clean local mvn repo (rm repo/net/sf/josceleton/*) and run some maven sam
 	
 	UPDATE SOURCEFORGE PROJECT
 	=====================================================================		
-XXXX	* create news entry
+DONE	* create news entry
 		N/A upload release files
 
 

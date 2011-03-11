@@ -16,19 +16,10 @@
     <parent>
 		<groupId>net.sf.josceleton</groupId>
 		<artifactId>java-pom</artifactId>
-		<version>0.2</version>
-    	<relativePath>../../poms-reactor/java-pom/</relativePath>
+        <version>0.3-SNAPSHOT</version>
+    	<relativePath>../../josceleton-poms-reactor/java-pom/</relativePath>
 	</parent>
 	
-	
-    <!-- ******************************************************************* -->
-    <!--                         P R O P E R T I E S                         -->
-    <!-- ******************************************************************* -->
-	
-    <properties>
-    	<coverage.percent>0</coverage.percent>
-    </properties>
-    
     
     <!-- ******************************************************************* -->
     <!--                       D E P E N D E N C I E S                       -->
@@ -85,7 +76,7 @@
 		<site>
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton site server @sourceforge</name>
-			<!-- MINOR @POM possible to deploy site to two different locations? -->
+			<!-- TODO @POM possible to deploy site to two different locations? (or how else to solve?) -->
 <!--			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>-->
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
 		</site>
