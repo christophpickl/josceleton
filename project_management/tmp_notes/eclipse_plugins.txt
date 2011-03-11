@@ -48,4 +48,3 @@ GENERAL RECOMMENDED PLUGINS
 - JAD decompiler
 - m2eclipse (maven integration)
 - grepconsole (coloured console output)
-// shelled (shellscript editor)

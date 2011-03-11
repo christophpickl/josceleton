@@ -23,5 +23,5 @@
 10.03. - 19:00 -  5h - #4 site: code metrics page; prepared release v0.2
               ~~ 80h~~
 11.03. - 00:00 -  2h - releasing v0.2
-11.03. - 02:00 -  h - executing post release tasks (mantis, roadmap, notes/todos reorganisation)
-              ~~ 82h~~
+11.03. - 02:00 -  4h - mostly notes/todos reorganisation (post release tasks, mantis, roadmap)
+              ~~ 86h~~

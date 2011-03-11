@@ -1,145 +1,34 @@
 
-===== TODOS post release tasks for v0.2 (cleaning up tasktags)
 
+==========================================
+TODO * upcoming *
+==========================================
+! @site: hide email addresses via captcha (https://maven.apache.org/plugins/maven-project-info-reports-plugin/faq.html#How_to_hide_developercontributor_addresses)
 
-
-===== TODOS while building v0.2
-
-- CLEAN UP BUILD OUTPUT:
-	1. log4j while testing ("log4j:WARN No appenders")
-	2. some sys.err message in surefire tests (for core-impl)
-		WARN   addListener, Not added listener [net.sf.josceleton.core.api.test.DummyListener@2cba5bdb] as it was yet added!
-		WARN   removeListener, Not removed listener [net.sf.josceleton.core.api.test.DummyListener@2cba5bdb] as it was not yet added!
-* m2eclipse plugin fine tunen
-- write handbook on how to execute manual tests after release built
 ! getaggte version 0.1 alles auschecken, und neu alles deployen!
-* LUXURY @DOC welche properties kann man fuer xdoc seiten alles angeben?
-* LUXURY @DOC page fuer internal devs: (aehnlich wie "workspace setup") ssh command, welche shellscripts nuetzlich sein koennen, welche profile es gibt + was machen sie, ...
-- "josceleton gui debug app" ist ein subprojekt (in mantis), und hat komplett separate versionierung!
-* LUXURY @BUILD diese mvn plugins anschaun: help-plugin, idea-plugin, one-plugin, verifier-plugin 
-*site, info about styles
-	h3 == subsection ... pfeil icon, grey bg, black font
-	h4 ... underlined, white bg, grey font
-@site: viele direkt style-attribute zuweisungs hacks => style anpassen und gscheit mit style-klassen arbeiten!
-* @midi rerouter module: das hat josceleton nur als optional=true dependency drinnen!
-- @checkstyle: es gibt kein warning, wenn man static members nicht voll qualifiziert
-- @build: introduce -Pfast profile (disables sites + tests + other checks)
-! @site: can sourceforge web analyzer anschalten?
-* add multimedia stuff: diagram of architecture,
-  @coding guideline ... fluent interfaces, no classes just interfaces (especially for public APIs), immutability, testability, SoC, DRY ~KISS, decoupling, max size violation(methods, classes, packages, modules, reactors, projects), ...
-- um metrik "static methods/classes" runterzubekommen, irgendwie das Body enum besser ausloesen (oder ganz oarg: ganz rausgeben aus jocseleton reactor ;)
-* am besten aus ganze metriken ein (mehrere) flex chart(s) machen, und als swf einbinden
-- @oorporate-pom: README.txt mit inhalt fuellen (gscheit ueberall distributen)
-!!!! unbedingt java-abstract-pom (800 Lines) aufsplitten
-	!! inzwischen auch schon bei corporate-pom (500 Lines) notwendig // java-pom hat noch vertraegliche 400 Lines
--- mvn2_and_3_parallel-setmvn.sh als site dokumentieren/ersetzen
-- @Shellscript: write output to timestamped log file
-! @Shellscript: fuer ./release.sh auch in config schon versionen angeben, damit voll interaktiv ist
-! @Shellscript: release und for_all script haben duplikaten code; waere auch gut fuer release.sh eine duration message zu haben
-! @Shellscript: das ganze kann man ueberhaupt fett ausbauen
-	... fast schon ganzen release process automatisieren
-		eigentlich, wenn man alles interaktiv macht, mit einfach meldung ausgeben "please confirm bla bla x y", und dann mit <enter> weiter gehen und confirmen
-	* man kann sich viele paths ersparen, weil man vorher mit svn alles ausgecheckt => braucht also nur (temporary) workspace // sowas wie merger-manager ;)
-// INFO: ein voller build mit release.sh hat fuer v0.2 45min gebraucht
-* bzgl spinoffs
-	!! ~"debug gui" ... FIX!
-	- josceleton+midi rerouter ... JA, fuern hirt
-	- josceleton+mindstorm ... LUXURY, NICE ;)
-	- NO maven invoker ... LUXURY, NAJA => m2eclipse anschaun!
-
-===== UNSORTED OLD
-! @doc metriken updaten; ueber tests zu finden unter: http://josceleton.sourceforge.net/surefire-report.html (muss halt noch aggregiert werden, halt haendisch machen, ka problem)
-? use clover, cobertura, or emma ?
-	// clover kann aggregieren (checkstyle und javadoc auch)
-- @site: hide email addresses via captcha (https://maven.apache.org/plugins/maven-project-info-reports-plugin/faq.html#How_to_hide_developercontributor_addresses)
-* jira site report ist kuhl: http://mojo.codehaus.org/taglist-maven-plugin/jira-report.html
-* changelog plugin, siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changelog.html
-* changes plugin siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changes-report.html
--- developer activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/dev-activity.html
-* file activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/file-activity.html
-- @build fix that tests are not run twice because of surefire: https://maven.apache.org/plugins/maven-surefire-report-plugin/faq.html
-- shelled (eclipse shellscript editor plugin) installation failed... :(
-
-
-==========================================
-TODO * OLD upcoming *
-==========================================
-!!! viele tasktags koennen verschoben werden in luxury.txt (muss halt dann zusaetzlich referenz dazu schreiben, woher dieses tasktag kommt)
-! move some /misc stuff directly into /josceleton-reactor/_misc; zb todo lists (damit sie auch mitgetagged werden)
-??? wenn released, wie behandelt man reactor (josceleton-reactor) projekte?
-	A. einfach mvn release:prepare in reactor => gibts error
-	B. per submodul (haendisch, aufwaendig)
-	!!!!! + was mitm reactor machen? (brauch zb src/site auch getagged) // mittels profil submodule raus is ja auch nicht das wahre...
-		=> es muss aber gehen, dass man einzelne submodule nicht tagged (wenn zb nur in connection-impl was anderes, commons aber bleibt) => dh doch auf reactor ebene ausfuehren, aber dann einzelne module interaktiv nein sagen koennen
-! pom structure wie von bwin zettel wieder herholen (nachzeichnen & auf wand aufhaengen)
-- maven-checkstyle-plugin leute frage ob/wann MethodCount unterstuetzt wird // wird nicht vom mvn-plugin gefressen (sogar nicht neueste 2.6 version); wird aber von eclipse-cs gesetzt :(
-
-==========================================
-TODO * code *
-==========================================
-- maybe rename user.getId() to user.getUniqueId() ... otherwise one could be confused what id is, compared to osceletonId
-!!! @code: BodyRecentStorage.getBodyPartCoordinate(BodyPart):Coordinate THROWS NoCoordinatesDataAvailableException == CheckedException!
-	... es kann ja sein, dass noch gar keine daten verfuegbar sind, wenn zb kamera fuesse no net gsehn hat, und man fussdaten haben will
-! check all custom equals implementations, if they are checking instanceof against interface, not *Impl!!! (and if they have shortcut check "if(this == other)")
-- should equals/hashCode/toString be final? (check all value objects!)
-? have factories also to be declared with Scope SINGLETON?
-- idea concerning Utils (ReflectUtil): introduce UtilFacade class: "UtilFacade f = ...; f.String().trim()" or "f.Reflect().findConstructor(Class, Object[] argValues/*internally translated to argTypes*/)"
-	=> see DynamicInstantiatorImpl and ReflectUtil
-
-==========================================
-BUILD
-==========================================
-!! ?was ist unterschied, wenn man plugin configured in build/pluginsMgmt oder in build/plugins?
-! difference cobertura und emma?
-! anstatt antrun-plugin fuer echo message verwenden => eigenes mojo schreiben (preformatted text, predefined message templaste zb fuer "createing enhanced reports (disable bla bla)"
-- load properties (versions, etc) from property-file via maven-properties-plugin
-- include checkstyle rule check-for-existing-javadoc for all API classes
-- wohl doch... @POM java-abstract-pom, alle versionsnr als property
-
-==========================================
-TEST
-==========================================
-! ensure nothing is leaking (close, removeListener) => ebenfalls system-tests dafuer
-! @build when running tests, maybe append own log4j logger (programatically? something like a regular overwriting file appender)
-??? best practice?: create impl instantance directly, or use guice factory/provider?
-- @systemtest: (conditional submodule): komplett anders loesen, siehe hier: http://happygiraffe.net/blog/2009/07/26/conditional-maven-modules/
-- da ja sogar VOs interfaces sind => fuer tests only Factory zur verfuegung stellen a la:
-	"userFactory.create(2, 1)" => intern: "mock(User.class); expectations{ user.___allowing___(getId()); willReturn(pId); ... }"
-	... damit wird testen einfacher, und umgeht (in dem fall) "umstaendliches" design von puren interfaces :)
-
-==========================================
-DOCUMENTATION
-==========================================
-* add multimedia stuff: diagram of architecture
-! mehr reports: welche datei wurde am haeufigsten veraendert (changesets, changelist, oder dgl)
-!! es kann doch josceleton (und nicht josceleton-reactor) hin deployen,
-	er hat ja in properties.version.josceleton-core-api zb schon versionsnr drinnen => josceleton.sf.net/artifacts]/../${version}/,
-	von daher kann man aus josceleton doc her, alle anderen (korrekt) module verweisen
-! publish only aggregated reports... even possible?
-	- otherwise dont make josceleton (facade) module deploy to webroot,
-		but rather another one (empty, e.g. reactor ;)) without (java) reports on it
-- document components <source><![CDATA[Josceleton > Java OSC > OSCeleton > OpenNI & Co > Kinect Hardwere]]></source>
-
-!! how to colorize code samples in doc
-! in doc alle klassenreferenzen mit javadoc verlinken
--- @JAVADOC fuer alle klassen (nicht nur in api) ein @since tag drauf geben (doc wird nachher eh nicht einsehbar sein vom user)
-! @JAVADOC: wenn alles zam-aggregiert ist, sollen *-impl modulklassen nicht sichtbar sein
-	=> YES: do this by setting javadoc-plugin config option; eg ~"<docExcludes>"
-	// NO: dann muss auch in allen *-impl modulen alle public klassen ein ~"@NoJavadoc" annotation draufhaben
-! reports (wenn moeglich) aggregieren, vor allem javadoc (pure API javadoc von allen josceleton modulen)
-- let josceleton-reactor deploy doc twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
-	?? oder wie sonst loesen, ausser wie daweil mit redirect?
-- improve javadoc:
-	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
-	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags
-	* @doclava: make since tag appear; officially not supported, but guice doc has it!!!
+! m2eclipse plugin fine tunen
+-- shelled (eclipse shellscript editor plugin) installation failed... :(
+- read pom best practices: http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
 
 ==========================================
 IDEAS
 ==========================================
-- aus sicht des users denken: wie wird er josceleton einbinden?
-	* plain: mit Josceleton (static) facade
-	* guice: sehr gut, is schon einzelnes (Private)Module verfuegbar gestellt
-		!! @FACADE http://google-guice.googlecode.com/svn/trunk/javadoc/com/google/inject/PrivateModule.html
+* bzgl spinoffs
+	!! ~"debug gui" ... FIX!
+		- "josceleton gui debug app" ist ein subprojekt (in mantis), und hat komplett separate versionierung!
+	- josceleton+midi rerouter ... JA, fuern hirt
+		* @midi rerouter module: das hat josceleton nur als optional=true dependency drinnen!
+	- josceleton+mindstorm ... LUXURY, NICE ;)
+	- NO maven invoker ... LUXURY, NAJA => m2eclipse anschaun!
 - @hitwall gesture: auch beine/kopf dazunehmen; vertikal volumen ... oder so?; nicht absolut, sondern relativ (vom torso) ist wall entfernt
-- one could merge api and impl projects into one reactor project => josceleton-reactor { commons, core {core-api, core-impl}, connection {...}, josceleton, ... }
+
+
+==========================================
+DREAMS
+==========================================
+- register domain josceleton.org
+- use BUILDSERVER (hudson) // evtl sogar auch nexus repo
+- @DOC evtl sogar ganz eigenen youtube account anlegen; mehrere -eigene- videos hochladen
+- spring bruecke schreiben, um in spring alle josceleton guice zur verfuegung zu haben
+-- build osgi bundle: <plugin><groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><extensions>true</extensions>
+	<configuration><instructions><Export-Package>javolution.*,javax.realtime</Export-Package><Private-Package>!*</Private-Package></instructions>

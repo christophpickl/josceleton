@@ -1,0 +1,28 @@
+CODE
+==========================================
+!!! @code: BodyRecentStorage.getBodyPartCoordinate(BodyPart):Coordinate THROWS NoCoordinatesDataAvailableException == CheckedException!
+	... es kann ja sein, dass noch gar keine daten verfuegbar sind, wenn zb kamera fuesse no net gsehn hat, und man fussdaten haben will
+!! @OscPortImpl#addListenerFor: DESIGN maybe OSCListener listener should not be directly listening to openedPort, but rather...
+	... have own dispatching pool, and act as a mediator.
+	=> side effect: if close() invoked, we really have message dispatching under full control!
+! maybe rename user.getId() to user.getUniqueId() ... otherwise one could be confused what id is, compared to osceletonId
+! @OscPortImpl.yetClosed: REFACTOR DRY closed/established state already in CloseableAndAsyncSkeleton (see ConnectionInternalImpl)
+- @(Reflect)Util: REFACTOR DESIGN get rid of util class! there should be no utils at all in josceleton. refactor properly + dependency for DynamicInstantiatior.
+  * introduce UtilFacade class: "UtilFacade f = ...; f.String().trim()" or "f.Reflect().findConstructor(Class, Object[] argValues/*internally translated to argTypes*/)"
+	=> see DynamicInstantiatorImpl and ReflectUtil
+- check all custom equals implementations, if they are checking instanceof against interface, not *Impl!!! (and if they have shortcut check "if(this == other)")
+
+-- ? should equals/hashCode/toString be final? (check all value objects!)
+-- @DynamicInstantiatorImpl#create: REFACTOR outsource array-check-for-null-values
+-- @ConnectorImpl: REFACTOR outsource default osceleton port from code into some property/build related artifact
+-- ? have factories also to be declared with Scope SINGLETON?
+-- @ReflectUtil#isAssignable: @EXCEPTION dont throw runtime ex but custom josceleton ex
+-- @GenericMessageImpl: DRY shouldnt be skeleton implementations of equals/hash/tostring in here? (to reuse it)
+-- @OsceletonJointConstants actually there is also a Osceleton(Message)Jonstants class, providing "new_user", etc...
+-- @OscMessageTransformerImpl#transformUserMessage: EXCEPTION could use a custom exception (same as above)
+-- @Async: is Async.removeAllListeners() needed??
+--- um metrik "static methods/classes" runterzubekommen, irgendwie das Body enum besser ausloesen (oder ganz oarg: ganz rausgeben aus jocseleton reactor ;)
+--- @OscMessageTransformerImpl REFACTOR outsource string to userstate/bodypart conversion from transformer ("USER_STATE_BY_ADDRESS")
+--- REALLY LUXURY @OscPortImpl#checkYetClosed: EXCEPTION could have stored invoker of close() method by analyzing stacktrace ;)
+--- @BodyPart: DESIGN glitch: osceleton ID should not be part of this interface, as it is only used internally (for transformation) ...!
+--- @ClassAdapter#getConstructors(): REFACTOR should return ConstructorAdapter instead of Constructor

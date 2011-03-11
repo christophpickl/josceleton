@@ -1,0 +1,81 @@
+
+DOC
+==========================================
+!! es kann doch josceleton (und nicht josceleton-reactor) hin deployen,
+	er hat ja in properties.version.josceleton-core-api zb schon versionsnr drinnen => josceleton.sf.net/artifacts]/../${version}/,
+	von daher kann man aus josceleton doc her, alle anderen (korrekt) module verweisen
+! let josceleton-reactor deploy doc twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
+	?? oder wie sonst loesen, ausser wie daweil mit redirect?
+! add multimedia stuff: diagram of architecture
+! mehr reports: welche datei wurde am haeufigsten veraendert (changesets, changelist, oder dgl)
+! in doc alle klassenreferenzen mit javadoc verlinken
+! @site: can sourceforge web analyzer anschalten?
+! @JAVADOC: wenn alles zam-aggregiert ist, sollen *-impl modulklassen nicht sichtbar sein
+	=> YES: do this by setting javadoc-plugin config option; eg ~"<docExcludes>"
+	// NO: dann muss auch in allen *-impl modulen alle public klassen ein ~"@NoJavadoc" annotation draufhaben
+- ? which coveragte tool: maven-clover-plugin / emma / cobertura ?
+- document components <source><![CDATA[Josceleton > Java OSC > OSCeleton > OpenNI & Co > Kinect Hardwere]]></source>
+- write handbook on how to execute manual tests after release built
+-- ? how to colorize code samples in doc?
+-- @JAVADOC fuer alle klassen (nicht nur in api) ein @since tag drauf geben (doc wird nachher eh nicht einsehbar sein vom user)
+-- @site: viele direkt style-attribute zuweisungs hacks => style anpassen und gscheit mit style-klassen arbeiten!
+-- LUXURY @DOC welche properties kann man fuer xdoc seiten alles angeben?
+-- LUXURY @DOC page fuer internal devs: (aehnlich wie "workspace setup") ssh command, welche shellscripts nuetzlich sein koennen, welche profile es gibt + was machen sie, ...
+-- @build fix that tests are not run twice because of surefire: https://maven.apache.org/plugins/maven-surefire-report-plugin/faq.html
+-- LUXURY am besten aus ganze metriken ein (mehrere) flex chart(s) machen, und als swf einbinden
+--- improve javadoc:
+	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
+	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags
+	* @doclava: make since tag appear; officially not supported, but guice doc has it!!!
+
+-- mvn2_and_3_parallel-setmvn.sh file => als site dokumentieren/ersetzen
+- @Download: anmerken unterschied profile.activeByDefault vs activeProfiles.activeProfile
+	+ bsp schreiben + sagen, dass (anscheinbar) keinen unterschied gibt + vertrauenswuerdige url fuer diese tatsache liefern
+- @Code Metrics: display figures for each module AND aggregated
+- check everything if references in site two classes should be linked to javadoc
+	eg: Samples
+- @Release Handbook: would be nice to have a "copy-to-clipboard button" on page, to copy release plan template
+- @Josceleton/src/site.xml: how to reference (other) josceleton modules submodules? maybe this way:
+	<menu name="Submodules"><item name="Core Implementation" href="/documentation/core-impl/${some.var}/" /></menu>
+- @Code Metrics: add links to generated reports (and also to changes/changelog report)
+- @site.xml: publishDate should be with time for snapshots ("yyyy-MM-dd HH:mm")
+- @Download pom sample, dass wenn leute selber guice verwenden (aop & assisted) verwenden, dann excluden
+	<dependency><groupId>net.sf.josceleton</groupId><artifactId>josceleton</artifactId>
+	<exclusions><!-- exclude josceleton's own guice dependency --><exclusion><groupId> net.sf.josceleton.thirdparty.com.google.code.guice </groupId>
+	<artifactId> guice-dependencies </artifactId></exclusion></exclusions></dependency><dependency>com.google.code.guice _ guice _ 2.0</dependency>
+- @project-info-reports-plugin: use custom template (maybe for skin) configuration.<templateFile>
+-- @DOC create custom maven site skin
+
+SITE POM
+==========================================
+! carefully think about solution how to deploy everything (exception reactors of course) into /documentation/<artifactId>/<version>/
+	AND got a second release version to josceleton.sf.net/ root?
+	maybe: outsource site url part as property (could be the case submodule wants to override)
+	==> better: manually (semi manually, could be heavily automated) deploy a second time to a different url
+
+- enable more default reports:
+	ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
+	MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
+	WHAT FOR: help, index, dependency-convergence
+	DEFINETELY NOT: mailing-list, cim
+- include more reporting plugins:
+	- org.codehaus.mojo :: simian-report-maven-plugin (configuration.minimumThreshold=2)
+	- changelog plugin, siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changelog.html
+	- changes plugin siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changes-report.html
+	- file activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/file-activity.html
+	-- developer activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/dev-activity.html
+
+	
+JAVADOC
+==========================================
+
+- exclude non-api/impl.* classes in javadoc
+	<excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->
+- customize style 
+	<plugin><groupId>javolution</groupId><artifactId>colapi</artifactId><version>1.0.0</version>
+    <executions><execution><goals><goal>colorize</goal></goals></execution></executions</plugin>
+- include UML graphs 
+	eg: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html 
+	... or generate diagrams with APIviz: http://code.google.com/p/apiviz/ 
+- use multiple javadoc reports (plain + for UML graphs)
+	see: http://docs.codehaus.org/display/MAVENUSER/Reporting+Plugins
