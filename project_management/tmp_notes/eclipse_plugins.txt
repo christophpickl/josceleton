@@ -1,0 +1,51 @@
+eclipse code quality plugins
+
+YET INSTALLED
+====================================
+
+
+eclipse-metrics
+	Code Complexity Analysis (fine grained metrics)
+	web: http://metrics.sourceforge.net/
+	UPDATE SITE: http://metrics.sourceforge.net/update
+
+metrics
+	Code Complexity Analysis (just spits out warnings, partly overlapping with checkstyle)
+	web: http://www.stateofflow.com/projects/16/eclipsemetrics
+	sf web: http://metrics.sourceforge.net/
+	UPDATE SITE: http://www.stateofflow.com/UpdateSite
+
+?eclemma?
+	?? vs cobertura, clover?
+	Code Coverage
+	web: http://www.eclemma.org/
+
+NOT YET
+====================================
+
+JDepend4Eclipse
+	Dependancy Analysis
+	web: http://andrei.gmxhome.de/jdepend4eclipse/
+	UPDATE SITE: http://andrei.gmxhome.de/eclipse/
+
+findbugs
+	Bytecode Analysis (checks .class, not .java like pmd)
+	web => http://findbugs.sourceforge.net/
+	UPDATE SITE: http://findbugs.cs.umd.edu/eclipse
+
+pmd
+	Source Code Analysis (checks .java, not .class like findbugs)
+	web: http://pmd.sourceforge.net/
+	UPDATE SITE: http://pmd.sourceforge.net/eclipse
+
+// maybe not ...Code Analysis Plugin / CAP
+	web:  http://cap.xore.de/
+
+
+GENERAL RECOMMENDED PLUGINS
+====================================
+- TestNG ("better junit")
+- JAD decompiler
+- m2eclipse (maven integration)
+- grepconsole (coloured console output)
+// shelled (shellscript editor)

@@ -20,5 +20,7 @@
 09.03. - 21:00 -  6h - #4 site: finished setting up some pages
               ~~ 70h~~
 10.03. - 14:00 -  5h - #4 site: yet more minor improvements
-10.03. - 19:00 -  h - 
-              ~~ 75h~~
+10.03. - 19:00 -  5h - #4 site: code metrics page; prepared release v0.2
+              ~~ 80h~~
+11.03. - 00:00 -  h - releasing v0.2
+              ~~ 80h~~

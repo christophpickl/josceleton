@@ -20,6 +20,7 @@ DONE	* update changelog site: add subsection about new version
 	
 	UPDATE MAVEN VERSIONS
 	=====================================================================
+DONE	* figure out proper artifacts which have to be bumped up
 DONE	* update pom versions for parent references and dependencies
 			// especially pay attention to java-pom
 
@@ -30,42 +31,47 @@ DONE	* update pom versions for parent references and dependencies
 
 	FINAL VERIFICATIONS
 	=====================================================================
-XXXX	* ensure workspace is updated to head
-XXXX	* ensure stable build "mvn clean verify" (100% coverage)
-XXXX	* ensure you have really nothing forgotten!
+DONE	* ensure workspace is updated to head
+DONE	* ensure stable build "mvn clean verify" (100% coverage) // use provided shellscripts
+DONE	* ensure you have really nothing forgotten!
 	
 	TAG WITH RELEASE PLUGIN
 	=====================================================================
-		// usually not for reactors
-		?????????????????? anything else ???????????????
-XXXX	* figure out proper release plugin commands
-XXXX	* release:prepare
-XXXX	* release:perform // will deploy artifact and site
+		// ATTENTION: !!! maven 2 only !!! do not tag reactors !!!
+DONE	* configure shellscript data for mvn_scripts/release.sh
+DONE	* open shell; e.g.: $ ssh -t christoph_pickl,josceleton@shell.sf.net create
+DONE	* please check again all pom versions are correct (you dont want to mess up the build, its not worth your time ;)
+
+XXXX	* execute mvn_scripts/release.sh and have a cup of tea, this can take a while ...
+		  ... actually not, you still have to confirm (the default) version numbers
+		// release-plugin will create tags, deploy artifact and site, bump up versions and commit
 
 
 	/*******************************************************************\
 	|  POSTPARATIONS                                                    |
 	\*******************************************************************/
 
-	MANUAL VERIFICATION
+	MANUAL CHECKS
 	=====================================================================
-XXXX	* check everything was deployed (www./maven/release/xx, www./documentation/xx)
-XXXX	* check site (links are working, samples compile and run, referenced versions are all up2date)
-XXXX	* clean local mvn repo and give it a shot yourself
-	
+XXXX	* release artifact was deployed: http://josceleton.sourceforge.net/maven/release/net/sf/josceleton/josceleton-reactor/<VERSION>/
+XXXX	* site documentation was deployed: http://josceleton.sourceforge.net/documentation/corporate-pom/<VERSION>/
+XXXX	* main site was deployed: http://josceleton.sf.net
+XXXX	* subversion tag existing: http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/tags/josceleton-<VERSION>/
+XXXX	* go through site (links are working, samples compile and run, referenced versions are all up2date)
+XXXX	* clean local mvn repo (rm repo/net/sf/josceleton/*) and run some maven sample app
 	
 	ASSEMBLY DISTRIBUTION PACKAGES
 	=====================================================================
-		????????????????
+		N/A
 	
 	UPDATE SOURCEFORGE PROJECT
 	=====================================================================		
 XXXX	* create news entry
-		!!!!!!!!!!!! upload release files
+		N/A upload release files
 
 
 	/*******************************************************************\
-	|  PLAN NEW RELEASE (optional)                                      |
+	|  PREPARE NEW RELEASE (optional)                                   |
 	\*******************************************************************/
 
 	CLEANUP ALL KIND OF TODOS
@@ -79,3 +85,6 @@ XXXX	* move issues (simple ones should be merged in packages) to mantis queue
 XXXX	* create mantis issues based on mantis queue
 XXXX	* set proper target version for issues
 XXXX	* update documentation roadmap ("roadmap.xml") based on mantis roadmap
+
+
+	[INFO] BUILD SUCCESSFUL :)
