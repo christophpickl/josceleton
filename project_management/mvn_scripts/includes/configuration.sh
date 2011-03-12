@@ -8,8 +8,8 @@ DEBUG=1
 BASE_PATH="/Users/phudy/_dev/pulse"
 
 # each project is then specified with its folder name in <ARTIFACTS_PATH_ARRAY>.
-#ARTIFACTS_PATH_ARRAY=( "josceleton-corporate-pom" "josceleton-poms-reactor" "josceleton-reactor" )
-ARTIFACTS_PATH_ARRAY=( "josceleton-poms-reactor" )
+ARTIFACTS_PATH_ARRAY=( "josceleton-corporate-pom" "josceleton-poms-reactor" "josceleton-reactor" )
+
 
 ARTIFACTS_SINGLE_PATH_ARRY=( \
 	\

@@ -24,4 +24,9 @@
               ~~ 80h~~
 11.03. - 00:00 -  2h - releasing v0.2
 11.03. - 02:00 -  4h - mostly notes/todos reorganisation (post release tasks, mantis, roadmap)
-              ~~ 86h~~
+11.03. - 17:00 -  4h - #15 started implementing UserService
+              ~~ 90h~~
+11.03. - 21:00 -  2h - #15 finished UserService implementation including some tests
+11.03. - 23:00 -  4h - #15 started implementing MotionService
+12.03. - 02:00 -  h - started prototype midiroute
+              ~~ 96h~~

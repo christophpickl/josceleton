@@ -332,7 +332,7 @@
 									<!-- generates a default index.html page; but we always have our own and to suppress
 										 About menu entry referencing same index.html (duplicate references in navi) -->
 									<!-- <report>index</report> -->
-		                            <report>dependencies</report>
+<!--		                            FIXME enable deps report when releasing <report>dependencies</report>-->
 		                            <report>project-team</report>
 		                            <report>issue-tracking</report>
 		                            <report>license</report>
@@ -458,7 +458,7 @@
         <developer>
             <id>cpickl</id>
             <name>Christoph Pickl</name>
-            <email>christoph.pickl@gmail.com</email>
+            <email><![CDATA[http://mailhide.recaptcha.net/d?k=01jnOhUplwS4qzLHeENwTSEw==&c=HMbaCVLHdf58OsCoBkx1bYmxfAOYkFUnwi3uw7uVf9w=]]></email>
             <timezone>+1</timezone>
             <roles>
                 <role>Project Founder, Build Engineer, Architect, Developer, Tester, Release Engineer, Documentator</role>
@@ -477,7 +477,7 @@
 		<contributor>
 			<name>Thomas Hirt</name>
 			<url>http://thomas-hirt.at/</url>
-			<email>info@thomas-hirt.at</email>
+            <email><![CDATA[http://mailhide.recaptcha.net/d?k=01jnOhUplwS4qzLHeENwTSEw==&c=IPTiEqWune-qSjc59aeQX6I-bIcmVQJDVpNeBIO-eMk=]]></email>
 			<timezone>+1</timezone>
 			<roles>
 				<role>Ideas Contributer</role>

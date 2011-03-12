@@ -3,12 +3,12 @@
 ==========================================
 TODO * upcoming *
 ==========================================
-! @site: hide email addresses via captcha (https://maven.apache.org/plugins/maven-project-info-reports-plugin/faq.html#How_to_hide_developercontributor_addresses)
-
 ! getaggte version 0.1 alles auschecken, und neu alles deployen!
 ! m2eclipse plugin fine tunen
 -- shelled (eclipse shellscript editor plugin) installation failed... :(
 - read pom best practices: http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
+!!! toString fuer BodyParts: net.sf.josceleton.core.api.entity.body.BodyPartImplProvider$RightHipImpl@4463a1ae
+!!! von aussen unbedingt konfigurierbar machen, dass sich eine osceleton user id wiederholen darf! (nicht einfach abkakken, weil so ist zb ein oni-file nicht abspielbar)
 
 ==========================================
 IDEAS
