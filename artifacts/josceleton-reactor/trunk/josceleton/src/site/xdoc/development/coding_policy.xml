@@ -9,18 +9,36 @@
 		<section name="Coding Policy">
 			
 			<p>
-				TODO: links zu reports (coverage, !!!checkstyle!!! (hat saemtlich rules in summary, pmd, cpd, findbugs, tasktags)
+				TODO!
 			</p>
 			
-			<p>
-				100% coverage (line and branch!), zero warnings of PMD, CPD, FindBugs, Checkstyle, TaskTags
-			</p>
-		<!-- 
+		<!--
+		LINKS TO REPORTS
+		coverage
+		!!!checkstyle!!! (hat saemtlich rules in summary (hat halt schirches format wenn ohne namespace))
+		pmd, cpd, findbugs
+		tasktags
 		
-* move internal guideline/books (release guide, coding guideline) into mvn site!
-  @coding guideline ... fluent interfaces, no classes just interfaces (especially for public APIs),
-  immutability, testability, SoC, DRY ~KISS, decoupling,
-  max size violation(methods, classes, packages, modules, reactors, projects), ...
+		
+		METRICS/BUILD
+		100% coverage (line and branch!)
+		pmd, cpd, findbugs
+		tasktags
+		
+		
+		TOPICS
+		fluent interfaces
+		no classes just interfaces (especially for public APIs)
+		immutability (final & co)
+		low coupling, high cohesion
+		defensive
+		importance of naming
+		testability
+		SoC
+		small parts (methods, classes, packages, modules, reactors, projects)
+		DRY
+		~KISS
+
 		 -->
 
 		</section>

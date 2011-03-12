@@ -10,9 +10,12 @@
 		<menu name="Overview (for Users)">
 			<item name="Introduction" href="index.html" /><!-- a.k.a. "about", "home" -->
 			<item name="Download" href="download.html" /> 
+<!--			<item name="Prerequisites" href="" />--><!-- contains how to setup osceleton+openni+nite -->
+
 			<item name="Samples" href="samples.html" />
-<!--			<item name="FAQ/Help/Contact" href="..." />-->
-			<item name="Links" href="links.html" />
+<!--			<item name="FAQ/Help" href="..." />-->
+<!--			<item name="NO: maybe add as appendix (merge together with other things) Links" href="links.html" />-->
+			<item name="Forum" href="https://sourceforge.net/projects/josceleton/forums/" />
 		</menu>
 		
 <!--		<menu name="Documentation">-->
@@ -23,7 +26,7 @@
 <!--			<item name="Position and Gestures" href="" />-->
 
 				<!-- diagrams for external/api-view only (internal architecture should only be visible to developers) -->
-<!--			<item name="Architecture Overview" href="" />-->
+<!--			<item name="Architecture Overview" href="" />--><!--  -->
 <!--		</menu>-->
 		
 		<menu name="Internals (for Developers)">
