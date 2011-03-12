@@ -11,7 +11,7 @@ import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 
 @SuppressWarnings("boxing")
-class UserServiceScenarioState {
+class UserServiceTestScenarioStep {
 	
 	private final String scenarioStateLabel;
 	private final UserState actionCommand;
@@ -21,14 +21,19 @@ class UserServiceScenarioState {
 	private final int[] expectedProcs;
 	private final int[] expectedDeads;
 	
-	public UserServiceScenarioState(String scenarioStateLabel, UserState actionCommand, int actionUserId,
-		int[] expectedWaits, int[] expectedProcs, int[] expectedDeads) {
+	private final int[] expectedGetWaitUsers;
+	private final int[] expectedGetProcUsers;
+	
+	public UserServiceTestScenarioStep(String scenarioStateLabel, UserState actionCommand, int actionUserId,
+		int[] expectedWaits, int[] expectedProcs, int[] expectedDeads, int[] expectedGetWaitUsers, int[] expectedGetProcUsers) {
 		this.scenarioStateLabel = scenarioStateLabel;
 		this.actionCommand = actionCommand;
 		this.actionUserId = actionUserId;
 		this.expectedWaits = expectedWaits;
 		this.expectedProcs = expectedProcs;
 		this.expectedDeads = expectedDeads;
+		this.expectedGetWaitUsers = expectedGetWaitUsers;
+		this.expectedGetProcUsers = expectedGetProcUsers;
 	}
 	
 	public final void assertExpects(List<User> waitingUsers, List<User> processingUsers, List<User> deadUsers) {
@@ -60,6 +65,14 @@ class UserServiceScenarioState {
 	
 	public int getActionUserId() {
 		return this.actionUserId;
+	}
+
+	public final int[] getExpectedGetWaitUsers() {
+		return this.expectedGetWaitUsers;
+	}
+
+	public final int[] getExpectedGetProcUsers() {
+		return this.expectedGetProcUsers;
 	}
 
 	@Override public String toString() {

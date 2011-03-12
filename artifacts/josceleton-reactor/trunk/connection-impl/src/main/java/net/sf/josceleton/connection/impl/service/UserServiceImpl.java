@@ -1,8 +1,15 @@
 package net.sf.josceleton.connection.impl.service;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
+import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.api.service.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
@@ -23,10 +30,10 @@ class UserServiceImpl
 	
 	private final Map<Integer, User> usersById = new HashMap<Integer, User>();
 
-	// FIXME outsource getting current snapshot of all users to other class!!!
-//	private final Collection<User> waitingUsers = new HashSet<User>();
-//	
-//	private final Collection<User> availableUsers = new HashSet<User>();
+	// LUXURY @CODE DESIGN outsource getting current snapshot of all users to other class!!!
+	private final Collection<User> waitingUsers = new LinkedList<User>();
+	
+	private final Collection<User> processingUsers = new LinkedList<User>();
 	
 	
 	@Inject UserServiceImpl(final UserFactory factory) {
@@ -62,18 +69,41 @@ class UserServiceImpl
 	}
 	
 	private User lookupDeadUser(final Integer osceletonUserId) {
-		final User removedUser = this.usersById.remove(osceletonUserId);
+		final User removedStoredUser = this.usersById.remove(osceletonUserId);
 		
 		final User userToDispatch;
-		if(removedUser != null) {
-			userToDispatch = removedUser;
+		if(removedStoredUser != null) {
+			// simple case: user was already known to josceleton (was either waiting or processing)
+			userToDispatch = removedStoredUser;
+			
 		} else {
 			// this is an EXPECTED state; kinect detected user before josceleton started listening, but lost again.
-//			LOG.warn("Received lost message for user with ID [" + osceletonUserId + "], " +
-//				"though user was not yet registered!");
-			
 			// artificially invoke one state step before
 			userToDispatch = this.lookupProcessingUser(osceletonUserId);
+		}
+		
+		// TODO @CODE DRY refactor removing from user lists (is it possible to outsource this logic? remove getters...)
+		
+		// update processing users
+		if(removedStoredUser == null) {
+			// was artificially created, so has to be that way
+			if(this.processingUsers.remove(userToDispatch) == false) {
+				throw new RuntimeException("Could not remove " + userToDispatch + " from processing users: " +
+						Arrays.toString(this.processingUsers.toArray()));
+			}
+			
+		} else { // 
+			if(this.waitingUsers.contains(removedStoredUser) == true) {
+				if(this.waitingUsers.remove(removedStoredUser) == false) {
+					throw new RuntimeException("Could not remove " + removedStoredUser + " from waiting users: " +
+							Arrays.toString(this.waitingUsers.toArray()));
+				}
+			} else {
+				if(this.processingUsers.remove(removedStoredUser) == false) {
+					throw new RuntimeException("Could not remove " + removedStoredUser + " from processing users: " +
+							Arrays.toString(this.processingUsers.toArray()));
+				}
+			}
 		}
 		
 		// dispatchDeadUser(dispatchingUser);
@@ -94,6 +124,16 @@ class UserServiceImpl
 			// artificially invoke one state step before
 			processingUser = this.newWaitingUser(osceletonUserId);
 			this.dispatchWaitingUser(processingUser);
+		}
+		
+		// update waiting and processing users
+		if(this.waitingUsers.remove(processingUser) == false) {
+			throw new RuntimeException("Could not remove " + processingUser + " from waiting users: " +
+				Arrays.toString(this.waitingUsers.toArray()));
+		}
+		if(this.processingUsers.add(processingUser) == false) {
+			throw new RuntimeException("Already added " + processingUser + " from processing users: " +
+					Arrays.toString(this.processingUsers.toArray()));
 		}
 		
 		// dispatchProcessingUser(processingUser);
@@ -117,7 +157,14 @@ class UserServiceImpl
 	
 	private User newWaitingUser(final Integer osceletonUserId) {
 		final User newUser = this.factory.create(osceletonUserId.intValue());
+		
 		this.usersById.put(osceletonUserId, newUser);
+		// update waiting users
+		if(this.waitingUsers.add(newUser) == false) {
+			throw new RuntimeException("Already added " + newUser + " from waiting users: " +
+					Arrays.toString(this.waitingUsers.toArray()));
+		}
+		
 		return newUser;
 	}
 
@@ -125,6 +172,16 @@ class UserServiceImpl
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserWaiting(user);
 		}
+	}
+
+	/** {@inheritDoc} from {@link UserService} */
+	@Override public final Collection<User> getProcessingUsers() {
+		return Collections.unmodifiableCollection(this.processingUsers);
+	}
+
+	/** {@inheritDoc} from {@link UserService} */
+	@Override public final Collection<User> getWaitingUsers() {
+		return Collections.unmodifiableCollection(this.waitingUsers);
 	}
 	
 }

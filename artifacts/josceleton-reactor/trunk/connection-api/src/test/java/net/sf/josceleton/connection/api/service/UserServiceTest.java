@@ -19,17 +19,17 @@ public abstract class UserServiceTest extends AbstractUserServiceTest {
 		// specified IDs in here are osceletonIDs, not internally created unique ID (we dont have control over that ;)
 		
 		assertScenarios(
-			//      { ID }  { ----- ACTION ------ }  { ------------------------------- EXPECTED STATE ------------------------------- }
-			//       "s0" , UNSEEN BY Josceleton!!!! waitingUsers(    3          ), processingUsers(    2     1 ), deadUsers(         )
-			newState("s1" , UserState.WAITING,    4, waitingUsers( 4             ), processingUsers(            ), deadUsers(         )), // <=== /new_user 4
-			newState("s2*", UserState.PROCESSING, 3, waitingUsers( 4, 3          ), processingUsers( 3          ), deadUsers(         )), // <=*= /new_skel 3  ++ /new_user 3
-			newState("s3" , UserState.WAITING,    5, waitingUsers( 4, 3, 5       ), processingUsers( 3          ), deadUsers(         )), // <=== /new_user 5
-			newState("s4*", UserState.DEAD,       2, waitingUsers( 4, 3, 5, 2    ), processingUsers( 3, 2       ), deadUsers( 2       )), // <=*= /lost_user 2 ++ /new_user 2 ++ /new_skel 2
-			newState("s5" , UserState.PROCESSING, 5, waitingUsers( 4, 3, 5, 2    ), processingUsers( 3, 2, 5    ), deadUsers( 2       )), // <=== /new_skel 5
-			newState("s6*", null/*jointmessage*/, 1, waitingUsers( 4, 3, 5, 2, 1 ), processingUsers( 3, 2, 5, 1 ), deadUsers( 2       )), // <=*= /joint 1     ++ /new_user 1 ++ /new_skel 1
-			newState("s7" , null/*jointmessage*/, 5, waitingUsers( 4, 3, 5, 2, 1 ), processingUsers( 3, 2, 5, 1 ), deadUsers( 2       )), // <=== /joint 5
-			newState("s8" , UserState.DEAD      , 4, waitingUsers( 4, 3, 5, 2, 1 ), processingUsers( 3, 2, 5, 1 ), deadUsers( 2, 4    )), // <=== /lost_user 4
-			newState("s9" , UserState.DEAD      , 5, waitingUsers( 4, 3, 5, 2, 1 ), processingUsers( 3, 2, 5, 1 ), deadUsers( 2, 4, 5 ))  // <=== /lost_user 5
+			//     { ID }  { ----- ACTION ------ }  { ------------------------------- EXPECTED STATE ------------------------------- }  {getWaitingUsers}   {getProcessingUsers}
+			//      "s0" , UNSEEN BY Josceleton!!!! waitingUsers(    3          ), processingUsers(    2     1 ), deadUsers(         )
+			newStep("s1" , UserState.WAITING,    4, waitingUsers( 4             ), processingUsers(            ), deadUsers(         ), new int[] { 4    }, new int[] {         }), // <=== /new_user 4
+			newStep("s2*", UserState.PROCESSING, 3, waitingUsers( 4, 3          ), processingUsers( 3          ), deadUsers(         ), new int[] { 4    }, new int[] { 3       }), // <=*= /new_skel 3  ++ /new_user 3
+			newStep("s3" , UserState.WAITING,    5, waitingUsers( 4, 3, 5       ), processingUsers( 3          ), deadUsers(         ), new int[] { 4, 5 }, new int[] { 3       }), // <=== /new_user 5
+			newStep("s4*", UserState.DEAD,       2, waitingUsers( 4, 3, 5, 2    ), processingUsers( 3, 2       ), deadUsers( 2       ), new int[] { 4, 5 }, new int[] { 3       }), // <=*= /lost_user 2 ++ /new_user 2 ++ /new_skel 2
+			newStep("s5" , UserState.PROCESSING, 5, waitingUsers( 4, 3, 5, 2    ), processingUsers( 3, 2, 5    ), deadUsers( 2       ), new int[] { 4    }, new int[] { 3, 5    }), // <=== /new_skel 5
+			newStep("s6*", null/*jointmessage*/, 1, waitingUsers( 4, 3, 5, 2, 1 ), processingUsers( 3, 2, 5, 1 ), deadUsers( 2       ), new int[] { 4    }, new int[] { 3, 5, 1 }), // <=*= /joint 1     ++ /new_user 1 ++ /new_skel 1
+			newStep("s7" , null/*jointmessage*/, 5, waitingUsers( 4, 3, 5, 2, 1 ), processingUsers( 3, 2, 5, 1 ), deadUsers( 2       ), new int[] { 4    }, new int[] { 3, 5, 1 }), // <=== /joint 5
+			newStep("s8" , UserState.DEAD      , 4, waitingUsers( 4, 3, 5, 2, 1 ), processingUsers( 3, 2, 5, 1 ), deadUsers( 2, 4    ), new int[] {      }, new int[] { 3, 5, 1 }), // <=== /lost_user 4
+			newStep("s9" , UserState.DEAD      , 5, waitingUsers( 4, 3, 5, 2, 1 ), processingUsers( 3, 2, 5, 1 ), deadUsers( 2, 4, 5 ), new int[] {      }, new int[] { 3, 1    })  // <=== /lost_user 5
 			// * = artificial dispatch by service (seems as something happened before started listening on osc port)
 		);
 	}
