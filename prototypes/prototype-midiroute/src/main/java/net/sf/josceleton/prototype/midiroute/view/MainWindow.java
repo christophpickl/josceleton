@@ -43,7 +43,7 @@ public class MainWindow extends JFrame {
 	private final MainWindowListener listener;
 	
 	public MainWindow(MainWindowListener listener) {
-		super("MidiRoute Prototype v1");
+		super("MidiRoute Prototype");
 		
 		this.listener = listener;
 		
