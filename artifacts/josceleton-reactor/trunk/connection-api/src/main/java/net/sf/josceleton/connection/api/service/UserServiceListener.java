@@ -10,8 +10,14 @@ import net.sf.josceleton.core.api.entity.User;
  */
 public interface UserServiceListener extends Listener {
 
+	/**
+	 * @since 0.3
+	 */
 	void onUserWaiting(User user);
-	
+
+	/**
+	 * @since 0.3
+	 */
 	void onUserProcessing(User user);
 	
 	/**
@@ -20,6 +26,7 @@ public interface UserServiceListener extends Listener {
 	 * TODO @SITE properly document why {@link UserServiceListener#onUserDead(User)} the argument can be null.
 	 * 
 	 * @param user can be null!
+	 * @since 0.3
 	 */
 	void onUserDead(User user);
 }
