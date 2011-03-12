@@ -1,0 +1,27 @@
+
+==========================================
+IDEAS
+==========================================
+
+* @SPINOFFS
+	-!! ~"debug gui" ... FIX!
+		- "josceleton gui debug app" ist ein subprojekt (in mantis), und hat komplett separate versionierung!
+		- soll nicht nur app sein, sondern auch wiederverwendbare lib (selber fenster instanziieren, damits wiederverwendbar ist in anderem kontext/main)
+	- josceleton+midi rerouter ... JA, fuern hirt
+		* @midi rerouter module: das hat josceleton nur als optional=true dependency drinnen!
+		- wenn man so will, ist das pulse-midi projekt auch ein spinoff
+			kann zum "besseren" spin off werden unter josceleton obhut
+			-> das wuerde bedeuten die commons muessen raus aus josceleton (was ist mit jpotpourri???)
+	!!!! geil fuer osceleton leute auch: convert oni grossen files in was kleineres ;) (1s == 2mb bekomm ich runter)
+	- josceleton+mindstorm ... LUXURY, NICE ;)
+	- NO maven invoker ... LUXURY, NAJA => m2eclipse anschaun!
+- @hitwall gesture: auch beine/kopf dazunehmen; vertikal volumen ... oder so?; nicht absolut, sondern relativ (vom torso) ist wall entfernt
+
+
+==========================================
+DREAMS
+==========================================
+- register domain josceleton.org
+- use BUILDSERVER (hudson) // evtl sogar auch nexus repo
+- @DOC evtl sogar ganz eigenen youtube account anlegen; mehrere -eigene- videos hochladen
+- spring bruecke schreiben, um in spring alle josceleton guice zur verfuegung zu haben

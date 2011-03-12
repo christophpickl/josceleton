@@ -1,0 +1,34 @@
+04.03. - 19:00 - 10h - project setup, worked on v0.1 (core finished, connection partly)
+              ~~ 10h~~
+05.03. - 14:00 - 10h - finished v0.1 implementation and tests with 100% coverage
+              ~~ 20h~~ 
+06.03. - 00:00 -  4h - code cleanup: warnings, checkstyle, tasktags
+06.03. - 16:00 -  6h - wrapping up v0.1: tasktags, unit tests, javadoc
+              ~~ 30h~~
+06.03. - 22:00 -  8h - wrapping up v0.1: tasktags, improved build, site, javadoc
+07.03. - 22:00 -  2h - setting up sourceforge project
+              ~~ 40h~~
+08.03. - 00:00 -  4h - setting up sourceforge project, getting mvn deploy/site:deploy working
+08.03. - 12:00 -  2h - got maven site/site:deploy/deploy working with mvn version 2 and 3 (deploy not working for mvn3!)
+08.03. - 14:00 -  4h - finished releasing v0.1
+              ~~ 50h~~
+08.03. - 18:00 -  6h - mantis setup, tasks organized, roadmap, started implementing josceleton facade module
+09.03. - 14:00 -  2h - meeting with thomas
+09.03. - 16:00 -  2h - #10 josceleton facade: finished issue
+              ~~ 60h~~
+09.03. - 18:00 -  4h - #3 build: finished checkstyle path, m2eclipse, fast builds via profiles
+09.03. - 21:00 -  6h - #4 site: finished setting up some pages
+              ~~ 70h~~
+10.03. - 14:00 -  5h - #4 site: yet more minor improvements
+10.03. - 19:00 -  5h - #4 site: code metrics page; prepared release v0.2
+              ~~ 80h~~
+11.03. - 00:00 -  2h - releasing v0.2
+11.03. - 02:00 -  4h - mostly notes/todos reorganisation (post release tasks, mantis, roadmap)
+11.03. - 17:00 -  4h - #15 started implementing UserService
+              ~~ 90h~~
+11.03. - 21:00 -  2h - #15 finished UserService implementation including some tests
+11.03. - 23:00 -  4h - #15 started implementing MotionService
+12.03. - 02:00 -  4h - started prototype midiroute; and finished it ;)
+             ~~ 100h~~
+12.03. - 19:00 -  h - midiroute prototype; experimenting with ableton -sweet!
+             ~~ 100h~~
