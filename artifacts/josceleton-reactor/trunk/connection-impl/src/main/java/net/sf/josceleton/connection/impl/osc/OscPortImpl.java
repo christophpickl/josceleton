@@ -60,6 +60,7 @@ class OscPortImpl implements OscPort {
 		}
 		this.yetClosed = true;
 		this.openedPort.stopListening();
+		this.openedPort.close();
 	}
 
 	private void checkYetClosed() {
