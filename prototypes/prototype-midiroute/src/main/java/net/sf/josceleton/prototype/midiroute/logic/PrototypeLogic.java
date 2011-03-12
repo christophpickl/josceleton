@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.midiroute;
+package net.sf.josceleton.prototype.midiroute.logic;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,6 +12,8 @@ import net.sf.josceleton.core.api.entity.body.BodyPart;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.josceleton.Josceleton;
+import net.sf.josceleton.prototype.midiroute.InvalidInputException;
+import net.sf.josceleton.prototype.midiroute.ProtoUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,19 +36,13 @@ public class PrototypeLogic implements ConnectionListener {
 		this.mappings = new LinkedList<MidiMapping>(Arrays.asList(maps));
 	}
 	
-	public void open() throws Exception {
+	public void open() throws InvalidInputException {
 		LOG.info("open()");
-		
-		ProtoUtil.log("Successfully parsed MIDI mappings:");
-		int i = 1;
-		for (final MidiMapping map : this.mappings) {
-			ProtoUtil.log("  "+(i++)+". " + map);
-		}
-		ProtoUtil.log("");
 		
 		this.midiConnection.connect();
 		this.oscConnection = Josceleton.openConnection();
 		this.oscConnection.addListener(this);
+		
 		LOG.info("Running ...");
 	}
 	

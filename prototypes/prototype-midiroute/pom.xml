@@ -6,7 +6,7 @@
 
 	<groupId>net.sf.josceleton.prototype</groupId>
 	<artifactId>prototype-midiroute</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>1</version>
 
 	<dependencies>
 
@@ -15,7 +15,7 @@
 			<artifactId>josceleton</artifactId>
 			<version>0.3-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>net.pulse-project.router</groupId>
 			<artifactId>router-midi</artifactId>
@@ -23,5 +23,53 @@
 		</dependency>
 
 	</dependencies>
+
+	<build>
+		<plugins>
+		
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>osxappbundle-maven-plugin</artifactId>
+				<version>1.0-alpha-2</version>
+				<configuration>
+					<mainClass>net.sf.josceleton.prototype.midiroute.MidirouteApp</mainClass>
+					<jvmVersion>1.6+</jvmVersion>
+					<bundleName>MidirouteApp</bundleName>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>net.sf.josceleton.prototype.midiroute.MidirouteApp</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
 
 </project>

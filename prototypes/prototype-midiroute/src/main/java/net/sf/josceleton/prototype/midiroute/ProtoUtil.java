@@ -12,6 +12,7 @@ import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.body.Body;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.prototype.midiroute.logic.MidiMapping;
 
 public class ProtoUtil {
 	
@@ -58,9 +59,9 @@ public class ProtoUtil {
 	
 	public static void handleException(Exception e) {
 		e.printStackTrace();
-		ProtoUtil.log("Error: " + e.getMessage());
-		ProtoUtil.log("Stack trace:\n" + StringUtil.exceptionToString(e));
 		JOptionPane.showMessageDialog(null, e.getMessage(), "Josceleton Midi Route Error", JOptionPane.ERROR_MESSAGE);
+		ProtoUtil.log("Stack trace:\n" + StringUtil.exceptionToString(e));
+		ProtoUtil.log("Error: " + e.getMessage());
 	}
 
 	public static String fillString(String in, int len) {

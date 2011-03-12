@@ -3,11 +3,14 @@ package net.sf.josceleton.prototype.midiroute.view;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.prototype.midiroute.MidiMapping;
+import net.sf.josceleton.prototype.midiroute.InvalidInputException;
 import net.sf.josceleton.prototype.midiroute.ProtoUtil;
-import net.sf.josceleton.prototype.midiroute.PrototypeLogic;
+import net.sf.josceleton.prototype.midiroute.logic.MidiMapping;
+import net.sf.josceleton.prototype.midiroute.logic.PrototypeLogic;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,7 +20,9 @@ public class ViewMediator implements MainWindowListener {
 	private static final Log LOG = LogFactory.getLog(ViewMediator.class);
 	
 	private PrototypeLogic recentLogic;
-
+	
+	private MainWindow window;
+	
 	@SuppressWarnings("synthetic-access")
 	public void onStart(final String rawMappings, final String port) {
 		new Thread(new Runnable() {
@@ -25,10 +30,26 @@ public class ViewMediator implements MainWindowListener {
 				try {
 					ProtoUtil.clearLog();
 					ProtoUtil.log("Opening connection ...");
-					ViewMediator.this.recentLogic = new PrototypeLogic(port, parseMappings(rawMappings));
+					final MidiMapping[] mappings = parseMappings(rawMappings);
+					ViewMediator.this.recentLogic = new PrototypeLogic(port, mappings);
 					ViewMediator.this.recentLogic.open();
-					ProtoUtil.log("Connection established (will display every " + ProtoUtil.LOG_JOINT_EVERY +"th joint messages)");
+
+					ProtoUtil.log("Successfully parsed MIDI mappings:");
 					ProtoUtil.log("");
+					int i = 1;
+					for (final MidiMapping map : mappings) {
+						ProtoUtil.log("  "+(i++)+". " + map);
+					}
+					ProtoUtil.log("");
+					
+					ProtoUtil.log("Connection established (displaying every " + ProtoUtil.LOG_JOINT_EVERY +"th messages) ...");
+					ProtoUtil.log("");
+					ViewMediator.this.window.setBtnStartStop(false);
+					
+				} catch (InvalidInputException e) {
+//					ProtoUtil.log("WARNING: Invalid input: " + e.getMessage());
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Configuration Error", JOptionPane.WARNING_MESSAGE);
+					
 				} catch (Exception e) {
 					ProtoUtil.handleException(e);
 				}
@@ -37,6 +58,7 @@ public class ViewMediator implements MainWindowListener {
 	}
 
 	public void onStop() {
+		this.window.setBtnStartStop(true);
 		try {
 			LOG.info("doStop() ... recentLogic=" + this.recentLogic);
 			if(this.recentLogic != null) {
@@ -58,7 +80,7 @@ public class ViewMediator implements MainWindowListener {
 	}
 	
 	
-	private static MidiMapping[] parseMappings(String raw) {
+	private static MidiMapping[] parseMappings(String raw) throws InvalidInputException {
 		List<MidiMapping> mappings = new LinkedList<MidiMapping>();
 		
 		String[] lines = raw.split("\n");
@@ -71,12 +93,24 @@ public class ViewMediator implements MainWindowListener {
 			String[] tokens = line.split(",");
 			BodyPart part = ProtoUtil.bodyPartByOsceletonId(tokens[0].trim());
 			XyzDirection direction = XyzDirection.valueOf(tokens[1].trim());
-			int midiChannel = Integer.parseInt(tokens[2].trim());
-			int controllerNumber = Integer.parseInt(tokens[3].trim());
+			int midiChannel = parseInt(tokens[2]);
+			int controllerNumber = parseInt(tokens[3]);
 			mappings.add(new MidiMapping(part, direction, midiChannel, controllerNumber));
 		}
 		
 		return mappings.toArray(new MidiMapping[mappings.size()]);
+	}
+	
+	private static int parseInt(String s) throws InvalidInputException {
+		try {
+			return Integer.parseInt(s.trim());
+		} catch(NumberFormatException e) {
+			throw InvalidInputException.newInvalidNumber(s);
+		}
+	}
+	
+	public void setCyclicDependency(MainWindow window) {
+		this.window = window;
 	}
 	
 }

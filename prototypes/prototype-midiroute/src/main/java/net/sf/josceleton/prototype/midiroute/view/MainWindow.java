@@ -33,7 +33,7 @@ public class MainWindow extends JFrame {
 	private static final String LBL_START = "Start";
 	private static final String LBL_STOP = "Stop";
 	
-	private final JButton btnStartStop = new JButton(LBL_START);
+	private final JButton btnStartStop = new JButton();
 	private static final Font FONT = new Font("Monaco", Font.PLAIN, 11);
 	private final JTextField inpPort = new JTextField();
 	private final JTextArea inpMappings = new JTextArea(14, 45);
@@ -43,7 +43,7 @@ public class MainWindow extends JFrame {
 	private final MainWindowListener listener;
 	
 	public MainWindow(MainWindowListener listener) {
-		super("MidiRoute Prototype");
+		super("MidiRoute Prototype v1");
 		
 		this.listener = listener;
 		
@@ -55,13 +55,9 @@ public class MainWindow extends JFrame {
 			}
 		});
 		
-		final JPanel panel = new JPanel(new BorderLayout());
+		final JPanel panel = new JPanel(new BorderLayout(5, 0));
 		panel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-		final JPanel westPanel = new JPanel(new BorderLayout());
-		westPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
-		westPanel.add(this.initComponents(), BorderLayout.NORTH);
-		westPanel.add(new JPanel());
-		panel.add(westPanel, BorderLayout.WEST);
+		panel.add(this.initComponents(), BorderLayout.WEST);
 		
 		final JScrollPane scroll = new JScrollPane(this.logField);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -73,6 +69,7 @@ public class MainWindow extends JFrame {
 		this.logField.setFont(FONT);
 		
 		this.inpPort.setText("IAC Driver - XXX");
+//		this.inpPort.setText("IAC Driver - Chrisi A");
 		this.inpMappings.setText(
 			"# Format for each line:\n" +
 			"#   <JOINT>, <XYZ>, <MIDI-CH>, <CTRL-NR>\n" +
@@ -107,7 +104,7 @@ public class MainWindow extends JFrame {
 		panel.add(scroll, BorderLayout.CENTER);
 		
 		this.btnStartStop.setPreferredSize(new Dimension(200, 40));
-		this.btnStartStop.setToolTipText("Click to open Connection");
+		this.setBtnStartStop(true);
 		this.btnStartStop.addActionListener(new ActionListener() {
 			@SuppressWarnings("synthetic-access")
 			public void actionPerformed(ActionEvent e) {
@@ -126,12 +123,18 @@ public class MainWindow extends JFrame {
 	private void onBtnStartStopClicked() {
 		if(this.btnStartStop.getText().equals(LBL_START)) {
 			doStart();
-			this.btnStartStop.setText(LBL_STOP);
-			this.btnStartStop.setToolTipText("Click to close Connection");
 		} else {
 			doStop();
+		}
+	}
+	
+	public void setBtnStartStop(boolean toStart) {
+		if(toStart) {
 			this.btnStartStop.setText(LBL_START);
 			this.btnStartStop.setToolTipText("Click to open Connection");
+		} else {
+			this.btnStartStop.setText(LBL_STOP);
+			this.btnStartStop.setToolTipText("Click to close Connection");
 		}
 	}
 

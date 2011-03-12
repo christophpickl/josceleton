@@ -1,9 +1,10 @@
-package net.sf.josceleton.prototype.midiroute;
+package net.sf.josceleton.prototype.midiroute.logic;
 
 import net.pulseproject.commons.midi.entity.ControllerMessage;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.prototype.midiroute.ProtoUtil;
 
 public class MidiMapping {
 
@@ -32,9 +33,11 @@ public class MidiMapping {
 		if(this.currentLogCount == ProtoUtil.LOG_JOINT_EVERY) {
 			this.currentLogCount = 0;
 			ProtoUtil.log("Captured " +
-					ProtoUtil.fillString(this.part.getLabel(), 12) + " - " +
-					"MIDI channel: " + this.midiChannel + ", " +
-					"Ctrl Nr|Val: " + this.controllerNumber + "|" + controllerValue);
+					ProtoUtil.fillString(this.part.getLabel(), 12) + " -> " +
+					"MIDI ch |ctl|val: " +
+						this.midiChannel + " | " +
+						this.controllerNumber + " | " +
+						controllerValue);
 		}
 		
 		return new ControllerMessage(this.midiChannel, this.controllerNumber, controllerValue);

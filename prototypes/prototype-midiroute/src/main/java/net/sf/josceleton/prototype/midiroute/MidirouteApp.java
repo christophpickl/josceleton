@@ -10,7 +10,9 @@ public class MidirouteApp {
 	public static void main(String[] args) throws Exception {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				final MainWindow window = new MainWindow(new ViewMediator());
+				final ViewMediator mediator = new ViewMediator();
+				final MainWindow window = new MainWindow(mediator);
+				mediator.setCyclicDependency(window);
 				window.setVisible(true);
 				window.logWelcomeMessage();
 			}

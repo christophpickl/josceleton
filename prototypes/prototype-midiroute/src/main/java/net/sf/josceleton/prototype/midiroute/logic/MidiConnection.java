@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.midiroute;
+package net.sf.josceleton.prototype.midiroute.logic;
 
 import javax.sound.midi.MidiDevice;
 import javax.sound.midi.MidiSystem;
@@ -9,6 +9,7 @@ import javax.sound.midi.MidiDevice.Info;
 import net.pulseproject.commons.midi.entity.ControllerMessage;
 import net.pulseproject.commons.midi.entity.DeviceKind;
 import net.pulseproject.commons.midi.entity.DeviceState;
+import net.sf.josceleton.prototype.midiroute.InvalidInputException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,12 +27,14 @@ public class MidiConnection {
 		this.port = port;
 	}
 	
-	public void connect() {
+	public void connect() throws InvalidInputException {
 		LOG.info("Connecting on MIDI port [" + this.port + "] ...");
 		try {
 			final MidiDevice device = loadDevice();
 			this.midiReceiver = device.getReceiver();
 			LOG.info("connect() ... FINISHED");
+		} catch(InvalidInputException e) {
+			throw e;
 		} catch(Exception e) {
 			throw new RuntimeException("midi connection error", e);
 		}
@@ -52,7 +55,7 @@ public class MidiConnection {
 		this.midiReceiver = null;
 	}
 	
-	private MidiDevice loadDevice() throws MidiUnavailableException {
+	private MidiDevice loadDevice() throws MidiUnavailableException, InvalidInputException {
 		LOG.info("Loading MIDI devices ...");
 		final Info[] infos = MidiSystem.getMidiDeviceInfo();
 		for (final Info info : infos) {
@@ -66,6 +69,6 @@ public class MidiConnection {
 				}
 			}
 		}
-		throw new RuntimeException("Could not find device by port [" + this.port + "]!");
+		throw InvalidInputException.newInvalidMidiPort(this.port);
 	}
 }
