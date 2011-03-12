@@ -7,28 +7,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 import net.pulseproject.commons.util.GuiUtil;
-import net.sf.josceleton.core.api.entity.XyzDirection;
-import net.sf.josceleton.core.api.entity.body.Body;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.prototype.midiroute.JointMidiMap;
-import net.sf.josceleton.prototype.midiroute.PrototypeLogic;
+import net.sf.josceleton.prototype.midiroute.ProtoUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -44,7 +36,7 @@ public class MainWindow extends JFrame {
 	private final JButton btnStartStop = new JButton(LBL_START);
 	private static final Font FONT = new Font("Monaco", Font.PLAIN, 11);
 	private final JTextField inpPort = new JTextField();
-	private final JTextArea inpConfig = new JTextArea(14, 45);
+	private final JTextArea inpMappings = new JTextArea(14, 45);
 	
 	private final JTextArea logField = new JTextArea(6, 85);
 	
@@ -77,24 +69,20 @@ public class MainWindow extends JFrame {
 		this.getContentPane().add(panel);
 		
 		this.inpPort.setFont(FONT);
-		this.inpConfig.setFont(FONT);
+		this.inpMappings.setFont(FONT);
 		this.logField.setFont(FONT);
 		
-		this.inpPort.setText("IAC Driver - Chrisi A");
-		this.inpConfig.setText(
+		this.inpPort.setText("IAC Driver - XXX");
+		this.inpMappings.setText(
 			"# Format for each line:\n" +
 			"#   <JOINT>, <XYZ>, <MIDI-CH>, <CTRL-NR>\n" +
-			"# J ... head, neck, torso\n" +
-			"#       x_shoulder, x_elbow, x_hand\n" +
-			"#       x_hip, x_knee, x_ankle, x_foot\n" +
 			"\n" +
-			"l_hand, X, 1, 1\n" +
-			"r_hand, Y, 1, 2"
+			"l_hand, X, 0, 1\n" +
+			"r_hand, Y, 0, 2"
 		);
 		
-		this.inpPort.setToolTipText("Enter the Name of an available MIDI Port");
-		this.inpConfig.setToolTipText("Enter the Routing Configuration Text");
-		this.logField.setToolTipText("Computer generated Log Output");
+		this.inpPort.setToolTipText("Name of an receivable MIDI Port");
+		this.inpMappings.setToolTipText("MIDI Mappings");
 		
 		this.pack();
 		GuiUtil.setCenterLocation(this);
@@ -114,7 +102,7 @@ public class MainWindow extends JFrame {
 		portPanel.add(this.inpPort, BorderLayout.CENTER);
 		panel.add(portPanel, BorderLayout.NORTH);
 		
-		final JScrollPane scroll = new JScrollPane(this.inpConfig);
+		final JScrollPane scroll = new JScrollPane(this.inpMappings);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		panel.add(scroll, BorderLayout.CENTER);
 		
@@ -123,17 +111,10 @@ public class MainWindow extends JFrame {
 		this.btnStartStop.addActionListener(new ActionListener() {
 			@SuppressWarnings("synthetic-access")
 			public void actionPerformed(ActionEvent e) {
-				if(btnStartStop.getText().equals(LBL_START)) {
-					doStart();
-					btnStartStop.setText(LBL_STOP);
-					btnStartStop.setToolTipText("Click to close Connection");
-				} else {
-					doStop();
-					btnStartStop.setText(LBL_START);
-					btnStartStop.setToolTipText("Click to open Connection");
-				}
+				onBtnStartStopClicked();
 			}
 		});
+		
 		this.getRootPane().setDefaultButton(this.btnStartStop);
 		final JPanel cmdPanel = new JPanel();
 		cmdPanel.add(this.btnStartStop);
@@ -141,15 +122,36 @@ public class MainWindow extends JFrame {
 		
 		return panel;
 	}
+	
+	private void onBtnStartStopClicked() {
+		if(this.btnStartStop.getText().equals(LBL_START)) {
+			doStart();
+			this.btnStartStop.setText(LBL_STOP);
+			this.btnStartStop.setToolTipText("Click to close Connection");
+		} else {
+			doStop();
+			this.btnStartStop.setText(LBL_START);
+			this.btnStartStop.setToolTipText("Click to open Connection");
+		}
+	}
 
 	void doStop() {
 		this.listener.onStop();
 	}
 	
 	void doStart() {
-		final String config = this.inpConfig.getText();
+		final String rawMappings = this.inpMappings.getText();
 		final String port = this.inpPort.getText();
-		this.listener.onStart(config, port);
+		this.listener.onStart(rawMappings, port);
 	}
 	
+	public void logWelcomeMessage() {
+		ProtoUtil.log("====================================================================");
+		ProtoUtil.log("                               WELCOME");
+		ProtoUtil.log("====================================================================");
+		ProtoUtil.log("");
+		ProtoUtil.log("Enter port, define mappings and hit start ...");
+		ProtoUtil.log("");
+		ProtoUtil.log("");
+	}
 }

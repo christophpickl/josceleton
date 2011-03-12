@@ -18,14 +18,16 @@ public class MidiConnection {
 	private static final Log LOG = LogFactory.getLog(MidiConnection.class);
 	
 	private final String port;
+	
 	private Receiver midiReceiver;
+	
 	
 	public MidiConnection(String port) {
 		this.port = port;
 	}
 	
 	public void connect() {
-		LOG.info("connect()");
+		LOG.info("Connecting on MIDI port [" + this.port + "] ...");
 		try {
 			final MidiDevice device = loadDevice();
 			this.midiReceiver = device.getReceiver();
@@ -36,7 +38,7 @@ public class MidiConnection {
 	}
 	
 	public void send(ControllerMessage message) {
-//		LOG.trace("send(message=" + message + ")");
+		// NO ... too many invocations ... LOG.trace("send(message=" + message + ")");
 		if(this.midiReceiver == null) {
 			System.err.println("Not sending MIDI message, as already closed!");
 			return;
@@ -45,11 +47,13 @@ public class MidiConnection {
 	}
 	
 	public void close() {
+		LOG.info("Closing MIDI connection.");
 		this.midiReceiver.close();
 		this.midiReceiver = null;
 	}
 	
 	private MidiDevice loadDevice() throws MidiUnavailableException {
+		LOG.info("Loading MIDI devices ...");
 		final Info[] infos = MidiSystem.getMidiDeviceInfo();
 		for (final Info info : infos) {
 			if(info.getName().equals(this.port)) {
