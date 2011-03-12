@@ -1,11 +1,12 @@
 package net.sf.josceleton.connection.api.service;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
+import net.sf.josceleton.core.api.test.UserX;
 
 import org.testng.annotations.Test;
 
+@SuppressWarnings("boxing")
 public abstract class UserServiceTest extends AbstractUserServiceTest {
 	
 	@Test public final void fullBlownScenarioCoveringQuietManyPossibilitiesOfDispatchedMessages() {
@@ -33,9 +34,12 @@ public abstract class UserServiceTest extends AbstractUserServiceTest {
 		);
 	}
 
-//	@Test
-//	public final void testname() {
-//		
-//		assertThat(null, equalTo(null));
-//	}
+	@Test(expectedExceptions = RuntimeException.class,
+		expectedExceptionsMessageRegExp = "Already add new user with ID \\[12\\].*")
+	public final void lookupSameUserWaitingFails() {
+		final Integer osceletonId = Integer.valueOf(12);
+		final TestableUserServiceDispatcher service = this.createTestableTestee(new User[] { new UserX(osceletonId) });
+		service.delegateLookupUserMessage(osceletonId, UserState.WAITING);
+		service.delegateLookupUserMessage(osceletonId, UserState.WAITING);
+	}
 }

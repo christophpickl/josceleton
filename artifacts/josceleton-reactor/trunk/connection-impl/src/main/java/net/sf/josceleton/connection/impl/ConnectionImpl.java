@@ -71,28 +71,22 @@ class ConnectionImpl
 	@Override public final void onAcceptedJointMessage(final Date date, final OSCMessage oscMessage) {
 		// assert(yetClosed == false); && assert(yetEstablished == true);
 		final JointMessage message = this.transformer.transformJointMessage(oscMessage, this.userService);
-		this.dispatchJointMessage(message);
+		
+		for (final ConnectionListener currentListener : this.getListeners()) {
+			currentListener.onJointMessage(message);
+		}
 	}
 
 	/** {@inheritDoc} from {@link OscMessageAddressRouterCallback} */
 	@Override public final void onAcceptedUserMessage(final Date date, final OSCMessage oscMessage) {
 		// assert(yetClosed == false); && assert(yetEstablished == true);
 		final UserMessage message = this.transformer.transformUserMessage(oscMessage, this.userService);
-		this.dispatchUserMessage(message);
-	}
-	
-	private void dispatchJointMessage(final JointMessage message) {
-		for (final ConnectionListener currentListener : this.getListeners()) {
-			currentListener.onJointMessage(message);
-		}
-	}
-	
-	private void dispatchUserMessage(final UserMessage message) {
+		
 		for (final ConnectionListener currentListener : this.getListeners()) {
 			currentListener.onUserMessage(message);
 		}
 	}
-
+	
 	/** {@inheritDoc} from {@link Connection} */
 	@Override public final UserService getUserService() {
 		return this.userService;

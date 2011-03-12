@@ -6,6 +6,7 @@ import java.util.Map;
 import net.sf.josceleton.connection.api.service.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
+import net.sf.josceleton.core.api.entity.UserStateFunction;
 import net.sf.josceleton.core.impl.async.AsyncDelegator;
 import net.sf.josceleton.core.impl.entity.UserFactory;
 
@@ -22,6 +23,7 @@ class UserServiceImpl
 	
 	private final Map<Integer, User> usersById = new HashMap<Integer, User>();
 
+	// FIXME outsource getting current snapshot of all users to other class!!!
 //	private final Collection<User> waitingUsers = new HashSet<User>();
 //	
 //	private final Collection<User> availableUsers = new HashSet<User>();
@@ -44,21 +46,21 @@ class UserServiceImpl
 	}
 
 	/** {@inheritDoc} from {@link UserStore} */
+	@SuppressWarnings("synthetic-access")
 	@Override public final User lookupUserForUserMessage(final Integer osceletonUserId, final UserState userState) {
-		if(userState == UserState.WAITING) {
-			return lookupWaitingUser(osceletonUserId);
-			
-		} else if(userState == UserState.PROCESSING) {
-			return lookupProcessingUser(osceletonUserId);
-			
-		} else if(userState == UserState.DEAD) {
-			return lookupDeadUser(osceletonUserId);
-			
-		} else { // TODO @CODE DESIGN if-else cascade for UserState enum (use callback interface instead, as used previously)
-			throw new RuntimeException("Unhandled user state [" + userState + "]!");
-		}
+		return userState.callback(new UserStateFunction<User>() {
+			@Override public User onStateWaiting() {
+				return lookupWaitingUser(osceletonUserId);
+			}
+			@Override public User onStateProcessing() {
+				return lookupProcessingUser(osceletonUserId);
+			}
+			@Override public User onStateDead() {
+				return lookupDeadUser(osceletonUserId);
+			}
+		});
 	}
-
+	
 	private User lookupDeadUser(final Integer osceletonUserId) {
 		final User removedUser = this.usersById.remove(osceletonUserId);
 		
@@ -118,8 +120,7 @@ class UserServiceImpl
 		this.usersById.put(osceletonUserId, newUser);
 		return newUser;
 	}
-	
-	
+
 	private void dispatchWaitingUser(final User user) {
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserWaiting(user);

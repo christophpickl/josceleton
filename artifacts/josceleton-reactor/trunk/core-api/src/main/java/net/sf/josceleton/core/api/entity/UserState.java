@@ -14,7 +14,9 @@ public enum UserState {
 	 * 
 	 * @since 0.1
 	 */
-	WAITING,
+	WAITING { @Override public <T> T callback(final UserStateFunction<T> callee) {
+		return callee.onStateWaiting();
+	}},
 
 	/**
 	 * Represents the message sent for address <code>/new_skel</code>.
@@ -23,7 +25,9 @@ public enum UserState {
 	 * 
 	 * @since 0.1
 	 */
-	PROCESSING,
+	PROCESSING { @Override public <T> T callback(final UserStateFunction<T> callee) {
+		return callee.onStateProcessing();
+	}},
 
 	/**
 	 * Represents the message sent for address <code>/lost_user</code>.
@@ -32,6 +36,12 @@ public enum UserState {
 	 * 
 	 * @since 0.1
 	 */
-	DEAD;
+	DEAD { @Override public <T> T callback(final UserStateFunction<T> callee) {
+		return callee.onStateDead();
+	}};
 	
+	/**
+	 * @since 0.3
+	 */
+	public abstract <T> T callback(UserStateFunction<T> callee);
 }

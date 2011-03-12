@@ -1,35 +1,93 @@
 package net.sf.josceleton.connection.impl;
 
-import java.util.LinkedList;
-import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+
+import java.util.Date;
 
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.commons.test.jmock.ExpectationsProvider;
 import net.sf.josceleton.commons.test.util.TestUtil;
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.connection.api.ConnectionListener;
+import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.impl.osc.OscMessageTransformer;
 import net.sf.josceleton.connection.impl.osc.OscPort;
 import net.sf.josceleton.connection.impl.service.UserServiceInternal;
+import net.sf.josceleton.connection.impl.test.OSCMessageX;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 
 import org.jmock.Expectations;
 import org.testng.annotations.Test;
 
+import com.illposed.osc.OSCMessage;
+
 @SuppressWarnings("boxing")
 public class ConnectionImplTest extends AbstractMockeryTest {
 	
-//	connection.close();
-//	connection.addListener(new ConnectionListener() {
-//		@Override public void onUserMessage(UserMessage message) {
-//		}
-//		@Override public void onJointMessage(JointMessage message) {
-//		}
-//	});
-//	connection.removeListener(listener);
-//	connection.onAcceptedJointMessage(date, oscMessage);
-//	connection.onAcceptedUserMessage(date, oscMessage);
+	@Test public final void getUserServiceTest() {
+		final OscPort oscPort = this.mock(OscPort.class);
+		final OscMessageAddressRouter addressRouter = this.mock(OscMessageAddressRouter.class);
+		final OscMessageTransformer transformer = this.mock(OscMessageTransformer.class);
+		final UserServiceInternal userService = this.mock(UserServiceInternal.class);
+		
+		
+		final Connection connection = new ConnectionImpl(oscPort, addressRouter, transformer, userService);
+		final UserService actualService = connection.getUserService();
+		assertThat(actualService == userService, equalTo(true)); // old way, as of hamcrest type checks error
+	}
+	
+	@Test public final void onAcceptedJointMessageForOscMessageAddressRouterCallback() {
+		final OSCMessage oscMessage = new OSCMessageX("/address");
+		final JointMessage jointMessage = this.mock(JointMessage.class);
+		final ConnectionImpl connection = this.foo(oscMessage, jointMessage, null);
+		
+		final ConnectionListenerCollector collector = new ConnectionListenerCollector();
+		connection.addListener(collector);
+		final Date date = null; // will be ignored!
+		connection.onAcceptedJointMessage(date, oscMessage);
+		
+		assertThat(collector.getReceivedUserMessages().size(), equalTo(0));
+		assertThat(collector.getReceivedJointMessages().size(), equalTo(1));
+		assertThat(collector.getReceivedJointMessages(), hasItem(jointMessage));
+	}
+	// MINOR @TEST copy'n'paste test code :(
+	@Test public final void onAcceptedUserMessageForOscMessageAddressRouterCallback() {
+		final OSCMessage oscMessage = new OSCMessageX("/address");
+		final UserMessage userMessage = this.mock(UserMessage.class);
+		final ConnectionImpl connection = this.foo(oscMessage, null, userMessage);
+		
+		final ConnectionListenerCollector collector = new ConnectionListenerCollector();
+		connection.addListener(collector);
+		final Date date = null; // will be ignored!
+		connection.onAcceptedUserMessage(date, oscMessage);
+		
+		assertThat(collector.getReceivedJointMessages().size(), equalTo(0));
+		assertThat(collector.getReceivedUserMessages().size(), equalTo(1));
+		assertThat(collector.getReceivedUserMessages(), hasItem(userMessage));
+	}
+	
+	private ConnectionImpl foo(final OSCMessage oscMessage, final JointMessage jointMessage, final UserMessage userMessage) {
+		final UserServiceInternal userService = this.mock(UserServiceInternal.class);
+		
+		final OscMessageTransformer transformer = this.mock(OscMessageTransformer.class);
+		this.checking(new Expectations() {{
+			if(jointMessage != null) {
+				oneOf(transformer).transformJointMessage(oscMessage, userService);
+				will(returnValue(jointMessage));
+			} else {
+				oneOf(transformer).transformUserMessage(oscMessage, userService);
+				will(returnValue(userMessage));
+			}
+		}});
+		
+		final OscPort oscPort = this.mock(OscPort.class);
+		final OscMessageAddressRouter addressRouter = this.mock(OscMessageAddressRouter.class);
+		
+		final ConnectionImpl connection = new ConnectionImpl(oscPort, addressRouter, transformer, userService);
+		return connection;
+	}
 	
 	@Test(expectedExceptions = IllegalStateException.class,
 			expectedExceptionsMessageRegExp = "Connection was already established!")
@@ -79,24 +137,6 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 //		assertThat(connectionListener.getReceivedUserMessages().get(0), is(sentUserMessage2));
 //	}
 	
-	static class ConnectionListenerCollector implements ConnectionListener {
-		private final List<JointMessage> receivedJointMessages = new LinkedList<JointMessage>();
-		private final List<UserMessage> receivedUserMessages = new LinkedList<UserMessage>();
-		@Override public void onJointMessage(final JointMessage message) {
-			this.receivedJointMessages.add(message);
-		}
-
-		@Override public void onUserMessage(final UserMessage message) {
-			this.receivedUserMessages.add(message);
-		}
-		public final List<JointMessage> getReceivedJointMessages() {
-			return this.receivedJointMessages;
-		}
-		public final List<UserMessage> getReceivedUserMessages() {
-			return this.receivedUserMessages;
-		}
-	}
-
 	private ConnectionImpl newStandardConnectionInternal() {
 		return this.newStandardConnectionInternal(null);
 	}

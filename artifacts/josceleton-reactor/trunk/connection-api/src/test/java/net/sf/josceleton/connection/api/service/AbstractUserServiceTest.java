@@ -10,14 +10,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
-
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.test.UserServiceListenerCollector;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.test.UserX;
+
+import org.hamcrest.Matchers;
 
 @SuppressWarnings("boxing")
 abstract class AbstractUserServiceTest extends AbstractMockeryTest {
