@@ -1,34 +1,32 @@
 
 
+
 ==========================================
 TODO * upcoming *
 ==========================================
+!!! @ORGANISATION MANTIS: split connection services issue in two: 1. user service 2. motion service
+	- description of parent issue: "aim is to provide a more high-level abstraction view of what is happening.
+	"see subissues for: 1) UserService 2) MotionService"
+	"* extend legacy code (AsyncFor)"
+	"* UserManager ... manages users correctly (artificial user login)"
+	"* RecentMotionStorage ... stores (recent) movement for motion tracker (will throw checked exception if data was not yet set + provide isDataAvailable(bodyPart))"
+	==> ziel is es ja, dass im changelog alles aufgelistet ist (und da gehoeren tasks halt atomarisiert, damit feature nicht untergeht in changelog)
 ! getaggte version 0.1 alles auschecken, und neu alles deployen!
 ! m2eclipse plugin fine tunen
 -- shelled (eclipse shellscript editor plugin) installation failed... :(
 - read pom best practices: http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
 !!! toString fuer BodyParts: net.sf.josceleton.core.api.entity.body.BodyPartImplProvider$RightHipImpl@4463a1ae
 !!! von aussen unbedingt konfigurierbar machen, dass sich eine osceleton user id wiederholen darf! (nicht einfach abkakken, weil so ist zb ein oni-file nicht abspielbar)
+- maven-checkstyle-plugin leute frage ob/wann MethodCount unterstuetzt wird // wird nicht vom mvn-plugin gefressen (sogar nicht neueste 2.6 version); wird aber von eclipse-cs gesetzt :(
+- @BUILD bzgl custom echo mojo:
+	- mvn eigenen logger nehmen (kein sysout)
+	- entweder A. 2 params { log-level, messageText } oder wenn nicht B. "INFO xyz" ersten part parsen (fuer nachher mvn logger nehmen)
 
-==========================================
-IDEAS
-==========================================
-* bzgl spinoffs
-	!! ~"debug gui" ... FIX!
-		- "josceleton gui debug app" ist ein subprojekt (in mantis), und hat komplett separate versionierung!
-	- josceleton+midi rerouter ... JA, fuern hirt
-		* @midi rerouter module: das hat josceleton nur als optional=true dependency drinnen!
-	- josceleton+mindstorm ... LUXURY, NICE ;)
-	- NO maven invoker ... LUXURY, NAJA => m2eclipse anschaun!
-- @hitwall gesture: auch beine/kopf dazunehmen; vertikal volumen ... oder so?; nicht absolut, sondern relativ (vom torso) ist wall entfernt
-
-
-==========================================
-DREAMS
-==========================================
-- register domain josceleton.org
-- use BUILDSERVER (hudson) // evtl sogar auch nexus repo
-- @DOC evtl sogar ganz eigenen youtube account anlegen; mehrere -eigene- videos hochladen
-- spring bruecke schreiben, um in spring alle josceleton guice zur verfuegung zu haben
--- build osgi bundle: <plugin><groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId><extensions>true</extensions>
-	<configuration><instructions><Export-Package>javolution.*,javax.realtime</Export-Package><Private-Package>!*</Private-Package></instructions>
+!!! STAY FOCUSED
+	- introduce importance/weighting modifiers
+		API +40%
+		BUILD -30%
+		DOC -70%
+		TEST (REFACTORINGS) -40%
+		CODE (REFACT., OVER ENGINEER) -20%
+	

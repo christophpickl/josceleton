@@ -1,6 +1,3 @@
-
-BUILD
-==========================================
 ! @organization: distribute proper README.txt/LICENSE.txt files
 ! set different compiler settings in release profile
   see: http://www.sonatype.com/books/mvnref-book/reference/profiles-sect-maven-profiles.html
@@ -16,6 +13,8 @@ BUILD
 	 see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIpreventtestsfromrunningtwice%2Cafteraddingaconfigurationforthesurefireplugin%3F
 - more build plugins: diese mvn plugins anschaun: help-plugin, idea-plugin, one-plugin, verifier-plugin
 
+- @BUILD nach release koennten scripts checken ob urls da sind
+--- @BUILD versucht komisches site file runterzuladen: "Downloading: http://.../java-abstract-pom/0.3-SNAPSHOT/java-abstract-pom-0.3-SNAPSHOT-site_en.xml"
 -- @java-abstract-pom/clean-plugin: sometimes the testng outputfolder folder does not get deleted
 -- rename java-pom to java-super-pom (also rethink naming of java-abstract-pom ... could also split it up into several parts while doing this)
 -- @POM add plugin to check if peruser properties (defined in settings.xml) are all correctly set
@@ -42,4 +41,3 @@ BUILD
 --- @java-pom/checkstyle: maybe load plugin configurations from properties file? advantage? 
 	 see: http://maven.apache.org/plugins/maven-checkstyle-plugin/faq.html 
 	<propertiesLocation>path/to/checkstyle-plugin-configuration.properties</propertiesLocation>
-

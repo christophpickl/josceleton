@@ -1,13 +1,24 @@
 
+@API
+========================================================================
 
-enhance build
+@TEST
+========================================================================
+
+@CODE
+========================================================================
+
+@DOC
+========================================================================
+
+
+@BUILD fix, enhance, refactor
 ========================================================================
 * move project-info-report -plugin from abstract-pom to corporate-pom
   (especially move the version as it generates a warning in output)
 
 
-
-improve release process (shellscripts)
+@BUILD RELASE improve process/build-scripts.py
 ========================================================================
 * kleines tool (gui?) bauen, wo man mvn schnell ausfuehren kann:
 		1. enter mvn command
@@ -25,3 +36,7 @@ improve release process (shellscripts)
 	... fast schon ganzen release process automatisieren
 		eigentlich, wenn man alles interaktiv macht, mit einfach meldung ausgeben "please confirm bla bla x y", und dann mit <enter> weiter gehen und confirmen
 	* man kann sich viele paths ersparen, weil man vorher mit svn alles ausgecheckt => braucht also nur (temporary) workspace // sowas wie merger-manager ;)
+* /PM/mvn scripts/release/ ... ganz viele scripts
+		+ config.template.properties
+		+ <username>.template.properties ++ svn:ignore drauf (<username> uname von shellscript)
+	// oder doch alles in python? is doch gmuetlicher und kompakter, mhm!!!!!!!!! DEFINITIV PYTHON!!!

@@ -64,6 +64,10 @@ class ConnectionImpl
 		// or maybe just removeAllListeners()... no, would have no effect,
 		// as OscPort will not dispatch anything anymore (at, least ... should not ;)
 		
+		// TODO i really do believe we should removeAllListeners in here!
+		// 		then we have to lockern conditions for removeListener(x) whereas x not added is listener;
+		// 		actually nothing bad here, as postconditions is on method begin already fullfilled => perfectly fine
+		
 		this.oscPort.close();
 	}
 

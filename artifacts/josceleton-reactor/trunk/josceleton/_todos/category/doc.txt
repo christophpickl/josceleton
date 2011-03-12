@@ -1,11 +1,21 @@
-
-DOC
-==========================================
+!! @DOC aggregate reports:
+	// niemanden interessieren reports einzelner module; wenn dann nur als uebersicht
+	- playground-maven projekt anlegen; reaktor mit 2 module; module jeweils nur eine klasse; javadoc-plugin alleinig registriert
+!! @DOC SITE DEPLOYMENT wirrwarr:
+	1. submodule alle taggen, und diese dann verwenden
+	2. auf reaktor site ausfuehren
+	3. diese dann aggregierten reports kann man irgendwo (evtl sogar separat wie /reports/0.4/) hindeployen
+	4. dieses deployment artifact dann einfach in josceleton artifakt schon referenziert haben
+!! @DOC SITE AGGREGATE: die entscheidende frage ist: kann man nur ueber reaktor projekte reports aggregieren?
+	=> wenn ja, ist die sache klar: reaktors haben ihre daseinsberechtigung
+	=> wenn nein, dann alles immer flat machen (mit scripts aushelfen, um praktische anwendungen von mvn cmds auf submodule)
 !! es kann doch josceleton (und nicht josceleton-reactor) hin deployen,
 	er hat ja in properties.version.josceleton-core-api zb schon versionsnr drinnen => josceleton.sf.net/artifacts]/../${version}/,
 	von daher kann man aus josceleton doc her, alle anderen (korrekt) module verweisen
 ! let josceleton-reactor deploy doc twice: 2nd time to /htdocs/ root folder to access it from outside via: http://josceleton.sf.net/
 	?? oder wie sonst loesen, ausser wie daweil mit redirect?
+! @DOC rethink: was sind eigentlich wirklich interessante metriken; zb total LoC:
+	- per modul vs aggregiert && src/main vs src/test vs kombiniert // hier schoen gegenueberstellbar: wieviel testcode im vergleich zu produktivcode ;)
 ! add multimedia stuff: diagram of architecture
 ! mehr reports: welche datei wurde am haeufigsten veraendert (changesets, changelist, oder dgl)
 ! in doc alle klassenreferenzen mit javadoc verlinken
@@ -13,22 +23,56 @@ DOC
 ! @JAVADOC: wenn alles zam-aggregiert ist, sollen *-impl modulklassen nicht sichtbar sein
 	=> YES: do this by setting javadoc-plugin config option; eg ~"<docExcludes>"
 	// NO: dann muss auch in allen *-impl modulen alle public klassen ein ~"@NoJavadoc" annotation draufhaben
+! @DOC alle samples mit import statments (und halt run methode! damits 1:1 copy und pastebar ist; ohne package zeile)
+! @DOC "troubleshooting / osceleton":
+	"$ osceleton 
+	"There was a problem initializing kinect... Make sure you have connected both usb and power cables and that the driver and OpenNI framework are correctly installed."
+! @POM carefully think about solution how to deploy everything (exception reactors of course) into /documentation/<artifactId>/<version>/
+	AND got a second release version to josceleton.sf.net/ root?
+	maybe: outsource site url part as property (could be the case submodule wants to override)
+	==> better: manually (semi manually, could be heavily automated) deploy a second time to a different url
+- @POM enable more default reports:
+	ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
+	MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
+	WHAT FOR: help, index, dependency-convergence
+	DEFINETELY NOT: mailing-list, cim
+- @site: kontaktmoeglichkeit
+	* irgendwo noch mail-captcha besser positionieren
+	* sourceforge forum link (irgendwo wo man anonym posten kann!!)
+- @POM include more reporting plugins:
+	- org.codehaus.mojo :: simian-report-maven-plugin (configuration.minimumThreshold=2)
+	- changelog plugin, siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changelog.html
+	- changes plugin siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changes-report.html
+	- file activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/file-activity.html
+	-- developer activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/dev-activity.html
+- @JAVADOC script schreiben, dass von allen klassen ein @since ausspuckt (svn history durchgehen, date vergleichen die konfiguriert wurden)
+- @JAVADOC exclude non-api/impl.* classes in javadoc
+	<excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->
+- @JAVADOC customize style 
+	<plugin><groupId>javolution</groupId><artifactId>colapi</artifactId><version>1.0.0</version>
+    <executions><execution><goals><goal>colorize</goal></goals></execution></executions</plugin>
+- @JAVADOC include UML graphs 
+	eg: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html 
+	... or generate diagrams with APIviz: http://code.google.com/p/apiviz/ 
+- @JAVADOC use multiple javadoc reports (plain + for UML graphs)
+	see: http://docs.codehaus.org/display/MAVENUSER/Reporting+Plugins
+- @DOC handbook fuer API change
+	1 PREPARE:
+	* rethink design: draw graphs on paper, see architecture diagrams in doc
+	* identify necessary refactorings: dont introduce compile errors => use @Deprecated
+	2 EXEC:
+	* create/update javadoc for interface (tests will only rely on this specification)
+	* change one class at a time + its unit test (unit test wont be affacted of other changes, as it -should!- only test _this_ unit)
+	* cleanup legacy code: task tags, refactor (dry, outsource, exceptions)
+	* cleanup your own mess ;) resolve FIXMEs (if possible) and basic warnings (eclipse, checkstyle; no pmd&co)
+	3 POST:
+	* update unit tests (maybe refactor a bit, and enhance a bit)
+	* coverage can be a little bit postponed; get 100% coverage all at once after a couple of changes
+- @DOC auch ein bissi mehr OSCeleton beschreiben!
+	! vor allem dass man psi position gehn muss
 - ? which coveragte tool: maven-clover-plugin / emma / cobertura ?
 - document components <source><![CDATA[Josceleton > Java OSC > OSCeleton > OpenNI & Co > Kinect Hardwere]]></source>
 - write handbook on how to execute manual tests after release built
--- ? how to colorize code samples in doc?
--- @JAVADOC fuer alle klassen (nicht nur in api) ein @since tag drauf geben (doc wird nachher eh nicht einsehbar sein vom user)
--- @site: viele direkt style-attribute zuweisungs hacks => style anpassen und gscheit mit style-klassen arbeiten!
--- LUXURY @DOC welche properties kann man fuer xdoc seiten alles angeben?
--- LUXURY @DOC page fuer internal devs: (aehnlich wie "workspace setup") ssh command, welche shellscripts nuetzlich sein koennen, welche profile es gibt + was machen sie, ...
--- @build fix that tests are not run twice because of surefire: https://maven.apache.org/plugins/maven-surefire-report-plugin/faq.html
--- LUXURY am besten aus ganze metriken ein (mehrere) flex chart(s) machen, und als swf einbinden
---- improve javadoc:
-	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
-	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags
-	* @doclava: make since tag appear; officially not supported, but guice doc has it!!!
-
--- mvn2_and_3_parallel-setmvn.sh file => als site dokumentieren/ersetzen
 - @Download: anmerken unterschied profile.activeByDefault vs activeProfiles.activeProfile
 	+ bsp schreiben + sagen, dass (anscheinbar) keinen unterschied gibt + vertrauenswuerdige url fuer diese tatsache liefern
 - @Code Metrics: display figures for each module AND aggregated
@@ -45,37 +89,17 @@ DOC
 	<artifactId> guice-dependencies </artifactId></exclusion></exclusions></dependency><dependency>com.google.code.guice _ guice _ 2.0</dependency>
 - @project-info-reports-plugin: use custom template (maybe for skin) configuration.<templateFile>
 -- @DOC create custom maven site skin
-
-SITE POM
-==========================================
-! carefully think about solution how to deploy everything (exception reactors of course) into /documentation/<artifactId>/<version>/
-	AND got a second release version to josceleton.sf.net/ root?
-	maybe: outsource site url part as property (could be the case submodule wants to override)
-	==> better: manually (semi manually, could be heavily automated) deploy a second time to a different url
-
-- enable more default reports:
-	ENABLED: dependencies, project-team, issue-tracking, license, scm, summary
-	MAYBE: distribution-management, modules, dependency-management, plugins, plugin-management 
-	WHAT FOR: help, index, dependency-convergence
-	DEFINETELY NOT: mailing-list, cim
-- include more reporting plugins:
-	- org.codehaus.mojo :: simian-report-maven-plugin (configuration.minimumThreshold=2)
-	- changelog plugin, siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changelog.html
-	- changes plugin siehe: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/changes-report.html
-	- file activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/file-activity.html
-	-- developer activity report: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/dev-activity.html
-
-	
-JAVADOC
-==========================================
-
-- exclude non-api/impl.* classes in javadoc
-	<excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->
-- customize style 
-	<plugin><groupId>javolution</groupId><artifactId>colapi</artifactId><version>1.0.0</version>
-    <executions><execution><goals><goal>colorize</goal></goals></execution></executions</plugin>
-- include UML graphs 
-	eg: http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html 
-	... or generate diagrams with APIviz: http://code.google.com/p/apiviz/ 
-- use multiple javadoc reports (plain + for UML graphs)
-	see: http://docs.codehaus.org/display/MAVENUSER/Reporting+Plugins
+-- ? how to colorize code samples in doc?
+-- @JAVADOC fuer alle klassen (nicht nur in api) ein @since tag drauf geben (doc wird nachher eh nicht einsehbar sein vom user)
+-- @site: viele direkt style-attribute zuweisungs hacks => style anpassen und gscheit mit style-klassen arbeiten!
+-- LUXURY @DOC welche properties kann man fuer xdoc seiten alles angeben?
+-- @SITE auf startseite iframe mit dynamischen content anzeigen (evtl sourceforge news anzapfen, oder dgl das von aussen geaendert werden kann ohne deploy notwendig)
+-- LUXURY @DOC page fuer internal devs: (aehnlich wie "workspace setup") ssh command, welche shellscripts nuetzlich sein koennen, welche profile es gibt + was machen sie, ...
+-- @build fix that tests are not run twice because of surefire: https://maven.apache.org/plugins/maven-surefire-report-plugin/faq.html
+-- LUXURY am besten aus ganze metriken ein (mehrere) flex chart(s) machen, und als swf einbinden
+--- improve javadoc:
+	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
+	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags
+	* @doclava: make since tag appear; officially not supported, but guice doc has it!!!
+-- mvn2_and_3_parallel-setmvn.sh file => als site dokumentieren/ersetzen
+-- // lesson learned beim projekt: "der unterschied zwischen chaos und ordnung ist der, dass sich in der ordnung gleichartige (zusammengehoerige) strukturen an gleichen stellen wiederfinden (wiederfinden/zusammen-rotten)"

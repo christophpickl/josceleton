@@ -146,6 +146,7 @@ class UserServiceImpl
 
 	private User lookupWaitingUser(final Integer osceletonUserId) {
 		if(this.usersById.containsKey(osceletonUserId) == true) {
+			// FIXME somehow make it possible for users to catch such errors
 			throw new IllegalStateException("Already add new user with ID [" + osceletonUserId + "]! " +
 					"Registered user is: " + this.usersById.get(osceletonUserId));
 		}

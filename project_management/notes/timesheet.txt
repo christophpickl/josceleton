@@ -28,5 +28,7 @@
               ~~ 90h~~
 11.03. - 21:00 -  2h - #15 finished UserService implementation including some tests
 11.03. - 23:00 -  4h - #15 started implementing MotionService
-12.03. - 02:00 -  h - started prototype midiroute
-              ~~ 96h~~
+12.03. - 02:00 -  4h - started prototype midiroute; and finished it ;)
+             ~~ 100h~~
+12.03. - 19:00 -  h - midiroute prototype; experimenting with ableton -sweet!
+             ~~ 100h~~

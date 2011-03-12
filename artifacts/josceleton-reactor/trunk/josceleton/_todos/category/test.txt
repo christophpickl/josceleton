@@ -1,13 +1,9 @@
+!!! @TEST unbedingt auf leaking resources achten
+	! zb hats bug geben, wo in OscPortImpl#close die methode OSCPortIn.close nicht aufgerufen wurde!
+	* auch das ganze mit removeAllListeners() nochmal ueberdenken
 ! ensure nothing is leaking (close, removeListener) => ebenfalls system-tests dafuer
 ! @build when running tests, maybe append own log4j logger (programatically? something like a regular overwriting file appender)
 ??? best practice?: create impl instantance directly, or use guice factory/provider?
-- @systemtest: (conditional submodule): komplett anders loesen, siehe hier: http://happygiraffe.net/blog/2009/07/26/conditional-maven-modules/
-- da ja sogar VOs interfaces sind => fuer tests only Factory zur verfuegung stellen a la:
-	"userFactory.create(2, 1)" => intern: "mock(User.class); expectations{ user.___allowing___(getId()); willReturn(pId); ... }"
-	... damit wird testen einfacher, und umgeht (in dem fall) "umstaendliches" design von puren interfaces :)
-
-TEST
-==========================================
 - @TestUtil is it possible to mock toString()?
 	can not mock toString, even not with {{ setImposteriser(ClassImposteriser.INSTANCE); }};
 - REFACTOR @TestUtil methods as a custom matcher
@@ -21,12 +17,15 @@ TEST
 - @JosceletonFacadeImplTest.onPort: check Connector.openConnectionOnPort(x) for illegal arguments (negative ports, ports > 65... max range!)
 	- @JosceletonTest same here: validate range of parameter Port
 - @AbstractEqualsTest REFACTOR abstract Test super classes ==> into non-extending-needed style => utility methods / hamcrest matchers
-! how to generically and properly -!!!- test equals and hashCode? this is not yet used everywhere! (@AbstractEqualsTest)
+- how to generically and properly -!!!- test equals and hashCode? this is not yet used everywhere! (@AbstractEqualsTest)
+- @systemtest: (conditional submodule): komplett anders loesen, siehe hier: http://happygiraffe.net/blog/2009/07/26/conditional-maven-modules/
+- da ja sogar VOs interfaces sind => fuer tests only Factory zur verfuegung stellen a la:
+	"userFactory.create(2, 1)" => intern: "mock(User.class); expectations{ user.___allowing___(getId()); willReturn(pId); ... }"
+	... damit wird testen einfacher, und umgeht (in dem fall) "umstaendliches" design von puren interfaces :)
 - DRY @StringUtil merge two methods together
 - @Connection[Internal]Impl: write more tests
 	establish connection, send messages, listener collects, ok; now ...
 	... close, artifical send messages, connection should not pass further
-
 !! DRY complete type hierarchy refactoring necessary!!
 	- @AbstractMessageTest MessageTests should extends EqualsTest AND MockeryTest
 	- mess with all AbstractXyzTest classes
