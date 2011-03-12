@@ -1,0 +1,43 @@
+! @organization: distribute proper README.txt/LICENSE.txt files
+! set different compiler settings in release profile
+  see: http://www.sonatype.com/books/mvnref-book/reference/profiles-sect-maven-profiles.html
+  eg: <profile><id>production</id><build><plugins><plugin>
+      <artifactId>maven-compiler-plugin</artifactId><configuration><debug>false</debug>4<optimize>true</optimize></configuration>
+! split up java-abstract-pom (800 lines); corporate-pom got big as well (500 lines); java-pom is so la la (400 lines)
+! investigieren, ob andere sprachen fuer pom kuhl sind (moeglich ist)
+- @java-abstract-pom/dependencies/logging-stuff: how to solve dependencies for logging (so outside will not be effected, but can enable)
+	if someone relies on josceleton, he should not be forced to depend on log4j, or commons-loggin;  -->
+	maybe via: dependencies.dependency(log4j).<optional>true</optional> ?
+- ueberall (in sourcecode) lizenz header reingeben + checkstyle checken lassen ob eh da ist
+- SUREFIRE prevent tests from running twice with surefire-plugin enabled
+	 see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIpreventtestsfromrunningtwice%2Cafteraddingaconfigurationforthesurefireplugin%3F
+- more build plugins: diese mvn plugins anschaun: help-plugin, idea-plugin, one-plugin, verifier-plugin
+
+- @BUILD nach release koennten scripts checken ob urls da sind
+--- @BUILD versucht komisches site file runterzuladen: "Downloading: http://.../java-abstract-pom/0.3-SNAPSHOT/java-abstract-pom-0.3-SNAPSHOT-site_en.xml"
+-- @java-abstract-pom/clean-plugin: sometimes the testng outputfolder folder does not get deleted
+-- rename java-pom to java-super-pom (also rethink naming of java-abstract-pom ... could also split it up into several parts while doing this)
+-- @POM add plugin to check if peruser properties (defined in settings.xml) are all correctly set
+-- load properties (versions, etc) from property-file via maven-properties-plugin
+-- wohl doch... @POM java-abstract-pom, alle versionsnr als property
+-- why bind checkstyle to package phase? <artifactId>maven-checkstyle-plugin</artifactId><version>2.5</version><executions><execution><goals><goal>checkstyle</goal><goal>check</goal></goals><phase>package</phase>
+-- @build: introduce -Pfast profile (disable some plugins/checks, -Dmaven.skip.test, -Dreport.skip, ...)
+-- clean build warnings
+	* log4j while testing ("log4j:WARN No appenders")
+	* some sys.err message in surefire tests (for core-impl)
+		WARN   addListener, Not added listener [net.sf.josceleton.core.api.test.DummyListener@2cba5bdb] as it was yet added!
+		WARN   removeListener, Not removed listener [net.sf.josceleton.core.api.test.DummyListener@2cba5bdb] as it was not yet added!
+	* changes-plugin produces warning about missing changes.xml file
+		- /Users/phudy/_dev/pulse/josceleton-corporate-pom/target/checkout/src/changes/changes.xml does not exist
+	* already attached project: [WARNING] Artifact net.sf.josceleton:connection-impl:java-source:sources:0.1-SNAPSHOT already attached to project, ignoring duplicate
+	* eclipse workspace warning
+-- @eclipse: add java sources of dependencies + also deploy (guice!) sources into repo, so to have them available in eclipse
+-- what is "surefire.configuration.redirectTestOutputToFile=true" good for?
+--- @deploy: do we need to sign our jars with gpg? <plugin><artifactId>maven-gpg-plugin</artifactId><version>1.1</version></plugin>
+--- move generation of test-output into target/ folder (no more svn:ignore needed)
+--- third party artifakte mit einer custom pom ausstatten: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIinstallafileinmylocalrepositoryalongwithmycustomizedPOM%3F
+--- @java-abstract-pom/animal-sniffer: change check from java 1.5 to 1.6
+--- @pmd: what is config.minimumTokens=100 good for?
+--- @java-pom/checkstyle: maybe load plugin configurations from properties file? advantage? 
+	 see: http://maven.apache.org/plugins/maven-checkstyle-plugin/faq.html 
+	<propertiesLocation>path/to/checkstyle-plugin-configuration.properties</propertiesLocation>
