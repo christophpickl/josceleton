@@ -4,7 +4,7 @@
     <packaging>pom</packaging>
     <groupId>net.sf.josceleton.delme.playground.release</groupId>
     <artifactId>release-playground</artifactId>
-    <version>0.3</version>
+    <version>0.4-SNAPSHOT</version>
     
     <build>
 		<plugins>
@@ -37,9 +37,9 @@
     </distributionManagement>
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/prototypes/release-playground/tags/release-playground-0.3</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/prototypes/release-playground/tags/release-playground-0.3</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/prototypes/release-playground/tags/release-playground-0.3</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/prototypes/release-playground/trunk</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/prototypes/release-playground/trunk</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/prototypes/release-playground/trunk</url>
     </scm>
     
 </project>
