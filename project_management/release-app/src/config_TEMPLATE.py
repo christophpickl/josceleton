@@ -1,4 +1,4 @@
-from config_global import SVN_BASE
+from config_global import Project
 
 class Configuration:
 
@@ -18,15 +18,5 @@ class Configuration:
             ]
         self.sayEnabled = False # execute fancy osx say command ;)
 
-class Project:
-    def __init__(self, artifactId, groupId, svnRelativePath, versionRelease, versionNext, packaging = "jar"):
-        self.artifactId = artifactId
-        self.groupId = groupId
-        self.svnPath = SVN_BASE + "/" + svnRelativePath
-        self.svnRelativePath = svnRelativePath
-        self.versionRelease = versionRelease
-        self.versionNext = versionNext
-        self.packaging = packaging
-        
-    def __str__(self):
-        return "'%s'" % self.artifactId
+    def getPackageDescriptor(self):
+        return None

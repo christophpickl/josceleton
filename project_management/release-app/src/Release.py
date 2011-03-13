@@ -47,6 +47,10 @@ class Release:
                 loge("Error while releasing project %s: %s" % (project, e.message), e)
                 break
         
+        package = config.getPackageDescriptor()
+        if package != None:
+            print "PACKAGE!"
+        
         timeEnd = datetime.datetime.now()
         duration = timeEnd - timeStart
         logi()
