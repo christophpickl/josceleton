@@ -2,15 +2,7 @@ import getpass
 import httplib
 import os
 from commons_logging import * #@UnusedWildImport
-
-#SYSEXEC_ENABLED=True
-SYSEXEC_ENABLED=False
-
-PRECONDITIONS_ENABLED=True
-#PRECONDITIONS_ENABLED=False
-
-#INTERACTIVE=True
-INTERACTIVE=False
+from config_global import SYSEXEC_ENABLED, INTERACTIVE
 
 
 def webFileExists(baseWebUrl, fileToCheck):

@@ -1,6 +1,7 @@
 import datetime
 import time
 
+from config_global import PRECONDITIONS_ENABLED
 from commons import * #@UnusedWildImport
 from PreconditionChecker import PreconditionChecker
 from PostconditionChecker import PostconditionChecker
@@ -17,11 +18,13 @@ class Release:
     
     def createNewWith(self, config):
         timeStart = datetime.datetime.now()
+        # LUXURY pause timer when waiting for user interaction
         
         # TODO validate if mvn2 is active (not mvn3, as wagon SCP provider does not work)
         # TODO confirm projects configuration by user!!!
         
         preConditions = PreconditionChecker()
+        
         
         if PRECONDITIONS_ENABLED == True:
             if preConditions.areSatisfied(config) == False:

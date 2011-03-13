@@ -1,7 +1,9 @@
+import config_global
 import sys
 from commons import *
 from Release import Release
 from PostconditionChecker import PostconditionChecker
+from config_global import PRECONDITIONS_ENABLED, SYSEXEC_ENABLED
 
 
 def loadDynamicConfiguration(configModuleName):
@@ -15,9 +17,8 @@ def loadDynamicConfiguration(configModuleName):
 
 
 if __name__ == "__main__":
-    
     print "SYSEXEC_ENABLED = %s" % SYSEXEC_ENABLED 
-    print "PRECONDITIONS_ENABLED = %s" % PRECONDITIONS_ENABLED 
+    print "PRECONDITIONS_ENABLED = %s" % PRECONDITIONS_ENABLED
 
     configModuleName = "config_%s" % uname()
     try:
