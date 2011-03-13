@@ -23,7 +23,8 @@
     <!-- ******************************************************************* -->
     
     <prerequisites>
-    	<!-- we are supporting maven 2 and 3 concurrently; hell yeah :) see maven3-profile below -->	
+    	<!-- we are supporting maven 2 and 3 concurrently; hell yeah :) see maven3-profile below -->
+    	<!-- therefore there is still an existing report section (to be compatible with mvn2; mvn3 will auto-rewrite it) -->	
         <maven>2.0.9</maven>
     </prerequisites>
     
@@ -104,6 +105,7 @@
             
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
+				<!-- FIXME @BUILD POM RELEASE: remove plugin configuration if release-app handles releases (this configuration) -->
 	    		<!-- 
 		    		release:prepare ... http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html
 		    		release:perform ... http://maven.apache.org/plugins/maven-release-plugin/perform-mojo.html
@@ -376,13 +378,6 @@
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton maven snapshot repository @sourceforge</name>
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/maven/snapshot</url>
-
-			<!-- * save some diskspace and overwrite snapshot versions -->
-			<!-- * or maybe not: "The setting <uniqueVersion>false</uniqueVersion> for a distribution repository has no effect in version 3.x, snapshot artifacts will always be deployed using a timestamped version." -->
-			<!--   // see: https://cwiki.apache.org/MAVEN/maven-3x-compatibility-notes.html -->
-<!--			<uniqueVersion>false</uniqueVersion>-->
-
-<!--			<layout></layout>-->
 		</snapshotRepository>
 
 		<repository>
@@ -396,13 +391,13 @@
 			<name>josceleton site server @sourceforge</name>
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/documentation/${project.artifactId}/${project.version}/</url>
 			<!-- using web.sf.net host ... mkdir failed (though would not dependent on terminal hacking... as shell.sf.net) -->
-<!--			<url>scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>-->
+			<!-- <url>scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url> -->
 		</site>
-
-<!--		<status></status>-->
-<!--    	<downloadUrl></downloadUrl>-->
-<!--		<relocation></relocation>-->
-
+		
+		<!-- MINOR @POM when josceleton-pom gibt (extra super pom fuer reaktor) dann diese fileurl aendern -->
+		<downloadUrl>https://sourceforge.net/projects/josceleton/files/</downloadUrl>
+		<status>beta</status>
+		
     </distributionManagement>
     
     
@@ -445,7 +440,7 @@
         <license>
             <name>BSD License</name>
             <url>http://www.opensource.org/licenses/bsd-license.php</url>
-<!--     		<comments>Text displayed below "BSD License" title, below "Project License" header.</comments>-->
+			<distribution>repo</distribution>
         </license>
     </licenses>
     

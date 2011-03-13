@@ -56,6 +56,15 @@
 <!--				<li> - <a href="" taget="_blank"></a></li>-->
 <!--				<li>Video of ... - <a href="" target="_blank"></a></li>-->
 <!--			</ul>-->
+
+
+			<h4>Software Engineering Bibles</h4>
+			
+			<ul>
+				<li><b>Semantic Versioning</b> - <a href="http://semver.org" target="_blank">http://semver.org</a></li>
+				<li><b>Refactoring Manifesto</b> - <a href="http://refactoringmanifesto.org" target="_blank">http://refactoringmanifesto.org</a></li>
+				
+			</ul>
 			
 		</section>
 		
