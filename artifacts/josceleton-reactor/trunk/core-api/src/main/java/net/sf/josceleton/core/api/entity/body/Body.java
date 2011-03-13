@@ -25,6 +25,8 @@ import net.sf.josceleton.core.api.entity.body.BodyParts.Shoulders;
 import net.sf.josceleton.core.api.entity.body.BodyParts.Torso;
 
 /**
+ * Implements an hierarchical enum.
+ * 
  * @since 0.1
  */
 public final class Body {

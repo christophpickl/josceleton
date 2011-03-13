@@ -10,9 +10,9 @@ import java.util.Map;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.impl.osc.OscAddress;
 import net.sf.josceleton.connection.impl.osc.OscPort;
-import net.sf.josceleton.connection.impl.test.OSCMessageX;
-import net.sf.josceleton.connection.impl.test.OscMessageRouterCallbackCollector;
-import net.sf.josceleton.connection.impl.test.OscPortX;
+import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
+import net.sf.josceleton.connection.impl.test.TestableOscMessageRouterCallback;
+import net.sf.josceleton.connection.impl.test.TestableOscPort;
 
 import org.jmock.Expectations;
 import org.testng.annotations.Test;
@@ -40,15 +40,15 @@ public class OscMessageRouterImplTest extends AbstractMockeryTest {
 
 	@Test
 	public final void rerouteDispatchesCorrectly() {
-		final OSCMessage oscMsg1 = new OSCMessageX("/new_user", 42);
-		final OSCMessage oscMsg2 = new OSCMessageX("/new_skel", 42);
-		final OSCMessage oscMsg3 = new OSCMessageX("/joint", 42, 0.1F, 0.2F, 0.3F);
-		final OSCMessage oscMsg4 = new OSCMessageX("/lost_user", 42);
+		final OSCMessage oscMsg1 = new TestableOSCMessage("/new_user", 42);
+		final OSCMessage oscMsg2 = new TestableOSCMessage("/new_skel", 42);
+		final OSCMessage oscMsg3 = new TestableOSCMessage("/joint", 42, 0.1F, 0.2F, 0.3F);
+		final OSCMessage oscMsg4 = new TestableOSCMessage("/lost_user", 42);
 		
 		final OscMessageAddressRouter router = new OscMessageAddressRouterImpl();
-		final OscPortX oscPort = new OscPortX();
+		final TestableOscPort oscPort = new TestableOscPort();
 		
-		final OscMessageRouterCallbackCollector callback = new OscMessageRouterCallbackCollector();
+		final TestableOscMessageRouterCallback callback = new TestableOscMessageRouterCallback();
 		router.reroute(oscPort, callback);
 		
 		final Date date = new Date();

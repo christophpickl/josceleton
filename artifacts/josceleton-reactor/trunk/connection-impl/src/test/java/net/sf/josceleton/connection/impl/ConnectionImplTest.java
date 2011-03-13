@@ -14,7 +14,8 @@ import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.impl.osc.OscMessageTransformer;
 import net.sf.josceleton.connection.impl.osc.OscPort;
 import net.sf.josceleton.connection.impl.service.UserServiceInternal;
-import net.sf.josceleton.connection.impl.test.OSCMessageX;
+import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
+import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 
@@ -39,11 +40,11 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 	}
 	
 	@Test public final void onAcceptedJointMessageForOscMessageAddressRouterCallback() {
-		final OSCMessage oscMessage = new OSCMessageX("/address");
+		final OSCMessage oscMessage = new TestableOSCMessage("/address");
 		final JointMessage jointMessage = this.mock(JointMessage.class);
 		final ConnectionImpl connection = this.foo(oscMessage, jointMessage, null);
 		
-		final ConnectionListenerCollector collector = new ConnectionListenerCollector();
+		final TestableConnectionListener collector = new TestableConnectionListener();
 		connection.addListener(collector);
 		final Date date = null; // will be ignored!
 		connection.onAcceptedJointMessage(date, oscMessage);
@@ -54,11 +55,11 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 	}
 	// MINOR @TEST copy'n'paste test code :(
 	@Test public final void onAcceptedUserMessageForOscMessageAddressRouterCallback() {
-		final OSCMessage oscMessage = new OSCMessageX("/address");
+		final OSCMessage oscMessage = new TestableOSCMessage("/address");
 		final UserMessage userMessage = this.mock(UserMessage.class);
 		final ConnectionImpl connection = this.foo(oscMessage, null, userMessage);
 		
-		final ConnectionListenerCollector collector = new ConnectionListenerCollector();
+		final TestableConnectionListener collector = new TestableConnectionListener();
 		connection.addListener(collector);
 		final Date date = null; // will be ignored!
 		connection.onAcceptedUserMessage(date, oscMessage);

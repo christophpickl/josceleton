@@ -59,7 +59,10 @@ class OscPortImpl implements OscPort {
 			return;
 		}
 		this.yetClosed = true;
+		
 		this.openedPort.stopListening();
+		// internally, javaosc uses a catch{ e.printStackTrace} statement within a while(isListening) loop... :-/
+		System.err.println("The following SocketException can be ignored ;)");
 		this.openedPort.close();
 	}
 

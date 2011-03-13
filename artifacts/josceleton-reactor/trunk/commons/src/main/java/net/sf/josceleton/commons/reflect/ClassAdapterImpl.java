@@ -47,4 +47,7 @@ public class ClassAdapterImpl<T> implements ClassAdapter<T> {
 		return this.innerClass.getName();
 	}
 	
+	@Override public String toString() {
+		return "ClassAdapterImpl[innerClass.name=" + this.innerClass.getName() + "]";
+	}
 }

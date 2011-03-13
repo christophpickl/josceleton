@@ -2,7 +2,7 @@ package net.sf.josceleton.connection.api.service;
 
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.test.UserX;
+import net.sf.josceleton.core.api.test.TestableUser;
 
 import org.testng.annotations.Test;
 
@@ -38,7 +38,7 @@ public abstract class UserServiceTest extends AbstractUserServiceTest {
 		expectedExceptionsMessageRegExp = "Already add new user with ID \\[12\\].*")
 	public final void lookupSameUserWaitingFails() {
 		final Integer osceletonId = Integer.valueOf(12);
-		final TestableUserServiceDispatcher service = this.createTestableTestee(new User[] { new UserX(osceletonId) });
+		final TestableUserServiceDispatcher service = this.createTestableTestee(new User[] { new TestableUser(osceletonId) });
 		service.delegateLookupUserMessage(osceletonId, UserState.WAITING);
 		service.delegateLookupUserMessage(osceletonId, UserState.WAITING);
 	}

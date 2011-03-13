@@ -3,7 +3,7 @@ package net.sf.josceleton.connection.impl.osc;
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.impl.service.UserStore;
-import net.sf.josceleton.connection.impl.test.OSCMessageX;
+import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
@@ -25,7 +25,7 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 			expectedExceptionsMessageRegExp = ".*arguments.length.*3.*")
 	public final void tooLessJointOscMessageArgumentsFails() {
 		final OscMessageTransformer transformer = this.newSimpleTransformer();
-		final OSCMessage oscMessage = OSCMessageX.newMockSafeArguments(this.getMockery(), new Object[] { 1, 2, 3 });
+		final OSCMessage oscMessage = TestableOSCMessage.newMockSafeArguments(this.getMockery(), new Object[] { 1, 2, 3 });
 		transformer.transformJointMessage(oscMessage, this.mock(UserStore.class));
 	}
 	
@@ -34,7 +34,7 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 					"\\[0\\]! \\(condition was: ==1\\)")
 	public final void passingZeroArgumentedOSCMessageFails() {
 		final OscMessageTransformer transformer = this.newSimpleTransformer();
-		final OSCMessage oscMessage = OSCMessageX.newMockSafeArguments(this.getMockery(), new Object[] { });
+		final OSCMessage oscMessage = TestableOSCMessage.newMockSafeArguments(this.getMockery(), new Object[] { });
 		transformer.transformUserMessage(oscMessage, this.mock(UserStore.class));
 	}
 	

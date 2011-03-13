@@ -74,6 +74,9 @@ class ConnectionImpl
 	/** {@inheritDoc} from {@link OscMessageAddressRouterCallback} */
 	@Override public final void onAcceptedJointMessage(final Date date, final OSCMessage oscMessage) {
 		// assert(yetClosed == false); && assert(yetEstablished == true);
+		
+		// TODO @EXCEPION CODE if we are receiving an malformed oscMessage
+		//  and CHAIN with proper exception (message: "Received malformed bla")
 		final JointMessage message = this.transformer.transformJointMessage(oscMessage, this.userService);
 		
 		for (final ConnectionListener currentListener : this.getListeners()) {

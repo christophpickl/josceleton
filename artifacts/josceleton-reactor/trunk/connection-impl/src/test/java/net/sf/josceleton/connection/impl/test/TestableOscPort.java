@@ -8,18 +8,18 @@ import net.sf.josceleton.connection.impl.osc.OscPort;
 
 import com.illposed.osc.OSCListener;
 
-public class OscPortX implements OscPort {
+public class TestableOscPort implements OscPort {
 	
 	private final Map<OscAddress, OSCListener> listeners = new HashMap<OscAddress, OSCListener>();
 	
-	
+	// FIXME make use of (API limitted, as no remove/immutable) AsyncFor; should be: Map<OscAddress, Collection<OSCListener>>
 	@Override public final void addListenerFor(final OscAddress addressType, final OSCListener listener) {
 		this.listeners.put(addressType, listener);
 	}
 	
-	@Override public final void establish() { /* deliberately empty */ }
+	@Override public void establish() { /* deliberately empty */ }
 	
-	@Override public final void close() { /* deliberately empty */ }
+	@Override public void close() { /* deliberately empty */ }
 	
 	public final Map<OscAddress, OSCListener> getListeners() {
 		return this.listeners;

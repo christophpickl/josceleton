@@ -1,5 +1,6 @@
 package net.sf.josceleton.connection.impl.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -7,7 +8,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import javax.management.RuntimeErrorException;
+import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.api.service.UserServiceListener;
@@ -26,6 +30,10 @@ class UserServiceImpl
 	extends AsyncDelegator<UserServiceListener>
 	implements UserServiceInternal /* == { UserService, UserStore } */ {
 	
+	// FIXME @CODE REFACTOR UserServiceImpl ~300 lines!
+	
+	private static final Log LOG = LogFactory.getLog(UserServiceImpl.class);
+	
 	private final UserFactory factory;
 	
 	private final Map<Integer, User> usersById = new HashMap<Integer, User>();
@@ -42,6 +50,7 @@ class UserServiceImpl
 
 	/** {@inheritDoc} from {@link UserStore} */
 	@Override public final User lookupUserForJointMessage(final Integer osceletonUserId) {
+//		LOG.info("+lookupUserForJointMessage(osceletonUserId=" + osceletonUserId + ")");
 		final User storedUser = this.usersById.get(osceletonUserId);
 		if(storedUser != null) {
 			return storedUser;
@@ -55,6 +64,7 @@ class UserServiceImpl
 	/** {@inheritDoc} from {@link UserStore} */
 	@SuppressWarnings("synthetic-access")
 	@Override public final User lookupUserForUserMessage(final Integer osceletonUserId, final UserState userState) {
+		LOG.info("+lookupUserForUserMessage(osceletonUserId=" + osceletonUserId + ", userState=" + userState + ")");
 		return userState.callback(new UserStateFunction<User>() {
 			@Override public User onStateWaiting() {
 				return lookupWaitingUser(osceletonUserId);
@@ -69,10 +79,12 @@ class UserServiceImpl
 	}
 	
 	private User lookupDeadUser(final Integer osceletonUserId) {
+		LOG.debug("-lookupDeadUser(osceletonUserId=" + osceletonUserId + ")");
 		final User removedStoredUser = this.usersById.remove(osceletonUserId);
+		final boolean wasPreviouslyStored = removedStoredUser != null;
 		
 		final User userToDispatch;
-		if(removedStoredUser != null) {
+		if(wasPreviouslyStored == true) {
 			// simple case: user was already known to josceleton (was either waiting or processing)
 			userToDispatch = removedStoredUser;
 			
@@ -84,15 +96,15 @@ class UserServiceImpl
 		
 		// TODO @CODE DRY refactor removing from user lists (is it possible to outsource this logic? remove getters...)
 		
-		// update processing users
-		if(removedStoredUser == null) {
+		// was not yet stored, therefore definetely update in processing users
+		if(wasPreviouslyStored == false) {
 			// was artificially created, so has to be that way
 			if(this.processingUsers.remove(userToDispatch) == false) {
 				throw new RuntimeException("Could not remove " + userToDispatch + " from processing users: " +
 						Arrays.toString(this.processingUsers.toArray()));
 			}
 			
-		} else { // 
+		} else { // user was either stored as waiting or processing
 			if(this.waitingUsers.contains(removedStoredUser) == true) {
 				if(this.waitingUsers.remove(removedStoredUser) == false) {
 					throw new RuntimeException("Could not remove " + removedStoredUser + " from waiting users: " +
@@ -106,7 +118,8 @@ class UserServiceImpl
 			}
 		}
 		
-		// dispatchDeadUser(dispatchingUser);
+		// dispatchDeadUser(userToDispatch);
+		System.out.println("XXXXXXXXXXXXXXXX dispatch DEAD " + userToDispatch);
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserDead(userToDispatch);
 		}
@@ -115,10 +128,12 @@ class UserServiceImpl
 	}
 
 	private User lookupProcessingUser(final Integer osceletonUserId) {
+		LOG.debug("-lookupProcessingUser(osceletonUserId=" + osceletonUserId + ")");
 		final User storedUser = this.usersById.get(osceletonUserId);
+		final boolean wasPreviouslyStored = storedUser != null;
 		final User processingUser;
 		
-		if(storedUser != null) {
+		if(wasPreviouslyStored == true) {
 			processingUser = storedUser;
 		} else {
 			// artificially invoke one state step before
@@ -137,6 +152,8 @@ class UserServiceImpl
 		}
 		
 		// dispatchProcessingUser(processingUser);
+
+		System.out.println("XXXXXXXXXXXXXXXX dispatch PROCESSING " + processingUser);
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserProcessing(processingUser);
 		}
@@ -145,10 +162,9 @@ class UserServiceImpl
 	}
 
 	private User lookupWaitingUser(final Integer osceletonUserId) {
+		LOG.debug("-lookupWaitingUser(osceletonUserId=" + osceletonUserId + ")");
 		if(this.usersById.containsKey(osceletonUserId) == true) {
-			// FIXME somehow make it possible for users to catch such errors
-			throw new IllegalStateException("Already add new user with ID [" + osceletonUserId + "]! " +
-					"Registered user is: " + this.usersById.get(osceletonUserId));
+			this.fallback();
 		}
 		
 		final User newUser = this.newWaitingUser(osceletonUserId);
@@ -156,7 +172,29 @@ class UserServiceImpl
 		return newUser;
 	}
 	
+	private void fallback() {
+		LOG.error("-fallback()");
+		System.err.println("FALLBACK, juchu! (nachher die meldung wieder rausgeben, ja!?)"); // FIXME remove sysout
+//		new Exception().printStackTrace();
+		
+		this.fallbackClear(this.processingUsers);
+		this.fallbackClear(this.waitingUsers);
+		assert this.usersById.isEmpty() : "usersById should be empty after fallback!";
+	}
+	
+	/** Artificially drop out users (will dispatch events to listeners). */
+	private void fallbackClear(final Collection<User> usersToBeEmptied) {
+		LOG.trace("-fallbackClear(usersToBeEmptied)");
+		final Collection<User> usersToBeEmptiedCopy = new ArrayList<User>(usersToBeEmptied);
+		for (final User currentProccessing : usersToBeEmptiedCopy) {
+			this.lookupDeadUser(Integer.valueOf(currentProccessing.getOsceletonId()));
+		}
+		
+		assert usersToBeEmptied.isEmpty() == true : "Remaining users: " + Arrays.toString(usersToBeEmptied.toArray());
+	}
+	
 	private User newWaitingUser(final Integer osceletonUserId) {
+		LOG.debug("-newWaitingUser(osceletonUserId=" + osceletonUserId + ")");
 		final User newUser = this.factory.create(osceletonUserId.intValue());
 		
 		this.usersById.put(osceletonUserId, newUser);
@@ -170,6 +208,9 @@ class UserServiceImpl
 	}
 
 	private void dispatchWaitingUser(final User user) {
+		LOG.debug("-dispatchWaitingUser(user=" + user + ")");
+		
+		System.out.println("XXXXXXXXXXXXXXXX dispatch waiting " + user);
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserWaiting(user);
 		}

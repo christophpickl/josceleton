@@ -95,19 +95,35 @@ final class BodyPartImplProvider {
 		implements Feet { FeetImpl() { super(new LeftFootImpl(), new RightFootImpl()); } }
 	
 	
-	private static class DefaultBodyPart
+	private static abstract class DefaultBodyPart
 		implements BodyPart {
-		
+		private static final String TO_STRING_PREFIX = "Body.";
+		private final String cachedToString;
 		private final String label;
 		private final String osceletonId;
 		
 		DefaultBodyPart(final String label, final String osceletonId) {
 			this.label = label;
 			this.osceletonId = osceletonId;
+			this.cachedToString = TO_STRING_PREFIX + this.label;
 		}
 		
 		@Override public final String getLabel() { return this.label; }
 		@Override public final String getOsceletonId() { return this.osceletonId; }
+		
+		@Override public final String toString() {
+			return this.cachedToString;
+		}
+		@Override public final boolean equals(final Object other) {
+			if(this == other) { return true; }
+			if((other instanceof BodyPart) == false) { return false; }
+			final BodyPart that = (BodyPart) other;
+			return	this.getOsceletonId().equals(that.getOsceletonId()) && 
+					this.getLabel().equals(that.getLabel());
+		}
+		@Override public final int hashCode() {
+			return this.osceletonId.hashCode();
+		}
 	}
 	
 	private static class DefaultSymetricBodyPart<BP, LBP extends LeftBodyPart<BP>, RBP extends RightBodyPart<BP>>

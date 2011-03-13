@@ -5,18 +5,18 @@ import net.sf.josceleton.core.api.entity.User;
 /**
  * @since 0.3
  */
-public class UserX implements User {
+public class TestableUser implements User {
 
 	private final int id;
 
 	private final int osceletonId;
 	
 	
-	public UserX(final int osceletonId) {
+	public TestableUser(final int osceletonId) {
 		this(1, osceletonId); // no assumptions on internally created id
 	}
 	
-	public UserX(final int id, final int osceletonId) {
+	public TestableUser(final int id, final int osceletonId) {
 		this.id = id;
 		this.osceletonId = osceletonId;
 	}

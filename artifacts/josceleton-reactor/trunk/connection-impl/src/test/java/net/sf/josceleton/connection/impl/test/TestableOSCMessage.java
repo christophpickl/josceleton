@@ -5,14 +5,14 @@ import org.jmock.Mockery;
 
 import com.illposed.osc.OSCMessage;
 
-public class OSCMessageX extends OSCMessage {
+public class TestableOSCMessage extends OSCMessage {
 	
 	private final String address;
 	
 	private final Object[] arguments;
 	
 	
-	public OSCMessageX(final String address, final Object... arguments) {
+	public TestableOSCMessage(final String address, final Object... arguments) {
 		this.address = address;
 		this.arguments = arguments;
 	}
@@ -29,7 +29,7 @@ public class OSCMessageX extends OSCMessage {
 	public static OSCMessage newMockSafeArguments(
 			final Mockery mockery,
 			final Object... oscArguments) {
-		return OSCMessageX.newMockSafeAddressAndArgs(mockery, null, oscArguments);
+		return TestableOSCMessage.newMockSafeAddressAndArgs(mockery, null, oscArguments);
 	}
 
 	public static OSCMessage newMockSafeAddressAndArgs(

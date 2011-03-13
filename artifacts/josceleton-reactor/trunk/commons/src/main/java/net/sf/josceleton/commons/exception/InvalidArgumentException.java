@@ -19,7 +19,7 @@ public class InvalidArgumentException extends JosceletonException {
 			final String argumentName,
 			final Object argumentValue,
 			final String condition) {
-		super("Passed illegal argument [" + argumentName + "] with value: [" + argumentValue + "]! " +
+		super("Passed an illegal argument [" + argumentName + "] with value: [" + argumentValue + "]! " +
 				"(condition was: " + condition + ")", null);
 		
 		this.argumentName = argumentName;

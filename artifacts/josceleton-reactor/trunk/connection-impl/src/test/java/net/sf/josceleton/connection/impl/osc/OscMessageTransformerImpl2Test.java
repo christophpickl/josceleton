@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.sameInstance;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.impl.service.UserStore;
-import net.sf.josceleton.connection.impl.test.OSCMessageX;
+import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.body.Body;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
@@ -36,7 +36,7 @@ public class OscMessageTransformerImpl2Test extends AbstractMockeryTest {
 		final UserMessage expectedMessage = this.mock(UserMessage.class);
 		final UserStore userStore = this.mock(UserStore.class);
 		final OscMessageTransformer transformer = this.newUserTransformer(userStore, osceletonUserId, userState, expectedMessage);
-		final OSCMessage oscMessage = OSCMessageX.newMockSafeAddressAndArgs(this.getMockery(), messageAddress, osceletonUserId);
+		final OSCMessage oscMessage = TestableOSCMessage.newMockSafeAddressAndArgs(this.getMockery(), messageAddress, osceletonUserId);
 		
 		final UserMessage actualMessage = transformer.transformUserMessage(oscMessage, userStore);
 		assertThat(actualMessage, is(sameInstance(expectedMessage)));
@@ -51,7 +51,7 @@ public class OscMessageTransformerImpl2Test extends AbstractMockeryTest {
 			final BodyPart actualJointPart,
 			final float[] coordinates
 			) {
-		final OSCMessage oscMessage = OSCMessageX.newMockSafeArguments(this.getMockery(),
+		final OSCMessage oscMessage = TestableOSCMessage.newMockSafeArguments(this.getMockery(),
 				actualJointPart.getOsceletonId(), actualOsceletonUserId, coordinates[0], coordinates[1], coordinates[2]);
 		final JointMessage expectedMessage = this.mock(JointMessage.class);
 		final UserStore userStore = this.mock(UserStore.class);

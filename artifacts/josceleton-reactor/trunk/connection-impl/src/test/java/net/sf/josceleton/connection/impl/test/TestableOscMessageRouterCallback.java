@@ -8,7 +8,7 @@ import net.sf.josceleton.connection.impl.OscMessageAddressRouterCallback;
 
 import com.illposed.osc.OSCMessage;
 
-public class OscMessageRouterCallbackCollector implements OscMessageAddressRouterCallback {
+public class TestableOscMessageRouterCallback implements OscMessageAddressRouterCallback {
 	
 	private final List<OSCMessage> receivedJointMessages = new LinkedList<OSCMessage>();
 	

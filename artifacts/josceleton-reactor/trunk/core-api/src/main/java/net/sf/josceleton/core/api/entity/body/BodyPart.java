@@ -1,7 +1,7 @@
 package net.sf.josceleton.core.api.entity.body;
 
 /**
- * Kind of an <code>enum</code>.
+ * Represents end nodes of the pseudo-enum <code>Body</code> class.
  */
 public interface BodyPart {
 	

@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Set;
 
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
-import net.sf.josceleton.connection.api.test.UserServiceListenerCollector;
+import net.sf.josceleton.connection.api.test.TestableUserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.test.UserX;
+import net.sf.josceleton.core.api.test.TestableUser;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -40,7 +40,7 @@ abstract class AbstractUserServiceTest extends AbstractMockeryTest {
 	protected abstract TestableUserServiceDispatcher createTestableTestee(User[] expectedCreatedUsers);
 	
 	protected final void assertScenarios(final UserServiceTestScenarioStep... steps) {
-		final UserServiceListenerCollector collectingListener = new UserServiceListenerCollector();
+		final TestableUserServiceListener collectingListener = new TestableUserServiceListener();
 		final User[] expectedCreatedUsers = newUsersByScenario(steps);
 		final TestableUserServiceDispatcher service = this.createTestableTestee(expectedCreatedUsers);
 		
@@ -104,7 +104,7 @@ abstract class AbstractUserServiceTest extends AbstractMockeryTest {
 			
 			if(yetUsedIds.contains(currentUserId) == false) { // skip duplicates
 				yetUsedIds.add(currentUserId);
-				newUsers.add(new UserX(currentUserId));
+				newUsers.add(new TestableUser(currentUserId));
 			}
 		}
 		
