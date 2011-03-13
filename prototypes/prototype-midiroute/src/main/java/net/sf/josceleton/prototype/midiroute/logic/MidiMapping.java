@@ -4,7 +4,6 @@ import net.pulseproject.commons.midi.entity.ControllerMessage;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.prototype.midiroute.ProtoUtil;
 
 public class MidiMapping {
 

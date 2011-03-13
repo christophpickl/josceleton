@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.midiroute;
+package net.sf.josceleton.prototype.midiroute.logic;
 
 public class InvalidInputException extends Exception {
 

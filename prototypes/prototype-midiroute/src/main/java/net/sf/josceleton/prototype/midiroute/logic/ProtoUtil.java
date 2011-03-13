@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.midiroute;
+package net.sf.josceleton.prototype.midiroute.logic;
 
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -12,7 +12,6 @@ import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.body.Body;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.prototype.midiroute.logic.MidiMapping;
 
 public class ProtoUtil {
 	
@@ -72,7 +71,9 @@ public class ProtoUtil {
 	}
 	
 	public static void clearLog() {
-		logField.setText("");
+		if(logField != null) {
+			logField.setText("");
+		}
 	}
 
 	public static BodyPart bodyPartByOsceletonId(String rawPart) {

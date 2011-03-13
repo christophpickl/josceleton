@@ -12,8 +12,6 @@ import net.sf.josceleton.core.api.entity.body.BodyPart;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.josceleton.Josceleton;
-import net.sf.josceleton.prototype.midiroute.InvalidInputException;
-import net.sf.josceleton.prototype.midiroute.ProtoUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

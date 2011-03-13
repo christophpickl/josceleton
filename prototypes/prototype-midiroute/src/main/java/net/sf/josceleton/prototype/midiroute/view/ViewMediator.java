@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.prototype.midiroute.InvalidInputException;
-import net.sf.josceleton.prototype.midiroute.ProtoUtil;
+import net.sf.josceleton.prototype.midiroute.logic.InvalidInputException;
 import net.sf.josceleton.prototype.midiroute.logic.MidiMapping;
+import net.sf.josceleton.prototype.midiroute.logic.ProtoUtil;
 import net.sf.josceleton.prototype.midiroute.logic.PrototypeLogic;
 
 import org.apache.commons.logging.Log;

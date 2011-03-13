@@ -9,7 +9,6 @@ import javax.sound.midi.MidiDevice.Info;
 import net.pulseproject.commons.midi.entity.ControllerMessage;
 import net.pulseproject.commons.midi.entity.DeviceKind;
 import net.pulseproject.commons.midi.entity.DeviceState;
-import net.sf.josceleton.prototype.midiroute.InvalidInputException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

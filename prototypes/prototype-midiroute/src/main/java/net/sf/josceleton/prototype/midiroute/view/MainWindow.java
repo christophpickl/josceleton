@@ -20,7 +20,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 import net.pulseproject.commons.util.GuiUtil;
-import net.sf.josceleton.prototype.midiroute.ProtoUtil;
+import net.sf.josceleton.prototype.midiroute.logic.ProtoUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -68,8 +68,8 @@ public class MainWindow extends JFrame {
 		this.inpMappings.setFont(FONT);
 		this.logField.setFont(FONT);
 		
-		this.inpPort.setText("IAC Driver - XXX");
-//		this.inpPort.setText("IAC Driver - Chrisi A");
+//		this.inpPort.setText("IAC Driver - XXX");
+		this.inpPort.setText("IAC Driver - Chrisi A");
 		this.inpMappings.setText(
 			"# Format for each line:\n" +
 			"#   <JOINT>, <XYZ>, <MIDI-CH>, <CTRL-NR>\n" +
