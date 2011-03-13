@@ -1,0 +1,119 @@
+
+$ mvn --version
+Apache Maven 2.2.1 (r801777; 2009-08-06 21:16:01+0200)
+$ mvn --help
+ -am,--also-make                        If project list is specified, also build projects required by the list
+ -amd,--also-make-dependents            If project list is specified, also build projects that depend on projects on the list
+ -B,--batch-mode                        Run in non-interactive (batch) mode
+ -C,--strict-checksums                  Fail the build if checksums don't match
+ -c,--lax-checksums                     Warn if checksums don't match
+ -cpu,--check-plugin-updates            Force upToDate check for any relevant registered plugins
+ -D,--define <arg>                      Define a system property
+ -e,--errors                            Produce execution error messages
+ -emp,--encrypt-master-password <arg>   Encrypt master security password
+ -ep,--encrypt-password <arg>           Encrypt server password
+ -f,--file                              Force the use of an alternate POM file.
+ -fae,--fail-at-end                     Only fail the build afterwards; allow all non-impacted builds to continue
+ -ff,--fail-fast                        Stop at first failure in reactorized builds
+ -fn,--fail-never                       NEVER fail the build, regardless of project result
+ -gs,--global-settings <arg>            Alternate path for the global settings file
+ -h,--help                              Display help information
+ -N,--non-recursive                     Do not recurse into sub-projects
+ -npr,--no-plugin-registry              Don't use ~/.m2/plugin-registry.xml for plugin versions
+ -npu,--no-plugin-updates               Suppress upToDate check for any relevant registered plugins
+ -o,--offline                           Work offline
+ -P,--activate-profiles <arg>           Comma-delimited list of profiles to activate
+ -pl,--projects <arg>                   Build specified reactor projects instead of all projects
+ -q,--quiet                             Quiet output - only show errors
+ -r,--reactor                           Dynamically build reactor from subdirectories
+ -rf,--resume-from <arg>                Resume reactor from specified project
+ -s,--settings <arg>                    Alternate path for the user settings file
+ -U,--update-snapshots                  Forces a check for updated releases and snapshots on remote repositories
+ -up,--update-plugins                   Synonym for cpu
+ -V,--show-version                      Display version information WITHOUT stopping build
+ -v,--version                           Display version information
+ -X,--debug                             Produce execution debug output
+
+
+
+
+
+$mvn --version
+Apache Maven 3.0.3 (r1075438; 2011-02-28 18:31:09+0100)
+$ mvn --help
+ -am,--also-make                        If project list is specified, also build projects required by the list
+ -amd,--also-make-dependents            If project list is specified, also build projects that depend on projects on the list
+ -B,--batch-mode                        Run in non-interactive (batch) mode
+ -C,--strict-checksums                  Fail the build if checksums don't match
+ -c,--lax-checksums                     Warn if checksums don't match
+ -cpu,--check-plugin-updates            Ineffective, only kept for backward compatibility
+ -D,--define <arg>                      Define a system property
+ -e,--errors                            Produce execution error messages
+ -emp,--encrypt-master-password <arg>   Encrypt master security password
+ -ep,--encrypt-password <arg>           Encrypt server password
+ -f,--file <arg>                        Force the use of an alternate POM file.
+ -fae,--fail-at-end                     Only fail the build afterwards; allow all non-impacted builds to continue
+ -ff,--fail-fast                        Stop at first failure in reactorized builds
+ -fn,--fail-never                       NEVER fail the build, regardless of project result
+ -gs,--global-settings <arg>            Alternate path for the global settings file
+ -h,--help                              Display help information
+ -l,--log-file <arg>                    Log file to where all build output will go.
+ -N,--non-recursive                     Do not recurse into sub-projects
+ -npr,--no-plugin-registry              Ineffective, only kept for backward compatibility
+ -npu,--no-plugin-updates               Ineffective, only kept for backward compatibility
+ -nsu,--no-snapshot-updates             Suppress SNAPSHOT updates
+ -o,--offline                           Work offline
+ -P,--activate-profiles <arg>           Comma-delimited list of profiles to activate
+ -pl,--projects <arg>                   Comma-delimited list of specified reactor projects to build instead
+                                        of all projects. A project can be specified by [groupId]:artifactId
+                                        or by its relative path.
+ -q,--quiet                             Quiet output - only show errors
+ -rf,--resume-from <arg>                Resume reactor from specified project
+ -s,--settings <arg>                    Alternate path for the user settings file
+ -T,--threads <arg>                     Thread count, for instance 2.0C where C is core multiplied
+ -t,--toolchains <arg>                  Alternate path for the user toolchains file
+ -U,--update-snapshots                  Forces a check for updated releases and snapshots on remote repositories
+ -up,--update-plugins                   Ineffective, only kept for backward compatibility
+ -V,--show-version                      Display version information WITHOUT stopping build
+ -v,--version                           Display version information
+ -X,--debug                             Produce execution debug output
+
+
+
+
+
+
+
+
+$ svn --version
+svn, version 1.6.15 (r1038135)
+   compiled Feb 22 2011, 17:48:51
+$ svn help checkout
+        Valid options:
+  -r [--revision] ARG      : ARG (some commands also take ARG1:ARG2 range)
+                             A revision argument can be one of:
+                                NUMBER       revision number
+                                '{' DATE '}' revision at start of the date
+                                'HEAD'       latest in repository
+                                'BASE'       base rev of item's working copy
+                                'COMMITTED'  last commit at or before BASE
+                                'PREV'       revision just before COMMITTED
+  -q [--quiet]             : print nothing, or only summary information
+  -N [--non-recursive]     : obsolete; try --depth=files or --depth=immediates
+  --depth ARG              : limit operation by depth ARG ('empty', 'files',
+                            'immediates', or 'infinity')
+  --force                  : force operation to run
+  --ignore-externals       : ignore externals definitions
+
+Global options:
+  --username ARG           : specify a username ARG
+  --password ARG           : specify a password ARG
+  --no-auth-cache          : do not cache authentication tokens
+  --non-interactive        : do no interactive prompting
+  --trust-server-cert      : accept unknown SSL server certificates without
+                             prompting (but only with '--non-interactive')
+  --config-dir ARG         : read user configuration files from directory ARG
+  --config-option ARG      : set user configuration option in the format:
+                                 FILE:SECTION:OPTION=[VALUE]
+                             For example:
+                                 servers:global:http-library=serf
