@@ -42,6 +42,8 @@
 	<suppress checks="RequireThis" files=".*Test.java" />
 	<suppress checks="AvoidInlineConditionals" files=".*Test.java" />
 	<suppress checks="RightCurly" files=".*Test.java" />
+	<suppress checks="LineLength" files=".*Test.java" />
+	<suppress checks="ParenPad" files=".*Test.java" />
 <!--	<suppress checks="ParameterNumber" files=".*Test.java" />-->
 	
 	<!-- allow "assertThat(testee.equals(null), equalTo(false));" instead of "assertThat(testee, not(equalTo(null)));" -->

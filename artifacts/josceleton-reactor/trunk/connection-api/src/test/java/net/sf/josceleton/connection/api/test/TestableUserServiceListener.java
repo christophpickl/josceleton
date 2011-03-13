@@ -26,11 +26,17 @@ public class TestableUserServiceListener implements UserServiceListener {
 	}
 	
 	public static class UserAndState {
-		public User user;
-		public UserState state;
+		private final User user;
+		private final UserState state;
 		public UserAndState(final User user, final UserState state) {
 			this.user = user;
 			this.state = state;
+		}
+		public final User getUser() {
+			return this.user;
+		}
+		public final UserState getState() {
+			return this.state;
 		}
 	}
 	@Deprecated public final List<User> getWaitingUsers() {
@@ -42,11 +48,11 @@ public class TestableUserServiceListener implements UserServiceListener {
 	@Deprecated public final List<User> getDeadUsers() {
 		return this.getUsersWith(UserState.DEAD);
 	}
-	private List<User> getUsersWith(UserState state) {
+	private List<User> getUsersWith(final UserState state) {
 		final List<User> result = new LinkedList<User>();
 		for (UserAndState uas : this.receivedMessages) {
-			if(uas.state == state) {
-				result.add(uas.user);
+			if(uas.getState() == state) {
+				result.add(uas.getUser());
 			}
 		}
 		return result;

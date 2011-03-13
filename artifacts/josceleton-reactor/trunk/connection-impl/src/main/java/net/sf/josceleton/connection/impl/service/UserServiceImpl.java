@@ -8,11 +8,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.api.service.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
@@ -20,6 +15,9 @@ import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.UserStateFunction;
 import net.sf.josceleton.core.impl.async.AsyncDelegator;
 import net.sf.josceleton.core.impl.entity.UserFactory;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.google.inject.Inject;
 

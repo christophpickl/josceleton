@@ -18,16 +18,22 @@ import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.test.TestableUser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hamcrest.Matchers;
 
 @SuppressWarnings("boxing")
 abstract class AbstractUserServiceTest extends AbstractMockeryTest {
 
-	protected final UserServiceTestScenarioStep newStep(String scenarioStateLabel, UserState actionCommand, int actionUserId,
-			int[] expectedWaits, int[] expectedProcs, int[] expectedDeads, int[] expectedGetWaitUsers, int[] expectedGetProcUsers) {
-		return new UserServiceTestScenarioStep(scenarioStateLabel, actionCommand, actionUserId, expectedWaits, expectedProcs, expectedDeads, expectedGetWaitUsers, expectedGetProcUsers);
+	protected final UserServiceTestScenarioStep newStep(
+			final String scenarioStateLabel,
+			final UserState actionCommand,
+			final int actionUserId,
+			final int[] expectedWaits, 
+			final int[] expectedProcs,
+			final int[] expectedDeads,
+			final int[] expectedGetWaitUsers,
+			final int[] expectedGetProcUsers) {
+		return new UserServiceTestScenarioStep(scenarioStateLabel, actionCommand, actionUserId, expectedWaits,
+				expectedProcs, expectedDeads, expectedGetWaitUsers, expectedGetProcUsers);
 	}
 	
 	protected final int[] waitingUsers(final int... osceletonIds) { return osceletonIds; }

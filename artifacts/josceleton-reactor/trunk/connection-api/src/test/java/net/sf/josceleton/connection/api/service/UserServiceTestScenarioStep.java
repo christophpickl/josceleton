@@ -24,8 +24,15 @@ class UserServiceTestScenarioStep {
 	private final int[] expectedGetWaitUsers;
 	private final int[] expectedGetProcUsers;
 	
-	public UserServiceTestScenarioStep(String scenarioStateLabel, UserState actionCommand, int actionUserId,
-		int[] expectedWaits, int[] expectedProcs, int[] expectedDeads, int[] expectedGetWaitUsers, int[] expectedGetProcUsers) {
+	public UserServiceTestScenarioStep(
+			final String scenarioStateLabel,
+			final UserState actionCommand,
+			final int actionUserId,
+			final int[] expectedWaits,
+			final int[] expectedProcs,
+			final int[] expectedDeads,
+			final int[] expectedGetWaitUsers,
+			final int[] expectedGetProcUsers) {
 		this.scenarioStateLabel = scenarioStateLabel;
 		this.actionCommand = actionCommand;
 		this.actionUserId = actionUserId;
@@ -36,24 +43,27 @@ class UserServiceTestScenarioStep {
 		this.expectedGetProcUsers = expectedGetProcUsers;
 	}
 	
-	public final void assertExpects(List<User> waitingUsers, List<User> processingUsers, List<User> deadUsers) {
+	public final void assertExpects(
+			final List<User> waitingUsers,
+			final List<User> processingUsers,
+			final List<User> deadUsers) {
 		this.assertUsersEquals("waiting", waitingUsers, this.expectedWaits);
 		this.assertUsersEquals("processing", processingUsers, this.expectedProcs);
 		this.assertUsersEquals("dead", deadUsers, this.expectedDeads);
 	}
 	
-	private void assertUsersEquals(String userStateLabel, List<User> actualUsers, int[] expectedIds) {
-		
+	private void assertUsersEquals(final String userStateLabel, final List<User> actualUsers, final int[] expectedIds) {
+		// TODO oustource into testclass!
 		assertThat(userStateLabel + " users size missmatch (for " + this + ")", actualUsers.size(), equalTo(expectedIds.length));
 		
 		for (int i = 0; i < expectedIds.length; i++) {
-			User currentActualUser = actualUsers.get(i);
+			final User currentActualUser = actualUsers.get(i);
 			assertThat(userStateLabel + " user ID missmtach at index [" + i + "] for(" + this + ")",
 				currentActualUser.getOsceletonId(), equalTo(expectedIds[i]));
 		}
 	}
 	
-	public final User executeActionWith(TestableUserServiceDispatcher service, final int expectedUserId) {
+	public final User executeActionWith(final TestableUserServiceDispatcher service, final int expectedUserId) {
 		final User actualUser;
 		if(this.actionCommand != null) {
 			actualUser = service.delegateLookupUserMessage(this.actionUserId, this.actionCommand);
