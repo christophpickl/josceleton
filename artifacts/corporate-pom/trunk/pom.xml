@@ -35,6 +35,7 @@
     <properties>
 		<sourceEncoding>UTF-8</sourceEncoding><!-- for mvn3 -->
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!-- for mvn2 -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     	
     	<version.deploy-plugin>2.5</version.deploy-plugin>
     	<version.release-plugin>2.1</version.release-plugin>

@@ -29,7 +29,8 @@
 		TOPICS
 		fluent interfaces
 		no classes just interfaces (especially for public APIs)
-		immutability (final & co)
+		immutability (final & co); but still open for extensions (hooks, empty non-final methods)
+		keep visibility as low as possible (common methods, constructor, even class to package private)
 		low coupling, high cohesion
 		defensive
 		importance of naming
@@ -38,7 +39,7 @@
 		small parts (methods, classes, packages, modules, reactors, projects)
 		DRY
 		~KISS
-
+		exceptions (unchecked, chaining)
 		 -->
 
 		</section>
