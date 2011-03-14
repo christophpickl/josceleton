@@ -33,5 +33,6 @@
 12.03. - 19:00 -  5h - midiroute prototype; experimenting with ableton -sweet!
 13.03. - 00:00 -  5h - #20 bugfix + tests for crash when id reusing
              ~~ 110h~~
-13.03. - 17:00 -  5h - introducing release-app
-             ~~ 115h~~
+13.03. - 17:00 -  8h - introducing release-app + distribution partly
+14.03. - 01:00 -  h - 
+             ~~ 118h~~

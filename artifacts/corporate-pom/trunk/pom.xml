@@ -396,7 +396,6 @@
 		
 		<!-- MINOR @POM when josceleton-pom gibt (extra super pom fuer reaktor) dann diese fileurl aendern -->
 		<downloadUrl>https://sourceforge.net/projects/josceleton/files/</downloadUrl>
-		<status>beta</status>
 		
     </distributionManagement>
     
