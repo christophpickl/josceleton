@@ -73,7 +73,7 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 		final UserServiceInternal userService = this.mock(UserServiceInternal.class);
 		
 		final OscMessageTransformer transformer = this.mock(OscMessageTransformer.class);
-		this.checking(new Expectations() {{
+		this.checking(new Expectations() { {
 			if(jointMessage != null) {
 				oneOf(transformer).transformJointMessage(oscMessage, userService);
 				will(returnValue(jointMessage));

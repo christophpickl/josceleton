@@ -24,9 +24,7 @@
     <!-- ******************************************************************* -->
 	
 <!--	<suppress checks="MethodName" files="net.sf.josceleton.core.api.entity.body.Body.java" lines="200,240-280" />-->
-	<suppress checks="MethodName" files="net.sf.josceleton.core.api.entity.body.Body.java" />
-	<suppress checks="MethodName" files="net.sf.josceleton.core.api.entity.body.BodyPartImplProvider.java" />
-	<suppress checks="MethodName" files="net.sf.josceleton.core.api.entity.body.SymetricBodyPart" />
+	<suppress checks="MethodName" files="net.sf.josceleton.core.api.entity.body.(Body|BodyPartImplProvider|SymetricBodyPart|SymmetricBodyPartsImplTest).java" />
 	
 <!--	<suppress checks="MethodCount" files="net.sf.josceleton.core.api.entity.body.Body.java" />-->
 <!--	<suppress checks="MethodCount" files="net.sf.josceleton.commons.reflect.ClassAdapter.java" />-->
@@ -38,13 +36,12 @@
 	<!-- TEST RELATED -->
     <!-- ******************************************************************* -->
     
-	<suppress checks="RequireThis" files=".*TestUtil.java" />
-	<suppress checks="RequireThis" files=".*Test.java" />
-	<suppress checks="AvoidInlineConditionals" files=".*Test.java" />
-	<suppress checks="RightCurly" files=".*Test.java" />
-	<suppress checks="LineLength" files=".*Test.java" />
-	<suppress checks="ParenPad" files=".*Test.java" />
-<!--	<suppress checks="ParameterNumber" files=".*Test.java" />-->
+<!--	<suppress checks="RightCurly" files=".*Test.java" />-->
+	<suppress checks="ParenPad" files=".*Test(Factory|ScenarioStep|Util)?.java" />
+	<suppress checks="LineLength" files=".*Test(Factory|ScenarioStep|Util)?.java" />
+	<suppress checks="RequireThis" files=".*Test(Factory|ScenarioStep|Util)?.java" />
+	<suppress checks="ParameterNumber" files=".*Test(Factory|ScenarioStep|Util)?.java" />
+	<suppress checks="AvoidInlineConditionals" files=".*Test(Factory|ScenarioStep|Util)?.java" />
 	
 	<!-- allow "assertThat(testee.equals(null), equalTo(false));" instead of "assertThat(testee, not(equalTo(null)));" -->
 	<suppress checks="EqualsAvoidNull" files=".*Test.java" />

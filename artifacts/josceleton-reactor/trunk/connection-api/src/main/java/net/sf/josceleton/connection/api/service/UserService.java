@@ -1,9 +1,6 @@
 package net.sf.josceleton.connection.api.service;
 
-import java.util.Collection;
-
 import net.sf.josceleton.core.api.async.Async;
-import net.sf.josceleton.core.api.entity.User;
 
 /**
  * Provides access to available users and their state, specific to a single connection.

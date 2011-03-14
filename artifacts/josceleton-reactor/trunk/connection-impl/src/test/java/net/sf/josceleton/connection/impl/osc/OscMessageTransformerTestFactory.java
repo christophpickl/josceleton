@@ -21,9 +21,9 @@ import org.jmock.Mockery;
  * 
  * @since 0.3
  */
-public class OscMessageTransformerFactory {
+public class OscMessageTransformerTestFactory {
 
-	public OscMessageTransformer newUserTransformer(
+	public final OscMessageTransformer newUserTransformer(
 			final Mockery mockery,
 			final UserStore userStore,
 			final Integer userId,
@@ -35,76 +35,56 @@ public class OscMessageTransformerFactory {
 		final JointMessage jointMessage = null;
 		
 		return this.newGenericTransformer(
-				mockery, userStore, jointCoordinates, jointPart, userId, jointMessage, userState, actualMessage
+				mockery, userStore, userId, jointMessage, jointCoordinates, jointPart, actualMessage, userState
 		);
 	}
 	
-	public OscMessageTransformer newJointTransformer(
+	public final OscMessageTransformer newJointTransformer(
 			final Mockery mockery,
 			final UserStore userStore,
 			final float[] actualCoordinates,
 			final BodyPart actualJointPart,
-			final Integer actualOsceletonUserId,
+			final Integer userId,
 			final JointMessage actualMessage
 	) {
 		final UserState userState = null;
 		final UserMessage userMessage = null;
 		
 		return this.newGenericTransformer(
-				mockery, userStore, actualCoordinates, actualJointPart, actualOsceletonUserId, actualMessage, userState, userMessage
+				mockery, userStore, userId, actualMessage, actualCoordinates, actualJointPart,
+				userMessage, userState
 		);
 	}
 	
 	private /* private */ OscMessageTransformer newGenericTransformer(
-			final Mockery mockery,
-			final UserStore userStore,
-			final float[] coordinates,
-			final BodyPart jointPart,
-			final Integer userId,
-			final JointMessage jointMessage,
-			final UserState userState,
-			final UserMessage userMessage
+			final Mockery mockery, final UserStore userStore, final Integer userId,
+			final JointMessage jointMessage, final float[] coordinates, final BodyPart jointPart,
+			final UserMessage userMessage, final UserState userState
 	) {
 		final boolean isForJointMessage = null != jointPart; // != jointMessage != coordinates
-		
 		final FactoryFacade factory = mockery.mock(FactoryFacade.class);
-
-		// ************ mock user lookup
 		final User user = mockery.mock(User.class);
-		mockery.checking(new Expectations() {{
-			if(isForJointMessage == true) {
-				oneOf(userStore).lookupUserForJointMessage(userId);
-			} else {
-				oneOf(userStore).lookupUserForUserMessage(userId, userState);
-			}
+		mockery.checking(new Expectations() { { // ************ mock user lookup
+			if(isForJointMessage == true) { oneOf(userStore).lookupUserForJointMessage(userId);
+			} else { oneOf(userStore).lookupUserForUserMessage(userId, userState); }
 			will(returnValue(user));
 		}});
-
-		// ************ mock coordinate creation
-		final Coordinate coordinate;
+		final Coordinate coordinate; // ************ mock coordinate creation
 		if(isForJointMessage == true) {
 			coordinate = mockery.mock(Coordinate.class);
-			mockery.checking(new Expectations() {{
+			mockery.checking(new Expectations() { {
 				oneOf(factory).createCoordinate(coordinates[0], coordinates[1], coordinates[2]);
 				will(returnValue(coordinate));
 			}});
-		} else {
-			coordinate = null; // not used
-		}
-		
-		// ************ mock message creation
-		mockery.checking(new Expectations() {{
+		} else { coordinate = null; /* not used */ }
+		mockery.checking(new Expectations() { { // ************ mock message creation
 			final Object actualMessage;
 			if(isForJointMessage == true) {
 				oneOf(factory).createJointMessage(user, jointPart, coordinate);
 				actualMessage = jointMessage;
-			} else {
-				oneOf(factory).createUserMessage(user, userState);
-				actualMessage = userMessage;
-			}
+			} else { oneOf(factory).createUserMessage(user, userState); actualMessage = userMessage; }
 			will(returnValue(actualMessage));
 		}});
-		
 		return new OscMessageTransformerImpl(factory);
 	}
 }

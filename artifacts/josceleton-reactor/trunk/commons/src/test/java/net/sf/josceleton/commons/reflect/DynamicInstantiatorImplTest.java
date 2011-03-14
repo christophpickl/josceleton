@@ -70,7 +70,10 @@ public class DynamicInstantiatorImplTest {
 	
 	static class ArgumentValidatingDummy {
 		public ArgumentValidatingDummy(final int notBelowZero) {
-			if (notBelowZero < 0) { throw new IllegalArgumentException("notBelowZero < 0"); } } }
+			if (notBelowZero < 0) { throw new IllegalArgumentException("notBelowZero < 0"); }
+		}
+	}
+	
 	
 	@Test(expectedExceptions = DynamicInstantiationException.class,
 		expectedExceptionsMessageRegExp = "Could not create instance for class.*")

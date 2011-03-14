@@ -34,5 +34,7 @@
 13.03. - 00:00 -  5h - #20 bugfix + tests for crash when id reusing
              ~~ 110h~~
 13.03. - 17:00 -  8h - introducing release-app + distribution partly
-14.03. - 01:00 -  h - 
-             ~~ 118h~~
+14.03. - 01:00 -  2h - code cleanup: coverage, warnings
+             ~~ 120h~~
+14.03. - 03:00 -  2h - code cleanup: coverage, warnings
+             ~~ 122h~~

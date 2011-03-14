@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 import net.sf.josceleton.commons.test.AbstractEqualsTest;
 import net.sf.josceleton.commons.test.EqualsDescriptor;
 import net.sf.josceleton.commons.test.util.TestUtil;
+import net.sf.josceleton.core.api.test.TestableBodyPart;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -21,13 +22,12 @@ public class BodyPartsImplTest extends AbstractEqualsTest<BodyPart> {
 	}
 	
 	@Test(dataProvider = "provideBodyPartImpls")
-	public final void testSomeParts(BodyPart part) {
+	public final void testSomeParts(final BodyPart part) {
 		assertThat(part, equalTo(part));
 		TestUtil.assertObjectToString(part, false, part.getLabel());
 	}
 
-	@Override
-	protected EqualsDescriptor<BodyPart> createEqualsDescriptor() {
+	@Override protected final EqualsDescriptor<BodyPart> createEqualsDescriptor() {
 		return new EqualsDescriptor<BodyPart>(new BodyPartImplProvider.HeadImpl(), new BodyPartImplProvider.HeadImpl(),
 				new BodyPartImplProvider.NeckImpl(), new BodyPartImplProvider.TorsoImpl(),
 				new TestableBodyPart("Head", "other_than_head"),
@@ -35,26 +35,7 @@ public class BodyPartsImplTest extends AbstractEqualsTest<BodyPart> {
 		);
 	}
 
-	@Override protected BodyPart createSameTesteeForEquals() {
+	@Override protected final BodyPart createSameTesteeForEquals() {
 		return new BodyPartImplProvider.HeadImpl();
-	}
-	
-	static class TestableBodyPart implements BodyPart {
-		private final String label;
-		private final String osceletonId;
-		public TestableBodyPart(String label, String osceletonId) {
-			this.label = label;
-			this.osceletonId = osceletonId;
-		}
-		@Override
-		public String getLabel() {
-			return this.label;
-		}
-
-		@Override
-		public String getOsceletonId() {
-			return this.osceletonId;
-		}
-		
 	}
 }

@@ -95,7 +95,7 @@ final class BodyPartImplProvider {
 		implements Feet { FeetImpl() { super(new LeftFootImpl(), new RightFootImpl()); } }
 	
 	
-	private static abstract class DefaultBodyPart
+	private abstract static class DefaultBodyPart
 		implements BodyPart {
 		private static final String TO_STRING_PREFIX = "Body ";
 		private final String cachedToString;

@@ -55,7 +55,7 @@ abstract class AbstractUserServiceTest extends AbstractMockeryTest {
 		for (final UserServiceTestScenarioStep step : steps) {
 			
 			// the next line executes the functionality under test
-			final User actualUser = step.executeActionWith(service, step.getActionUserId());
+			final User actualUser = step.executeActionWith(service /*, step.getActionUserId()*/);
 			
 			assertThat("UserService may never return null values for its lookup methods!", actualUser, notNullValue());
 			assertThat(actualUser.getId(), Matchers.is(Matchers.greaterThan(0))); // cant tell more about it :)

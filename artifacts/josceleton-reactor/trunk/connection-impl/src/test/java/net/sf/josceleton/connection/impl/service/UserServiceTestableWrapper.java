@@ -3,7 +3,6 @@ package net.sf.josceleton.connection.impl.service;
 import java.util.Collection;
 
 import net.sf.josceleton.connection.api.service.TestableUserServiceDispatcher;
-import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.api.service.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;

@@ -14,11 +14,11 @@ public class TestableConnectionListener implements ConnectionListener {
 	private final List<UserMessage> receivedUserMessages = new LinkedList<UserMessage>();
 	
 	
-	@Override public void onJointMessage(final JointMessage message) {
+	@Override public final void onJointMessage(final JointMessage message) {
 		this.receivedJointMessages.add(message);
 	}
 
-	@Override public void onUserMessage(final UserMessage message) {
+	@Override public final void onUserMessage(final UserMessage message) {
 		this.receivedUserMessages.add(message);
 	}
 	

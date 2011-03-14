@@ -15,7 +15,7 @@ public class SafeRemoveAddListTest {
 	}
 
 	@Test public final void removeOkay() {
-		SafeLinkedHashSet<String> list = new SafeLinkedHashSet<String>();
+		final SafeLinkedHashSet<String> list = new SafeLinkedHashSet<String>();
 		assertThat(list.add("a"), equalTo(true));
 		assertThat(list.remove("a"), equalTo(true));
 	}
@@ -23,13 +23,13 @@ public class SafeRemoveAddListTest {
 	@Test(expectedExceptions = RuntimeException.class,
 			expectedExceptionsMessageRegExp = "Already added .*")
 	public final void addDuplicateFails() {
-		SafeLinkedHashSet<String> list = new SafeLinkedHashSet<String>();
+		final SafeLinkedHashSet<String> list = new SafeLinkedHashSet<String>();
 		assertThat(list.add("a"), equalTo(true));
 		list.add("a"); // should fails
 	}
 
 	@Test public final void addSingleOkay() {
-		SafeLinkedHashSet<String> list = new SafeLinkedHashSet<String>();
+		final SafeLinkedHashSet<String> list = new SafeLinkedHashSet<String>();
 		assertThat(list.add("a"), equalTo(true));
 	}
 	

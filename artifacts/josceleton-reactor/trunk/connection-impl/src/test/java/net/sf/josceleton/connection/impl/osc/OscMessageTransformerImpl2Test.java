@@ -70,7 +70,7 @@ public class OscMessageTransformerImpl2Test extends AbstractMockeryTest {
 			final Integer userId,
 			final UserState userState,
 			final UserMessage actualMessage) {
-		return new OscMessageTransformerFactory().newUserTransformer(this.getMockery(),
+		return new OscMessageTransformerTestFactory().newUserTransformer(this.getMockery(),
 			userStore, userId, userState, actualMessage);
 	}
 	
@@ -80,7 +80,7 @@ public class OscMessageTransformerImpl2Test extends AbstractMockeryTest {
 			final BodyPart actualJointPart,
 			final Integer actualOsceletonUserId,
 			final JointMessage actualMessage) {
-		return new OscMessageTransformerFactory().newJointTransformer(this.getMockery(),
+		return new OscMessageTransformerTestFactory().newJointTransformer(this.getMockery(),
 				userStore, actualCoordinates, actualJointPart, actualOsceletonUserId, actualMessage);
 	}
 	

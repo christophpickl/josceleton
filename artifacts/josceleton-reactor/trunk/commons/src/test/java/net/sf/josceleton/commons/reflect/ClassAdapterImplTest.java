@@ -11,8 +11,8 @@ public class ClassAdapterImplTest {
 	
 	@Test
 	public final void testEverything() {
-		Class<ClassAdapterImplTest> clazz = ClassAdapterImplTest.class;
-		ClassAdapterImpl<ClassAdapterImplTest> testee = ClassAdapterImpl.create(clazz);
+		final Class<ClassAdapterImplTest> clazz = ClassAdapterImplTest.class;
+		final ClassAdapterImpl<ClassAdapterImplTest> testee = ClassAdapterImpl.create(clazz);
 		
 		assertThat(testee.getInnerClass(), equalTo(clazz));
 		assertThat(testee.getName(), equalTo(clazz.getName()));

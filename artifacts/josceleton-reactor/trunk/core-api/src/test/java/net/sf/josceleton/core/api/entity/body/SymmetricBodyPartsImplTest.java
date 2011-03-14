@@ -25,14 +25,15 @@ public class SymmetricBodyPartsImplTest extends AbstractEqualsTest<SymetricBodyP
 	}
 	
 	@Test(dataProvider = "provideSymmetricBodyPartImpls")
-	public final void testSomeParts(SymetricBodyPart<BodyPart, LeftBodyPart<BodyPart>, RightBodyPart<BodyPart>> part) {
+	public final void testSomeParts(
+			final SymetricBodyPart<BodyPart, LeftBodyPart<BodyPart>, RightBodyPart<BodyPart>> part) {
 		assertThat(part, equalTo(part));
 		TestUtil.assertObjectToString(part, false, part.LEFT().toString(), part.RIGHT().toString());
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected EqualsDescriptor<SymetricBodyPart<BodyPart, LeftBodyPart<BodyPart>, RightBodyPart<BodyPart>>> createEqualsDescriptor() {
+	protected final EqualsDescriptor<SymetricBodyPart<BodyPart, LeftBodyPart<BodyPart>, RightBodyPart<BodyPart>>> createEqualsDescriptor() {
 		return new EqualsDescriptor(
 			new BodyPartImplProvider.HipsImpl(), new BodyPartImplProvider.HipsImpl(),
 			
@@ -47,7 +48,7 @@ public class SymmetricBodyPartsImplTest extends AbstractEqualsTest<SymetricBodyP
 	}
 
 	@Override
-	protected Object createSameTesteeForEquals() {
+	protected final Object createSameTesteeForEquals() {
 		return new BodyPartImplProvider.KneesImpl();
 	}
 	
@@ -56,7 +57,7 @@ public class SymmetricBodyPartsImplTest extends AbstractEqualsTest<SymetricBodyP
 		
 		private final L left;
 		private final R right;
-		public TestableSymetricBodyPart(L left, R right) {
+		public TestableSymetricBodyPart(final L left, final R right) {
 			this.left = left;
 			this.right = right;
 		}

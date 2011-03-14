@@ -24,28 +24,14 @@ public class TestableUserServiceListener implements UserServiceListener {
 	public final Collection<UserAndState> getReceivedMessages() {
 		return this.receivedMessages;
 	}
-	
-	public static class UserAndState {
-		private final User user;
-		private final UserState state;
-		public UserAndState(final User user, final UserState state) {
-			this.user = user;
-			this.state = state;
-		}
-		public final User getUser() {
-			return this.user;
-		}
-		public final UserState getState() {
-			return this.state;
-		}
-	}
-	@Deprecated public final List<User> getWaitingUsers() {
+	// MINOR @TEST REFACTOR: instead of these, use getReceivedMessages() instead, as it provides messages in right order
+	public final List<User> getWaitingUsers() {
 		return this.getUsersWith(UserState.WAITING);
 	}
-	@Deprecated public final List<User> getProcessingUsers() {
+	public final List<User> getProcessingUsers() {
 		return this.getUsersWith(UserState.PROCESSING);
 	}
-	@Deprecated public final List<User> getDeadUsers() {
+	public final List<User> getDeadUsers() {
 		return this.getUsersWith(UserState.DEAD);
 	}
 	private List<User> getUsersWith(final UserState state) {

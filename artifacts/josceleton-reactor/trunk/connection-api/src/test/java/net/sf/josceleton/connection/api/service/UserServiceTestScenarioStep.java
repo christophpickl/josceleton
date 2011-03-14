@@ -5,8 +5,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.util.List;
 
-import org.hamcrest.Matchers;
-
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 
@@ -63,7 +61,7 @@ class UserServiceTestScenarioStep {
 		}
 	}
 	
-	public final User executeActionWith(final TestableUserServiceDispatcher service, final int expectedUserId) {
+	public final User executeActionWith(final TestableUserServiceDispatcher service) {
 		final User actualUser;
 		if(this.actionCommand != null) {
 			actualUser = service.delegateLookupUserMessage(this.actionUserId, this.actionCommand);

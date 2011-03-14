@@ -31,12 +31,12 @@ public class UserStateTest extends AbstractEnumTest<UserState> {
 		return result;
 	}
 	@Test(dataProvider = "provideAllUserStates")
-	public final void testCallback(UserState state) {
+	public final void testCallback(final UserState state) {
 		this.assertCallback(state);
 	}
 	
 	@Test(expectedExceptions = NullPointerException.class, dataProvider = "provideAllUserStates")
-	public final void passingNullForCallbackFails(UserState state) {
+	public final void passingNullForCallbackFails(final UserState state) {
 		state.callback(null);
 	}
 	

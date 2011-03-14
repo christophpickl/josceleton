@@ -8,7 +8,7 @@ import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
 import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.api.test.TestableUserServiceListener;
-import net.sf.josceleton.connection.api.test.TestableUserServiceListener.UserAndState;
+import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.connection.impl.osc.OscAddress;
 import net.sf.josceleton.connection.impl.osc.OscPortOpener;
 import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
@@ -48,20 +48,20 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		this.testableOscPort = new TestableOscPort();
 
 		final OscPortOpener mockedPortOpener = this.mock(OscPortOpener.class);
-		this.checking(new Expectations() {{
+		this.checking(new Expectations() { {
 			oneOf(mockedPortOpener).connect(with(any(int.class)));
 			will(returnValue(AbstractIntegrationTest.this.testableOscPort));
 		}});
 		
 		// see http://google-guice.googlecode.com/svn/trunk/latest-javadoc/com/google/inject/util/Modules.html
-		Module functionalTestModule = Modules.override(new JosceletonGuiceModule()).with(new AbstractModule() {
+		final Module functionalTestModule = Modules.override(new JosceletonGuiceModule()).with(new AbstractModule() {
 			@Override protected void configure() {
 				bind(OscPortOpener.class).toInstance(mockedPortOpener);
 			}
 		});
 		
-		Injector injector = Guice.createInjector(functionalTestModule);
-		Connector connector = injector.getInstance(Connector.class);
+		final Injector injector = Guice.createInjector(functionalTestModule);
+		final Connector connector = injector.getInstance(Connector.class);
 
 		this.connection = connector.openConnection();
 		this.connectionCollector = new TestableConnectionListener();
@@ -92,31 +92,34 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	}
 	
 	
-	protected final void dispatchJointMessage(int userId, BodyPart part, float... coordinates) {
+	protected final void dispatchJointMessage(final int userId, final BodyPart part, final float... coordinates) {
 		LOG.debug("+dispatchJointMessage(..)");
-		Float x = coordinates.length > 0 ? coordinates[0] : Float.valueOf(0.0F);
-		Float y = coordinates.length > 1 ? coordinates[1] : Float.valueOf(0.0F);
-		Float z = coordinates.length > 2 ? coordinates[2] : Float.valueOf(0.0F);
+		final Float x = coordinates.length > 0 ? coordinates[0] : Float.valueOf(0.0F);
+		final Float y = coordinates.length > 1 ? coordinates[1] : Float.valueOf(0.0F);
+		final Float z = coordinates.length > 2 ? coordinates[2] : Float.valueOf(0.0F);
 		this.dispatchOscMessage(OscAddress.JOINT, new Object[] {
 				part.getOsceletonId(), Integer.valueOf(userId), x, y, z });
 	}
 	
-	protected final void dispatchUserMessage(int userId, UserState state) {
+	protected final void dispatchUserMessage(final int userId, final UserState state) {
 		LOG.debug("+dispatchUserMessage(userId, state=" + state + ")");
-		this.dispatchOscMessage(FOOOOOOO_byState(state), new Object[] { Integer.valueOf(userId) });
+		this.dispatchOscMessage(fOOOOOOOFIXMEbyState(state), new Object[] { Integer.valueOf(userId) });
 	}
 	
-	public static final OscAddress FOOOOOOO_byState(UserState state) {
+	public static final OscAddress fOOOOOOOFIXMEbyState(final UserState state) {
 		if(state == UserState.WAITING) { // FIXME @TEST outsource OscAddress <=> UserState conversion
 			return OscAddress.NEW_USER;
-		}if(state == UserState.PROCESSING) {
+		}
+		if(state == UserState.PROCESSING) {
 			return OscAddress.NEW_SKEL;
-		}if(state == UserState.DEAD) {
+		}
+		if(state == UserState.DEAD) {
 			return OscAddress.LOST_USER;
-		}return null;
+		}
+		return null;
 	}
 	
-	private void dispatchOscMessage(OscAddress address, Object[] arguments) {
+	private void dispatchOscMessage(final OscAddress address, final Object[] arguments) {
 		this.testableOscPort.getListeners().get(address).
 			acceptMessage(new Date(), new TestableOSCMessage(address.getAddress(), arguments));
 	}

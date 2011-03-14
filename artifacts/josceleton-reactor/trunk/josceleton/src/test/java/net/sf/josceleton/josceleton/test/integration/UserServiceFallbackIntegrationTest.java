@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.Arrays;
 import java.util.Collection;
 
-import net.sf.josceleton.connection.api.test.TestableUserServiceListener.UserAndState;
+import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.body.Body;
 

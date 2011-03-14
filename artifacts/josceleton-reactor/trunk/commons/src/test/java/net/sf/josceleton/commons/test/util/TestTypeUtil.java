@@ -1,7 +1,6 @@
 package net.sf.josceleton.commons.test.util;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
 
@@ -38,18 +37,10 @@ public final class TestTypeUtil {
 		}
 		constructor.setAccessible(true);
 		
-		final String instantiationErrorMessage = "WARNING: could not create instance " +
-		"for class [" + clazz.getName() + "]!";
 		try {
 			constructor.newInstance();
-		} catch (final IllegalArgumentException e) {
-			throw new RuntimeException(instantiationErrorMessage, e);
-		} catch (final InstantiationException e) {
-			throw new RuntimeException(instantiationErrorMessage, e);
-		} catch (final IllegalAccessException e) {
-			throw new RuntimeException(instantiationErrorMessage, e);
-		} catch (final InvocationTargetException e) {
-			throw new RuntimeException(instantiationErrorMessage, e);
+		} catch (final Exception e) {
+			throw new RuntimeException("WARNING: could not create instance for class [" + clazz.getName() + "]!", e);
 		}
 	}
 	
