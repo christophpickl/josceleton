@@ -10,7 +10,10 @@ import net.sf.josceleton.connection.api.service.UserService;
  * @since 0.3
  * @see UserServiceImpl
  */
-public interface UserServiceInternal extends UserService, UserStore {
+public interface UserServiceInternal extends
+	UserService,
+	UserStore,
+	UserServiceCollectionResponder {
 	
 	// merge interface only
 	

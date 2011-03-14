@@ -30,7 +30,7 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 	}
 	
 	@Test(expectedExceptions = InvalidArgumentException.class,
-			expectedExceptionsMessageRegExp = "Passed illegal argument \\[oscMessage.arguments.length\\] with value: " +
+			expectedExceptionsMessageRegExp = "Passed an illegal argument \\[oscMessage.arguments.length\\] with value: " +
 					"\\[0\\]! \\(condition was: ==1\\)")
 	public final void passingZeroArgumentedOSCMessageFails() {
 		final OscMessageTransformer transformer = this.newSimpleTransformer();

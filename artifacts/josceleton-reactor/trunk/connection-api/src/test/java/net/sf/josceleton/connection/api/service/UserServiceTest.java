@@ -34,11 +34,10 @@ public abstract class UserServiceTest extends AbstractUserServiceTest {
 		);
 	}
 
-	@Test(expectedExceptions = RuntimeException.class,
-		expectedExceptionsMessageRegExp = "Already add new user with ID \\[12\\].*")
-	public final void lookupSameUserWaitingFails() {
+	@Test public final void lookupSameUserDoesNotFail() {
 		final Integer osceletonId = Integer.valueOf(12);
-		final TestableUserServiceDispatcher service = this.createTestableTestee(new User[] { new TestableUser(osceletonId) });
+		final TestableUserServiceDispatcher service = this.createTestableTestee(new User[] {
+				new TestableUser(osceletonId), new TestableUser(osceletonId) });
 		service.delegateLookupUserMessage(osceletonId, UserState.WAITING);
 		service.delegateLookupUserMessage(osceletonId, UserState.WAITING);
 	}

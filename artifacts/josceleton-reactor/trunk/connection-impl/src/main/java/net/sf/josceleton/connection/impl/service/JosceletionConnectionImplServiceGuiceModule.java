@@ -9,6 +9,7 @@ public class JosceletionConnectionImplServiceGuiceModule extends AbstractModule 
 
 	@Override protected final void configure() {
 		bind(UserServiceInternal.class).to(UserServiceImpl.class);
+		bind(UserServiceCollection.class).to(UserServiceCollectionImpl.class);
 	}
 
 }

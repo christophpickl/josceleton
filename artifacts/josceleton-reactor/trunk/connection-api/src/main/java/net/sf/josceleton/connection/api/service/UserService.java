@@ -18,16 +18,8 @@ import net.sf.josceleton.core.api.entity.User;
  * @since 0.3
  * @see Connection#getUserService()
  */
-public interface UserService extends Async<UserServiceListener> {
-
-	/**
-	 * @since 0.3
-	 */
-	Collection<User> getWaitingUsers();
-
-	/**
-	 * @since 0.3
-	 */
-	Collection<User> getProcessingUsers();
+public interface UserService extends Async<UserServiceListener>, UserServiceSync {
+	
+	// merge interface only
 	
 }

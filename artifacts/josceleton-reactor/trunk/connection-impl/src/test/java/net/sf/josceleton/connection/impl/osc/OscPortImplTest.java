@@ -47,6 +47,7 @@ public class OscPortImplTest extends AbstractMockeryTest {
 			oneOf(mockedOSCPortIn).startListening();
 			oneOf(mockedOSCPortIn).addListener(oscAddress.getAddress(), listener);
 			oneOf(mockedOSCPortIn).stopListening();
+			oneOf(mockedOSCPortIn).close();
 		} });
 		
 		final OscPort port = new OscPortImpl(mockedOSCPortIn);
@@ -86,6 +87,7 @@ public class OscPortImplTest extends AbstractMockeryTest {
 		this.checking(new Expectations() { {
 			oneOf(mockedOSCPortIn).startListening();
 			oneOf(mockedOSCPortIn).stopListening();
+			oneOf(mockedOSCPortIn).close();
 		} });
 		final OscPort port = new OscPortImpl(mockedOSCPortIn);
 		port.establish();
