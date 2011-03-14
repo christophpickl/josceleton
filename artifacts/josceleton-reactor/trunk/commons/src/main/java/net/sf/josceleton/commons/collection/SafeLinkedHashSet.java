@@ -1,9 +1,9 @@
 package net.sf.josceleton.commons.collection;
 
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
-public class SafeRemoveAddList<E> extends LinkedList<E> {
+public class SafeLinkedHashSet<E> extends LinkedHashSet<E> {
 	
 	private static final long serialVersionUID = -4952366764007772589L;
 

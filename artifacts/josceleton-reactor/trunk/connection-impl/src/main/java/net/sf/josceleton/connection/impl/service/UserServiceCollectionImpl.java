@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.josceleton.commons.collection.SafeRemoveAddList;
+import net.sf.josceleton.commons.collection.SafeLinkedHashSet;
 import net.sf.josceleton.core.api.entity.User;
 
 /**
@@ -17,9 +17,9 @@ class UserServiceCollectionImpl implements UserServiceCollection {
 
 	private final Map<Integer, User> usersById = new HashMap<Integer, User>();
 	
-	private final Collection<User> waitingUsers = new SafeRemoveAddList<User>();
+	private final Collection<User> waitingUsers = new SafeLinkedHashSet<User>();
 	
-	private final Collection<User> processingUsers = new SafeRemoveAddList<User>();
+	private final Collection<User> processingUsers = new SafeLinkedHashSet<User>();
 
 	
 	@Override public final void add(final User newUser) {
@@ -50,11 +50,10 @@ class UserServiceCollectionImpl implements UserServiceCollection {
 		if(this.usersById.containsKey(osceletonUserId) == false) {
 			return;
 		}
-		System.err.println("FALLBACK, juchu! (nachher die meldung wieder rausgeben, ja!?)"); // FIXME remove sysout
 		
 		this.clearUsers(this.processingUsers, responder);
 		this.clearUsers(this.waitingUsers, responder);
-		assert this.usersById.isEmpty() : "usersById should be empty after fallback!";
+// MINOR assert this.usersById.isEmpty() : "usersById should be empty after fallback!";
 	}
 
 	
@@ -75,7 +74,13 @@ class UserServiceCollectionImpl implements UserServiceCollection {
 		if(wasPreviouslyStored == true && this.waitingUsers.contains(removedStoredUser) == true) {
 			this.waitingUsers.remove(removedStoredUser);
 		} else {
-			this.processingUsers.remove(wasPreviouslyStored == false ? userToDispatch : removedStoredUser);
+			final User processingUserToRemove;
+			if(wasPreviouslyStored == false) {
+				processingUserToRemove = userToDispatch;
+			} else {
+				processingUserToRemove = removedStoredUser;
+			}
+			this.processingUsers.remove(processingUserToRemove);
 		}
 		
 		return userToDispatch;
@@ -101,7 +106,7 @@ class UserServiceCollectionImpl implements UserServiceCollection {
 			// ignore result, as just want to fake artificial logout
 			responder.lookupDeadUser(Integer.valueOf(currentProccessing.getOsceletonId()));
 		}
-		assert usersToBeEmptied.isEmpty() == true : "Remaining users: " + Arrays.toString(usersToBeEmptied.toArray());
+// MINOR assert usersToBeEmptied.isEmpty() == true : "Remaining users: " + Arrays.toString(usersToBeEmptied.toArray());
 	}
 
 }

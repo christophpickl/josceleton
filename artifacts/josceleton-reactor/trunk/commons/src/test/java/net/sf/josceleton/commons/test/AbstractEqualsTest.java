@@ -39,14 +39,14 @@ public abstract class AbstractEqualsTest<E> {
 		this.assertSameObjectByEqualsAndHashcode(sameA, sameB);
 		
 		for (final E currentDifferent : descriptor.getDifferents()) {
-			assertThat("Both should not be equal!", sameA, not(equalTo(currentDifferent)));
-			assertThat("Both should not be equal!", sameB, not(equalTo(currentDifferent)));
+			assertThat("Both should not be equal!", sameA.equals(currentDifferent), equalTo(false));
+			assertThat("Both should not be equal!", sameB.equals(currentDifferent), equalTo(false));
 			
 			for (final E currentOtherDifferent : descriptor.getDifferents()) {
 				if(currentDifferent == currentOtherDifferent) {
-					assertThat(currentDifferent, equalTo(currentOtherDifferent));
+					assertThat(currentDifferent.equals(currentOtherDifferent), equalTo(true));
 				} else {
-					assertThat(currentDifferent, not(equalTo(currentOtherDifferent)));
+					assertThat(currentDifferent.equals(currentOtherDifferent), equalTo(false));
 				}
 			}
 		}

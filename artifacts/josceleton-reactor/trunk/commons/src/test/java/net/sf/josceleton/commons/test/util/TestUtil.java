@@ -29,8 +29,16 @@ public final class TestUtil {
 	// MINOR @TEST dieser toString check hier ist gar nicht mal so schlecht! hat schon mal bug in toString entdeckt!
 	@SuppressWarnings("unchecked")
 	public static <T> void assertObjectToString(final T type, final String... subParts) {
+		assertObjectToString(type, true, subParts);
+	}
+
+	public static <T> void assertObjectToString(final T type, final boolean classnameCheck, final String... subParts) {
 		final List<Matcher<String>> list = new LinkedList<Matcher<String>>();
-		list.add(containsString(type.getClass().getSimpleName()));
+		
+		if(classnameCheck == true) {
+			list.add(containsString(type.getClass().getSimpleName()));
+		}
+		
 		for (int i = 0; i < subParts.length; i++) {
 			list.add(containsString(subParts[i]));
 		}

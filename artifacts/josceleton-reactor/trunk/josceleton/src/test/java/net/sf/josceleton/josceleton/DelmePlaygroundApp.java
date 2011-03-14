@@ -8,13 +8,7 @@ import net.sf.josceleton.core.api.entity.User;
 public class DelmePlaygroundApp {
 	
 	public static void main(String[] args) {
-		// FIXME FIXME FIXME WICHTIG !!!!!!!!!!!!! GUTE SACHE: rename ConnectionX ... but this is a GOOOOOD thing!
-		//       behind the scenes Josceleton static facade is used :(
-		//         => maybe add optional constructor arg: "Connector connector", und auch "JosceletonFacade facade" 
-		ConnectionX connection = new JosceletonConnectionX();
-		connection.open();
-		connection.addListener(null);
-		connection.getUserService();
+//		userServiceDebugger()
 	}
 	
 	public static void userServiceDebugger() {

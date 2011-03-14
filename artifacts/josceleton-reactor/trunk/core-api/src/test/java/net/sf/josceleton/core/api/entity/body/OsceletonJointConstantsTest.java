@@ -9,7 +9,6 @@ public class OsceletonJointConstantsTest {
 	
 	@Test
 	public final void hasSinglePrivateNullifiedConstructor() {
-		
 		assertThat(OsceletonJointConstants.class, hasSinglePrivateNullifiedConstructorAndInvokeIt());
 	}
 	

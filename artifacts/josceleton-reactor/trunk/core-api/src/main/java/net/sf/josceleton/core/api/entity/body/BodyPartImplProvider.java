@@ -97,7 +97,7 @@ final class BodyPartImplProvider {
 	
 	private static abstract class DefaultBodyPart
 		implements BodyPart {
-		private static final String TO_STRING_PREFIX = "Body.";
+		private static final String TO_STRING_PREFIX = "Body ";
 		private final String cachedToString;
 		private final String label;
 		private final String osceletonId;
@@ -114,13 +114,15 @@ final class BodyPartImplProvider {
 		@Override public final String toString() {
 			return this.cachedToString;
 		}
+		
 		@Override public final boolean equals(final Object other) {
 			if(this == other) { return true; }
 			if((other instanceof BodyPart) == false) { return false; }
 			final BodyPart that = (BodyPart) other;
-			return	this.getOsceletonId().equals(that.getOsceletonId()) && 
-					this.getLabel().equals(that.getLabel());
+			return this.getOsceletonId().equals(that.getOsceletonId()) && 
+				   this.getLabel().equals(that.getLabel());
 		}
+		
 		@Override public final int hashCode() {
 			return this.osceletonId.hashCode();
 		}
@@ -131,13 +133,31 @@ final class BodyPartImplProvider {
 		
 		private final LBP leftPart;
 		private final RBP rightPart;
+		private final String cachedToString;
 		
 		DefaultSymetricBodyPart(final LBP leftPart, final RBP rightPart) {
 			this.leftPart = leftPart;
 			this.rightPart = rightPart;
+			this.cachedToString = "Sym[" + leftPart + "/" + rightPart + "]";
 		}
 		
 		@Override public final LBP LEFT() { return this.leftPart; }
 		@Override public final RBP RIGHT() { return this.rightPart; }
+
+		@Override public final String toString() {
+			return this.cachedToString;
+		}
+		
+		@Override public final boolean equals(final Object other) {
+			if(this == other) { return true; }
+			if((other instanceof SymetricBodyPart<?, ?, ?>) == false) { return false; }
+			final SymetricBodyPart<?, ?, ?> that = (SymetricBodyPart<?, ?, ?>) other;
+			return this.LEFT().equals(that.LEFT()) && 
+				   this.RIGHT().equals(that.RIGHT());
+		}
+		
+		@Override public final int hashCode() {
+			return this.leftPart.hashCode();
+		}
 	}
 }
