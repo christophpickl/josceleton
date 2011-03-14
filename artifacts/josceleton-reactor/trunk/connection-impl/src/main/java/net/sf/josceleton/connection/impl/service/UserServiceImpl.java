@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import net.sf.josceleton.commons.collection.SafeRemoveAddList;
 import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.api.service.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
@@ -37,9 +38,9 @@ class UserServiceImpl
 	private final Map<Integer, User> usersById = new HashMap<Integer, User>();
 
 	// LUXURY @CODE DESIGN outsource getting current snapshot of all users to other class!!!
-	private final Collection<User> waitingUsers = new LinkedList<User>();
+	private final Collection<User> waitingUsers = new SafeRemoveAddList<User>();
 	
-	private final Collection<User> processingUsers = new LinkedList<User>();
+	private final Collection<User> processingUsers = new SafeRemoveAddList<User>();
 	
 	
 	@Inject UserServiceImpl(final UserFactory factory) {
@@ -97,27 +98,16 @@ class UserServiceImpl
 		// was not yet stored, therefore definetely update in processing users
 		if(wasPreviouslyStored == false) {
 			// was artificially created, so has to be that way
-			if(this.processingUsers.remove(userToDispatch) == false) {
-				throw new RuntimeException("Could not remove " + userToDispatch + " from processing users: " +
-						Arrays.toString(this.processingUsers.toArray()));
-			}
+			this.processingUsers.remove(userToDispatch);
 			
 		} else { // user was either stored as waiting or processing
 			if(this.waitingUsers.contains(removedStoredUser) == true) {
-				if(this.waitingUsers.remove(removedStoredUser) == false) {
-					throw new RuntimeException("Could not remove " + removedStoredUser + " from waiting users: " +
-							Arrays.toString(this.waitingUsers.toArray()));
-				}
+				this.waitingUsers.remove(removedStoredUser);
 			} else {
-				if(this.processingUsers.remove(removedStoredUser) == false) {
-					throw new RuntimeException("Could not remove " + removedStoredUser + " from processing users: " +
-							Arrays.toString(this.processingUsers.toArray()));
-				}
+				this.processingUsers.remove(removedStoredUser);
 			}
 		}
 		
-		// dispatchDeadUser(userToDispatch);
-		System.out.println("XXXXXXXXXXXXXXXX dispatch DEAD " + userToDispatch);
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserDead(userToDispatch);
 		}
@@ -133,25 +123,16 @@ class UserServiceImpl
 		
 		if(wasPreviouslyStored == true) {
 			processingUser = storedUser;
-		} else {
-			// artificially invoke one state step before
+		} else { // artificially invoke one state step before
 			processingUser = this.newWaitingUser(osceletonUserId);
 			this.dispatchWaitingUser(processingUser);
 		}
 		
 		// update waiting and processing users
-		if(this.waitingUsers.remove(processingUser) == false) {
-			throw new RuntimeException("Could not remove " + processingUser + " from waiting users: " +
-				Arrays.toString(this.waitingUsers.toArray()));
-		}
-		if(this.processingUsers.add(processingUser) == false) {
-			throw new RuntimeException("Already added " + processingUser + " from processing users: " +
-					Arrays.toString(this.processingUsers.toArray()));
-		}
+		this.waitingUsers.remove(processingUser);
+		this.processingUsers.add(processingUser);
 		
 		// dispatchProcessingUser(processingUser);
-
-		System.out.println("XXXXXXXXXXXXXXXX dispatch PROCESSING " + processingUser);
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserProcessing(processingUser);
 		}
@@ -196,11 +177,7 @@ class UserServiceImpl
 		final User newUser = this.factory.create(osceletonUserId.intValue());
 		
 		this.usersById.put(osceletonUserId, newUser);
-		// update waiting users
-		if(this.waitingUsers.add(newUser) == false) {
-			throw new RuntimeException("Already added " + newUser + " from waiting users: " +
-					Arrays.toString(this.waitingUsers.toArray()));
-		}
+		this.waitingUsers.add(newUser);
 		
 		return newUser;
 	}
