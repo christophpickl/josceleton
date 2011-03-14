@@ -1,31 +1,33 @@
-from commons import webFileExists
+from commons import webFileExists, formatArtifactRelativeUrlBy
 
 class PostconditionChecker:
         
-    def lookupErrorsForProject(self, project):
+    def lookupErrorsForArtifact(self, artifact):
         tmpErrors = []
-        tmpErrors.append(self.conditionArtifactDeployedToMavenReleaseRepo(project))
-        tmpErrors.append(self.conditionSubversionTagWasCreated(project))
+        tmpErrors.append(self.conditionArtifactDeployedToMavenReleaseRepo(artifact))
+        tmpErrors.append(self.conditionSubversionTagWasCreated(artifact))
+        
+        # TODO print "please confirm you are seing XYZ"
+        # hitEnter()
+#        openOsx(some web url)
+        
         return [e for e in tmpErrors if e != None]
     
-    def conditionSubversionTagWasCreated(self, project):
+    def conditionSubversionTagWasCreated(self, artifact):
         baseWebUrl = "josceleton.svn.sourceforge.net"
         baseSvnUrl = "/viewvc/josceleton"
         svnTagUrl = "%s/%s/tags/%s-%s/pom.xml" % (baseSvnUrl,
-                                             project.svnRelativePath, # prototypes/release-playground
-                                             project.artifactId, project.versionRelease)
+                                             artifact.svnRelativePath, # prototypes/release-playground
+                                             artifact.artifactId, artifact.versionRelease)
         errorMessage = "No proper SVN tag was created: http://%s%s" % (baseWebUrl, svnTagUrl)
         return errorMessage if webFileExists(baseWebUrl, svnTagUrl) == False else None
     
-    def conditionArtifactDeployedToMavenReleaseRepo(self, project):
+    def conditionArtifactDeployedToMavenReleaseRepo(self, artifact):
         baseWebUrl = "josceleton.sourceforge.net"
-        baseWebMavenReleaseUrl = "/maven/release" # http://josceleton.sourceforge.net/maven/release
-        groupIdToPath = project.groupId.replace(".", "/") # net/sf/josceleton/delme/playground/release
-        artifactFileName = "%s-%s.%s" % (project.artifactId, project.versionRelease, project.packaging) # release-playground-0.2.pom
-#        josceleton.sourceforge.net/maven/release/net/sf/josceleton/delme/playground/release/release-playground/0.2/release-playground-0.2.pom
-        relativeToBase = "%s/%s/%s/%s/%s" % (baseWebMavenReleaseUrl, groupIdToPath,
-                                             project.artifactId, project.versionRelease, artifactFileName)
+        
+        relativeToBase = formatArtifactRelativeUrlBy(artifact)
+#        josceleton.sourceforge.net
         errorMessage = "Artifact was not deployed to maven release repository: http://%s%s" % (baseWebUrl, relativeToBase)
         return errorMessage if webFileExists(baseWebUrl, relativeToBase) == False else None 
-            
+    
         

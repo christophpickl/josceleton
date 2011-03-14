@@ -1,4 +1,4 @@
-from config_global import Project
+from Artifact import Artifact
 
 class Configuration:
 
@@ -7,8 +7,9 @@ class Configuration:
         self.workspace = "/path/to/temporary/workspace"
         self.username = "john_smith"
         self.password = "tops3cr3t"
-        self.projects = [
-                Project(
+        self.sayEnabled = False # execute fancy osx say command ;)
+        self.artifacts = [
+                Artifact(
                     "release-playground",
                     "net.sf.josceleton.delme.playground.release",
                     "prototypes/release-playground", 
@@ -16,7 +17,6 @@ class Configuration:
                     "pom"
                 )
             ]
-        self.sayEnabled = False # execute fancy osx say command ;)
-
-    def getPackageDescriptor(self):
-        return None
+        
+        self.package = None
+        

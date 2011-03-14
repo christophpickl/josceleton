@@ -1,5 +1,5 @@
 import os
-from commons import hitEnter
+from sysexec import hitEnter
 
 class PreconditionChecker:
     

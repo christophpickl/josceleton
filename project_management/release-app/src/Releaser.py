@@ -1,79 +1,65 @@
-import datetime
-import time
-
-from config_global import PRECONDITIONS_ENABLED
+from config_global import * #@UnusedWildImport
 from commons import * #@UnusedWildImport
+from logging import * #@UnusedWildImport
+from sysexec import * #@UnusedWildImport
 from PreconditionChecker import PreconditionChecker
 from PostconditionChecker import PostconditionChecker
 
-        #* redirect output from process
+#* redirect output from process
 
-        # post tasks
-        # =================
-        # check existence of artifacts via web (documentation/)
-        # sourceforge deploy File
-        # sourceforge README (optional nochmal als grosses ding dazu (nicht per projekt)
+# post tasks
+# =================
+# check existence of artifacts via web (documentation/)
+# sourceforge deploy File
+# sourceforge README (optional nochmal als grosses ding dazu (nicht per projekt)
         
-class Release:
+class Releaser:
     
     def createNewWith(self, config):
-        timeStart = datetime.datetime.now()
-        # LUXURY pause timer when waiting for user interaction
         
         # TODO validate if mvn2 is active (not mvn3, as wagon SCP provider does not work)
-        # TODO confirm projects configuration by user!!!
+        # TODO confirm artifacts configuration by user!!!
+        
+        targetFolder = prepareTargetFolder(config.workspace)
         
         preConditions = PreconditionChecker()
-        
-        
         if PRECONDITIONS_ENABLED == True:
             if preConditions.areSatisfied(config) == False:
                 loge("There were unsatisfied preconditions!")
                 return
         
-        targetFolder = self.prepareTargetFolder(config.workspace)
-        for i, project in enumerate(config.projects):
+        if SYSEXEC_ENABLED == True:
+            print
+            raw_input("Are you really sure? sysexec is enabled!")
+            print
+        
+        for i, artifact in enumerate(config.artifacts):
             try:
-                logi("---------------------- Releasing project '%s' verson %s (%i of %i)" %
-                     (project.artifactId, project.versionRelease, i+1, len(config.projects)))
-                if config.sayEnabled: say("releasing project %s" % project.artifactId)
+                logi("---------------------- Releasing artifact '%s' with version %s (%i of %i)" %
+                     (artifact.artifactId, artifact.versionRelease, i+1, len(config.artifacts)))
+                if config.sayEnabled: sayOsx("releasing artifact %s" % artifact.artifactId)
                 
-                self.processProject(project, config, targetFolder)
-                self.validatePostconditions(project)
+                self.processArtifact(artifact, config, targetFolder)
+                self.validatePostconditions(artifact)
                 
-                logi("---------------------- Finished releasing '%s'" % project.artifactId)
+                logi("---------------------- Finished releasing '%s'" % artifact.artifactId)
                 
             except Exception as e:
-                loge("Error while releasing project %s: %s" % (project, e.message), e)
+                loge("Error while releasing artifact %s: %s" % (artifact, e.message), e)
                 break
         
-        package = config.getPackageDescriptor()
-        if package != None:
-            print "PACKAGE!"
-        
-        timeEnd = datetime.datetime.now()
-        duration = timeEnd - timeStart
-        logi()
-        logi("SUCCESS! (needed %s)" % duration)
+        logi("RELEASE SUCCESS")
     
-    def validatePostconditions(self, project):
+    def validatePostconditions(self, artifact):
         logd("Checking post-conditions ...")
-        failedPostCond = PostconditionChecker().lookupErrorsForProject(project)
+        failedPostCond = PostconditionChecker().lookupErrorsForArtifact(artifact)
         if len(failedPostCond) == 0:
             return
-        raise Exception("Failed postconditions for project %s!\n%s" % (project, "\n".join(failedPostCond)))
+        raise Exception("Failed postconditions for artifact %s!\n%s" % (artifact, "\n".join(failedPostCond)))
     
-    def prepareTargetFolder(self, workspacePath):
-        if os.path.isdir(workspacePath) == 0 and os.path.isabs(workspacePath):
-            raise Exception("Invalid workspace directory: %s" % workspacePath) 
-        
-        targetFolderName = time.strftime("%Y-%m-%d_%H-%M-%S") #http://docs.python.org/library/time.html#time.strftime 
-        targetFolder = os.path.join(workspacePath, targetFolderName)
-        mkdir(targetFolder)
-        return targetFolder
     
-    def processProject(self, project, config, targetFolder):
-        checkoutFolder = self.checkout(project, config, targetFolder)
+    def processArtifact(self, artifact, config, targetFolder):
+        checkoutFolder = self.checkout(artifact, config, targetFolder)
         
         chdir(checkoutFolder)
         releasePluginArgs = " ".join([
@@ -81,12 +67,12 @@ class Release:
              "-Dusername=%s" % config.username,
              "-Dpassword=%s" % config.password,
              ("-DscmCommentPrefix=\"[release-app] releasing verison '%s' of artifact '%s'\"" %
-              (project.versionRelease, project.artifactId)),
+              (artifact.versionRelease, artifact.artifactId)),
              
              # release:prepare specific options
              "-DallowTimestampedSnapshots=false", # default=false
-             "-DreleaseVersion=%s" % project.versionRelease,
-             "-DdevelopmentVersion=%s" % project.versionNext,
+             "-DreleaseVersion=%s" % artifact.versionRelease,
+             "-DdevelopmentVersion=%s" % artifact.versionNext,
              "-DupdateDependencies=false", # default=true
 #             "--DpreparationGoals=clean verify", # default="clean verify"
              
@@ -100,7 +86,7 @@ class Release:
              "--update-snapshots", # Forces a check for updated releases and snapshots on remote repositories
              "--show-version", # Display version information WITHOUT stopping build
                 # --debug # Produce execution debug output
-                # --resume-from <arg> # Resume reactor from specified project
+                # --resume-from <arg> # Resume reactor from specified artifact
                 # --quiet # Quiet output - only show errors
              ])
         mvn("clean release:prepare " + releasePluginArgs)
@@ -117,11 +103,11 @@ class Release:
                 raise e
 
 
-    def checkout(self, project, config, targetFolder):
-        logd("Checking out project: %s" % project.artifactId)
+    def checkout(self, artifact, config, targetFolder):
+        logd("Checking out artifact: %s" % artifact.artifactId)
         
-        srcPath = project.svnPath + "/trunk"
-        targetPath = os.path.join(targetFolder, project.artifactId)
+        srcPath = artifact.svnPath + "/trunk"
+        targetPath = os.path.join(targetFolder, artifact.artifactId)
         svn("checkout %s %s --username %s --password %s" % (srcPath, targetPath, config.username, config.password))
 
         return targetPath
