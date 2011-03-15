@@ -6,6 +6,6 @@ public abstract class MotionSeparatorTest extends AbstractMockeryTest {
 	
 	protected abstract MotionSeparator createTestee();
 
-	// FIXME implement MotionServiceTest!
+	// FIXME implement MotionSeparatorTest!
 	
 }

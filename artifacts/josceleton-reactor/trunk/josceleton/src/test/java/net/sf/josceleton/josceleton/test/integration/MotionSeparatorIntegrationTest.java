@@ -8,7 +8,7 @@ import java.util.List;
 
 import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
 import net.sf.josceleton.connection.api.service.motion.MotionSeparatorListener;
-import net.sf.josceleton.connection.api.test.TestableMotionServiceListener;
+import net.sf.josceleton.connection.api.test.TestableMotionSeparatorListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
@@ -23,8 +23,8 @@ public class MotionSeparatorIntegrationTest extends AbstractIntegrationTest {
 	public final void foo() {
 		final int u1 = 1;
 		final int u2 = 2;
-		final TestableMotionServiceListener listener1 = new TestableMotionServiceListener();
-		final TestableMotionServiceListener listener2 = new TestableMotionServiceListener();
+		final TestableMotionSeparatorListener listener1 = new TestableMotionSeparatorListener();
+		final TestableMotionSeparatorListener listener2 = new TestableMotionSeparatorListener();
 		this.emulateTwoNewUsers(u1, u2, listener1, listener2);
 		
 		

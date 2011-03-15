@@ -5,7 +5,7 @@ import net.sf.josceleton.connection.api.Connection;
 /**
  * @since 0.4
  */
-public interface MotionSeparatorManager {
+public interface MotionSeparatorCache {
 
 	/**
 	 * @since 0.4

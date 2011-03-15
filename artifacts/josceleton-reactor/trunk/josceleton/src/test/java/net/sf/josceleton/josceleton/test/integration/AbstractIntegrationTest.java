@@ -8,7 +8,7 @@ import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
 import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorManager;
+import net.sf.josceleton.connection.api.service.motion.MotionSeparatorCache;
 import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.test.TestableUserServiceListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
@@ -47,7 +47,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	private TestableOscPort testableOscPort;
 	private TestableConnectionListener connectionCollector;
 	private TestableUserServiceListener userServiceCollector;
-	private MotionSeparatorManager motionSeparatorManager;
+	private MotionSeparatorCache separatorCache;
 	
 	@BeforeMethod public final void setUpConnection() {
 		this.testableOscPort = new TestableOscPort();
@@ -68,7 +68,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		final Injector injector = Guice.createInjector(functionalTestModule);
 		final Connector connector = injector.getInstance(Connector.class);
 		
-		this.motionSeparatorManager = injector.getInstance(MotionSeparatorManager.class);
+		this.separatorCache = injector.getInstance(MotionSeparatorCache.class);
 		
 		this.connection = connector.openConnection();
 		this.connectionCollector = new TestableConnectionListener();
@@ -80,7 +80,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	}
 	
 	protected final MotionSeparator getMotionSeparator() {
-		return this.motionSeparatorManager.lookupMotionSeparator(this.connection);
+		return this.separatorCache.lookupMotionSeparator(this.connection);
 	}
 	
 	@AfterMethod public final void tearDownConnection() {
@@ -90,7 +90,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		this.userService = null;
 		this.connection.close();
 		this.connection = null;
-		this.motionSeparatorManager = null;
+		this.separatorCache = null;
 		// MINOR @TEST maybe remove all listeners in tear down 
 	}
 

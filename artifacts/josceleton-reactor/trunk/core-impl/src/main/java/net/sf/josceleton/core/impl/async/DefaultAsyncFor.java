@@ -54,7 +54,7 @@ public class DefaultAsyncFor<K, L extends Listener> implements AsyncFor<K, L> {
 	/**
 	 * @since 0.4
 	 */
-	protected final Iterable<L> getListenersFor(final K key) {
+	protected final Collection<L> getListenersFor(final K key) {
 		this.initListenersFor(key);
 		return this.listenersByKey.get(key);
 	}
