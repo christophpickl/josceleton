@@ -9,13 +9,9 @@
 		<section name="Download">
 			
 			<h3>Binary Packages</h3>
-			
-				<p>
-					You can download anything from the SourceForge File Repository:
-				</p>
-				<p align="center">
-					<a href="https://sourceforge.net/projects/josceleton/files/Josceleton">https://sourceforge.net/projects/josceleton/files/Josceleton</a>
-				</p>
+			<p>
+				You can download all files from the <a href="https://sourceforge.net/projects/josceleton/files/Josceleton">SourceForge File Repository</a>.
+			</p>
 			
 			<h3>Maven Dependency Management</h3>
 			
@@ -59,6 +55,7 @@
 				
 				<p>Declare a common Maven dependency for Josceleton in your <code>pom.xml</code> file:</p>
 				
+				<!-- TODO @SITE download: automatically get current version by ${project.someProperty.version.josceleton-josceleton} -->
 				<source><![CDATA[
 <project>
   <dependencies>
@@ -66,7 +63,7 @@
     <dependency>
       <groupId>net.sf.josceleton</groupId>
       <artifactId>josceleton</artifactId>
-      <version>0.1</version>
+      <version>0.3</version>
     </dependency>
 
   </dependencies>

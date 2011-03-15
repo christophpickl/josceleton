@@ -15,55 +15,56 @@
 					<col width="*" />
 					<col width="80" />
 					<col width="80" />
+					<col width="80" />
 				</colgroup>
 				<thead>
-					<tr><th></th>								<th>Version 0.1</th><th>Version 0.2</th></tr>
+					<tr>
+						<th></th><th>Version 0.1</th><th>Version 0.2</th><th>Version 0.3</th>
+					</tr>
 				</thead>
 				<tbody>
-					
-					<tr><th colspan="3" style="background-color:#CCCCCC">Sizes (Tests excluded)</th></tr>
-					<tr><td>Total Packages</td>					<td>?</td>		<td>13</td></tr>
-					<tr><td>Total Classes</td>					<td>?</td>		<td>69</td></tr>
-					<tr><td>Classes (per Package)</td>			<td>?</td>		<td>3.7</td></tr>
-					<tr><td>Code Coverage</td>					<td>100%</td>	<td>100%</td></tr>
-					<tr><td>Total LoC</td>						<td>?</td>		<td>1336</td></tr>
-					<tr><td>Total Attributes</td>				<td>?</td>		<td>42</td></tr>
-					<tr><td>Attributes (per Class)</td>			<td>?</td>		<td>0.8</td></tr>
-					<tr><td>Total Methods</td>					<td>?</td>		<td>133</td></tr>
-					<tr><td>Methods (per Class)</td>			<td>?</td>		<td>2.1</td></tr>
-					<tr><td>LoC (per Method)</td>				<td>?</td>		<td>2.3</td></tr>
-					<tr><td>Parameters (per Method)</td>		<td>?</td>		<td>0.6</td></tr>
-					<tr><td>Total Static Attributes</td>		<td>?</td>		<td>44</td></tr>
-					<tr><td>Static Attributes (per Class)</td>	<td>?</td>		<td>0.5</td></tr>
-					<tr><td>Total Static Methods</td>			<td>?</td>		<td>24</td></tr>
-					<tr><td>Static Methods (per Class)</td>		<td>?</td>		<td>0.5</td></tr>
-					
-					<tr><th colspan="3" style="background-color:#CCCCCC">Test</th></tr>
-					<tr><td>Total Tests</td>					<td>?</td>		<td>163</td></tr>
-					<tr><td>Tests Skipped</td>					<td>?</td>	<td>0</td></tr>
-					<tr><td>Test Time (in Seconds)</td>			<td>?</td>	<td>1.68</td></tr>
-					
-					<tr><th colspan="3" style="background-color:#CCCCCC">Code Messyness</th></tr>
-					<tr><td>Checkstyle Warnings</td>			<td>?</td>		<td>0</td></tr>
-					<tr><td>PMD Warnings</td>					<td>?</td>		<td>0</td></tr>
-					<tr><td>CPD Warnings</td>					<td>?</td>		<td>0</td></tr>
-					<tr><td>FindBugs Bugs</td>					<td>?</td>		<td>0</td></tr>
-					<tr><td>FindBugs Errors</td>				<td>?</td>		<td>0</td></tr>
-					
-					<tr><th colspan="3" style="background-color:#CCCCCC">Tasks</th></tr>
-					<tr><td>FIXMEs</td>							<td>?</td>		<td>1</td></tr>
-					<tr><td>TODOs</td>							<td>?</td>		<td>2</td></tr>
-					<tr><td>MINORs</td>							<td>?</td>		<td>27</td></tr>
-					<tr><td>LUXURYs</td>						<td>?</td>		<td>15</td></tr>
-					
-					<tr><th colspan="3" style="background-color:#CCCCCC">Static Analysis</th></tr>
-					<tr><td>Depth of Inheritance</td>			<td>?</td>		<td>1.4</td></tr>
-					
+					<tr><th colspan="4" style="background-color:#CCCCCC">Size (Tests excluded)</th></tr>
+					<tr><td>Total Packages</td>					<td>?</td>		<td>13</td>		<td></td></tr>
+					<tr><td>Total Classes</td>					<td>?</td>		<td>69</td>		<td></td></tr>
+					<tr><td>Classes (per Package)</td>			<td>?</td>		<td>3.7</td>	<td></td></tr>
+					<tr><td>Code Coverage</td>					<td>100%</td>	<td>100%</td>	<td></td></tr>
+					<tr><td>Total LoC</td>						<td>?</td>		<td>1336</td>	<td></td></tr>
+					<tr><td>Total Attributes</td>				<td>?</td>		<td>42</td>		<td></td></tr>
+					<tr><td>Attributes (per Class)</td>			<td>?</td>		<td>0.8</td>	<td></td></tr>
+					<tr><td>Total Methods</td>					<td>?</td>		<td>133</td>	<td></td></tr>
+					<tr><td>Methods (per Class)</td>			<td>?</td>		<td>2.1</td>	<td></td></tr>
+					<tr><td>LoC (per Method)</td>				<td>?</td>		<td>2.3</td>	<td></td></tr>
+					<tr><td>Parameters (per Method)</td>		<td>?</td>		<td>0.6</td>	<td></td></tr>
+					<tr><td>Total Static Attributes</td>		<td>?</td>		<td>44</td>		<td></td></tr>
+					<tr><td>Static Attributes (per Class)</td>	<td>?</td>		<td>0.5</td>	<td></td></tr>
+					<tr><td>Total Static Methods</td>			<td>?</td>		<td>24</td>		<td></td></tr>
+					<tr><td>Static Methods (per Class)</td>		<td>?</td>		<td>0.5</td>	<td></td></tr>
+					<tr><td>Depth of Inheritance</td>			<td>?</td>		<td>1.4</td>	<td></td></tr>
 <!--					<tr><td>Complexity</td><td>?</td><td>?</td></tr>-->
-
-					<tr><th colspan="3" style="background-color:#CCCCCC">Miscellaneous</th></tr>
-					<tr><td>Number of Modules</td><td>5</td><td>6</td></tr>
-					<tr><td>Full Release Build</td><td>??min</td><td>45min</td></tr>
+					
+					<tr><th colspan="4" style="background-color:#CCCCCC">Tests</th></tr>
+					<tr><td>Total Tests</td>					<td>?</td>		<td>163</td>	<td></td></tr>
+					<tr><td>Tests Skipped</td>					<td>?</td>		<td>0</td>		<td></td></tr>
+					<tr><td>Test Time (in Seconds)</td>			<td>?</td>		<td>1.68</td>	<td></td></tr>
+					
+					<tr><th colspan="4" style="background-color:#CCCCCC">Code <i>Messyness</i></th></tr>
+					<tr><td>Checkstyle Warnings</td>			<td>?</td>		<td>0</td>		<td></td></tr>
+					<tr><td>PMD Warnings</td>					<td>?</td>		<td>0</td>		<td></td></tr>
+					<tr><td>CPD Warnings</td>					<td>?</td>		<td>0</td>		<td></td></tr>
+					<tr><td>FindBugs Bugs</td>					<td>?</td>		<td>0</td>		<td></td></tr>
+					<tr><td>FindBugs Errors</td>				<td>?</td>		<td>0</td>		<td></td></tr>
+					
+					
+					<tr><th colspan="4" style="background-color:#CCCCCC">Miscellaneous</th></tr>
+<!--					<tr><th colspan="4" style="background-color:#CCCCCC">Open Tasks</th></tr>-->
+					<tr><td>Open FIXME Tasks</td>				<td>?</td>		<td>1</td>		<td></td></tr>
+					<tr><td>Open TODO Tasks</td>				<td>?</td>		<td>2</td>		<td></td></tr>
+					<tr><td>Open MINOR Tasks</td>				<td>?</td>		<td>27</td>		<td></td></tr>
+					<tr><td>Open LUXURY Tasks</td>				<td>?</td>		<td>15</td>		<td></td></tr>
+					<!-- MINOR @SITE project metrics: auch file size (jarjar size) messen -->
+<!--					<tr><td>File Size</td><td>?</td><td>?</td></tr>-->
+					<tr><td>Number of Modules</td>				<td>5</td>		<td>6</td>		<td>6</td></tr>
+					<tr><td>Build Time</td>						<td>??min</td>	<td>45min</td>	<td></td></tr>
 
 				</tbody>
 			</table>

@@ -30,9 +30,7 @@
 <!--		</menu>-->
 		
 		<menu name="Internals (for Developers)">
-			<item name="Changelog" href="development/changelog.html" />
-			<item name="Roadmap" href="development/roadmap.html" />
-			<item name="Release Handbook" href="development/release_handbook.html" />
+			<item name="Roadmap &amp; Changelog" href="development/roadmap_changelog.html" />
 			<item name="Project Metrics" href="development/project_metrics.html" />
 			
 <!--			<item name="Development" href="development/development.html" />-->
