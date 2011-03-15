@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Josceleton - Corporate POM">
+	
+	<bannerLeft>
+		<name>Josceleton - Corporate POM</name>
+	</bannerLeft>
+	
+<!--	<bannerLeft>-->
+<!--		<name>Maven</name>-->
+<!--		<src>http://maven.apache.org/images/apache-maven-project.png</src>-->
+<!--		<href>http://maven.apache.org/</href>-->
+<!--	</bannerLeft>-->
+<!--	<bannerRight>-->
+<!--		<src>http://maven.apache.org/images/maven-small.gif</src>-->
+<!--	</bannerRight>-->
+	
+	<publishDate position="right" format="yyyy-MM-dd" />
+	
+	<poweredBy>
+    	<logo name="SourceForge" href="https://sourceforge.net/projects/josceleton/" img="http://josceleton.sourceforge.net/static/image/sourceforge_logo.gif" />
+	</poweredBy>
+	
+	<skin>
+		<groupId>org.apache.tapestry</groupId>
+		<artifactId>maven-skin</artifactId>
+		<version>1.2</version>
+	</skin>
+
+	<body>
+		<links>
+			<item name="Mantis Bugtracker" href="https://sourceforge.net/apps/mantisbt/josceleton" />
+			<item name="SourceForge Project" href="https://sourceforge.net/projects/josceleton" />
+		</links>
+		
+		<menu name="Overview">
+			<item name="Introduction" href="index.html" />
+		</menu>
+		
+		<menu ref="reports" />
+<!--		<menu name="Reports" inherits="none">-->
+<!--			<item name="Sources" href="source-repository.html" />-->
+<!--			<item name="Unit Tests" href="surefire-report.html" />-->
+<!--			<item name="Dependencies" href="dependencies.html" />-->
+<!--		</menu>-->
+		
+	</body>
+	
+</project>
