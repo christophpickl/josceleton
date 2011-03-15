@@ -7,12 +7,11 @@
 
 ############ CONFIG start
 
-#README_FILE="josceleton_0.2.md"
-#TARGET_MIDDLE_PATH="/Josceleton/0.2"
+README_FILE="josceleton_0.3.md"
+TARGET_MIDDLE_PATH="/Josceleton/0.3"
 
-README_FILE="Internal--Prototype--MidiRoute.md"
-TARGET_MIDDLE_PATH="/Internal/Prototype/MidiRoute"
-
+$README_FILE="Internal--Prototype--MidiRoute.md"
+$TARGET_MIDDLE_PATH="/Internal/Prototype/MidiRoute"
 
 
 USER="christoph_pickl"

@@ -42,7 +42,7 @@
 - @release-app: soll report ausprinten koennen (der text der in site/release_handbook.xml drinnen war soll exakt nachbaut werden! aber halt dynamisch generiert ;)
 !!! @BUILD: evtl doch alles mitm reaktor bauen (dadurch wuerde report aggregate gehn) => im build halt release-plugin config "disable-modules=commons,core-api,connection-impl"
 - mantis tickets aufraeumen + anpassen an neuen versionsplan
-- sourceforge piwik webanalytics anschaun
+- sourceforge piwik webanalytics (gscheid!) anschaun
 
 ! @API auf java 1.5 umstellen + auf SITE sagen dass >1.5 benoetigt wird
 ! GUTE IDEE: @BUILD CODE QUALITY: wenn checkstyle_config nachbearbeiten, dann auch MethodCount raushaun (sodass in eclipse vorhanden ist!)
@@ -138,7 +138,7 @@ API DOINGS
 
 -- @TEST testng + guice: http://testnguice.googlecode.com/svn/site/2.0/inject.html
 
-! @site: http://sourceforge.net/projects/josceleton/files/latest
+! @site: direkt download latest link verwenden http://sourceforge.net/projects/josceleton/files/latest
 	+ so wie bei jpotpourri, oben rechts im eck auf startseite "download box" hingeben
 
 - @sf download statistik anschauen; profil ueberarbeiten; a bissi umschaun

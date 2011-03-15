@@ -19,7 +19,6 @@
 ! add multimedia stuff: diagram of architecture
 ! mehr reports: welche datei wurde am haeufigsten veraendert (changesets, changelist, oder dgl)
 ! in doc alle klassenreferenzen mit javadoc verlinken
-! @site: can sourceforge web analyzer anschalten?
 ! @JAVADOC: wenn alles zam-aggregiert ist, sollen *-impl modulklassen nicht sichtbar sein
 	=> YES: do this by setting javadoc-plugin config option; eg ~"<docExcludes>"
 	// NO: dann muss auch in allen *-impl modulen alle public klassen ein ~"@NoJavadoc" annotation draufhaben
