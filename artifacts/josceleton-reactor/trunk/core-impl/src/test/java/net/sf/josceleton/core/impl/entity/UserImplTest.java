@@ -5,8 +5,8 @@ import net.sf.josceleton.core.api.entity.UserTest;
 
 public class UserImplTest extends UserTest {
 
-	@Override protected final User createTestee(final int id, final int osceletonId) {
-		return new UserImpl(id, osceletonId);
+	@Override protected final User createTestee(final int uniqueId, final int osceletonId) {
+		return new UserImpl(uniqueId, osceletonId);
 	}
 	
 }

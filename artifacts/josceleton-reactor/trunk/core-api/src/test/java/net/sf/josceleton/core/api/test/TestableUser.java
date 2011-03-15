@@ -7,7 +7,7 @@ import net.sf.josceleton.core.api.entity.User;
  */
 public class TestableUser implements User {
 
-	private final int id;
+	private final int uniqueId;
 
 	private final int osceletonId;
 	
@@ -16,14 +16,14 @@ public class TestableUser implements User {
 		this(1, osceletonId); // no assumptions on internally created id
 	}
 	
-	public TestableUser(final int id, final int osceletonId) {
-		this.id = id;
+	public TestableUser(final int uniqueId, final int osceletonId) {
+		this.uniqueId = uniqueId;
 		this.osceletonId = osceletonId;
 	}
 	
 	
-	@Override public final int getId() {
-		return this.id;
+	@Override public final int getUniqueId() {
+		return this.uniqueId;
 	}
 	
 	@Override public final int getOsceletonId() {
@@ -31,6 +31,6 @@ public class TestableUser implements User {
 	}
 	
 	@Override public final String toString() {
-		return "UserX[id=" + this.id + ", osceletonId=" + this.osceletonId + "]";
+		return "UserX[id=" + this.uniqueId + ", osceletonId=" + this.osceletonId + "]";
 	}
 }

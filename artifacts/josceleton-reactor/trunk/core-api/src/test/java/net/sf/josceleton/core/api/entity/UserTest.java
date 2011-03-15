@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 @SuppressWarnings("boxing")
 public abstract class UserTest extends AbstractEqualsTest<User> {
 	
-	protected abstract User createTestee(int id, int osceletonId);
+	protected abstract User createTestee(int uniqueId, int osceletonId);
 
 	@Override protected final Object createSameTesteeForEquals() {
 		return this.createTestee(42, 21);
@@ -40,8 +40,8 @@ public abstract class UserTest extends AbstractEqualsTest<User> {
 	}
 	
 	@Test(expectedExceptions = InvalidArgumentException.class, dataProvider = "provideIllegalConstructorArguments")
-	public final void passingIllegalConstructorArgumentsFails(final int id, final int osceletonId) {
-		this.createTestee(id, osceletonId);
+	public final void passingIllegalConstructorArgumentsFails(final int uniqueId, final int osceletonId) {
+		this.createTestee(uniqueId, osceletonId);
 	}
 
 	@DataProvider(name = "provideValidConstructorArguments")
@@ -54,10 +54,10 @@ public abstract class UserTest extends AbstractEqualsTest<User> {
 		};
 	}
 	@Test(dataProvider = "provideValidConstructorArguments")
-	public final void passingValidConstructorArgumentsAndGettersReturnSame(final int id, final int osceletonId) {
-		final User actualUser = this.createTestee(id, osceletonId);
+	public final void passingValidConstructorArgumentsAndGettersReturnSame(final int uniqueId, final int osceletonId) {
+		final User actualUser = this.createTestee(uniqueId, osceletonId);
 		
-		assertThat(actualUser.getId(), equalTo(id));
+		assertThat(actualUser.getUniqueId(), equalTo(uniqueId));
 		assertThat(actualUser.getOsceletonId(), equalTo(osceletonId));
 	}
 	

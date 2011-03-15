@@ -25,11 +25,11 @@ public class UserFactoryImplTest {
 		
 		final UserFactory factory = new UserFactoryImpl();
 		final User user1 = factory.create(expectedUser1OscId);
-		assertThat(user1.getId(), equalTo(expectedUser1Id));
+		assertThat(user1.getUniqueId(), equalTo(expectedUser1Id));
 		assertThat(user1.getOsceletonId(), equalTo(expectedUser1OscId));
 		
 		final User user2 = factory.create(expectedUser2OscId);
-		assertThat(user2.getId(), equalTo(expectedUser2Id));
+		assertThat(user2.getUniqueId(), equalTo(expectedUser2Id));
 		assertThat(user2.getOsceletonId(), equalTo(expectedUser2OscId));
 	}
 	

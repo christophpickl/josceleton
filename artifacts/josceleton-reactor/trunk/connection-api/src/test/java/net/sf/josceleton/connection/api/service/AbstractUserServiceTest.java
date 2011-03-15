@@ -58,7 +58,7 @@ abstract class AbstractUserServiceTest extends AbstractMockeryTest {
 			final User actualUser = step.executeActionWith(service /*, step.getActionUserId()*/);
 			
 			assertThat("UserService may never return null values for its lookup methods!", actualUser, notNullValue());
-			assertThat(actualUser.getId(), Matchers.is(Matchers.greaterThan(0))); // cant tell more about it :)
+			assertThat(actualUser.getUniqueId(), Matchers.is(Matchers.greaterThan(0))); // cant tell more about it :)
 			assertThat(actualUser.getOsceletonId(), equalTo(step.getActionUserId()));
 			
 			// TODO @TEST no collectiong, but rather have to... extend scenario state??
@@ -90,9 +90,9 @@ abstract class AbstractUserServiceTest extends AbstractMockeryTest {
 		assertThat(usersLeft.isEmpty(), equalTo(true));
 	}
 	
-	private User findUserByOsceletonId(final Collection<User> users, final int id) {
+	private User findUserByOsceletonId(final Collection<User> users, final int osceletonId) {
 		for (User currentUser : users) {
-			if(currentUser.getOsceletonId() == id) {
+			if(currentUser.getOsceletonId() == osceletonId) {
 				return currentUser;
 			}
 		}

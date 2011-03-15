@@ -18,9 +18,9 @@ public interface MotionServiceListener extends Listener {
 	 * 
 	 * @param movedPart which has been, obviously, moved
 	 * @param updatedCoordinate the body part has moved to
-	 * @param allCoordinates as it is most likely one wants to recheck all conditions when single part moved
+	 * @param skeleton as it is most likely one wants to recheck all conditions when single part moved
 	 * @since 0.4
 	 */
-	void onMoved(BodyPart movedPart, Coordinate updatedCoordinate, BodyCoordinates allCoordinates);
+	void onMoved(BodyPart movedPart, Coordinate updatedCoordinate, Skeleton skeleton);
 	
 }

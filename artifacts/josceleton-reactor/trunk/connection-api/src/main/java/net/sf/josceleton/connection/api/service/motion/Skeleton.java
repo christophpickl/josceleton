@@ -6,7 +6,7 @@ import net.sf.josceleton.core.api.entity.body.BodyPart;
 /**
  * @since 0.4
  */
-public interface BodyCoordinates {
+public interface Skeleton {
 
 	/**
 	 * <font style="font-weight:bold;color:red;">ATTENTION:</font> This method might return <code>null</code>!

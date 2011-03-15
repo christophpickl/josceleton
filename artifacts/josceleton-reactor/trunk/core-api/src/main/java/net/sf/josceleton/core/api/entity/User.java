@@ -14,7 +14,7 @@ public interface User {
 	 * @return the user's unique ID within a single connection.
 	 * @since 0.1
 	 */
-	int getId();
+	int getUniqueId();
 	
 	/**
 	 * @return the user's (not necessarily) unique ID provided by OSCeleton.
