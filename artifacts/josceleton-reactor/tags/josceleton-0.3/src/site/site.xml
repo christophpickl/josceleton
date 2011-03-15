@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Josceleton">
+
+	<bannerLeft>
+		<name>Josceleton</name>
+	</bannerLeft>
+	
+	<body>
+		
+		<menu name="Overview (for Users)">
+			<item name="Introduction" href="index.html" /><!-- a.k.a. "about", "home" -->
+			<item name="Download" href="download.html" /> 
+<!--			<item name="Prerequisites" href="" />--><!-- contains how to setup osceleton+openni+nite -->
+
+			<item name="Samples" href="samples.html" />
+<!--			<item name="FAQ/Help" href="..." />-->
+<!--			<item name="NO: maybe add as appendix (merge together with other things) Links" href="links.html" />-->
+			<item name="Forum" href="https://sourceforge.net/projects/josceleton/forums/" />
+		</menu>
+		
+<!--		<menu name="Documentation">-->
+				<!-- link to: javadoc, sourcecode, samples project -->
+<!--			<item name="Getting Started" href="" />-->
+
+<!--			<item name="Connections and Services" href="" />-->
+<!--			<item name="Position and Gestures" href="" />-->
+
+				<!-- diagrams for external/api-view only (internal architecture should only be visible to developers) -->
+<!--			<item name="Architecture Overview" href="" />--><!--  -->
+<!--		</menu>-->
+		
+		<menu name="Internals (for Developers)">
+			<item name="Roadmap &amp; Changelog" href="development/roadmap_changelog.html" />
+			<item name="Project Metrics" href="development/project_metrics.html" />
+			
+<!--			<item name="Development" href="development/development.html" />-->
+<!--			<item name="Coding Policy" href="development/coding_policy.html" />-->
+		</menu>
+		
+		<menu ref="reports" />
+		
+	</body>
+	
+</project>

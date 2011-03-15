@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	
+	<properties>
+		<title>Roadmap an Changelog</title>
+	</properties>
+	
+	<body>
+		
+		<section name="The Future and the Past">
+		
+			<p>
+				On this page you will find two subsections: a roadmap about planned features (representing the future) 
+				and a changelog with a list of closed issues (representing the past).
+			</p>
+		
+			<subsection name="Roadmap">
+				<p>
+					The following list shows a very rough and high-level view of upcoming milestones/features.
+					For a more concrete list of features please have a look at the 
+					<a href="https://sourceforge.net/apps/mantisbt/josceleton/roadmap_page.php">Mantis Roadmap</a>.
+				</p>
+				
+<!--				<h4>Version 0.5</h4>-->
+<!--				<p><i>...</i></p>-->
+<!--				<ul>-->
+<!--					<li>...</li>-->
+<!--				</ul>-->
+				
+				<h4>Version 0.4</h4>
+				<p><i>Work in prgoress</i></p>
+				<ul>
+					<li>Not yet available :)</li>
+<!--					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=1">#0000001</a> -->
+<!--							<code>[API Enhancement]</code> Add basic position detection feature</li>-->
+<!--					<li>extend legacy code (Builder used to create positions)</li>-->
+<!--					<li>add new movement detection module and implement basic position detections (and stable value provider? eg: fire volume constantly via x-coordinate)</li>-->
+<!--					<li>extension module for MotionCapturer (gestures, positions)</li>-->
+				</ul>
+				
+			</subsection>
+			
+			<subsection name="Changelog">
+				
+				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.3/josceleton-reactor/index.html">Version 0.3</a> (2001-03-15)</h4>
+				<p>
+					Introducing services working on top of connection: UserService to manage users correctly through
+					dispatching artifical user messages.
+				</p>
+				<ul>
+					<li>Feature: New UserService class to manage users correctly</li>
+					<li>Bugfix: Crash when got same id by osceleton</li>
+					<li>Download contains improved distribution package</li>
+<!--					<li>extend legacy code (AsyncFor)</li>-->
+<!--					<li>store (recent) movement in motion tracker; RecentMotionStorage</li>-->
+				</ul>
+				
+				
+				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.2/josceleton-reactor/index.html">Version 0.2</a> (2011-03-11)</h4>
+				<p>
+					Introducing Josceleton Facade providing a simplified access to the API. This module also provides a 
+					<a href="http://code.google.com/p/google-guice/" target="_blank">Guice</a> module for immediate usage.
+				</p>
+				<ul>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=10">#0000010</a> 
+						<code>[API Enhancement]</code> Implement new Josceleton Facade Module</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=3">#0000003</a> 
+						<code>[Build Management]</code> Enhance developer environment</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=4">#0000004</a> 
+						<code>[Documentation]</code> Setup initial documentation</li>
+				</ul>
+		
+		
+				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.1/josceleton-reactor/index.html">Version 0.1</a> (2011-03-08)</h4>
+				<p>
+					Initial version providing simple access to a OSCeleton server.
+					Mostly working on project setup and build management.
+				</p>
+				<ul>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=12">#0000012</a> 
+						<code>[API Enhancement]</code> Implement basic connection to OSCeleton</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=13">#0000013</a> 
+						<code>[Code Quality]</code> Comply with comprehensive Coding Policies</li>
+				</ul>
+				
+			</subsection>
+			
+		</section>
+			
+	</body>
+	
+</document>
+ 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Download</title>
+	</properties>
+	<body>
+	
+		<section name="Download">
+			
+			<h3>Binary Packages</h3>
+			<p>
+				You can download all files from the <a href="https://sourceforge.net/projects/josceleton/files/Josceleton">SourceForge File Repository</a>.
+			</p>
+			
+			<h3>Maven Dependency Management</h3>
+			
+				<h4>Add Remote Repositories</h4>
+				
+				<p>
+					To be able to use Josceleton artifacts via Maven, you first have to configure two repositories in your <code>~/.m2/settings.xml</code> file:
+				</p>
+				
+				<source><![CDATA[
+<settings>
+  <profiles>
+
+    <profile>
+      <id>josceleton-profile</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>josceleton-repo-snapshot</id>
+          <url>http://josceleton.sourceforge.net/maven/snapshot/</url>
+          <releases><enabled>false</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>josceleton-repo-release</id>
+          <url>http://josceleton.sourceforge.net/maven/release/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+      </repositories>
+    </profile>
+
+  </profiles>
+</settings>
+
+]]></source>
+			
+				<h4>Add Dependency</h4>
+				
+				<p>Declare a common Maven dependency for Josceleton in your <code>pom.xml</code> file:</p>
+				
+				<!-- MINOR @SITE download: automatically get current version by ${project.someProperty.version.josceleton-josceleton} -->
+				<source><![CDATA[
+<project>
+  <dependencies>
+
+    <dependency>
+      <groupId>net.sf.josceleton</groupId>
+      <artifactId>josceleton</artifactId>
+      <version>0.3</version>
+    </dependency>
+
+  </dependencies>
+</project>
+]]></source>
+			
+		</section>
+		
+	</body>
+</document>
+

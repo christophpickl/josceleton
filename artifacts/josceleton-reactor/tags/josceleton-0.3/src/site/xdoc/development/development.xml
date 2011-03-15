@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Development</title>
+	</properties>
+	<body>
+	
+		<section name="Development">
+			
+			<p>
+				If you want to checkout the code, and get it running locally. For developers of interest.
+			</p>
+			
+			<subsection name="Setup Environment">
+			
+				<p>
+					Add Remote Repositories ... see download section!
+				</p>
+				
+				<p>
+					Add user-specific properties in <code>~/.m2/settings.xml</code>:
+				</p> 
+				<source><![CDATA[
+<settings>
+  <profiles>
+  
+    <profile>
+      <id>josceleton-profile</id>
+      <properties>
+        
+        <josceleton-peruser.eclipse.workspace.path>
+        	/path/to/eclipse/workspace/
+        </josceleton-peruser.eclipse.workspace.path>
+        
+        <josceleton-peruser.checkstyle.suppression.file.path>
+        	${josceleton-peruser.eclipse.workspace.path}poms-reactor/josceleton-checkstyle-config/src/main/resources/checkstyle_suppression.xml
+        </josceleton-peruser.checkstyle.suppression.file.path>
+        
+        <josceleton-peruser.checkstyle.configuration.name>
+        	josceleton-checkstyle-config
+        </josceleton-peruser.checkstyle.configuration.name>
+        
+      </properties>
+      
+      ... activation ...
+      ... repositories ...
+    </profile>
+    
+  </profiles>
+</settings>
+]]></source>
+			</subsection>
+			
+			<subsection name="Test Utilities">
+				<p>
+					Custom matchers: hasSinglePrivateNullifiedConstructorAndInvokeIt;
+					Abstract classes ...;
+					properly dealing with mocks;
+					make use of dataproviders;
+					// @guideline: never outcomment tests, only disable via annotation
+					advanced mock creation with ExpectationsProvider;
+				</p>
+			</subsection>
+			
+			<subsection name="Cheatsheet">
+				
+				<h4>Regularly used Commands</h4>
+				
+				<p>Open a shell SF. Keeps open. Needed for deployment:</p>
+				<source>ssh -t christoph_pickl,josceleton@shell.sf.net create</source>
+				
+				<p>Copy file to web:</p>
+				<source>scp some_online.file christoph_pickl,josceleton@shell.sf.net:/home/project-web/josceleton/htdocs/some_online.file</source>
+				
+
+				<h4>Paths</h4>
+				
+				<h4>Links</h4>
+				
+				
+			</subsection>
+			
+		</section>
+		
+	</body>
+</document>

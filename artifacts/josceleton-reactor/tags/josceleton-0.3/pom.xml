@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId} (${project.version})</name>
+    <description>Josceleton wrapper project providing a simplified access.</description>
+    <packaging>jar</packaging>
+    
+    <artifactId>josceleton</artifactId>
+    <version>0.3</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+		<groupId>net.sf.josceleton</groupId>
+		<artifactId>java-pom</artifactId>
+        <version>0.3</version>
+    	<relativePath>../../josceleton-poms-reactor/java-pom/</relativePath>
+	</parent>
+	
+    
+    <!-- ******************************************************************* -->
+    <!--                       D E P E N D E N C I E S                       -->
+    <!-- ******************************************************************* -->
+    
+    <dependencies>
+        
+	    <!-- I N T E R N A L -->
+    	<!-- *********************************************************** -->
+    	
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>connection-impl</artifactId>
+		</dependency>
+        
+	    <!-- T E S T -->
+    	<!-- *********************************************************** -->
+    	
+	    <dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>commons</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+	    <dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>connection-api</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+	    <dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>connection-impl</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+    </dependencies>
+	
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+    
+    <distributionManagement>
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<name>josceleton site server @sourceforge</name>
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
+		</site>
+	</distributionManagement>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/tags/josceleton-0.3</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/tags/josceleton-0.3</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/tags/josceleton-0.3</url>
+    </scm>
+    
+</project>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	
+	<properties>
+		<title>Roadmap</title>
+	</properties>
+	
+	<body>
+	
+		<section name="Roadmap">
+		
+			<p>
+				This page contains a very rough and high-level view of upcoming milestones.<br/>
+			</p>
+			<p>
+				For a more concrete list of features please visit the 
+				<a href="https://sourceforge.net/apps/mantisbt/josceleton/roadmap_page.php">Mantis Roadmap</a>.
+			</p>
+			
+			
+			<h3>Version 0.3</h3>
+			<p>&quot;<i>Introducing high-level Connection Services.</i>&quot;</p>
+			<ul>
+				<li>extend legacy code (AsyncFor)</li>
+				<li>manage users correctly (artificial user login); UserManager</li>
+				<li>store (recent) movement in motion tracker; RecentMotionStorage</li>
+			</ul>
+			
+			<h3>Version 0.4</h3>
+			<p>&quot;<i>Introducing first Position Detector.</i>&quot;</p>
+			<ul>
+				<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=1">#0000001</a> 
+						<code>[API Enhancement]</code> Add basic position detection feature</li>
+				<li>extend legacy code (Builder used to create positions)</li>
+				<li>add new movement detection module and implement basic position detections (and stable value provider? eg: fire volume constantly via x-coordinate)</li>
+				<li>extension module for MotionCapturer (gestures, positions)</li>
+			</ul>
+			
+			<h3>Version 0.5</h3>
+			<p>&quot;<i>Code quality improvement only release.</i>&quot;</p>
+			<ul>
+				<li>add system tests (starting osceleton process and replaying recorded data)</li>
+				<li>enhanced all tests by looking at each of them by hand</li>
+				<li>added more maven plugins checking code; fine tuned checkstyle/pmd/... configurations</li>
+				<li>eclipse IDE only code checking tools (komplexitaet plugin da) (evtl auch metriken fuer build verfuegbar?)</li>
+				<li>generating more reports (u.a. auch code quali; zb jdepend)</li>
+			</ul>
+ 
+			<h3>Version 0.x</h3>
+			<p>&quot;<i>xxx.</i>&quot;</p>
+			<ul>
+				<li>downloadable distribution packages</li>
+				<li>introduced aop (improved log output)</li>
+				<li>introduced design by contract</li>
+				<li>add joconsole gui module (a.k.a. old "mkinector-debugger")</li>
+				<li>add integration tests (using guice for object wiring but leaving out osceleton)</li>
+			</ul>
+ 
+			<h3>Version 0.8</h3>
+			<p>&quot;<i>Feature complete! Code freeze!</i>&quot;</p>
+			<ul>
+				<li>Heavily increase tests</li>
+			</ul>
+ 
+			<h3>Version 0.9</h3>
+			<p>&quot;<i>Wrapping up version - OFFICIAL BETA.</i>&quot;</p>
+			<ul>
+				<li>add samples module</li>
+				<li>wrap up documentation: enhanced mvn site (+samples), javadoc (+samples)</li>
+			</ul>
+			
+			<h3>Version 1.x</h3>
+			<p>&quot;<i>N/A</i>&quot;</p>
+			<ul>
+				<li>N/A</li>
+			</ul>
+			
+		</section>
+		
+	</body>
+	
+</document>
+ 
