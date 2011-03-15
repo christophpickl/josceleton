@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
     
     <artifactId>josceleton-checkstyle-config</artifactId>
-    <version>0.3</version>
+    <version>0.4-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -67,9 +67,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/josceleton-checkstyle-config-0.3</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/josceleton-checkstyle-config-0.3</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/josceleton-checkstyle-config-0.3</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/josceleton-checkstyle-config/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/josceleton-checkstyle-config/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/trunk/josceleton-checkstyle-config/</url>
     </scm>
     
 </project>
