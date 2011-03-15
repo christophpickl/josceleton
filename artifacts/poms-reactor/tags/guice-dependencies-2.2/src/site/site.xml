@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Josceleton Guice Dependencies">
+	
+	<bannerLeft>
+		<name>Josceleton Guice Dependencies</name>
+	</bannerLeft>
+	
+	<body>
+
+		<menu name="Overview">
+		
+			<item name="Introduction" href="index.html" />
+			
+		</menu>
+
+		<menu ref="reports" />
+
+	</body>
+	
+</project>
