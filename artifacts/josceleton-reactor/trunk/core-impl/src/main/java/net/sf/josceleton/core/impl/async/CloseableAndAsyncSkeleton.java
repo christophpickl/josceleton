@@ -8,7 +8,7 @@ import net.sf.josceleton.core.api.async.Listener;
 public abstract class CloseableAndAsyncSkeleton<L extends Listener>
 	implements CloseableAsync<L> {
 
-	private final AsyncDelegator<L> asyncDelegator = new SkeletonAsyncDelegator<L>(this);
+	private final DefaultAsync<L> asyncDelegator = new SkeletonAsyncDelegator<L>(this);
 	
 	/** state-full property */
 	private boolean yetClosed = false;
@@ -50,7 +50,7 @@ public abstract class CloseableAndAsyncSkeleton<L extends Listener>
 	}
 	
 
-	private static class SkeletonAsyncDelegator<L extends Listener> extends AsyncDelegator<L> {
+	private static class SkeletonAsyncDelegator<L extends Listener> extends DefaultAsync<L> {
 		
 		private final CloseableAndAsyncSkeleton<L> skeleton;
 		
@@ -58,12 +58,12 @@ public abstract class CloseableAndAsyncSkeleton<L extends Listener>
 			this.skeleton = skeleton;
 		}
 		
-		/** {@inheritDoc} from {@link AsyncDelegator} */
+		/** {@inheritDoc} from {@link DefaultAsync} */
 		@Override protected final void beforeAddListener(final L listener) {
 			this.skeleton.validateNotYetClosed();
 		}
 
-		/** {@inheritDoc} from {@link AsyncDelegator} */
+		/** {@inheritDoc} from {@link DefaultAsync} */
 		@Override protected final void beforeRemoveListener(final L listener) {
 			this.skeleton.validateNotYetClosed();
 		}

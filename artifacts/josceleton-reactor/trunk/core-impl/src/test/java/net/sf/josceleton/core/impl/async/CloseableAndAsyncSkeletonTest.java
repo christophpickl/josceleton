@@ -2,15 +2,14 @@ package net.sf.josceleton.core.impl.async;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-
 import net.sf.josceleton.commons.test.util.TestUtil;
 import net.sf.josceleton.core.api.async.AsyncTest;
-import net.sf.josceleton.core.api.test.DummyListener;
+import net.sf.josceleton.core.api.async.Listener;
 
 import org.testng.annotations.Test;
 
 @SuppressWarnings("boxing")
-public class CloseableAndAsyncSkeletonTest extends AsyncTest<CloseableAndAsyncSkeleton<? super DummyListener>> {
+public class CloseableAndAsyncSkeletonTest extends AsyncTest<CloseableAndAsyncSkeleton<Listener>> {
 	
 	@Test
 	public final void testIsYetClosed() {
@@ -29,17 +28,17 @@ public class CloseableAndAsyncSkeletonTest extends AsyncTest<CloseableAndAsyncSk
 	}
 	
 	@Override protected final void assertListenersCount(
-			final CloseableAndAsyncSkeleton<? super DummyListener> async,
+			final CloseableAndAsyncSkeleton<Listener> async,
 			final int expectedCount) {
 		assertThat(TestUtil.countIterable(async.getListeners()), equalTo(expectedCount));
 	}
 	
-	@Override protected final CloseableAndAsyncSkeleton<? super DummyListener> createTestee() {
+	@Override protected final CloseableAndAsyncSkeleton<Listener> createTestee() {
 		return new DummyCloseableAndAsync();
 	}
 	
 	
-	static class DummyCloseableAndAsync extends CloseableAndAsyncSkeleton<DummyListener> {
+	static class DummyCloseableAndAsync extends CloseableAndAsyncSkeleton<Listener> {
 		@Override protected void prepareToClose() { /* deliberately empty */ }
 	}
 

@@ -1,4 +1,4 @@
-package net.sf.josceleton.connection.api.service;
+package net.sf.josceleton.connection.api.service.motion;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

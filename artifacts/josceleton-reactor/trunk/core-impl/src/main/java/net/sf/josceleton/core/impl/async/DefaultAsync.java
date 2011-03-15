@@ -9,21 +9,21 @@ import net.sf.josceleton.core.api.async.Listener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class AsyncDelegator<L extends Listener> implements Async<L> {
+/**
+ * Can either be used as an super class (and extending from it) or by delegating to a private member instance. 
+ */
+public class DefaultAsync<L extends Listener> implements Async<L> {
 	
-	private static final Log LOG = LogFactory.getLog(AsyncDelegator.class);
+	private static final Log LOG = LogFactory.getLog(DefaultAsync.class);
 	
 	private final Set<L> registeredListeners = new HashSet<L>();
-
+	
+	
 	protected final Iterable<L> getListeners() {
 		return this.registeredListeners;
 	}
 
-	
-	protected void beforeAddListener(@SuppressWarnings("unused") final L listener) {
-		// can be overridden
-	}
-
+	/** {@inheritDoc} from {@link Async} */
 	@Override public final void addListener(final L listener) {
 		this.beforeAddListener(listener);
 		
@@ -33,10 +33,7 @@ public class AsyncDelegator<L extends Listener> implements Async<L> {
 		}
 	}
 
-	protected void beforeRemoveListener(@SuppressWarnings("unused") final L listener) {
-		// can be overridden
-	}
-
+	/** {@inheritDoc} from {@link Async} */
 	@Override public final void removeListener(final L listener) {
 		this.beforeRemoveListener(listener);
 		
@@ -44,5 +41,19 @@ public class AsyncDelegator<L extends Listener> implements Async<L> {
 		if(wasRemoved == false) {
 			LOG.warn("Not removed listener [" + listener + "] as it was not yet added!");
 		}
+	}
+
+	/**
+	 * Will be used to check if <code>Closeable</code> was not yet closed.
+	 */
+	protected void beforeAddListener(@SuppressWarnings("unused") final L listener) {
+		// can be overridden
+	}
+
+	/**
+	 * Will be used to check if <code>Closeable</code> was not yet closed.
+	 */
+	protected void beforeRemoveListener(@SuppressWarnings("unused") final L listener) {
+		// can be overridden
 	}
 }

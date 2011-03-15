@@ -1,10 +1,10 @@
 package net.sf.josceleton.core.api.async;
 
-import net.sf.josceleton.core.api.test.DummyListener;
+import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 
 import org.testng.annotations.Test;
 
-public abstract class AsyncTest<A extends Async<? super DummyListener>> {
+public abstract class AsyncTest<A extends Async<Listener>> extends AbstractMockeryTest {
 	
 	protected abstract A createTestee();
 	
@@ -14,10 +14,10 @@ public abstract class AsyncTest<A extends Async<? super DummyListener>> {
 		final A async = this.createTestee();
 		this.assertListenersCount(async, 0);
 		
-		async.addListener(new DummyListener());
+		async.addListener(this.mock(Listener.class, "listener1"));
 		this.assertListenersCount(async, 1);
 		
-		final DummyListener yetStored = new DummyListener();
+		final Listener yetStored = this.mock(Listener.class, "listener2");
 		async.addListener(yetStored);
 		this.assertListenersCount(async, 2);
 		async.addListener(yetStored);

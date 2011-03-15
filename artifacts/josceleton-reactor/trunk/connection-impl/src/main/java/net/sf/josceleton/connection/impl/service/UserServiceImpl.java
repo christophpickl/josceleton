@@ -6,7 +6,7 @@ import net.sf.josceleton.connection.api.service.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.UserStateFunction;
-import net.sf.josceleton.core.impl.async.AsyncDelegator;
+import net.sf.josceleton.core.impl.async.DefaultAsync;
 import net.sf.josceleton.core.impl.entity.UserFactory;
 
 import com.google.inject.Inject;
@@ -15,7 +15,7 @@ import com.google.inject.Inject;
  * @since 0.3
  */
 class UserServiceImpl
-	extends AsyncDelegator<UserServiceListener>
+	extends DefaultAsync<UserServiceListener>
 	implements UserServiceInternal /* == { UserService, UserStore, UsersCollectionResponder } */ {
 	
 	private final UserServiceCollection users;

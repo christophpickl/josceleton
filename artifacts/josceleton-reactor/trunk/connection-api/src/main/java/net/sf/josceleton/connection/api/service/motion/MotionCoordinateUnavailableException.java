@@ -1,11 +1,11 @@
-package net.sf.josceleton.connection.api.service;
+package net.sf.josceleton.connection.api.service.motion;
 
 import net.sf.josceleton.commons.exception.JosceletonException;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
 
 /**
- * @since 0.3
+ * @since 0.4
  */
 public class MotionCoordinateUnavailableException extends JosceletonException {
 
@@ -24,14 +24,14 @@ public class MotionCoordinateUnavailableException extends JosceletonException {
 	}
 
 	/**
-	 * @since 0.3
+	 * @since 0.4
 	 */
 	public static MotionCoordinateUnavailableException newUnavailable(final User user, final BodyPart part) {
 		return MotionCoordinateUnavailableException.newUnavailable(user, part, null);
 	}
 
 	/**
-	 * @since 0.3
+	 * @since 0.4
 	 */
 	public static MotionCoordinateUnavailableException newUnavailable(
 			final User user, final BodyPart part, final Throwable cause) {
@@ -40,14 +40,14 @@ public class MotionCoordinateUnavailableException extends JosceletonException {
 	}
 
 	/**
-	 * @since 0.3
+	 * @since 0.4
 	 */
 	public final User getUser() {
 		return this.user;
 	}
 
 	/**
-	 * @since 0.3
+	 * @since 0.4
 	 */
 	public final BodyPart getPart() {
 		return this.part;
