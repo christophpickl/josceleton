@@ -249,28 +249,29 @@
                 </configuration>
             </plugin>
             
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>animal-sniffer-maven-plugin</artifactId>
-				<version>1.6</version>
-				<configuration>
-					<signature>
-						<groupId>org.codehaus.mojo.signature</groupId>
-						<artifactId>java15</artifactId><!-- check for java 1.5 only -->
-						<version>1.0</version>
-					</signature>
-				</configuration>
-				<executions>
-					<execution>
-						<id>check-java-1.5-compatibility</id>
-						<phase>process-classes</phase>
-<!--						<phase>test</phase>--><!-- LUXURY @POM bind java version check to test, instead process-classes? -->
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+            <!-- FIXME animal-sniffer plugin throws out of memory error while building java-abstract-pom -->
+<!--			<plugin>-->
+<!--				<groupId>org.codehaus.mojo</groupId>-->
+<!--				<artifactId>animal-sniffer-maven-plugin</artifactId>-->
+<!--				<version>1.6</version>-->
+<!--				<configuration>-->
+<!--					<signature>-->
+<!--						<groupId>org.codehaus.mojo.signature</groupId>-->
+<!--						<artifactId>java15</artifactId> check for java 1.5 only -->
+<!--						<version>1.0</version>-->
+<!--					</signature>-->
+<!--				</configuration>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>check-java-1.5-compatibility</id>-->
+<!--						<phase>process-classes</phase>-->
+<!--						<phase>test</phase> LUXURY @POM bind java version check to test, instead process-classes? -->
+<!--						<goals>-->
+<!--							<goal>check</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
             
             
             <!-- TEST -->
