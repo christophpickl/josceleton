@@ -27,9 +27,9 @@ public class UserServiceFallbackIntegrationTest extends AbstractIntegrationTest 
 		dispatchJointMessage(2, Body.HEAD()); expectedUserMsgs += 2; // immediate waiting + processing
 		
 		dispatchUserMessage(1, UserState.WAITING); expectedUserMsgs += 3; // two dead, one new wating
-		assertThat("Actual joint messages: " + Arrays.toString(rawReceivedJointMessages().toArray()), rawReceivedJointMessages().size(), equalTo(2));
+		assertThat("Actual joint messages: " + Arrays.toString(getRawReceivedJointMessages().toArray()), getRawReceivedJointMessages().size(), equalTo(2));
 		// LUXURY @TEST could also check each message itself for correctness;
-		final Collection<UserAndState> receivedUserMsgs = this.receivedUserServiceMessages();
+		final Collection<UserAndState> receivedUserMsgs = this.getReceivedUserServiceMessages();
 		assertThat(receivedUserMsgs.size(), equalTo(expectedUserMsgs));
 //		assertThat("Actual user messages: " + Arrays.toString(rawReceivedUserMessages().toArray()), usReceivedUserMessages().size(), equalTo(expectedUserMsgs));
 	}

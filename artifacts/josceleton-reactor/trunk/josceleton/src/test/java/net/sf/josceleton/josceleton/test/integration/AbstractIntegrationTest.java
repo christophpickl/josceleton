@@ -2,11 +2,14 @@ package net.sf.josceleton.josceleton.test.integration;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
 import net.sf.josceleton.connection.api.service.UserService;
+import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
+import net.sf.josceleton.connection.api.service.motion.MotionSeparatorManager;
 import net.sf.josceleton.connection.api.test.TestableUserServiceListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.connection.impl.osc.OscAddress;
@@ -44,6 +47,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	private TestableOscPort testableOscPort;
 	private TestableConnectionListener connectionCollector;
 	private TestableUserServiceListener userServiceCollector;
+	private MotionSeparatorManager motionSeparatorManager;
 	
 	@BeforeMethod public final void setUpConnection() {
 		this.testableOscPort = new TestableOscPort();
@@ -63,7 +67,9 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		
 		final Injector injector = Guice.createInjector(functionalTestModule);
 		final Connector connector = injector.getInstance(Connector.class);
-
+		
+		this.motionSeparatorManager = injector.getInstance(MotionSeparatorManager.class);
+		
 		this.connection = connector.openConnection();
 		this.connectionCollector = new TestableConnectionListener();
 		this.connection.addListener(this.connectionCollector);
@@ -73,6 +79,10 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		this.userService.addListener(this.userServiceCollector);
 	}
 	
+	protected final MotionSeparator getMotionSeparator() {
+		return this.motionSeparatorManager.lookupMotionSeparator(this.connection);
+	}
+	
 	@AfterMethod public final void tearDownConnection() {
 		this.userServiceCollector = null;
 		this.connectionCollector = null;
@@ -80,15 +90,17 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		this.userService = null;
 		this.connection.close();
 		this.connection = null;
+		this.motionSeparatorManager = null;
+		// MINOR @TEST maybe remove all listeners in tear down 
 	}
 
-	protected final Collection<JointMessage> rawReceivedJointMessages() {
+	protected final Collection<JointMessage> getRawReceivedJointMessages() {
 		return this.connectionCollector.getReceivedJointMessages();
 	}
-	protected final Collection<UserMessage> rawReceivedUserMessages() {
+	protected final Collection<UserMessage> getRawReceivedUserMessages() {
 		return this.connectionCollector.getReceivedUserMessages();
 	}
-	protected final Collection<UserAndState> receivedUserServiceMessages() {
+	protected final List<UserAndState> getReceivedUserServiceMessages() {
 		return this.userServiceCollector.getReceivedMessages();
 	}
 	

@@ -1,6 +1,5 @@
 package net.sf.josceleton.connection.api.test;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 
 public class TestableUserServiceListener implements UserServiceListener {
-	private final Collection<UserAndState> receivedMessages = new LinkedList<UserAndState>();
+	private final List<UserAndState> receivedMessages = new LinkedList<UserAndState>();
 	
 	@Override public final void onUserDead(final User user) {
 		this.receivedMessages.add(new UserAndState(user, UserState.DEAD));
@@ -21,7 +20,7 @@ public class TestableUserServiceListener implements UserServiceListener {
 		this.receivedMessages.add(new UserAndState(user, UserState.WAITING));
 	}
 	
-	public final Collection<UserAndState> getReceivedMessages() {
+	public final List<UserAndState> getReceivedMessages() {
 		return this.receivedMessages;
 	}
 	// MINOR @TEST REFACTOR: instead of these, use getReceivedMessages() instead, as it provides messages in right order

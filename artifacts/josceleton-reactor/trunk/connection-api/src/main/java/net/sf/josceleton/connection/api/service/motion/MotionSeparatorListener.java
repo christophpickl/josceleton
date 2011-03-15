@@ -9,7 +9,7 @@ import net.sf.josceleton.core.api.entity.body.BodyPart;
  * 
  * @since 0.4
  */
-public interface MotionServiceListener extends Listener {
+public interface MotionSeparatorListener extends Listener {
 	
 	/**
 	 * LUXURY JAVADOC finish

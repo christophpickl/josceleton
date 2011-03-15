@@ -6,7 +6,7 @@ import net.sf.josceleton.core.api.entity.User;
 /**
  * @since 0.4
  */
-public interface MotionService extends AsyncFor<User, MotionServiceListener> {
+public interface MotionSeparator extends AsyncFor<User, MotionSeparatorListener> {
 	
 	// async online
 	

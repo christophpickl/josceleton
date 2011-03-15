@@ -42,6 +42,7 @@
 	<suppress checks="RequireThis" files=".*Test(Factory|ScenarioStep|Util)?.java" />
 	<suppress checks="ParameterNumber" files=".*Test(Factory|ScenarioStep|Util)?.java" />
 	<suppress checks="AvoidInlineConditionals" files=".*Test(Factory|ScenarioStep|Util)?.java" />
+	<suppress checks="AvoidNestedBlocks" files=".*Test.java" />
 	
 	<!-- allow "assertThat(testee.equals(null), equalTo(false));" instead of "assertThat(testee, not(equalTo(null)));" -->
 	<suppress checks="EqualsAvoidNull" files=".*Test.java" />
