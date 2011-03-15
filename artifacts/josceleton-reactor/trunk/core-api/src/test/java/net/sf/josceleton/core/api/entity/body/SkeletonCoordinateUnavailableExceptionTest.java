@@ -8,10 +8,10 @@ import net.sf.josceleton.commons.test.AbstractExceptionTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class MotionCoordinateUnavailableExceptionTest extends AbstractExceptionTest {
+public class SkeletonCoordinateUnavailableExceptionTest extends AbstractExceptionTest {
 
-	@Override protected final Class<MotionCoordinateUnavailableException> getExceptionClass() {
-		return MotionCoordinateUnavailableException.class;
+	@Override protected final Class<SkeletonCoordinateUnavailableException> getExceptionClass() {
+		return SkeletonCoordinateUnavailableException.class;
 	}
 	
 	@DataProvider(name = "provideForNewUnavailable")
@@ -24,9 +24,9 @@ public class MotionCoordinateUnavailableExceptionTest extends AbstractExceptionT
 	
 	@Test(dataProvider = "provideForNewUnavailable")
 	public final void testGetters(final BodyPart part, final Throwable cause) {
-		final MotionCoordinateUnavailableException testee = cause == null ?
-			MotionCoordinateUnavailableException.newUnavailable(part) :
-			MotionCoordinateUnavailableException.newUnavailable(part, cause);
+		final SkeletonCoordinateUnavailableException testee = cause == null ?
+			SkeletonCoordinateUnavailableException.newUnavailable(part) :
+			SkeletonCoordinateUnavailableException.newUnavailable(part, cause);
 		
 		if(cause == null) {
 			assertThat(testee.getCause(), nullValue());

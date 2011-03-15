@@ -3,8 +3,8 @@ package net.sf.josceleton.josceleton;
 import net.sf.josceleton.commons.reflect.JosceletonCommonsReflectGuiceModule;
 import net.sf.josceleton.connection.impl.JosceletonConnectionImplGuiceModule;
 import net.sf.josceleton.connection.impl.osc.JosceletonConnectionImplOscGuiceModule;
-import net.sf.josceleton.connection.impl.service.motion.JosceletionConnectionImplServiceMotionGuiceModule;
-import net.sf.josceleton.connection.impl.service.user.JosceletionConnectionImplServiceUserGuiceModule;
+import net.sf.josceleton.connection.impl.service.motion.JosceletonConnectionImplServiceMotionGuiceModule;
+import net.sf.josceleton.connection.impl.service.user.JosceletonConnectionImplServiceUserGuiceModule;
 import net.sf.josceleton.core.impl.entity.JosceletonCoreImplEntityGuiceModule;
 import net.sf.josceleton.core.impl.entity.body.JosceletonCoreImplEntityBodyGuiceModule;
 import net.sf.josceleton.core.impl.entity.message.JosceletonCoreImplEntityMessageGuiceModule;
@@ -30,8 +30,8 @@ public class JosceletonGuiceModule extends AbstractModule { // NO extends Privat
 		this.install(new JosceletonCoreImplEntityGuiceModule());
 		
 		this.install(new JosceletonConnectionImplOscGuiceModule());
-		this.install(new JosceletionConnectionImplServiceMotionGuiceModule());
-		this.install(new JosceletionConnectionImplServiceUserGuiceModule());
+		this.install(new JosceletonConnectionImplServiceMotionGuiceModule());
+		this.install(new JosceletonConnectionImplServiceUserGuiceModule());
 		this.install(new JosceletonConnectionImplGuiceModule());
 	}
 

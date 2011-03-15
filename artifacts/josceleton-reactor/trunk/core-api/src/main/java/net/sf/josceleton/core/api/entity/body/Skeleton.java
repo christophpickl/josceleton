@@ -21,7 +21,7 @@ public interface Skeleton {
 	 * 
 	 * @param part of which to get the most recent coordinate
 	 * @return recent position of given <code>part</code>
-	 * @throws MotionCoordinateUnavailableException if no joint data was yet received for this body part
+	 * @throws SkeletonCoordinateUnavailableException if no joint data was yet received for this body part
 	 * @since 0.4
 	 * @see #get(BodyPart)
 	 */

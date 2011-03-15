@@ -5,7 +5,7 @@ import java.util.Map;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.core.api.entity.body.MotionCoordinateUnavailableException;
+import net.sf.josceleton.core.api.entity.body.SkeletonCoordinateUnavailableException;
 
 /**
  * @since 0.4
@@ -23,7 +23,7 @@ class SkeletonImpl implements SkeletonInternal {
 	@Override public final Coordinate getNullSafe(final BodyPart part) {
 		final Coordinate storedCoordinate = this.get(part);
 		if(storedCoordinate == null) {
-			throw MotionCoordinateUnavailableException.newUnavailable(part);
+			throw SkeletonCoordinateUnavailableException.newUnavailable(part);
 		}
 		return storedCoordinate;
 	}
