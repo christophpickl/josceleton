@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId} (${project.version})</name>
+    <description>
+    	Simple purpose of this artifact is to keep checkstyle configurations (and suppressions) in a single location.
+    	Simply add in your POM project.build.plugins.plugin[maven-checkstyle-plugin].dependencies a dependency to this artifact.
+    	
+    	There is some magic going on, to be able to use checkstyle files from both, eclipse and maven simultaneously.
+    	A groovy script removes the SuppressionFilter module, as maven will configure this independently (and path would not work for maven). 
+    </description>
+    <packaging>jar</packaging>
+    
+    <artifactId>josceleton-checkstyle-config</artifactId>
+    <version>0.3</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+    	<groupId>net.sf.josceleton</groupId>
+	    <artifactId>corporate-pom</artifactId>
+        <version>0.3</version>
+<!--        <relativePath>../../[josceleton-]corporate-pom/</relativePath>-->
+    </parent>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                              B U I L D                              -->
+    <!-- ******************************************************************* -->
+    
+    <build>
+    	 <plugins>
+    	 
+	    	<!-- there is some magic going on: invoke groovy script removing SuppressionFilter module from checkstyle.xml -->
+			<plugin>
+				<groupId>org.codehaus.groovy.maven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+				<version>1.0</version><!-- MINOR @POM move all version numbers centrally in properties section -->
+				<executions>
+					<execution>
+						<id>process-checkstyle_xml-groovyscript</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<source>${basedir}/src/main/script/process_checkstyle_xml.groovy</source>
+							<properties>
+								<checkstyleXmlPath>${basedir}/src/main/resources/checkstyle.xml</checkstyleXmlPath>
+<!--								or just? <checkstyleXmlPath>src/main/resources/checkstyle.xml</checkstyleXmlPath>-->
+								<targetXmlFilePath>${basedir}/target/classes/checkstyle.xml</targetXmlFilePath>
+							</properties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		
+		</plugins>
+    </build>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/josceleton-checkstyle-config-0.3</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/josceleton-checkstyle-config-0.3</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/josceleton-checkstyle-config-0.3</url>
+    </scm>
+    
+</project>
