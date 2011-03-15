@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
     
     <artifactId>java-pom</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3</version>
     
     <!-- ******************************************************************* -->
     <!--                             P A R E N T                             -->
@@ -350,9 +350,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-pom/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-pom/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/trunk/java-pom/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/java-pom-0.3</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/java-pom-0.3</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/java-pom-0.3</url>
     </scm>
     
 </project>
