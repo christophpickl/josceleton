@@ -8,6 +8,6 @@ import net.sf.josceleton.core.api.entity.User;
  */
 public interface MotionSeparator extends AsyncFor<User, MotionSeparatorListener> {
 	
-	// async online
+	// async only
 	
 }

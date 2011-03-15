@@ -1,7 +1,5 @@
 package net.sf.josceleton.connection.impl.service.motion;
 
-import com.google.inject.assistedinject.Assisted;
-
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
 
@@ -13,6 +11,6 @@ public interface MotionSeparatorFactory {
 	/**
 	 * @since 0.4
 	 */
-	MotionSeparator create(@Assisted Connection connection);
+	MotionSeparator create(Connection connection);
 	
 }

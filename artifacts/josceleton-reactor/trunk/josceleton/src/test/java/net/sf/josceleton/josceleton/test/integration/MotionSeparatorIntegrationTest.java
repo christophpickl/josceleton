@@ -20,13 +20,15 @@ import org.testng.annotations.Test;
 public class MotionSeparatorIntegrationTest extends AbstractIntegrationTest {
 	
 	@Test
-	public final void foo() {
+	public final void motionSeparatorSeparatesJointMessagesForTwoDifferentUsers() {
 		final int u1 = 1;
 		final int u2 = 2;
 		final TestableMotionSeparatorListener listener1 = new TestableMotionSeparatorListener();
 		final TestableMotionSeparatorListener listener2 = new TestableMotionSeparatorListener();
 		this.emulateTwoNewUsers(u1, u2, listener1, listener2);
-		
+
+		assertThat(listener1.getOnMovedInvocations().size(), equalTo(0));
+		assertThat(listener2.getOnMovedInvocations().size(), equalTo(0));
 		
 		dispatchJointMessage(u1, Body.HEAD(), 0, 0, 0);
 		assertThat(listener1.getOnMovedInvocations().size(), equalTo(1));

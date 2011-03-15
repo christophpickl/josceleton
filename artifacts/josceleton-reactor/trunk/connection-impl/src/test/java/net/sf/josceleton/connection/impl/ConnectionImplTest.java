@@ -15,13 +15,11 @@ import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.impl.osc.OscMessageTransformer;
 import net.sf.josceleton.connection.impl.osc.OscPort;
 import net.sf.josceleton.connection.impl.service.user.UserServiceInternal;
-import net.sf.josceleton.connection.impl.service.user.UserStore;
 import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 
-import org.hamcrest.Matchers;
 import org.jmock.Expectations;
 import org.testng.annotations.Test;
 
