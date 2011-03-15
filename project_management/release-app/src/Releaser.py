@@ -75,7 +75,9 @@ class Releaser:
              "-DdevelopmentVersion=%s" % artifact.versionNext,
              "-DupdateDependencies=false", # default=true
 #             "--DpreparationGoals=clean verify", # default="clean verify"
-             
+#                    <autoVersionSubmodules>false</autoVersionSubmodules><!-- default: "false" -->
+#                    <!-- checkModificationExcludeList -->
+
              # release:perform specific options
 #             "--DreleaseProfiles=aProfile,bProfile",
 #             "--Dgoals=xxx", # default = "deploy" or "deploy site-deploy"

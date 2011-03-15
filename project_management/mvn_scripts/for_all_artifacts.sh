@@ -9,7 +9,8 @@ source includes/for_all_artifacts.sh
 
 ARTIFACTS_PATH_ARRAY=( "josceleton-reactor" )
 
-MVN_ARG="clean install -Dreport.skip -Dmaven.test.skip"
+MVN_ARG="clean install -Dreport.skip"
+#MVN_ARG="clean install -Dreport.skip -Dmaven.test.skip"
 #MVN_ARG="eclipse:eclipse install"
 #MVN_ARG="clean eclipse:eclipse test site install"
 

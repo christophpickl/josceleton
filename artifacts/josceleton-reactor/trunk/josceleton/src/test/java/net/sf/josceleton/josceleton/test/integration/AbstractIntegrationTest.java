@@ -11,6 +11,7 @@ import net.sf.josceleton.connection.api.test.TestableUserServiceListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.connection.impl.osc.OscAddress;
 import net.sf.josceleton.connection.impl.osc.OscPortOpener;
+import net.sf.josceleton.connection.impl.test.OscAddressConverterUtil;
 import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.connection.impl.test.TestableOscPort;
@@ -103,21 +104,9 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	
 	protected final void dispatchUserMessage(final int userId, final UserState state) {
 		LOG.debug("+dispatchUserMessage(userId, state=" + state + ")");
-		this.dispatchOscMessage(fOOOOOOOFIXMEbyState(state), new Object[] { Integer.valueOf(userId) });
+		this.dispatchOscMessage(OscAddressConverterUtil.convertUserStateToOscAddress(state), new Object[] { Integer.valueOf(userId) });
 	}
 	
-	public static final OscAddress fOOOOOOOFIXMEbyState(final UserState state) {
-		if(state == UserState.WAITING) { // FIXME @TEST outsource OscAddress <=> UserState conversion
-			return OscAddress.NEW_USER;
-		}
-		if(state == UserState.PROCESSING) {
-			return OscAddress.NEW_SKEL;
-		}
-		if(state == UserState.DEAD) {
-			return OscAddress.LOST_USER;
-		}
-		return null;
-	}
 	
 	private void dispatchOscMessage(final OscAddress address, final Object[] arguments) {
 		this.testableOscPort.getListeners().get(address).

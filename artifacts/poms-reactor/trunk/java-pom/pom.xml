@@ -223,7 +223,7 @@
             
             <plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<!-- FIXME 000014 @POM get rid of logged warning message from eclipse plugin -->
+				<!-- MINOR 000014 @BUILD POM get rid of logged warning message from eclipse plugin -->
 				<!--            mvn eclipse:eclipse => [WARNING] Workspace defines a VM that does not contain a valid jre/lib/rt.jar: /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home -->
 				<!-- earlier tried to downgrade from 2.8 to 2.5.1; warning disappeared, but now other one pops up something about wtp error  -->
 				<version>${version.eclipse-plugin}</version>

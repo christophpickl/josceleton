@@ -105,26 +105,8 @@
             
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
-				<!-- FIXME @BUILD POM RELEASE: remove plugin configuration if release-app handles releases (this configuration) -->
-	    		<!-- 
-		    		release:prepare ... http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html
-		    		release:perform ... http://maven.apache.org/plugins/maven-release-plugin/perform-mojo.html
-	    		-->
 				<configuration>
-					<!-- common configuration -->
-					<username>${env.JOSCELETON_RELEASE_USER}</username>
-					<password>${env.JOSCELETON_RELEASE_PWD}</password>
-					
-					<!-- release:prepare configuration -->
-					<preparationGoals>clean verify</preparationGoals><!-- default: "clean verify" -->
-					<allowTimestampedSnapshots>false</allowTimestampedSnapshots>
-					<autoVersionSubmodules>false</autoVersionSubmodules><!-- default: "false" -->
-					<!-- checkModificationExcludeList -->
-					
-					<!-- release:perform configuration -->
-					<goals>deploy site-deploy</goals>
-					<!-- MINOR @POM make use of release profiles -->
-					<!--<releaseProfiles></releaseProfiles>-->
+					<!-- whole configuration is handled by custom release-app; see svn:/project-management/release-app -->
 				</configuration>
 			</plugin>
     	
@@ -335,7 +317,7 @@
 									<!-- generates a default index.html page; but we always have our own and to suppress
 										 About menu entry referencing same index.html (duplicate references in navi) -->
 									<!-- <report>index</report> -->
-<!--		                            FIXME enable deps report when releasing <report>dependencies</report>-->
+		                            <report>dependencies</report>
 		                            <report>project-team</report>
 		                            <report>issue-tracking</report>
 		                            <report>license</report>

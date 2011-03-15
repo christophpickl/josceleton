@@ -51,7 +51,7 @@ class UserServiceTestScenarioStep {
 	}
 	
 	private void assertUsersEquals(final String userStateLabel, final List<User> actualUsers, final int[] expectedIds) {
-		// TODO oustource into testclass!
+		// MINOR @TEST CODE oustource into testclass!
 		assertThat(userStateLabel + " users size missmatch (for " + this + ")", actualUsers.size(), equalTo(expectedIds.length));
 		
 		for (int i = 0; i < expectedIds.length; i++) {

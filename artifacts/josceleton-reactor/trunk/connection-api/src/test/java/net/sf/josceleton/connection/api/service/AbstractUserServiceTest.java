@@ -61,7 +61,7 @@ abstract class AbstractUserServiceTest extends AbstractMockeryTest {
 			assertThat(actualUser.getId(), Matchers.is(Matchers.greaterThan(0))); // cant tell more about it :)
 			assertThat(actualUser.getOsceletonId(), equalTo(step.getActionUserId()));
 			
-			// FIXME NO collectiong, but rather have to... extend scenario state??
+			// TODO @TEST no collectiong, but rather have to... extend scenario state??
 			this.assertUsersEquals(step + "#waiting", service.getWaitingUsers(), step.getExpectedGetWaitUsers());
 			this.assertUsersEquals(step + "#processing", service.getProcessingUsers(), step.getExpectedGetProcUsers());
 			

@@ -3,6 +3,7 @@ package net.sf.josceleton.connection.impl;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.is;
 
 import java.util.Date;
 
@@ -14,11 +15,13 @@ import net.sf.josceleton.connection.api.service.UserService;
 import net.sf.josceleton.connection.impl.osc.OscMessageTransformer;
 import net.sf.josceleton.connection.impl.osc.OscPort;
 import net.sf.josceleton.connection.impl.service.UserServiceInternal;
+import net.sf.josceleton.connection.impl.service.UserStore;
 import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 
+import org.hamcrest.Matchers;
 import org.jmock.Expectations;
 import org.testng.annotations.Test;
 
@@ -102,52 +105,59 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 	@Test(expectedExceptions = IllegalStateException.class,
 			expectedExceptionsMessageRegExp = "Connection already closed!")
 	public final void closeTwiceWillFail() {
-		final ConnectionInternal connection = this.newStandardConnectionInternal(null, true);
+
+		final ConnectionInternal connection = this.newStandardConnectionInternal(
+			null, true, this.mock(UserServiceInternal.class));
 		
 		connection.establish();
 		connection.close();
 		connection.close();
 	}
-	// FIXME TEST
-//	@Test public final void testEverything() {
-//		final OSCMessage sentOscMessage1 = new OSCMessageX("/joint", 42, 0.1F, 0.2F, 0.3F);
-//		final JointMessage sentJointMessage1 = this.mock(JointMessage.class);
-//		final OSCMessage sentOscMessage2 = new OSCMessageX("/lost_user", 42);
-//		final UserMessage sentUserMessage2 = this.mock(UserMessage.class);
-//		
-//		final ConnectionImpl connection = this.newStandardConnectionInternal(
-//			new ExpectationsProvider<OscMessageTransformer>() {
-//				@Override public Expectations provide(final OscMessageTransformer transformer) {
-//					return new Expectations() { {
-//						oneOf(transformer).transformJointMessage(sentOscMessage1);
-//						will(returnValue(sentJointMessage1));
-//						
-//						oneOf(transformer).transformUserMessage(sentOscMessage2);
-//						will(returnValue(sentUserMessage2));
-//		}}; }});
-//		
-//		final ConnectionListenerCollector connectionListener = new ConnectionListenerCollector();
-//		connection.addListener(connectionListener);
-//		connection.establish();
-//		connection.onAcceptedJointMessage(new Date(), sentOscMessage1);
-//		connection.onAcceptedUserMessage(new Date(), sentOscMessage2);
-//
-//		assertThat(connectionListener.getReceivedJointMessages().size(), equalTo(1));
-//		assertThat(connectionListener.getReceivedJointMessages().get(0), is(sentJointMessage1));
-//		assertThat(connectionListener.getReceivedUserMessages().size(), equalTo(1));
-//		assertThat(connectionListener.getReceivedUserMessages().get(0), is(sentUserMessage2));
-//	}
+	
+	@Test public final void testEverything() {
+		final OSCMessage sentOscMessage1 = new TestableOSCMessage("/joint", 42, 0.1F, 0.2F, 0.3F);
+		final JointMessage sentJointMessage1 = this.mock(JointMessage.class);
+		final OSCMessage sentOscMessage2 = new TestableOSCMessage("/lost_user", 42);
+		final UserMessage sentUserMessage2 = this.mock(UserMessage.class);
+		
+		final UserServiceInternal userService = this.mock(UserServiceInternal.class);
+		
+		final ConnectionImpl connection = this.newStandardConnectionInternal(
+			new ExpectationsProvider<OscMessageTransformer>() {
+				@Override public Expectations provide(final OscMessageTransformer transformer) {
+					return new Expectations() { {
+						oneOf(transformer).transformJointMessage(sentOscMessage1, userService);
+						will(returnValue(sentJointMessage1));
+						
+						oneOf(transformer).transformUserMessage(sentOscMessage2, userService);
+						will(returnValue(sentUserMessage2));
+		}}; }}, userService);
+		
+		final TestableConnectionListener connectionListener = new TestableConnectionListener();
+		connection.addListener(connectionListener);
+		connection.establish();
+		connection.onAcceptedJointMessage(new Date(), sentOscMessage1);
+		connection.onAcceptedUserMessage(new Date(), sentOscMessage2);
+
+		assertThat(connectionListener.getReceivedJointMessages().size(), equalTo(1));
+		assertThat(connectionListener.getReceivedJointMessages().get(0), is(sentJointMessage1));
+		assertThat(connectionListener.getReceivedUserMessages().size(), equalTo(1));
+		assertThat(connectionListener.getReceivedUserMessages().get(0), is(sentUserMessage2));
+	}
 	
 	private ConnectionImpl newStandardConnectionInternal() {
-		return this.newStandardConnectionInternal(null);
+		return this.newStandardConnectionInternal(null, this.mock(UserServiceInternal.class));
 	}
 
 	private ConnectionImpl newStandardConnectionInternal(
-			final ExpectationsProvider<OscMessageTransformer> transformerProvider) {
-		return this.newStandardConnectionInternal(transformerProvider, false);
+			final ExpectationsProvider<OscMessageTransformer> transformerProvider,
+			final UserServiceInternal mockedUserService) {
+		return this.newStandardConnectionInternal(transformerProvider, false, mockedUserService);
 	}
 	private ConnectionImpl newStandardConnectionInternal(
-			final ExpectationsProvider<OscMessageTransformer> transformerProvider, final boolean willBeClosed) {
+			final ExpectationsProvider<OscMessageTransformer> transformerProvider, final boolean willBeClosed,
+			final UserServiceInternal mockedUserService) {
+		
 		return this.newConnectionInternal(
 			new ExpectationsProvider<OscPort>() {
 				@Override public Expectations provide(final OscPort port) { return new Expectations() { {
@@ -161,14 +171,16 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 				@Override public Expectations provide(final OscMessageAddressRouter router) { return new Expectations() { {
 					oneOf(router).reroute(with(any(OscPort.class)), with(any(OscMessageAddressRouterCallback.class)));
 			}}; }},
-			transformerProvider
+			transformerProvider,
+			mockedUserService
 		);
 	}
 	
 	private ConnectionImpl newConnectionInternal(
 		final ExpectationsProvider<OscPort> portProvider,
 		final ExpectationsProvider<OscMessageAddressRouter> routerProvider,
-		final ExpectationsProvider<OscMessageTransformer> transformerProvider) {
+		final ExpectationsProvider<OscMessageTransformer> transformerProvider,
+		final UserServiceInternal mockedUserService) {
 		
 		final OscPort mockedOscPort = this.mock(OscPort.class);
 		if(portProvider != null) {
@@ -184,8 +196,6 @@ public class ConnectionImplTest extends AbstractMockeryTest {
 		if(transformerProvider != null) {
 			this.checking(transformerProvider.provide(mockedTransformer));
 		}
-		
-		final UserServiceInternal mockedUserService = this.mock(UserServiceInternal.class);
 		
 		return new ConnectionImpl(mockedOscPort, mockedRouter, mockedTransformer,  mockedUserService);
 	}

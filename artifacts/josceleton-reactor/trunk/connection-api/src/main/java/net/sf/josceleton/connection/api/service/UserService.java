@@ -7,7 +7,7 @@ import net.sf.josceleton.core.api.async.Async;
  * 
  * It offers two ways of getting user information:
  * <ul>
- *   <li><b>Getter</b>: TODO @DOC getCurrentUserCollection().getWaiting/getProcessingUsers():ImmutableIterable</li>
+ *   <li><b>Getter</b>: MINOR @DOC getCurrentUserCollection().getWaiting/getProcessingUsers():ImmutableIterable</li>
  *   <li><b>Async</b>: one callback method for each {@link UserState} (<code>WAITING</code>, <code>PROCESSING</code>, 
  *   					<code>DEAD</code>), all receiving an {@link User} argument associated with the message.</li>
  * </ul>

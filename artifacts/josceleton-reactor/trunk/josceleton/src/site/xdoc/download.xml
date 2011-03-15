@@ -55,7 +55,7 @@
 				
 				<p>Declare a common Maven dependency for Josceleton in your <code>pom.xml</code> file:</p>
 				
-				<!-- TODO @SITE download: automatically get current version by ${project.someProperty.version.josceleton-josceleton} -->
+				<!-- MINOR @SITE download: automatically get current version by ${project.someProperty.version.josceleton-josceleton} -->
 				<source><![CDATA[
 <project>
   <dependencies>

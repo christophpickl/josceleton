@@ -70,7 +70,6 @@
 		<site>
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton site server @sourceforge</name>
-			<!-- FIXME @SITE josceleton is not deploying to documentation/ folder !!! -->
 			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
 		</site>
 	</distributionManagement>
