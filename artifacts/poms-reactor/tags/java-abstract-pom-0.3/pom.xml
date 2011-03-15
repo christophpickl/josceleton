@@ -1,0 +1,641 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId} (${project.version})</name>
+    <description>An additional Java super POM abstraction layer, to split up those huge monster files :)</description>
+    <packaging>pom</packaging>
+    
+    <artifactId>java-abstract-pom</artifactId>
+    <version>0.3</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+        <groupId>net.sf.josceleton</groupId>
+        <artifactId>corporate-pom</artifactId>
+        <version>0.3</version>
+        <relativePath>../../corporate-pom/</relativePath>
+    </parent>
+    
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+	
+    <properties>
+    	<josceleton.create.reports>true</josceleton.create.reports>
+    	<cobertura.haltOnFailure>true</cobertura.haltOnFailure>
+    	
+        <!-- V E R S I O N S -->
+   		<!-- *********************************************************** -->
+   		
+    	<version.surefire>2.4.3</version.surefire><!-- 2.4.3 is compatible with site3.0-beta (current is 2.7.2) -->
+    	<verison.checkstyle>2.6</verison.checkstyle><!-- 2.5 is compatible with site3.0-beta (current is 2.6) -->
+    	<version.cobertura>2.3</version.cobertura><!-- 2.3 is compatible with site3.0-beta (current is 2.4) -->
+    	
+    	<!-- emma would be 1.0-alpha-2 for site-plugin-3.0-beta-3 -->
+    	
+        <!-- C O D E   Q U A L I T Y -->
+   		<!-- *********************************************************** -->
+   		
+    	<coverage.percent>100</coverage.percent>
+    	<cobertura.coverage.branchrate>${coverage.percent}</cobertura.coverage.branchrate>
+    	<cobertura.coverage.linerate>${coverage.percent}</cobertura.coverage.linerate>
+    	<cobertura.coverage.packagelinerate>${coverage.percent}</cobertura.coverage.packagelinerate>
+    	<cobertura.coverage.packagebranchrate>${coverage.percent}</cobertura.coverage.packagebranchrate>
+    	<cobertura.coverage.totalbranchrate>${coverage.percent}</cobertura.coverage.totalbranchrate>
+    	<cobertura.coverage.totallinerate>${coverage.percent}</cobertura.coverage.totallinerate>
+    	
+    </properties>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--              D E P E N D E N C Y   M A N A G E M E N T               -->
+    <!-- ******************************************************************* -->
+    
+    <dependencyManagement>
+    	<dependencies>
+        	
+	        <!-- E X T E R N A L -->
+    		<!-- *********************************************************** -->
+    		
+	        <dependency>
+	        	<groupId>commons-logging</groupId>
+	        	<artifactId>commons-logging</artifactId>
+	        	<version>1.1.1</version>
+        	</dependency>
+	        
+	        <dependency>
+	        	<groupId>log4j</groupId>
+	        	<artifactId>log4j</artifactId>
+	        	<version>1.2.14</version>
+        	</dependency>
+			
+	        <!-- T E S T -->
+    		<!-- *********************************************************** -->
+    	
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-all</artifactId>
+				<version>1.1</version>
+			</dependency>
+			
+	        <dependency>
+	        	<groupId>org.testng</groupId>
+	        	<artifactId>testng</artifactId>
+	        	<version>5.14.7</version>
+	        </dependency>
+	        
+    	</dependencies>
+    </dependencyManagement>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       D E P E N D E N C I E S                       -->
+    <!-- ******************************************************************* -->
+    
+    <dependencies>
+		
+	    <!-- L O G G I N G -->
+    	<!-- *********************************************************** -->
+    	
+        <dependency>
+        	<groupId>commons-logging</groupId>
+        	<artifactId>commons-logging</artifactId>
+       	</dependency>
+        
+        <dependency>
+        	<groupId>log4j</groupId>
+        	<artifactId>log4j</artifactId>
+        </dependency>
+        
+	    <!-- T E S T -->
+    	<!-- *********************************************************** -->
+        
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
+            <!-- exclude TestNG's provided guice, as we are using our own guice2 dependency-->
+            <exclusions>
+            	<exclusion>
+            		<groupId>com.google.inject</groupId>
+            		<artifactId>guice</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>aopallicance</groupId>
+            		<artifactId>aopallicance</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+	    <!-- T E S T   J M O C K   C L A S S E S -->
+    	<!-- *********************************************************** -->
+    	
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock-legacy</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<!-- MINOR @POM DEPENDENCY is same cglib also included in guice? => duplicate dependency?! -->
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.objenesis</groupId>
+			<artifactId>objenesis</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- needed for: org.objectweb.asm.ClassVisitor -->
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>3.3</version>
+			<scope>test</scope>
+		</dependency>
+        
+    </dependencies>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                              B U I L D                              -->
+    <!-- ******************************************************************* -->
+    
+    <build>
+        <pluginManagement>
+            <plugins>
+            
+                <!-- B U I L D   V E R S I O N -->
+                <!-- *********************************************************** -->
+                
+				<plugin>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${verison.checkstyle}</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.4.1</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.3.1</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.2</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${version.surefire}</version>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>${version.cobertura}</version>
+				</plugin>
+            	
+            </plugins>
+        </pluginManagement>
+        
+        <plugins>
+        	
+            <!-- COMPILE -->
+            <!-- *********************************************************** -->
+                
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>animal-sniffer-maven-plugin</artifactId>
+				<version>1.6</version>
+				<configuration>
+					<signature>
+						<groupId>org.codehaus.mojo.signature</groupId>
+						<artifactId>java15</artifactId><!-- check for java 1.5 only -->
+						<version>1.0</version>
+					</signature>
+				</configuration>
+				<executions>
+					<execution>
+						<id>check-java-1.5-compatibility</id>
+						<phase>process-classes</phase>
+<!--						<phase>test</phase>--><!-- LUXURY @POM bind java version check to test, instead process-classes? -->
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            
+            
+            <!-- TEST -->
+            <!-- *********************************************************** -->
+            
+            <plugin>
+            	<artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <configuration>
+                    <check>
+                        <haltOnFailure>${cobertura.haltOnFailure}</haltOnFailure>
+                        
+                        <branchRate>${cobertura.coverage.branchrate}</branchRate>
+                        <lineRate>${cobertura.coverage.linerate}</lineRate>
+                        <packageLineRate>${cobertura.coverage.packagelinerate}</packageLineRate>
+                        <packageBranchRate>${cobertura.coverage.packagebranchrate}</packageBranchRate>
+                        <totalBranchRate>${cobertura.coverage.totalbranchrate}</totalBranchRate>
+                        <totalLineRate>${cobertura.coverage.totallinerate}</totalLineRate>
+<!--                        <regexes>-->
+<!--                            <regex>-->
+<!--                                <pattern>com.example.boringcode.*</pattern>-->
+<!--                                <branchRate>40</branchRate>-->
+<!--                                <lineRate>30</lineRate>-->
+<!--                            </regex>-->
+<!--                        </regexes>-->
+                    </check>
+<!--	                <instrumentation>-->
+<!--	                	<ignores>-->
+<!--						</ignores>-->
+<!--						<excludes>-->
+<!--							<exclude>net/sourceforge/josceleton/**/*GuiceModule.class</exclude>-->
+<!--						</excludes>-->
+<!--					</instrumentation>-->
+                </configuration>
+                <executions>
+					<execution>
+						<goals>
+							<goal>clean</goal>
+							<goal>check</goal>
+						</goals>
+					</execution>
+        		</executions>
+            </plugin>
+            
+			
+            <!-- BUILD -->
+            <!-- *********************************************************** -->
+            
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources-jar</id>
+						<!-- MINOR @POM why should one attach sources-plugin explicitly to package pahse? (usually people dont do it) -->
+<!--						<phase>package</phase>-->
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            
+		
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<!-- ??? -->
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+        
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <!-- also delete the TestNG output folder when cleaning up -->
+                                <include>test-output</include>
+                            </includes>
+                            <followSymlinks>true</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+			
+		</plugins>
+    </build>
+	
+    
+    <!-- ******************************************************************* -->
+    <!--                           P R O F I L E S                           -->
+    <!-- ******************************************************************* -->
+    
+	<profiles>
+	
+		<profile>
+			<id>disable-cobertura-when-testskip-profile</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>maven.test.skip</name>
+					<value>true</value>
+				</property>
+			</activation>
+		    <properties>
+	    		<cobertura.haltOnFailure>false</cobertura.haltOnFailure>
+	    	</properties>
+	    	<build>
+	    		<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>print-disable-cobertura-profile-message @test</id><phase>test</phase>
+								<configuration><target>
+									<echo message="[JOSCELETON] [java-abstract-pom] cobertura haltOnFailure set to false (as tests were skipped)" />
+									<echo message="[JOSCELETON] [java-abstract-pom] ==============================================================" />
+								</target></configuration><goals><goal>run</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+	    		</plugins>
+	    	</build>
+		</profile>
+		
+		
+		<profile>
+			<id>create-reports-java-abstract-pom</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>report.skip</name>
+					<value>!true</value>
+				</property>
+			</activation>
+	    	<build>
+	    		<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>create-reports-java-abstract-pom-message</id><phase>pre-site</phase>
+								<configuration><target>
+									<echo message="[JOSCELETON] [java-abstract-pom] Creating enhanced site reports." />
+									<echo message="[JOSCELETON] [java-abstract-pom] (disable by using: &quot;mvn xxx -Dreport.skip&quot;)" />
+									<echo message="[JOSCELETON] [java-abstract-pom] ==============================================================" />
+								</target></configuration><goals><goal>run</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+	    		</plugins>
+	    	</build>
+    
+		    <!-- ******************************************************************* -->
+		    <!--                          R E P O R T I N G                          -->
+		    <!-- ******************************************************************* -->
+		    
+		    <!--
+		    "And the subtler difference is that a plugin configuration under the reporting element works as build plugin configuration,
+		    although the opposite is not true (a build plugin configuration does not affect a reporting plugin)."
+		    	source: http://maven.apache.org/pom.html#Plugin_Management
+		    -->
+		    <reporting>
+		        <plugins>
+		
+		           <plugin>
+		                <artifactId>maven-surefire-report-plugin</artifactId>
+		                <version>${version.surefire}</version>
+		            </plugin>
+		            
+		            <plugin>
+		            	<!-- (remark: javadoc-plugin configuration should stay in reporting, and not moved to build section) -->
+		                <artifactId>maven-javadoc-plugin</artifactId>
+		            	<version>2.6.1</version><!-- supported 2.6.1, available 2.7 -->
+		            	<configuration>
+		            		<!-- for configuration options see: http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html -->
+		            		
+		            		<!-- in community software we dont want to show up names, it belongs to all of us -->
+		            		<author>false</author> 
+							<!-- shuts off non-error and non-warning messages -->
+		                    <quiet>true</quiet>
+		                    <!-- enables javadoc to handle more recent language features -->
+		                    <source>1.6</source>
+							<!-- set encoding of (java) source files -->
+		                    <encoding>UTF-8</encoding>
+							<!-- set encoding of generated HTML files -->
+		                    <docencoding>UTF-8</docencoding>
+		                    <!-- specify the HTML character set for this document -->
+		                    <charset>UTF-8</charset>
+							<!-- adds HTML meta keyword tags to the generated files -->
+		                    <keywords>true</keywords>
+		                    <locale>en</locale>
+		                    
+		                    <minmemory>128m</minmemory> 
+              				<maxmemory>512m</maxmemory> 
+							<!-- NO (default "protected" is just fine): <show>private</show>-->
+		            		
+		
+		<!--                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>-->
+		<!--                    <noqualifier>all</noqualifier>    Omit qualifying package name before class names in output. -->
+		            		
+							<!-- ............ customize skin ............... -->
+		<!--					<docletArtifact>-->
+		<!--						 nice doclet, see: http://code.google.com/p/doclava/ -->
+		<!--						<groupId>com.google.doclava</groupId>-->
+		<!--						<artifactId>doclava</artifactId>-->
+		<!--						<version>1.0.2</version>-->
+		<!--					</docletArtifact>-->
+		<!--					<doclet>com.google.doclava.Doclava</doclet>-->
+		<!--					 bootclasspath required by Sun's JVM -->
+		<!--					<bootclasspath>${sun.boot.class.path}</bootclasspath>-->
+		<!--					<additionalparam>-->
+		<!--						-quiet-->
+		<!--						-federate JDK http://download.oracle.com/javase/6/docs/api/index.html?-->
+		<!--						-federationxml JDK-->
+		<!--						http://doclava.googlecode.com/svn/static/api/openjdk-6.xml-->
+		<!--						-hdf project.name "${project.artifactId}"-->
+		<!--						-d ${project.build.directory}/site/apidocs-->
+		<!--					</additionalparam>-->
+		<!--					 -d ${project.build.directory}/apidocs -->
+		<!--					....... add an overview page (-overview <yourpage.html>) -->
+		<!--					-->
+		<!--					<useStandardDocletOptions>false</useStandardDocletOptions>-->
+		<!--					 Apple's JVM sometimes requires more memory -->
+		<!--					<additionalJOption>-J-Xmx1024m</additionalJOption>-->
+		            	</configuration>
+		            	
+		            	<reportSets>
+		            		<reportSet>
+		            			<id>javadoc-nontest</id>
+		            			<!-- no custom configuration needed -->
+		            			<reports>
+		            				<report>javadoc</report>
+		            			</reports>
+		            		</reportSet>
+		            	</reportSets>
+		            </plugin>
+		            
+		            <plugin>
+		                <groupId>org.codehaus.mojo</groupId>
+		                <artifactId>cobertura-maven-plugin</artifactId>
+		                <version>${version.cobertura}</version>
+		            </plugin>
+		            
+		            <plugin>
+		            	<!-- source reference -->
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-jxr-plugin</artifactId>
+		                <version>2.1</version>
+		            </plugin>
+					
+		            <plugin>
+		                <groupId>org.codehaus.mojo</groupId>
+		                <artifactId>taglist-maven-plugin</artifactId>
+		                <version>2.4</version>
+		                <configuration>
+		                	<!-- http://mojo.codehaus.org/taglist-maven-plugin/taglist-mojo.html -->
+		                	<skipTestSources>false</skipTestSources>
+		                    <tagListOptions>
+		                        <tagClasses>
+		                        	<!-- enforce correct order by prefixing with number ;) -->
+		                            <tagClass>
+		                                <displayName>1. FIXME - Heavy issues which need to be solved immediately!</displayName>
+		                                <tags><tag><matchString>FIXME</matchString><matchType>ignoreCase</matchType></tag>
+		                                </tags>
+		                            </tagClass>
+		                            <tagClass>
+		                                <displayName>2. TODO - General issue to work on sooner or later.</displayName>
+		                                <tags><tag><matchString>TODO</matchString><matchType>ignoreCase</matchType></tag></tags>
+		                            </tagClass>
+		                            <tagClass>
+		                                <displayName>3. MINORs - Little enhancements, not really important.</displayName>
+		                                <tags><tag><matchString>MINOR</matchString><matchType>ignoreCase</matchType></tag></tags>
+		                            </tagClass>
+		                            <tagClass>
+		                                <displayName>4. LUXURYs - Additional stuff which would be cool to have, but not mandatory anyway.</displayName>
+		                                <tags><tag><matchString>LUXURY</matchString><matchType>ignoreCase</matchType></tag></tags>
+		                            </tagClass>
+		                        </tagClasses>
+		                    </tagListOptions>
+		                </configuration>
+		            </plugin>
+		            
+		            <plugin>
+		                <groupId>org.codehaus.mojo</groupId>
+		                <artifactId>findbugs-maven-plugin</artifactId>
+		                <version>2.3.1</version>
+		                <configuration>
+		                	<!-- for configuration options see: http://mojo.codehaus.org/findbugs-maven-plugin/2.3.1/findbugs-mojo.html -->
+							<threshold>High</threshold>
+							<effort>Max</effort>
+							<xmlOutput>true</xmlOutput>
+							<findbugsXmlOutput>true</findbugsXmlOutput>
+							<!-- default xref location is: ${project.reporting.outputDirectory}/xref --> 
+							<xrefLocation>${project.reporting.outputDirectory}/site/xref</xrefLocation>
+							<!-- default xref location is: ${project.reporting.outputDirectory}/xref-test --> 
+							<xrefTestLocation>${project.reporting.outputDirectory}/site/xref-ref</xrefTestLocation>
+		                </configuration>
+		            </plugin>
+		            
+		            <plugin>
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-pmd-plugin</artifactId>
+		                <version>2.4</version>
+		                <configuration>
+		                    <targetJdk>1.6</targetJdk>
+		                    <includeTests>false</includeTests>
+		<!--					<rulesets>-->
+		<!--						<ruleset>/rulesets/basic.xml</ruleset>-->
+		<!--						<ruleset>/rulesets/controversial.xml</ruleset>-->
+		<!--					</rulesets>-->
+		<!--					<format>xml</format>-->
+							<linkXref>true</linkXref>
+							<sourceEncoding>utf-8</sourceEncoding>
+		                </configuration>
+		            </plugin>
+		            
+<!-- MINOR @POM The easiest way you can configure the qalab mojos for Merge is as follows if you have accepted the default settings for the qa tools. -->
+<!-- see: http://qalab.sourceforge.net/multiproject/maven2-qalab-plugin/faq.html -->
+<!--         <plugin>-->
+<!--           <groupId>net.objectlab</groupId> -->
+<!--           <artifactId>mvn-qalab-plugin</artifactId> -->
+<!--           <version>2.2</version> -->
+<!--           <reportSets>-->
+<!--             <reportSet>-->
+<!--               <reports>-->
+<!--                 <report>report-merge-chart</report> -->
+<!--                 <report>report-movers-all</report> -->
+<!--              </reports>-->
+<!--            </reportSet>-->
+<!--         </reportSets>-->
+<!--          <configuration>-->
+<!--            <dateOnly>true</dateOnly> -->
+<!--            <startTimeHoursOffset>1</startTimeHoursOffset> -->
+<!--         </configuration>-->
+<!--       </plugin>-->
+		
+					
+				</plugins>
+			</reporting>
+		</profile>
+		
+	</profiles>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/java-abstract-pom-0.3</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/tags/java-abstract-pom-0.3</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/java-abstract-pom-0.3</url>
+    </scm>
+	
+</project>
