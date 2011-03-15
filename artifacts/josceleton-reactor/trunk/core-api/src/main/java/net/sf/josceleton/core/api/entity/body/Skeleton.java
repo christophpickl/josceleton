@@ -1,7 +1,6 @@
-package net.sf.josceleton.connection.api.service.motion;
+package net.sf.josceleton.core.api.entity.body;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
 
 /**
  * @since 0.4

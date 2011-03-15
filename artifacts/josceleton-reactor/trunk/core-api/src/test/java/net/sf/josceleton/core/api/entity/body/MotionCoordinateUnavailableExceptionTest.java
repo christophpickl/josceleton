@@ -1,12 +1,10 @@
-package net.sf.josceleton.connection.api.service.motion;
+package net.sf.josceleton.core.api.entity.body;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 import net.sf.josceleton.commons.test.AbstractExceptionTest;
 import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.body.Body;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
 import net.sf.josceleton.core.api.test.TestableUser;
 
 import org.testng.annotations.DataProvider;

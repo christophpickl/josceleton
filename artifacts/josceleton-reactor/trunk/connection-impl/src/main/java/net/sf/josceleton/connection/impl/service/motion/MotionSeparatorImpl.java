@@ -2,8 +2,8 @@ package net.sf.josceleton.connection.impl.service.motion;
 
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.service.motion.MotionSeparatorListener;
-import net.sf.josceleton.connection.api.service.motion.Skeleton;
 import net.sf.josceleton.core.api.entity.User;
+import net.sf.josceleton.core.api.entity.body.Skeleton;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.async.DefaultAsyncFor;

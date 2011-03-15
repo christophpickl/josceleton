@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.sf.josceleton.connection.api.service.motion.MotionSeparatorListener;
-import net.sf.josceleton.connection.api.service.motion.Skeleton;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.body.Skeleton;
 
 public class TestableMotionSeparatorListener implements MotionSeparatorListener {
 	

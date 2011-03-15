@@ -3,6 +3,7 @@ package net.sf.josceleton.connection.api.service.motion;
 import net.sf.josceleton.core.api.async.Listener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.body.Skeleton;
 
 /**
  * A per-user service to get notified about user movements, as well as stores most recent coordinates for all parts.
