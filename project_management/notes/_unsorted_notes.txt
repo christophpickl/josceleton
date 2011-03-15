@@ -1,0 +1,308 @@
+To make the dependency report generation LOTS faster, stick the following in the reporting/plugins section of your POM:
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-project-info-reports-plugin</artifactId>
+    <configuration>
+      <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+    </configuration>
+  </plugin>
+Alternatively, run Maven with -Ddependency.locations.enabled=false.
+http://maven.40175.n5.nabble.com/Skipping-dependency-report-during-Maven2-site-generation-td114617.html
+
+
+
+
+project {
+    modelVersion '4.0.0'
+    parent {
+        artifactId 'babble'
+        groupId 'com.sonatype.training'
+        version '1.0.6-SNAPSHOT'
+    }
+    artifactId 'babble-core'
+    version '1.0.6-SNAPSHOT'
+...
+http://www.wakaleo.com/blog/236-writing-your-pom-files-in-groovy-a-sneek-preview-of-maven-3s-polyglot-features
+
+
+
+
+How can I have a child project not inherit a goal (like install) from the parent?
+-> Use the inherited property. Set it to false in the plugin configuration. So for example, if you want your parent project to be installed but not your child, configure the install plugin like so: 
+<plugin>
+   <artifactId>maven-install-plugin</artifactId>
+   <configuration>
+      <inherited>false</inherited>
+   </configuration>
+</plugin>
+[http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowcanIhaveachildprojectnotinheritagoal%28likeinstall%29fromtheparent%3F]
+
+
+
+
+
+            
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}</directory>
+							<includes>
+								<include>test-output</include><!-- delete TestNG output folder -->
+							</includes>
+							<followSymlinks>true</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+
+
+
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.0-beta-4</version>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+					<timestampFormat>{0, date, yyyy-MM-dd HH:mm:ss}</timestampFormat>
+				</configuration>
+		    </plugin>
+
+
+
+
+
+
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>none</phase>
+						<goals></goals>
+					</execution>
+				</executions>
+		    </plugin>
+
+
+
+
+
+
+
+
+
+
+[INFO] 3K uploaded  (guice-dependencies-2.0.pom)
+[INFO] [INFO] Retrieving previous metadata from josceleton-sourceforge-server
+[INFO] [INFO] repository metadata for: 'artifact net.sf.josceleton.thirdparty.com.google.code.guice:guice-dependencies' could not be found on repository: josceleton-sourceforge-server, so will be created
+[INFO] [INFO] Uploading repository metadata for: 'artifact net.sf.josceleton.thirdparty.com.google.code.guice:guice-dependencies'
+[INFO] [INFO] [changes:changes-validate {execution: validate-changes}]
+[INFO] [WARNING] changes.xml file /Users/phudy/_dev/pulse/josceleton-poms-reactor/guice-dependencies/target/checkout/src/changes/changes.xml does not exist.
+[INFO] [INFO] [antrun:run {execution: print-maven3-profile-message @pre-site}]
+[INFO] [INFO] Executing tasks
+[INFO] 
+[INFO] main:
+[INFO]      [echo] INFORMATION: using josceleton detected maven version 2
+[INFO] [INFO] Executed tasks
+[INFO] [INFO] [site:site {execution: default-site}]
+[INFO] [INFO] Parent project loaded from repository: net.sf.josceleton:corporate-pom:pom:0.1
+[INFO] Downloading: http://repository.sonatype.org/content/groups/public/net/sf/josceleton/corporate-pom/0.1/corporate-pom-0.1-site_en.xml
+[INFO] [INFO] Unable to find resource 'net.sf.josceleton:corporate-pom:xml:site_en:0.1' in repository sonatype.repo (http://repository.sonatype.org/content/groups/public)
+[INFO] Downloading: http://josceleton.sourceforge.net/maven/release//net/sf/josceleton/corporate-pom/0.1/corporate-pom-0.1-site_en.xml
+[INFO] [INFO] Unable to find resource 'net.sf.josceleton:corporate-pom:xml:site_en:0.1' in repository josceleton-repo-release (http://josceleton.sourceforge.net/maven/release/)
+[INFO] Downloading: http://repo1.maven.org/maven2/net/sf/josceleton/corporate-pom/0.1/corporate-pom-0.1-site_en.xml
+[INFO] [WARNING] Unable to get resource 'net.sf.josceleton:corporate-pom:xml:site_en:0.1' from repository central (http://repo1.maven.org/maven2): Error transferring file: Operation timed out
+
+
+
+
+
+
+
+
+https://github.com/sonatype/sisu-guice/blob/master/pom.xml
+
+        <!--
+| Standard LICENSE and NOTICE files
+-->
+        <plugin>
+          <artifactId>maven-remote-resources-plugin</artifactId>
+          <version>1.2</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>process</goal>
+              </goals>
+              <configuration>
+                <resourceBundles>
+                  <resourceBundle>org.apache:apache-jar-resource-bundle:1.4</resourceBundle>
+                </resourceBundles>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+
+
+
+        <!--
+| Make sure we only use Java5 methods
+-->
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>animal-sniffer-maven-plugin</artifactId>
+          <version>1.6</version>
+          <configuration>
+            <signature>
+              <groupId>org.codehaus.mojo.signature</groupId>
+              <artifactId>java15</artifactId>
+              <version>1.0</version>
+            </signature>
+          </configuration>
+          <executions>
+            <execution>
+              <id>check-java-1.5-compat</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+
+
+
+
+        <!--
+| Shared JarJar configuration
+-->
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>jarjar-maven-plugin</artifactId>
+          <version>1.3</version>
+          <configuration>
+            <rules>
+              <rule>
+                <pattern>net.sf.cglib.*</pattern>
+                <result>com.google.inject.internal.cglib.$@1</result>
+              </rule>
+              <rule>
+                <pattern>net.sf.cglib.**.*</pattern>
+                <result>com.google.inject.internal.cglib.@1.$@2</result>
+              </rule>
+              <rule>
+                <pattern>org.objectweb.asm.*</pattern>
+                <result>com.google.inject.internal.asm.$@1</result>
+              </rule>
+              <rule>
+                <pattern>org.objectweb.asm.**.*</pattern>
+                <result>com.google.inject.internal.asm.@1.$@2</result>
+              </rule>
+              <rule>
+                <pattern>com.google.inject.internal.util.*</pattern>
+                <result>com.google.inject.internal.util.$@1</result>
+              </rule>
+              <rule>
+                <pattern>com.google.inject.internal.util.**.*</pattern>
+                <result>com.google.inject.internal.util.@1.$@2</result>
+              </rule>
+              <keep>
+                <pattern>com.google.inject.**</pattern>
+              </keep>
+              <keep>
+                <pattern>com.googlecode.**</pattern>
+              </keep>
+            </rules>
+          </configuration>
+          <!--
+| JarJar all classes before running tests
+-->
+          <executions>
+            <execution>
+              <id>jarjar-classes</id>
+              <phase>process-test-classes</phase>
+              <goals>
+                <goal>jarjar</goal>
+              </goals>
+              <configuration>
+                <input>{classes}</input>
+              </configuration>
+            </execution>
+            <execution>
+              <id>jarjar-test-classes</id>
+              <phase>process-test-classes</phase>
+              <goals>
+                <goal>jarjar</goal>
+              </goals>
+              <configuration>
+                <input>{test-classes}</input>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.7.2</version>
+          <configuration>
+            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+          </configuration>
+        </plugin>
+
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+* Copyright (c) 2010-2011 Sonatype, Inc.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* and Apache License v2.0 which accompanies this distribution.
+* The Eclipse Public License is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* The Apache License v2.0 is available at
+* http://www.apache.org/licenses/LICENSE-2.0.html
+* You may elect to redistribute this code under either of these licenses.
+*******************************************************************************/

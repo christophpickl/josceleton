@@ -1,4 +1,82 @@
 
+=========================== AFTER RELEASING v0.3
+* releasen:
+
+
+!!! @release-app: README.txt content sollte von josceleton/src/main/resources daherkommen!!!
+	+++ genauso wie README.md fuer sf ;) machen ein ==> svn co svn:/artifacts/josceleton-reactor/tags/josceleton-0.x/distribution/README.txt (README.md)
+
+!!!! @SITE changelog + roadmap mergen zu "past & future"
+
+!! DISTRIBUTION PACKAGES fertig
+	! josceleton-0.3.jar sollte als ein jar(jarjar) daherkommen (nicht commons, etc)
+		- in gleichem libs/ folder dann auch alle thirdparty dinger reingeben
+
+	/README.txt
+	/LICENSE.txt
+	/source.zip { extracts to: /source/main|test/java/net/sf/josceleton/**/*.java}
+	/josceleton-0.3-with-dependencies.jar
+	/libs/
+	/libs/josceleton-0.3-jar
+	/libs/guice-0.2.jar
+	/libs/... 3rd party libs ...
+	/samples/
+	/samples/hello-world
+	/samples/using-services
+	/samples/positions-and-gestures
+	/samples/midi-route
+	/samples/maven-usage
+
+
+! release-app fixen wenn svn pfad anders ist:
+	No proper SVN tag was created: http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/guice-dependencies/tags/guice-dependencies-2.2/pom.xml
+	 ===> to: http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/guice-dependencies-2.2/pom.xml?view=log
+
+
+
+- @TEST fuer alle closeable einen (generischen?!) test schreiben, wo geprueft ob wenn closed() aufgerufen, dann eh alle weiteren eine exception werfen
+	=> @Exception statt IllegalStateException, eine eigene IllegalClosedStateException werfen!
+!! @API CODE rename BodyPart to Joint
+! @BUILD: in java-abstract-pom (und java-pom) sollen plugins konfiguriert werden, und erst fuer children enabled!
+- @release-app: anstatt nur datum im targetOrdner, auch sowas wie zb "2010-xx-yy-releaser-coroporate-pom" und "2010-xx-yy-package-josceleton"
+- @release-app: soll report ausprinten koennen (der text der in site/release_handbook.xml drinnen war soll exakt nachbaut werden! aber halt dynamisch generiert ;)
+!!! @BUILD: evtl doch alles mitm reaktor bauen (dadurch wuerde report aggregate gehn) => im build halt release-plugin config "disable-modules=commons,core-api,connection-impl"
+- mantis tickets aufraeumen + anpassen an neuen versionsplan
+- sourceforge piwik webanalytics anschaun
+
+! @API auf java 1.5 umstellen + auf SITE sagen dass >1.5 benoetigt wird
+! GUTE IDEE: @BUILD CODE QUALITY: wenn checkstyle_config nachbearbeiten, dann auch MethodCount raushaun (sodass in eclipse vorhanden ist!)
+
+-- @BUILD: move thirdy_party_libs stuff into release-app (shell scripts umschreiben, und auch jars ins release-app geben, oder... ja?)
+!!! @BUILD im 3rdparty-lib folder muessen ALLE (transitiven) deps auch drinnen sein => mvn sowas baun lassen!!! eg: mvn dependency:create-all FOR josceleton.pom
+@BUILD RELEASE def confirm(label) fuer: bevor mvn release ausgfuehrt wird, bevor sourceforge file release
+	do {
+		print label
+		print "do you want to continue? are you sure?"
+		in = raw_input()
+	} while(in == { "positive" or "no" })
+
+@API ZUGANG WICHTIG !!!!!!!!!!!!! GUTE SACHE:  selbst klasse instanziieren style:
+	ConnectionX cx = new ConnectionXImpl(); cx.open() # cx.openOnPort(1234); cx...; cx.close()
+	// interface ConnectionX extends Connection { void open(); }
+	// behind the scenes Josceleton static facade is used :( ... aber wenn jemand will....
+	// => maybe add optional constructor arg: "Connector connector", und auch "JosceletonFacade facade" 
+
+- nach version 1.0: release-app erweitern am schluss mit notifications: auf twitter/facebook/etc automatisch post
+	zb: zusaetlich in config_phudy.py noch shortText = "foobar" <= wird fuer twitter und anderes verwendet (aber halt generisch/abstrakt halten, damit wiederverwendet werden kann)
+-- @SITE wordpress verwenden um codesamples und dgl (ideen, andere kinect projekte) posten
+
+! irgendwo das wort KINECTOR verwenden (evtl facade klasse Josceleton?)
+
+- @SITE linkchecker verify plugin suchen+verwenden
+
+-- @POM cleanup poms: alle (grossen) kommentare rausnehmen, und mit referenz woher genommen in /pm/pom_notes.txt
+--- @release-app: bevor man es wirklich ausfuehrt, koennte man gesamten svn-baum kopieren, und es auf diesem dummy mal ausfuehren
+! @SITE metrics: unbedingt automatisch eclipse metrics erfassen!!!
+	1. ist haendisch muehsam
+	2. src/test sollte separat (plus aggregiert) gehandhabt werden
+	3. mehre dimensionen: per metrik, per modul, per main/test, per version (+gesamt aggregiert, nicht nur per moduleee)
+
 
 
 ==========================================

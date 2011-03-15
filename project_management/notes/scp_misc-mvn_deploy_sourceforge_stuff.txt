@@ -1,0 +1,30 @@
+
+
+MY fuer SITE:DEPLOY
+********************
+ssh -t <user>@shell.sf.net create
+<site><url>scp://shell.sourceforge.net/home/groups/j/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url>
+
+MY via SCP:
+********************
+!!! sftp <user>@web.sourceforge.net
+
+scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/repo
+
+mvn paths:
+	htdocs/maven/release
+	htdocs/maven/snapshot
+
+OFFICIAL fuer project WEB:
+********************
+> cred combined
+Hostname: web.sourceforge.net
+Path: htdocs/ 
+$ scp barfile jsmith,fooproject@web.sourceforge.net:htdocs
+
+OFFICIAL fuer DEVELOPER WEB:
+********************
+> cred normal
+Hostname: frs.sourceforge.net
+Path: userweb/htdocs/ 
+$ scp FILE jsmith@frs.sourceforge.net:userweb/htdocs

@@ -1,0 +1,37 @@
+go to https://sourceforge.net/apps/mantisbt/josceleton/adm_config_report.php
+
+
+- customize columns
+	1. field: view_issues_page_columns
+	2. type: complex
+	3. value: array( selection, edit, priority, id, category, summary, target_version, bugnotes_count )
+	// http://www.mantisbt.org/wiki/doku.php/mantisbt:customizing_columns_in_view_issues_page
+
+- customize status
+	1. field: status_enum_workflow
+	2. type: complex
+	3. value:
+
+		// 10 new, 20 waiting, 30 development, 40 confirm, 50 closed
+		see http://www.mantisbt.org/forums/viewtopic.php?f=5&t=6348
+		// has to be formatted in single line, see: http://www.mantisbt.org/bugs/view.php?id=9455
+		!! TODO evtl sogar quotes wegnehmen.....?
+		array ( 10 => '30:DEVELOPMENT,40:CONFIRM,50:CLOSED', 20 => '30:DEVELOPMENT,40:CONFIRM,50:CLOSED', 30 => '20:WAITING,40:CONFIRM,50:CLOSED', 40 => '20:WAITING,30:DEVELOPMENT,50:CLOSED' )
+		
+		10 new ... new
+		20 feed ... waiting
+		30 acknowledged X
+		40 confirmed X
+		50 assig ... development
+		80 resolv .. confirm
+		90 close .. closed
+		//// $s_status_enum_string = '10:new,20:waiting,30:development,40:confirm,50:closed'; 
+
+		array ( 10=>50:assigned,80:resolved,90:closed, 20=>50:assigned,80:resolved,90:closed, 50=>20:feedback,80:resolved,90:closed, 80=>20:feedback,50:assigned,90:closed )
+		array ( 10 => 50:assigned,80:resolved,90:closed, 20 => 50:assigned,80:resolved,90:closed, 50 => 20:feedback,80:resolved,90:closed, 80 => 20:feedback,50:assigned,90:closed )
+		array ( 10 => "50:assigned,80:resolved,90:closed", 20 => "50:assigned,80:resolved,90:closed", 50 => "20:feedback,80:resolved,90:closed", 80 => "20:feedback,50:assigned,90:closed" )
+		
+		
+
+
+

@@ -38,5 +38,9 @@
              ~~ 120h~~
 14.03. - 03:00 -  2h - code cleanup: coverage, warnings
 14.03. - 22:00 -  3h - project management (release planning)
-15.03. - 01:00 -  h - preparing release v0.3: update documentation
-             ~~ 125h~~
+15.03. - 01:00 -  3h - preparing release v0.3: update documentation
+15.03. - 04:00 -  2h - started implementation of MotionService (mainly AsyncFor)
+             ~~ 130h~~
+15.03. - 18:00 -  1h - project mgmt (board, mantis)
+15.03. - 19:00 -  h - 
+             ~~ 131h~~
