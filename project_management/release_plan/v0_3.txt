@@ -1,0 +1,131 @@
+Process Overview
+	Preprations:
+		Cleanup Code, Update Documentation, Update Maven Versions</li>
+	Create Tag:
+		Final Checks, Create Subversion Tags with Release Plugin</li>
+	Postparations:
+		Manual Checks, Upload Distribution Packages, Update SourceForge</li>
+	Plan new Release (optional):
+		Cleanup To Dos, Update Roadmaps
+
+------------------------
+
+    // REMEMBER to keep release guide/template updated!
+
+     /*******************************************************************\
+     |  PREPARATIONS                                                     |
+     \*******************************************************************/
+
+     CLEANUP CODE
+     =====================================================================
+XXXX * resolve all warnings from: eclipse, compiler, checkstyle
+XXXX * resolve "extended" warnings from: findbugs, pmd, cpd, ...
+XXXX * resolve tasktags: NO high-prio tasks ("FIXMEs"), preferrably no med-prio ("TODOs")
+XXXX * ensure stable build "mvn verify" // use provided release shellscript
+    
+     UPDATE DOCUMENTATION
+     =====================================================================
+     // no new planning, just freezing things ;)
+XXXX * update roadmap site: remove section about currently deploying version
+XXXX * update changelog site: add subsection about new version (complete mantis issue list)
+XXXX * update metrics site numbers
+    
+     UPDATE MAVEN VERSIONS - FIXATE
+     =====================================================================
+XXXX * figure out proper artifacts which have to be bumped up (note version numbers)
+XXXX * reference future tagged release versions (for all parents, and dependencies in java-pom) and commit changes
+       // pay special attention to java-pom
+
+
+     /*******************************************************************\
+     |  CREATE TAGS                                                      |
+     \*******************************************************************/
+
+     FINAL VERIFICATIONS
+     =====================================================================
+XXXX * ensure workspace is updated to head (if not using a fresh checkout)
+XXXX * again ensure stable build "mvn verify" // use provided release shellscript
+XXXX * ensure you have really nothing forgotten :)
+    
+     TAG WITH RELEASE PLUGIN
+     =====================================================================
+     // ATTENTION: !!! maven 2 only !!! do not tag reactors; only submodules directly !!!
+XXXX * configure shellscript data for mvn_scripts/release.sh
+XXXX * open shell; e.g.: $ ssh -t christoph_pickl,josceleton@shell.sf.net create
+XXXX * please check again all pom versions are correct (you dont want to mess up the build, its not worth your time ;)
+
+
+XXXX * prepare release-app config (specify which artifacts to tag and its version)
+XXXX * ensure constants for development switch are disabled
+XXXX * ensure mvn2 is used: mvn --version (mvn3 will fail)
+XXXX * ensure shell console to sourceforge is open
+
+XXXX * run: Releaser.py ...  and have a cup of tea, this can take a while ...
+       // release-plugin will create tags, deploy artifacts, bump up versions and commit changes for you
+    	... and checkout code from svn for you, and run some checks, and creates a so-la-la package for sf file repo upload
+
+
+     /*******************************************************************\
+     |  POSTPARATIONS                                                    |
+     \*******************************************************************/
+     
+     UPDATE MAVEN VERSIONS - SNAPSHOT
+     =====================================================================
+XXXX * reference new snapshot versions (for parent and dependencies) and commit changes
+       // pay special attention to java-pom
+     
+    
+     UPDATE SOURCEFORGE PROJECT
+     =====================================================================        
+XXXX * create README.md for release
+XXXX * create news entry
+
+
+
+     /*******************************************************************\
+     |  MANUAL CHECKS                                                    |
+     \*******************************************************************/
+	
+	// yes... one should do it :)
+	
+     CHECK QUICK LINKS ..... TODO !!!!!! (PARTLY) DONE BY release-app
+     =====================================================================
+XXXX * subversion tag existing:
+       http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/tags/josceleton-<VERSION>/
+XXXX * release artifact was deployed:
+       http://josceleton.sourceforge.net/maven/release/net/sf/josceleton/josceleton/<VERSION>/
+XXXX * site documentation was deployed:
+       http://josceleton.sourceforge.net/documentation/corporate-pom/<VERSION>/
+       
+     CHECK SITE DOCUMENTATION
+     =====================================================================
+XXXX * main site was deployed: (clean browser cache, and compare version numbers)
+       http://josceleton.sf.net
+XXXX * just click through site to roughly validate its working
+       - links are working
+       - samples compile and run
+       - referenced versions are all up2date
+
+     CHECK DISTRIBUTION PACKAGES
+     =====================================================================
+XXXX * create dummy project in eclipse and use jar-with-dependencies-imploded.jar for a quick test
+XXXX * ... do same for lib-exploded jar
+XXXX * clean local mvn repo (rm repo/net/sf/josceleton/*) and run ~"some maven sample app"
+
+
+     /*******************************************************************\
+     |  PREPARE NEW RELEASE (optional)                                   |
+     \*******************************************************************/
+
+     CLEANUP TODOS
+     =====================================================================
+XXXX * reorganize tasktags (move into textfile)
+XXXX * reorganize textfile(s)
+    
+     CREATE ROADMAPS
+     =====================================================================
+XXXX * ... update todos, update board, update mantis, ...
+XXXX * update documentation roadmap ("roadmap.xml")
+
+
+     [INFO] BUILD SUCCESSFUL :)
