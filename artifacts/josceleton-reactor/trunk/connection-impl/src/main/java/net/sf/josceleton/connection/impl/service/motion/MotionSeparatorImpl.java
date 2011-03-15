@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorListener;
+import net.sf.josceleton.connection.api.service.motion.MotionListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.body.BodyPart;
@@ -21,7 +21,7 @@ import com.google.inject.assistedinject.Assisted;
  * @since 0.4
  */
 class MotionSeparatorImpl
-	extends DefaultAsyncFor<User, MotionSeparatorListener>
+	extends DefaultAsyncFor<User, MotionListener>
 	implements MotionSeparatorInternal {
 	
 	private final Connection connection;
@@ -49,7 +49,7 @@ class MotionSeparatorImpl
 		final SkeletonInternal skeleton = this.skeletonByUser.get(user);
 		skeleton.update(jointPart, coordinate);
 		
-		for (MotionSeparatorListener currentListener : this.getListenersFor(user)) {
+		for (MotionListener currentListener : this.getListenersFor(user)) {
 			currentListener.onMoved(jointPart, coordinate, skeleton);
 		}
 	}
@@ -60,7 +60,7 @@ class MotionSeparatorImpl
 	}
 
 	/** {@inheritDoc} from {@link DefaultAsyncFor} */
-	@Override protected final void beforeAddListener(final User user, final MotionSeparatorListener listener) {
+	@Override protected final void beforeAddListener(final User user, final MotionListener listener) {
 		if(this.getListenersFor(user).contains(listener) == false) {
 			this.countAddedListeners++;
 		}
@@ -75,7 +75,7 @@ class MotionSeparatorImpl
 	}
 
 	/** {@inheritDoc} from {@link DefaultAsyncFor} */
-	@Override protected final void beforeRemoveListener(final User user, final MotionSeparatorListener listener) {
+	@Override protected final void beforeRemoveListener(final User user, final MotionListener listener) {
 		if(this.getListenersFor(user).contains(listener) == false) {
 			this.countAddedListeners--;
 		}

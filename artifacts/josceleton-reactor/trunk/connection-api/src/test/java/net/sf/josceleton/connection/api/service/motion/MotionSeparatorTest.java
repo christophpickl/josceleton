@@ -78,7 +78,7 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 			oneOf(connection).addListener(asConnectionListener(testee));
 		}});
 		
-		final MotionSeparatorListener listener = this.mock(MotionSeparatorListener.class);
+		final MotionListener listener = this.mock(MotionListener.class);
 		final User user = this.mock(User.class);
 		testee.addListenerFor(user, listener);
 		testee.removeListenerFor(user, listener);

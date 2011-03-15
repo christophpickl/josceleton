@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.not;
 import java.util.List;
 
 import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorListener;
+import net.sf.josceleton.connection.api.service.motion.MotionListener;
 import net.sf.josceleton.connection.api.test.TestableMotionSeparatorListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.core.api.entity.User;
@@ -40,7 +40,7 @@ public class MotionSeparatorIntegrationTest extends AbstractIntegrationTest {
 	}
 	
 	private void emulateTwoNewUsers(final int u1, final int u2,
-			final MotionSeparatorListener listener1, final MotionSeparatorListener listener2) {
+			final MotionListener listener1, final MotionListener listener2) {
 		final MotionSeparator motionSeparator = this.getMotionSeparator();
 		
 		dispatchUserMessage(u1, UserState.WAITING);

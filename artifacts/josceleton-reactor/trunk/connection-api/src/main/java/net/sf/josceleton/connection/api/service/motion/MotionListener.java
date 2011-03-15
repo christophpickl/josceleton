@@ -10,12 +10,12 @@ import net.sf.josceleton.core.api.entity.body.Skeleton;
  * 
  * @since 0.4
  */
-public interface MotionSeparatorListener extends Listener {
+public interface MotionListener extends Listener {
 	
 	/**
-	 * LUXURY JAVADOC finish
+	 * Will be invoked whenever the specific user has moved any body part.
 	 * 
-	 * Most likely both arguments will be ignored as listener preferes a full check of all relevant parts.
+	 * Most likely only the <code>skeleton</code> parameter will be used to do a full re-check of joint coordinates.
 	 * 
 	 * @param movedPart which has been, obviously, moved
 	 * @param updatedCoordinate the body part has moved to

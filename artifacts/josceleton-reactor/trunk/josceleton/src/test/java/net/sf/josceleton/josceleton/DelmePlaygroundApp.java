@@ -3,7 +3,7 @@ package net.sf.josceleton.josceleton;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
 import net.sf.josceleton.connection.api.service.motion.MotionSeparatorCache;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorListener;
+import net.sf.josceleton.connection.api.service.motion.MotionListener;
 import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
@@ -51,7 +51,7 @@ public class DelmePlaygroundApp {
 //		final MotionSeparator ms = Joseleton.getMotionSeparator(c); { internally calls lookupMotionSeparator }
 		final MotionSeparator ms = cache.lookupMotionSeparator(c);
 //		
-		final MotionSeparatorListener msl = new MotionSeparatorListener() {
+		final MotionListener msl = new MotionListener() {
 			@Override public void onMoved(final BodyPart part, final Coordinate coordinate, final Skeleton skeleton) {
 				System.out.println("moved part " + part + " to coordinate: " + coordinate);
 		} };
