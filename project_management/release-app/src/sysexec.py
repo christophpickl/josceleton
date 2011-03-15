@@ -59,7 +59,6 @@ def writeFile(path, content):
     openfile = open(path,"w")
     openfile.write(content)
     openfile.close()
-    
 
 def sysexec(command, displayedCommand = None):
     if displayedCommand == None: displayedCommand = command

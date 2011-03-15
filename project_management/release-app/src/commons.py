@@ -36,3 +36,12 @@ def webFileExists(baseWebUrl, fileToCheck):
     response = connection.getresponse()
     connection.close()
     return response.status == 200
+
+def removeSlashTrunk(fromSvnUrl):
+    token = "/trunk"
+    idxToken = fromSvnUrl.find(token)
+    if idxToken == -1:
+        return fromSvnUrl
+    
+    idxAfterToken = idxToken + len(token)
+    return fromSvnUrl[0:idxToken] + fromSvnUrl[idxAfterToken:]

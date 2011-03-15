@@ -1,4 +1,4 @@
-from commons import webFileExists, formatArtifactRelativeUrlBy
+from commons import webFileExists, formatArtifactRelativeUrlBy, removeSlashTrunk
 
 class PostconditionChecker:
         
@@ -17,7 +17,7 @@ class PostconditionChecker:
         baseWebUrl = "josceleton.svn.sourceforge.net"
         baseSvnUrl = "/viewvc/josceleton"
         svnTagUrl = "%s/%s/tags/%s-%s/pom.xml" % (baseSvnUrl,
-                                             artifact.svnRelativePath, # prototypes/release-playground
+                                             removeSlashTrunk(artifact.svnRelativePath), # prototypes/release-playground
                                              artifact.artifactId, artifact.versionRelease)
         errorMessage = "No proper SVN tag was created: http://%s%s" % (baseWebUrl, svnTagUrl)
         return errorMessage if webFileExists(baseWebUrl, svnTagUrl) == False else None

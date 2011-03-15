@@ -33,22 +33,23 @@ class Releaser:
             raw_input("Are you really sure? sysexec is enabled!")
             print
         
-        for i, artifact in enumerate(config.artifacts):
-            try:
+        artifact = None
+        try:
+            for i, artifact in enumerate(config.artifacts):
                 logi("---------------------- Releasing artifact '%s' with version %s (%i of %i)" %
                      (artifact.artifactId, artifact.versionRelease, i+1, len(config.artifacts)))
                 if config.sayEnabled: sayOsx("releasing artifact %s" % artifact.artifactId)
                 
                 self.processArtifact(artifact, config, targetFolder)
-                self.validatePostconditions(artifact)
+#                self.validatePostconditions(artifact)
                 
                 logi("---------------------- Finished releasing '%s'" % artifact.artifactId)
-                
-            except Exception as e:
-                loge("Error while releasing artifact %s: %s" % (artifact, e.message), e)
-                break
+            logi("RELEASE SUCCESS")
+            return True
+        except Exception as e:
+            loge("Error while releasing artifact %s: %s" % (artifact, e.message), e)
+            return False
         
-        logi("RELEASE SUCCESS")
     
     def validatePostconditions(self, artifact):
         logd("Checking post-conditions ...")
@@ -108,9 +109,8 @@ class Releaser:
     def checkout(self, artifact, config, targetFolder):
         logd("Checking out artifact: %s" % artifact.artifactId)
         
-        srcPath = artifact.svnPath + "/trunk"
         targetPath = os.path.join(targetFolder, artifact.artifactId)
-        svn("checkout %s %s --username %s --password %s" % (srcPath, targetPath, config.username, config.password))
+        svn("checkout %s %s --username %s --password %s" % (artifact.svnPath, targetPath, config.username, config.password))
 
         return targetPath
 

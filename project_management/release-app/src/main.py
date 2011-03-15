@@ -28,7 +28,9 @@ if __name__ == "__main__":
     logd("Starting app with configuration:")
     logd("  SYSEXEC_ENABLED = %s" % SYSEXEC_ENABLED)
     logd("  PRECONDITIONS_ENABLED = %s" % PRECONDITIONS_ENABLED)
-
+    
+    os.environ["MAVEN_OPTS"] = "-Xms256m -Xmx700m" # increase, to avoid out of heapspace (see animal-sniffer crash)
+    
     configModuleName = "config_%s" % uname()
     try:
         config = loadDynamicConfiguration(configModuleName)
@@ -40,9 +42,10 @@ if __name__ == "__main__":
     
     wasAnError = True
     try:
-#        Releaser().createNewWith(config)
-        Packager().wrapUp(config)
-        wasAnError = False
+        if Releaser().createNewWith(config) == True:
+            Packager().wrapUp(config)
+            wasAnError = False
+        
     except Exception as e:
         loge("Fatal application error: %s" % e, e)
         sys.exit(1)
