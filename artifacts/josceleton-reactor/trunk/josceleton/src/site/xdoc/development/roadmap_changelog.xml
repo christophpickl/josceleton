@@ -14,8 +14,14 @@
 				On this page you will find two subsections: a roadmap about planned features (representing the future) 
 				and a changelog with a list of closed issues (representing the past).
 			</p>
-		
+			
+			
+		    <!-- ******************************************************************* -->
+		    <!--                            R O A D M A P                            -->
+		    <!-- ******************************************************************* -->
+		    
 			<subsection name="Roadmap">
+			
 				<p>
 					The following list shows a very rough and high-level view of upcoming milestones/features.
 					For a more concrete list of features please have a look at the 
@@ -28,35 +34,53 @@
 <!--					<li>...</li>-->
 <!--				</ul>-->
 				
-				<h4>Version 0.4</h4>
+			    <!-- 0.5 -->
+		    	<!-- *********************************************************** -->
+		    	
+				<h4>Version 0.5</h4>
 				<p><i>Work in prgoress</i></p>
 				<ul>
 					<li>Not yet available :)</li>
-<!--					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=1">#0000001</a> -->
-<!--							<code>[API Enhancement]</code> Add basic position detection feature</li>-->
-<!--					<li>extend legacy code (Builder used to create positions)</li>-->
-<!--					<li>add new movement detection module and implement basic position detections (and stable value provider? eg: fire volume constantly via x-coordinate)</li>-->
-<!--					<li>extension module for MotionCapturer (gestures, positions)</li>-->
+				</ul>
+				
+			    <!-- 0.4 -->
+		    	<!-- *********************************************************** -->
+		    	
+				<h4>Version 0.4</h4>
+				<p>Finished (part of) foundation logic and introducing first <b>Gesture</b>.</p>
+				<ul>
+					<li>Add <code>MotionService</code></li>
+					<li>Add first gesture detection: <code>HitWallGesture</code></li>
 				</ul>
 				
 			</subsection>
 			
+			
+		    <!-- ******************************************************************* -->
+		    <!--                          C H A N G E L O G                          -->
+		    <!-- ******************************************************************* -->
+		    
 			<subsection name="Changelog">
 				
+			    <!-- 0.3 -->
+		    	<!-- *********************************************************** -->
+		    	
 				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.3/josceleton-reactor/index.html">Version 0.3</a> (2001-03-15)</h4>
 				<p>
-					Introducing services working on top of connection: UserService to manage users correctly through
-					dispatching artifical user messages.
+					Enhanced foundation logic: Introducing new <code>UserService</code> to provide a consistent user management.
 				</p>
 				<ul>
-					<li>Feature: New UserService class to manage users correctly</li>
-					<li>Bugfix: Crash when got same id by osceleton</li>
-					<li>Download contains improved distribution package</li>
-<!--					<li>extend legacy code (AsyncFor)</li>-->
-<!--					<li>store (recent) movement in motion tracker; RecentMotionStorage</li>-->
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=15">#0000015</a> 
+						<code>[API Enhancement]</code> Add UserService to properly keep track of available users</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=20">#0000020</a> 
+						<code>[API Enhancement]</code> Bugfix: Crash when OSCeleton gets restarted and reuses user IDs</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=7">#0000007</a> 
+						<code>[Test]</code> Add Integration Tests</li>
 				</ul>
 				
-				
+			    <!-- 0.2 -->
+		    	<!-- *********************************************************** -->
+		    	
 				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.2/josceleton-reactor/index.html">Version 0.2</a> (2011-03-11)</h4>
 				<p>
 					Introducing Josceleton Facade providing a simplified access to the API. This module also provides a 
@@ -71,7 +95,9 @@
 						<code>[Documentation]</code> Setup initial documentation</li>
 				</ul>
 		
-		
+			    <!-- 0.1 -->
+		    	<!-- *********************************************************** -->
+		    	
 				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.1/josceleton-reactor/index.html">Version 0.1</a> (2011-03-08)</h4>
 				<p>
 					Initial version providing simple access to a OSCeleton server.

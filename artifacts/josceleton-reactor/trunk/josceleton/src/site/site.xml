@@ -31,13 +31,15 @@
 		
 		<menu name="Internals (for Developers)">
 			<item name="Roadmap &amp; Changelog" href="development/roadmap_changelog.html" />
-			<item name="Project Metrics" href="development/project_metrics.html" />
-			
+			<item name="Metrics" href="development/project_metrics.html" />
+			<item name="Source Repository" href="source-repository.html" />
 <!--			<item name="Development" href="development/development.html" />-->
 <!--			<item name="Coding Policy" href="development/coding_policy.html" />-->
+			<item name="Team" href="team-list.html" />
+			<item name="License" href="license.html" />
 		</menu>
 		
-		<menu ref="reports" />
+<!--		<menu ref="reports" />-->
 		
 	</body>
 	

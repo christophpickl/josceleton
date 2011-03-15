@@ -63,10 +63,10 @@
 					<tr><td>Open TODO Tasks</td>				<td>?</td>		<td>2</td>		<td>6</td></tr>
 					<tr><td>Open MINOR Tasks</td>				<td>?</td>		<td>27</td>		<td>13</td></tr>
 					<tr><td>Open LUXURY Tasks</td>				<td>?</td>		<td>15</td>		<td>3</td></tr>
-					<!-- MINOR @SITE project metrics: auch file size (jarjar size) messen -->
-<!--					<tr><td>File Size</td><td>?</td><td>?</td></tr>-->
+					<!-- MINOR @SITE project metrics: auch jarjar filesize (gscheid!) messen -->
+					<tr><td>File Size</td>						<td>?</td>		<td>111KB</td>	<td>131KB</td></tr>
 					<tr><td>Number of Modules</td>				<td>5</td>		<td>6</td>		<td>6</td></tr>
-					<tr><td>Build Time</td>						<td>??</td>		<td>45min</td>	<td>N/A</td></tr>
+					<tr><td>Build Time</td>						<td>??</td>		<td>40min</td>	<td>45min</td></tr>
 
 				</tbody>
 			</table>

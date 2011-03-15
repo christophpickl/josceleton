@@ -10,7 +10,13 @@
 			
 			<h3>Binary Packages</h3>
 			<p>
-				You can download all files from the <a href="https://sourceforge.net/projects/josceleton/files/Josceleton">SourceForge File Repository</a>.
+				You can simply 
+				<a href="http://sourceforge.net/projects/josceleton/files/latest">download the latest release</a>
+				or have a look t at the SourceForge 
+				<a href="https://sourceforge.net/projects/josceleton/files/Josceleton">File Repository</a>.
+			</p>
+			<p>
+				
 			</p>
 			
 			<h3>Maven Dependency Management</h3>
