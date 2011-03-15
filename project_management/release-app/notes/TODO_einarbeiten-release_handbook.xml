@@ -57,7 +57,7 @@ XXXX * update changelog site: update (aggregated and per-project) metrics
      UPDATE MAVEN VERSIONS - FIXATE
      =====================================================================
 XXXX * figure out proper artifacts which have to be bumped up (note version numbers)
-XXXX * reference future tagged release versions (for parent and dependencies) and commit changes
+XXXX * reference future tagged release versions (for all parents, and dependencies in java-pom) and commit changes
        // pay special attention to java-pom
 
 

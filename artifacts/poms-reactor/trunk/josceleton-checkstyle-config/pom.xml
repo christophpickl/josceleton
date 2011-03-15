@@ -22,14 +22,19 @@
     <parent>
     	<groupId>net.sf.josceleton</groupId>
 	    <artifactId>corporate-pom</artifactId>
-        <version>0.3-SNAPSHOT</version>
+        <version>0.3</version>
 <!--        <relativePath>../../[josceleton-]corporate-pom/</relativePath>-->
     </parent>
     
+    
+    <!-- ******************************************************************* -->
+    <!--                              B U I L D                              -->
+    <!-- ******************************************************************* -->
+    
     <build>
-    	
-    	<!-- magic: invoke groovy script removing SuppressionFilter module from checkstyle.xml -->
     	 <plugins>
+    	 
+	    	<!-- there is some magic going on: invoke groovy script removing SuppressionFilter module from checkstyle.xml -->
 			<plugin>
 				<groupId>org.codehaus.groovy.maven</groupId>
 				<artifactId>gmaven-plugin</artifactId>
@@ -45,7 +50,7 @@
 							<source>${basedir}/src/main/script/process_checkstyle_xml.groovy</source>
 							<properties>
 								<checkstyleXmlPath>${basedir}/src/main/resources/checkstyle.xml</checkstyleXmlPath>
-<!--								<checkstyleXmlPath>src/main/resources/checkstyle.xml</checkstyleXmlPath>-->
+<!--								or just? <checkstyleXmlPath>src/main/resources/checkstyle.xml</checkstyleXmlPath>-->
 								<targetXmlFilePath>${basedir}/target/classes/checkstyle.xml</targetXmlFilePath>
 							</properties>
 						</configuration>
@@ -54,7 +59,6 @@
 			</plugin>
 		
 		</plugins>
-    	 
     </build>
     
     
