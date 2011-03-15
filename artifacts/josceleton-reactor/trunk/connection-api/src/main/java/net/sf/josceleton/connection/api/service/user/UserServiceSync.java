@@ -1,4 +1,4 @@
-package net.sf.josceleton.connection.api.service;
+package net.sf.josceleton.connection.api.service.user;
 
 import java.util.Collection;
 

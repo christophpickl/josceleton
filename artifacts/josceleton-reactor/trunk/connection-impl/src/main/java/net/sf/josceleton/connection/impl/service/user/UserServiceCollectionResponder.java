@@ -1,4 +1,4 @@
-package net.sf.josceleton.connection.impl.service;
+package net.sf.josceleton.connection.impl.service.user;
 
 import net.sf.josceleton.core.api.entity.User;
 

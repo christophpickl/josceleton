@@ -1,6 +1,6 @@
 package net.sf.josceleton.connection.impl.osc;
 
-import net.sf.josceleton.connection.impl.service.UserStore;
+import net.sf.josceleton.connection.impl.service.user.UserStore;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;

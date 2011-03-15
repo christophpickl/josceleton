@@ -1,4 +1,4 @@
-package net.sf.josceleton.connection.api.service;
+package net.sf.josceleton.connection.api.service.user;
 
 import net.sf.josceleton.core.api.async.Async;
 

@@ -3,7 +3,7 @@ package net.sf.josceleton.connection.api.test;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.sf.josceleton.connection.api.service.UserServiceListener;
+import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 

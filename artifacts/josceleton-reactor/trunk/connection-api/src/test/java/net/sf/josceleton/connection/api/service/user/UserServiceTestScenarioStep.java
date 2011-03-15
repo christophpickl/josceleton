@@ -1,10 +1,11 @@
-package net.sf.josceleton.connection.api.service;
+package net.sf.josceleton.connection.api.service.user;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.util.List;
 
+import net.sf.josceleton.connection.api.test.TestableUserServiceDispatcher;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 

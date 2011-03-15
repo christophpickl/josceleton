@@ -1,8 +1,8 @@
 package net.sf.josceleton.josceleton;
 
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.connection.api.service.UserService;
-import net.sf.josceleton.connection.api.service.UserServiceListener;
+import net.sf.josceleton.connection.api.service.user.UserService;
+import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 
 public class DelmePlaygroundApp {

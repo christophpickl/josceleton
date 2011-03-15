@@ -1,6 +1,6 @@
-package net.sf.josceleton.connection.impl.service;
+package net.sf.josceleton.connection.impl.service.user;
 
-import net.sf.josceleton.connection.api.service.UserService;
+import net.sf.josceleton.connection.api.service.user.UserService;
 
 /**
  * Extends the common <code>UserService</code> interface with the <code>UserStore</code> interface only.

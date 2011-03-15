@@ -1,6 +1,6 @@
-package net.sf.josceleton.connection.impl.service;
+package net.sf.josceleton.connection.impl.service.user;
 
-import net.sf.josceleton.connection.api.service.UserServiceSync;
+import net.sf.josceleton.connection.api.service.user.UserServiceSync;
 import net.sf.josceleton.core.api.entity.User;
 
 /**

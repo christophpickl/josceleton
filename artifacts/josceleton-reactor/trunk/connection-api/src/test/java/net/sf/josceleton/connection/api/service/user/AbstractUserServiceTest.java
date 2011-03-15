@@ -1,4 +1,4 @@
-package net.sf.josceleton.connection.api.service;
+package net.sf.josceleton.connection.api.service.user;
 
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
+import net.sf.josceleton.connection.api.test.TestableUserServiceDispatcher;
 import net.sf.josceleton.connection.api.test.TestableUserServiceListener;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;

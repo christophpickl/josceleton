@@ -3,10 +3,10 @@ package net.sf.josceleton.connection.impl;
 import java.util.Date;
 
 import net.sf.josceleton.connection.api.ConnectionListener;
-import net.sf.josceleton.connection.api.service.UserService;
+import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.impl.osc.OscMessageTransformer;
 import net.sf.josceleton.connection.impl.osc.OscPort;
-import net.sf.josceleton.connection.impl.service.UserServiceInternal;
+import net.sf.josceleton.connection.impl.service.user.UserServiceInternal;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.async.CloseableAndAsyncSkeleton;

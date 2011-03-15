@@ -1,5 +1,6 @@
-package net.sf.josceleton.connection.api.service;
+package net.sf.josceleton.connection.api.test;
 
+import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
 

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
-import net.sf.josceleton.connection.impl.service.UserStore;
+import net.sf.josceleton.connection.impl.service.user.UserStore;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;

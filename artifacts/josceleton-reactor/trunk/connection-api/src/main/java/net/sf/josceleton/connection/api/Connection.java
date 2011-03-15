@@ -1,6 +1,6 @@
 package net.sf.josceleton.connection.api;
 
-import net.sf.josceleton.connection.api.service.UserService;
+import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.core.api.async.Async;
 import net.sf.josceleton.core.api.async.Closeable;
 

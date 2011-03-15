@@ -4,7 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.sameInstance;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
-import net.sf.josceleton.connection.impl.service.UserStore;
+import net.sf.josceleton.connection.impl.service.user.UserStore;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.body.Body;
