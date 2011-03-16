@@ -4,9 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 import net.sf.josceleton.commons.test.AbstractExceptionTest;
-import net.sf.josceleton.core.api.entity.joint.Joint;
-import net.sf.josceleton.core.api.entity.joint.Joints;
-import net.sf.josceleton.core.api.entity.joint.SkeletonCoordinateUnavailableException;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
