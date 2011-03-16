@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.api.entity.joint2;
+package net.sf.josceleton.core.api.entity.joint;
 
 import java.util.Arrays;
 import java.util.Collections;

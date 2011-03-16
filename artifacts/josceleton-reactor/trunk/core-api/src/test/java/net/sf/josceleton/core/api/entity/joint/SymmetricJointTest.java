@@ -1,10 +1,22 @@
-package net.sf.josceleton.core.api.entity.joint2;
+package net.sf.josceleton.core.api.entity.joint;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import net.sf.josceleton.commons.test.AbstractEqualsTest;
 import net.sf.josceleton.commons.test.EqualsDescriptor;
 import net.sf.josceleton.commons.test.util.TestUtil;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider;
+import net.sf.josceleton.core.api.entity.joint.JointParts;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.AnklesImpl;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.ElbowsImpl;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.FeetImpl;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.HandsImpl;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.HipsImpl;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.KneesImpl;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.ShouldersImpl;
 import net.sf.josceleton.core.api.entity.joint.JointParts.LeftJoint;
 import net.sf.josceleton.core.api.entity.joint.JointParts.RightJoint;
 import net.sf.josceleton.core.api.entity.joint.JointParts.SymetricJoint;

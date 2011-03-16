@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.api.entity.body;
+package net.sf.josceleton.core.api.entity.joint;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

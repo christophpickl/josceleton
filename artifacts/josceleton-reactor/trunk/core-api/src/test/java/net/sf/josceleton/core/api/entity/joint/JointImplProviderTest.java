@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.api.entity.joint2;
+package net.sf.josceleton.core.api.entity.joint;
 
 import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.hasSinglePrivateNullifiedConstructorAndInvokeIt;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -6,6 +6,13 @@ import static org.hamcrest.Matchers.equalTo;
 import net.sf.josceleton.commons.test.AbstractEqualsTest;
 import net.sf.josceleton.commons.test.EqualsDescriptor;
 import net.sf.josceleton.commons.test.util.TestUtil;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.HeadImpl;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.NeckImpl;
+import net.sf.josceleton.core.api.entity.joint.JointImplProvider.TorsoImpl;
 import net.sf.josceleton.core.api.test.TestableJoint;
 
 import org.testng.annotations.DataProvider;

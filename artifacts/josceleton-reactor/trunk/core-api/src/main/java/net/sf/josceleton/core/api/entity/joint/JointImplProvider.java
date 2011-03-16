@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.api.entity.joint2;
+package net.sf.josceleton.core.api.entity.joint;
 
 import net.sf.josceleton.core.api.entity.joint.JointParts.Ankle;
 import net.sf.josceleton.core.api.entity.joint.JointParts.Ankles;

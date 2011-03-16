@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.api.entity.joint2;
+package net.sf.josceleton.core.api.entity.joint;
 
 /**
  * This class represents joints in the human body at which two parts of the skeleton are fitted together.
