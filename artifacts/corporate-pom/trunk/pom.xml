@@ -317,7 +317,10 @@
 									<!-- generates a default index.html page; but we always have our own and to suppress
 										 About menu entry referencing same index.html (duplicate references in navi) -->
 									<!-- <report>index</report> -->
-		                            <report>dependencies</report>
+									
+									<!-- FIXME @RELEASE incomment dependencies report -->
+<!--		                            <report>dependencies</report>-->
+
 		                            <report>project-team</report>
 		                            <report>issue-tracking</report>
 		                            <report>license</report>
