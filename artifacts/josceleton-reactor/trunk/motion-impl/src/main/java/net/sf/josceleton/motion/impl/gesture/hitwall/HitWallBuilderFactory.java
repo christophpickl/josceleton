@@ -1,4 +1,4 @@
-package net.sf.josceleton.motion.impl.gesture;
+package net.sf.josceleton.motion.impl.gesture.hitwall;
 
 import net.sf.josceleton.motion.api.gesture.HitWallBuilder;
 

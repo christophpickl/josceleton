@@ -24,10 +24,10 @@ public abstract class GestureBuilderImpl<
 
 	private Collection<Joint> pAttachedJoints;
 	
-	@Override public final B attachedJoints(final Joint joint, final Joint... moreJoints) {
-		final Set<Joint> allJoints = new HashSet<Joint>(1 + moreJoints.length);
-		allJoints.add(joint);
-		allJoints.addAll(Arrays.asList(moreJoints));
+	@Override public final B attachedJoints(final Joint atLeastOneJoint, final Joint... optionallyMoreJoints) {
+		final Set<Joint> allJoints = new HashSet<Joint>(1 + optionallyMoreJoints.length);
+		allJoints.add(atLeastOneJoint);
+		allJoints.addAll(Arrays.asList(optionallyMoreJoints));
 		
 		this.pAttachedJoints = Collections.unmodifiableSet(allJoints);
 		

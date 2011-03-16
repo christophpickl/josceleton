@@ -10,7 +10,9 @@ import com.google.inject.AbstractModule;
 public class MotionImplModule extends AbstractModule {
 
 	@Override protected final void configure() {
-		this.install(new MotionImplGestureModule());
+		
+		install(new MotionImplGestureModule());
+		
 	}
 
 }

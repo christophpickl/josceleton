@@ -17,15 +17,22 @@ public abstract class AbstractGesture<C extends GestureConfig, L extends Gesture
 	extends DefaultAsync<L>
 	implements Gesture<C, L> {
 	
-	private final Collection<Joint> interestingJoints;
+	private final Collection<Joint> relevantJoints;
+	
 	
 	public AbstractGesture(final GestureConfig configuration) {
-		this.interestingJoints = configuration.getJointsInterestedIn();
+		this.relevantJoints = configuration.getRelevantJoints();
 	}
 
+	/**
+	 * Performance enhanced <code>onMoved</code> method, as it will only be called  
+	 */
+	protected abstract void onMovedInteresting(Joint movedJoint, Coordinate updatedCoordinate, Skeleton skeleton);	
+	
 	@Override public final void onMoved(
 			final Joint movedJoint, final Coordinate updatedCoordinate, final Skeleton skeleton) {
-		if(this.interestingJoints.contains(movedJoint) == true) {
+		
+		if(this.relevantJoints.contains(movedJoint) == true) {
 			this.onMovedInteresting(movedJoint, updatedCoordinate, skeleton);
 		}
 	}
@@ -35,6 +42,4 @@ public abstract class AbstractGesture<C extends GestureConfig, L extends Gesture
 			listener.onGestureDetected(skeleton);
 		}
 	}
-	
-	protected abstract void onMovedInteresting(Joint movedJoint, Coordinate updatedCoordinate, Skeleton skeleton);	
 }

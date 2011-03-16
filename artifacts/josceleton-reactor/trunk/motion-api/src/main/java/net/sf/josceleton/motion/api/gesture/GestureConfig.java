@@ -9,5 +9,5 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
  */
 public interface GestureConfig {
 	
-	Collection<Joint> getJointsInterestedIn();
+	Collection<Joint> getRelevantJoints();
 }

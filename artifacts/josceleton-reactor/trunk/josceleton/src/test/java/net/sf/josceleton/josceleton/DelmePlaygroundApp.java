@@ -13,7 +13,7 @@ import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
-import net.sf.josceleton.motion.api.gesture.GestureFactory;
+import net.sf.josceleton.motion.api.gesture.GestureFactoryFacade;
 import net.sf.josceleton.motion.api.gesture.HitWallGesture;
 import net.sf.josceleton.motion.api.gesture.HitWallListener;
 
@@ -28,10 +28,10 @@ public class DelmePlaygroundApp {
 	public final void firstGesturePlayground() {
 		final Injector injector = Josceleton.newGuiceInjector();
 		final Joint joint = Joints.HAND().RIGHT();
-		final GestureFactory factory = injector.getInstance(GestureFactory.class);
+		final GestureFactoryFacade factory = injector.getInstance(GestureFactoryFacade.class);
 		final HitWallGesture gesture = factory.newHitWall()
 			.direction(XyzDirection.Y)
-			.triggerLower(true)
+			.triggerOnLower(true)
 			.coordinateValue(0.5F)
 			.attachedJoints(joint)
 			.build();

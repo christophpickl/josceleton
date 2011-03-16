@@ -1,7 +1,7 @@
 package net.sf.josceleton.motion.api.gesture;
 
 
-public interface GestureFactory {
+public interface GestureFactoryFacade {
 	
 	HitWallBuilder newHitWall();
 	

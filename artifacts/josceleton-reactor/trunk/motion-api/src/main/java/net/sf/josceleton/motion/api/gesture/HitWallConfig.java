@@ -15,11 +15,11 @@ public interface HitWallConfig extends GestureConfig {
 	/**
 	 * @since 0.4
 	 */
-	float getCoordinateValue();
+	float getCoordinate();
 
 	/**
 	 * @since 0.4
 	 */
-	boolean getTriggerLower();
+	boolean getTriggerOnLower();
 	
 }

@@ -1,4 +1,4 @@
-package net.sf.josceleton.motion.impl.gesture;
+package net.sf.josceleton.motion.impl.gesture.hitwall;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.XyzDirection;
@@ -7,6 +7,7 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.motion.api.gesture.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.HitWallGesture;
 import net.sf.josceleton.motion.api.gesture.HitWallListener;
+import net.sf.josceleton.motion.impl.gesture.AbstractGesture;
 
 /**
  * @since 0.4
@@ -25,8 +26,8 @@ class HitWallGestureImpl extends AbstractGesture<HitWallConfig, HitWallListener>
 		
 		this.configuration = configuration;
 		this.configDirecton = this.configuration.getDirection();
-		this.triggerLower = this.configuration.getTriggerLower();
-		this.coordinateValue = this.configuration.getCoordinateValue();
+		this.triggerLower = this.configuration.getTriggerOnLower();
+		this.coordinateValue = this.configuration.getCoordinate();
 		// there is only one joint for hitwall gesture
 //		final Joint joint = configuration.getJointsInterestedIn().iterator().next(); ... NO: already filtered by super
 		

@@ -1,4 +1,4 @@
-package net.sf.josceleton.motion.impl.gesture;
+package net.sf.josceleton.motion.impl.gesture.hitwall;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -11,6 +11,7 @@ import net.sf.josceleton.motion.api.gesture.HitWallBuilder;
 import net.sf.josceleton.motion.api.gesture.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.HitWallGesture;
 import net.sf.josceleton.motion.api.gesture.HitWallListener;
+import net.sf.josceleton.motion.impl.gesture.GestureBuilderImpl;
 
 /**
  * @since 0.4
@@ -18,11 +19,11 @@ import net.sf.josceleton.motion.api.gesture.HitWallListener;
 class HitWallBuilderImpl extends GestureBuilderImpl<HitWallBuilder, HitWallGesture, HitWallConfig, HitWallListener>
 	implements HitWallBuilder {
 	
-	private static final Collection<Joint> DEFAULT_ATTACHED_JOINTS;
+	private static final Collection<Joint> DEFAULT_RELEVANT_JOINTS;
 	static {
 		final Collection<Joint> tmp = new HashSet<Joint>();
 		tmp.add(Joints.HAND().RIGHT());
-		DEFAULT_ATTACHED_JOINTS = Collections.unmodifiableCollection(tmp);
+		DEFAULT_RELEVANT_JOINTS = Collections.unmodifiableCollection(tmp);
 	}
 	
 	private static final XyzDirection DEFAULT_DIRECTION = XyzDirection.Y;
@@ -34,39 +35,42 @@ class HitWallBuilderImpl extends GestureBuilderImpl<HitWallBuilder, HitWallGestu
 	
 	private XyzDirection pDirection = DEFAULT_DIRECTION;
 	
-	private float pCoordinateValue = DEFAULT_COORDINATE;
+	private float pCoordinate = DEFAULT_COORDINATE;
 	
-	private boolean pTriggerLower = DEFAULT_LOWER;
+	private boolean pTriggerOnLower = DEFAULT_LOWER;
 	
 	
 	@Override public final HitWallGesture build() {
-		final Collection<Joint> attachedJoints;
+		final Collection<Joint> relevantJoints;
 		final Collection<Joint> configuredAttachedJoints = this.getPAttachedJoints();
 		if(configuredAttachedJoints != null) {
-			attachedJoints = configuredAttachedJoints;
+			relevantJoints = configuredAttachedJoints;
 		} else {
-			attachedJoints = DEFAULT_ATTACHED_JOINTS;
+			relevantJoints = DEFAULT_RELEVANT_JOINTS;
 		}
 		
 		return new HitWallGestureImpl(
 			new HitWallConfigImpl(
-				this.pCoordinateValue, this.pDirection, this.pTriggerLower, attachedJoints));
+				this.pCoordinate, this.pDirection, this.pTriggerOnLower, relevantJoints));
 	}
 
 	// MINOR check for null args in builder?
 	
 	@Override public final HitWallBuilder direction(final XyzDirection direction) {
+		// TODO if(direction == null)  1. throw exception? 2. set to default value?
 		this.pDirection = direction;
 		return this;
 	}
 
 	@Override public final HitWallBuilder coordinateValue(final float coordinateValue) {
-		this.pCoordinateValue = coordinateValue;
+		// TODO validate correct argument: [0.0 .. 7.0] (as it could be either for X/Y or Z, we dont know yet)
+		// OUTSOURCE this argument check! maybe create own type CoordinateValue
+		this.pCoordinate = coordinateValue;
 		return this;
 	}
 
-	@Override public final HitWallBuilder triggerLower(final boolean triggerLower) {
-		this.pTriggerLower = triggerLower;
+	@Override public final HitWallBuilder triggerOnLower(final boolean triggerOnLower) {
+		this.pTriggerOnLower = triggerOnLower;
 		return this;
 	}
 

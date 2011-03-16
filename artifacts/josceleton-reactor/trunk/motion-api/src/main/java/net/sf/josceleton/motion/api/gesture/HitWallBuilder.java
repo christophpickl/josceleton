@@ -20,6 +20,6 @@ public interface HitWallBuilder extends GestureBuilder<HitWallBuilder, HitWallGe
 	/**
 	 * @since 0.4
 	 */
-	HitWallBuilder triggerLower(boolean triggerLower); // TODO rename triggerLower
+	HitWallBuilder triggerOnLower(boolean triggerLower); // TODO rename triggerLower
 
 }

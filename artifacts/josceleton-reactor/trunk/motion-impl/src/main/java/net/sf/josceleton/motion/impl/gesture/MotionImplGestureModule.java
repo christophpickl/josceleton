@@ -1,9 +1,9 @@
 package net.sf.josceleton.motion.impl.gesture;
 
-import net.sf.josceleton.motion.api.gesture.GestureFactory;
+import net.sf.josceleton.motion.api.gesture.GestureFactoryFacade;
+import net.sf.josceleton.motion.impl.gesture.hitwall.MotionImplGestureHitwallModule;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.assistedinject.FactoryProvider;
 
 /**
  * @since 0.4
@@ -15,11 +15,8 @@ public class MotionImplGestureModule extends AbstractModule {
 	 */
 	@Override protected final void configure() {
 		
-		bind(GestureFactory.class).to(GestureFactoryImpl.class);
-		
-//		bind(HitWallGestureBuilder.class).to(HitWallGestureBuilderImpl.class);
-		this.bind(HitWallBuilderFactory.class).toProvider(
-				FactoryProvider.newFactory(HitWallBuilderFactory.class, HitWallBuilderImpl.class));
+		bind(GestureFactoryFacade.class).to(GestureFactoryFacadeImpl.class);
+		install(new MotionImplGestureHitwallModule());
 		
 	}
 

@@ -30,7 +30,7 @@ public class TestableHitWallGestureConfiguration implements HitWallConfig {
 		this.jointsInterestedIn = jointsInterestedIn;
 	}
 
-	@Override public final float getCoordinateValue() {
+	@Override public final float getCoordinate() {
 		return this.coordinateValue;
 	}
 
@@ -38,11 +38,11 @@ public class TestableHitWallGestureConfiguration implements HitWallConfig {
 		return this.direction;
 	}
 
-	@Override public final boolean getTriggerLower() {
+	@Override public final boolean getTriggerOnLower() {
 		return this.triggerLower;
 	}
 
-	@Override public final Collection<Joint> getJointsInterestedIn() {
+	@Override public final Collection<Joint> getRelevantJoints() {
 		return this.jointsInterestedIn;
 	}
 
