@@ -8,7 +8,7 @@ import com.google.inject.assistedinject.FactoryProvider;
  * 
  * @since 0.1
  */
-public class CoreImplEntityGuiceModule extends AbstractModule {
+public class CoreImplEntityModule extends AbstractModule {
 
 	@Override protected final void configure() {
 		
