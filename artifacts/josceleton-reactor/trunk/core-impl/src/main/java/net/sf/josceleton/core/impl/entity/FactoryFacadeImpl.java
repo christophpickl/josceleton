@@ -3,7 +3,7 @@ package net.sf.josceleton.core.impl.entity;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.entity.message.JointMessageFactory;
@@ -36,9 +36,9 @@ class FactoryFacadeImpl implements FactoryFacade {
 	}
 
 	/** {@inheritDoc} from {@link FactoryFacade} */
-	@Override public final JointMessage createJointMessage(final User user, final BodyPart jointPart,
+	@Override public final JointMessage createJointMessage(final User user, final Joint joint,
 			final Coordinate coordinate) {
-		return this.jointMessageFactory.create(user, jointPart, coordinate);
+		return this.jointMessageFactory.create(user, joint, coordinate);
 	}
 
 	/** {@inheritDoc} from {@link FactoryFacade} */

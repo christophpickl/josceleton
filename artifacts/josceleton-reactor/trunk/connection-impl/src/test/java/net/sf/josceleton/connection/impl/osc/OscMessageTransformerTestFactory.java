@@ -4,7 +4,7 @@ import net.sf.josceleton.connection.impl.service.user.UserStore;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.entity.FactoryFacade;
@@ -31,11 +31,11 @@ public class OscMessageTransformerTestFactory {
 			final UserMessage actualMessage
 	) {
 		final float[] jointCoordinates = null;
-		final BodyPart jointPart = null;
+		final Joint joint = null;
 		final JointMessage jointMessage = null;
 		
 		return this.newGenericTransformer(
-				mockery, userStore, userId, jointMessage, jointCoordinates, jointPart, actualMessage, userState
+				mockery, userStore, userId, jointMessage, jointCoordinates, joint, actualMessage, userState
 		);
 	}
 	
@@ -43,7 +43,7 @@ public class OscMessageTransformerTestFactory {
 			final Mockery mockery,
 			final UserStore userStore,
 			final float[] actualCoordinates,
-			final BodyPart actualJointPart,
+			final Joint actualJoint,
 			final Integer userId,
 			final JointMessage actualMessage
 	) {
@@ -51,17 +51,17 @@ public class OscMessageTransformerTestFactory {
 		final UserMessage userMessage = null;
 		
 		return this.newGenericTransformer(
-				mockery, userStore, userId, actualMessage, actualCoordinates, actualJointPart,
+				mockery, userStore, userId, actualMessage, actualCoordinates, actualJoint,
 				userMessage, userState
 		);
 	}
 	
 	private /* private */ OscMessageTransformer newGenericTransformer(
 			final Mockery mockery, final UserStore userStore, final Integer userId,
-			final JointMessage jointMessage, final float[] coordinates, final BodyPart jointPart,
+			final JointMessage jointMessage, final float[] coordinates, final Joint joint,
 			final UserMessage userMessage, final UserState userState
 	) {
-		final boolean isForJointMessage = null != jointPart; // != jointMessage != coordinates
+		final boolean isForJointMessage = null != joint; // != jointMessage != coordinates
 		final FactoryFacade factory = mockery.mock(FactoryFacade.class);
 		final User user = mockery.mock(User.class);
 		mockery.checking(new Expectations() { { // ************ mock user lookup
@@ -80,7 +80,7 @@ public class OscMessageTransformerTestFactory {
 		mockery.checking(new Expectations() { { // ************ mock message creation
 			final Object actualMessage;
 			if(isForJointMessage == true) {
-				oneOf(factory).createJointMessage(user, jointPart, coordinate);
+				oneOf(factory).createJointMessage(user, joint, coordinate);
 				actualMessage = jointMessage;
 			} else { oneOf(factory).createUserMessage(user, userState); actualMessage = userMessage; }
 			will(returnValue(actualMessage));

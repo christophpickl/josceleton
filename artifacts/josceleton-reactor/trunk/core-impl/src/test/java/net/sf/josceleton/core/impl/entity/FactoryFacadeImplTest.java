@@ -6,7 +6,7 @@ import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.entity.message.JointMessageFactory;
@@ -36,17 +36,17 @@ public class FactoryFacadeImplTest extends AbstractMockeryTest {
 		final JointMessage mockedMessage = this.mock(JointMessage.class);
 
 		final User user = this.mock(User.class);
-		final BodyPart jointPart = this.mock(BodyPart.class);
+		final Joint joint = this.mock(Joint.class);
 		final Coordinate coordinate = this.mock(Coordinate.class);
 		
 		final JointMessageFactory jointMessageFactory = this.mock(JointMessageFactory.class);
 		this.checking(new Expectations() { {
-			oneOf(jointMessageFactory).create(user, jointPart, coordinate);
+			oneOf(jointMessageFactory).create(user, joint, coordinate);
 			will(returnValue(mockedMessage));
 		}});
 		final FactoryFacade facade = this.newFacade(null, jointMessageFactory, null);
 		
-		final JointMessage actualMessage = facade.createJointMessage(user, jointPart, coordinate);
+		final JointMessage actualMessage = facade.createJointMessage(user, joint, coordinate);
 		assertThat(actualMessage, is(mockedMessage));
 	}
 	

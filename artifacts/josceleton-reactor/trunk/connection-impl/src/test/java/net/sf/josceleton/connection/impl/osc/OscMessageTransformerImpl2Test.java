@@ -7,8 +7,8 @@ import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.impl.service.user.UserStore;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.Body;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 
@@ -43,20 +43,20 @@ public class OscMessageTransformerImpl2Test extends AbstractMockeryTest {
 	}
 	
 	@Test public final void transformJointMessageProperly() {
-		this.assertTransformJointMessageProperly(3, Body.HEAD(), new float[] { 0.4F, 0.2F, 1.3F } );
+		this.assertTransformJointMessageProperly(3, Joints.HEAD(), new float[] { 0.4F, 0.2F, 1.3F } );
 	}
 	
 	private void assertTransformJointMessageProperly(
 			final Integer actualOsceletonUserId,
-			final BodyPart actualJointPart,
+			final Joint actualJoint,
 			final float[] coordinates
 			) {
 		final OSCMessage oscMessage = TestableOSCMessage.newMockSafeArguments(this.getMockery(),
-				actualJointPart.getOsceletonId(), actualOsceletonUserId, coordinates[0], coordinates[1], coordinates[2]);
+				actualJoint.getOsceletonId(), actualOsceletonUserId, coordinates[0], coordinates[1], coordinates[2]);
 		final JointMessage expectedMessage = this.mock(JointMessage.class);
 		final UserStore userStore = this.mock(UserStore.class);
 		
-		final OscMessageTransformer transformer = this.newJointTransformer(userStore, coordinates, actualJointPart, actualOsceletonUserId, expectedMessage);
+		final OscMessageTransformer transformer = this.newJointTransformer(userStore, coordinates, actualJoint, actualOsceletonUserId, expectedMessage);
 		final JointMessage actualMessage = transformer.transformJointMessage(oscMessage, userStore);
 
 		assertThat(actualMessage, is(sameInstance(expectedMessage)));
@@ -77,11 +77,11 @@ public class OscMessageTransformerImpl2Test extends AbstractMockeryTest {
 	private OscMessageTransformer newJointTransformer(
 			final UserStore userStore,
 			final float[] actualCoordinates,
-			final BodyPart actualJointPart,
+			final Joint actualJoint,
 			final Integer actualOsceletonUserId,
 			final JointMessage actualMessage) {
 		return new OscMessageTransformerTestFactory().newJointTransformer(this.getMockery(),
-				userStore, actualCoordinates, actualJointPart, actualOsceletonUserId, actualMessage);
+				userStore, actualCoordinates, actualJoint, actualOsceletonUserId, actualMessage);
 	}
 	
 }

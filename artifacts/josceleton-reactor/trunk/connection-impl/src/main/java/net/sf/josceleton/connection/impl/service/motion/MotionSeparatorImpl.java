@@ -7,7 +7,7 @@ import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.service.motion.MotionListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.async.DefaultAsyncFor;
@@ -43,14 +43,14 @@ class MotionSeparatorImpl
 	/** {@inheritDoc} from {@link ConnectionListener} */
 	@Override public final void onJointMessage(final JointMessage message) {
 		final User user = message.getUser();
-		final BodyPart jointPart = message.getJointPart();
+		final Joint joint = message.getJoint();
 		final Coordinate coordinate = message.getCoordinate();
 		
 		final SkeletonInternal skeleton = this.skeletonByUser.get(user);
-		skeleton.update(jointPart, coordinate);
+		skeleton.update(joint, coordinate);
 		
 		for (MotionListener currentListener : this.getListenersFor(user)) {
-			currentListener.onMoved(jointPart, coordinate, skeleton);
+			currentListener.onMoved(joint, coordinate, skeleton);
 		}
 	}
 	

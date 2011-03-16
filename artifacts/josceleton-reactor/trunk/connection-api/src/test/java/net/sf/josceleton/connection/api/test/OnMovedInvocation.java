@@ -1,8 +1,8 @@
 package net.sf.josceleton.connection.api.test;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.core.api.entity.body.Skeleton;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.Skeleton;
 
 /**
  * Value object containing method arguments for {@link MotionListener}.
@@ -11,7 +11,7 @@ import net.sf.josceleton.core.api.entity.body.Skeleton;
  */
 public class OnMovedInvocation {
 	
-	private final BodyPart movedPart;
+	private final Joint movedJoint;
 	
 	private final Coordinate updatedCoordinate;
 	
@@ -19,17 +19,17 @@ public class OnMovedInvocation {
 	
 	
 	public OnMovedInvocation(
-			final BodyPart movedPart,
+			final Joint movedJoint,
 			final Coordinate updatedCoordinate,
 			final Skeleton skeleton) {
-		this.movedPart = movedPart;
+		this.movedJoint = movedJoint;
 		this.updatedCoordinate = updatedCoordinate;
 		this.skeleton = skeleton;
 	}
 
 
-	public final BodyPart getMovedPart() {
-		return this.movedPart;
+	public final Joint getMovedJoint() {
+		return this.movedJoint;
 	}
 
 	public final Coordinate getUpdatedCoordinate() {

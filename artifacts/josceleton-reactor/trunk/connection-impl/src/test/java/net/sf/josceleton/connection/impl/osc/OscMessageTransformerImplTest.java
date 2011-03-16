@@ -7,7 +7,7 @@ import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.entity.FactoryFacade;
@@ -47,7 +47,7 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 
 	@Test(expectedExceptions = RuntimeException.class,
 			expectedExceptionsMessageRegExp = "Invalid joint ID \\[x_hand\\]!")
-	public final void transformJointMessageInvalidBodyPartIdFails() {
+	public final void transformJointMessageInvalidJointIdFails() {
 		final float[] unusedCoorindates = new float[] { 0.0F, 0.0F, 0.0F };
 		final Integer osceletonUserId = Integer.valueOf(3);
 		final OscMessageTransformer transformer = this.newTransformer(osceletonUserId, null, null, unusedCoorindates);
@@ -87,11 +87,11 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 		return oscMessage;
 	}
 	
-	private OscMessageTransformer newTransformer(final Integer osceletonUserId, final BodyPart jointPart,
+	private OscMessageTransformer newTransformer(final Integer osceletonUserId, final Joint joint,
 			final UserState userState, final float[] coordinates) {
 		final User user = this.mock(User.class);
 		final UserFactory userFactory = this.mock(UserFactory.class);
-		if(jointPart != null || userState != null) {
+		if(joint != null || userState != null) {
 			this.checking(new Expectations() { {
 				
 				
@@ -100,12 +100,12 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 			}});
 		}
 
-		final FactoryFacade factory = this.newFactoryFacade(user, jointPart, userState, coordinates);
+		final FactoryFacade factory = this.newFactoryFacade(user, joint, userState, coordinates);
 		
 		return new OscMessageTransformerImpl(factory);
 	}
 	
-	private FactoryFacade newFactoryFacade(final User user, final BodyPart jointPart, final UserState userState,
+	private FactoryFacade newFactoryFacade(final User user, final Joint joint, final UserState userState,
 			final float[] coordinates) {
 		
 		final Coordinate coordinate = this.mock(Coordinate.class);
@@ -114,15 +114,15 @@ public class OscMessageTransformerImplTest extends AbstractMockeryTest {
 		final UserMessage userMessage = this.mock(UserMessage.class);
 		
 		final FactoryFacade factory = this.mock(FactoryFacade.class);
-		if(jointPart != null || userState != null) {
+		if(joint != null || userState != null) {
 			this.checking(new Expectations() { {
-				if(jointPart != null) {
+				if(joint != null) {
 					oneOf(factory).createCoordinate(coordinates[0], coordinates[1], coordinates[2]);
 					will(returnValue(coordinate));
 				}
 				
-				if(jointPart != null) {
-					oneOf(factory).createJointMessage(user, jointPart, coordinate);
+				if(joint != null) {
+					oneOf(factory).createJointMessage(user, joint, coordinate);
 					will(returnValue(jointMessage));
 				} else if(userState != null) {
 					oneOf(factory).createUserMessage(user, userState);

@@ -9,8 +9,8 @@ import net.sf.josceleton.connection.impl.service.user.UserStore;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.Body;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.entity.FactoryFacade;
@@ -30,13 +30,13 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 		USER_STATE_BY_ADDRESS = Collections.unmodifiableMap(tmp);
 	}
 	
-	private static final Map<String, BodyPart> BODY_PARTS_BY_ID;
+	private static final Map<String, Joint> JOINTS_BY_ID;
 	static {
-		final Map<String, BodyPart> tmp = new HashMap<String, BodyPart>();
-		for (final BodyPart part : Body.values()) {
-			tmp.put(part.getOsceletonId(), part);
+		final Map<String, Joint> tmp = new HashMap<String, Joint>();
+		for (final Joint joint : Joints.values()) {
+			tmp.put(joint.getOsceletonId(), joint);
 		}
-		BODY_PARTS_BY_ID = Collections.unmodifiableMap(tmp);
+		JOINTS_BY_ID = Collections.unmodifiableMap(tmp);
 	}
 	
 	
@@ -58,8 +58,8 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 		}
 		
 		final String rawBodyJointType = (String) messageArgs[0];
-		final BodyPart jointPart = BODY_PARTS_BY_ID.get(rawBodyJointType);
-		if(jointPart == null) {
+		final Joint joint = JOINTS_BY_ID.get(rawBodyJointType);
+		if(joint == null) {
 			throw new RuntimeException("Invalid joint ID [" + rawBodyJointType + "]!");
 		}
 		
@@ -71,7 +71,7 @@ class OscMessageTransformerImpl implements OscMessageTransformer {
 		final float z = ((Float) messageArgs[4]).floatValue();
 		final Coordinate coordinate = this.factory.createCoordinate(x, y, z);
 		
-		return this.factory.createJointMessage(user, jointPart, coordinate);
+		return this.factory.createJointMessage(user, joint, coordinate);
 	}
 
 	/** {@inheritDoc} from {@link OscMessageTransformer} */

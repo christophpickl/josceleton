@@ -19,7 +19,7 @@ import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.connection.impl.test.TestableOscPort;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.josceleton.JosceletonGuiceModule;
@@ -105,13 +105,13 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	}
 	
 	
-	protected final void dispatchJointMessage(final int userId, final BodyPart part, final float... coordinates) {
+	protected final void dispatchJointMessage(final int userId, final Joint joint, final float... coordinates) {
 		LOG.debug("+dispatchJointMessage(..)");
 		final Float x = coordinates.length > 0 ? coordinates[0] : Float.valueOf(0.0F);
 		final Float y = coordinates.length > 1 ? coordinates[1] : Float.valueOf(0.0F);
 		final Float z = coordinates.length > 2 ? coordinates[2] : Float.valueOf(0.0F);
 		this.dispatchOscMessage(OscAddress.JOINT, new Object[] {
-				part.getOsceletonId(), Integer.valueOf(userId), x, y, z });
+				joint.getOsceletonId(), Integer.valueOf(userId), x, y, z });
 	}
 	
 	protected final void dispatchUserMessage(final int userId, final UserState state) {

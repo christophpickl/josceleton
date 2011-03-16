@@ -13,6 +13,6 @@ public interface TestableUserServiceDispatcher extends UserService {
 	
 	User delegateLookupUserMessage(Integer osceletonUserId, UserState userState);
 	
-	User delegateLookupJointMessage(Integer osceletonUserId/* ignore bodypart and coordinates */);
+	User delegateLookupJointMessage(Integer osceletonUserId/* ignore joint and coordinates */);
 	
 }

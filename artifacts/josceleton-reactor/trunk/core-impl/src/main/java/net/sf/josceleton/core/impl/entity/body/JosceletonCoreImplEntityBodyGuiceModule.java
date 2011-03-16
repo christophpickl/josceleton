@@ -1,6 +1,6 @@
 package net.sf.josceleton.core.impl.entity.body;
 
-import net.sf.josceleton.core.api.entity.body.Skeleton;
+import net.sf.josceleton.core.api.entity.joint.Skeleton;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryProvider;

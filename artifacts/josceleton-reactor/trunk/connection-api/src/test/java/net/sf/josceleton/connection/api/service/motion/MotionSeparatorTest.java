@@ -8,9 +8,9 @@ import net.sf.josceleton.connection.api.ConnectionListener;
 import net.sf.josceleton.connection.api.test.TestableMotionSeparatorListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.body.Body;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.core.api.entity.body.BodyParts.Torso;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.Joints;
+import net.sf.josceleton.core.api.entity.joint.JointParts.Torso;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.api.test.TestableJointMessage;
@@ -32,7 +32,7 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 	
 	@Test public final void justEverything() {
 		final User user = this.mock(User.class);
-		final Torso jointMsg1Joint = Body.TORSO();
+		final Torso jointMsg1Joint = Joints.TORSO();
 		final Coordinate jointMsg1Coord = this.mock(Coordinate.class);
 		final TestableJointMessage jointMsg1 = new TestableJointMessage(user, jointMsg1Joint, jointMsg1Coord);
 		final TestableMotionSeparatorListener listener = new TestableMotionSeparatorListener();
@@ -83,7 +83,7 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 		testee.addListenerFor(user, listener);
 		testee.removeListenerFor(user, listener);
 		
-		final BodyPart joint = Body.TORSO();
+		final Joint joint = Joints.TORSO();
 		final Coordinate coordinate = this.mock(Coordinate.class);
 		final JointMessage mockedMessage = new TestableJointMessage(user, joint, coordinate);
 		this.checking(new Expectations() { {

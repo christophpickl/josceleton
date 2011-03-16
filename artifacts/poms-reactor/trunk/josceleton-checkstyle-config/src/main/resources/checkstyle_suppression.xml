@@ -24,7 +24,7 @@
     <!-- ******************************************************************* -->
 	
 <!--	<suppress checks="MethodName" files="net.sf.josceleton.core.api.entity.body.Body.java" lines="200,240-280" />-->
-	<suppress checks="MethodName" files="net.sf.josceleton.core.api.entity.body.(Body|BodyPartImplProvider|SymetricBodyPart|SymmetricBodyPartsImplTest).java" />
+	<suppress checks="MethodName" files="net.sf.josceleton.core.api.entity.joint.*.java" />
 	
 <!--	<suppress checks="MethodCount" files="net.sf.josceleton.core.api.entity.body.Body.java" />-->
 <!--	<suppress checks="MethodCount" files="net.sf.josceleton.commons.reflect.ClassAdapter.java" />-->

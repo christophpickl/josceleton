@@ -12,7 +12,7 @@ import net.sf.josceleton.connection.api.test.TestableMotionSeparatorListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.Body;
+import net.sf.josceleton.core.api.entity.joint.Joints;
 
 import org.testng.annotations.Test;
 
@@ -30,11 +30,11 @@ public class MotionSeparatorIntegrationTest extends AbstractIntegrationTest {
 		assertThat(listener1.getOnMovedInvocations().size(), equalTo(0));
 		assertThat(listener2.getOnMovedInvocations().size(), equalTo(0));
 		
-		dispatchJointMessage(u1, Body.HEAD(), 0, 0, 0);
+		dispatchJointMessage(u1, Joints.HEAD(), 0, 0, 0);
 		assertThat(listener1.getOnMovedInvocations().size(), equalTo(1));
 		assertThat(listener2.getOnMovedInvocations().size(), equalTo(0));
 
-		dispatchJointMessage(u2, Body.HEAD(), 0, 0, 0);
+		dispatchJointMessage(u2, Joints.HEAD(), 0, 0, 0);
 		assertThat(listener1.getOnMovedInvocations().size(), equalTo(1));
 		assertThat(listener2.getOnMovedInvocations().size(), equalTo(1));
 	}
@@ -63,7 +63,7 @@ public class MotionSeparatorIntegrationTest extends AbstractIntegrationTest {
 			assertThat(user1, not(equalTo(user2)));
 		}
 		
-		dispatchJointMessage(u1, Body.HEAD(), 0, 0, 0);
+		dispatchJointMessage(u1, Joints.HEAD(), 0, 0, 0);
 		assertThat(this.getRawReceivedJointMessages().size(), equalTo(1));
 		
 		motionSeparator.addListenerFor(user1, listener1);

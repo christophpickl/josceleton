@@ -8,8 +8,8 @@ import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.core.api.entity.body.Skeleton;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.Skeleton;
 
 public class DelmePlaygroundApp {
 	
@@ -52,8 +52,8 @@ public class DelmePlaygroundApp {
 		final MotionSeparator ms = cache.lookupMotionSeparator(c);
 //		
 		final MotionListener msl = new MotionListener() {
-			@Override public void onMoved(final BodyPart part, final Coordinate coordinate, final Skeleton skeleton) {
-				System.out.println("moved part " + part + " to coordinate: " + coordinate);
+			@Override public void onMoved(final Joint joint, final Coordinate coordinate, final Skeleton skeleton) {
+				System.out.println("moved " + joint + " to coordinate: " + coordinate);
 		} };
 		ms.addListenerFor(u, msl);
 		ms.removeListenerFor(u, msl);

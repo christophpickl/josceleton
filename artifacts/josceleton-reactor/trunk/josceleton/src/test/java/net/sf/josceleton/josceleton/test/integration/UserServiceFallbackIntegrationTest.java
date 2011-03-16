@@ -8,7 +8,7 @@ import java.util.Collection;
 
 import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.body.Body;
+import net.sf.josceleton.core.api.entity.joint.Joints;
 
 import org.testng.annotations.Test;
 
@@ -23,8 +23,8 @@ public class UserServiceFallbackIntegrationTest extends AbstractIntegrationTest 
 	@Test public final void emulateLoopedRecording() {
 		int expectedUserMsgs = 0;
 		
-		dispatchJointMessage(1, Body.HEAD()); expectedUserMsgs += 2; // immediate waiting + processing
-		dispatchJointMessage(2, Body.HEAD()); expectedUserMsgs += 2; // immediate waiting + processing
+		dispatchJointMessage(1, Joints.HEAD()); expectedUserMsgs += 2; // immediate waiting + processing
+		dispatchJointMessage(2, Joints.HEAD()); expectedUserMsgs += 2; // immediate waiting + processing
 		
 		dispatchUserMessage(1, UserState.WAITING); expectedUserMsgs += 3; // two dead, one new wating
 		assertThat("Actual joint messages: " + Arrays.toString(getRawReceivedJointMessages().toArray()), getRawReceivedJointMessages().size(), equalTo(2));

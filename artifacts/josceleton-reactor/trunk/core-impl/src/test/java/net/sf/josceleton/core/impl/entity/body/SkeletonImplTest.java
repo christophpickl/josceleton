@@ -6,10 +6,10 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.body.Body;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
-import net.sf.josceleton.core.api.entity.body.SkeletonCoordinateUnavailableException;
-import net.sf.josceleton.core.api.entity.body.BodyParts.Head;
+import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.joint.Joints;
+import net.sf.josceleton.core.api.entity.joint.SkeletonCoordinateUnavailableException;
+import net.sf.josceleton.core.api.entity.joint.JointParts.Head;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -30,43 +30,43 @@ public class SkeletonImplTest extends AbstractMockeryTest {
 	@Test(expectedExceptions = SkeletonCoordinateUnavailableException.class,
 			expectedExceptionsMessageRegExp = ".*Head.*")
 	public final void getNullSafeFails() {
-		this.skeleton.getNullSafe(Body.HEAD());
+		this.skeleton.getNullSafe(Joints.HEAD());
 	}
 	
 	@Test public final void getNullSafeCorrectly() {
-		final Head part = Body.HEAD();
+		final Head joint = Joints.HEAD();
 		final Coordinate mockedCoord = this.mock(Coordinate.class);
-		this.skeleton.update(part, mockedCoord);
-		assertThat(this.skeleton.getNullSafe(part), is(mockedCoord));
+		this.skeleton.update(joint, mockedCoord);
+		assertThat(this.skeleton.getNullSafe(joint), is(mockedCoord));
 	}
 	
 	
 	@Test public final void isCoordinateAvailableCorrectly() {
-		final Head part = Body.HEAD();
+		final Head joint = Joints.HEAD();
 		
-		assertThat(this.skeleton.isCoordinateAvailable(part), equalTo(false));
+		assertThat(this.skeleton.isCoordinateAvailable(joint), equalTo(false));
 		
-		this.skeleton.update(part, this.mock(Coordinate.class));
-		assertThat(this.skeleton.isCoordinateAvailable(part), equalTo(true));
+		this.skeleton.update(joint, this.mock(Coordinate.class));
+		assertThat(this.skeleton.isCoordinateAvailable(joint), equalTo(true));
 	}
 	
 	@Test public final void getReturnsNull() {
-		assertThat(this.skeleton.get(Body.HEAD()), is(nullValue()));
+		assertThat(this.skeleton.get(Joints.HEAD()), is(nullValue()));
 	}
 
 	@Test
 	public final void updateCoordinates() {
-		final BodyPart part = Body.SHOULDER().LEFT();
+		final Joint joint = Joints.SHOULDER().LEFT();
 		final Coordinate coord1 = this.mock(Coordinate.class, "coord1");
-		assertThat(this.skeleton.get(part), is(nullValue()));
+		assertThat(this.skeleton.get(joint), is(nullValue()));
 		
-		this.skeleton.update(part, coord1);
-		assertThat(this.skeleton.get(part), is(coord1));
+		this.skeleton.update(joint, coord1);
+		assertThat(this.skeleton.get(joint), is(coord1));
 		
 		final Coordinate coord2 = this.mock(Coordinate.class, "coord2");
-		this.skeleton.update(part, coord2);
+		this.skeleton.update(joint, coord2);
 		
-		assertThat(this.skeleton.get(part), is(coord2));
+		assertThat(this.skeleton.get(joint), is(coord2));
 	}
 	
 }

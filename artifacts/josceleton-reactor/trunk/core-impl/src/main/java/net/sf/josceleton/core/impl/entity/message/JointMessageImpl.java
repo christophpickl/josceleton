@@ -2,7 +2,7 @@ package net.sf.josceleton.core.impl.entity.message;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.body.BodyPart;
+import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 
 import com.google.inject.Inject;
@@ -10,24 +10,24 @@ import com.google.inject.assistedinject.Assisted;
 
 class JointMessageImpl extends GenericMessageImpl implements JointMessage {
 	
-	private final BodyPart jointPart;
+	private final Joint joint;
 	
 	private final Coordinate coordinate;
 	
 	
 	@Inject JointMessageImpl(
 			@Assisted final User user,
-			@Assisted final BodyPart jointPart,
+			@Assisted final Joint joint,
 			@Assisted final Coordinate coordinate) {
 		super(user);
-		this.jointPart = jointPart;
+		this.joint = joint;
 		this.coordinate = coordinate;
 	}
 
 
 	/** {@inheritDoc} from {@link JointMessage} */
-	@Override public final BodyPart getJointPart() {
-		return this.jointPart;
+	@Override public final Joint getJoint() {
+		return this.joint;
 	}
 
 	/** {@inheritDoc} from {@link JointMessage} */
@@ -40,7 +40,7 @@ class JointMessageImpl extends GenericMessageImpl implements JointMessage {
 		if((other instanceof JointMessage) == false) { return false; }
 		final JointMessage that = (JointMessage) other;
 		return	this.getUser().equals(that.getUser()) &&
-				this.getJointPart().equals(that.getJointPart()) &&
+				this.getJoint().equals(that.getJoint()) &&
 				this.getCoordinate().equals(that.getCoordinate());
 	}
 
@@ -51,7 +51,7 @@ class JointMessageImpl extends GenericMessageImpl implements JointMessage {
 	@Override public final String toString() {
 		return "JointMessageImpl[" +
 					"user=" + this.getUser() + ", " +
-					"jointPart=" + this.jointPart + ", " +
+					"joint=" + this.joint + ", " +
 					"coordinate=" + this.coordinate +
 				"]";
 	}
