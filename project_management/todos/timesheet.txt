@@ -42,5 +42,7 @@
 15.03. - 04:00 -  2h - started implementation of MotionService (mainly AsyncFor)
              ~~ 130h~~
 15.03. - 18:00 -  1h - project mgmt (board, mantis)
-15.03. - 19:00 -  h - 
-             ~~ 131h~~
+15.03. - 19:00 -  5h - finished MotionSeparator
+16.03. - 00:00 -  4h - started and somehow finished with first hitwallgesture (builders, some tests)
+             ~~ 140h~~
+16.03. - 04:00 -  2h - started and somehow finished with first hitwallgesture ... ctd.

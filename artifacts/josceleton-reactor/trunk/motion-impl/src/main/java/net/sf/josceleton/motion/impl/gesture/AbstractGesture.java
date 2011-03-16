@@ -1,14 +1,13 @@
 package net.sf.josceleton.motion.impl.gesture;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.impl.async.DefaultAsync;
 import net.sf.josceleton.motion.api.gesture.Gesture;
+import net.sf.josceleton.motion.api.gesture.GestureConfiguration;
 import net.sf.josceleton.motion.api.gesture.GestureListener;
 
 /**
@@ -18,8 +17,8 @@ public abstract class AbstractGesture<L extends GestureListener> extends Default
 	
 	private final Collection<Joint> interestingJoints;
 	
-	public AbstractGesture(final Collection<Joint> interestingJoints) {
-		this.interestingJoints = Collections.unmodifiableCollection(new HashSet<Joint>(interestingJoints));
+	public AbstractGesture(final GestureConfiguration configuration) {
+		this.interestingJoints = configuration.getJointsInterestedIn();
 	}
 
 	@Override public final void onMoved(
@@ -29,11 +28,11 @@ public abstract class AbstractGesture<L extends GestureListener> extends Default
 		}
 	}
 	
-	protected final void dispatchGestureDetected() {
+	protected final void dispatchGestureDetected(final Skeleton skeleton) {
 		for (final L listener : this.getListeners()) {
-			listener.onGestureDetected();
+			listener.onGestureDetected(skeleton);
 		}
 	}
 	
-	protected abstract void onMovedInteresting(Joint interestingJoint, Coordinate updatedCoordinate, Skeleton skeleton);	
+	protected abstract void onMovedInteresting(Joint movedJoint, Coordinate updatedCoordinate, Skeleton skeleton);	
 }
