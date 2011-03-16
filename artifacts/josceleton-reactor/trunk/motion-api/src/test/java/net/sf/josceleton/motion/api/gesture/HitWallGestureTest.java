@@ -13,6 +13,8 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.test.TestableCoordinate;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
 import net.sf.josceleton.motion.api.test.TestableHitWallGestureConfiguration;
 import net.sf.josceleton.motion.api.test.TestableGestureListener.TestableHitWallListener;
 

@@ -1,11 +1,12 @@
-package net.sf.josceleton.motion.api.gesture;
+package net.sf.josceleton.motion.api.gesture.hitwall;
 
 import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.motion.api.gesture.JointableGestureConfig;
 
 /**
  * @since 0.4
  */
-public interface HitWallConfig extends GestureConfig {
+public interface HitWallConfig extends JointableGestureConfig {
 
 	/**
 	 * @since 0.4

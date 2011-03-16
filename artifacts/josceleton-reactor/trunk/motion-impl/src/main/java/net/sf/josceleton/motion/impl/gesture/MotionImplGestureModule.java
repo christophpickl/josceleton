@@ -16,6 +16,7 @@ public class MotionImplGestureModule extends AbstractModule {
 	@Override protected final void configure() {
 		
 		bind(GestureFactoryFacade.class).to(GestureFactoryFacadeImpl.class);
+		
 		install(new MotionImplGestureHitwallModule());
 		
 	}

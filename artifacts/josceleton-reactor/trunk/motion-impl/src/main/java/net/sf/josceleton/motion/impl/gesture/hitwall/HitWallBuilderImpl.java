@@ -7,16 +7,21 @@ import java.util.HashSet;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
-import net.sf.josceleton.motion.api.gesture.HitWallBuilder;
-import net.sf.josceleton.motion.api.gesture.HitWallConfig;
-import net.sf.josceleton.motion.api.gesture.HitWallGesture;
-import net.sf.josceleton.motion.api.gesture.HitWallListener;
-import net.sf.josceleton.motion.impl.gesture.GestureBuilderImpl;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallBuilder;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
+import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureBuilderImpl;
 
 /**
  * @since 0.4
  */
-class HitWallBuilderImpl extends GestureBuilderImpl<HitWallBuilder, HitWallGesture, HitWallConfig, HitWallListener>
+class HitWallBuilderImpl
+	extends AbstractJointableGestureBuilderImpl<
+		HitWallBuilder,
+		HitWallGesture,
+		HitWallConfig,
+		HitWallListener>
 	implements HitWallBuilder {
 	
 	private static final Collection<Joint> DEFAULT_RELEVANT_JOINTS;
@@ -62,7 +67,7 @@ class HitWallBuilderImpl extends GestureBuilderImpl<HitWallBuilder, HitWallGestu
 		return this;
 	}
 
-	@Override public final HitWallBuilder coordinateValue(final float coordinateValue) {
+	@Override public final HitWallBuilder coordinate(final float coordinateValue) {
 		// TODO validate correct argument: [0.0 .. 7.0] (as it could be either for X/Y or Z, we dont know yet)
 		// OUTSOURCE this argument check! maybe create own type CoordinateValue
 		this.pCoordinate = coordinateValue;

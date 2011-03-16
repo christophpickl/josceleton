@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.motion.api.gesture.GestureListener;
-import net.sf.josceleton.motion.api.gesture.HitWallListener;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
 
 public class TestableGestureListener implements GestureListener {
 	

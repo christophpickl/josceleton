@@ -14,8 +14,8 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.motion.api.gesture.GestureFactoryFacade;
-import net.sf.josceleton.motion.api.gesture.HitWallGesture;
-import net.sf.josceleton.motion.api.gesture.HitWallListener;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
 
 import com.google.inject.Injector;
 
@@ -32,7 +32,7 @@ public class DelmePlaygroundApp {
 		final HitWallGesture gesture = factory.newHitWall()
 			.direction(XyzDirection.Y)
 			.triggerOnLower(true)
-			.coordinateValue(0.5F)
+			.coordinate(0.5F)
 			.attachedJoints(joint)
 			.build();
 		gesture.addListener(new HitWallListener() { @Override public void onGestureDetected(final Skeleton skeleton) {

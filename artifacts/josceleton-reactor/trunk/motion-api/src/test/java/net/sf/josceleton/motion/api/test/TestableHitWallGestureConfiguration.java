@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
-import net.sf.josceleton.motion.api.gesture.HitWallConfig;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 
 public class TestableHitWallGestureConfiguration implements HitWallConfig {
 	
