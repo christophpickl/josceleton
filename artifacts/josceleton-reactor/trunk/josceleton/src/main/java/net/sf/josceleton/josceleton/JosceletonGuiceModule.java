@@ -1,13 +1,9 @@
 package net.sf.josceleton.josceleton;
 
-import net.sf.josceleton.commons.reflect.CommonsReflectGuiceModule;
-import net.sf.josceleton.connection.impl.ConnectionImplGuiceModule;
-import net.sf.josceleton.connection.impl.osc.ConnectionImplOscGuiceModule;
-import net.sf.josceleton.connection.impl.service.motion.ConnectionImplServiceMotionGuiceModule;
-import net.sf.josceleton.connection.impl.service.user.ConnectionImplServiceUserGuiceModule;
-import net.sf.josceleton.core.impl.entity.CoreImplEntityGuiceModule;
-import net.sf.josceleton.core.impl.entity.body.CoreImplEntityBodyGuiceModule;
-import net.sf.josceleton.core.impl.entity.message.CoreImplEntityMessageGuiceModule;
+import net.sf.josceleton.commons.CommonsModule;
+import net.sf.josceleton.connection.impl.ConnectionImplModule;
+import net.sf.josceleton.core.impl.CoreImplModule;
+import net.sf.josceleton.motion.impl.MotionImplModule;
 
 import com.google.inject.AbstractModule;
 
@@ -21,18 +17,13 @@ import com.google.inject.AbstractModule;
 public class JosceletonGuiceModule extends AbstractModule { // NO extends PrivateModule; dont limit access to internals.
 	
 	@Override protected final void configure() {
+		
 		// "bottom to top" ordering of modules:
+		this.install(new CommonsModule());
+		this.install(new CoreImplModule());
+		this.install(new ConnectionImplModule());
+		this.install(new MotionImplModule());
 		
-		this.install(new CommonsReflectGuiceModule());
-		
-		this.install(new CoreImplEntityBodyGuiceModule());
-		this.install(new CoreImplEntityMessageGuiceModule());
-		this.install(new CoreImplEntityGuiceModule());
-		
-		this.install(new ConnectionImplOscGuiceModule());
-		this.install(new ConnectionImplServiceMotionGuiceModule());
-		this.install(new ConnectionImplServiceUserGuiceModule());
-		this.install(new ConnectionImplGuiceModule());
 	}
 
 }

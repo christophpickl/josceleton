@@ -1,7 +1,6 @@
 package net.sf.josceleton.josceleton;
 
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.motion.api.gesture.GestureFactory;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

@@ -25,7 +25,7 @@ public abstract class AbstractGesture<L extends GestureListener> extends Default
 	@Override public final void onMoved(
 			final Joint movedJoint, final Coordinate updatedCoordinate, final Skeleton skeleton) {
 		if(this.interestingJoints.contains(movedJoint) == true) {
-			this.onMoved(movedJoint, updatedCoordinate, skeleton);
+			this.onMovedInteresting(movedJoint, updatedCoordinate, skeleton);
 		}
 	}
 	

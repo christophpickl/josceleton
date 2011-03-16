@@ -14,8 +14,8 @@ import net.sf.josceleton.core.api.entity.joint.JointParts.Torso;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.api.test.TestableJointMessage;
-import net.sf.josceleton.core.impl.entity.body.SkeletonFactory;
-import net.sf.josceleton.core.impl.entity.body.SkeletonInternal;
+import net.sf.josceleton.core.impl.entity.joint.SkeletonFactory;
+import net.sf.josceleton.core.impl.entity.joint.SkeletonInternal;
 
 import org.jmock.Expectations;
 import org.testng.annotations.Test;

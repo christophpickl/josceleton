@@ -1,13 +1,14 @@
-package net.sf.josceleton.josceleton;
+package net.sf.josceleton.connection.impl;
 
 import net.sf.josceleton.commons.test.AbstractModuleTest;
 
 import com.google.inject.Module;
 
-public class JosceletonGuiceModuleTest extends AbstractModuleTest {
+public class ConnectionImplModuleTest extends AbstractModuleTest {
 
 	@Override protected final Module createTestee() {
-		return new JosceletonGuiceModule();
+		return new ConnectionImplModule();
 	}
+	
 
 }

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.connection.api.ConnectionListener;
 import net.sf.josceleton.connection.api.service.motion.MotionListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
@@ -12,8 +11,8 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.async.DefaultAsyncFor;
-import net.sf.josceleton.core.impl.entity.body.SkeletonFactory;
-import net.sf.josceleton.core.impl.entity.body.SkeletonInternal;
+import net.sf.josceleton.core.impl.entity.joint.SkeletonFactory;
+import net.sf.josceleton.core.impl.entity.joint.SkeletonInternal;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;

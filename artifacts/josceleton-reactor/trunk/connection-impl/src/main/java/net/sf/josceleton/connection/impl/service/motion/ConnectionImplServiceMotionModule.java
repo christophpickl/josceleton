@@ -9,7 +9,7 @@ import com.google.inject.assistedinject.FactoryProvider;
 /**
  * @since 0.3
  */
-public class ConnectionImplServiceMotionGuiceModule extends AbstractModule {
+public class ConnectionImplServiceMotionModule extends AbstractModule {
 
 	@Override protected final void configure() {
 		bind(MotionSeparatorCache.class).to(MotionSeparatorCacheImpl.class).in(Scopes.SINGLETON);
