@@ -18,7 +18,9 @@ public class TestableGestureListener implements GestureListener {
 	public final List<Skeleton> getGesturesDetected() {
 		return this.gesturesDetected;
 	}
+	
 	public static class TestableHitWallListener extends TestableGestureListener implements HitWallListener {
-		
+		// mark another interface only
 	}
+	
 }

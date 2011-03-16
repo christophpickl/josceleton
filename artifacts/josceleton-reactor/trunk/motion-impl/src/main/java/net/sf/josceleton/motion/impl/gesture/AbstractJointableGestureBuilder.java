@@ -12,7 +12,7 @@ import net.sf.josceleton.motion.api.gesture.JointableGesture;
 import net.sf.josceleton.motion.api.gesture.JointableGestureBuilder;
 import net.sf.josceleton.motion.api.gesture.JointableGestureConfig;
 
-public abstract class AbstractJointableGestureBuilderImpl<
+public abstract class AbstractJointableGestureBuilder<
 		B extends JointableGestureBuilder<B, G, C, L>,
 		G extends JointableGesture<C, L>,
 		C extends JointableGestureConfig,
@@ -24,6 +24,8 @@ public abstract class AbstractJointableGestureBuilderImpl<
 	private Collection<Joint> pAttachedJoints;
 	
 	@Override public final B attachedJoints(final Joint atLeastOneJoint, final Joint... optionallyMoreJoints) {
+		
+		// TODO outsource merging 1+array to collection
 		final Set<Joint> allJoints = new HashSet<Joint>(1 + optionallyMoreJoints.length);
 		allJoints.add(atLeastOneJoint);
 		allJoints.addAll(Arrays.asList(optionallyMoreJoints));

@@ -2,6 +2,8 @@ package net.sf.josceleton.commons.test.matcher;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
+import java.util.Collection;
+import java.util.Iterator;
 
 import net.sf.josceleton.commons.test.util.TestTypeUtil;
 
@@ -43,7 +45,46 @@ public class JosceletonMatchers extends TypeSafeMatcher<Class<?>> {
 	@Factory public static <T> Matcher<Class<?>> hasSingleProtectedConstructor() {
 		return new HasSingleConstructor(Modifier.PROTECTED);
 	}
+
+	@Factory public static <T> Matcher<Collection<T>> collectionHas(final T... items) {
+		return new CollectionHas<T>(items);
+	}
 	
+	private static class CollectionHas<T> extends TypeSafeMatcher<Collection<T>> {
+		
+		private final T[] items;
+		
+		private String descriptionAppend = "N/A";
+		
+		public CollectionHas(final T[] items) {
+			this.items = items;
+		}
+
+		@Override
+		public boolean matchesSafely(final Collection<T> collection) {
+			if(this.items.length != collection.size()) {
+				this.descriptionAppend = "length expected/actual: " + this.items.length + "/" + collection.size();
+				return false;
+			}
+			final Iterator<T> thatIterator = collection.iterator();
+			for (int i = 0; i < this.items.length; i++) {
+				final Object thisI = this.items[i];
+				final Object thatI = thatIterator.next();
+				if(thisI.equals(thatI) == false) {
+					this.descriptionAppend = "item on [" + i + "] expected/actual: " +
+						thisI + "/" + thatI;
+					return false;
+				}
+			}
+			return true;
+		}
+
+		@Override
+		public void describeTo(final Description description) {
+			description.appendText("collection not equals (" + this.descriptionAppend + ")");
+		}
+		
+	}
 	
 	private static class HasSingleConstructor extends TypeSafeMatcher<Class<?>> {
 		

@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 
+import com.google.inject.Inject;
+
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
@@ -11,13 +13,13 @@ import net.sf.josceleton.motion.api.gesture.hitwall.HitWallBuilder;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
-import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureBuilderImpl;
+import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureBuilder;
 
 /**
  * @since 0.4
  */
 class HitWallBuilderImpl
-	extends AbstractJointableGestureBuilderImpl<
+	extends AbstractJointableGestureBuilder<
 		HitWallBuilder,
 		HitWallGesture,
 		HitWallConfig,
@@ -44,7 +46,16 @@ class HitWallBuilderImpl
 	
 	private boolean pTriggerOnLower = DEFAULT_LOWER;
 	
+	private final HitWallGestureFactory gestureFactory;
 	
+	private final HitWallConfigFactory configFactory;
+	
+	
+	@Inject HitWallBuilderImpl(final HitWallGestureFactory gestureFactory, final HitWallConfigFactory configFactory) {
+		this.gestureFactory = gestureFactory;
+		this.configFactory = configFactory;
+	}
+
 	@Override public final HitWallGesture build() {
 		final Collection<Joint> relevantJoints;
 		final Collection<Joint> configuredAttachedJoints = this.getPAttachedJoints();
@@ -53,10 +64,9 @@ class HitWallBuilderImpl
 		} else {
 			relevantJoints = DEFAULT_RELEVANT_JOINTS;
 		}
-		
-		return new HitWallGestureImpl(
-			new HitWallConfigImpl(
-				this.pCoordinate, this.pDirection, this.pTriggerOnLower, relevantJoints));
+		final HitWallConfig config = this.configFactory.create(
+				relevantJoints, this.pCoordinate, this.pDirection, this.pTriggerOnLower);
+		return this.gestureFactory.create(config);
 	}
 
 	// MINOR check for null args in builder?

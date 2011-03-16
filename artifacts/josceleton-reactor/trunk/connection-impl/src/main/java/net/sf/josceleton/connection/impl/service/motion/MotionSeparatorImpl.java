@@ -42,15 +42,20 @@ class MotionSeparatorImpl
 
 	/** {@inheritDoc} from {@link ConnectionListener} */
 	@Override public final void onJointMessage(final JointMessage message) {
-		final User user = message.getUser();
-		final Joint joint = message.getJoint();
-		final Coordinate coordinate = message.getCoordinate();
+		final User msgUser = message.getUser();
+		if(this.skeletonByUser.containsKey(msgUser) == false) {
+			// no one is interested in joint messages for this user; see #beforeAddListener(User, MotionListener)
+			return;
+		}
 		
-		final SkeletonInternal skeleton = this.skeletonByUser.get(user);
-		skeleton.update(joint, coordinate);
+		final Joint msgJoint = message.getJoint();
+		final Coordinate msgCoordinate = message.getCoordinate();
 		
-		for (MotionListener currentListener : this.getListenersFor(user)) {
-			currentListener.onMoved(joint, coordinate, skeleton);
+		final SkeletonInternal skeleton = this.skeletonByUser.get(msgUser);
+		skeleton.update(msgJoint, msgCoordinate);
+		
+		for (MotionListener currentListener : this.getListenersFor(msgUser)) {
+			currentListener.onMoved(msgJoint, msgCoordinate, skeleton);
 		}
 	}
 	
@@ -76,7 +81,7 @@ class MotionSeparatorImpl
 
 	/** {@inheritDoc} from {@link DefaultAsyncFor} */
 	@Override protected final void beforeRemoveListener(final User user, final MotionListener listener) {
-		if(this.getListenersFor(user).contains(listener) == false) {
+		if(this.getListenersFor(user).contains(listener) == true) {
 			this.countAddedListeners--;
 		}
 		

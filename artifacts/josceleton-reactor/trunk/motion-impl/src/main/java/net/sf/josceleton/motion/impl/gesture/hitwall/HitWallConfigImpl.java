@@ -2,6 +2,9 @@ package net.sf.josceleton.motion.impl.gesture.hitwall;
 
 import java.util.Collection;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
@@ -19,8 +22,11 @@ class HitWallConfigImpl extends AbstractJointableGestureConfig implements HitWal
 	private final boolean triggerOnLower;
 	
 	
-	public HitWallConfigImpl(final float coordinate, final XyzDirection direction,
-			final boolean triggerLower, final Collection<Joint> relevantJoints) {
+	@Inject HitWallConfigImpl(
+			@Assisted final Collection<Joint> relevantJoints,
+			@Assisted final float coordinate,
+			@Assisted final XyzDirection direction,
+			@Assisted final boolean triggerLower) {
 		super(relevantJoints);
 		
 		this.coordinate = coordinate;
