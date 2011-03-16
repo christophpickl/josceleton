@@ -7,7 +7,7 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 /**
  * @since 0.4
  */
-public interface GestureConfiguration {
+public interface GestureConfig {
 	
 	Collection<Joint> getJointsInterestedIn();
 }

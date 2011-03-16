@@ -4,23 +4,23 @@ import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
-import net.sf.josceleton.motion.api.gesture.GestureListener;
+import net.sf.josceleton.motion.api.gesture.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.HitWallGesture;
-import net.sf.josceleton.motion.api.gesture.HitWallGestureConfiguration;
+import net.sf.josceleton.motion.api.gesture.HitWallListener;
 
 /**
  * @since 0.4
  */
-class HitWallGestureImpl extends AbstractGesture<GestureListener> implements HitWallGesture {
+class HitWallGestureImpl extends AbstractGesture<HitWallConfig, HitWallListener> implements HitWallGesture {
 	
-	private final HitWallGestureConfiguration configuration;
+	private final HitWallConfig configuration;
 	private final XyzDirection configDirecton;
 	private final boolean triggerLower;
 	private final float coordinateValue;
 	
 	private boolean wasYetTriggered = false;
 	
-	HitWallGestureImpl(final HitWallGestureConfiguration configuration) {
+	HitWallGestureImpl(final HitWallConfig configuration) {
 		super(configuration);
 		
 		this.configuration = configuration;

@@ -1,19 +1,19 @@
 package net.sf.josceleton.motion.impl.gesture;
 
 import net.sf.josceleton.motion.api.gesture.GestureFactory;
-import net.sf.josceleton.motion.api.gesture.HitWallGestureBuilder;
+import net.sf.josceleton.motion.api.gesture.HitWallBuilder;
 
 import com.google.inject.Inject;
 
 class GestureFactoryImpl implements GestureFactory {
 	
-	private final HitWallGestureBuilderFactory hitWallFactory;
+	private final HitWallBuilderFactory hitWallFactory;
 	
-	@Inject GestureFactoryImpl(final HitWallGestureBuilderFactory hitWallFactory) {
+	@Inject GestureFactoryImpl(final HitWallBuilderFactory hitWallFactory) {
 		this.hitWallFactory = hitWallFactory;
 	}
 
-	@Override public final HitWallGestureBuilder newHitWall() {
+	@Override public final HitWallBuilder newHitWall() {
 		return this.hitWallFactory.create();
 	}
 

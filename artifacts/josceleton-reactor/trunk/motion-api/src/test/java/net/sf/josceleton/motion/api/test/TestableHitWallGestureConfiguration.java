@@ -5,9 +5,9 @@ import java.util.Collection;
 
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
-import net.sf.josceleton.motion.api.gesture.HitWallGestureConfiguration;
+import net.sf.josceleton.motion.api.gesture.HitWallConfig;
 
-public class TestableHitWallGestureConfiguration implements HitWallGestureConfiguration {
+public class TestableHitWallGestureConfiguration implements HitWallConfig {
 	
 	private final Collection<Joint> jointsInterestedIn;
 	

@@ -6,7 +6,8 @@ import net.sf.josceleton.core.api.async.Async;
 /**
  * @since 0.4
  */
-public interface Gesture<L extends GestureListener> extends MotionListener, Async<L> {
+public interface Gesture<C extends GestureConfig, L extends GestureListener>
+	extends MotionListener /*TODO MotionListener is only internal API*/, Async<L> {
 	
 	// async communication only
 	

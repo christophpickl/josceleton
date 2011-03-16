@@ -7,17 +7,19 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.impl.async.DefaultAsync;
 import net.sf.josceleton.motion.api.gesture.Gesture;
-import net.sf.josceleton.motion.api.gesture.GestureConfiguration;
+import net.sf.josceleton.motion.api.gesture.GestureConfig;
 import net.sf.josceleton.motion.api.gesture.GestureListener;
 
 /**
  * @since 0.4
  */
-public abstract class AbstractGesture<L extends GestureListener> extends DefaultAsync<L> implements Gesture<L> {
+public abstract class AbstractGesture<C extends GestureConfig, L extends GestureListener>
+	extends DefaultAsync<L>
+	implements Gesture<C, L> {
 	
 	private final Collection<Joint> interestingJoints;
 	
-	public AbstractGesture(final GestureConfiguration configuration) {
+	public AbstractGesture(final GestureConfig configuration) {
 		this.interestingJoints = configuration.getJointsInterestedIn();
 	}
 

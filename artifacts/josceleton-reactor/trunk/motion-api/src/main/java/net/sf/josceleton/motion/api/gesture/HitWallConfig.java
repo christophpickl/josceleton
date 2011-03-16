@@ -5,7 +5,7 @@ import net.sf.josceleton.core.api.entity.XyzDirection;
 /**
  * @since 0.4
  */
-public interface HitWallGestureConfiguration extends GestureConfiguration {
+public interface HitWallConfig extends GestureConfig {
 
 	/**
 	 * @since 0.4

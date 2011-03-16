@@ -18,8 +18,8 @@ public class MotionImplGestureModule extends AbstractModule {
 		bind(GestureFactory.class).to(GestureFactoryImpl.class);
 		
 //		bind(HitWallGestureBuilder.class).to(HitWallGestureBuilderImpl.class);
-		this.bind(HitWallGestureBuilderFactory.class).toProvider(
-				FactoryProvider.newFactory(HitWallGestureBuilderFactory.class, HitWallGestureBuilderImpl.class));
+		this.bind(HitWallBuilderFactory.class).toProvider(
+				FactoryProvider.newFactory(HitWallBuilderFactory.class, HitWallBuilderImpl.class));
 		
 	}
 

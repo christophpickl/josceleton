@@ -7,15 +7,16 @@ import java.util.HashSet;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
-import net.sf.josceleton.motion.api.gesture.GestureListener;
+import net.sf.josceleton.motion.api.gesture.HitWallBuilder;
+import net.sf.josceleton.motion.api.gesture.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.HitWallGesture;
-import net.sf.josceleton.motion.api.gesture.HitWallGestureBuilder;
+import net.sf.josceleton.motion.api.gesture.HitWallListener;
 
 /**
  * @since 0.4
  */
-class HitWallGestureBuilderImpl extends GestureBuilderImpl<GestureListener, HitWallGesture>
-	implements HitWallGestureBuilder {
+class HitWallBuilderImpl extends GestureBuilderImpl<HitWallBuilder, HitWallGesture, HitWallConfig, HitWallListener>
+	implements HitWallBuilder {
 	
 	private static final Collection<Joint> DEFAULT_ATTACHED_JOINTS;
 	static {
@@ -48,23 +49,23 @@ class HitWallGestureBuilderImpl extends GestureBuilderImpl<GestureListener, HitW
 		}
 		
 		return new HitWallGestureImpl(
-			new HitWallGestureConfigurationImpl(
+			new HitWallConfigImpl(
 				this.pCoordinateValue, this.pDirection, this.pTriggerLower, attachedJoints));
 	}
 
 	// MINOR check for null args in builder?
 	
-	@Override public final HitWallGestureBuilder direction(final XyzDirection direction) {
+	@Override public final HitWallBuilder direction(final XyzDirection direction) {
 		this.pDirection = direction;
 		return this;
 	}
 
-	@Override public final HitWallGestureBuilder coordinateValue(final float coordinateValue) {
+	@Override public final HitWallBuilder coordinateValue(final float coordinateValue) {
 		this.pCoordinateValue = coordinateValue;
 		return this;
 	}
 
-	@Override public final HitWallGestureBuilder triggerLower(final boolean triggerLower) {
+	@Override public final HitWallBuilder triggerLower(final boolean triggerLower) {
 		this.pTriggerLower = triggerLower;
 		return this;
 	}

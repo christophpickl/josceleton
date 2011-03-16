@@ -14,8 +14,8 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.motion.api.gesture.GestureFactory;
-import net.sf.josceleton.motion.api.gesture.GestureListener;
 import net.sf.josceleton.motion.api.gesture.HitWallGesture;
+import net.sf.josceleton.motion.api.gesture.HitWallListener;
 
 import com.google.inject.Injector;
 
@@ -35,7 +35,7 @@ public class DelmePlaygroundApp {
 			.coordinateValue(0.5F)
 			.attachedJoints(joint)
 			.build();
-		gesture.addListener(new GestureListener() { @Override public void onGestureDetected(final Skeleton skeleton) {
+		gesture.addListener(new HitWallListener() { @Override public void onGestureDetected(final Skeleton skeleton) {
 			System.out.println("[INFO] ==========================>>>>>>> gesture detected on joint (" + joint + ") " +
 					"with coordinate value: " + skeleton.get(joint)); } });
 		final Connector connector = injector.getInstance(Connector.class);

@@ -4,9 +4,9 @@ import java.util.Collection;
 
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
-import net.sf.josceleton.motion.api.gesture.HitWallGestureConfiguration;
+import net.sf.josceleton.motion.api.gesture.HitWallConfig;
 
-public class HitWallGestureConfigurationImpl implements HitWallGestureConfiguration {
+public class HitWallConfigImpl implements HitWallConfig {
 	
 	private final float coordinateValue;
 	
@@ -17,7 +17,7 @@ public class HitWallGestureConfigurationImpl implements HitWallGestureConfigurat
 	private final Collection<Joint> jointsInterestedIn;
 	
 	
-	public HitWallGestureConfigurationImpl(final float coordinateValue, final XyzDirection direction,
+	public HitWallConfigImpl(final float coordinateValue, final XyzDirection direction,
 			final boolean triggerLower, final Collection<Joint> jointsInterestedIn) {
 		this.coordinateValue = coordinateValue;
 		this.direction = direction;
