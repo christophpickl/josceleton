@@ -1,0 +1,65 @@
+- @release-app: anstatt nur datum im targetOrdner, auch sowas wie zb "2010-xx-yy-releaser-coroporate-pom" und "2010-xx-yy-package-josceleton"
+- @release-app: soll report ausprinten koennen (der text der in site/release_handbook.xml drinnen war soll exakt nachbaut werden! aber halt dynamisch generiert ;)
+! release-app fixen wenn svn pfad anders ist:
+	No proper SVN tag was created: http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/guice-dependencies/tags/guice-dependencies-2.2/pom.xml
+	 ===> to: http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/guice-dependencies-2.2/pom.xml?view=log
+@BUILD RELEASE def confirm(label) fuer: bevor mvn release ausgfuehrt wird, bevor sourceforge file release
+	do {
+		print label
+		print "do you want to continue? are you sure?"
+		in = raw_input()
+	} while(in == { "positive" or "no" })
+- @BUILD nach release koennten scripts checken ob urls da sind
+
+--- @release-app: bevor man es wirklich ausfuehrt, koennte man gesamten svn-baum kopieren, und es auf diesem dummy mal ausfuehren
+- nach version 1.0: release-app erweitern am schluss mit notifications: auf twitter/facebook/etc automatisch post
+	zb: zusaetlich in config_phudy.py noch shortText = "foobar" <= wird fuer twitter und anderes verwendet (aber halt generisch/abstrakt halten, damit wiederverwendet werden kann)
+
+@config !!!!
+	svnPass => pass ... sourceforge
+	svnUser => user ... sourceforge (will be ",josceleton" added if necess)
+- luxury could open a ssh -t shell, if not yet present
+
+!!! README.txt content sollte von josceleton/src/main/resources daherkommen!!!
+	+++ genauso wie README.md fuer sf ;) machen ein ==> svn co svn:/artifacts/josceleton-reactor/tags/josceleton-0.x/distribution/README.txt (README.md)
+
+! @TEST unit tests in python (jython) schreiben um java code zu testen!
+	http://steveberczuk.blogspot.com/2009/12/continuous-integration-of-python-code.html
+
+- es gibt ein maven-exec-plugin:
+
+<plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>exec-maven-plugin</artifactId>
+  <executions>
+   <execution>
+    <configuration>
+     <executable>python</executable>
+     <workingDirectory>src/test/python</workingDirectory>
+     <arguments>
+      <argument>unitTests.py</argument>
+     </arguments>    
+     <environmentVariables>
+       <PYTHONPATH>../../main/python:$PYTHONPATH</PYTHONPATH>
+     </environmentVariables>
+    </configuration>
+    <id>python-test</id>
+    <phase>test</phase>
+    <goals>
+     <goal>exec</goal>
+    </goals>
+   </execution>
+  </executions>
+ </plugin>
+ 
+ 
+ http://www.doughellmann.com/articles/how-tos/python-exception-handling/
+ logging.basicConfig(level=logging.WARNING)
+    log = logging.getLogger('example')
+    try:
+        throws()
+        return 0
+    except Exception, err:
+        log.exception('Error from throws():')
+        return 1
+ 

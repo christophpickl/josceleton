@@ -1,26 +1,83 @@
-! @organization: distribute proper README.txt/LICENSE.txt files
-! set different compiler settings in release profile
-  see: http://www.sonatype.com/books/mvnref-book/reference/profiles-sect-maven-profiles.html
-  eg: <profile><id>production</id><build><plugins><plugin>
-      <artifactId>maven-compiler-plugin</artifactId><configuration><debug>false</debug>4<optimize>true</optimize></configuration>
-! split up java-abstract-pom (800 lines); corporate-pom got big as well (500 lines); java-pom is so la la (400 lines)
-! investigieren, ob andere sprachen fuer pom kuhl sind (moeglich ist)
-- @java-abstract-pom/dependencies/logging-stuff: how to solve dependencies for logging (so outside will not be effected, but can enable)
-	if someone relies on josceleton, he should not be forced to depend on log4j, or commons-loggin;  -->
-	maybe via: dependencies.dependency(log4j).<optional>true</optional> ?
-- ueberall (in sourcecode) lizenz header reingeben + checkstyle checken lassen ob eh da ist
-- SUREFIRE prevent tests from running twice with surefire-plugin enabled
-	 see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIpreventtestsfromrunningtwice%2Cafteraddingaconfigurationforthesurefireplugin%3F
-- more build plugins: diese mvn plugins anschaun: help-plugin, idea-plugin, one-plugin, verifier-plugin
 
-- @BUILD nach release koennten scripts checken ob urls da sind
---- @BUILD versucht komisches site file runterzuladen: "Downloading: http://.../java-abstract-pom/0.3-SNAPSHOT/java-abstract-pom-0.3-SNAPSHOT-site_en.xml"
--- @java-abstract-pom/clean-plugin: sometimes the testng outputfolder folder does not get deleted
+==========================================
+@DISTRIBUTION
+==========================================
+! @jar-plugin: what has to be configured?
+  <archive><manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile><addMavenDescriptor>false</addMavenDescriptor></archive>
+-- alle jars mit mainclass versehen, falls jemand (irrtuemlich) versucht das jar zu starten (so wie thomas)
+	=> message box soll aufpoppen, mit infotext dass zur website gehen soll... oder halt irgendein debugger app zeigen (??)
+- @BUILD info: anstatt dass jar-plugin signed, tut das jetzt ein dezidiertes maven-jarsigner-plugin
+--- do we need to sign our jars with gpg? <plugin><artifactId>maven-gpg-plugin</artifactId><version>1.1</version></plugin>
+
+==========================================
+@CODE QUALI
+==========================================
+! GUTE IDEE: wenn checkstyle_config nachbearbeiten, dann auch MethodCount raushaun (sodass in eclipse vorhanden ist!)
+- ueberall (in sourcecode) lizenz header reingeben + checkstyle checken lassen ob eh da ist
+- maven-checkstyle-plugin leute frage ob/wann MethodCount unterstuetzt wird // wird nicht vom mvn-plugin gefressen (sogar nicht neueste 2.6 version); wird aber von eclipse-cs gesetzt :(
+- @build: * include checkstyle rule check-for-existing-javadoc for all API classes
+-- why bind checkstyle to package phase? <artifactId>maven-checkstyle-plugin</artifactId><version>2.5</version><executions><execution><goals><goal>checkstyle</goal><goal>check</goal></goals><phase>package</phase>
+--- @java-pom/checkstyle: maybe load plugin configurations from properties file? advantage? 
+	 see: http://maven.apache.org/plugins/maven-checkstyle-plugin/faq.html 
+	<propertiesLocation>path/to/checkstyle-plugin-configuration.properties</propertiesLocation>
+- @BUILD/API-cleanity: irgendwie enforcen das parentmodule nur von api von submodul abhaengig ist
+	// wird wichtig, wenn zb gesture module auch verwenden will mit nicht-osceleton-abhaengiger connection-api!
+--- @java-abstract-pom/animal-sniffer: change check from java 1.5 to 1.6
+--- @pmd: what is config.minimumTokens=100 good for?
+
+==========================================
+@POM
+==========================================
 -- rename java-pom to java-super-pom (also rethink naming of java-abstract-pom ... could also split it up into several parts while doing this)
 -- @POM add plugin to check if peruser properties (defined in settings.xml) are all correctly set
 -- load properties (versions, etc) from property-file via maven-properties-plugin
 -- wohl doch... @POM java-abstract-pom, alle versionsnr als property
--- why bind checkstyle to package phase? <artifactId>maven-checkstyle-plugin</artifactId><version>2.5</version><executions><execution><goals><goal>checkstyle</goal><goal>check</goal></goals><phase>package</phase>
+! split up java-abstract-pom (800 lines); corporate-pom got big as well (500 lines); java-pom is so la la (400 lines)
+! investigieren, ob andere sprachen fuer pom kuhl sind (moeglich ist)
+- @build: * split up java-abstract-pom into java-abstract-abstract-pom 
+	  - abstract-abstract-pom ... slim core pom with building section
+	    // one can only inherit from here, eg to speed up things
+	  - abstract-pom ... only contains "additional"/unncessary stuff (like reporting)
+- @build: * configure plugins in build/pluginsMgmt or in build/plugins?  - 
+	  - @java-pom: @checkstyle can plugin config be moved from pluginMgmt to plugin?
+-- @POM cleanup poms: alle (grossen) kommentare rausnehmen, und mit referenz woher genommen in /pm/pom_notes.txt
+
+==========================================
+
+!!! @BUILD: 3rd party guice dependency: es is ja eh extended artifacts online schon verfuegbar: https://oss.sonatype.org/index.html#view-repositories;google~browsestorage
+! @BUILD deploy readme.md file:
+	-- alle readmes in einem ordner (quasi zentrales repo, JA, nicht readmes verteilen, mitm build oder so), und jedesmal startet man nur einen command, der:
+		* alle files auf aenderungen checkt (lokal checksum, oder auch remote theoretisch irgendwie pruefen koennen) + nur changed ones kopieren
+	- ordnerstruktur von SF 1:1 lokal nachbauen, nur lokal als flat files: statt "/" ein escape zeichen verwenden, und man braucht kein "README" im filename
+!!! @BUILD: evtl doch alles mitm reaktor bauen (dadurch wuerde report aggregate gehn) => im build halt release-plugin config "disable-modules=commons,core-api,connection-impl"
+!!! @BUILD im 3rdparty-lib folder muessen ALLE (transitiven) deps auch drinnen sein => mvn sowas baun lassen!!! eg: mvn dependency:create-all FOR josceleton.pom
+! @build: * @java-abstract-pom: enforce code metrics (pmd&co) during build!
+	  => see separate file "build_metrics_config.pom.txt"
+	  - afterwards verify these checks are working
+! @site deploy unbedingt josceleton auf /documentation/ deployen lassen
+	=> auf web-root ist nur zusaetzlich!
+! @organization: distribute proper README.txt/LICENSE.txt files
+! write own mojo to echo messages
+	- mvn eigenen logger nehmen (kein sysout)
+	- entweder A. 2 params { log-level, messageText } oder wenn nicht B. "INFO xyz" ersten part parsen (fuer nachher mvn logger nehmen)
+	  - replace ugly ant echo message commands
+	  - ensure preformatted output message (template)
+! set different compiler settings in release profile
+  see: http://www.sonatype.com/books/mvnref-book/reference/profiles-sect-maven-profiles.html
+  eg: <profile><id>production</id><build><plugins><plugin>
+      <artifactId>maven-compiler-plugin</artifactId><configuration><debug>false</debug>4<optimize>true</optimize></configuration>
+- @java-abstract-pom/dependencies/logging-stuff: how to solve dependencies for logging (so outside will not be effected, but can enable)
+	if someone relies on josceleton, he should not be forced to depend on log4j, or commons-loggin;  -->
+	maybe via: dependencies.dependency(log4j).<optional>true</optional> ?
+- SUREFIRE prevent tests from running twice with surefire-plugin enabled
+	 see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIpreventtestsfromrunningtwice%2Cafteraddingaconfigurationforthesurefireplugin%3F
+- more build plugins: diese mvn plugins anschaun: help-plugin, idea-plugin, one-plugin, verifier-plugin
+- @BUILD: in java-abstract-pom (und java-pom) sollen plugins konfiguriert werden, und erst fuer children enabled!
+-- feines pom: http://code.google.com/p/testnguice/source/browse/trunk/pom.xml
+	* maven-enforcer-plugin um 1.5 enforcen! + requirePluginVersions + pdf
+-- @BUILD maven3 scp enablen fuer release plugin, mithilfe von extensions: http://maven.apache.org/guides/mini/guide-using-extensions.html
+-- @BUILD: move thirdy_party_libs stuff into release-app (shell scripts umschreiben, und auch jars ins release-app geben, oder... ja?)
+-- @java-abstract-pom/clean-plugin: sometimes the testng outputfolder folder does not get deleted
 -- @build: introduce -Pfast profile (disable some plugins/checks, -Dmaven.skip.test, -Dreport.skip, ...)
 -- clean build warnings
 	* log4j while testing ("log4j:WARN No appenders")
@@ -33,11 +90,7 @@
 	* eclipse workspace warning
 -- @eclipse: add java sources of dependencies + also deploy (guice!) sources into repo, so to have them available in eclipse
 -- what is "surefire.configuration.redirectTestOutputToFile=true" good for?
---- @deploy: do we need to sign our jars with gpg? <plugin><artifactId>maven-gpg-plugin</artifactId><version>1.1</version></plugin>
+--- @BUILD versucht komisches site file runterzuladen: "Downloading: http://.../java-abstract-pom/0.3-SNAPSHOT/java-abstract-pom-0.3-SNAPSHOT-site_en.xml"
 --- move generation of test-output into target/ folder (no more svn:ignore needed)
 --- third party artifakte mit einer custom pom ausstatten: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIinstallafileinmylocalrepositoryalongwithmycustomizedPOM%3F
---- @java-abstract-pom/animal-sniffer: change check from java 1.5 to 1.6
---- @pmd: what is config.minimumTokens=100 good for?
---- @java-pom/checkstyle: maybe load plugin configurations from properties file? advantage? 
-	 see: http://maven.apache.org/plugins/maven-checkstyle-plugin/faq.html 
-	<propertiesLocation>path/to/checkstyle-plugin-configuration.properties</propertiesLocation>
+

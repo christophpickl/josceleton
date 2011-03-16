@@ -1,105 +1,3 @@
-
-=========================== AFTER RELEASING v0.3
-* releasen:
-
-
-!!! @release-app: README.txt content sollte von josceleton/src/main/resources daherkommen!!!
-	+++ genauso wie README.md fuer sf ;) machen ein ==> svn co svn:/artifacts/josceleton-reactor/tags/josceleton-0.x/distribution/README.txt (README.md)
-
-!!!! @SITE changelog + roadmap mergen zu "past & future"
-
-!! DISTRIBUTION PACKAGES fertig
-	! josceleton-0.3.jar sollte als ein jar(jarjar) daherkommen (nicht commons, etc)
-		- in gleichem libs/ folder dann auch alle thirdparty dinger reingeben
-
-	/README.txt
-	/LICENSE.txt
-	/source.zip { extracts to: /source/main|test/java/net/sf/josceleton/**/*.java}
-	/josceleton-0.3-with-dependencies.jar
-	/libs/
-	/libs/josceleton-0.3-jar
-	/libs/guice-0.2.jar
-	/libs/... 3rd party libs ...
-	/samples/
-	/samples/hello-world
-	/samples/using-services
-	/samples/positions-and-gestures
-	/samples/midi-route
-	/samples/maven-usage
-
-
-! release-app fixen wenn svn pfad anders ist:
-	No proper SVN tag was created: http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/guice-dependencies/tags/guice-dependencies-2.2/pom.xml
-	 ===> to: http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/tags/guice-dependencies-2.2/pom.xml?view=log
-
-
-
-- @TEST fuer alle closeable einen (generischen?!) test schreiben, wo geprueft ob wenn closed() aufgerufen, dann eh alle weiteren eine exception werfen
-	=> @Exception statt IllegalStateException, eine eigene IllegalClosedStateException werfen!
-!! @API CODE rename BodyPart to Joint
-! @BUILD: in java-abstract-pom (und java-pom) sollen plugins konfiguriert werden, und erst fuer children enabled!
-- @release-app: anstatt nur datum im targetOrdner, auch sowas wie zb "2010-xx-yy-releaser-coroporate-pom" und "2010-xx-yy-package-josceleton"
-- @release-app: soll report ausprinten koennen (der text der in site/release_handbook.xml drinnen war soll exakt nachbaut werden! aber halt dynamisch generiert ;)
-!!! @BUILD: evtl doch alles mitm reaktor bauen (dadurch wuerde report aggregate gehn) => im build halt release-plugin config "disable-modules=commons,core-api,connection-impl"
-- mantis tickets aufraeumen + anpassen an neuen versionsplan
-- sourceforge piwik webanalytics (gscheid!) anschaun
-
-! @API auf java 1.5 umstellen + auf SITE sagen dass >1.5 benoetigt wird
-! GUTE IDEE: @BUILD CODE QUALITY: wenn checkstyle_config nachbearbeiten, dann auch MethodCount raushaun (sodass in eclipse vorhanden ist!)
-
--- @BUILD: move thirdy_party_libs stuff into release-app (shell scripts umschreiben, und auch jars ins release-app geben, oder... ja?)
-!!! @BUILD im 3rdparty-lib folder muessen ALLE (transitiven) deps auch drinnen sein => mvn sowas baun lassen!!! eg: mvn dependency:create-all FOR josceleton.pom
-@BUILD RELEASE def confirm(label) fuer: bevor mvn release ausgfuehrt wird, bevor sourceforge file release
-	do {
-		print label
-		print "do you want to continue? are you sure?"
-		in = raw_input()
-	} while(in == { "positive" or "no" })
-
-@API ZUGANG WICHTIG !!!!!!!!!!!!! GUTE SACHE:  selbst klasse instanziieren style:
-	ConnectionX cx = new ConnectionXImpl(); cx.open() # cx.openOnPort(1234); cx...; cx.close()
-	// interface ConnectionX extends Connection { void open(); }
-	// behind the scenes Josceleton static facade is used :( ... aber wenn jemand will....
-	// => maybe add optional constructor arg: "Connector connector", und auch "JosceletonFacade facade" 
-
-- nach version 1.0: release-app erweitern am schluss mit notifications: auf twitter/facebook/etc automatisch post
-	zb: zusaetlich in config_phudy.py noch shortText = "foobar" <= wird fuer twitter und anderes verwendet (aber halt generisch/abstrakt halten, damit wiederverwendet werden kann)
--- @SITE wordpress verwenden um codesamples und dgl (ideen, andere kinect projekte) posten
-
-! irgendwo das wort KINECTOR verwenden (evtl facade klasse Josceleton?)
-
-- @SITE linkchecker verify plugin suchen+verwenden
-
--- @POM cleanup poms: alle (grossen) kommentare rausnehmen, und mit referenz woher genommen in /pm/pom_notes.txt
---- @release-app: bevor man es wirklich ausfuehrt, koennte man gesamten svn-baum kopieren, und es auf diesem dummy mal ausfuehren
-! @SITE metrics: unbedingt automatisch eclipse metrics erfassen!!!
-	1. ist haendisch muehsam
-	2. src/test sollte separat (plus aggregiert) gehandhabt werden
-	3. mehre dimensionen: per metrik, per modul, per main/test, per version (+gesamt aggregiert, nicht nur per moduleee)
-
-
-
-==========================================
-TODO * upcoming *
-==========================================
-!!! @ORGANISATION MANTIS: split connection services issue in two: 1. user service 2. motion service
-	- description of parent issue: "aim is to provide a more high-level abstraction view of what is happening.
-	"see subissues for: 1) UserService 2) MotionService"
-	"* extend legacy code (AsyncFor)"
-	"* UserManager ... manages users correctly (artificial user login)"
-	"* RecentMotionStorage ... stores (recent) movement for motion tracker (will throw checked exception if data was not yet set + provide isDataAvailable(bodyPart))"
-	==> ziel is es ja, dass im changelog alles aufgelistet ist (und da gehoeren tasks halt atomarisiert, damit feature nicht untergeht in changelog)
-! getaggte version 0.1 alles auschecken, und neu alles deployen!
-! m2eclipse plugin fine tunen
--- shelled (eclipse shellscript editor plugin) installation failed... :(
-- read pom best practices: http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
-!!! toString fuer BodyParts: net.sf.josceleton.core.api.entity.body.BodyPartImplProvider$RightHipImpl@4463a1ae
-!!! von aussen unbedingt konfigurierbar machen, dass sich eine osceleton user id wiederholen darf! (nicht einfach abkakken, weil so ist zb ein oni-file nicht abspielbar)
-- maven-checkstyle-plugin leute frage ob/wann MethodCount unterstuetzt wird // wird nicht vom mvn-plugin gefressen (sogar nicht neueste 2.6 version); wird aber von eclipse-cs gesetzt :(
-- @BUILD bzgl custom echo mojo:
-	- mvn eigenen logger nehmen (kein sysout)
-	- entweder A. 2 params { log-level, messageText } oder wenn nicht B. "INFO xyz" ersten part parsen (fuer nachher mvn logger nehmen)
-
 !!! STAY FOCUSED
 	- introduce importance/weighting modifiers
 		API +40%
@@ -108,173 +6,44 @@ TODO * upcoming *
 		TEST (REFACTORINGS) -40%
 		DOC/MGMT -70%
 
+==========================================
+TODOS @HIRT
+==========================================
+	- heartbeat stabillizer fertig machen
+	- @midi route prototype:
+		* remember midi port in preferences
+		* gui skeleton daten debugger frame (ganz prototype maessig)
+	- range scaling
+	// projektmitglied suchen, der sich mit ableton live/synthesizer auskennt
+		=> team kooperativ muss er sein
 
 ==========================================
-TODO UNSORTED
+TODO UPCOMING
 ==========================================
+! toString fuer Joint: net.sf.josceleton.core.api.entity.body.JointsImplProvider$RightHipImpl@4463a1ae
 
 
+==========================================
+TODO ORGANISATION
+==========================================
+-- mantis vorgefertigte issue templates machen
+-- eigene josceleton email adresse? (da daweil keine domain, irgendwas von sourceforge?)
 -- noch lange zeit lassen fuer fixe entscheidung! LOGO
 	* viele (verschiedene) ideen/-richtungen
 	* grob stehts ja schon fest: skelet, joe
-
--- @ORAGANISATION mantis vorgefertigte issue templates machen
-
-@file release mgmt: sf gibt (eh gut) vor, dass es nur EIN file gibt. in meinem fall ist dann drinnen:
-	/josceleton-0.2-with-dependencies.jar
-	/jars/ {commons-0.2.jar, ...}
-	/jars/third_party/ {guice, javaosc, ...}
-	(optional: /src.zip)
-
-API DOINGS
-	- range transformation logik (wird haeufig/immer von user gebraucht werden)
-
-	- user service, motion service
-	- positions, gestures
-	- ...
-
-
-!!! @BUILD: 3rd party guice dependency: es is ja eh extended artifacts online schon verfuegbar: https://oss.sonatype.org/index.html#view-repositories;google~browsestorage
-
--- @TEST testng + guice: http://testnguice.googlecode.com/svn/site/2.0/inject.html
-
-! @site: direkt download latest link verwenden http://sourceforge.net/projects/josceleton/files/latest
-	+ so wie bei jpotpourri, oben rechts im eck auf startseite "download box" hingeben
-
-- @sf download statistik anschauen; profil ueberarbeiten; a bissi umschaun
-- @site: video auf startseite austauschen -AUF JEDEN
-	* am besten eigenes machen, mit guter musik
-	* darunter dann link "mehr videos" => interne kleine seite mit guter kinect-videosammlung
-
-- feines pom: http://code.google.com/p/testnguice/source/browse/trunk/pom.xml
-	! maven-enforcer-plugin um 1.5 enforcen! + requirePluginVersions + pdf
-- feine doku ebenfalls: http://testnguice.googlecode.com/svn/site/2.0/index.html
-	* definitiv NICHT josceleton als site deployen lassen!
-	// recent josceletion version numbers in corporate-pom schieben => braucht zugang von eigenes site modul auf versionsnr um in links darauf zu verweisen a la: /documentation/foobar/1.8/
-- @ SITE JAVADOC create package.java :)
-
-- @BUILD maven3 scp enablen fuer release plugin, mithilfe von extensions:
-	http://maven.apache.org/guides/mini/guide-using-extensions.html
-
-
-- @BUILD python ;) hab auch schon pydev installed
-!!! unbedingt josceleton auf /documentation/ deployen lassen
-	=> auf web-root ist nur zusaetzlich!
-
-- @BUILD deploy readme.md file:
-	-- alle readmes in einem ordner (quasi zentrales repo, JA, nicht readmes verteilen, mitm build oder so), und jedesmal startet man nur einen command, der:
-		* alle files auf aenderungen checkt (lokal checksum, oder auch remote theoretisch irgendwie pruefen koennen) + nur changed ones kopieren
-	- ordnerstruktur von SF 1:1 lokal nachbauen, nur lokal als flat files: statt "/" ein escape zeichen verwenden, und man braucht kein "README" im filename
-
-!!!!! bzgl ERROR, exception geworfen wird wenn recorded session oefters abspielen
-	- kann sein dass sowas auch in echt passiert (wenn osceleton restarten)
-	=> josceleton muss so stabil (robust!) sein um auch sowas zu handlen
-		// gute software == stabile software
-	====> failsafe einbaun: wenn user mit schon registrierter osceleton id kommt, dann full reset machen
-		- alle user rausloeschen, (alle listener remove?), event dispatchen (?)
-		- die software soll die ganze zeit laufen, wenn ungueltiger zustand, dann soviel wie moeglich erhalten, soviel wie noetig resetten, und nach aussen soll alles so transparent wie moeglich sein
-	=> TODO: einfach mal josceleton laufen lassen, und dann osceleton oefters resetten mit oefters diverse interaktion
-
-* @osceleton unique id error failsafe issue
-	- zuerst test schreiben der das reproduziert (ist schon ein integrations test)
-	- UserFactory hat eine resetCounter() methode
-	- rename UserStore to InternalUserCache
-	- wenn fehler auftritt kompletten state reseten
-	! UserService hat kein getXyUsers, sondern gibt ein zusaetzliches (super-interface? NEIN!) UserCollection
-		=> damit bleibt klasse schlank
-		* UserServiceFactory instanziiert nun klassen a la:
-		UserService create(..) {
-			return new UserServiceImpl(.., new UserCollectionImpl());
-		}
-		* favour aggregation over inheritance!
-
 ! office pimpen
-	- libro gehen, und postits kaufen
 	- mvn pom structure a la bwin drucken/zeichnen
 	- todo categories table drucken/zeichnen
-	! grossen karton auf wand geben
-		* todos halten besser
-		* kann zeichnen, anstatt netzwerkkabeln
-		* kann drauf zeichnen (mit edding) ohne dass wand beschmiert wird
-	==> STRUKTUR:
-		- je farbe: rot=API(any change: new, change, bugfix; alles was user affected), blau=Doc(javadoc, site, reports)
-		- je sicht: internal (kleiner, zb python release scripts machen) VS external (alle offiziellen mantis issues)
-		- kurzer titel "aggregated reports", nicht "add some reports which are aggregated"
-		- mantis id (optional), zb "#13"
-		- moeglichkeit drumherum zusaetzliche "gedanken-blasen" dranzuhaengen
-	// notwendig: linien verbinden diverse dinge? (mit schnuerdln die man draufpickt realisieren)
-	
-	
-- todos alle schon langsam ins openoffice dokument schieben
--- ableton live
-! IDEE: weggehen von mouse-analogie umsetzen wollen => hin zu neuen bewegungen
-	* warum, siehe: http://www.youtube.com/watch?feature=player_embedded&v=2U3RQyCvLvA#at=40
-		- mit arm kann man nicht so feine zielgenaue bewegungen machen, ist dann muehsam...
-	=> loesung: common-gestures einfuehren (die sollten halt UEBERALL) gleich sein, zb:
-			enter ... nach vorne irgendwas (wie zb relative hitwall)
-			escape/no/cancel ... xbox position
-			vor/zurueck ... indem man nach links/rechts wischt
-		!!! genau so was: http://vimeo.com/20855586 JA
-	!!!! kinect + ableton (kommt schon nahe vom pulse projekt): http://www.youtube.com/watch?v=zG8dIOoPhdI
-	!! boah, automatisiertes haus: http://www.youtube.com/watch?v=L7jeJSdJPpk
+- sourceforge piwik webanalytics (gscheid!) anschaun
 
-! @DOC anderes video verwenden, das von primesense: http://www.youtube.com/watch?v=nr8vgCnb9_0
-* kinect ideen
-	* projektor verwenden, und sich vor/hinter leinwand stellen http://www.youtube.com/watch?v=hkHUGxP3ecI#at=53
-	* das ist lustig, wenn beruehrt dann gibts punch-comic zeigen: http://vimeo.com/20366678
-	! kollaborative puppet control: http://vimeo.com/20367106
-	* PoC spiel, aber schoene grafik/animationen: http://vimeo.com/20514415
-		=> gscheite (animierte) GUI gehoert her (die mit java sprechen kann)
-	* nette idee, wo lichtspot person folgt: http://vimeo.com/20361885
-	* das ganze uebers web streamen (multiuser) mit xmlsockets: http://vimeo.com/20320187
+==========================================
+TODO MISC
+==========================================
+- read pom best practices: http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
+- mehr in osceleton news (google group) umschauen
 
-! @TEST lasttest machen: einfach mal zig gesten/positions und rohlistener dranhaengen und schaun wie es sich verhaltet
-	* fuer performance changes immer das heranziehen + messen wie veraendert hat
-	* jprofiler verwenden (gratis?)
-	* frage wird endlich beantwortet: wie performancekritisch ist es?
-
-- osceleton => openNI "framework" => NITE middleware (libusb, python, etc; bunch of other drivers and stuff ...)
-
-
-* @version 1.x:
-	- community bauen
-		* viele social dings aktiv sein: youtube, vimeo, twitter, facebook, blogs..
-		* aktiv in communities werbung machen, nach hilfe/feedback fragen
-		* viele demos praesentieren (codesamples, blogs, tutorials, gute doku; videos/screencasts)
-		// JSUG praesi
-		* evtl sogar 
-* @version 2.0:
-	- extensions available: MIDI-ext, LEGO-ext ("NXT/mindstorm)
-	- und natuerlich muss zu einer "2.0" version das API aufgeraeumt werden (API darf ja gebrochen werden)
-		// ? gibts mvn plugin um API komptatibilitaet zu checken (nur von *.api.* klassen?)
-- @BUILD/API-cleanity: irgendwie enforcen das parentmodule nur von api von submodul abhaengig ist
-	// wird wichtig, wenn zb gesture module auch verwenden will mit nicht-osceleton-abhaengiger connection-api!
-- @API static facade zeugs in package "net.sf.josceleton.josceleton.staticfacade" (da kommt dann auch ConnectionX rein, und dgl um alles rein mit new Xyz() style zu machen)
-	- zugriffsarten
-		1 guice (out of the box, recommended)
-		2 own DI (have to write something; please contact me, i'll do it for you)
-		3a new Xyz (uses Josceleton.xyz internally)
-		3b Josceleton.xyz
-
-@RELEASE APP
-
-@config !!!!
-	svnPass => pass ... sourceforge
-	svnUser => user ... sourceforge (will be ",josceleton" added if necess)
-
-LUXURY
-==================
-- could open a ssh -t shell, if not yet present
-
-
-
-
-http://www.doughellmann.com/articles/how-tos/python-exception-handling/
- logging.basicConfig(level=logging.WARNING)
-    log = logging.getLogger('example')
-    try:
-        throws()
-        return 0
-    except Exception, err:
-        log.exception('Error from throws():')
-        return 1
+==========================================
+TODO WORK ENVIRONMENT
+==========================================
+! m2eclipse plugin fine tunen
+-- shelled (eclipse shellscript editor plugin) installation failed... :(

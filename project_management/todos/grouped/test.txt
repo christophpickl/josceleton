@@ -1,43 +1,64 @@
+
+======================================================
+@EXCEPTION HANDLING
+======================================================
+- @DynamicInstantiatorImplTest how to handle exceptions correctly (IllegalArgumentException, InstantiationException, IllegalAccessException)
+	//	(have to artificial throw these to fix it)
+- @DynamicInstantiatorImpl: EXCEPTION bad design; simple exception handling ...
+	- done to increase coverage and avoid having to test for each and every exception ;)
+- how to handle exception messages for tests correctly? (XyzException.MESSAGE_FORMAT_FOR ...?)
+	(@OscMessageTransformerImplTest)
+
+======================================================
+@REFACTOR
+======================================================
+!! DRY complete type hierarchy refactoring necessary!!
+	- @AbstractMessageTest MessageTests should extends EqualsTest AND MockeryTest
+	- mess with all AbstractXyzTest classes
+	- use matchers instead! (or if not possible otherwise with TestUtils)
+- REFACTOR @TestUtil methods as a custom matcher
+- @DynamicInstantiatorImplTest: remove nested classes and use mocks (of ClassAdapter) instead
+	.... or the other way round: use in other tests nested classes for test purpose as well ;)
+- DRY @StringUtil merge two methods together
+- @OscMessageRouterImplTest#rerouteDispatchesCorrectly REFACTOR test for different addresses/messages, and invalid address
+- @EnumTestUtil REFACTOR to hamcrest matcher
+- @OscPortOpenerImplTest: DRY refactor tests
+- @OscPortImplTest DRY outsource part of this into common CloseableTest
+
+======================================================
+@IMPROVE (MORE/NEW TESTS)
+======================================================
 !!! @TEST unbedingt auf leaking resources achten
 	! zb hats bug geben, wo in OscPortImpl#close die methode OSCPortIn.close nicht aufgerufen wurde!
 	* auch das ganze mit removeAllListeners() nochmal ueberdenken
-! ensure nothing is leaking (close, removeListener) => ebenfalls system-tests dafuer
+	! ensure nothing is leaking (close, removeListener) => ebenfalls system-tests dafuer
+! @TEST lasttest machen: einfach mal zig gesten/positions und rohlistener dranhaengen und schaun wie es sich verhaltet
+	* fuer performance changes immer das heranziehen + messen wie veraendert hat
+	* jprofiler verwenden (gratis?)
+	* frage wird endlich beantwortet: wie performancekritisch ist es?
+! @Connection[Internal]Impl: write more tests
+	establish connection, send messages, listener collects, ok; now ...
+	... close, artifical send messages, connection should not pass further
+// @TEST testng + guice: http://testnguice.googlecode.com/svn/site/2.0/inject.html
+- @JosceletonFacadeImplTest.onPort: check Connector.openConnectionOnPort(x) for illegal arguments (negative ports, ports > 65... max range!)
+	- @JosceletonTest same here: validate range of parameter Port
+- @TEST fuer alle closeable einen (generischen?!) test schreiben, wo geprueft ob wenn closed() aufgerufen, dann eh alle weiteren eine exception werfen
+	=> @Exception statt IllegalStateException, eine eigene IllegalClosedStateException werfen!
+- @AbstractEqualsTest REFACTOR abstract Test super classes ==> into non-extending-needed style => utility methods / hamcrest matchers
+
+======================================================
 ! @build when running tests, maybe append own log4j logger (programatically? something like a regular overwriting file appender)
 ??? best practice?: create impl instantance directly, or use guice factory/provider?
 - @TestUtil is it possible to mock toString()?
 	can not mock toString, even not with {{ setImposteriser(ClassImposteriser.INSTANCE); }};
-- REFACTOR @TestUtil methods as a custom matcher
-- @DynamicInstantiatorImplTest: remove nested classes and use mocks (of ClassAdapter) instead
-	.... or the other way round: use in other tests nested classes for test purpose as well ;)
-- @DynamicInstantiatorImplTest how to handle exceptions correctly (IllegalArgumentException, InstantiationException, IllegalAccessException)
-	//	(have to artificial throw these to fix it)
-- @UserMessageTest/UserState: MOCK would be nice to mock enums as well (UserState)
-	a la: UserState mockedUserState = mockery.mock(UserState.class);
-- @AbstractMockeryTest: always returning class mockery; is it okay this way?
-- @JosceletonFacadeImplTest.onPort: check Connector.openConnectionOnPort(x) for illegal arguments (negative ports, ports > 65... max range!)
-	- @JosceletonTest same here: validate range of parameter Port
-- @AbstractEqualsTest REFACTOR abstract Test super classes ==> into non-extending-needed style => utility methods / hamcrest matchers
 - how to generically and properly -!!!- test equals and hashCode? this is not yet used everywhere! (@AbstractEqualsTest)
 - @systemtest: (conditional submodule): komplett anders loesen, siehe hier: http://happygiraffe.net/blog/2009/07/26/conditional-maven-modules/
 - da ja sogar VOs interfaces sind => fuer tests only Factory zur verfuegung stellen a la:
 	"userFactory.create(2, 1)" => intern: "mock(User.class); expectations{ user.___allowing___(getId()); willReturn(pId); ... }"
 	... damit wird testen einfacher, und umgeht (in dem fall) "umstaendliches" design von puren interfaces :)
-- DRY @StringUtil merge two methods together
-- @Connection[Internal]Impl: write more tests
-	establish connection, send messages, listener collects, ok; now ...
-	... close, artifical send messages, connection should not pass further
-!! DRY complete type hierarchy refactoring necessary!!
-	- @AbstractMessageTest MessageTests should extends EqualsTest AND MockeryTest
-	- mess with all AbstractXyzTest classes
-	- use matchers instead! (or if not possible otherwise with TestUtils)
-- how to handle exception messages for tests correctly? (XyzException.MESSAGE_FORMAT_FOR ...?)
-	(@OscMessageTransformerImplTest)
-- @OscMessageRouterImplTest#rerouteDispatchesCorrectly REFACTOR test for different addresses/messages, and invalid address
-- @EnumTestUtil REFACTOR to hamcrest matcher
 - @ConnectorTest#abstractTestOpenConnectionMaybeOnPort
 	- let abstract create() also return expected(Raw)Connection to check if they are equal
 	- also cleanup test
-- @DynamicInstantiatorImpl: EXCEPTION bad design; simple exception handling ...
-	- done to increase coverage and avoid having to test for each and every exception ;)
-- @OscPortOpenerImplTest: DRY refactor tests
-- @OscPortImplTest DRY outsource part of this into common CloseableTest
+-- @UserMessageTest/UserState: MOCK would be nice to mock enums as well (UserState)
+	a la: UserState mockedUserState = mockery.mock(UserState.class);
+-- @AbstractMockeryTest: always returning class mockery; is it okay this way?

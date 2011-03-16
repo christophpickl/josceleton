@@ -1,24 +1,28 @@
-!! @CODE refactor user.id => user.uniqueId
+
+======================================================
+
 !!! @code: BodyRecentStorage.getBodyPartCoordinate(BodyPart):Coordinate THROWS NoCoordinatesDataAvailableException == CheckedException!
 	... es kann ja sein, dass noch gar keine daten verfuegbar sind, wenn zb kamera fuesse no net gsehn hat, und man fussdaten haben will
 !! @OscPortImpl#addListenerFor: DESIGN maybe OSCListener listener should not be directly listening to openedPort, but rather...
 	... have own dispatching pool, and act as a mediator.
 	=> side effect: if close() invoked, we really have message dispatching under full control!
-! maybe rename user.getId() to user.getUniqueId() ... otherwise one could be confused what id is, compared to osceletonId
+!! @API code: wenn < 0.0 kommt dann limitieren (genauso wenn >1.0 bzw >7.0)
+! @osceleton unique id error failsafe issue
+	- UserFactory hat eine resetCounter() methode
+	- rename UserStore to InternalUserCache
+	! UserService hat kein getXyUsers, sondern gibt ein zusaetzliches (super-interface? NEIN!) UserCollection
+		=> damit bleibt klasse schlank
+		* UserServiceFactory instanziiert nun klassen a la: UserService create(..) { return new UserServiceImpl(.., new UserCollectionImpl()); }
+		* favour aggregation over inheritance!
+! @Code interface Listener zu Listener<T> umaendern
+	=> somit wird jede Listener type nicht nur beim namen assoziiert, sondern auch per typ(variable)
 ! @OscPortImpl.yetClosed: REFACTOR DRY closed/established state already in CloseableAndAsyncSkeleton (see ConnectionInternalImpl)
 ! @CODE it should be valid to invoke addListener, though connection was not yet established
 	- otherwise have to register after establishing => messages could have been not listened for... minor, but still...
-! API CODE enforcing user to run java 1.6 is hard
-	? is it possible to support several versions at same time?
-	// dont want to give up 1.6 features... but at least 1.5
-- @CODE make use of guice's PrivateModule (encapsulate/hide some classes in *impl* packages internally) - YES, though herumtun, jetzt doch machen (ein bissi hiden geht schon)
-- @code: final params wegnehmen (nur per build + IDE enforcen! dass kein param assignment ist)
 - @CODE: nicht nur alle param-finals weg, auch in test vollqualifizierungen wegnehmen (zb "this.mock()" => "mock()")
-- @(Reflect)Util: REFACTOR DESIGN get rid of util class! there should be no utils at all in josceleton. refactor properly + dependency for DynamicInstantiatior.
-  * introduce UtilFacade class: "UtilFacade f = ...; f.String().trim()" or "f.Reflect().findConstructor(Class, Object[] argValues/*internally translated to argTypes*/)"
-	=> see DynamicInstantiatorImpl and ReflectUtil
 - check all custom equals implementations, if they are checking instanceof against interface, not *Impl!!! (and if they have shortcut check "if(this == other)")
-
+- nochmal: wie gscheid loggen? wenn zb guice nimmt, heissts irgendwas von wegen "SLF4J loggers"?/
+-- introduce new tasktag "TEST" (medium prio)
 -- ? should equals/hashCode/toString be final? (check all value objects!)
 -- @DynamicInstantiatorImpl#create: REFACTOR outsource array-check-for-null-values
 -- @ConnectorImpl: REFACTOR outsource default osceleton port from code into some property/build related artifact
