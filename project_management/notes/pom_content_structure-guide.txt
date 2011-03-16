@@ -1,0 +1,39 @@
+POM content structure:
+
+1. HEADER
+	~modelVersion
+	name
+	description
+	~url
+	inceptionYear
+	packaging
+
+2. COORDINATES
+	groupId
+	artifactId
+	version
+
+3. BASIC
+	~prerequisites
+	parent
+	properties
+	modules
+
+4. MAIN
+	dependencyManagement
+	dependencies
+	build
+		pluginManagement
+		plugins
+	reporting
+	profiles
+	scm
+
+5. MISC
+	~distributionManagement
+	~issueManagement
+	~organization
+	~licenses
+
+	~developers
+	~contributors

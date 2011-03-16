@@ -6,6 +6,32 @@
 		TEST (REFACTORINGS) -40%
 		DOC/MGMT -70%
 
+
+- architektur diagram aktuell halten
+	* vor allem wichtig diagrame von api (fuer user)
+	* ein kleineres diagram mit grober uebersicht ueber submodule
+	* ein grosses diagram mit allen (relevanten) api klassen, ohne _besonders_ darauf achten dass es verschiedene submodule gibt
+	* aber auch ein internes diagram warten fuer impls
+! eigener youtube account ist eine wirklich gute idee!
+	* eigene videos hochstellen (standard gui skeleton sample, ableton-midi, hitwall klavier, ... sehr simples roboter-ext sample)
+	* gute favourites list von anderen kinecthacks machen
+	* auf eigener seite dann diese eigenen youtube videos referenzieren... plus gute von anderen auch
+!! @code: unbedingt auf SYNCHRONIZED achten ob gebraucht (da ja alles async ist, multi-threaded!!)
+
+- @api: fuer advanced gestures (zb swipe) muss auch geschwindigkeit mitberuecksichtigt werden
+! mathe lernen: computergrafik { matrizen, vektoren, vektoren in 3d, trigonomentrie}
+	- zb fuer: winkel von arm im ellbogen messen
+! irgendwie das multiuser ding nutzen!
+	zb ein spiel (klavier spielen) koennen mehrere gleichzeitig (jeder ein anderes ton/instrument)
+
+
+- @CODE very LUXURY: listeners komplett mit events umbauen
+	* in Listeners, alle onXyz(..) ersetzen durch:
+		on(XyzMovedEvent)
+		on(XyzAbortedEvent)
+	+ Event.getSource():Object
+
+
 ==========================================
 TODOS @HIRT
 ==========================================

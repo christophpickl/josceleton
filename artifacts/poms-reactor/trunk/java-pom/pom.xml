@@ -280,6 +280,7 @@
 					<additionalConfig>
 						<file>
 							<name>.checkstyle</name>
+							<!-- var ${josceleton-peruser.checkstyle.configuration.name} defined in settings.xml -->
 							<content>
 			                	<![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
