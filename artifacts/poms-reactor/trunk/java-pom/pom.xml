@@ -41,6 +41,9 @@
     	<version.josceleton.core-impl>0.4-SNAPSHOT</version.josceleton.core-impl>
     	<version.josceleton.connection-api>0.4-SNAPSHOT</version.josceleton.connection-api>
     	<version.josceleton.connection-impl>0.4-SNAPSHOT</version.josceleton.connection-impl>
+    	<version.josceleton.motion-api>0.1-SNAPSHOT</version.josceleton.motion-api>
+    	<version.josceleton.motion-impl>0.1-SNAPSHOT</version.josceleton.motion-impl>
+    	
    		<version.josceleton-checkstyle-config>0.4-SNAPSHOT</version.josceleton-checkstyle-config>
    		
         <!-- V E R S I O N S   E X T E R N A L -->
@@ -68,7 +71,6 @@
 				<artifactId>commons</artifactId>
 				<version>${version.josceleton.commons}</version>
 			</dependency>
-			
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>commons</artifactId>
@@ -121,6 +123,30 @@
 				<groupId>${project.groupId}</groupId>
 				<artifactId>connection-impl</artifactId>
 				<version>${version.josceleton.connection-impl}</version>
+				<type>test-jar</type>
+			</dependency>
+			
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>motion-api</artifactId>
+				<version>${version.josceleton.motion-api}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>motion-api</artifactId>
+				<version>${version.josceleton.motion-api}</version>
+				<type>test-jar</type>
+			</dependency>
+			
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>motion-impl</artifactId>
+				<version>${version.josceleton.motion-impl}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>motion-impl</artifactId>
+				<version>${version.josceleton.motion-impl}</version>
 				<type>test-jar</type>
 			</dependency>
     		

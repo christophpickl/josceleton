@@ -17,7 +17,7 @@
 	<!-- GUICE RELATED -->
     <!-- ******************************************************************* -->
 	
-	<suppress checks="RequireThis" files="net.sf.josceleton.*GuiceModule.java" />
+	<suppress checks="RequireThis" files="net.sf.josceleton.*Module.java" />
 	
 	
 	<!-- BODY RELATED -->
