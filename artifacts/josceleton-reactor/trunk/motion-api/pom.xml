@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>${project.artifactId} (${project.version})</name>
-    <description>Connection API containing the connector and all other core services.</description>
+    <description>Motion API containing all kind of position and gesture detectors.</description>
     <packaging>jar</packaging>
     
-    <artifactId>connection-api</artifactId>
-    <version>0.4-SNAPSHOT</version>
+    <artifactId>motion-api</artifactId>
+    <version>0.1-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -14,11 +14,11 @@
     <!-- ******************************************************************* -->
     
     <parent>
-    	<groupId>net.sf.josceleton</groupId>
-    	<artifactId>java-pom</artifactId>
+		<groupId>net.sf.josceleton</groupId>
+		<artifactId>java-pom</artifactId>
         <version>0.4-SNAPSHOT</version>
     	<relativePath>../../poms-reactor/java-pom/</relativePath>
-    </parent>
+	</parent>
     
     
     <!-- ******************************************************************* -->
@@ -26,45 +26,31 @@
     <!-- ******************************************************************* -->
     
     <dependencies>
-    
+        
 	    <!-- I N T E R N A L -->
     	<!-- *********************************************************** -->
     	
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>core-api</artifactId>
-		</dependency>
-		
-		<dependency><!-- FIXME remove impl dependency (needed because of SkeletonFactory => bad design! REFACTOR!!!) -->
-			<groupId>${project.groupId}</groupId>
 			<artifactId>core-impl</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>connection-api</artifactId>
+		</dependency>
+        
 	    <!-- T E S T -->
     	<!-- *********************************************************** -->
     	
-		<dependency>
+	    <dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>commons</artifactId>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>core-api</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>core-impl</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
-	</dependencies>
+	    
+    </dependencies>
     
     
     <!-- ******************************************************************* -->
@@ -72,9 +58,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/connection-api/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/connection-api/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/connection-api/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/motion-api/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/motion-api/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/motion-api/</url>
     </scm>
     
 </project>

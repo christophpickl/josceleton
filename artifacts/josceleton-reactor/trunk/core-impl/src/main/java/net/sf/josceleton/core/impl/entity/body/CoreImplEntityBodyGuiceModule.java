@@ -8,7 +8,7 @@ import com.google.inject.assistedinject.FactoryProvider;
 /**
  * @since 0.4
  */
-public class JosceletonCoreImplEntityBodyGuiceModule extends AbstractModule {
+public class CoreImplEntityBodyGuiceModule extends AbstractModule {
 
 	/**
 	 * @since 0.4

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.josceleton.connection.api.Connection;
+import net.sf.josceleton.connection.api.ConnectionListener;
 import net.sf.josceleton.connection.api.service.motion.MotionListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;

@@ -6,7 +6,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.google.inject.assistedinject.FactoryProvider;
 
-public class JosceletonConnectionImplGuiceModule extends AbstractModule {
+public class ConnectionImplGuiceModule extends AbstractModule {
 
 	@Override protected final void configure() {
 		

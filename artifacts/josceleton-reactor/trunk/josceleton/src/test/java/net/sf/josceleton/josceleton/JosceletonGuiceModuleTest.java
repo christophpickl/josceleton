@@ -1,8 +1,8 @@
 package net.sf.josceleton.josceleton;
 
-import com.google.inject.Module;
-
 import net.sf.josceleton.commons.test.AbstractGuiceModuleTest;
+
+import com.google.inject.Module;
 
 public class JosceletonGuiceModuleTest extends AbstractGuiceModuleTest {
 

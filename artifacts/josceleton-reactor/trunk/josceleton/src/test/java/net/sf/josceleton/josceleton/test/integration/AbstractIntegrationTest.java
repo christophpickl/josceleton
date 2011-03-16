@@ -24,8 +24,6 @@ import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.josceleton.JosceletonGuiceModule;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jmock.Expectations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -38,8 +36,6 @@ import com.google.inject.util.Modules;
 
 @SuppressWarnings({ "boxing", "synthetic-access" })
 public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
-	
-	private static final Log LOG = LogFactory.getLog(AbstractIntegrationTest.class);
 	
 	private Connection connection;
 	private UserService userService;
@@ -106,7 +102,6 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	
 	
 	protected final void dispatchJointMessage(final int userId, final Joint joint, final float... coordinates) {
-		LOG.debug("+dispatchJointMessage(..)");
 		final Float x = coordinates.length > 0 ? coordinates[0] : Float.valueOf(0.0F);
 		final Float y = coordinates.length > 1 ? coordinates[1] : Float.valueOf(0.0F);
 		final Float z = coordinates.length > 2 ? coordinates[2] : Float.valueOf(0.0F);
@@ -115,7 +110,6 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	}
 	
 	protected final void dispatchUserMessage(final int userId, final UserState state) {
-		LOG.debug("+dispatchUserMessage(userId, state=" + state + ")");
 		this.dispatchOscMessage(OscAddressConverterUtil.convertUserStateToOscAddress(state), new Object[] { Integer.valueOf(userId) });
 	}
 	

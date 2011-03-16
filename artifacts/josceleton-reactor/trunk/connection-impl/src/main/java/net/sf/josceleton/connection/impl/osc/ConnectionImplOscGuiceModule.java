@@ -10,7 +10,7 @@ import com.google.inject.Singleton;
 import com.google.inject.assistedinject.FactoryProvider;
 import com.illposed.osc.OSCPortIn;
 
-public class JosceletonConnectionImplOscGuiceModule extends AbstractModule {
+public class ConnectionImplOscGuiceModule extends AbstractModule {
 
 	@Override protected final void configure() {
 		

@@ -12,11 +12,11 @@ import com.google.inject.Module;
 public class JosceletonConnectionImplOscGuiceModuleTest extends AbstractGuiceModuleTest {
 
 	@Override protected final Module createTestee() {
-		return new JosceletonConnectionImplOscGuiceModule();
+		return new ConnectionImplOscGuiceModule();
 	}
 	
 	@Test public final void providerExecutesProperyAndReturnsValue() {
-		assertThat(new JosceletonConnectionImplOscGuiceModule().getOscPortInClassAdapter(), not(nullValue()));
+		assertThat(new ConnectionImplOscGuiceModule().getOscPortInClassAdapter(), not(nullValue()));
 	}
 	
 }

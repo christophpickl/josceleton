@@ -1,13 +1,13 @@
 package net.sf.josceleton.josceleton;
 
-import net.sf.josceleton.commons.reflect.JosceletonCommonsReflectGuiceModule;
-import net.sf.josceleton.connection.impl.JosceletonConnectionImplGuiceModule;
-import net.sf.josceleton.connection.impl.osc.JosceletonConnectionImplOscGuiceModule;
-import net.sf.josceleton.connection.impl.service.motion.JosceletonConnectionImplServiceMotionGuiceModule;
-import net.sf.josceleton.connection.impl.service.user.JosceletonConnectionImplServiceUserGuiceModule;
-import net.sf.josceleton.core.impl.entity.JosceletonCoreImplEntityGuiceModule;
-import net.sf.josceleton.core.impl.entity.body.JosceletonCoreImplEntityBodyGuiceModule;
-import net.sf.josceleton.core.impl.entity.message.JosceletonCoreImplEntityMessageGuiceModule;
+import net.sf.josceleton.commons.reflect.CommonsReflectGuiceModule;
+import net.sf.josceleton.connection.impl.ConnectionImplGuiceModule;
+import net.sf.josceleton.connection.impl.osc.ConnectionImplOscGuiceModule;
+import net.sf.josceleton.connection.impl.service.motion.ConnectionImplServiceMotionGuiceModule;
+import net.sf.josceleton.connection.impl.service.user.ConnectionImplServiceUserGuiceModule;
+import net.sf.josceleton.core.impl.entity.CoreImplEntityGuiceModule;
+import net.sf.josceleton.core.impl.entity.body.CoreImplEntityBodyGuiceModule;
+import net.sf.josceleton.core.impl.entity.message.CoreImplEntityMessageGuiceModule;
 
 import com.google.inject.AbstractModule;
 
@@ -23,16 +23,16 @@ public class JosceletonGuiceModule extends AbstractModule { // NO extends Privat
 	@Override protected final void configure() {
 		// "bottom to top" ordering of modules:
 		
-		this.install(new JosceletonCommonsReflectGuiceModule());
+		this.install(new CommonsReflectGuiceModule());
 		
-		this.install(new JosceletonCoreImplEntityBodyGuiceModule());
-		this.install(new JosceletonCoreImplEntityMessageGuiceModule());
-		this.install(new JosceletonCoreImplEntityGuiceModule());
+		this.install(new CoreImplEntityBodyGuiceModule());
+		this.install(new CoreImplEntityMessageGuiceModule());
+		this.install(new CoreImplEntityGuiceModule());
 		
-		this.install(new JosceletonConnectionImplOscGuiceModule());
-		this.install(new JosceletonConnectionImplServiceMotionGuiceModule());
-		this.install(new JosceletonConnectionImplServiceUserGuiceModule());
-		this.install(new JosceletonConnectionImplGuiceModule());
+		this.install(new ConnectionImplOscGuiceModule());
+		this.install(new ConnectionImplServiceMotionGuiceModule());
+		this.install(new ConnectionImplServiceUserGuiceModule());
+		this.install(new ConnectionImplGuiceModule());
 	}
 
 }

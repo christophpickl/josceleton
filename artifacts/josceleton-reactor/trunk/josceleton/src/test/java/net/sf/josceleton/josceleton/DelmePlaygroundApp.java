@@ -1,42 +1,60 @@
 package net.sf.josceleton.josceleton;
 
 import net.sf.josceleton.connection.api.Connection;
+import net.sf.josceleton.connection.api.Connector;
+import net.sf.josceleton.connection.api.service.motion.MotionListener;
 import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
 import net.sf.josceleton.connection.api.service.motion.MotionSeparatorCache;
-import net.sf.josceleton.connection.api.service.motion.MotionListener;
 import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
+import net.sf.josceleton.motion.api.gesture.GestureFactory;
+import net.sf.josceleton.motion.api.gesture.GestureListener;
+import net.sf.josceleton.motion.api.gesture.HitWallGesture;
+
+import com.google.inject.Injector;
 
 public class DelmePlaygroundApp {
 	
 	public static void main(final String[] args) {
-//		new DelmePlaygroundApp()userServiceDebugger()
-	}
-	
-	public final void userServiceDebugger() {
-		final Connection connection = Josceleton.openConnection();
-		final UserService service = connection.getUserService();
-		
-		service.addListener(new UserServiceListener() {
-			@Override public void onUserWaiting(final User user) {
-				System.out.println("waiting to identify skeleton for: " + user);
-			}
-			@Override public void onUserProcessing(final User user) {
-				System.out.println("skeleton data is now being processed for: " + user);
-			}
-			
-			@Override public void onUserDead(final User user) {
-				System.out.println("lost user: " + user);
-			}
-		});
-//		connection.close();
+		new DelmePlaygroundApp().firstGesturePlayground();
 	}
 
-	public static void thisIsHowNewMotionServiceCouldWork() {
+	public final void firstGesturePlayground() {
+		final Injector injector = Josceleton.newGuiceInjector();
+		
+		final GestureFactory factory = injector.getInstance(GestureFactory.class);
+		final HitWallGesture gesture = factory.newHitWall();
+		gesture.addListener(new GestureListener() { @Override public void onGestureDetected() {
+			System.out.println("gesture detected!");
+		} });
+		
+		final Connector connector = injector.getInstance(Connector.class);
+		final Connection connection = connector.openConnection();
+		
+		final MotionSeparatorCache cache = injector.getInstance(MotionSeparatorCache.class);
+		final MotionSeparator separator = cache.lookupMotionSeparator(connection);
+		
+		connection.getUserService().addListener(new UserServiceListener() {
+			@Override public void onUserWaiting(final User user) {
+				System.out.println("onUserWaiting(user=" + user + ")");
+			}
+			@Override public void onUserDead(final User user) {
+				System.out.println("onUserDead(user=" + user + ")");
+				separator.removeListenerFor(user, gesture);
+			}
+			@Override public void onUserProcessing(final User user) {
+				System.out.println("onUserProcessing(user=" + user + ")");
+				separator.addListenerFor(user, gesture);
+			}
+		});
+		System.out.println("Up and running...");
+	}
+
+	public final void thisIsHowNewMotionServiceCouldWork() {
 		final Connection c = Josceleton.openConnection();
 		
 		final UserService us = c.getUserService();
@@ -57,6 +75,25 @@ public class DelmePlaygroundApp {
 		} };
 		ms.addListenerFor(u, msl);
 		ms.removeListenerFor(u, msl);
+	}
+
+	public final void userServiceDebugger() {
+		final Connection connection = Josceleton.openConnection();
+		final UserService service = connection.getUserService();
+		
+		service.addListener(new UserServiceListener() {
+			@Override public void onUserWaiting(final User user) {
+				System.out.println("waiting to identify skeleton for: " + user);
+			}
+			@Override public void onUserProcessing(final User user) {
+				System.out.println("skeleton data is now being processed for: " + user);
+			}
+			
+			@Override public void onUserDead(final User user) {
+				System.out.println("lost user: " + user);
+			}
+		});
+//		connection.close();
 	}
 	
 }

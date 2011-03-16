@@ -32,8 +32,8 @@
     	<module>core-impl</module>
     	<module>connection-api</module>
     	<module>connection-impl</module>
-<!--    	<module>movement-api</module>-->
-<!--    	<module>movement-impl</module>-->
+    	<module>motion-api</module>
+    	<module>motion-impl</module>
     	<module>josceleton</module>
 <!--    	<module>(system-)tests</module>-->
 <!--    	<module>samples</module>-->

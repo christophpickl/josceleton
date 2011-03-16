@@ -7,7 +7,7 @@ import net.sf.josceleton.commons.test.AbstractGuiceModuleTest;
 public class JosceletonCoreImplEntityGuiceModuleTest extends AbstractGuiceModuleTest {
 
 	@Override protected final Module createTestee() {
-		return new JosceletonCoreImplEntityGuiceModule();
+		return new CoreImplEntityGuiceModule();
 	}
 	
 }

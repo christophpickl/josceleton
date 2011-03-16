@@ -32,7 +32,7 @@
     	
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>connection-impl</artifactId>
+			<artifactId>motion-impl</artifactId>
 		</dependency>
         
 	    <!-- T E S T -->

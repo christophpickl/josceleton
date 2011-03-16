@@ -5,7 +5,7 @@ import com.google.inject.AbstractModule;
 /**
  * @since 0.3
  */
-public class JosceletonConnectionImplServiceUserGuiceModule extends AbstractModule {
+public class ConnectionImplServiceUserGuiceModule extends AbstractModule {
 
 	@Override protected final void configure() {
 		bind(UserServiceInternal.class).to(UserServiceImpl.class);

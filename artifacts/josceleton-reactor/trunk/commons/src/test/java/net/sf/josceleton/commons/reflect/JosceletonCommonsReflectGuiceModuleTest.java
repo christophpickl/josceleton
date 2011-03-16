@@ -7,7 +7,7 @@ import com.google.inject.Module;
 public class JosceletonCommonsReflectGuiceModuleTest extends AbstractGuiceModuleTest {
 
 	@Override protected final Module createTestee() {
-		return new JosceletonCommonsReflectGuiceModule();
+		return new CommonsReflectGuiceModule();
 	}
 	
 }
