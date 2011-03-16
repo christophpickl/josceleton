@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import com.google.inject.Binder;
 import com.google.inject.Module;
 
-public abstract class AbstractGuiceModuleTest extends AbstractMockeryTest {
+public abstract class AbstractModuleTest extends AbstractMockeryTest {
 	
 	protected abstract Module createTestee();
 	
