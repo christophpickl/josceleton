@@ -9,7 +9,7 @@
     
     <properties>
     	<verison.submodule.model>0.2</verison.submodule.model>
-    	<verison.submodule.logic>0.2</verison.submodule.logic>
+    	<verison.submodule.logic>0.3</verison.submodule.logic>
     
     
 		<sourceEncoding>UTF-8</sourceEncoding> 
