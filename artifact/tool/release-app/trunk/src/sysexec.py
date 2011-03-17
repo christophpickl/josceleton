@@ -4,6 +4,18 @@ import getpass
 from config_global import INTERACTIVE, SYSEXEC_ENABLED
 from logging import * #@UnusedWildImport
 
+def inputConfirmation():
+    yesCmd = "yes"
+    noCmd = "no"
+    prompt = "[%s/%s] >> " % (yesCmd, noCmd)
+    
+    while True:
+        userEntered = raw_input(prompt)
+        if userEntered == yesCmd:
+            return True
+        if userEntered == noCmd:
+            return False
+
 def filterDashDashDeePasswd(subject):
     token = "-Dpassword"
     idxToken = subject.find(token)
@@ -18,7 +30,7 @@ def filterDashDashDeePasswd(subject):
         endPart = subject[idxBeforePass + idxUntilNextWhitepsace:]
     
     return subject[0:idxBeforePass] + "=*****" + endPart
-    
+
     
 def filterDashDashPasswd(subject):
     token = "--password"

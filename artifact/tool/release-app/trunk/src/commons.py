@@ -18,11 +18,12 @@ def formatArtifactNameBy(artifact):
     return "%s-%s.%s" % (artifact.artifactId, artifact.versionRelease, artifact.packaging) # release-playground-0.2.pom
     
 
-def prepareTargetFolder(workspacePath):
+def prepareTargetFolder(workspacePath, suffix):
     if os.path.isdir(workspacePath) == 0 and os.path.isabs(workspacePath):
         raise Exception("Invalid workspace directory: %s" % workspacePath)
     
-    targetFolderName = time.strftime("%Y-%m-%d_%H-%M-%S") #http://docs.python.org/library/time.html#time.strftime 
+    targetFolderNameTimePart = time.strftime("%d-%H_%M_%S") #http://docs.python.org/library/time.html#time.strftime
+    targetFolderName = "%s-%s" % (targetFolderNameTimePart, suffix) 
     targetFolder = os.path.join(workspacePath, targetFolderName)
     mkdir(targetFolder)
     return targetFolder

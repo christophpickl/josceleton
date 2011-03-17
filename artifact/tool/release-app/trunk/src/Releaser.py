@@ -20,7 +20,7 @@ class Releaser:
         # TODO validate if mvn2 is active (not mvn3, as wagon SCP provider does not work)
         # TODO confirm artifacts configuration by user!!!
         
-        targetFolder = prepareTargetFolder(config.workspace)
+        targetFolder = prepareTargetFolder(config.workspace, "releaser")
         
         preConditions = PreconditionChecker()
         if PRECONDITIONS_ENABLED == True:
@@ -30,8 +30,13 @@ class Releaser:
         
         if SYSEXEC_ENABLED == True:
             print
-            raw_input("Are you really sure? sysexec is enabled!")
+            print "Configured artifacts:"
+            for i, artifact in enumerate(config.artifacts):
+                print "  %i. %s - Release Version: %s, Next Version: %s" % ( (i+1), artifact.artifactId, artifact.versionRelease, artifact.versionNext )
             print
+            print "Are you really sure? SYSEXEC is enabled!"
+            if inputConfirmation() == False:
+                return False
         
         artifact = None
         try:
@@ -109,8 +114,9 @@ class Releaser:
     def checkout(self, artifact, config, targetFolder):
         logd("Checking out artifact: %s" % artifact.artifactId)
         
-        targetPath = os.path.join(targetFolder, artifact.artifactId)
-        svn("checkout %s %s --username %s --password %s" % (artifact.svnPath, targetPath, config.username, config.password))
+        targetPath = "%s-%s-SNAPSHOT" % (os.path.join(targetFolder, artifact.artifactId), artifact.versionRelease)
+        svnCheckoutPath = "%s/%s/trunk" % (config.svnBasePath, artifact.svnRelativeToBase)
+        svn("checkout %s %s --username %s --password %s" % (svnCheckoutPath, targetPath, config.username, config.password))
 
         return targetPath
 

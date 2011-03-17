@@ -14,9 +14,9 @@ def loadDynamicConfiguration(configModuleName):
     loadedConfig = Configuration() #@UndefinedVariable
     
     logi("Loaded dynamic configuration from Module [%s.py]" % configModuleName)
-    logd("  Username: %s" % loadedConfig.username)
-    logd("  Workspace: %s" % loadedConfig.workspace)
-    logd("  Configured Artifacts: %s" % len(loadedConfig.artifacts))
+    logd("  * Username: %s" % loadedConfig.username)
+    logd("  * Workspace: %s" % loadedConfig.workspace)
+    logd("  * Configured Artifacts: %s" % len(loadedConfig.artifacts))
 
     return loadedConfig
 
@@ -34,15 +34,16 @@ if __name__ == "__main__":
     configModuleName = "config_%s" % uname()
     try:
         config = loadDynamicConfiguration(configModuleName)
-    except ImportError:
-        loge("Could not find configuration module [%s]!" % configModuleName)
+    except ImportError as e:
+        loge("Could not find configuration module [%s]!" % configModuleName, e)
         sys.exit(1)
     
     os.environ['PATH'] = "%s:%s" % (os.environ['PATH'], "/opt/local/bin")
     
     wasAnError = True
     try:
-        if Releaser().createNewWith(config) == True:
+        wasReleased = Releaser().createNewWith(config)
+        if wasReleased == True:
             Packager().wrapUp(config)
             wasAnError = False
         

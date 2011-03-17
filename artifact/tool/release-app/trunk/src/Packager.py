@@ -12,7 +12,7 @@ class Packager():
     def wrapUp(self, config):
         logi("Packaging artifacts.")
         
-        targetFolder = prepareTargetFolder(config.workspace)
+        targetFolder = prepareTargetFolder(config.workspace, "packager")
         chdir(targetFolder)
         
         package = config.package
@@ -27,14 +27,6 @@ class Packager():
         libsFolderRelativePath = os.path.join(buildFolder, libsFolderName)
         logd("Downloading %i artifacts" % len(package.artifacts))
         self.downloadArtifacts(package.artifacts, libsFolderRelativePath)
-        
-        libs3rdFolderName = "thirdparty"
-        libs3rdFolder = os.path.join(libsFolder, libs3rdFolderName)
-        mkdir(libs3rdFolder)
-        libs3rdFolderRelativePath = os.path.join(libsFolder, libs3rdFolderName)
-        logd("Downloading %i 3rd party artifacts" % len(package.artifact3rds))
-        self.downloadArtifacts(package.artifact3rds, libs3rdFolderRelativePath)
-        
         
         readmeFile = "%s/README.txt" % buildFolder
         writeFile(readmeFile, package.readmeContent)

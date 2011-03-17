@@ -1,9 +1,8 @@
 
 class Package:
     
-    def __init__(self, artifacts, artifact3rds, zipName, readmeContent):
+    def __init__(self, artifacts, zipName, readmeContent):
         self.artifacts = artifacts
-        self.artifact3rds = artifact3rds
         self.zipName = zipName
         self.readmeContent = readmeContent
         
