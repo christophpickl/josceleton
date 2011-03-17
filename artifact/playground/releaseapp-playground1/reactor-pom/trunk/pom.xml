@@ -5,19 +5,19 @@
     
 	<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
     <artifactId>reactor-pom</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
     
 	<parent>
 		<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
 	    <artifactId>java-pom</artifactId>
 	    <version>0.1</version>
-	    <relativePath>../../java-pom/trunk/</relativePath>
+	    <relativePath>../../java-pom/tags/java-pom-0.1/</relativePath>
 	</parent>
 	
     <modules>
-    	<module>../../model/trunk</module>
-    	<module>../../logic/trunk</module>
-    	<module>../../app/trunk</module>
+    	<module>../../model/tags/model-0.1</module>
+    	<module>../../logic/tags/logic-0.1</module>
+    	<module>../../app/tags/app-0.1</module>
     </modules>
 	    
     <scm>
