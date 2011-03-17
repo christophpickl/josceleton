@@ -33,18 +33,6 @@
             <artifactId>josceleton</artifactId>
         </dependency>
         
-        <dependency>
-        	<groupId>net.pulse-project.router</groupId>
-        	<artifactId>router-midi</artifactId>
-        	<version>0.1-SNAPSHOT</version>
-        	<exclusions>
-        		<exclusion>
-				    <groupId>net.pulse-project.pom</groupId>
-				    <artifactId>guice-dependencies</artifactId>
-        		</exclusion>
-        	</exclusions>
-        </dependency>
-        
 	</dependencies>
     
     

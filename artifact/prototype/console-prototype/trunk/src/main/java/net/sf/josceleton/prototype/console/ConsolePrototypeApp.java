@@ -1,88 +1,58 @@
 package net.sf.josceleton.prototype.console;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
-import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
-import net.sf.josceleton.prototype.console.glue.GlueCode;
-import net.sf.josceleton.prototype.console.glue.GlueCodeFactory;
-import net.sf.josceleton.prototype.console.glue.PlainSimpleMidiSenderImpl;
-import net.sf.josceleton.prototype.console.notification.GrowlNotifier;
-import net.sf.josceleton.prototype.console.notification.GrowlNotifierFactory;
-import net.sf.josceleton.prototype.console.scenario1.Scenario1;
-import net.sf.josceleton.prototype.console.scenario1.SimpleMidiSender;
-import net.sf.josceleton.prototype.console.view.MainWindow;
-import net.sf.josceleton.prototype.console.view.MainWindowListener;
+import net.sf.josceleton.prototype.console.glue.ConsolePresenter;
+import net.sf.josceleton.prototype.console.glue.ConsolePresenterFactory;
+import net.sf.josceleton.prototype.console.view.ConsoleWindow;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 
-public class ConsolePrototypeApp implements MainWindowListener {
-	
-	private static final Log LOG = LogFactory.getLog(ConsolePrototypeApp.class);
-	
-	private final Connector connector;
+public class ConsolePrototypeApp {
 
-	private final GlueCodeFactory glueFactory;
-
-	private final GrowlNotifierFactory growlFactory;
-	
-	private Connection connection;
-	
 	public static void main(final String[] args) {
-		final Injector injector = Guice.createInjector(new ConsolePrototypeModule());
-		final ConsolePrototypeApp app = injector.getInstance(ConsolePrototypeApp.class);
-		app.startUp();
-	}
+		// TODO this could all be hidden by Josceleton static facade ;) (except of step 4 of course)
+		
+		// 1. setup guice
+		final Injector injector = Guice.createInjector(new AbstractModule() {
+			@Override protected void configure() {
+				install(new ConsolePrototypeModule());
+			}
+		});
+		
+		// 2. open connection
+		final Connector connector = injector.getInstance(Connector.class);
+		final Connection connection = connector.openConnection();
 	
-	@Inject ConsolePrototypeApp(final Connector connector, final GlueCodeFactory glueFactory, final GrowlNotifierFactory growlFactory) {
-		this.connector = connector;
-		this.glueFactory = glueFactory;
-		this.growlFactory = growlFactory;
-	}
-
-	public final void startUp() {
-		LOG.info("startUp()");
+		// 3. setup console window and presenter
+		final ConsoleWindow consoleWindow = injector.getInstance(ConsoleWindow.class);
+		final ConsolePresenter consolePresenter = injector.getInstance(ConsolePresenterFactory.class).create(consoleWindow, connection);
+		consolePresenter.init();
 		
-		this.connection = this.connector.openConnection();
-		final MainWindow window = new MainWindow(this);
-		final AvailableUsersCollection users = this.connection.getUserService();
+		// 4. create own gui
+		final JFrame frame = new JFrame("My Application");
+		final JButton btn = new JButton("Display Josceleton Console");
+		btn.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(final ActionEvent event) {
+				consoleWindow.setVisible(true);
+			}
+		});
 		
-		final GrowlNotifier growl = this.growlFactory.create("Josceleton Console App").registerApp();
-		final GlueCode windowGlue = this.glueFactory.create(window, users, growl);
-		
-		synchronized(windowGlue) {
-			// we dont want to have a context switch between the first two lines
-			// could be a user change ... but... this is not really very likely!
-			// ====> in here we are dealing with milli seconds; osceleton detects users within several seconds :)
-			windowGlue.initAvailableUsers();
-			this.connection.getUserService().addListener(windowGlue);
-			
-			this.connection.addListener(windowGlue);
-		}
-		
-		final int noteChannel = 0;
-		final SimpleMidiSender midiSender = new PlainSimpleMidiSenderImpl(noteChannel);
-		final Scenario1 scenario = new Scenario1(this.connection);
-		scenario.registerGestures(midiSender);
-		
-		
+		frame.getContentPane().add(btn);
+		frame.pack();
+	
 		SwingUtilities.invokeLater(new Runnable() { @Override public void run() {
-			window.setVisible(true);	
+			frame.setVisible(true);	
 		}});
-	}
-	
-	/** {@inheritDoc} from {@link MainWindowListener} */
-	@Override public final void onQuit() {
-		LOG.debug("onQuit()");
-		
-		this.connection.close();
-		this.connection = null;
 	}
 
 }

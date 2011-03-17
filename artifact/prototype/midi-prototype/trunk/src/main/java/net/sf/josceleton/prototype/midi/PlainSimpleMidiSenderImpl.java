@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.console.glue;
+package net.sf.josceleton.prototype.midi;
 
 import javax.sound.midi.MidiDevice;
 import javax.sound.midi.Receiver;

@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.console.scenario1;
+package net.sf.josceleton.prototype.midi;
 
 public interface SimpleMidiSender {
 

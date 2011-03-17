@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.console.scenario1;
+package net.sf.josceleton.prototype.midi;
 
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.core.api.entity.XyzDirection;
