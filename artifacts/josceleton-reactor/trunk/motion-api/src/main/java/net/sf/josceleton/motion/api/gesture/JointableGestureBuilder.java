@@ -16,6 +16,13 @@ public interface JointableGestureBuilder<
 	/**
 	 * @since 0.4
 	 */
-	B attachedJoints(Joint joint, Joint... moreJoints);
+	B relevantJoint(Joint atLeastOneJoint, Joint... optionallyMore);
+
+	/**
+	 * @since 0.4
+	 */
+	B relevantJoints(Joint[] joints);
+	
+	// LUXURY maybe offer as well a method for collections: relevantJoints(Collection<Joint> joints)
 	
 }

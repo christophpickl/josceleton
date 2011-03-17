@@ -25,7 +25,8 @@ public abstract class AbstractEqualsTest<E> {
 //		NO! assertThat(testee, not(equalTo((Object) "foobar")));
 		
 		final Object testee2 = this.createSameTesteeForEquals();
-		assertThat("Testees for createSameTesteeForEquals must be equals!", testee.equals(testee2), equalTo(true));
+		assertThat("Testees for createSameTesteeForEquals must be equals!\ntestee: " + testee + "\ntestee2: " + testee2,
+				testee.equals(testee2), equalTo(true));
 	}
 	
 

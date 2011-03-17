@@ -33,7 +33,7 @@ public class DelmePlaygroundApp {
 			.direction(XyzDirection.Y)
 			.triggerOnLower(true)
 			.coordinate(0.5F)
-			.attachedJoints(joint)
+			.relevantJoint(joint)
 			.build();
 		gesture.addListener(new HitWallListener() { @Override public void onGestureDetected(final Skeleton skeleton) {
 			System.out.println("[INFO] ==========================>>>>>>> gesture detected on joint (" + joint + ") " +

@@ -58,6 +58,33 @@ public abstract class HitWallGestureTest extends AbstractMockeryTest {
 		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.4F), skeleton);
 		assertThat(listener.getGesturesDetected().size(), equalTo(2));
 	}
+
+	@Test public final void commonCaseButTriggerLowerSetToFalse() {
+		final Joint joint = Joints.HAND().RIGHT();
+		final Collection<Joint> jointsInterestedIn = newJoints(joint);
+		final float coordinateValue = 0.5F;
+		final XyzDirection direction = XyzDirection.Y;
+		final boolean triggerLower = false;
+		
+		final HitWallConfig configuration = new TestableHitWallGestureConfiguration(jointsInterestedIn, coordinateValue, direction, triggerLower);
+		final HitWallGesture gesture = this.createTestee(configuration);
+		
+		final Skeleton skeleton = this.mock(Skeleton.class);
+		final TestableHitWallListener listener = new TestableHitWallListener();
+		gesture.addListener(listener);
+
+
+		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.6F), skeleton);
+		assertThat(listener.getGesturesDetected().size(), equalTo(1));
+		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.7F), skeleton);
+		assertThat(listener.getGesturesDetected().size(), equalTo(1));
+		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.4F), skeleton);
+		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.3F), skeleton);
+		assertThat(listener.getGesturesDetected().size(), equalTo(1));
+		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.8F), skeleton);
+		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.9F), skeleton);
+		assertThat(listener.getGesturesDetected().size(), equalTo(2));
+	}
 	
 	// TODO outsource method
 	public static Collection<Joint> newJoints(final Joint... joints) {

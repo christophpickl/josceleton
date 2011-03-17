@@ -26,10 +26,10 @@ public abstract class AbstractJointableGestureBuilderTest<
 	protected abstract AbstractJointableGestureBuilder<B, G, C, L> createTestee();
 	
 	@Test
-	public final void testname() {
+	public final void abstractTestPAttachedJoints() {
 		final AbstractJointableGestureBuilder<B, G, C, L> testee = this.createTestee();
 		final Joint expectedJoint = Joints.HEAD();
-		testee.attachedJoints(expectedJoint);
+		testee.relevantJoint(expectedJoint);
 		final Collection<Joint> actualJoints = testee.getPAttachedJoints();
 		
 		assertThat(actualJoints.size(), equalTo(1));

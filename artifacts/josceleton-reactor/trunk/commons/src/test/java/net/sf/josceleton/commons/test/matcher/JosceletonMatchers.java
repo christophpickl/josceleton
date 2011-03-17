@@ -2,8 +2,11 @@ package net.sf.josceleton.commons.test.matcher;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import net.sf.josceleton.commons.test.util.TestTypeUtil;
 
@@ -49,7 +52,45 @@ public class JosceletonMatchers extends TypeSafeMatcher<Class<?>> {
 	@Factory public static <T> Matcher<Collection<T>> collectionHas(final T... items) {
 		return new CollectionHas<T>(items);
 	}
-	
+
+	@Factory public static <T> Matcher<Collection<T>> collectionHasUnordered(final T... items) {
+		return new CollectionHasUnordered<T>(items);
+	}
+
+	private static class CollectionHasUnordered<T> extends TypeSafeMatcher<Collection<T>> {
+
+		private final T[] actualItems;
+
+		private String descriptionAppend = "N/A";
+		
+		public CollectionHasUnordered(final T[] actualItems) {
+			this.actualItems = actualItems;
+		}
+
+		@Override
+		public boolean matchesSafely(final Collection<T> expected) {
+			if(this.actualItems.length != expected.size()) {
+				this.descriptionAppend = "length actual/expected: " + this.actualItems.length + "/" + expected.size();
+				return false;
+			}
+			
+			final Collection<T> actualCopy = new LinkedList<T>(Arrays.asList(this.actualItems));
+			for (T expect : expected) {
+				actualCopy.remove(expect);
+			}
+			if(actualCopy.isEmpty() == false) {
+				this.descriptionAppend = "Actual got items left: " + Arrays.toString(actualCopy.toArray());
+				return false;
+			}
+			return true;
+		}
+		@Override
+		public void describeTo(final Description description) {
+			description.appendText("collection not unordered equals (" + this.descriptionAppend + ")");
+		}
+		
+		
+	}
 	private static class CollectionHas<T> extends TypeSafeMatcher<Collection<T>> {
 		
 		private final T[] items;

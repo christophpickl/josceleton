@@ -54,6 +54,7 @@
 				<ul>
 					<li>Add <code>MotionSeparator</code></li>
 					<li>Add first gesture detection: <code>HitWallGesture</code></li>
+					<li>Console Window Prototype (with Growl integration!)</li>
 				</ul>
 				
 			</subsection>

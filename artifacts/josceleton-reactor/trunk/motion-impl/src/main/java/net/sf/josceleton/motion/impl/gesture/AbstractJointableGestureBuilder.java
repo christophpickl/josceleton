@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.sf.josceleton.commons.util.CollectionUtil;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.motion.api.gesture.GestureListener;
 import net.sf.josceleton.motion.api.gesture.JointableGesture;
@@ -22,15 +23,16 @@ public abstract class AbstractJointableGestureBuilder<
 
 
 	private Collection<Joint> pAttachedJoints;
-	
-	@Override public final B attachedJoints(final Joint atLeastOneJoint, final Joint... optionallyMoreJoints) {
-		
-		// TODO outsource merging 1+array to collection
-		final Set<Joint> allJoints = new HashSet<Joint>(1 + optionallyMoreJoints.length);
-		allJoints.add(atLeastOneJoint);
-		allJoints.addAll(Arrays.asList(optionallyMoreJoints));
-		
-		this.pAttachedJoints = Collections.unmodifiableSet(allJoints);
+
+	/** {@inheritDoc} from {@link JointableGestureBuilder} */
+	@Override public final B relevantJoints(final Joint[] joints) {
+		this.pAttachedJoints = CollectionUtil.toUnmodifiableSet(joints);
+		return (B) this;
+	}
+
+	/** {@inheritDoc} from {@link JointableGestureBuilder} */
+	@Override public final B relevantJoint(final Joint atLeastOneJoint, final Joint... optionallyMoreJoints) {
+		this.pAttachedJoints = CollectionUtil.mergeToUnmodifiableSet(atLeastOneJoint, optionallyMoreJoints);
 		
 //		return this;
 		return (B) this; // FIXME generic type hack
