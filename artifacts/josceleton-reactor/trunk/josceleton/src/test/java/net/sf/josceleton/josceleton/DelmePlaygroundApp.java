@@ -58,7 +58,7 @@ public class DelmePlaygroundApp {
 		final Connection c = Josceleton.openConnection();
 		
 		final UserService us = c.getUserService();
-		final User u = us.getProcessingUsers().iterator().next();
+		final User u = us.getProcessing().iterator().next();
 //		us.addListener(new UserServiceListener() {
 //			public void onUserProcessing(User user) {
 //				u = ...

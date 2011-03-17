@@ -5,6 +5,7 @@
     <description>Prototype of a GUI application to debug Josceleton.</description>
     <packaging>jar</packaging>
     
+    <groupId>net.sf.josceleton.prototype</groupId>
     <artifactId>console-prototype</artifactId>
     <version>0.1-SNAPSHOT</version>
     
@@ -17,7 +18,7 @@
         <groupId>net.sf.josceleton</groupId>
         <artifactId>java-pom</artifactId>
         <version>0.4-SNAPSHOT</version>
-        <relativePath>../../java-pom/pom.xml</relativePath>
+        <relativePath>../josceleton-poms-reactor/java-pom</relativePath>
     </parent>
     
     
@@ -30,7 +31,6 @@
         <dependency>
             <groupId>net.sf.josceleton</groupId>
             <artifactId>josceleton</artifactId>
-            <version>0.4-SNAPSHOT</version>
         </dependency>
         
         <dependency>

@@ -1,5 +1,6 @@
 package net.sf.josceleton.prototype.console.misc;
 
+import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
 import net.sf.josceleton.prototype.console.view.UserPanel;
 
 public interface OscConnectionWindowGlueListener {
@@ -8,6 +9,6 @@ public interface OscConnectionWindowGlueListener {
 	
 	void onRemoveUserPanel(UserPanel userPanel);
 	
-	void onUserCountChanged(final int userReadyCount, final int userWaitingCount);
+	void onUserCountChanged(final AvailableUsersCollection users);
 	
 }

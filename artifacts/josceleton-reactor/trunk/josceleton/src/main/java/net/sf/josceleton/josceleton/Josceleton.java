@@ -1,9 +1,15 @@
 package net.sf.josceleton.josceleton;
 
+import net.sf.josceleton.commons.CommonsModule;
 import net.sf.josceleton.connection.api.Connection;
+import net.sf.josceleton.connection.impl.ConnectionImplModule;
+import net.sf.josceleton.core.impl.CoreImplModule;
+import net.sf.josceleton.motion.impl.MotionImplModule;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Module;
 
 /**
  * Facade class with static methods, acting as a single point of entry.
@@ -44,6 +50,14 @@ public final class Josceleton /* statically implements JosceletonFacade */ {
 	public static Injector newGuiceInjector() {
 		return Guice.createInjector(new JosceletonGuiceModule());
 	}
+	
+	/**
+	 * @since 0.4
+	 */
+	public static Module newGuiceModule() {
+		return new JosceletonGuiceModule();
+	}
+	
 //	/**
 //	 * @since 0.4
 //	 */

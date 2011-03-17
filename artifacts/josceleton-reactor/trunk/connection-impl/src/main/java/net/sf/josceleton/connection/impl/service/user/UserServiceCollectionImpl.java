@@ -35,11 +35,11 @@ class UserServiceCollectionImpl implements UserServiceCollection {
 		return this.usersById.get(osceletonId);
 	}
 
-	@Override public final Collection<User> getProcessingUsers() {
+	@Override public final Collection<User> getProcessing() {
 		return Collections.unmodifiableCollection(this.processingUsers);
 	}
 
-	@Override public final Collection<User> getWaitingUsers() {
+	@Override public final Collection<User> getWaiting() {
 		return Collections.unmodifiableCollection(this.waitingUsers);
 	}
 

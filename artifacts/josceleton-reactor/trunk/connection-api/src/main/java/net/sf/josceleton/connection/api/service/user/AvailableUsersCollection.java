@@ -7,16 +7,16 @@ import net.sf.josceleton.core.api.entity.User;
 /**
  * @since 0.3
  */
-public interface UserServiceSync {
+public interface AvailableUsersCollection {
 
 	/**
 	 * @since 0.3
 	 */
-	Collection<User> getWaitingUsers();
+	Collection<User> getWaiting();
 
 	/**
 	 * @since 0.3
 	 */
-	Collection<User> getProcessingUsers();
+	Collection<User> getProcessing();
 	
 }

@@ -35,13 +35,13 @@ class UserServiceTestableWrapper implements TestableUserServiceDispatcher {
 		this.internal.removeListener(listener); }
 
 	/** {@inheritDoc} from {@link UserService} */
-	@Override public final Collection<User> getProcessingUsers() {
-		return this.internal.getProcessingUsers();
+	@Override public final Collection<User> getProcessing() {
+		return this.internal.getProcessing();
 	}
 
 	/** {@inheritDoc} from {@link UserService} */
-	@Override public final Collection<User> getWaitingUsers() {
-		return this.internal.getWaitingUsers();
+	@Override public final Collection<User> getWaiting() {
+		return this.internal.getWaiting();
 	}
 	
 }

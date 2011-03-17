@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
 import net.sf.josceleton.prototype.console.misc.OscConnectionWindowGlueListener;
 
 public class MainPanel extends JPanel implements OscConnectionWindowGlueListener {
@@ -19,7 +20,7 @@ public class MainPanel extends JPanel implements OscConnectionWindowGlueListener
 
 	public MainPanel() {
 		this.setOpaque(false);
-		this.onUserCountChanged(0, 0);
+		this.updatedUserCountLabel(0, 0); // init
 		this.initComponents();
 	}
 	public interface MainPanelListener {
@@ -62,10 +63,13 @@ public class MainPanel extends JPanel implements OscConnectionWindowGlueListener
 		this.userPanelsWrapper.onRemoveUserPanel(userPanel);
 	}
 
-	@Override public final void onUserCountChanged(final int userReadyCount, final int userWaitingCount) {
-		this.userPanelsWrapper.onUserCountChanged(userReadyCount, userWaitingCount);
-		
-		this.lblUserCount.setText(userReadyCount + " (" + userWaitingCount + " waiting)");
+	@Override public final void onUserCountChanged(final AvailableUsersCollection users) {
+		this.userPanelsWrapper.onUserCountChanged(users);
+		this.updatedUserCountLabel(users.getProcessing().size(), users.getWaiting().size());
+	}
+	
+	private void updatedUserCountLabel(final int processing, final int waiting) {
+		this.lblUserCount.setText(processing + " (" + waiting + " waiting)");
 	}
 	
 }

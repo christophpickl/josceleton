@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
 import net.sf.josceleton.prototype.console.misc.OscConnectionWindowGlueListener;
 
 import org.apache.commons.logging.Log;
@@ -29,7 +30,7 @@ public class MainWindow extends JFrame implements OscConnectionWindowGlueListene
 		
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
-			@Override
+			@Override @SuppressWarnings("synthetic-access")
 			public void windowClosing(final WindowEvent e) {
 				MainWindow.this.onQuit();
 			}
@@ -61,9 +62,8 @@ public class MainWindow extends JFrame implements OscConnectionWindowGlueListene
 		this.pack();
 	}
 
-	@Override
-	public final void onUserCountChanged(final int userReadyCount, final int userWaitingCount) {
-		this.mainPanel.onUserCountChanged(userReadyCount, userWaitingCount);
+	@Override public final void onUserCountChanged(final AvailableUsersCollection users) {
+		this.mainPanel.onUserCountChanged(users);
 	}
 
 }

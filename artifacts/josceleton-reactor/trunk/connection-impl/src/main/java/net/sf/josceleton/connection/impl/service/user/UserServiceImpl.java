@@ -86,14 +86,14 @@ class UserServiceImpl
 		return newUser;
 	}
 
-	/** {@inheritDoc} from {@link UserService} */
-	@Override public final Collection<User> getProcessingUsers() {
-		return this.users.getProcessingUsers();
+	/** {@inheritDoc} from {@link AvailableUsersCollection} */
+	@Override public final Collection<User> getProcessing() {
+		return this.users.getProcessing();
 	}
 
-	/** {@inheritDoc} from {@link UserService} */
-	@Override public final Collection<User> getWaitingUsers() {
-		return this.users.getWaitingUsers();
+	/** {@inheritDoc} from {@link AvailableUsersCollection} */
+	@Override public final Collection<User> getWaiting() {
+		return this.users.getWaiting();
 	}
 	
 }

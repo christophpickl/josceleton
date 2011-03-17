@@ -15,7 +15,7 @@ import net.sf.josceleton.core.api.async.Async;
  * @since 0.3
  * @see Connection#getUserService()
  */
-public interface UserService extends Async<UserServiceListener>, UserServiceSync {
+public interface UserService extends Async<UserServiceListener>, AvailableUsersCollection {
 	
 	// merge interface only
 	

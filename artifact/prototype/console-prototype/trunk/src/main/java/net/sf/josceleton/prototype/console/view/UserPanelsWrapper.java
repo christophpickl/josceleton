@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
 import net.sf.josceleton.prototype.console.misc.OscConnectionWindowGlueListener;
 
 import org.apache.commons.logging.Log;
@@ -16,29 +17,26 @@ public class UserPanelsWrapper extends JPanel implements OscConnectionWindowGlue
 	
 	private static final Log LOG = LogFactory.getLog(UserPanelsWrapper.class);
 	
+	
 	public UserPanelsWrapper() {
 		this.setOpaque(false);
-		
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
-		
 		final int gap = 10;
 		this.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
 	}
-
-	@Override
-	public final void onAddUserPanel(final UserPanel userPanel) {
+	
+	
+	@Override public final void onAddUserPanel(final UserPanel userPanel) {
 		LOG.debug("onAddUserPanel(userPanel)");
 		this.add(userPanel.asComponent());
 	}
 
-	@Override
-	public final void onRemoveUserPanel(final UserPanel userPanel) {
+	@Override public final void onRemoveUserPanel(final UserPanel userPanel) {
 		LOG.debug("onRemoveUserPanel(userPanel)");
 		this.remove(userPanel.asComponent());
 	}
 
-	@Override
-	public final void onUserCountChanged(final int userReadyCount, final int userWaitingCount) {
+	@Override public final void onUserCountChanged(final AvailableUsersCollection users) {
 		// nothing to do
 	}
 }
