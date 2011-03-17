@@ -19,9 +19,6 @@ def formatArtifactNameBy(artifact):
     
 
 def prepareTargetFolder(workspacePath, suffix):
-    if os.path.isdir(workspacePath) == 0 and os.path.isabs(workspacePath):
-        raise Exception("Invalid workspace directory: %s" % workspacePath)
-    
     targetFolderNameTimePart = time.strftime("%d-%H_%M_%S") #http://docs.python.org/library/time.html#time.strftime
     targetFolderName = "%s-%s" % (targetFolderNameTimePart, suffix) 
     targetFolder = os.path.join(workspacePath, targetFolderName)

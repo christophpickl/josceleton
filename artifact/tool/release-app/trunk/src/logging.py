@@ -31,10 +31,10 @@ def _log(lvl, msg, exception):
     lbl = _LOG_LEVEL_LABELS[lvl]
     # ??? sys.stderr.write("[ERROR] %s" % msg)
     if msg.find("\n") == -1:
-        print "[%s] %s" % (lbl, msg)
+        print "[JOSCELETON] [%s] %s" % (lbl, msg)
     else:
         for msgPart in msg.split("\n"):
-            print "[%s] %s" % (lbl, msgPart)
+            print "[JOSCELETON] [%s] %s" % (lbl, msgPart)
     if exception != None:
         traceback.print_exc(None)
         

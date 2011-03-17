@@ -4,10 +4,14 @@ import getpass
 from config_global import INTERACTIVE, SYSEXEC_ENABLED
 from logging import * #@UnusedWildImport
 
-def inputConfirmation():
+def inputConfirmation(overwriteInteractiveFlag = False):
     yesCmd = "yes"
     noCmd = "no"
-    prompt = "[%s/%s] >> " % (yesCmd, noCmd)
+    prompt = "Confirm [%s/%s] >> " % (yesCmd, noCmd)
+    
+    if INTERACTIVE == False and overwriteInteractiveFlag == False:
+        print "%s DEFAULT YES" % prompt
+        return True
     
     while True:
         userEntered = raw_input(prompt)

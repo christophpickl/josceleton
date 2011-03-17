@@ -44,7 +44,7 @@ if __name__ == "__main__":
     try:
         wasReleased = Releaser().createNewWith(config)
         if wasReleased == True:
-            Packager().wrapUp(config)
+#            Packager().wrapUp(config)
             wasAnError = False
         
     except Exception as e:
