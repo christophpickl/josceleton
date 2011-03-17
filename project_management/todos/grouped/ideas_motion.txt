@@ -1,0 +1,9 @@
+
+- zwei verschiedenen kategorien (bis jetzt):
+	1. geste == dynamisch
+		"geste wird erkannt anhand von bewegungen"
+		zb: HitWall
+	2. positionen == statisch
+		zb: Psi, Xbox
+		* haben dann besondere bedeutung im framework, zb: escape/no, enter/yes/action
+	
