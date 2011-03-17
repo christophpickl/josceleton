@@ -20,7 +20,7 @@ import com.google.inject.Injector;
 public class ConsolePrototypeApp {
 
 	public static void main(final String[] args) {
-		// TODO this could all be hidden by Josceleton static facade ;) (except of step 4 of course)
+		// TODO this could all be hidden (in near future) by Josceleton static facade ;) (except of step 4 of course)
 		
 		// 1. setup guice
 		final Injector injector = Guice.createInjector(new AbstractModule() {
