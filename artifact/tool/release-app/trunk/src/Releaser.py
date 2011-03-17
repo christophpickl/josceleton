@@ -23,13 +23,12 @@ class Releaser:
         if os.path.isdir(config.workspace) == 0 and os.path.isabs(config.workspace):
             raise Exception("Invalid workspace directory (please create it): %s" % config.workspace)
         
-        localSvnRootFolder = os.path.join(config.workspace, "SVN_ROOT")
+        localSvnRootFolder = config.localSvnRoot
         
-        if os.path.isdir(localSvnRootFolder) == True:
-            self.updateSvnTree(config, localSvnRootFolder)
-        else:
-            self.checkoutSvnTree(config, localSvnRootFolder)
+        if os.path.isdir(localSvnRootFolder) == False:
+            raise Exception("Please checkout the whole artifact SVN tree to: %s" % localSvnRootFolder)
         
+        self.updateSvnTree(config, localSvnRootFolder)
         
         preConditions = PreconditionChecker()
         if PRECONDITIONS_ENABLED == True:
@@ -75,7 +74,9 @@ class Releaser:
     
     def processReactor(self, config, localSvnRootFolder):
         if config.reactor == None:
+            logi("No reactor to process defined; skipping.")
             return
+        
         reactor = config.reactor
         logi("Processing reactor: %s" % reactor)
         
@@ -84,7 +85,7 @@ class Releaser:
         svnReactorBasePath = "%s/%s" % (config.svnArtifactsRoot, reactor.svnRelativeToArtifactsBase)
         svnTrunkPath = "%s/trunk" % svnReactorBasePath
         svnTagPath = "%s/tags/%s" % (svnReactorBasePath, artifactIdAndVersion)
-        svnCommitMsg = "[release-app] Tagging reactor project: %s" % artifactIdAndVersion
+        svnCommitMsg = "[release-app] svn tagging reactor '%s'" % artifactIdAndVersion
         
         print "Going to create a tag of the reactor project."
         print "Please GET SURE the POM in trunk has proper (fixed) VERSION NUMBERS!!!"
@@ -124,8 +125,8 @@ class Releaser:
              # common release plugin options (http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html)
              "-Dusername=%s" % config.username,
              "-Dpassword=%s" % config.password,
-             ("-DscmCommentPrefix=\"[release-app] releasing verison '%s' of artifact '%s'\"" %
-              (artifact.versionRelease, artifact.artifactId)),
+             ("-DscmCommentPrefix=\"[release-app] mvn releasing artifact '%s-%s'\"" %
+              (artifact.artifactId, artifact.versionRelease)),
              # release:prepare specific options
              "-DallowTimestampedSnapshots=false", # default=false
              "-DreleaseVersion=%s" % artifact.versionRelease,
@@ -164,9 +165,6 @@ class Releaser:
     
     def updateSvnTree(self, config, targetPath):
         svn("update %s --username %s --password %s" % (targetPath, config.username, config.password))
-        
-    def checkoutSvnTree(self, config, targetPath):
-        svn("checkout %s %s --username %s --password %s" % (config.svnArtifactsRoot, targetPath, config.username, config.password))
         
 #        logd("Checking out artifact: %s" % artifact.artifactId)
 #        
