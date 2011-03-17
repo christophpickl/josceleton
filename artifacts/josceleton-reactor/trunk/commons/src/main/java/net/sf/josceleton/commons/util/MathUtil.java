@@ -11,6 +11,14 @@ public final class MathUtil {
         // utility class should not be instantiable
 	}
 
+	
+	public static int checkForMinOrMax(final int limit, final int value, final boolean forMin) {
+		if(forMin == true) {
+			return Math.min(limit, value);
+		}
+		return Math.max(limit, value);
+	}
+	
 	/**
 	 * @since 0.4
 	 */

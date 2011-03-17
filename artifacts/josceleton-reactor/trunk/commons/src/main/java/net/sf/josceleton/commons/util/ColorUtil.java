@@ -31,18 +31,16 @@ public final class ColorUtil {
         }
         
         return new Color(rgb[0], rgb[1], rgb[2]);
-}
+	}
+	
+	// LUXURY changeBrightness(Color, volume... can be -100 to +100) => internally uses brighten/darken
 
 	/**
 	 * @param volume 0 to 100
 	 * @since 0.4
 	 */
 	public static Color brighten(final Color original, final int volume) {
-        return new Color(
-                Math.min(255, original.getRed() + volume),
-                Math.min(255, original.getGreen() + volume),
-                Math.min(255, original.getBlue() + volume)
-        );
+        return ColorUtil.changeBrightness(original, volume, true);
 	}
 
 	/**
@@ -50,11 +48,28 @@ public final class ColorUtil {
 	 * @since 0.4
 	 */
 	public static Color darken(final Color original, final int volume) {
-        return new Color(
-                Math.max(0, original.getRed() - volume),
-                Math.max(0, original.getGreen() - volume),
-                Math.max(0, original.getBlue() - volume)
-        );
+		return ColorUtil.changeBrightness(original, volume, false);
 	}
 	
+	private static Color changeBrightness(final Color original, final int volume, final boolean isBrighter) {
+		final int volumeAdjusted;
+		final int limit;
+		if(isBrighter == true) {
+			volumeAdjusted = volume;
+			limit = 255;
+		} else {
+			volumeAdjusted = -1 * volume;
+			limit = 0;
+		}
+		
+		final int newR = original.getRed() + volumeAdjusted;
+		final int newG = original.getGreen() + volumeAdjusted;
+		final int newB = original.getBlue() + volumeAdjusted;
+		
+		return new Color(
+			MathUtil.checkForMinOrMax(limit, newR, isBrighter),
+			MathUtil.checkForMinOrMax(limit, newG, isBrighter),
+			MathUtil.checkForMinOrMax(limit, newB, isBrighter)
+		);
+	}
 }
