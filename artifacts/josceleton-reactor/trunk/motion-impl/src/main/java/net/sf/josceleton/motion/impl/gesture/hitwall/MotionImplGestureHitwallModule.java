@@ -9,8 +9,12 @@ import com.google.inject.assistedinject.FactoryProvider;
 public class MotionImplGestureHitwallModule extends AbstractModule {
 
 	@Override protected final void configure() {
-
-		this.bind(HitWallBuilderFactory.class).toProvider(
+		
+		bind(HitWallConfigFactory.class).toProvider(
+				FactoryProvider.newFactory(HitWallConfigFactory.class, HitWallConfigImpl.class));
+		bind(HitWallGestureFactory.class).toProvider(
+				FactoryProvider.newFactory(HitWallGestureFactory.class, HitWallGestureImpl.class));
+		bind(HitWallBuilderFactory.class).toProvider(
 				FactoryProvider.newFactory(HitWallBuilderFactory.class, HitWallBuilderImpl.class));
 		
 	}

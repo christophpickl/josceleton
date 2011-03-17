@@ -26,12 +26,12 @@ class HitWallConfigImpl extends AbstractJointableGestureConfig implements HitWal
 			@Assisted final Collection<Joint> relevantJoints,
 			@Assisted final float coordinate,
 			@Assisted final XyzDirection direction,
-			@Assisted final boolean triggerLower) {
+			@Assisted final boolean triggerOnLower) {
 		super(relevantJoints);
 		
 		this.coordinate = coordinate;
 		this.direction = direction;
-		this.triggerOnLower = triggerLower;
+		this.triggerOnLower = triggerOnLower;
 	}
 	
 	

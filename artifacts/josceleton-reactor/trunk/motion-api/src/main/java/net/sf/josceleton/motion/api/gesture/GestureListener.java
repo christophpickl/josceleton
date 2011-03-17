@@ -8,7 +8,12 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
  */
 public interface GestureListener extends Listener {
 	
-	// TODO which arguments to use? skeleton, yes. gesture itself? maybe... relevantJoints, yep... OWN TYPE
+	// FIXME which argument should be passed to GestureListener?
+	// *) skeleton, yes, definetely useful 
+	// *) relevantJoints, yep... maybe create own type
+	// *) gesture itself? maybe... maybe not, as introduces additional dependency (but would be handy)
+	// *) old approach!!! was nice introducing <R ext GestureResult> type => each Gesture can have its specific result!
+	// *) maybe also user? DEFINETELY NO!!! ... because when added gesture, one knew which user he passed!
 	/**
 	 * @since 0.4
 	 */

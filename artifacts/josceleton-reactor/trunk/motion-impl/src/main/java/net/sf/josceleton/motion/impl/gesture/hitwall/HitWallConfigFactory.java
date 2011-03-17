@@ -9,6 +9,6 @@ import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 public interface HitWallConfigFactory {
 	
 	HitWallConfig create(Collection<Joint> relevantJoints,
-		float coordinate, XyzDirection direction, boolean triggerLower);
+		float coordinate, XyzDirection direction, boolean triggerOnLower);
 	
 }
