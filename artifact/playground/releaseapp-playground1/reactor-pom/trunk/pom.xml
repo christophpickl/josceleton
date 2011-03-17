@@ -15,9 +15,9 @@
 	</parent>
 	
     <modules>
-    	<module>../../model/tags/model-0.1</module>
-    	<module>../../logic/tags/logic-0.1</module>
-    	<module>../../app/tags/app-0.1</module>
+    	<module>../../../model/tags/model-0.1</module>
+    	<module>../../../logic/tags/logic-0.1</module>
+    	<module>../../../app/tags/app-0.1</module>
     </modules>
 	    
     <scm>
