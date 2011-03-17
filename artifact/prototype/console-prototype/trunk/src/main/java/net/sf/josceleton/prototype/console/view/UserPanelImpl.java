@@ -26,7 +26,7 @@ import net.sf.josceleton.core.api.entity.joint.Joints;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
-public class UserPanelImpl extends JPanel implements UserPanel {
+class UserPanelImpl extends JPanel implements UserPanel {
 	
 	private static final long serialVersionUID = -7101424945709184641L;
 	

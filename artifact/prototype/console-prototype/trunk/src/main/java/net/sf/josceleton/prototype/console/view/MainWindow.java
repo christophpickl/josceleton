@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
-import net.sf.josceleton.prototype.console.misc.OscConnectionWindowGlueListener;
+import net.sf.josceleton.prototype.console.glue.OscConnectionWindowGlueListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

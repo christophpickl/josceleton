@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
-import net.sf.josceleton.prototype.console.misc.OscConnectionWindowGlueListener;
+import net.sf.josceleton.prototype.console.glue.OscConnectionWindowGlueListener;
 
 public class MainPanel extends JPanel implements OscConnectionWindowGlueListener {
 
