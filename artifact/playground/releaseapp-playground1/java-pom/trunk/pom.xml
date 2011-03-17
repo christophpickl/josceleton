@@ -8,6 +8,10 @@
     <version>0.2-SNAPSHOT</version>
     
     <properties>
+    	<verison.submodule.model>0.2</verison.submodule.model>
+    	<verison.submodule.logic>0.2</verison.submodule.logic>
+    
+    
 		<sourceEncoding>UTF-8</sourceEncoding> 
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -65,12 +69,12 @@
 			<dependency>
 				<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
 				<artifactId>model</artifactId>
-				<version>0.1</version>
+				<version>${verison.submodule.model}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
 				<artifactId>logic</artifactId>
-				<version>0.1</version>
+				<version>${verison.submodule.logic}</version>
 			</dependency>
 		</dependencies>
     </dependencyManagement>
