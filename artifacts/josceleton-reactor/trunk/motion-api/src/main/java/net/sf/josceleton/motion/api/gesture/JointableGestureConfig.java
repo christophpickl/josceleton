@@ -7,7 +7,8 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 /**
  * @since 0.4
  */
-public interface JointableGestureConfig extends GestureConfig {
+public interface JointableGestureConfig
+	extends GestureConfig {
 
 	/**
 	 * @since 0.4

@@ -5,7 +5,8 @@ import net.sf.josceleton.motion.api.gesture.JointableGesture;
 /**
  * @since 0.4
  */
-public interface HitWallGesture extends JointableGesture<HitWallConfig, HitWallListener> {
+public interface HitWallGesture
+	extends JointableGesture<HitWallConfig, HitWallListener> {
 	
 	// async only
 	

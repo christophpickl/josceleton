@@ -6,7 +6,8 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
 /**
  * @since 0.4
  */
-public interface GestureListener extends Listener {
+public interface GestureListener
+	extends Listener {
 	
 	// FIXME which argument should be passed to GestureListener?
 	// *) skeleton, yes, definetely useful 

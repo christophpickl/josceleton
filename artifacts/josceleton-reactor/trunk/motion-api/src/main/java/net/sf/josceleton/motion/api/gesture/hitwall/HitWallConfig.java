@@ -6,7 +6,8 @@ import net.sf.josceleton.motion.api.gesture.JointableGestureConfig;
 /**
  * @since 0.4
  */
-public interface HitWallConfig extends JointableGestureConfig {
+public interface HitWallConfig
+	extends JointableGestureConfig {
 
 	/**
 	 * @since 0.4
