@@ -5,6 +5,6 @@ import net.sf.josceleton.prototype.console.notification.GrowlNotifier;
 
 public interface GlueCodeFactory {
 	
-	GlueCode create(OscConnectionWindowGlueListener listener, AvailableUsersCollection users, GrowlNotifier growlNotifier);
+	GlueCode create(GlueCodeListener listener, AvailableUsersCollection users, GrowlNotifier growlNotifier);
 	
 }

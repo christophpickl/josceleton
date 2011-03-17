@@ -26,7 +26,7 @@ class GlueCodeImpl extends ConnectionAdapter implements GlueCode {
 	
 	private final Map<User, UserPanel> userPanels = new HashMap<User, UserPanel>();
 
-	private final OscConnectionWindowGlueListener listener;
+	private final GlueCodeListener listener;
 
 	private final AvailableUsersCollection users;
 	
@@ -35,7 +35,7 @@ class GlueCodeImpl extends ConnectionAdapter implements GlueCode {
 	@Inject GlueCodeImpl(
 			final UserPanelFactory userPanelFactory,
 			@Assisted final GrowlNotifier growlNotifier,
-			@Assisted final OscConnectionWindowGlueListener listener,
+			@Assisted final GlueCodeListener listener,
 			@Assisted final AvailableUsersCollection users) {
 		this.userPanelFactory = userPanelFactory;
 		this.listener = listener;
@@ -61,7 +61,6 @@ class GlueCodeImpl extends ConnectionAdapter implements GlueCode {
 	
 	
 	
-	
 	/** {@inheritDoc} from {@link UserServiceListener} */
 	@Override public final void onUserWaiting(final User user) {
 		LOG.info("onUserWaiting(user=" + user + ")");
@@ -76,12 +75,14 @@ class GlueCodeImpl extends ConnectionAdapter implements GlueCode {
 	@Override public final void onUserProcessing(final User user) {
 		LOG.info("onUserProcessing(user=" + user + ")");
 		
-		this.growlNotifier.show("User Change", "User " + user.getOsceletonId() +" is now processing");
-		
 		if(this.userPanels.containsKey(user) == false) { // TODO check if this is actually necessar; because i dont think so!! as already managed by UserService
 			// artificial login
 			this.doAddUser(user);
 		}
+		
+		this.growlNotifier.show("User Change", "User " + user.getOsceletonId() +" is now processing");
+		final UserPanel panel = this.userPanels.get(user);
+		panel.updateSkeletonAvailable();
 		
 		this.listener.onUserCountChanged(this.users);
 	}

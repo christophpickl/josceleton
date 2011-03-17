@@ -128,11 +128,12 @@ class UserPanelImpl extends JPanel implements UserPanel {
 		parent.add(child, c);
 	}
 
-	public final void setSkeletonAvailableTrue() {
+	public final void updateSkeletonAvailable() {
 		this.setBackground(ColorUtil.brighten(this.baseColor, 50)); // indicate enabled
 		this.lblState.setText("Calibrated. Skeleton is now available.");
 		
 		new Timer().schedule(new TimerTask() {
+			@SuppressWarnings("synthetic-access")
 			@Override public void run() {
 				UserPanelImpl.this.lblState.setText(""); // shortcut; kind of a hack, yes, i admit it ;)
 		}}, 4000);

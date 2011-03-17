@@ -11,5 +11,6 @@ public interface UserPanel {
 
 	void updateCoordinate(final Joint movedJoint, final Coordinate coordinate);
 	
+	void updateSkeletonAvailable();
 
 }

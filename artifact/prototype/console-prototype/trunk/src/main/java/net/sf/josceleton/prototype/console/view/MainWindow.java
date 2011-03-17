@@ -7,12 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
-import net.sf.josceleton.prototype.console.glue.OscConnectionWindowGlueListener;
+import net.sf.josceleton.prototype.console.glue.GlueCodeListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class MainWindow extends JFrame implements OscConnectionWindowGlueListener {
+@Deprecated // use ConsoleWindow instead
+public class MainWindow extends JFrame implements GlueCodeListener {
 	
 	private static final Log LOG = LogFactory.getLog(MainWindow.class);
 	

@@ -9,6 +9,8 @@ public class ViewModule extends AbstractModule {
 	protected void configure() {
 		bind(UserPanelFactory.class).toProvider(
 				FactoryProvider.newFactory(UserPanelFactory.class, UserPanelImpl.class));
+		
+		bind(ConsoleWindow.class).to(ConsoleWindowImpl.class);
 	}
 
 }

@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
-import net.sf.josceleton.prototype.console.glue.OscConnectionWindowGlueListener;
+import net.sf.josceleton.prototype.console.glue.GlueCodeListener;
 
-public class MainPanel extends JPanel implements OscConnectionWindowGlueListener {
+public class MainPanel extends JPanel implements GlueCodeListener {
 
 	private static final long serialVersionUID = 5833077387459470873L;
 

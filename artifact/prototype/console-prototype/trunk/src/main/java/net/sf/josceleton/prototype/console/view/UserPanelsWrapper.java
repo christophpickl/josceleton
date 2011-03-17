@@ -6,12 +6,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
-import net.sf.josceleton.prototype.console.glue.OscConnectionWindowGlueListener;
+import net.sf.josceleton.prototype.console.glue.GlueCodeListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class UserPanelsWrapper extends JPanel implements OscConnectionWindowGlueListener {
+public class UserPanelsWrapper extends JPanel implements GlueCodeListener {
 
 	private static final long serialVersionUID = -838314886028159693L;
 	
