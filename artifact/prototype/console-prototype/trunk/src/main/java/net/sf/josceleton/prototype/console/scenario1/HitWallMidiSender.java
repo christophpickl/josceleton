@@ -1,7 +1,7 @@
 package net.sf.josceleton.prototype.console.scenario1;
 
 
-class HitWallMidiSender {} // FIXME
+class HitWallMidiSender {} // FIXME MIDI @HitWallMidiSender reimplement 
 //implements GestureListener<HitWallGestureResult> {
 //
 //	private final SimpleMidiSender midiSender;
@@ -17,7 +17,6 @@ class HitWallMidiSender {} // FIXME
 //
 //	@Override
 //	public void onGestureDetected(final HitWallGestureResult result) {
-//		// FIXME dooooit
 //		System.out.println("HitWallMidiSender: " +
 //				"FIXMEEEEEEEEEE check values (expected start/end for high/low tunes) in " +
 //				"MidiKinectorApp$HitWallMidiSender#onGestureCaptured(..)");

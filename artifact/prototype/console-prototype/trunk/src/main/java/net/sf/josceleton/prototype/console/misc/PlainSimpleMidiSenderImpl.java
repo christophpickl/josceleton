@@ -59,7 +59,7 @@ public class PlainSimpleMidiSenderImpl implements SimpleMidiSender {
 		if(this.openedReceiver != null) {
 			return;
 		}
-		final MidiSystem sys = new MidiSystemStaticWrapper(); // FIXME use guice dependency!
+		final MidiSystem sys = new MidiSystemStaticWrapper(); // MINOR use guice dependency!
 		LOG.debug("fetching MIDI devices ...");
 		final Info[] infos = sys.listMidiDeviceInfos();
 		

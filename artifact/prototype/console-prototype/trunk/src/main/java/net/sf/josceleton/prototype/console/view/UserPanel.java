@@ -9,11 +9,7 @@ public interface UserPanel {
 
 	Component asComponent();
 
-	boolean isSkeletonAvailable();
-
-	void setSkeletonAvailableTrue();
-	
-	void updateCoordinate(final Joint bodyPart, final Coordinate coordinate);
+	void updateCoordinate(final Joint movedJoint, final Coordinate coordinate);
 	
 
 }

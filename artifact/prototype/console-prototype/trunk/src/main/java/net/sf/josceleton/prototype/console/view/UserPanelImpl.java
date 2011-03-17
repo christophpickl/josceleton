@@ -10,12 +10,16 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import net.sf.josceleton.commons.util.ColorUtil;
 import net.sf.josceleton.core.api.entity.Coordinate;
+import net.sf.josceleton.core.api.entity.CoordinateUtil;
 import net.sf.josceleton.core.api.entity.User;
+import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 
@@ -33,11 +37,9 @@ public class UserPanelImpl extends JPanel implements UserPanel {
 	private final JLabel lblState =
 		StyleConstantsPool.newUserPanelStateLabel("Calibrating (waiting for psi position) ...");
 	
-	private boolean skeletonAvailable = false;
-
-	private final Location2DView locationView = new Location2DView();
+	private final Location2DView locationPanel = new Location2DView();
 	
-	private final Map<Joint, CoordinatesDrawer> bodyPartViews;
+	private final Map<Joint, JointPanel> jointPanels;
 	
 	private final Color baseColor; 
 	
@@ -45,19 +47,17 @@ public class UserPanelImpl extends JPanel implements UserPanel {
 		this.user = user;
 		
 		final Iterable<Joint> bodyParts = Joints.values();
-		this.bodyPartViews = new HashMap<Joint, CoordinatesDrawer>();
+		this.jointPanels = new HashMap<Joint, JointPanel>();
 		for(final Joint currentBodyPart : bodyParts) {
-			this.bodyPartViews.put(currentBodyPart, new CoordinatesDrawer(currentBodyPart.getLabel()));
+			this.jointPanels.put(currentBodyPart, new JointPanel(currentBodyPart.getLabel()));
 		}
 		
-		// FIXME color
-		this.baseColor = new Color(50, 50, 0);
-//		this.baseColor = ColorUtil.newRandomColor();
-//		final Color borderColor = ColorUtil.darken(this.baseColor, 120);
-//		final Color backgroundWaitingColor = ColorUtil.darken(this.baseColor, 80);
+		this.baseColor = ColorUtil.newRandomColor();
+		final Color borderColor = ColorUtil.darken(this.baseColor, 120);
+		final Color backgroundWaitingColor = ColorUtil.darken(this.baseColor, 80);
 		
-//		this.setBorder(BorderFactory.createLineBorder(borderColor, 3));
-//		this.setBackground(backgroundWaitingColor); // when skeleton available, will become brighter
+		this.setBorder(BorderFactory.createLineBorder(borderColor, 3));
+		this.setBackground(backgroundWaitingColor); // when skeleton available, will become brighter
 		
 		this.initComponents();
 	}
@@ -65,7 +65,7 @@ public class UserPanelImpl extends JPanel implements UserPanel {
 	private void initComponents() {
 		final JPanel infoPanel = new JPanel(new GridBagLayout());
 		infoPanel.setOpaque(true);
-//		FIXME color infoPanel.setBackground(ColorUtil.darken(this.baseColor, 90));
+		infoPanel.setBackground(ColorUtil.darken(this.baseColor, 90));
 		
 		final GridBagConstraints c = new GridBagConstraints();
 		
@@ -83,36 +83,36 @@ public class UserPanelImpl extends JPanel implements UserPanel {
 	}
 	
 	private JPanel createHumanCoordinates() {
-		final JPanel partsWrapper = new JPanel();
-		partsWrapper.setOpaque(false);
-		partsWrapper.setLayout(new GridBagLayout());
+		final JPanel jointPanelsWrapper = new JPanel();
+		jointPanelsWrapper.setOpaque(false);
+		jointPanelsWrapper.setLayout(new GridBagLayout());
 		
-		// FIXME better solution for BodyParts thingy in here
-	// TODO if skeleton data not yet available, set state of coordinatesDrawer (internally set background color darker)
+		// TODO better solution for Joint association picture position strichmaxal thingy in here
+		// TODO if skeleton data not yet available, set state of coordinatesDrawer (internally set background color darker)
 		final GridBagConstraints c = new GridBagConstraints();
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.HEAD()), c, 2, 0, false);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.NECK()), c, 2, 1, false);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.HAND().LEFT()), c, 0, 1);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.HAND().RIGHT()), c, 4, 1);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.ELBOW().LEFT()), c, 0, 2);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.ELBOW().RIGHT()), c, 4, 2);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.SHOULDER().LEFT()), c, 1, 2);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.SHOULDER().RIGHT()), c, 3, 2);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.TORSO()), c, 2, 2/*2.5*/, false);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.HIP().LEFT()), c, 1, 3);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.HIP().RIGHT()), c, 3, 3);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.KNEE().LEFT()), c, 1, 4);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.KNEE().RIGHT()), c, 3, 4);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.ANKLE().LEFT()), c, 0, 4);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.ANKLE().RIGHT()), c, 4, 4);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.FOOT().LEFT()), c, 0, 5);
-		this.addBody(partsWrapper, this.bodyPartViews.get(Joints.FOOT().RIGHT()), c, 4, 5);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.HEAD()), c, 2, 0, false);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.NECK()), c, 2, 1, false);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.HAND().LEFT()), c, 0, 1);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.HAND().RIGHT()), c, 4, 1);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.ELBOW().LEFT()), c, 0, 2);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.ELBOW().RIGHT()), c, 4, 2);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.SHOULDER().LEFT()), c, 1, 2);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.SHOULDER().RIGHT()), c, 3, 2);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.TORSO()), c, 2, 2/*2.5*/, false);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.HIP().LEFT()), c, 1, 3);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.HIP().RIGHT()), c, 3, 3);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.KNEE().LEFT()), c, 1, 4);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.KNEE().RIGHT()), c, 3, 4);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.ANKLE().LEFT()), c, 0, 4);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.ANKLE().RIGHT()), c, 4, 4);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.FOOT().LEFT()), c, 0, 5);
+		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.FOOT().RIGHT()), c, 4, 5);
 		
 		c.gridx = 2;
 		c.gridy = 5;
-		partsWrapper.add(this.locationView, c);
+		jointPanelsWrapper.add(this.locationPanel, c);
 		
-		return partsWrapper;
+		return jointPanelsWrapper;
 	}
 	
 	private void addBody(final JPanel parent, final JComponent child, final GridBagConstraints c,
@@ -129,9 +129,7 @@ public class UserPanelImpl extends JPanel implements UserPanel {
 	}
 
 	public final void setSkeletonAvailableTrue() {
-		this.skeletonAvailable = true;
-		
-//		FIXME color this.setBackground(ColorUtil.brighten(this.baseColor, 50)); // indicate enabled
+		this.setBackground(ColorUtil.brighten(this.baseColor, 50)); // indicate enabled
 		this.lblState.setText("Calibrated. Skeleton is now available.");
 		
 		new Timer().schedule(new TimerTask() {
@@ -140,22 +138,18 @@ public class UserPanelImpl extends JPanel implements UserPanel {
 		}}, 4000);
 	}
 	
-	public final boolean isSkeletonAvailable() {
-		return this.skeletonAvailable;
-	}
-
 	@Override public final Component asComponent() {
 		return this;
 	}
 	
-	@Override public final void updateCoordinate(final Joint bodyPart, final Coordinate coordinate) {
-		final CoordinatesDrawer drawer = this.bodyPartViews.get(bodyPart);
-		drawer.updateCoordinate(coordinate);
+	@Override public final void updateCoordinate(final Joint movedJoint, final Coordinate coordinate) {
+		final JointPanel jointPanel = this.jointPanels.get(movedJoint);
+		jointPanel.updateCoordinate(coordinate);
 		
-		if(bodyPart == Joints.TORSO()) {
-			final double x = coordinate.x();
-			final double z = coordinate.z();
-			this.locationView.updateXy(x, z);
+		if(movedJoint == Joints.TORSO()) {
+			final int x = CoordinateUtil.prettyPrint(coordinate, XyzDirection.X);
+			final int z = CoordinateUtil.prettyPrint(coordinate, XyzDirection.Z);
+			this.locationPanel.updateXz(x, z);
 		}
 	}
 

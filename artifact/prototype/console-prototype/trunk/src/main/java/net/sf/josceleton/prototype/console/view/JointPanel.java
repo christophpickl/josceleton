@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -11,8 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
+import net.sf.josceleton.core.api.entity.CoordinateUtil;
+import net.sf.josceleton.core.api.entity.XyzDirection;
 
-public class CoordinatesDrawer extends JPanel {
+public class JointPanel extends JPanel {
 	
 	private static final long serialVersionUID = 9095756747624408284L;
 
@@ -22,21 +28,25 @@ public class CoordinatesDrawer extends JPanel {
 	
 	private final String label;
 	
-	private final JTextField coordinateX = new JTextField("?");
-	private final JTextField coordinateY = new JTextField("?");
-	private final JTextField coordinateZ = new JTextField("?");
+	private final Map<XyzDirection, JTextField> labelsByDirection;
+	{
+		final Map<XyzDirection, JTextField> tmp = new HashMap<XyzDirection, JTextField>();
+		tmp.put(XyzDirection.X, new JTextField());
+		tmp.put(XyzDirection.Y, new JTextField());
+		tmp.put(XyzDirection.Z, new JTextField());
+		this.labelsByDirection = Collections.unmodifiableMap(tmp);
+	}
 	
-	// FIXME implement feature which displays global min/max for xyz coordinates
+	// MINOR implement feature which displays global min/max for xyz coordinates
+	//       also ueber den gesamten zeitraum, um endpunkte/extrempunkte festzustellen
 	
-	public CoordinatesDrawer(final String label) {
+	public JointPanel(final String label) {
 		this.label = label;
 
 		this.setSize(SIZE);
 		this.setMaximumSize(SIZE);
 		this.setPreferredSize(SIZE);
 		
-//		this.setOpaque(false);
-//		this.setBackground(RandomUtil.newColor());
 		this.setBackground(Color.PINK);
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		
@@ -47,35 +57,30 @@ public class CoordinatesDrawer extends JPanel {
 		this.setLayout(new GridBagLayout());
 		final GridBagConstraints c = new GridBagConstraints();
 		
-		c.gridx = 0;
-		c.gridy = 0;
 		c.anchor = GridBagConstraints.CENTER;
-		c.gridwidth = 2;
+		c.gridx = 0; c.gridy = 0; c.gridwidth = 2;
 		final JLabel lblHeader = StyleConstantsPool.newCoordinatesHeader(this.label);
 		this.add(lblHeader, c);
 		
-		c.gridx = 0;
-		c.gridy = 1;
-		c.gridwidth = 1;
-		this.initCoordinateField(this.coordinateX, "x", c);
+		c.gridx = 0; c.gridy = 1; c.gridwidth = 1;
+		this.initCoordinateField(XyzDirection.X, c);
 
-		c.gridx = 1;
-		c.gridy = 1;
-		this.initCoordinateField(this.coordinateY, "y", c);
+		c.gridx = 1; c.gridy = 1;
+		this.initCoordinateField(XyzDirection.Y, c);
 
-		c.gridx = 0;
-		c.gridy = 2;
-		c.gridwidth = 2;
-		this.initCoordinateField(this.coordinateZ, "z", c);
+		c.gridx = 0; c.gridy = 2; c.gridwidth = 2;
+		this.initCoordinateField(XyzDirection.Z, c);
 	}
 	
-	private void initCoordinateField(final JTextField field, final String labelText, final GridBagConstraints c) {
+	private void initCoordinateField(final XyzDirection direction, final GridBagConstraints c) {
+		final JTextField field = this.labelsByDirection.get(direction);
 		field.setColumns(COORDINATE_COLUMNS);
 		field.setFont(StyleConstantsPool.FONT_COORDINATE_VALUE);
 		field.setOpaque(false);
 		field.setEditable(false);
 		field.setBorder(BorderFactory.createEmptyBorder());
 		
+		final String labelText = direction.name().toLowerCase();
 		final JPanel labelAndFieldWrapper = new JPanel();
 		labelAndFieldWrapper.setOpaque(false);
 		labelAndFieldWrapper.add(StyleConstantsPool.newCoordinatesXyzLabel(labelText + ":"));
@@ -85,11 +90,10 @@ public class CoordinatesDrawer extends JPanel {
 	}
 
 	public final void updateCoordinate(final Coordinate coordinate) {
-//		FIXME final int[] xyz = Util.extractAndRoundXYZ(coordinates);
-		this.coordinateX.setText(String.valueOf(coordinate.x()));
-		this.coordinateY.setText(String.valueOf(coordinate.y()));
-		this.coordinateZ.setText(String.valueOf(coordinate.z()));
+		for(final Entry<XyzDirection, JTextField> entry : this.labelsByDirection.entrySet()) {
+			final String newText = String.valueOf(CoordinateUtil.prettyPrint(coordinate, entry.getKey()));
+			entry.getValue().setText(newText);
+		}
 	}
-	
 	
 }

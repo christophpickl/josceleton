@@ -5,13 +5,15 @@ import javax.swing.SwingUtilities;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
 import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
-import net.sf.josceleton.prototype.console.misc.OscConnectionWindowGlue;
+import net.sf.josceleton.prototype.console.misc.GlueCode;
+import net.sf.josceleton.prototype.console.misc.GlueCodeFactory;
 import net.sf.josceleton.prototype.console.misc.PlainSimpleMidiSenderImpl;
+import net.sf.josceleton.prototype.console.notification.GrowlNotifier;
+import net.sf.josceleton.prototype.console.notification.GrowlNotifierFactory;
 import net.sf.josceleton.prototype.console.scenario1.Scenario1;
 import net.sf.josceleton.prototype.console.scenario1.SimpleMidiSender;
 import net.sf.josceleton.prototype.console.view.MainWindow;
 import net.sf.josceleton.prototype.console.view.MainWindowListener;
-import net.sf.josceleton.prototype.console.view.UserPanelFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,8 +26,12 @@ public class ConsolePrototypeApp implements MainWindowListener {
 	
 	private static final Log LOG = LogFactory.getLog(ConsolePrototypeApp.class);
 	
-	private final UserPanelFactory userPanelFactory;
 	private final Connector connector;
+
+	private final GlueCodeFactory glueFactory;
+
+	private final GrowlNotifierFactory growlFactory;
+	
 	private Connection connection;
 	
 	public static void main(final String[] args) {
@@ -34,9 +40,10 @@ public class ConsolePrototypeApp implements MainWindowListener {
 		app.startUp();
 	}
 	
-	@Inject ConsolePrototypeApp(final UserPanelFactory userPanelFactory, final Connector connector) {
-		this.userPanelFactory = userPanelFactory;
+	@Inject ConsolePrototypeApp(final Connector connector, final GlueCodeFactory glueFactory, final GrowlNotifierFactory growlFactory) {
 		this.connector = connector;
+		this.glueFactory = glueFactory;
+		this.growlFactory = growlFactory;
 	}
 
 	public final void startUp() {
@@ -46,8 +53,8 @@ public class ConsolePrototypeApp implements MainWindowListener {
 		final MainWindow window = new MainWindow(this);
 		final AvailableUsersCollection users = this.connection.getUserService();
 		
-		// MINOR rewrite to interface and get instance injected by guice
-		final OscConnectionWindowGlue windowGlue = new OscConnectionWindowGlue(this.userPanelFactory, window, users);
+		final GrowlNotifier growl = this.growlFactory.create("Josceleton Console App").registerApp();
+		final GlueCode windowGlue = this.glueFactory.create(window, users, growl);
 		
 		synchronized(windowGlue) {
 			// we dont want to have a context switch between the first two lines

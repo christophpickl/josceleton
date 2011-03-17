@@ -5,6 +5,8 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
+import net.sf.josceleton.commons.util.GuiUtil;
+
 public final class StyleConstantsPool {
 	
 	private StyleConstantsPool() {
@@ -24,24 +26,24 @@ public final class StyleConstantsPool {
 	
 	
 	public static JLabel newCoordinatesHeader(final String label) {
-		final JLabel lbl = new JLabel(); // FIXME fonts! //GuiUtil.newJLabel(label, StyleConstantsPool.FONT_COORDINATES_HEADER);
+		final JLabel lbl = GuiUtil.newJLabel(label, StyleConstantsPool.FONT_COORDINATES_HEADER);
 		lbl.setForeground(LIGHT_FONT);
 		return lbl;
 	}
 	
 	public static JLabel newCoordinatesXyzLabel(final String label) {
-		final JLabel lbl = new JLabel(); // GuiUtil.newJLabel(label, StyleConstantsPool.FONT_COORDINATES_XYZ);
+		final JLabel lbl = GuiUtil.newJLabel(label, StyleConstantsPool.FONT_COORDINATES_XYZ);
 		lbl.setForeground(LIGHT_FONT);
 		return lbl;
 	}
 
 	public static JLabel newUserPanelTopLabel(final String label) {
-		final JLabel lbl = new JLabel(); // GuiUtil.newJLabel(label, StyleConstantsPool.FONT_MAIN_INFO_TEXT);
+		final JLabel lbl = GuiUtil.newJLabel(label, StyleConstantsPool.FONT_MAIN_INFO_TEXT);
 		lbl.setForeground(Color.WHITE);
 		return lbl;
 	}
 	public static JLabel newUserPanelStateLabel(final String label) {
-		final JLabel lbl = new JLabel(); // GuiUtil.newJLabel(label, StyleConstantsPool.FONT_USER_PANEL_STATE);
+		final JLabel lbl = GuiUtil.newJLabel(label, StyleConstantsPool.FONT_USER_PANEL_STATE);
 		lbl.setForeground(Color.WHITE);
 		return lbl;
 	}
