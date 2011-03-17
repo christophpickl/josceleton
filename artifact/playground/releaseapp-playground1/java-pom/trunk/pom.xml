@@ -5,7 +5,7 @@
     
 	<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
     <artifactId>java-pom</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3</version>
     
     <properties>
     	<verison.submodule.model>0.2</verison.submodule.model>
@@ -210,9 +210,9 @@
     </reporting>
 	    
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/releaseapp-playground1/java-pom/trunk/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/releaseapp-playground1/java-pom/trunk/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/playground/releaseapp-playground1/java-pom/trunk/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/releaseapp-playground1/java-pom/tags/java-pom-0.3</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/releaseapp-playground1/java-pom/tags/java-pom-0.3</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/playground/releaseapp-playground1/java-pom/tags/java-pom-0.3</url>
     </scm>
     
     
