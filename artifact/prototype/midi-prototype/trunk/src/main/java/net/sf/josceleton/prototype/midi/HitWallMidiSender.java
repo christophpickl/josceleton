@@ -1,7 +1,7 @@
 package net.sf.josceleton.prototype.midi;
 
 
-class HitWallMidiSender {} // FIXME MIDI @HitWallMidiSender reimplement 
+class HitWallMidiSender { /*write it*/ } // FIXME MIDI @HitWallMidiSender reimplement 
 //implements GestureListener<HitWallGestureResult> {
 //
 //	private final SimpleMidiSender midiSender;

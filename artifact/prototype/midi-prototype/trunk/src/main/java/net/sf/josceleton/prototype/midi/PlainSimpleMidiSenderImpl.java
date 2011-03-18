@@ -8,7 +8,6 @@ import javax.sound.midi.MidiDevice.Info;
 import net.pulseproject.commons.midi.MidiSystem;
 import net.pulseproject.commons.midi.MidiSystemStaticWrapper;
 import net.pulseproject.commons.util.MidiUtil;
-import net.sf.josceleton.prototype.console.scenario1.SimpleMidiSender;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,6 +30,7 @@ public class PlainSimpleMidiSenderImpl implements SimpleMidiSender {
 
 	@Override public final void doSendMidiNote(final int noteValue) {
 		new Thread(new Runnable() {
+			@SuppressWarnings("synthetic-access")
 			@Override public void run() {
 				PlainSimpleMidiSenderImpl.this.sendMidiNote(noteValue);
 		}}).start();

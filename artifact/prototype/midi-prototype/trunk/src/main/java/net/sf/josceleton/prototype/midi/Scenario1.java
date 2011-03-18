@@ -1,18 +1,9 @@
 package net.sf.josceleton.prototype.midi;
 
-import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.core.api.entity.XyzDirection;
-import net.sf.josceleton.core.api.entity.joint.Joint;
-import net.sf.josceleton.core.api.entity.joint.Joints;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.google.inject.Inject;
 
 /** triggered wenn haende (links oder rechts) nahe kommt (z klein ist) */
 public class Scenario1 {
-
+	/*
 	private static final Log LOG = LogFactory.getLog(Scenario1.class);
 	
 	private final Connection connection;
@@ -43,7 +34,7 @@ public class Scenario1 {
 //		hitWallGesture.addListener(listener);
 //		this.connection.addListener(hitWallGesture);
 	}
-	
+	*/
 	/*
 	public static void mainxx(@SuppressWarnings("unused") final String[] args) throws Exception {
 		final MidiSystem sys = new MidiSystemStaticWrapper();

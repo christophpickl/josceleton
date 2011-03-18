@@ -5,7 +5,7 @@ from commons import * #@UnusedWildImport
 from logging import * #@UnusedWildImport
 
 from Releaser import Releaser #@UnusedImport
-from Packager import Packager
+from Packager import Packager #@UnusedImport
 from config_global import PRECONDITIONS_ENABLED
 from sysexec import uname, sayOsx
 
