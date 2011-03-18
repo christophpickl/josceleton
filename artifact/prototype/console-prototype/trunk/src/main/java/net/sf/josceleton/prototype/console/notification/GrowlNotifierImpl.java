@@ -25,22 +25,12 @@ class GrowlNotifierImpl implements GrowlNotifier {
 	
 	public GrowlNotifier registerApp() {
 		try {
-			execute(
-//				-- Make a list of all the notification types that this script will ever send:
-				"set the allNotificationsList to { \"" + COMMON_NOTIFICATION_NAME + "\" }\n" +
-				
-//				-- Make a list of the notifications that will be enabled by default.      
-//				-- Those not enabled by default can be enabled later in the 'Applications' tab of the growl prefpane.
-				"set the enabledNotificationsList to { \"" + COMMON_NOTIFICATION_NAME + "\"}\n" +
-				
-				"set the sendingApplicationName to \"" + this.appName + "\"\n" +
-				
-//				-- Register our script with growl. You can optionally (as here) set a default icon for this script's notifications.
-				"register as application sendingApplicationName " +
-					"all notifications allNotificationsList " +
-					"default notifications enabledNotificationsList " +
-					"icon of application \"Script Editor\""
-			);
+			final String notificationNames = "{ \"" + COMMON_NOTIFICATION_NAME + "\"}";
+			final String iconAppName = "Script Editor";
+			execute("register as application \"" + this.appName + "\" " +
+						"all notifications " + notificationNames + " " +
+						"default notifications " + notificationNames + " " +
+						"icon of application \"" + iconAppName + "\"");
 		} catch (IOException e) {
 			throw new RuntimeException("Could not register growl notifier!", e);
 		} catch (InterruptedException e) {
@@ -83,7 +73,6 @@ class GrowlNotifierImpl implements GrowlNotifier {
 	private void execute(final String script) throws IOException, InterruptedException {
 		final Runtime runtime = Runtime.getRuntime();
 		final String[] args = buildArgs(splitLines(script));
-		System.out.println(Arrays.toString(args));
 		
 		final Process process = runtime.exec(args);
 		final int retCode = process.waitFor();

@@ -7,6 +7,135 @@
 		DOC/MGMT -70%
 
 
+****************************************
+@site:
+	simian duplication -= http://www.harukizaemon.com/simian/index.html
+	javadoc warnings report
+	// cobertura vs clover
+	* rename "Cobertura" to => Coverage
+	* rename Surefire to => Test report
+!! igitt, GuiUtilTest macht gui ding auf waehrend unittests ! :(
+-- delete old stuff in svn: artifacts/, prototypes/
+- @motion idee: zb wenn man sich vor/zurueck/links/rechts beugt, dann zb im spiel sich in die richtung bewegen/fahren
+	=> dh geste muss verschiedene "states" als resultat liefern (=> evtl doch ein Result type?)
+- @console: fuer jeden user kann man fenster oeffnen fuer positionsansicht
+	* anstatt wirklichen 3D kubus (noch zu schwer) => 2d location view idee hernehmen, und 3x machen: oben, vorne, links/rechts
+	* wenn dieses fenster gross ist, dann kann man da schon die joint koordinaten gut einzeichnen
+	=> nett waere, diese ansicht mit gesten (zb hitwall) zusammenstoppseln; dh dass man dann die wand sieht
+- @site: javadoc merged, aber OHNE impl konfigureren!
+- @site: change tasktag description to something shorter (wird in dashboard report so schirch anzeigt)
+- @API CODE GestureListener:  which argument should be passed to GestureListener?
+ *) skeleton, yes, definetely useful 
+ *) relevantJoints, yep... maybe create own type
+ *) gesture itself? maybe... maybe not, as introduces additional dependency (but would be handy)
+ *) old approach!!! was nice introducing <R ext GestureResult> type => each Gesture can have its specific result!
+ *) maybe also user? DEFINETELY NO!!! ... because when added gesture, one knew which user he passed!
+- remove Util classes (not all, only some) from pulse, as were already moved to josceleton commons
+- equals/hashcode/toString schreiben; vor allem VOs, zb: SkeletonImpl!!! GestureConfigs
+! rename "net.sf.josceleton.josceleton" => to simply: "net.sf.josceleton"
+! !restrukturierung! josceleton/ hat eigene josceleton-pom, und eigene josceleton-reactor
+****************************************
+- in release-app genauso mit osascript growl verwenden
+!!! http://mojo.codehaus.org/dashboard-maven-plugin/index.html
+?! @gesture: was passiert, wenn man relevantJoints(HEAD, HEAD) reingibt?
+! old oscprocesstarter einarbeiten
+@ midi prototype: keine abhaengigkeit zu mmj (da ja nur fuer osx), sondern nur per Class.forName optional verwenden!
+- refactor core module:
+	* ist eigentlich ein "entity" module
+	* async raus geben aus josceleton scope => commons (evtl commons daweil noch nicht aufsplitten in commons-async etc)
+!! konfigurations option (evtl fuer Connector, mal schaun) um input koordinaten zu "begradigen" (wenn unter/ober min/max ruecksetzen)
+- artifact/ rueberschieben
+	* nacher: eigene josceleton-pom
+!!! motion-prototype erstellen (playground fuer neue motion sachen)
+	-> armcoordinate, position, "arm-abgewinkelt-winkel-wert"
+-- idee: tests evtl in groovy schreiben ?!
+* irgendwie versuchen eigene dependencies rausbekommen (vor allem guice 2.0-josceleton)
+!! eclipse workspace aufraeumen!
+	- ALLES raushaun (nicht auf HD loeschen)
+	- vor allem pulse draussen lassen (hat eigenen (settings kopierten) workspace)
+	=> braucht kein prefix (weder "josceleton" noch "net.sf...")
+	=> maven projekt referenzen funken (da zb "java-pom" bennen kann ;) // und muss halt auch als solches auschecken
+@ javadoc manual gscheid anschaun: http://download.oracle.com/javase/1.5.0/docs/tooldocs/windows/javadoc.html#javadoctags
+- josceleotn sollte motion timeout selbst haben (wenn zb selber osceleton prozess killt, dann lauft josceleton weiter mit user...)
+	// dh man darf aber NICHT PERFORMANCE toeten => background thread alle ~20sek laufen lassen, der schaut ob eh dazwischen aktion war (motion == joint message)
+@mantis: muss es selbst configuren koennen, ansonsten halt selbst installieren und hostedapp weg
+	zb: status anpassen, svn hooks einbaun (http://alt-tag.com/blog/archives/2006/11/integrating-mantis-and-subversion/)
+@release app: growl notification einbaun: http://growl.info/documentation/developer/python-support.php
+	(neben: print und say, dritte moeglichkeit sich auszudruecken)
+@site:
+	=> zielgruppe sind entwickler, dh einfache seite (kein flash)
+	* was machen mit mvn site? => es ist dokumentation only!
+	* auf josceleton.sf.net/ feine seite (typo3?) geben
+		// stil wie hirt seite: weisser bg; wenig drauf; feine linien; schoene codesamles (abgerundete ecken)
+	* in navi gibt es dann "external links" sektion, mit inhalt zb: dokumentation (mvn site), forum? (evtl schoeneres in die seite einbaun)
+! get rid of ugly sourceforge forum!
+	// sourceforge wird eigentlich nur benutzt fuer download link verweise, ansonsten sollte man nix von sourceforge sehen!
+! es sollte nix generische namen haben, wie zb "core" => rename zu "entity" (soll inhalt wirklich beschreiben)
+! evtl schon mal gaaanz weit planen: // demanch JETZT auch schon namen/gruppierungen waehlen (stabiler fuer zukunft)
+	-- application framework: braucht viele fertige motions, bietet viel gui fertiges an
+	-- "interoperability-bridge" modules, wie zb MIDI, LEGO, ... andere protokolle was gerne von kuenstlern verwendet werden
+	-- ersten spiele (wiifit like)
+	-- abhaengigkeit zu OSCeleton raus
+		* unschoen dass zusaetzliche abhaengigkeit (prozess muss gestartet werden, etc); kann aber noch zeitlang dauern bis alternative gibt
+		* evtl gibts was direkt fuer java (bzw ueber JNI)
+-- @console LUXURY: gibts noch viiiiele ideen.... aber zb: striktes MVC, dynamisch gesten konfigurieren (fuer MIDI dann zusaetzlich aktionen drauf registrieren)
+- @motions: emulatoren schreiben
+	* emulieren gaengige bewegungen
+	* nuetzlich fuer unit/integration tests (oder auch manuelle tests)
+- oja doch: auf jeden fall fuer guice module PrivateModule verwenden
+	=> je weniger nach aussen hin zugreifbar/bekannt desto besser => weniger abhaengigkeiten, weniger API == besser!
+============================================================
+- log4j in tests programatically configuren (am besten via AOP ;) da man sonst super AbstractTest klasse braeuchte
+! @TEst jmock capability of States anschauen [http://www.jmock.org/cheat-sheet.html]
+- OsceletonProcessStarter
+-- @CODE mehr eigene exception typen (auch fuer tests wichtig)
+- @version 2.0: alle osceleton.exe argumente unterstuetzen
+	zb: x/y/z multiplizier optiopn; andere modes/formats, network, ...
+		// Coordinate muesste dann aufgesplittet werden, da ja nicht fix (standard) float angenommen werden kann; andere typen geben muessen
+	=> also von "openConnectionOnPort(23)" zu: "openConnectionWithArgs( { port: 23, multiplier: Foo, format: Bar } )"
+		// all args can be left null by user, as osceleton does not require any
+! @API gesture idee: CoordinateFixationGesture(Joint toFixate, int msToWaitToFix, double deviationMovement, int msToTimeout)
+	- dispatches onFixated(Coordinate)
+	- dispatches timeout if msToTimeout is reached
+- eigenen playground aufbauen wo josceleton benutzt wird so als waere man aussenstehender => folder yet created: svn/artifact/playground/usage-playground/
+- @CODE rename ClassAdapter to ClassWrapper
+- @DOC wegen javadoc/doclet @since problem => google guice leute direkt fragen wie sie das gemacht haben
+- @BETA phase: im osceleton forum fragen, ob jemand meine lib testen will
+	* demoapp mit simpler GUI um bewegung/user zu erkennen (nur schaun dass es funkt, quasi proof of concept)
+	* demoapp muss seeehr einfach umzugehen sein (will beta tester nicht "belasten", nicht umstaendlich machen)
+		-> ein full-blown-clickable JAR machen
+- um java POM noch weiter aufzuteilen => introduce "common-java-dependencies" dependency-pom (auch NUR <dependencies> section)
+- @site/download: auch svn pfad zum checkout hinschreiben
+- @site/startsite: kontakt einfach machen (mail, sf forum, bug/feature reporten, ...)
+	* evtl sogar skype? sowas wie: auf der startseite typischen browser-skype-builtin-call-button reingeben mit "get in touch with me"
+- @site: eigentlich ist seite komplett zweigeteilt:
+	1. extern: download, documentation (getting started, samples, help)
+	~ so zwischendrinnen: changelog, roadmap, sourcecode (main+test von xref + aggregiert), reports (javadoc, cobertura, etc)
+	2. intern: fuer developer; coding policy, release guide, build erklaert, etc
+! use mvn dependency:analyze
+-- pom erklaert have a look at http://maven.apache.org/guides/introduction/introduction-to-the-pom.html
+- mvn bietet build timestamp propert ${maven.build.timestamp}
+  * formatieren mit <properties><maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format></properties>
+! @GUI swing lib nehmen wie damals von spacebasedcomputer project
+!!! mvn release plugin's update dependencies verwenden (um josceleton interne dep versions zu bumpen
+! @pulse subversion: mkinector-debugger-app kann geloescht werden (ist nun josceleton-console-prototype)
+- wenn artifacts->artifact move: checkstyle-config ghoert ...wohin?  aufjeden nicht in pom/
+	=> wichtig das als einzelnes projekt in eclipse ist (nicht wie bisher in poms-reactor drinnen)
+- enhancement fuer site reactor:
+  * nicht nur versions fuer parent,dep.version.property, sonder auch =>
+	im reactor updaten path: modules,parent + eigene version + einchecken
+	!!! release-app muss trunk nehmen und selbst mit svn taggen (NICHT MVN!!)
+		dann svn update SVN_ROOT selbst wieder
+		dann auf tag arbeiten und ein (mvn dashboard:dashboard) mvn deploy ausfuehren, damit site available ist!
+	+ selbst muss man dann reactor wieder updaten
+@ advanced reactor options
+	URL: http://www.sonatype.com/people/2009/10/maven-tips-and-tricks-advanced-reactor-options/
+	-pl, Ðprojects
+		$ mvn --projects sample-client-connector,sample-rest install
+	        "Build specified reactor projects instead of all projects"
+	+++ make dependent projects
+		mvn --projects sample-services --also-make-dependents install
+	// resume: mvn --projects sample-webapp --also-make \ --resume-from sample-services install
 - architektur diagram aktuell halten
 	* vor allem wichtig diagrame von api (fuer user)
 	* ein kleineres diagram mit grober uebersicht ueber submodule
@@ -17,20 +146,16 @@
 	* gute favourites list von anderen kinecthacks machen
 	* auf eigener seite dann diese eigenen youtube videos referenzieren... plus gute von anderen auch
 !! @code: unbedingt auf SYNCHRONIZED achten ob gebraucht (da ja alles async ist, multi-threaded!!)
-
 - @api: fuer advanced gestures (zb swipe) muss auch geschwindigkeit mitberuecksichtigt werden
 ! mathe lernen: computergrafik { matrizen, vektoren, vektoren in 3d, trigonomentrie}
 	- zb fuer: winkel von arm im ellbogen messen
 ! irgendwie das multiuser ding nutzen!
 	zb ein spiel (klavier spielen) koennen mehrere gleichzeitig (jeder ein anderes ton/instrument)
-
-
 - @CODE very LUXURY: listeners komplett mit events umbauen
 	* in Listeners, alle onXyz(..) ersetzen durch:
 		on(XyzMovedEvent)
 		on(XyzAbortedEvent)
 	+ Event.getSource():Object
-
 
 ==========================================
 TODOS @HIRT
