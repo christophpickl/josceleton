@@ -4,6 +4,7 @@ import getpass
 from config_global import INTERACTIVE, SYSEXEC_ENABLED
 from logging import * #@UnusedWildImport
 
+
 def inputConfirmation(overwriteInteractiveFlag = False):
     yesCmd = "yes"
     noCmd = "no"
@@ -78,10 +79,12 @@ def writeFile(path, content):
 
 def sysexec(command, displayedCommand = None):
     if displayedCommand == None: displayedCommand = command
-    logd(">> %s" % displayedCommand)
     if SYSEXEC_ENABLED == True:
+        logd(">> %s" % displayedCommand)
         retCode = os.system(command)
         if retCode != 0: raise Exception("Could not execute command: [%s]!" % displayedCommand)
+    else:
+        logd("SKIPPED >> %s" % displayedCommand)
 
 def sayOsx(text):
     sysexec("say \"%s\"" % text) 
@@ -99,3 +102,23 @@ def svn(arguments):
     
 def wget(arguments):
     sysexec("wget %s" % arguments) 
+
+
+_GROWL_NOTIFICATION_NAME = "Common Notification"
+_GROWL_APP_NAME = "Josceleton Release Application"
+def registerGrowl():
+    _osascript(["register as application \\\"%s\\\" all notifications { \\\"%s\\\" } default notifications { \\\"%s\\\" } icon of application \\\"%s\\\"" %
+                    (_GROWL_APP_NAME, _GROWL_NOTIFICATION_NAME, _GROWL_NOTIFICATION_NAME, "Script Editor") ])
+def notify(title, message):
+    _osascript([ "notify with name \\\"%s\\\" title \\\"%s\\\" description \\\"%s\\\" application name \\\"%s\\\"" %
+                       (_GROWL_NOTIFICATION_NAME, title.replace("\"", "'"), message.replace("\"", "'"), _GROWL_APP_NAME), ])
+def _osascript(lines):
+    lines.insert(0, "tell application \\\"GrowlHelperApp\\\"")
+    lines.append("end tell")
+    sysexec("osascript " + " ".join([ "-e \"" + i + "\"" for i in lines ]), "osascript -e ...")
+
+if __name__ == "__main__":
+    registerGrowl()
+    notify("myTitle", "myMessage")
+    notify("myTitle", "myMessage 2")
+    

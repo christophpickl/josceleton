@@ -58,5 +58,7 @@
 17.03. - 23:00 -  3h - wrapping up for release v0.4: coverage 100% ... ctd. including warnings and tasktags
 18.03. - 02:00 -  7h - restructuring project structure; aggregated reports
              ~~ 170h~~
-18.03. - 09:00 -  h - 
-             ~~ 170h~~
+18.03. - 09:00 -  3h - site reports; rewritten ${version.foo} to ${version_foo}, as dot made it unable to use it in site 
+18.03. - 18:00 -  2h - finished restructuring; improved reports 
+18.03. - 23:00 -  h -  
+             ~~ 175h~~
