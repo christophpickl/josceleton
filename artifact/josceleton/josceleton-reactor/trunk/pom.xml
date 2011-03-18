@@ -19,9 +19,9 @@
     
     <parent>
         <groupId>net.sf.josceleton</groupId>
-        <artifactId>corporate-pom</artifactId>
+        <artifactId>java-pom</artifactId>
         <version>0.4-SNAPSHOT</version>
-        <relativePath>../corporate-pom/</relativePath>
+        <relativePath>../java-pom/</relativePath>
     </parent>
     
     

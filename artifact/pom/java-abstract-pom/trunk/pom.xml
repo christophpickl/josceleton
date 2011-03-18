@@ -35,6 +35,9 @@
     	<verison.checkstyle>2.6</verison.checkstyle><!-- 2.5 is compatible with site3.0-beta (current is 2.6) -->
     	<version.cobertura>2.3</version.cobertura><!-- 2.3 is compatible with site3.0-beta (current is 2.4) -->
     	
+    	<version.javadoc.plugin>2.6.1</version.javadoc.plugin>
+    	<version.dashboard>1.0.0-beta-1</version.dashboard>
+    	
     	<!-- emma would be 1.0-alpha-2 for site-plugin-3.0-beta-3 -->
     	
         <!-- C O D E   Q U A L I T Y -->
@@ -421,6 +424,7 @@
 			</activation>
 	    	<build>
 	    		<plugins>
+	    			
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<executions>
@@ -434,6 +438,23 @@
 							</execution>
 						</executions>
 					</plugin>
+					
+					
+		            <plugin>
+		            	<!-- (remark: javadoc-plugin configuration should stay in reporting, and not moved to build section) -->
+		                <artifactId>maven-javadoc-plugin</artifactId>
+		            	<version>${version.javadoc.plugin}</version><!-- supported 2.6.1, available 2.7 -->
+		            	<executions>
+							<execution>
+								<id>aggregate</id>
+								<goals>
+									<goal>aggregate</goal>
+								</goals>
+								<phase>site</phase>
+<!--								<configuration></configuration>-->
+							</execution>
+						</executions>
+		            </plugin>
 	    		</plugins>
 	    	</build>
     
@@ -457,9 +478,11 @@
 		            <plugin>
 		            	<!-- (remark: javadoc-plugin configuration should stay in reporting, and not moved to build section) -->
 		                <artifactId>maven-javadoc-plugin</artifactId>
-		            	<version>2.6.1</version><!-- supported 2.6.1, available 2.7 -->
+		            	<version>${version.javadoc.plugin}</version><!-- supported 2.6.1, available 2.7 -->
 		            	<configuration>
 		            		<!-- for configuration options see: http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html -->
+		            		
+		            		<excludePackageNames>net.sf.josceleton.core.impl.*:net.sf.josceleton.connection.impl.*:net.sf.josceleton.motion.impl.*</excludePackageNames>
 		            		
 		            		<!-- in community software we dont want to show up names, it belongs to all of us -->
 		            		<author>false</author> 
@@ -480,35 +503,34 @@
 		                    <minmemory>128m</minmemory> 
               				<maxmemory>512m</maxmemory> 
 							<!-- NO (default "protected" is just fine): <show>private</show>-->
-		            		
 		
 		<!--                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>-->
 		<!--                    <noqualifier>all</noqualifier>    Omit qualifying package name before class names in output. -->
 		            		
 							<!-- ............ customize skin ............... -->
-		<!--					<docletArtifact>-->
-		<!--						 nice doclet, see: http://code.google.com/p/doclava/ -->
-		<!--						<groupId>com.google.doclava</groupId>-->
-		<!--						<artifactId>doclava</artifactId>-->
-		<!--						<version>1.0.2</version>-->
-		<!--					</docletArtifact>-->
-		<!--					<doclet>com.google.doclava.Doclava</doclet>-->
-		<!--					 bootclasspath required by Sun's JVM -->
-		<!--					<bootclasspath>${sun.boot.class.path}</bootclasspath>-->
-		<!--					<additionalparam>-->
-		<!--						-quiet-->
-		<!--						-federate JDK http://download.oracle.com/javase/6/docs/api/index.html?-->
-		<!--						-federationxml JDK-->
-		<!--						http://doclava.googlecode.com/svn/static/api/openjdk-6.xml-->
-		<!--						-hdf project.name "${project.artifactId}"-->
-		<!--						-d ${project.build.directory}/site/apidocs-->
-		<!--					</additionalparam>-->
-		<!--					 -d ${project.build.directory}/apidocs -->
-		<!--					....... add an overview page (-overview <yourpage.html>) -->
-		<!--					-->
-		<!--					<useStandardDocletOptions>false</useStandardDocletOptions>-->
-		<!--					 Apple's JVM sometimes requires more memory -->
-		<!--					<additionalJOption>-J-Xmx1024m</additionalJOption>-->
+							<docletArtifact>
+<!--								 nice doclet, see: http://code.google.com/p/doclava/ -->
+								<groupId>com.google.doclava</groupId>
+								<artifactId>doclava</artifactId>
+								<version>1.0.2</version>
+							</docletArtifact>
+							<doclet>com.google.doclava.Doclava</doclet>
+<!--							 bootclasspath required by Sun's JVM -->
+							<bootclasspath>${sun.boot.class.path}</bootclasspath>
+							<additionalparam>
+								-quiet
+								-federate JDK http://download.oracle.com/javase/6/docs/api/index.html?
+								-federationxml JDK
+								http://doclava.googlecode.com/svn/static/api/openjdk-6.xml
+								-hdf project.name "${project.artifactId}"
+								-d ${project.build.directory}/site/apidocs
+							</additionalparam>
+<!--							 -d ${project.build.directory}/apidocs -->
+<!--							....... add an overview page (-overview <yourpage.html>) -->
+							
+							<useStandardDocletOptions>false</useStandardDocletOptions>
+<!--							 Apple's JVM sometimes requires more memory -->
+							<additionalJOption>-J-Xmx1024m</additionalJOption>
 		            	</configuration>
 		            	
 		            	<reportSets>
@@ -621,6 +643,14 @@
 <!--         </configuration>-->
 <!--       </plugin>-->
 		
+					
+		            <plugin>
+		            	<!-- MUST be the very LAST plugin! -->
+            	 		<!-- you HAVE TO RUN: mvn dashboard:dashboard (after mvn site) --> 
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>dashboard-maven-plugin</artifactId>
+						<version>${version.dashboard}</version>
+					</plugin>
 					
 				</plugins>
 			</reporting>
