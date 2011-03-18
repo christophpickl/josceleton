@@ -106,6 +106,43 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 	}
 	
 	@Test public final void afterAddingAndRemvoingOneselfOneDoesntGetAnyFurtherMessages() {
+		final M testee = this.createSimpleTestee();
+		final MotionListener listener = this.mock(MotionListener.class); // no expectations confirms test assertion
+		final User user = this.mock(User.class);
+		testee.addListenerFor(user, listener);
+		testee.removeListenerFor(user, listener);
+		
+		final Joint joint = Joints.TORSO();
+		final Coordinate coordinate = this.mock(Coordinate.class);
+		final JointMessage mockedMessage = new TestableJointMessage(user, joint, coordinate);
+		
+		this.dispatch(mockedMessage, testee);
+		// listener doesnt receive joint message anymore - its working! (if mock expectations are fullfilled afterwards)
+	}
+	
+	@Test
+	public final void addingSameListenerTwiceDoesntDoAnythingCheckedViaMockExpectations() {
+		final M testee = this.createSimpleTestee();
+		final MotionListener listener = this.mock(MotionListener.class);
+		final User user = this.mock(User.class);
+		testee.addListenerFor(user, listener);
+		testee.addListenerFor(user, listener);
+		testee.removeListenerFor(user, listener);
+	}
+	
+	@Test
+	public final void addAndRemoveSomeListeners() {
+		final M testee = this.createSimpleTestee();
+		final MotionListener listener1 = this.mock(MotionListener.class, "listener1");
+		final MotionListener listener2 = this.mock(MotionListener.class, "listener2");
+		final User user = this.mock(User.class);
+		testee.addListenerFor(user, listener1);
+		testee.addListenerFor(user, listener2);
+		testee.removeListenerFor(user, listener1);
+		testee.removeListenerFor(user, listener2);
+	}
+	
+	private M createSimpleTestee() {
 		final SkeletonInternal skeleton = this.mock(SkeletonInternal.class);
 		final SkeletonFactory skeletonFactory = this.mock(SkeletonFactory.class);
 		this.checking(new Expectations() { {
@@ -119,17 +156,6 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 			oneOf(connection).addListener(asConnectionListener(testee));
 			oneOf(connection).removeListener(asConnectionListener(testee));
 		}});
-		
-		final MotionListener listener = this.mock(MotionListener.class); // no expectations confirms test assertion
-		final User user = this.mock(User.class);
-		testee.addListenerFor(user, listener);
-		testee.removeListenerFor(user, listener);
-		
-		final Joint joint = Joints.TORSO();
-		final Coordinate coordinate = this.mock(Coordinate.class);
-		final JointMessage mockedMessage = new TestableJointMessage(user, joint, coordinate);
-		
-		this.dispatch(mockedMessage, testee);
-		// listener doesnt receive joint message anymore - its working! (if mock expectations are fullfilled afterwards)
+		return testee;
 	}
 }

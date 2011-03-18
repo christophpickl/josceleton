@@ -30,8 +30,6 @@ class MotionSeparatorImpl
 	
 	private final Map<User, SkeletonInternal> skeletonByUser = new HashMap<User, SkeletonInternal>();
 	
-	private boolean isListeningToConnection = false;
-	
 	private int countAddedListeners = 0;
 	
 	
@@ -68,9 +66,11 @@ class MotionSeparatorImpl
 	@Override protected final void beforeAddListener(final User user, final MotionListener listener) {
 		if(this.getListenersFor(user).contains(listener) == false) {
 			this.countAddedListeners++;
+			
+			if(this.countAddedListeners == 1) {
+				this.connection.addListener(this);
+			}
 		}
-		
-		this.updateListeningToConnection();
 
 		if(this.skeletonByUser.containsKey(user) == false) {
 			// the very first one
@@ -83,23 +83,17 @@ class MotionSeparatorImpl
 	@Override protected final void beforeRemoveListener(final User user, final MotionListener listener) {
 		if(this.getListenersFor(user).contains(listener) == true) {
 			this.countAddedListeners--;
+			
+			if(this.countAddedListeners == 0) {
+				this.connection.removeListener(this);
+				this.skeletonByUser.clear(); // wipe out all skeletons! muhahahahaha!!!!!!!!!
+			}
 		}
 		
-		this.updateListeningToConnection();
 		
-		// no if(check if delete skeleton isntance); keep skeleton instance for future use (takes not that much memory)
+		// NO check if delete specific skeleton instance; keep it for future use (takes not that much memory)
 		// also would need an afterRemoveListener() to remove Skeleton if no one is registered for this user anymore
 	}
 	
-	private void updateListeningToConnection() {
-		if(this.isListeningToConnection == false && this.countAddedListeners != 0) {
-			this.connection.addListener(this);
-			this.isListeningToConnection = true;
-		} else if(this.isListeningToConnection == true && this.countAddedListeners == 0) {
-			this.connection.removeListener(this);
-			this.isListeningToConnection = false;
-			this.skeletonByUser.clear(); // wipe out all skeletons! muhahahahaha!!!!!!!!!
-		}
-	}
 	
 }

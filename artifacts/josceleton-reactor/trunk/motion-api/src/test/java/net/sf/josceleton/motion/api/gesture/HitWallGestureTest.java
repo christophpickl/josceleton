@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 
-import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
@@ -15,6 +14,7 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.test.TestableCoordinate;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
+import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
 import net.sf.josceleton.motion.api.test.TestableHitWallGestureConfiguration;
 import net.sf.josceleton.motion.api.test.TestableGestureListener.TestableHitWallListener;
 
@@ -24,7 +24,8 @@ import org.testng.annotations.Test;
  * @since 0.4
  */
 @SuppressWarnings("boxing")
-public abstract class HitWallGestureTest extends AbstractMockeryTest {
+public abstract class HitWallGestureTest
+	extends JointableGestureTest<HitWallConfig, HitWallListener, HitWallGesture> {
 	
 	protected abstract HitWallGesture createTestee(HitWallConfig configuration);
 	

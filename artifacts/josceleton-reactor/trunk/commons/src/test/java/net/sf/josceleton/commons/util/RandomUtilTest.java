@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 import org.testng.annotations.Test;
 
@@ -31,7 +32,7 @@ public class RandomUtilTest {
 		final int middle = 50;
 		for (int i = 0; i < deviation; i++) {
 			assertThat(RandomUtil.generateWithinRange(middle, deviation),
-				allOf(greaterThanOrEqualTo(middle - deviation), lessThan(middle + deviation)));
+				allOf(greaterThanOrEqualTo(middle - deviation), lessThanOrEqualTo(middle + deviation)));
 		}
 	}
 	

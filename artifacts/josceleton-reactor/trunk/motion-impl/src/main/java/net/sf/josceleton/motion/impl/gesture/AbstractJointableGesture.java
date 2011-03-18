@@ -18,7 +18,7 @@ public abstract class AbstractJointableGesture<C extends JointableGestureConfig,
 
 	private final Collection<Joint> relevantJoints;
 	
-	
+	// TODO favour composition over inheritance => refactor this class, gets JointableGesture instance and wrapps it
 	public AbstractJointableGesture(final JointableGestureConfig configuration) {
 		this.relevantJoints = configuration.getRelevantJoints();
 	}

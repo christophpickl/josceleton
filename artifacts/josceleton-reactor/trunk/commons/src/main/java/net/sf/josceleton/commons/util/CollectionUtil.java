@@ -1,17 +1,24 @@
 package net.sf.josceleton.commons.util;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
-public class CollectionUtil {
+/**
+ * @since 0.
+ */
+public final class CollectionUtil {
 
-	public static <T> Collection<T> toUnmodifiableSet(final T... items) {
+	private CollectionUtil() {
+		// utility class is not instantiable
+	}
+	
+	public static <T> Set<T> toUnmodifiableSet(final T... items) {
 		return Collections.unmodifiableSet(new HashSet<T>(Arrays.asList(items)));
 	}
 
-	public static <T> Collection<T> mergeToUnmodifiableSet(final T item, final T[] optionallyMoreItems) {
+	public static <T> Set<T> mergeToUnmodifiableSet(final T item, final T[] optionallyMoreItems) {
 		if(optionallyMoreItems.length == 0) {
 			return CollectionUtil.toUnmodifiableSet(item);
 		}

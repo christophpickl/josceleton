@@ -20,7 +20,7 @@ import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
 import com.google.inject.Injector;
 
 public class DelmePlaygroundApp {
-	
+	// FIXME outsource this DelmePlaygroundApp class into some /artifact/playground/ project
 	public static void main(final String[] args) {
 		new DelmePlaygroundApp().firstGesturePlayground();
 	}
