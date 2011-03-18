@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>${project.artifactId} (${project.version})</name>
+    <name>${project.artifactId}</name>
     <description>
     	Simple purpose of this artifact is to keep checkstyle configurations (and suppressions) in a single location.
     	Simply add in your POM project.build.plugins.plugin[maven-checkstyle-plugin].dependencies a dependency to this artifact.
@@ -23,7 +23,7 @@
     	<groupId>net.sf.josceleton</groupId>
 	    <artifactId>corporate-pom</artifactId>
         <version>0.4-SNAPSHOT</version>
-<!--        <relativePath>../../[josceleton-]corporate-pom/</relativePath>-->
+    	<relativePath>../corporate-pom/pom.xml</relativePath>
     </parent>
     
     
@@ -67,9 +67,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/josceleton-checkstyle-config/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/josceleton-checkstyle-config/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/trunk/josceleton-checkstyle-config/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/checkstyle-config/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/checkstyle-config/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/checkstyle-config/trunk/</url>
     </scm>
     
 </project>

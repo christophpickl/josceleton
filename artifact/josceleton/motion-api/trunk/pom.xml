@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>${project.artifactId} (${project.version})</name>
+    <name>${project.artifactId}</name>
     <description>Motion API containing all kind of position and gesture detectors.</description>
     <packaging>jar</packaging>
     
@@ -65,9 +65,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/motion-api/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/josceleton-reactor/trunk/motion-api/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/josceleton-reactor/trunk/motion-api/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/motion-api/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/motion-api/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/motion-api/trunk/</url>
     </scm>
     
 </project>

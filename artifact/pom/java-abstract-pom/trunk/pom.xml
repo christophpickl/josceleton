@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>${project.artifactId} (${project.version})</name>
+    <name>${project.artifactId}</name>
     <description>An additional Java super POM abstraction layer, to split up those huge monster files :)</description>
     <packaging>pom</packaging>
     
@@ -17,7 +17,7 @@
         <groupId>net.sf.josceleton</groupId>
         <artifactId>corporate-pom</artifactId>
         <version>0.4-SNAPSHOT</version>
-        <relativePath>../../corporate-pom/</relativePath>
+    	<relativePath>../corporate-pom/pom.xml</relativePath>
     </parent>
     
     <!-- ******************************************************************* -->
@@ -32,11 +32,11 @@
    		<!-- *********************************************************** -->
     	
    		<!-- ************ DEPENDENCIES ************ -->
-   		<version_commons-logging>1.1.1</version_commons-logging>
+   		<version_commons_logging>1.1.1</version_commons_logging>
    		<version_log4j>1.2.14</version_log4j>
    		
    		<!-- ************ TEST ************ -->
-   		<version_hamcrest-all>1.1</version_hamcrest-all>
+   		<version_hamcrest_all>1.1</version_hamcrest_all>
    		<version_testng>5.14.7</version_testng>
    		<version_jmock>2.5.1</version_jmock>
     	<version_jmock-legacy>2.5.1</version_jmock-legacy>
@@ -44,19 +44,22 @@
     	<version_objenesis>1.2</version_objenesis>
     	<version_asm>3.3</version_asm>
    		
-   		<!-- ************ PLUGINS ************ -->
-    	<version_surefire>2.4.3</version_surefire><!-- 2.4.3 is compatible with site3.0-beta (current is 2.7.2) -->
+   		<!-- ************ BUILD and REPORT PLUGINS ************ -->
     	<verison_checkstyle>2.6</verison_checkstyle><!-- 2.5 is compatible with site3.0-beta (current is 2.6) -->
     	<version_cobertura>2.3</version_cobertura><!-- 2.3 is compatible with site3.0-beta (current is 2.4) -->
-    	<version_javadoc_plugin>2.6.1</version_javadoc_plugin>
-    	<version_dashboard>1.0.0-beta-1</version_dashboard>
+
+   		<!-- ************ BUILD PLUGINS ************ -->
 		<version_clean_plugin>2.4.1</version_clean_plugin>
 		<version_compiler_plugin>2.3.2</version_compiler_plugin>
-		<version_dependency_plugin>2.2</version_dependency_plugin>
 		<version_jar_plugin>2.3.1</version_jar_plugin>
 		<version_source_plugin>2.1.2</version_source_plugin>
+   		
+   		<!-- ************ REPORT PLUGINS ************ -->
+    	<version_dashboard>1.0.0-beta-1</version_dashboard>
+    	<version_javadoc_plugin>2.6.1</version_javadoc_plugin>
+    	<version_jdepend_plugin>2.0-beta-2</version_jdepend_plugin>
+    	<version_surefire>2.4.3</version_surefire><!-- 2.4.3 is compatible with site3.0-beta (current is 2.7.2) -->
     	<!-- emma would be 1.0-alpha-2 for site-plugin-3.0-beta-3 -->
-    	
     	
         <!-- C O D E   Q U A L I T Y -->
    		<!-- *********************************************************** -->
@@ -85,7 +88,7 @@
 	        <dependency>
 	        	<groupId>commons-logging</groupId>
 	        	<artifactId>commons-logging</artifactId>
-	        	<version>${version_commons-logging}</version>
+	        	<version>${version_commons_logging}</version>
         	</dependency>
 	        
 	        <dependency>
@@ -100,7 +103,7 @@
 			<dependency>
 				<groupId>org.hamcrest</groupId>
 				<artifactId>hamcrest-all</artifactId>
-				<version>${version_hamcrest-all}</version>
+				<version>${version_hamcrest_all}</version>
 			</dependency>
 			
 	        <dependency>
@@ -225,11 +228,6 @@
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${version_compiler_plugin}</version>
-				</plugin>
-				
-				<plugin>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>${version_dependency_plugin}</version>
 				</plugin>
 				
 				<plugin>
@@ -540,6 +538,12 @@
 		            
 		            <plugin>
 		                <groupId>org.codehaus.mojo</groupId>
+		                <artifactId>jdepend-maven-plugin</artifactId>
+		                <version>${version_jdepend_plugin}</version>
+		            </plugin>
+		            
+		            <plugin>
+		                <groupId>org.codehaus.mojo</groupId>
 		                <artifactId>cobertura-maven-plugin</artifactId>
 		                <version>${version_cobertura}</version>
 		            </plugin>
@@ -676,9 +680,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-abstract-pom/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-abstract-pom/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/trunk/java-abstract-pom/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-abstract-pom/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-abstract-pom/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/java-abstract-pom/trunk/</url>
     </scm>
 	
 </project>

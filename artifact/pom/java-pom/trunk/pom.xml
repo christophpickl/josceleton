@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>${project.artifactId} (${project.version})</name>
+    <name>${project.artifactId}</name>
     <description>The super POM for all josceleton java artifacts.</description>
     <packaging>pom</packaging>
     
@@ -16,7 +16,7 @@
         <groupId>net.sf.josceleton</groupId>
         <artifactId>java-abstract-pom</artifactId>
         <version>0.4-SNAPSHOT</version>
-        <relativePath>../java-abstract-pom/</relativePath>
+    	<relativePath>../java-abstract-pom/pom.xml</relativePath>
     </parent>
     
     
@@ -390,9 +390,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-pom/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifacts/poms-reactor/trunk/java-pom/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts/poms-reactor/trunk/java-pom/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-pom/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-pom/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/java-pom/trunk/</url>
     </scm>
     
 </project>
