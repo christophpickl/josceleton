@@ -85,6 +85,21 @@
 <!--  </plugins>-->
 <!--</build>-->
    
+	
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+    
+    <distributionManagement>
+    	<!-- change default site deploy path to webroot for this specific artifact -->
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<name>josceleton site server @sourceforge</name>
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
+		</site>
+	</distributionManagement>
+	
     
     <!-- ******************************************************************* -->
     <!--                                S C M                                -->

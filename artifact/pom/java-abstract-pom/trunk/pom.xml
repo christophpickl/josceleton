@@ -506,31 +506,7 @@
 		
 		<!--                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>-->
 		<!--                    <noqualifier>all</noqualifier>    Omit qualifying package name before class names in output. -->
-		            		
-							<!-- ............ customize skin ............... -->
-							<docletArtifact>
-<!--								 nice doclet, see: http://code.google.com/p/doclava/ -->
-								<groupId>com.google.doclava</groupId>
-								<artifactId>doclava</artifactId>
-								<version>1.0.2</version>
-							</docletArtifact>
-							<doclet>com.google.doclava.Doclava</doclet>
-<!--							 bootclasspath required by Sun's JVM -->
-							<bootclasspath>${sun.boot.class.path}</bootclasspath>
-							<additionalparam>
-								-quiet
-								-federate JDK http://download.oracle.com/javase/6/docs/api/index.html?
-								-federationxml JDK
-								http://doclava.googlecode.com/svn/static/api/openjdk-6.xml
-								-hdf project.name "${project.artifactId}"
-								-d ${project.build.directory}/site/apidocs
-							</additionalparam>
-<!--							 -d ${project.build.directory}/apidocs -->
-<!--							....... add an overview page (-overview <yourpage.html>) -->
-							
-							<useStandardDocletOptions>false</useStandardDocletOptions>
-<!--							 Apple's JVM sometimes requires more memory -->
-							<additionalJOption>-J-Xmx1024m</additionalJOption>
+
 		            	</configuration>
 		            	
 		            	<reportSets>

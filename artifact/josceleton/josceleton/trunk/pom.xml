@@ -65,19 +65,6 @@
 		</dependency>
 
     </dependencies>
-	
-    
-    <!-- ******************************************************************* -->
-    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
-    <!-- ******************************************************************* -->
-    
-    <distributionManagement>
-		<site>
-			<id>josceleton-sourceforge-server</id>
-			<name>josceleton site server @sourceforge</name>
-			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
-		</site>
-	</distributionManagement>
     
     
     <!-- ******************************************************************* -->
