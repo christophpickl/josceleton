@@ -64,7 +64,7 @@ public class MathUtilTest {
 	
 	@Test(dataProvider = "relativeToRealReversedDp")
 	public final void relativateToRealReversed(final int realValue, final int expectedValue) {
-		assertThat(MathUtil.relativateTo(new StartEnd(80, 40), realValue,new StartEnd(0, 100)), equalTo(expectedValue));
+		assertThat(MathUtil.relativateTo(new StartEnd(80, 40), realValue, new StartEnd(0, 100)), equalTo(expectedValue));
 	}
 	@DataProvider(name = "relativeToRealReversedDp")
 	public final Object[][] relativeToRealReversedDp() {

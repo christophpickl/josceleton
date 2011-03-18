@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 
-import com.google.inject.Inject;
-
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
@@ -14,6 +12,8 @@ import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
 import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureBuilder;
+
+import com.google.inject.Inject;
 
 /**
  * @since 0.4
