@@ -14,7 +14,7 @@ import net.sf.josceleton.motion.api.gesture.JointableGestureConfig;
  */
 public abstract class AbstractJointableGesture<C extends JointableGestureConfig, L extends GestureListener>
 	extends AbstractGesture<C, L>
-	implements JointableGesture<C, L> {
+		implements JointableGesture<C, L> {
 
 	private final Collection<Joint> relevantJoints;
 	
@@ -25,6 +25,7 @@ public abstract class AbstractJointableGesture<C extends JointableGestureConfig,
 
 	/**
 	 * Performance enhanced <code>onMoved</code> method, as it will only be called  
+	 * @param parameterObject TODO
 	 */
 	protected abstract void onMovedRelevantJoint(Joint movedJoint, Coordinate updatedCoordinate, Skeleton skeleton);	
 	

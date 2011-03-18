@@ -1,8 +1,5 @@
 package net.sf.josceleton.motion.impl.gesture.hitwall;
 
-import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
-
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
@@ -11,6 +8,9 @@ import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
 import net.sf.josceleton.motion.impl.gesture.AbstractJointableGesture;
+
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 /**
  * @since 0.4
@@ -39,20 +39,23 @@ class HitWallGestureImpl extends AbstractJointableGesture<HitWallConfig, HitWall
 	
 	/** {@inheritDoc} from {@link AbstractJointableGesture} */
 	@Override protected final void onMovedRelevantJoint(
-			final Joint relevantJoint, final Coordinate updatedCoordinate, final Skeleton skeleton) {
+			final Joint movedJoint,
+			final Coordinate updatedCoordinate,
+			final Skeleton skeleton) {
 		
 		final float actualCoordinate = this.configDirecton.extractValue(updatedCoordinate);
 		
 		if(this.wasYetTriggered == false) {
 			final boolean shouldTrigger = this.checkTrigger(actualCoordinate);
 			if(shouldTrigger == true) {
-				this.dispatchGestureDetected(/* FIXME add argument ? oder "this"? wohl am besten...*/skeleton);
+				this.dispatchGestureDetected(skeleton);
 				this.wasYetTriggered = true;
 			}
 			
 		} else {
 			final boolean shouldUntrigger = this.checkUntrigger(actualCoordinate);
 			if(shouldUntrigger == true) {
+				System.out.println("UNTRIGGER");
 				this.wasYetTriggered = false;
 			}
 		}

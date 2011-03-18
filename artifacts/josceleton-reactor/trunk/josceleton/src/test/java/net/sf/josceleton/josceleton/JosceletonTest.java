@@ -2,7 +2,6 @@ package net.sf.josceleton.josceleton;
 
 import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.hasSinglePrivateNullifiedConstructorAndInvokeIt;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -11,7 +10,6 @@ import java.lang.reflect.Field;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
 
-import org.hamcrest.Matchers;
 import org.jmock.Expectations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

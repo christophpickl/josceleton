@@ -10,14 +10,14 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
 
 public class TestableMotionSeparatorListener implements MotionListener {
 	
-	private final List<OnMovedInvocation> onMovedInvocations = new LinkedList<OnMovedInvocation>();
+	private final List<OnMovedParameter> onMovedInvocations = new LinkedList<OnMovedParameter>();
 		
 	@Override
 	public final void onMoved(final Joint movedJoint, final Coordinate updatedCoordinate, final Skeleton skeleton) {
-		this.onMovedInvocations.add(new OnMovedInvocation(movedJoint, updatedCoordinate, skeleton));
+		this.onMovedInvocations.add(new OnMovedParameter(movedJoint, updatedCoordinate, skeleton));
 	}
 
-	public final List<OnMovedInvocation> getOnMovedInvocations() {
+	public final List<OnMovedParameter> getOnMovedInvocations() {
 		return this.onMovedInvocations;
 	}
 	

@@ -19,15 +19,16 @@ import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
 
 import com.google.inject.Injector;
 
-public class DelmePlaygroundApp {
-	// FIXME outsource this DelmePlaygroundApp class into some /artifact/playground/ project
+class PlaygroundApp {
+	
 	public static void main(final String[] args) {
-		new DelmePlaygroundApp().firstGesturePlayground();
+		new PlaygroundApp().firstGesturePlayground();
 	}
 
 	public final void firstGesturePlayground() {
 		final Injector injector = Josceleton.newGuiceInjector();
 		final Joint joint = Joints.HAND().RIGHT();
+		
 		final GestureFactoryFacade factory = injector.getInstance(GestureFactoryFacade.class);
 		final HitWallGesture gesture = factory.newHitWall()
 			.direction(XyzDirection.Y)
@@ -35,23 +36,33 @@ public class DelmePlaygroundApp {
 			.coordinate(0.5F)
 			.relevantJoint(joint)
 			.build();
+		
 		gesture.addListener(new HitWallListener() { @Override public void onGestureDetected(final Skeleton skeleton) {
 			System.out.println("[INFO] ==========================>>>>>>> gesture detected on joint (" + joint + ") " +
 					"with coordinate value: " + skeleton.get(joint)); } });
+		
+		this.firstGesturePlaygroundSetup(injector, gesture);
+		
+		System.out.println("Up and running...");
+	}
+	private void firstGesturePlaygroundSetup(final Injector injector, final MotionListener listener) {
 		final Connector connector = injector.getInstance(Connector.class);
 		final Connection connection = connector.openConnection();
 		final MotionSeparatorCache cache = injector.getInstance(MotionSeparatorCache.class);
 		final MotionSeparator separator = cache.lookupMotionSeparator(connection);
+		
 		connection.getUserService().addListener(new UserServiceListener() {
 			@Override public void onUserWaiting(final User user) {
 				System.out.println("onUserWaiting(user=" + user + ")"); }
-			@Override public void onUserDead(final User user) {
-				System.out.println("onUserDead(user=" + user + ")");
-				separator.removeListenerFor(user, gesture); }
+			
 			@Override public void onUserProcessing(final User user) {
 				System.out.println("onUserProcessing(user=" + user + ")");
-				separator.addListenerFor(user, gesture); } });
-		System.out.println("Up and running...");
+				separator.addListenerFor(user, listener); }
+			
+			@Override public void onUserDead(final User user) {
+				System.out.println("onUserDead(user=" + user + ")");
+				separator.removeListenerFor(user, listener); }
+			});
 	}
 
 	public final void thisIsHowNewMotionServiceCouldWork() {

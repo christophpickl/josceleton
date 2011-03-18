@@ -4,6 +4,8 @@ import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.hasSingl
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+import net.sf.josceleton.commons.util.MathUtil.StartEnd;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -46,7 +48,7 @@ public class MathUtilTest {
 	
 	@Test(dataProvider = "relativeToDp")
 	public final void relativeTo(final int realValue, final int expectedValue) {
-		assertThat(MathUtil.relativateTo(40, 80, realValue, 0, 100), equalTo(expectedValue));
+		assertThat(MathUtil.relativateTo(new StartEnd(40, 80), realValue, new StartEnd(0, 100)), equalTo(expectedValue));
 	}
 	@DataProvider(name = "relativeToDp")
 	public final Object[][] relativeToDp() {
@@ -62,7 +64,7 @@ public class MathUtilTest {
 	
 	@Test(dataProvider = "relativeToRealReversedDp")
 	public final void relativateToRealReversed(final int realValue, final int expectedValue) {
-		assertThat(MathUtil.relativateTo(80, 40, realValue, 0, 100), equalTo(expectedValue));
+		assertThat(MathUtil.relativateTo(new StartEnd(80, 40), realValue,new StartEnd(0, 100)), equalTo(expectedValue));
 	}
 	@DataProvider(name = "relativeToRealReversedDp")
 	public final Object[][] relativeToRealReversedDp() {
@@ -79,7 +81,7 @@ public class MathUtilTest {
 	
 	@Test(dataProvider = "relativeToExpectedReversedDp")
 	public final void relativateToExpectedReversed(final int realValue, final int expectedValue) {
-		assertThat(MathUtil.relativateTo(40, 80, realValue, 100, 0), equalTo(expectedValue));
+		assertThat(MathUtil.relativateTo(new StartEnd(40, 80), realValue, new StartEnd(100, 0)), equalTo(expectedValue));
 	}
 	@DataProvider(name = "relativeToExpectedReversedDp")
 	public final Object[][] relativeToExpectedReversedDp() {
@@ -98,7 +100,7 @@ public class MathUtilTest {
 	
 	@Test(dataProvider = "relativeToBothReversedDp")
 	public final void relativateToBothReversed(final int realValue, final int expectedValue) {
-		assertThat(MathUtil.relativateTo(80, 40, realValue, 100, 0), equalTo(expectedValue));
+		assertThat(MathUtil.relativateTo(new StartEnd(80, 40), realValue, new StartEnd(100, 0)), equalTo(expectedValue));
 	}
 	@DataProvider(name = "relativeToBothReversedDp")
 	public final Object[][] relativeToBothReversedDp() {

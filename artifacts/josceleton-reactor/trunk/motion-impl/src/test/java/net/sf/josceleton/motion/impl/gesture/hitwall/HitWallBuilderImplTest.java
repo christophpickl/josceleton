@@ -1,16 +1,10 @@
 package net.sf.josceleton.motion.impl.gesture.hitwall;
 
-import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.collectionHas;
 import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.collectionHasUnordered;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.sameInstance;
-
-import java.util.Collection;
-
-import net.sf.josceleton.commons.test.matcher.JosceletonMatchers;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
@@ -21,7 +15,6 @@ import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
 import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureBuilder;
 import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureBuilderTest;
 
-import org.hamcrest.Matchers;
 import org.jmock.Expectations;
 import org.testng.annotations.Test;
 

@@ -9,7 +9,7 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
  * 
  * @since 0.4
  */
-public class OnMovedInvocation {
+public class OnMovedParameter {
 	
 	private final Joint movedJoint;
 	
@@ -18,7 +18,7 @@ public class OnMovedInvocation {
 	private final Skeleton skeleton;
 	
 	
-	public OnMovedInvocation(
+	public OnMovedParameter(
 			final Joint movedJoint,
 			final Coordinate updatedCoordinate,
 			final Skeleton skeleton) {

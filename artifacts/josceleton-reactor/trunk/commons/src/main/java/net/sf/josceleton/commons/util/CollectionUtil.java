@@ -15,23 +15,21 @@ public final class CollectionUtil {
 	}
 	
 	public static <T> Set<T> toUnmodifiableSet(final T... items) {
+		if(items.length == 0) {
+			return Collections.emptySet();
+		}
 		return Collections.unmodifiableSet(new HashSet<T>(Arrays.asList(items)));
 	}
 
 	public static <T> Set<T> mergeToUnmodifiableSet(final T item, final T[] optionallyMoreItems) {
-		if(optionallyMoreItems.length == 0) {
-			return CollectionUtil.toUnmodifiableSet(item);
-		}
-		final T[] newArray = (T[]) new Object[optionallyMoreItems.length + 1];
-		newArray[0] = item;
-		System.arraycopy(optionallyMoreItems, 0, newArray, 1, optionallyMoreItems.length);
-		return CollectionUtil.toUnmodifiableSet(newArray);
+		final Set<T> set = new HashSet<T>(1 + optionallyMoreItems.length);
 		
-		// TODO outsource merging 1+array to collection
-//		final Set<Joint> allJoints = new HashSet<Joint>(1 + optionallyMoreJoints.length);
-//		allJoints.add(atLeastOneJoint);
-//		allJoints.addAll(Arrays.asList(optionallyMoreJoints));
-//		Collections.unmodifiableSet(allJoints);
+		set.add(item);
+		for (final T optionally : optionallyMoreItems) {
+			set.add(optionally);
+		}
+		
+		return Collections.unmodifiableSet(set);
 	}
 
 }
