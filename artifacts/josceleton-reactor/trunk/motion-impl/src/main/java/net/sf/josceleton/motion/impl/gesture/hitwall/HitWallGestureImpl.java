@@ -55,15 +55,11 @@ class HitWallGestureImpl extends AbstractJointableGesture<HitWallConfig, HitWall
 		} else {
 			final boolean shouldUntrigger = this.checkUntrigger(actualCoordinate);
 			if(shouldUntrigger == true) {
-				System.out.println("UNTRIGGER");
 				this.wasYetTriggered = false;
 			}
 		}
 	}
 
-	// TODO DRY trigger und untrigger code refactoren ... oder vielleicht auch nicht (auch besser so fuer performance)
-	// FIXME untrigger check toleranz bereich dazu
-	
 	private boolean checkTrigger(final float actualCoordinate) {
 		if(this.triggerLower == true) {
 			return actualCoordinate < this.coordinateValue;

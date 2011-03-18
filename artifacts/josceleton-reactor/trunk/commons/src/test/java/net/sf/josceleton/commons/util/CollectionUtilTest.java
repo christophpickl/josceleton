@@ -15,6 +15,7 @@ public class CollectionUtilTest {
 	}
 
 	@Test public final void toUnmodifiableSetProperly() {
+		assertThat(CollectionUtil.toUnmodifiableSet().size(), equalTo(0));
 		assertThat(CollectionUtil.toUnmodifiableSet("a", "b"), hasItems("a", "b"));
 		assertThat(CollectionUtil.toUnmodifiableSet("a", "b", "a").size(), equalTo(2));
 	}

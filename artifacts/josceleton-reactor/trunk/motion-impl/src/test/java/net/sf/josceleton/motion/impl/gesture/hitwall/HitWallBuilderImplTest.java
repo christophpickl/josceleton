@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.sameInstance;
+import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
@@ -78,5 +79,31 @@ public class HitWallBuilderImplTest extends AbstractJointableGestureBuilderTest<
 		
 		return new HitWallBuilderImpl(gestureFactory, configFactory);
 	}
+
+	@Test(expectedExceptions = InvalidArgumentException.class,
+			expectedExceptionsMessageRegExp = ".*direction.*null.*")
+	public final void passingNullDirectionFails() {
+		final HitWallBuilder builder = this.newSimpleBuilder();
+		builder.direction(null);
+	}
+
+	@Test(expectedExceptions = InvalidArgumentException.class,
+			expectedExceptionsMessageRegExp = ".*coordinateValue.*7\\.1.*")
+	public final void passingInvalidCoordinateFails() {
+		final HitWallBuilder builder = this.newSimpleBuilder();
+		builder.coordinate(7.1F);
+	}
+
+	@Test
+	public final void passingInvalidCoordinateForNonZTemporarilySucceedsForBuilder() {
+		final HitWallBuilder builder = this.newSimpleBuilder();
+		builder.direction(XyzDirection.X).coordinate(6.1F); // validations will be done within Config object afterwards
+		// TODO @TEST write integration test to check if builder.build() fails with wrong X and 6.1F!
+	}
 	
+	private HitWallBuilder newSimpleBuilder() {
+		final HitWallGestureFactory gestureFactory = this.mock(HitWallGestureFactory.class);
+		final HitWallConfigFactory configFactory = this.mock(HitWallConfigFactory.class);
+		return new HitWallBuilderImpl(gestureFactory, configFactory);
+	}
 }

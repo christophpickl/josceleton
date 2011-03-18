@@ -24,8 +24,7 @@ public abstract class AbstractJointableGesture<C extends JointableGestureConfig,
 	}
 
 	/**
-	 * Performance enhanced <code>onMoved</code> method, as it will only be called  
-	 * @param parameterObject TODO
+	 * Performance enhanced <code>onMoved</code> method, as it will only be called when a relevant joint was moved.
 	 */
 	protected abstract void onMovedRelevantJoint(Joint movedJoint, Coordinate updatedCoordinate, Skeleton skeleton);	
 	

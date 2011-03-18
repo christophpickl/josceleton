@@ -2,6 +2,8 @@ package net.sf.josceleton.motion.impl.gesture.hitwall;
 
 import java.util.Collection;
 
+import net.sf.josceleton.commons.exception.InvalidArgumentException;
+import net.sf.josceleton.core.api.entity.CoordinateUtil;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
@@ -28,7 +30,10 @@ class HitWallConfigImpl extends AbstractJointableGestureConfig implements HitWal
 			@Assisted final XyzDirection direction,
 			@Assisted final boolean triggerOnLower) {
 		super(relevantJoints);
-		
+		if(CoordinateUtil.isCorrectValue(coordinate, direction) == false) {
+			throw InvalidArgumentException.newInstance("coordinate", Float.valueOf(coordinate),
+					"Not within valid range of " + CoordinateUtil.getCorrectValueLabel(direction) + "!");
+		}
 		this.coordinate = coordinate;
 		this.direction = direction;
 		this.triggerOnLower = triggerOnLower;

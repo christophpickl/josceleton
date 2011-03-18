@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 
+import net.sf.josceleton.commons.exception.InvalidArgumentException;
+import net.sf.josceleton.core.api.entity.CoordinateUtil;
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
@@ -69,17 +71,21 @@ class HitWallBuilderImpl
 		return this.gestureFactory.create(config);
 	}
 
-	// MINOR check for null args in builder?
-	
 	@Override public final HitWallBuilder direction(final XyzDirection direction) {
-		// TODO if(direction == null)  1. throw exception? 2. set to default value?
+		if(direction == null) {
+			throw InvalidArgumentException.newNotNull("direction");
+		}
 		this.pDirection = direction;
 		return this;
 	}
 
 	@Override public final HitWallBuilder coordinate(final float coordinateValue) {
-		// TODO validate correct argument: [0.0 .. 7.0] (as it could be either for X/Y or Z, we dont know yet)
-		// OUTSOURCE this argument check! maybe create own type CoordinateValue
+		// dont assume user has yet set proper direction, therefore assume Z, as it is the least restrictive one
+		if(CoordinateUtil.isCorrectValue(coordinateValue, XyzDirection.Z) == false) {
+			throw InvalidArgumentException.newInstance("coordinateValue", Float.valueOf(coordinateValue),
+				"coordinateValue must be within a valid range!");
+		}
+		
 		this.pCoordinate = coordinateValue;
 		return this;
 	}
