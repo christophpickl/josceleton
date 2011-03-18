@@ -40,11 +40,11 @@
 		</menu>
 		
 		<menu name="Reports">
-			<item name="API - JavaDoc" href="apidocs/index.html" />
-			<item name="Browse Sourcecode" href="xref/index.html" />
+			<item name="JavaDoc" href="apidocs/index.html" />
+			<item name="Browse Source" href="xref/index.html" />
 			
 			<item name="Metrics" href="development/project_metrics.html" />
-			<item name="Dashboard" href="dashboard-report.html" />
+			<item name="DashBoard Report" href="dashboard-report.html" />
 			<item name="Dashboard Details" href="dashboard-report-details.html" />
 		</menu>
 		

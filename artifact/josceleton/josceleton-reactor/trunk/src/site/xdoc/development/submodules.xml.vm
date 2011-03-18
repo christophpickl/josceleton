@@ -11,16 +11,20 @@
 			<ul>
 				<li>
 					Commons - 
-					<a href="http://josceleton.sourceforge.net/documentation/commons/${version_josceleton_commons}/">
-						http://josceleton.sourceforge.net/documentation/commons/${version_josceleton_commons}/
+					<a href="http://josceleton.sf.net/documentation/commons/${version_josceleton_commons}/">
+						http://josceleton.sf.net/documentation/commons/${version_josceleton_commons}/
 					</a>
 				</li>
 				<li>
 					Core API - 
-					<a href="http://josceleton.sourceforge.net/documentation/core-api/${version_josceleton_core-api}/">
-						http://josceleton.sourceforge.net/documentation/core-api/${version_josceleton_core-api}/
+					<a href="http://josceleton.sf.net/documentation/core-api/${version_josceleton_core-api}/">
+						http://josceleton.sf.net/documentation/core-api/${version_josceleton_core-api}/
 					</a>
 				</li>
+				<li>
+					... etc ...
+				</li>
+				<!-- TODO @site complete listing -->
 			</ul>
 						
 		</section>

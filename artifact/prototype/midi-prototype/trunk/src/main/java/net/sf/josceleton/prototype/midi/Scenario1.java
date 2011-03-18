@@ -27,7 +27,7 @@ public class Scenario1 {
 		final double triggerValue = 0.9;
 		final boolean checkTriggerForHigher = false;
 		
-		// FIXME @Scenario1 reimplement gesture
+		// TODO @Scenario1 reimplement gesture
 //		final HitWallGesture hitWallGesture =
 //			new HitWallGestureImpl(bodyPart, xyzDirection, triggerValue, checkTriggerForHigher);
 //		final HitWallListener listener = new HitWallMidiSender(sender, isSendingHighTones);

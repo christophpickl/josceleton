@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>${project.artifactId} (${project.version})</name>
+    <!-- Will be used in site, and as this reactor project deploys its site as the "frontpage", have to name it that way -->
+    <name>Josceleton</name>
     <description>
     	The reactor project for all public josceleton artifacts.
     	This reactor is actually just used to create aggregated reports

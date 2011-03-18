@@ -469,9 +469,6 @@
 									<goal>aggregate</goal>
 								</goals>
 								<phase>site</phase>
-								<configuration>
-		            				<excludePackageNames>net.sf.josceleton.core.impl.*:net.sf.josceleton.connection.impl.*:net.sf.josceleton.motion.impl.*</excludePackageNames>
-								</configuration>
 							</execution>
 						</executions>
 		            </plugin>
@@ -502,6 +499,9 @@
 		            	<configuration>
 		            		<!-- for configuration options see: http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html -->
 		            		
+		            		<!-- TODO @SITE JAVADOC POM: excludePackageNames does not work -->
+            				<excludePackageNames>net.sf.josceleton.core.impl.*:net.sf.josceleton.connection.impl.*:net.sf.josceleton.motion.impl.*</excludePackageNames>
+            				
 		            		<!-- in community software we dont want to show up names, it belongs to all of us -->
 		            		<author>false</author> 
 							<!-- shuts off non-error and non-warning messages -->

@@ -68,7 +68,7 @@
 				
 			    <!-- 0.3 -->
 		    	<!-- *********************************************************** -->
-				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.3/josceleton-reactor/index.html">Version 0.3</a> (2001-03-15)</h4>
+				<h4>Version 0.3 (2001-03-15)</h4>
 				<p>
 					Enhanced foundation logic: Introducing new <code>UserService</code> to provide a consistent user management.
 				</p>
@@ -83,7 +83,7 @@
 				
 			    <!-- 0.2 -->
 		    	<!-- *********************************************************** -->
-				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.2/josceleton-reactor/index.html">Version 0.2</a> (2011-03-11)</h4>
+				<h4>Version 0.2 (2011-03-11)</h4>
 				<p>
 					Introducing Josceleton Facade providing a simplified access to the API. This module also provides a 
 					<a href="http://code.google.com/p/google-guice/" target="_blank">Guice</a> module for immediate usage.
@@ -99,7 +99,7 @@
 		
 			    <!-- 0.1 -->
 		    	<!-- *********************************************************** -->
-				<h4><a href="http://josceleton.sf.net/artifacts/net.sf.josceleton/josceleton-reactor/0.1/josceleton-reactor/index.html">Version 0.1</a> (2011-03-08)</h4>
+				<h4>Version 0.1 (2011-03-08)</h4>
 				<p>
 					Initial version providing simple access to a OSCeleton server.
 					Mostly working on project setup and build management.
