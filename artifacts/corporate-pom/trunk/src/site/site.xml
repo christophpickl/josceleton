@@ -17,7 +17,7 @@
 	<publishDate position="right" format="yyyy-MM-dd" />
 	
 	<poweredBy>
-    	<logo name="Get josceleton at SourceForge.net. Fast, secure and Free Open Source software downloads"
+    	<logo name="Powered by SourceForge"
     		  href="https://sourceforge.net/projects/josceleton/" 
     		  img="http://josceleton.sourceforge.net/static/image/sourceforge_logo.png" />
 	</poweredBy>
