@@ -249,7 +249,7 @@
                 </configuration>
             </plugin>
             
-            <!-- FIXME animal-sniffer plugin throws out of memory error while building java-abstract-pom -->
+            <!-- TODO @BUILD animal-sniffer plugin throws out of memory error while building java-abstract-pom -->
 <!--			<plugin>-->
 <!--				<groupId>org.codehaus.mojo</groupId>-->
 <!--				<artifactId>animal-sniffer-maven-plugin</artifactId>-->

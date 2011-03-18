@@ -47,4 +47,13 @@
              ~~ 140h~~
 16.03. - 04:00 -  2h - #18 started and somehow finished with first hitwallgesture ... ctd.
 16.03. - 17:00 -  4h - #18 wrapping up gesture infrastructure + tests
-16.03. - 21:00 -  h - 
+16.03. - 21:00 -  3h - investigated folder structure 2.0 (flat reactors) + adapted release-app
+17.03. - 00:00 -  1h - as flat reactors work, enabled aggregated reports (dashboard)
+             ~~ 150h~~
+17.03. - 01:00 -  1h - as flat reactors work, enabled aggregated reports (dashboard) ... ctd.
+17.03. - 02:00 -  4h - reactived gui debugger as console prototype
+17.03. - 18:00 -  3h - #11 finished console prototype, inclusive a growl notifier ;)
+17.03. - 21:00 -  2h - wrapping up for release v0.4: coverage 100%
+             ~~ 160h~~
+17.03. - 23:00 -  h - wrapping up for release v0.4: coverage 100% ... ctd. including warnings and tasktags
+             ~~ 160h~~

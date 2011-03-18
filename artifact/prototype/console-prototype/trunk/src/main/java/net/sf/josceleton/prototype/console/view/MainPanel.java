@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import net.sf.josceleton.commons.util.GuiUtil;
 import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
 import net.sf.josceleton.prototype.console.glue.GlueCodeListener;
 
@@ -30,7 +31,7 @@ public class MainPanel extends JPanel implements GlueCodeListener {
 	private void initComponents() {
 		final JPanel infoPanel = new JPanel();
 		infoPanel.setOpaque(false);
-		infoPanel.add(new JLabel("Tracked Users: ")); //TODO GuiUtil.newJLabel("Tracked Users: ", StyleConstantsPool.FONT_MAIN_INFO_TEXT));
+		infoPanel.add(GuiUtil.newJLabel("Tracked Users: ", StyleConstantsPool.FONT_MAIN_INFO_TEXT));
 		this.lblUserCount.setFont(StyleConstantsPool.FONT_MAIN_INFO_TEXT);
 		infoPanel.add(this.lblUserCount);
 		

@@ -36,9 +36,7 @@
 TODOS @HIRT
 ==========================================
 	- heartbeat stabillizer fertig machen
-	- @midi route prototype:
-		* remember midi port in preferences
-		* gui skeleton daten debugger frame (ganz prototype maessig)
+	- midi prototype fertig
 	- range scaling
 	// projektmitglied suchen, der sich mit ableton live/synthesizer auskennt
 		=> team kooperativ muss er sein

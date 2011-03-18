@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import net.sf.josceleton.commons.util.MathUtil;
+import net.sf.josceleton.commons.util.MathUtil.StartEnd;
 
 class Location2DView extends JPanel {
 	
@@ -30,8 +31,8 @@ class Location2DView extends JPanel {
 	}
 	
 	public void updateXz(final int x, int y) {
-		final int x2 = MathUtil.relativateTo(20 /* sogar 0*/, 90, x, 0, this.getWidth());
-		final int y2 = MathUtil.relativateTo(120 /* sogar 60*/, 250 /* sogar 270*/, y, 0, this.getHeight());
+		final int x2 = MathUtil.relativateTo(new StartEnd(20 /* sogar 0*/, 90), x, new StartEnd(0, this.getWidth()));
+		final int y2 = MathUtil.relativateTo(new StartEnd(120 /* sogar 60*/, 250 /* sogar 270*/), y, new StartEnd(0, this.getHeight()));
 		this.lbl.setBounds(x2, y2, 10, 10);
 	}
 }

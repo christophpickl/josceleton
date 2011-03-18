@@ -87,8 +87,7 @@ class UserPanelImpl extends JPanel implements UserPanel {
 		jointPanelsWrapper.setOpaque(false);
 		jointPanelsWrapper.setLayout(new GridBagLayout());
 		
-		// TODO better solution for Joint association picture position strichmaxal thingy in here
-		// TODO if skeleton data not yet available, set state of coordinatesDrawer (internally set background color darker)
+		// MINOR @GUI if skeleton data not yet available, set different state of coordinatesDrawer (darker background)
 		final GridBagConstraints c = new GridBagConstraints();
 		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.HEAD()), c, 2, 0, false);
 		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.NECK()), c, 2, 1, false);

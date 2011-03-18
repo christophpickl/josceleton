@@ -75,7 +75,8 @@ class GlueCodeImpl extends ConnectionAdapter implements GlueCode {
 	@Override public final void onUserProcessing(final User user) {
 		LOG.info("onUserProcessing(user=" + user + ")");
 		
-		if(this.userPanels.containsKey(user) == false) { // TODO check if this is actually necessar; because i dont think so!! as already managed by UserService
+		// TODO check if this is actually necessar; because i dont think so!! as already managed by UserService
+		if(this.userPanels.containsKey(user) == false) {
 			// artificial login
 			this.doAddUser(user);
 		}

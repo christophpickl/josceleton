@@ -43,6 +43,7 @@
     	<version.josceleton.connection-impl>0.4-SNAPSHOT</version.josceleton.connection-impl>
     	<version.josceleton.motion-api>0.1-SNAPSHOT</version.josceleton.motion-api>
     	<version.josceleton.motion-impl>0.1-SNAPSHOT</version.josceleton.motion-impl>
+    	<version.josceleton.josceleton>0.4-SNAPSHOT</version.josceleton.josceleton>
     	
    		<version.josceleton-checkstyle-config>0.4-SNAPSHOT</version.josceleton-checkstyle-config>
    		
@@ -67,86 +68,98 @@
     		<!-- *********************************************************** -->
 
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>commons</artifactId>
 				<version>${version.josceleton.commons}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>commons</artifactId>
 				<version>${version.josceleton.commons}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>core-api</artifactId>
 				<version>${version.josceleton.core-api}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>core-api</artifactId>
 				<version>${version.josceleton.core-api}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>core-impl</artifactId>
 				<version>${version.josceleton.core-impl}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>core-impl</artifactId>
 				<version>${version.josceleton.core-impl}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>connection-api</artifactId>
 				<version>${version.josceleton.connection-api}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>connection-api</artifactId>
 				<version>${version.josceleton.connection-api}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>connection-impl</artifactId>
 				<version>${version.josceleton.connection-impl}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>connection-impl</artifactId>
 				<version>${version.josceleton.connection-impl}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>motion-api</artifactId>
 				<version>${version.josceleton.motion-api}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>motion-api</artifactId>
 				<version>${version.josceleton.motion-api}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>motion-impl</artifactId>
 				<version>${version.josceleton.motion-impl}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sf.josceleton</groupId>
 				<artifactId>motion-impl</artifactId>
 				<version>${version.josceleton.motion-impl}</version>
+				<type>test-jar</type>
+			</dependency>
+			
+			<dependency>
+				<groupId>net.sf.josceleton</groupId>
+				<artifactId>josceleton</artifactId>
+				<version>${version.josceleton.josceleton}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.josceleton</groupId>
+				<artifactId>josceleton</artifactId>
+				<version>${version.josceleton.josceleton}</version>
 				<type>test-jar</type>
 			</dependency>
     		
