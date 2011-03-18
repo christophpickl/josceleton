@@ -34,25 +34,25 @@
 		    <artifactId>guice-dependencies</artifactId>
 		    <version>2.2-SNAPSHOT</version> ... should be updated, if corporate-pom has changed; and changes are needed for guice dep; i dont think so ...
    		-->
-    	<version.josceleton.guice>2.2</version.josceleton.guice><!-- we dont need any newer version -->
+    	<version_josceleton_guice>2.2</version_josceleton_guice><!-- we dont need any newer version -->
     	
-    	<version.josceleton.commons>0.4-SNAPSHOT</version.josceleton.commons>
-    	<version.josceleton.core-api>0.4-SNAPSHOT</version.josceleton.core-api>
-    	<version.josceleton.core-impl>0.4-SNAPSHOT</version.josceleton.core-impl>
-    	<version.josceleton.connection-api>0.4-SNAPSHOT</version.josceleton.connection-api>
-    	<version.josceleton.connection-impl>0.4-SNAPSHOT</version.josceleton.connection-impl>
-    	<version.josceleton.motion-api>0.1-SNAPSHOT</version.josceleton.motion-api>
-    	<version.josceleton.motion-impl>0.1-SNAPSHOT</version.josceleton.motion-impl>
-    	<version.josceleton.josceleton>0.4-SNAPSHOT</version.josceleton.josceleton>
+    	<version_josceleton_commons>0.4-SNAPSHOT</version_josceleton_commons>
+    	<version_josceleton_core-api>0.4-SNAPSHOT</version_josceleton_core-api>
+    	<version_josceleton_core-impl>0.4-SNAPSHOT</version_josceleton_core-impl>
+    	<version_josceleton_connection-api>0.4-SNAPSHOT</version_josceleton_connection-api>
+    	<version_josceleton_connection-impl>0.4-SNAPSHOT</version_josceleton_connection-impl>
+    	<version_josceleton_motion-api>0.1-SNAPSHOT</version_josceleton_motion-api>
+    	<version_josceleton_motion-impl>0.1-SNAPSHOT</version_josceleton_motion-impl>
+    	<version_josceleton_josceleton>0.4-SNAPSHOT</version_josceleton_josceleton>
     	
-   		<version.josceleton-checkstyle-config>0.4-SNAPSHOT</version.josceleton-checkstyle-config>
+   		<version_josceleton-checkstyle-config>0.4-SNAPSHOT</version_josceleton-checkstyle-config>
    		
         <!-- V E R S I O N S   E X T E R N A L -->
    		<!-- *********************************************************** -->
    		
-    	<version.javaosc>1.0-20060402-josceleton</version.javaosc>
+    	<version_javaosc>1.0-20060402-josceleton</version_javaosc>
     	
-    	<version.eclipse-plugin>2.8</version.eclipse-plugin>
+    	<version_eclipse-plugin>2.8</version_eclipse-plugin>
     	
     </properties>
     
@@ -70,96 +70,96 @@
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>commons</artifactId>
-				<version>${version.josceleton.commons}</version>
+				<version>${version_josceleton_commons}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>commons</artifactId>
-				<version>${version.josceleton.commons}</version>
+				<version>${version_josceleton_commons}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>core-api</artifactId>
-				<version>${version.josceleton.core-api}</version>
+				<version>${version_josceleton_core-api}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>core-api</artifactId>
-				<version>${version.josceleton.core-api}</version>
+				<version>${version_josceleton_core-api}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>core-impl</artifactId>
-				<version>${version.josceleton.core-impl}</version>
+				<version>${version_josceleton_core-impl}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>core-impl</artifactId>
-				<version>${version.josceleton.core-impl}</version>
+				<version>${version_josceleton_core-impl}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>connection-api</artifactId>
-				<version>${version.josceleton.connection-api}</version>
+				<version>${version_josceleton_connection-api}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>connection-api</artifactId>
-				<version>${version.josceleton.connection-api}</version>
+				<version>${version_josceleton_connection-api}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>connection-impl</artifactId>
-				<version>${version.josceleton.connection-impl}</version>
+				<version>${version_josceleton_connection-impl}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>connection-impl</artifactId>
-				<version>${version.josceleton.connection-impl}</version>
+				<version>${version_josceleton_connection-impl}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>motion-api</artifactId>
-				<version>${version.josceleton.motion-api}</version>
+				<version>${version_josceleton_motion-api}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>motion-api</artifactId>
-				<version>${version.josceleton.motion-api}</version>
+				<version>${version_josceleton_motion-api}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>motion-impl</artifactId>
-				<version>${version.josceleton.motion-impl}</version>
+				<version>${version_josceleton_motion-impl}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>motion-impl</artifactId>
-				<version>${version.josceleton.motion-impl}</version>
+				<version>${version_josceleton_motion-impl}</version>
 				<type>test-jar</type>
 			</dependency>
 			
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>josceleton</artifactId>
-				<version>${version.josceleton.josceleton}</version>
+				<version>${version_josceleton_josceleton}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.josceleton</groupId>
 				<artifactId>josceleton</artifactId>
-				<version>${version.josceleton.josceleton}</version>
+				<version>${version_josceleton_josceleton}</version>
 				<type>test-jar</type>
 			</dependency>
     		
@@ -169,14 +169,14 @@
 			<dependency>
 				<groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
 				<artifactId>guice-dependencies</artifactId>
-				<version>${version.josceleton.guice}</version>
+				<version>${version_josceleton_guice}</version>
 				<type>pom</type>
 			</dependency>
 			
 	        <dependency>
 		        <groupId>com.illposed</groupId>
 		        <artifactId>javaosc</artifactId>
-		        <version>${version.javaosc}</version>
+		        <version>${version_javaosc}</version>
 	        </dependency>
 	        
     	</dependencies>
@@ -217,7 +217,7 @@
 				
 				<plugin>
 					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>${version.eclipse-plugin}</version>
+					<version>${version_eclipse-plugin}</version>
 				</plugin>
         		
 	            <plugin>
@@ -228,7 +228,7 @@
 						<dependency>
 							<groupId>${project.groupId}</groupId>
 							<artifactId>josceleton-checkstyle-config</artifactId>
-							<version>${version.josceleton-checkstyle-config}</version>
+							<version>${version_josceleton-checkstyle-config}</version>
 						</dependency>
 					</dependencies>
 					
@@ -265,13 +265,13 @@
 				<!-- MINOR 000014 @BUILD POM get rid of logged warning message from eclipse plugin -->
 				<!--            mvn eclipse:eclipse => [WARNING] Workspace defines a VM that does not contain a valid jre/lib/rt.jar: /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home -->
 				<!-- earlier tried to downgrade from 2.8 to 2.5.1; warning disappeared, but now other one pops up something about wtp error  -->
-				<version>${version.eclipse-plugin}</version>
+				<version>${version_eclipse-plugin}</version>
 				
 				<configuration>
 					<!-- for configuration options see: http://maven.apache.org/plugins/maven-eclipse-plugin/eclipse-mojo.html -->
 					
 					<!-- maven looks into workspace and set project references if project name matched instead of linked m2repo jar -->
-					<workspace>${josceleton-peruser.eclipse.workspace.path}</workspace>
+					<workspace>${josceleton-peruser_eclipse_workspace_path}</workspace>
 					
 					<!-- with groupid set, we can reuse eg "java-pom" in josceleton and other projects (pulse); but have to get sure the workspace config for project refs still works -->
 					<addGroupIdToProjectName>true</addGroupIdToProjectName>
@@ -293,11 +293,11 @@
 					<additionalConfig>
 						<file>
 							<name>.checkstyle</name>
-							<!-- var ${josceleton-peruser.checkstyle.configuration.name} defined in settings.xml -->
+							<!-- var ${josceleton-peruser_checkstyle_configuration_name} defined in settings.xml -->
 							<content>
 			                	<![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
-  <fileset name="all" enabled="true" check-config-name="${josceleton-peruser.checkstyle.configuration.name}" local="false">
+  <fileset name="all" enabled="true" check-config-name="${josceleton-peruser_checkstyle_configuration_name}" local="false">
     <file-match-pattern match-pattern="." include-pattern="true" />
   </fileset>
   <filter name="NonSrcDirs" enabled="true" />

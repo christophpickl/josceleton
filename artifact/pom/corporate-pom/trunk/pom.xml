@@ -38,22 +38,22 @@
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!-- for mvn2 -->
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     	
-    	<version.deploy-plugin>2.5</version.deploy-plugin>
-    	<version.release-plugin>2.1</version.release-plugin>
-    	<version.antrun-plugin>1.6</version.antrun-plugin>
-    	<version.changes-plugin>2.3</version.changes-plugin>
-    	<version.resources-plugin>2.4.3</version.resources-plugin>
+    	<version_deploy-plugin>2.5</version_deploy-plugin>
+    	<version_release-plugin>2.1</version_release-plugin>
+    	<version_antrun-plugin>1.6</version_antrun-plugin>
+    	<version_changes-plugin>2.3</version_changes-plugin>
+    	<version_resources-plugin>2.4.3</version_resources-plugin>
     	
     	<!-- mvn3 will be enabled automagically if mvn3 is used ;) -->
-    	<version.mvn_being_used>2</version.mvn_being_used><!-- used to print to console -->
+    	<version_mvn_being_used>2</version_mvn_being_used><!-- used to print to console -->
     	
-    	<version.site-plugin.mvn2>2.2</version.site-plugin.mvn2>
-    	<version.site-plugin.mvn3>3.0-beta-3</version.site-plugin.mvn3>
-    	<version.site-plugin>${version.site-plugin.mvn2}</version.site-plugin>
+    	<version_site-plugin_mvn2>2.2</version_site-plugin_mvn2>
+    	<version_site-plugin_mvn3>3.0-beta-3</version_site-plugin_mvn3>
+    	<version_site-plugin>${version_site-plugin_mvn2}</version_site-plugin>
     	
-    	<verison.project-info-reports-plugin.mvn2>2.2</verison.project-info-reports-plugin.mvn2>
-    	<verison.project-info-reports-plugin.mvn3>2.3.1</verison.project-info-reports-plugin.mvn3>
-    	<verison.project-info-reports-plugin>${verison.project-info-reports-plugin.mvn2}</verison.project-info-reports-plugin>
+    	<verison_project-info-reports-plugin_mvn2>2.2</verison_project-info-reports-plugin_mvn2>
+    	<verison_project-info-reports-plugin_mvn3>2.3.1</verison_project-info-reports-plugin_mvn3>
+    	<verison_project-info-reports-plugin>${verison_project-info-reports-plugin_mvn2}</verison_project-info-reports-plugin>
     	
     </properties>
     
@@ -71,27 +71,27 @@
             
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>${version.deploy-plugin}</version>
+					<version>${version_deploy-plugin}</version>
 				</plugin>
 				
 				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>${version.release-plugin}</version>
+					<version>${version_release-plugin}</version>
 				</plugin>
 				
 				<plugin>
 					<artifactId>maven-recources-plugin</artifactId>
-					<version>${version.resources-plugin}</version>
+					<version>${version_resources-plugin}</version>
 				</plugin>
 				
             	<plugin>
             		<artifactId>maven-site-plugin</artifactId>
-            		<version>${version.site-plugin}</version>
+            		<version>${version_site-plugin}</version>
             	</plugin>
             	
 				<plugin>
 					<artifactId>maven-changes-plugin</artifactId>
-					<version>${version.changes-plugin}</version>
+					<version>${version_changes-plugin}</version>
 				</plugin>
 				
     		</plugins>
@@ -112,7 +112,7 @@
     	
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>${version.resources-plugin}</version>
+				<version>${version_resources-plugin}</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
@@ -121,20 +121,20 @@
 			<plugin>
 				<!-- print currently used maven version to console -->
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>${version.antrun-plugin}</version>
+				<version>${version_antrun-plugin}</version>
 				<executions>
 					<!-- not nice solved: adding execution separately for compile and site  -->
 					<execution>
 						<id>print-maven3-profile-message @initialize</id><phase>initialize</phase>
 						<configuration><target>
-							<echo message="[JOSCELETON] [corporate-pom] using josceleton detected maven version ${version.mvn_being_used}" />
+							<echo message="[JOSCELETON] [corporate-pom] using josceleton detected maven version ${version_mvn_being_used}" />
 <!--							<echo message="[JOSCELETON] [corporate-pom] ==============================================================" />-->
 						</target></configuration><goals><goal>run</goal></goals>
 					</execution>
 					<execution>
 						<id>print-maven3-profile-message @pre-site</id><phase>pre-site</phase>
 						<configuration><target>
-							<echo message="[JOSCELETON] [corporate-pom] using josceleton detected maven version ${version.mvn_being_used}" />
+							<echo message="[JOSCELETON] [corporate-pom] using josceleton detected maven version ${version_mvn_being_used}" />
 <!--							<echo message="[JOSCELETON] [corporate-pom] ==============================================================" />-->
 						</target></configuration><goals><goal>run</goal></goals>
 					</execution>
@@ -153,7 +153,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>${verison.project-info-reports-plugin}</version>
+                <version>${verison_project-info-reports-plugin}</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -191,9 +191,9 @@
 			</activation>
 			
 			<properties>
-				<version.mvn_being_used>3</version.mvn_being_used>
-				<version.site-plugin>${version.site-plugin.mvn3}</version.site-plugin>
-    			<verison.project-info-reports-plugin>${verison.project-info-reports-plugin.mvn3}</verison.project-info-reports-plugin>
+				<version_mvn_being_used>3</version_mvn_being_used>
+				<version_site-plugin>${version_site-plugin_mvn3}</version_site-plugin>
+    			<verison_project-info-reports-plugin>${verison_project-info-reports-plugin_mvn3}</verison_project-info-reports-plugin>
 			</properties>
 			
 			<build>
@@ -207,7 +207,7 @@
 							<!-- sadly this does not work... :( though it is officially said to workaround this way -->
 <!--						<plugin>-->
 <!--							<artifactId>maven-deploy-plugin</artifactId>-->
-<!--							<version>${version.deploy-plugin}</version>-->
+<!--							<version>${version_deploy-plugin}</version>-->
 <!--							<dependencies>-->
 <!--								<dependency>-->
 <!--									<groupId>org.apache.maven.wagon</groupId>-->
@@ -310,7 +310,7 @@
 					
 		            <plugin>
 		                <artifactId>maven-project-info-reports-plugin</artifactId>
-		                <version>${verison.project-info-reports-plugin}</version>
+		                <version>${verison_project-info-reports-plugin}</version>
 		                <reportSets>
 		                    <reportSet>
 		                        <reports>
@@ -333,7 +333,7 @@
 		
 					<plugin>
 						<artifactId>maven-changes-plugin</artifactId>
-						<version>${version.changes-plugin}</version>
+						<version>${version_changes-plugin}</version>
 						<!-- configuration: http://maven.apache.org/plugins/maven-changes-plugin/changes-report-mojo.html -->
 						<reportSets>
 							<reportSet>

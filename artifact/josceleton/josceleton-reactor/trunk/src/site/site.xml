@@ -31,12 +31,21 @@
 		
 		<menu name="Internals (for Developers)">
 			<item name="Roadmap &amp; Changelog" href="development/roadmap_changelog.html" />
-			<item name="Metrics" href="development/project_metrics.html" />
+			<item name="Submodules" href="development/submodules.html" />
 			<item name="Source Repository" href="source-repository.html" />
 <!--			<item name="Development" href="development/development.html" />-->
 <!--			<item name="Coding Policy" href="development/coding_policy.html" />-->
 			<item name="Team" href="team-list.html" />
 			<item name="License" href="license.html" />
+		</menu>
+		
+		<menu name="Reports">
+			<item name="API - JavaDoc" href="apidocs/index.html" />
+			<item name="Browse Sourcecode" href="xref/index.html" />
+			
+			<item name="Metrics" href="development/project_metrics.html" />
+			<item name="Dashboard" href="dashboard-report.html" />
+			<item name="Dashboard Details" href="dashboard-report-details.html" />
 		</menu>
 		
 <!--		<menu ref="reports" />-->

@@ -34,11 +34,12 @@
     	<module>../commons</module>
     	<module>../core-api</module>
     	<module>../core-impl</module>
-    	<module>../connection-api</module>
-    	<module>../connection-impl</module>
-    	<module>../motion-api</module>
-    	<module>../motion-impl</module>
-    	<module>../josceleton</module>
+<!--    	<module>../connection-api</module>-->
+<!--    	<module>../connection-impl</module>-->
+<!--    	<module>../motion-api</module>-->
+<!--    	<module>../motion-impl</module>-->
+<!--    	<module>../josceleton</module>-->
+    	
 <!--    	<module>(system-)tests</module>-->
 <!--    	<module>samples</module>-->
 <!--    	<module>console-api</module>-->

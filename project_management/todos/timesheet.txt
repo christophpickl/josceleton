@@ -55,5 +55,8 @@
 17.03. - 18:00 -  3h - #11 finished console prototype, inclusive a growl notifier ;)
 17.03. - 21:00 -  2h - wrapping up for release v0.4: coverage 100%
              ~~ 160h~~
-17.03. - 23:00 -  h - wrapping up for release v0.4: coverage 100% ... ctd. including warnings and tasktags
-             ~~ 160h~~
+17.03. - 23:00 -  3h - wrapping up for release v0.4: coverage 100% ... ctd. including warnings and tasktags
+18.03. - 02:00 -  7h - restructuring project structure; aggregated reports
+             ~~ 170h~~
+18.03. - 09:00 -  h - 
+             ~~ 170h~~

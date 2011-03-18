@@ -19,7 +19,6 @@
 				<li><b>View Sourcecode</b> - <a href="http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts">http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifacts</a></li>
 				
 <!--				<li>Sources - -->
-						<!-- statt ${foobar.version} ==> das muss als <property> daherkommen von <version.dependency.josceleton.core-api -->
 						<!-- sollte eigentlich aggregiert werden... :( -->
 <!--					<a href="http://josceleton.sourceforge.net/documentation/core-api/${foobar1}>/xref/">Core API 0.x</a> -->
 <!--					<a href="http://josceleton.sourceforge.net/documentation/josceleton/${foobar2}/xref/">Facade 0.y</a> -->

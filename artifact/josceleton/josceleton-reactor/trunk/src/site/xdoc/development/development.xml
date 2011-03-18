@@ -29,17 +29,17 @@
       <id>josceleton-profile</id>
       <properties>
         
-        <josceleton-peruser.eclipse.workspace.path>
+        <josceleton-peruser_eclipse_workspace_path>
         	/path/to/eclipse/workspace/
-        </josceleton-peruser.eclipse.workspace.path>
+        </josceleton-peruser_eclipse_workspace_path>
         
-        <josceleton-peruser.checkstyle.suppression.file.path>
-        	${josceleton-peruser.eclipse.workspace.path}poms-reactor/josceleton-checkstyle-config/src/main/resources/checkstyle_suppression.xml
-        </josceleton-peruser.checkstyle.suppression.file.path>
+        <josceleton-peruser_checkstyle_suppression_file_path>
+        	${josceleton-peruser_eclipse_workspace_path}checkstyle-config/src/main/resources/checkstyle_suppression.xml
+        </josceleton-peruser_checkstyle_suppression_file_path>
         
-        <josceleton-peruser.checkstyle.configuration.name>
+        <josceleton-peruser_checkstyle_configuration_name>
         	josceleton-checkstyle-config
-        </josceleton-peruser.checkstyle.configuration.name>
+        </josceleton-peruser_checkstyle_configuration_name>
         
       </properties>
       
