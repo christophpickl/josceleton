@@ -5,8 +5,6 @@ package net.sf.josceleton.commons.util;
  */
 public final class MathUtil {
 	
-	// TODO duplicate class of pulseproject/commons
-	
 	private MathUtil() {
         // utility class should not be instantiable
 	}

@@ -53,9 +53,9 @@ public final class Josceleton /* statically implements JosceletonFacade */ {
 		return new JosceletonGuiceModule();
 	}
 	
-//	/**
-//	 * @since 0.4
-//	 */
-//	public static GestureFactory getGestureFactory() { // TODO rename to newHitWallGesture(config-object)
-//	}
+	// LUXURY provide more static facade API (remember: make it as simple as possible,... and as complex as necessary)
+//	public static GestureFactory getGestureFactory() {
+//	public static HitWallBuilder newHitWallBuilder() {
+//	public static HitWallGesture newHitWall(HitWallConfig) {
+	
 }

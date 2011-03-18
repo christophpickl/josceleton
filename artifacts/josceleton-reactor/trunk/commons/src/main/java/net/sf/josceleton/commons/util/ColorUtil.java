@@ -7,8 +7,6 @@ import java.awt.Color;
  */
 public final class ColorUtil {
 	
-	// TODO duplicate class of pulseproject/commons
-	
 	private ColorUtil() {
 		// utility class is not instantiable
 	}

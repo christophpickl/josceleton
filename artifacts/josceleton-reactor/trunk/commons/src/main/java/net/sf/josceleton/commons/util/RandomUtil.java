@@ -7,8 +7,6 @@ import java.util.Random;
  */
 public final class RandomUtil {
 
-	// TODO duplicate class of pulseproject/commons
-	
 	private static final Random R = new Random();
 
 	private RandomUtil() {

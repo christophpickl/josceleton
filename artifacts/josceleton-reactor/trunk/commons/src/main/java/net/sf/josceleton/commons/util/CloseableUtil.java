@@ -11,8 +11,6 @@ import org.apache.commons.logging.LogFactory;
  */
 public final class CloseableUtil {
 
-	// TODO duplicate class of pulseproject/commons
-	
 	private static final Log LOG = LogFactory.getLog(CloseableUtil.class);
 	
 	private CloseableUtil() {

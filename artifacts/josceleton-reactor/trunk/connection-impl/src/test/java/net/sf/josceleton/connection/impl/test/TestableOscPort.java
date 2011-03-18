@@ -12,7 +12,7 @@ public class TestableOscPort implements OscPort {
 	
 	private final Map<OscAddress, OSCListener> listeners = new HashMap<OscAddress, OSCListener>();
 	
-	// TODO make use of (API limitted, as no remove/immutable) AsyncFor;
+	// MINOR @TEST: make use of (API limitted, as no remove/immutable) AsyncFor;
 	//       should be: Map<OscAddress, Collection<OSCListener>>
 	@Override public final void addListenerFor(final OscAddress addressType, final OSCListener listener) {
 		this.listeners.put(addressType, listener);

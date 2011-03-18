@@ -9,8 +9,7 @@ import net.sf.josceleton.core.api.async.Async;
 public interface Gesture<
 		C extends GestureConfig,
 		L extends GestureListener>
-	extends
-		MotionListener /*FIXME move MotionListener to internal API*/,
+	extends MotionListener, // yes, we want to make Gesture a MotionListener in the public API
 		Async<L> {
 	
 	// async communication only

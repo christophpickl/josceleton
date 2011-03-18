@@ -53,6 +53,7 @@ class UserServiceImpl
 	/** {@inheritDoc} from {@link UserServiceCollectionResponder} */
 	public final User lookupDeadUser(final Integer osceletonUserId) {
 		final User userToDispatch = this.users.remove(osceletonUserId, this);
+		// userToDispatch can be null if entered in a running session
 		for (final UserServiceListener listener : this.getListeners()) {
 			listener.onUserDead(userToDispatch);
 		}

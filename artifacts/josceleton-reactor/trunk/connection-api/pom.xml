@@ -35,11 +35,6 @@
 			<artifactId>core-api</artifactId>
 		</dependency>
 		
-		<dependency><!-- FIXME remove impl dependency (needed because of SkeletonFactory => bad design! REFACTOR!!!) -->
-			<groupId>${project.groupId}</groupId>
-			<artifactId>core-impl</artifactId>
-		</dependency>
-		
 	    <!-- T E S T -->
     	<!-- *********************************************************** -->
     	
@@ -54,6 +49,12 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core-api</artifactId>
 			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency><!-- we need SkeletonFactory in MotionSeparatorTest -->
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core-impl</artifactId>
 			<scope>test</scope>
 		</dependency>
 		

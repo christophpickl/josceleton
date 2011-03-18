@@ -4,8 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 
 import net.sf.josceleton.core.api.entity.XyzDirection;
 import net.sf.josceleton.core.api.entity.joint.Joint;
@@ -31,12 +29,11 @@ public abstract class HitWallGestureTest
 	
 	@Test public final void commonCase() {
 		final Joint joint = Joints.HAND().RIGHT();
-		final Collection<Joint> jointsInterestedIn = newJoints(joint);
 		final float coordinateValue = 0.5F;
 		final XyzDirection direction = XyzDirection.Y;
 		final boolean triggerLower = true;
 		
-		final HitWallConfig configuration = new TestableHitWallGestureConfiguration(jointsInterestedIn, coordinateValue, direction, triggerLower);
+		final HitWallConfig configuration = new TestableHitWallGestureConfiguration(Arrays.asList(joint), coordinateValue, direction, triggerLower);
 		final HitWallGesture gesture = this.createTestee(configuration);
 		
 		final Skeleton skeleton = this.mock(Skeleton.class);
@@ -61,13 +58,12 @@ public abstract class HitWallGestureTest
 	}
 
 	@Test public final void commonCaseButTriggerLowerSetToFalse() {
-		final Joint joint = Joints.HAND().RIGHT();
-		final Collection<Joint> jointsInterestedIn = newJoints(joint);
+		final Joint relevantJoint = Joints.HAND().RIGHT();
 		final float coordinateValue = 0.5F;
 		final XyzDirection direction = XyzDirection.Y;
 		final boolean triggerLower = false;
 		
-		final HitWallConfig configuration = new TestableHitWallGestureConfiguration(jointsInterestedIn, coordinateValue, direction, triggerLower);
+		final HitWallConfig configuration = new TestableHitWallGestureConfiguration(Arrays.asList(relevantJoint), coordinateValue, direction, triggerLower);
 		final HitWallGesture gesture = this.createTestee(configuration);
 		
 		final Skeleton skeleton = this.mock(Skeleton.class);
@@ -75,22 +71,16 @@ public abstract class HitWallGestureTest
 		gesture.addListener(listener);
 
 
-		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.6F), skeleton);
+		gesture.onMoved(relevantJoint, TestableCoordinate.newWithDirection(direction, 0.6F), skeleton);
 		assertThat(listener.getGesturesDetected().size(), equalTo(1));
-		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.7F), skeleton);
+		gesture.onMoved(relevantJoint, TestableCoordinate.newWithDirection(direction, 0.7F), skeleton);
 		assertThat(listener.getGesturesDetected().size(), equalTo(1));
-		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.4F), skeleton);
-		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.3F), skeleton);
+		gesture.onMoved(relevantJoint, TestableCoordinate.newWithDirection(direction, 0.4F), skeleton);
+		gesture.onMoved(relevantJoint, TestableCoordinate.newWithDirection(direction, 0.3F), skeleton);
 		assertThat(listener.getGesturesDetected().size(), equalTo(1));
-		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.8F), skeleton);
-		gesture.onMoved(joint, TestableCoordinate.newWithDirection(direction, 0.9F), skeleton);
+		gesture.onMoved(relevantJoint, TestableCoordinate.newWithDirection(direction, 0.8F), skeleton);
+		gesture.onMoved(relevantJoint, TestableCoordinate.newWithDirection(direction, 0.9F), skeleton);
 		assertThat(listener.getGesturesDetected().size(), equalTo(2));
 	}
 	
-	// TODO outsource method
-	public static Collection<Joint> newJoints(final Joint... joints) {
-		final Collection<Joint> result = new HashSet<Joint>(joints.length);
-		result.addAll(Arrays.asList(joints));
-		return result;
-	}
 }

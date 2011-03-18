@@ -16,8 +16,6 @@ import javax.swing.JLabel;
  */
 public final class GuiUtil {
 
-	// TODO duplicate class of pulseproject/commons
-	
 	private static final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     
     private static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);

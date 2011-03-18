@@ -32,7 +32,7 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 	protected abstract void dispatch(JointMessage message, M testee);
 	protected abstract void dispatch(UserMessage message, M testee);
 	
-	// TODO @TEST refactor DRY testcode! (creation/preparation of testee)
+	// MINOR @TEST refactor DRY testcode! (creation/preparation of testee)
 	
 	@Test public final void justEverything() {
 		final User user = this.mock(User.class);
@@ -73,8 +73,8 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 		this.dispatch(new TestableUserMessage(this.mock(User.class), UserState.WAITING), testee);
 		
 	}
-	// TODO TEST dispatch user message
-	// TODO TEST add / remove same listener several times
+	// MINOR @TEST dispatch user message
+	// MINOR @TEST add / remove same listener several times
 	
 	@Test
 	public final void addTwoListenersThenRemoveNonAddedShouldHaveNoEffectThenRemovingAllShouldCloseConnection() {

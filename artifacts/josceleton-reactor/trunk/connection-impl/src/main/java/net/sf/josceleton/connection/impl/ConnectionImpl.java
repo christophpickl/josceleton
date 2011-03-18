@@ -64,8 +64,8 @@ class ConnectionImpl
 		// or maybe just removeAllListeners()... no, would have no effect,
 		// as OscPort will not dispatch anything anymore (at, least ... should not ;)
 		
-		// TODO i really do believe we should removeAllListeners in here!
-		// 		then we have to lockern conditions for removeListener(x) whereas x not added is listener;
+		// TODO ??? remove all listeners when connection closed? yes, i think so...
+		// 		then we have to loosen conditions for removeListener(x) whereas x not added is listener;
 		// 		actually nothing bad here, as postconditions is on method begin already fullfilled => perfectly fine
 		
 		this.oscPort.close();
@@ -75,10 +75,13 @@ class ConnectionImpl
 	@Override public final void onAcceptedJointMessage(final Date date, final OSCMessage oscMessage) {
 		// assert(yetClosed == false); && assert(yetEstablished == true);
 		
-		// TODO @EXCEPION CODE if we are receiving an malformed oscMessage
+		// TODO @EXCEPTION CODE if we are receiving an malformed oscMessage => catch it!
 		//  and CHAIN with proper exception (message: "Received malformed bla")
+		// try {
 		final JointMessage message = this.transformer.transformJointMessage(oscMessage, this.userService);
-		
+		// } catch(...Exception ex) {
+		//   throw new WrappingException("Could not transform malformed joint message " + oscMessage, ex);
+		// }
 		for (final ConnectionListener currentListener : this.getListeners()) {
 			currentListener.onJointMessage(message);
 		}

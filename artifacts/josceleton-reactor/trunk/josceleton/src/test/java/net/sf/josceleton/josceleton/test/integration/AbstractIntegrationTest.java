@@ -37,6 +37,8 @@ import com.google.inject.util.Modules;
 @SuppressWarnings({ "boxing", "synthetic-access" })
 public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	
+	private Injector injector;
+	
 	private Connection connection;
 	private UserService userService;
 	
@@ -61,10 +63,10 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 			}
 		});
 		
-		final Injector injector = Guice.createInjector(functionalTestModule);
-		final Connector connector = injector.getInstance(Connector.class);
+		this.injector = Guice.createInjector(functionalTestModule);
+		final Connector connector = this.injector.getInstance(Connector.class);
 		
-		this.separatorCache = injector.getInstance(MotionSeparatorCache.class);
+		this.separatorCache = this.injector.getInstance(MotionSeparatorCache.class);
 		
 		this.connection = connector.openConnection();
 		this.connectionCollector = new TestableConnectionListener();
@@ -73,6 +75,10 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		
 		this.userServiceCollector = new TestableUserServiceListener();
 		this.userService.addListener(this.userServiceCollector);
+	}
+	
+	protected final Injector getInjectorButBeCarefulToNotMessUpYourTestCode() {
+		return this.injector;
 	}
 	
 	protected final MotionSeparator getMotionSeparator() {

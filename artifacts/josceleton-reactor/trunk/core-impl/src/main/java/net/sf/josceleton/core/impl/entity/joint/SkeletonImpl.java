@@ -38,5 +38,4 @@ class SkeletonImpl implements SkeletonInternal {
 		this.coordinateByJoint.put(joint, coordinate);
 	}
 	
-	// TODO implement equals/hashCode/toString for SkeletonImpl
 }

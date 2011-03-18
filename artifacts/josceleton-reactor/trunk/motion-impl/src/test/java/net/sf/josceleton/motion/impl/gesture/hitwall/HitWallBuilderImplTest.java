@@ -98,7 +98,7 @@ public class HitWallBuilderImplTest extends AbstractJointableGestureBuilderTest<
 	public final void passingInvalidCoordinateForNonZTemporarilySucceedsForBuilder() {
 		final HitWallBuilder builder = this.newSimpleBuilder();
 		builder.direction(XyzDirection.X).coordinate(6.1F); // validations will be done within Config object afterwards
-		// TODO @TEST write integration test to check if builder.build() fails with wrong X and 6.1F!
+		// REMARK: integration test will check if builder.build() fails with wrong X and coordinate > 1.0!
 	}
 	
 	private HitWallBuilder newSimpleBuilder() {
