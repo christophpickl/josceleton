@@ -363,7 +363,7 @@
 		        
 		            <plugin>
 		                <artifactId>maven-checkstyle-plugin</artifactId>
-		                <version>${version_checkstyle}</version>
+		                <version>${verison_checkstyle}</version>
 		                
 		               	<!-- <<<<<< DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION DUPLICATION -->
 		                <configuration>
