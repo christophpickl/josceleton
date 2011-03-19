@@ -8,7 +8,7 @@ package foo.model;
 public class Model {
 
 	public void doit() {
-		System.out.println("Model doit() ... VERSION 0.1");
+		System.out.println("Model doit() ... VERSION 0.3");
 	}
 	
 	@Deprecated

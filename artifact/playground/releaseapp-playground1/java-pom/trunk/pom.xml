@@ -8,8 +8,8 @@
     <version>0.4-SNAPSHOT</version>
     
     <properties>
-    	<verison.submodule.model>0.2</verison.submodule.model>
-    	<verison.submodule.logic>0.3</verison.submodule.logic>
+    	<verison.submodule.model>0.3</verison.submodule.model>
+    	<verison.submodule.logic>0.4</verison.submodule.logic>
     
     
 		<sourceEncoding>UTF-8</sourceEncoding> 

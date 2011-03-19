@@ -10,9 +10,9 @@ import foo.model.Model;
 public class Logic {
 
 	public void doit() {
-		System.out.println("Logic doit() ... VERSION 0.1 -- START");
+		System.out.println("Logic doit() ... VERSION 0.4 -- START");
 		new Model().doit();
-		System.out.println("Logic doit() ... VERSION 0.1 -- END");
+		System.out.println("Logic doit() ... VERSION 0.4 -- END");
 		
 	}
 	

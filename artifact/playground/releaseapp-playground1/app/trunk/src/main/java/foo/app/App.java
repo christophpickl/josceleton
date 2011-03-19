@@ -11,10 +11,10 @@ import foo.model.Model;
 public class App {
 	
 	public void doit() {
-		System.out.println("App doit() ... VERSION 0.1 -- START");
+		System.out.println("App doit() ... VERSION 0.4 -- START");
 		new Logic().doit();
 		new Model().doit();
-		System.out.println("App doit() ... VERSION 0.1 -- END");
+		System.out.println("App doit() ... VERSION 0.4 -- END");
 	}
 	
 	@Deprecated
