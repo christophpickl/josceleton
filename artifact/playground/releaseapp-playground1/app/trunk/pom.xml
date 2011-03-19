@@ -11,7 +11,7 @@
 		<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
 	    <artifactId>java-pom</artifactId>
 	    <version>0.4</version>
-	    <relativePath>../../../java-pom/tags/java-pom-0.4/pom.xml</relativePath>
+	    <relativePath>../java-pom/pom.xml</relativePath>
 	</parent>
 	
 	<dependencies>
@@ -30,5 +30,12 @@
         <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/releaseapp-playground1/app/trunk/</developerConnection>
         <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/playground/releaseapp-playground1/app/trunk/</url>
     </scm>
+    
+    <distributionManagement>
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
+		</site>
+    </distributionManagement>
     
 </project>

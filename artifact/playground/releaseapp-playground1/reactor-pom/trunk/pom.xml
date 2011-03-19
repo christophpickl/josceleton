@@ -25,4 +25,11 @@
         <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/playground/releaseapp-playground1/reactor-pom/tags/reactor-pom-0.4/</url>
     </scm>
     
+    <distributionManagement>
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
+		</site>
+    </distributionManagement>
+    
 </project>

@@ -5,12 +5,12 @@
     
 	<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
     <artifactId>java-pom</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.4-SNAPSHOT</version>
     
     <properties>
     	<verison.submodule.model>0.3</verison.submodule.model>
     	<verison.submodule.logic>0.4</verison.submodule.logic>
-    
+    	<distribution_site_url_prefix>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/documentation/delme</distribution_site_url_prefix>
     
 		<sourceEncoding>UTF-8</sourceEncoding> 
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
@@ -233,7 +233,7 @@
 		<site>
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton site server @sourceforge</name>
-			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/documentation/delme/${project.artifactId}/${project.version}/</url>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
 		</site>
     </distributionManagement>
     
