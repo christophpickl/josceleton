@@ -1,7 +1,7 @@
 package net.sf.josceleton.motion.impl.gesture.hitwall;
 
 import net.sf.josceleton.commons.util.CollectionUtil;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
@@ -42,7 +42,7 @@ public class HitWallGestureImplTest extends HitWallGestureTest {
 	
 	private HitWallGesture createJointableGesture(final Joint... joints) {
 		return new HitWallGestureImpl(new TestableHitWallGestureConfiguration(CollectionUtil.toUnmodifiableSet(joints),
-			0.5F, XyzDirection.Z, true));
+			0.5F, Direction.Z, true));
 	}
 	
 }

@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.core.api.entity.CoordinateUtil;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallBuilder;
@@ -35,14 +35,14 @@ class HitWallBuilderImpl
 		DEFAULT_RELEVANT_JOINTS = Collections.unmodifiableCollection(tmp);
 	}
 	
-	private static final XyzDirection DEFAULT_DIRECTION = XyzDirection.Y;
+	private static final Direction DEFAULT_DIRECTION = Direction.Y;
 	
 	private static final float DEFAULT_COORDINATE = 0.6F;
 	
 	private static final boolean DEFAULT_LOWER = true;
 
 	
-	private XyzDirection pDirection = DEFAULT_DIRECTION;
+	private Direction pDirection = DEFAULT_DIRECTION;
 	
 	private float pCoordinate = DEFAULT_COORDINATE;
 	
@@ -71,7 +71,7 @@ class HitWallBuilderImpl
 		return this.gestureFactory.create(config);
 	}
 
-	@Override public final HitWallBuilder direction(final XyzDirection direction) {
+	@Override public final HitWallBuilder direction(final Direction direction) {
 		if(direction == null) {
 			throw InvalidArgumentException.newNotNull("direction");
 		}
@@ -81,7 +81,7 @@ class HitWallBuilderImpl
 
 	@Override public final HitWallBuilder coordinate(final float coordinateValue) {
 		// dont assume user has yet set proper direction, therefore assume Z, as it is the least restrictive one
-		if(CoordinateUtil.isCorrectValue(coordinateValue, XyzDirection.Z) == false) {
+		if(CoordinateUtil.isCorrectValue(coordinateValue, Direction.Z) == false) {
 			throw InvalidArgumentException.newInstance("coordinateValue", Float.valueOf(coordinateValue),
 				"coordinateValue must be within a valid range!");
 		}

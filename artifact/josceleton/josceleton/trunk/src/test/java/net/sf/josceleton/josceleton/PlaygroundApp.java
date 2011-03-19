@@ -9,7 +9,7 @@ import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
@@ -31,7 +31,7 @@ class PlaygroundApp {
 		
 		final GestureFactoryFacade factory = injector.getInstance(GestureFactoryFacade.class);
 		final HitWallGesture gesture = factory.newHitWall()
-			.direction(XyzDirection.Y)
+			.direction(Direction.Y)
 			.triggerOnLower(true)
 			.coordinate(0.5F)
 			.relevantJoint(joint)

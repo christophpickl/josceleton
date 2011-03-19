@@ -3,7 +3,7 @@ package net.sf.josceleton.motion.api.test;
 import java.util.Arrays;
 import java.util.Collection;
 
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 
@@ -13,7 +13,7 @@ public class TestableHitWallGestureConfiguration implements HitWallConfig {
 	
 	private final float coordinateValue;
 	
-	private final XyzDirection direction;
+	private final Direction direction;
 	
 	private final boolean triggerLower;
 	
@@ -21,7 +21,7 @@ public class TestableHitWallGestureConfiguration implements HitWallConfig {
 	public TestableHitWallGestureConfiguration(
 			final Collection<Joint> jointsInterestedIn,
 			final float coordinateValue,
-			final XyzDirection direction,
+			final Direction direction,
 			final boolean triggerLower
 			) {
 		this.coordinateValue = coordinateValue;
@@ -34,7 +34,7 @@ public class TestableHitWallGestureConfiguration implements HitWallConfig {
 		return this.coordinateValue;
 	}
 
-	@Override public final XyzDirection getDirection() {
+	@Override public final Direction getDirection() {
 		return this.direction;
 	}
 

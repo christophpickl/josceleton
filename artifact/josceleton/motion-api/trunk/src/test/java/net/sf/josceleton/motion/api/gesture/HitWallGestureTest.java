@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.util.Arrays;
 
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
@@ -30,7 +30,7 @@ public abstract class HitWallGestureTest
 	@Test public final void commonCase() {
 		final Joint joint = Joints.HAND().RIGHT();
 		final float coordinateValue = 0.5F;
-		final XyzDirection direction = XyzDirection.Y;
+		final Direction direction = Direction.Y;
 		final boolean triggerLower = true;
 		
 		final HitWallConfig configuration = new TestableHitWallGestureConfiguration(Arrays.asList(joint), coordinateValue, direction, triggerLower);
@@ -60,7 +60,7 @@ public abstract class HitWallGestureTest
 	@Test public final void commonCaseButTriggerLowerSetToFalse() {
 		final Joint relevantJoint = Joints.HAND().RIGHT();
 		final float coordinateValue = 0.5F;
-		final XyzDirection direction = XyzDirection.Y;
+		final Direction direction = Direction.Y;
 		final boolean triggerLower = false;
 		
 		final HitWallConfig configuration = new TestableHitWallGestureConfiguration(Arrays.asList(relevantJoint), coordinateValue, direction, triggerLower);

@@ -1,6 +1,6 @@
 package net.sf.josceleton.motion.api.gesture.hitwall;
 
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.motion.api.gesture.JointableGestureBuilder;
 
 /**
@@ -16,7 +16,7 @@ public interface HitWallBuilder
 	/**
 	 * @since 0.4
 	 */
-	HitWallBuilder direction(XyzDirection direction);
+	HitWallBuilder direction(Direction direction);
 
 	/**
 	 * @since 0.4

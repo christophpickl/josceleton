@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.core.api.entity.CoordinateUtil;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureConfig;
@@ -19,7 +19,7 @@ class HitWallConfigImpl extends AbstractJointableGestureConfig implements HitWal
 	
 	private final float coordinate;
 	
-	private final XyzDirection direction;
+	private final Direction direction;
 	
 	private final boolean triggerOnLower;
 	
@@ -27,7 +27,7 @@ class HitWallConfigImpl extends AbstractJointableGestureConfig implements HitWal
 	@Inject HitWallConfigImpl(
 			@Assisted final Collection<Joint> relevantJoints,
 			@Assisted final float coordinate,
-			@Assisted final XyzDirection direction,
+			@Assisted final Direction direction,
 			@Assisted final boolean triggerOnLower) {
 		super(relevantJoints);
 		if(CoordinateUtil.isCorrectValue(coordinate, direction) == false) {
@@ -44,7 +44,7 @@ class HitWallConfigImpl extends AbstractJointableGestureConfig implements HitWal
 		return this.coordinate;
 	}
 
-	@Override public final XyzDirection getDirection() {
+	@Override public final Direction getDirection() {
 		return this.direction;
 	}
 

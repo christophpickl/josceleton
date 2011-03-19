@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.sameInstance;
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallBuilder;
@@ -42,7 +42,7 @@ public class HitWallBuilderImplTest extends AbstractJointableGestureBuilderTest<
 	@Test
 	public final void buildImmediateGestureAndTestDefaultValues() {
 		final HitWallGesture mockedGesture = this.mock(HitWallGesture.class);
-		final HitWallBuilderImpl builder = this.createAdvancedTestee(mockedGesture, new Joint[] { Joints.HAND().RIGHT() }, 0.6F, XyzDirection.Y, true);
+		final HitWallBuilderImpl builder = this.createAdvancedTestee(mockedGesture, new Joint[] { Joints.HAND().RIGHT() }, 0.6F, Direction.Y, true);
 		final HitWallGesture actualGesture = builder.build();
 		assertThat(actualGesture, is(sameInstance(mockedGesture)));
 	}
@@ -53,7 +53,7 @@ public class HitWallBuilderImplTest extends AbstractJointableGestureBuilderTest<
 		
 		final Joint[] joints = new Joint[] { Joints.KNEE().LEFT(), Joints.KNEE().RIGHT() };
 		final float coordinate = 0.77F;
-		final XyzDirection direction = XyzDirection.Z;
+		final Direction direction = Direction.Z;
 		final boolean triggerOnLower = false;
 		
 		final HitWallBuilderImpl builder = this.createAdvancedTestee(mockedGesture, joints, coordinate, direction, triggerOnLower);
@@ -62,7 +62,7 @@ public class HitWallBuilderImplTest extends AbstractJointableGestureBuilderTest<
 	}
 	
 	private HitWallBuilderImpl createAdvancedTestee(final HitWallGesture mockedGesture, final Joint[] expectedDefaultJoints,
-			final float coordinate, final XyzDirection direction, final boolean triggerOnLower) {
+			final float coordinate, final Direction direction, final boolean triggerOnLower) {
 		final HitWallConfig mockedConfig = this.mock(HitWallConfig.class);
 		final HitWallConfigFactory configFactory = this.mock(HitWallConfigFactory.class);
 		this.checking(new Expectations() { {
@@ -97,7 +97,7 @@ public class HitWallBuilderImplTest extends AbstractJointableGestureBuilderTest<
 	@Test
 	public final void passingInvalidCoordinateForNonZTemporarilySucceedsForBuilder() {
 		final HitWallBuilder builder = this.newSimpleBuilder();
-		builder.direction(XyzDirection.X).coordinate(6.1F); // validations will be done within Config object afterwards
+		builder.direction(Direction.X).coordinate(6.1F); // validations will be done within Config object afterwards
 		// REMARK: integration test will check if builder.build() fails with wrong X and coordinate > 1.0!
 	}
 	

@@ -19,7 +19,7 @@ import net.sf.josceleton.commons.util.ColorUtil;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.CoordinateUtil;
 import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 
@@ -147,8 +147,8 @@ class UserPanelImpl extends JPanel implements UserPanel {
 		jointPanel.updateCoordinate(coordinate);
 		
 		if(movedJoint == Joints.TORSO()) {
-			final int x = CoordinateUtil.prettyPrint(coordinate, XyzDirection.X);
-			final int z = CoordinateUtil.prettyPrint(coordinate, XyzDirection.Z);
+			final int x = CoordinateUtil.prettyPrint(coordinate, Direction.X);
+			final int z = CoordinateUtil.prettyPrint(coordinate, Direction.Z);
 			this.locationPanel.updateXz(x, z);
 		}
 	}

@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.CoordinateUtil;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 
 public class JointPanel extends JPanel {
 	
@@ -28,12 +28,12 @@ public class JointPanel extends JPanel {
 	
 	private final String label;
 	
-	private final Map<XyzDirection, JTextField> labelsByDirection;
+	private final Map<Direction, JTextField> labelsByDirection;
 	{
-		final Map<XyzDirection, JTextField> tmp = new HashMap<XyzDirection, JTextField>();
-		tmp.put(XyzDirection.X, new JTextField());
-		tmp.put(XyzDirection.Y, new JTextField());
-		tmp.put(XyzDirection.Z, new JTextField());
+		final Map<Direction, JTextField> tmp = new HashMap<Direction, JTextField>();
+		tmp.put(Direction.X, new JTextField());
+		tmp.put(Direction.Y, new JTextField());
+		tmp.put(Direction.Z, new JTextField());
 		this.labelsByDirection = Collections.unmodifiableMap(tmp);
 	}
 	
@@ -63,16 +63,16 @@ public class JointPanel extends JPanel {
 		this.add(lblHeader, c);
 		
 		c.gridx = 0; c.gridy = 1; c.gridwidth = 1;
-		this.initCoordinateField(XyzDirection.X, c);
+		this.initCoordinateField(Direction.X, c);
 
 		c.gridx = 1; c.gridy = 1;
-		this.initCoordinateField(XyzDirection.Y, c);
+		this.initCoordinateField(Direction.Y, c);
 
 		c.gridx = 0; c.gridy = 2; c.gridwidth = 2;
-		this.initCoordinateField(XyzDirection.Z, c);
+		this.initCoordinateField(Direction.Z, c);
 	}
 	
-	private void initCoordinateField(final XyzDirection direction, final GridBagConstraints c) {
+	private void initCoordinateField(final Direction direction, final GridBagConstraints c) {
 		final JTextField field = this.labelsByDirection.get(direction);
 		field.setColumns(COORDINATE_COLUMNS);
 		field.setFont(StyleConstantsPool.FONT_COORDINATE_VALUE);
@@ -90,7 +90,7 @@ public class JointPanel extends JPanel {
 	}
 
 	public final void updateCoordinate(final Coordinate coordinate) {
-		for(final Entry<XyzDirection, JTextField> entry : this.labelsByDirection.entrySet()) {
+		for(final Entry<Direction, JTextField> entry : this.labelsByDirection.entrySet()) {
 			final String newText = String.valueOf(CoordinateUtil.prettyPrint(coordinate, entry.getKey()));
 			entry.getValue().setText(newText);
 		}

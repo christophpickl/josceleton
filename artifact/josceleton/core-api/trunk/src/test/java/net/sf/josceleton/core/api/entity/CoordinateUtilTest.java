@@ -30,39 +30,39 @@ public class CoordinateUtilTest {
 	@Test(dataProvider = "providePrettyCoordinateValues")
 	public final void testname(final float xyz, final int expected) {
 		final Coordinate coordinate = TestableCoordinate.newWithXyz(xyz, xyz, xyz);
-		for (final XyzDirection direction : XyzDirection.values()) {
+		for (final Direction direction : Direction.values()) {
 			assertThat(CoordinateUtil.prettyPrint(coordinate, direction), equalTo(expected));
 		}
 	}
 	
 	@Test(dataProvider = "provideCorrectValuesOrNot")
 	public final void isCorrectValue(final float coordinateValue,
-			final XyzDirection direction, final boolean expectedCorrect) {
+			final Direction direction, final boolean expectedCorrect) {
 		assertThat(CoordinateUtil.isCorrectValue(coordinateValue, direction), equalTo(expectedCorrect));
 	}
 	@DataProvider(name = "provideCorrectValuesOrNot")
 	public final Object[][] provideCorrectValuesOrNot() {
 		return new Object[][] {
-			new Object[] {  0.0F, XyzDirection.X, true },
-			new Object[] {  0.5F, XyzDirection.X, true },
-			new Object[] {  1.0F, XyzDirection.X, true },
-			new Object[] {  0.0F, XyzDirection.Z, true },
-			new Object[] {  1.0F, XyzDirection.Z, true },
-			new Object[] {  7.0F, XyzDirection.Z, true },
+			new Object[] {  0.0F, Direction.X, true },
+			new Object[] {  0.5F, Direction.X, true },
+			new Object[] {  1.0F, Direction.X, true },
+			new Object[] {  0.0F, Direction.Z, true },
+			new Object[] {  1.0F, Direction.Z, true },
+			new Object[] {  7.0F, Direction.Z, true },
 			
-			new Object[] {  7.0F, XyzDirection.Y, false},
-			new Object[] { -1.0F, XyzDirection.Y, false},
-			new Object[] {  8.0F, XyzDirection.Z, false},
-			new Object[] {  7.1F, XyzDirection.Z, false},
-			new Object[] { -1.0F, XyzDirection.Z, false}
+			new Object[] {  7.0F, Direction.Y, false},
+			new Object[] { -1.0F, Direction.Y, false},
+			new Object[] {  8.0F, Direction.Z, false},
+			new Object[] {  7.1F, Direction.Z, false},
+			new Object[] { -1.0F, Direction.Z, false}
 		};
 	}
 	
 	@Test
 	public final void getCorrectValueLabel() {
-		assertThat(CoordinateUtil.getCorrectValueLabel(XyzDirection.X), equalTo("[0.0-1.0]"));
-		assertThat(CoordinateUtil.getCorrectValueLabel(XyzDirection.Y), equalTo("[0.0-1.0]"));
-		assertThat(CoordinateUtil.getCorrectValueLabel(XyzDirection.Z), equalTo("[0.0-7.0]"));
+		assertThat(CoordinateUtil.getCorrectValueLabel(Direction.X), equalTo("[0.0-1.0]"));
+		assertThat(CoordinateUtil.getCorrectValueLabel(Direction.Y), equalTo("[0.0-1.0]"));
+		assertThat(CoordinateUtil.getCorrectValueLabel(Direction.Z), equalTo("[0.0-7.0]"));
 	}
 	
 }

@@ -1,7 +1,7 @@
 package net.sf.josceleton.core.api.test;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 
 public class TestableCoordinate implements Coordinate {
 	
@@ -38,12 +38,12 @@ public class TestableCoordinate implements Coordinate {
 	}
 
 	
-	public static Coordinate newWithDirection(final XyzDirection direction, final float value) {
-		if(direction == XyzDirection.X) {
+	public static Coordinate newWithDirection(final Direction direction, final float value) {
+		if(direction == Direction.X) {
 			return TestableCoordinate.newWithX(value);
-		} else if(direction == XyzDirection.Y) {
+		} else if(direction == Direction.Y) {
 			return TestableCoordinate.newWithY(value);
-		} else if(direction == XyzDirection.Z) {
+		} else if(direction == Direction.Z) {
 			return TestableCoordinate.newWithZ(value);
 		}
 		throw new RuntimeException("can not happen! " + direction);

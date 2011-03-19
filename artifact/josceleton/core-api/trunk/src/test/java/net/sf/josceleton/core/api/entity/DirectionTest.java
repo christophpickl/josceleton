@@ -9,7 +9,7 @@ import org.jmock.Mockery;
 import org.testng.annotations.Test;
 
 @SuppressWarnings("boxing")
-public class XyzDirectionTest extends AbstractEnumTest<XyzDirection> {
+public class DirectionTest extends AbstractEnumTest<Direction> {
 	
 	@Test
 	public final void extractProperValues() {
@@ -25,28 +25,28 @@ public class XyzDirectionTest extends AbstractEnumTest<XyzDirection> {
 			oneOf(mockedCoordinate).z(); will(returnValue(expectedZ));
 		}});
 
-		assertThat(XyzDirection.X.extractValue(mockedCoordinate), equalTo(expectedX));
-		assertThat(XyzDirection.Y.extractValue(mockedCoordinate), equalTo(expectedY));
-		assertThat(XyzDirection.Z.extractValue(mockedCoordinate), equalTo(expectedZ));
+		assertThat(Direction.X.extractValue(mockedCoordinate), equalTo(expectedX));
+		assertThat(Direction.Y.extractValue(mockedCoordinate), equalTo(expectedY));
+		assertThat(Direction.Z.extractValue(mockedCoordinate), equalTo(expectedZ));
 		
 		mockery.assertIsSatisfied();
 	}
 	
 	@Test(expectedExceptions = NullPointerException.class)
 	public final void extractValuesNullifiedFails() {
-		XyzDirection.X.extractValue(null);
+		Direction.X.extractValue(null);
 	}
 
-	@Override protected final EnumValuesDescriptor<XyzDirection> getValuesDescriptor() {
-		return new EnumValuesDescriptor<XyzDirection>(
-			XyzDirection.class, XyzDirection.X, XyzDirection.Y, XyzDirection.Z);
+	@Override protected final EnumValuesDescriptor<Direction> getValuesDescriptor() {
+		return new EnumValuesDescriptor<Direction>(
+			Direction.class, Direction.X, Direction.Y, Direction.Z);
 	}
 
-	@Override protected final EnumValueOfDescriptor<XyzDirection> getValueOfDescriptor() {
-		return new EnumValueOfDescriptor<XyzDirection>(XyzDirection.class,
-			"X", XyzDirection.X,
-			"Y", XyzDirection.Y,
-			"Z", XyzDirection.Z
+	@Override protected final EnumValueOfDescriptor<Direction> getValueOfDescriptor() {
+		return new EnumValueOfDescriptor<Direction>(Direction.class,
+			"X", Direction.X,
+			"Y", Direction.Y,
+			"Z", Direction.Z
 		);
 	}
 

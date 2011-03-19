@@ -1,7 +1,7 @@
 package net.sf.josceleton.motion.impl.gesture.hitwall;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.XyzDirection;
+import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
@@ -19,7 +19,7 @@ class HitWallGestureImpl extends AbstractJointableGesture<HitWallConfig, HitWall
 	
 	private final HitWallConfig configuration;
 	
-	private final XyzDirection configDirecton;
+	private final Direction configDirecton;
 	
 	private final boolean triggerLower;
 	

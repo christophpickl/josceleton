@@ -3,7 +3,7 @@ package net.sf.josceleton.core.api.entity;
 /**
  * @since 0.1
  */
-public enum XyzDirection {
+public enum Direction {
 
 	/**
 	 * @since 0.1
