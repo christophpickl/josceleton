@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId}</name>
+    <description>
+    	Google Guice dependency wrapper.
+    	As there was no official repo found which got guice AND its extensions, provide them yourself ;)
+    	</description>
+    <packaging>pom</packaging>
+    
+    <groupId>net.sf.josceleton.thirdparty.com.google.code.guice</groupId>
+    <artifactId>guice-dependencies</artifactId>
+    <version>2.3</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+    	<groupId>net.sf.josceleton</groupId>
+	    <artifactId>corporate-pom</artifactId>
+        <version>0.4</version>
+    </parent>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+    
+    <properties>
+    	<thirdparty.guice.version>2.0-josceleton</thirdparty.guice.version>
+    </properties>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       D E P E N D E N C I E S                       -->
+    <!-- ******************************************************************* -->
+
+	<dependencies>
+        
+        <dependency>
+            <groupId>com.google.code.guice</groupId>
+            <artifactId>guice</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
+	        
+        <dependency>
+            <groupId>com.google.code.guice</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.google.code.guice</groupId>
+            <artifactId>guice-assistedinject</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.google.code.guice</groupId>
+            <artifactId>guice-grapher</artifactId>
+            <version>${thirdparty.guice.version}</version>
+        </dependency>
+        
+    </dependencies>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/guice-dependencies/tags/guice-dependencies-2.3</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/guice-dependencies/tags/guice-dependencies-2.3</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/guice-dependencies/tags/guice-dependencies-2.3</url>
+    </scm>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+        
+    <distributionManagement>
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
+		</site>
+    </distributionManagement>
+    
+</project>
