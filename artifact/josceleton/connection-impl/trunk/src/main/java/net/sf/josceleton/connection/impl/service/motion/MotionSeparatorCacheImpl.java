@@ -6,15 +6,15 @@ import java.util.Map;
 import com.google.inject.Inject;
 
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorCache;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierFactory;
 
 /**
  * @since 0.4
  */
-class MotionSeparatorCacheImpl implements MotionSeparatorCache {
+class MotionSeparatorCacheImpl implements MotionSupplierFactory {
 	
-	private final Map<Connection, MotionSeparator> separatorByConnection = new HashMap<Connection, MotionSeparator>(); 
+	private final Map<Connection, MotionSupplier> separatorByConnection = new HashMap<Connection, MotionSupplier>(); 
 	
 	private final MotionSeparatorFactory factory;
 	
@@ -22,11 +22,11 @@ class MotionSeparatorCacheImpl implements MotionSeparatorCache {
 		this.factory = factory;
 	}
 
-	/** {@inheritDoc} from {@link MotionSeparatorCache} */
-	@Override public final MotionSeparator lookupMotionSeparator(final Connection openedConnection) {
+	/** {@inheritDoc} from {@link MotionSupplierFactory} */
+	@Override public final MotionSupplier create(final Connection openedConnection) {
 		if(this.separatorByConnection.containsKey(openedConnection) == false) {
 			
-			final MotionSeparator newSeparator = this.factory.create(openedConnection);
+			final MotionSupplier newSeparator = this.factory.create(openedConnection);
 			// separator will add itself as an connection listener if necessary (and remove itself as well)
 			this.separatorByConnection.put(openedConnection, newSeparator);
 		}

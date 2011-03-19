@@ -2,12 +2,12 @@ package net.sf.josceleton.connection.impl.service.motion;
 
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.ConnectionListener;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorTest;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierTest;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.impl.entity.joint.SkeletonFactory;
 
-public class MotionSeparatorImplTest extends MotionSeparatorTest<MotionSeparatorImpl> {
+public class MotionSeparatorImplTest extends MotionSupplierTest<MotionSeparatorImpl> {
 
 	@Override protected final MotionSeparatorImpl createTestee(
 			final Connection connection, final SkeletonFactory skeletonFactory) {

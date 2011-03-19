@@ -10,7 +10,7 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
  * 
  * @since 0.4
  */
-public interface MotionListener extends Listener {
+public interface MotionSupplierListener extends Listener {
 	
 	/**
 	 * Will be invoked whenever the specific user has moved any joint/body part.

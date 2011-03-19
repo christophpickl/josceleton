@@ -1,7 +1,7 @@
 package net.sf.josceleton.connection.impl.service.motion;
 
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
 
 /**
  * @since 0.4
@@ -11,6 +11,6 @@ public interface MotionSeparatorFactory {
 	/**
 	 * @since 0.4
 	 */
-	MotionSeparator create(Connection connection);
+	MotionSupplier create(Connection connection);
 	
 }

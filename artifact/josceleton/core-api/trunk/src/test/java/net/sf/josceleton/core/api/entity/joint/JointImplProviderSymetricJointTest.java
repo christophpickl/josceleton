@@ -7,12 +7,11 @@ import net.sf.josceleton.commons.test.EqualsDescriptor;
 import net.sf.josceleton.commons.test.util.TestUtil;
 import net.sf.josceleton.core.api.entity.joint.JointParts.LeftJoint;
 import net.sf.josceleton.core.api.entity.joint.JointParts.RightJoint;
-import net.sf.josceleton.core.api.entity.joint.JointParts.SymetricJoint;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class SymmetricJointTest extends AbstractEqualsTest<SymetricJoint<Joint, LeftJoint<Joint>, RightJoint<Joint>>> {
+public class JointImplProviderSymetricJointTest extends AbstractEqualsTest<SymetricJoint<Joint, LeftJoint<Joint>, RightJoint<Joint>>> {
 
 	@DataProvider(name = "provideSymmetricJointImpls")
 	public final Object[][] provideSymmetricJointImpls() {

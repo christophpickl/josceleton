@@ -7,8 +7,8 @@ import java.util.List;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorCache;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierFactory;
 import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.test.TestableUserServiceListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
@@ -45,7 +45,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	private TestableOscPort testableOscPort;
 	private TestableConnectionListener connectionCollector;
 	private TestableUserServiceListener userServiceCollector;
-	private MotionSeparatorCache separatorCache;
+	private MotionSupplierFactory separatorCache;
 	
 	@BeforeMethod public final void setUpConnection() {
 		this.testableOscPort = new TestableOscPort();
@@ -66,7 +66,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		this.injector = Guice.createInjector(functionalTestModule);
 		final Connector connector = this.injector.getInstance(Connector.class);
 		
-		this.separatorCache = this.injector.getInstance(MotionSeparatorCache.class);
+		this.separatorCache = this.injector.getInstance(MotionSupplierFactory.class);
 		
 		this.connection = connector.openConnection();
 		this.connectionCollector = new TestableConnectionListener();
@@ -81,8 +81,8 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		return this.injector;
 	}
 	
-	protected final MotionSeparator getMotionSeparator() {
-		return this.separatorCache.lookupMotionSeparator(this.connection);
+	protected final MotionSupplier getMotionSeparator() {
+		return this.separatorCache.create(this.connection);
 	}
 	
 	@AfterMethod public final void tearDownConnection() {

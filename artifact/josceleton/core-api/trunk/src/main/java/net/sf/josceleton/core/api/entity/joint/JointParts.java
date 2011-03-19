@@ -139,15 +139,5 @@ final class JointParts {
 	interface RightJoint<J> {
 		// marker interface only
 	}
-
-	interface SymetricJoint<J, LJ extends LeftJoint<J>, RJ extends RightJoint<J>> {
-
-		/** This is part of the API as it will be visibile to user. */
-		LJ LEFT();
-		
-		/** This is part of the API as it will be visibile to user. */
-		RJ RIGHT();
-		
-	}
 	
 }

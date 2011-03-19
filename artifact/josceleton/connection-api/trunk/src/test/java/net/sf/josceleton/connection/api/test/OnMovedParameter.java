@@ -5,7 +5,7 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 
 /**
- * Value object containing method arguments for {@link MotionListener}.
+ * Value object containing method arguments for {@link MotionSupplierListener}.
  * 
  * @since 0.4
  */

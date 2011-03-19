@@ -23,7 +23,7 @@ import org.jmock.Expectations;
 import org.testng.annotations.Test;
 
 @SuppressWarnings("boxing")
-public abstract class MotionSeparatorTest<M extends MotionSeparator> extends AbstractMockeryTest {
+public abstract class MotionSupplierTest<M extends MotionSupplier> extends AbstractMockeryTest {
 	
 	protected abstract M createTestee(Connection connection, SkeletonFactory skeletonFactory);
 
@@ -94,9 +94,9 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 		
 
 		final User user = this.mock(User.class);
-		final MotionListener listener1 = this.mock(MotionListener.class, "listener1");
-		final MotionListener listener2 = this.mock(MotionListener.class, "listener2");
-		final MotionListener listener3NotAdded = this.mock(MotionListener.class, "listener3NotAdded");
+		final MotionSupplierListener listener1 = this.mock(MotionSupplierListener.class, "listener1");
+		final MotionSupplierListener listener2 = this.mock(MotionSupplierListener.class, "listener2");
+		final MotionSupplierListener listener3NotAdded = this.mock(MotionSupplierListener.class, "listener3NotAdded");
 		
 		testee.addListenerFor(user, listener1);
 		testee.addListenerFor(user, listener2);
@@ -107,7 +107,7 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 	
 	@Test public final void afterAddingAndRemvoingOneselfOneDoesntGetAnyFurtherMessages() {
 		final M testee = this.createSimpleTestee();
-		final MotionListener listener = this.mock(MotionListener.class); // no expectations confirms test assertion
+		final MotionSupplierListener listener = this.mock(MotionSupplierListener.class); // no expectations confirms test assertion
 		final User user = this.mock(User.class);
 		testee.addListenerFor(user, listener);
 		testee.removeListenerFor(user, listener);
@@ -123,7 +123,7 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 	@Test
 	public final void addingSameListenerTwiceDoesntDoAnythingCheckedViaMockExpectations() {
 		final M testee = this.createSimpleTestee();
-		final MotionListener listener = this.mock(MotionListener.class);
+		final MotionSupplierListener listener = this.mock(MotionSupplierListener.class);
 		final User user = this.mock(User.class);
 		testee.addListenerFor(user, listener);
 		testee.addListenerFor(user, listener);
@@ -133,8 +133,8 @@ public abstract class MotionSeparatorTest<M extends MotionSeparator> extends Abs
 	@Test
 	public final void addAndRemoveSomeListeners() {
 		final M testee = this.createSimpleTestee();
-		final MotionListener listener1 = this.mock(MotionListener.class, "listener1");
-		final MotionListener listener2 = this.mock(MotionListener.class, "listener2");
+		final MotionSupplierListener listener1 = this.mock(MotionSupplierListener.class, "listener1");
+		final MotionSupplierListener listener2 = this.mock(MotionSupplierListener.class, "listener2");
 		final User user = this.mock(User.class);
 		testee.addListenerFor(user, listener1);
 		testee.addListenerFor(user, listener2);

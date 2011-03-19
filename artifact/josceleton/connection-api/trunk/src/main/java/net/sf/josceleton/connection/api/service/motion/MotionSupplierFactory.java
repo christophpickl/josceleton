@@ -5,10 +5,10 @@ import net.sf.josceleton.connection.api.Connection;
 /**
  * @since 0.4
  */
-public interface MotionSeparatorCache {
+public interface MotionSupplierFactory {
 
 	/**
 	 * @since 0.4
 	 */
-	MotionSeparator lookupMotionSeparator(Connection openedConnection);
+	MotionSupplier create(Connection openedConnection);
 }

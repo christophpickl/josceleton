@@ -1,4 +1,4 @@
-package net.sf.josceleton.connection.api.service.motion;
+package net.sf.josceleton.core.api.entity.joint;
 
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;

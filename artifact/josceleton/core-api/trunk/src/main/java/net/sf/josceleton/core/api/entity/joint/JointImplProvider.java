@@ -32,7 +32,6 @@ import net.sf.josceleton.core.api.entity.joint.JointParts.RightKnee;
 import net.sf.josceleton.core.api.entity.joint.JointParts.RightShoulder;
 import net.sf.josceleton.core.api.entity.joint.JointParts.Shoulder;
 import net.sf.josceleton.core.api.entity.joint.JointParts.Shoulders;
-import net.sf.josceleton.core.api.entity.joint.JointParts.SymetricJoint;
 import net.sf.josceleton.core.api.entity.joint.JointParts.Torso;
 
 final class JointImplProvider {

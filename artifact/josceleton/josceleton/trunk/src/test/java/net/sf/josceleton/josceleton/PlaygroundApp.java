@@ -2,9 +2,9 @@ package net.sf.josceleton.josceleton;
 
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
-import net.sf.josceleton.connection.api.service.motion.MotionListener;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparator;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorCache;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierFactory;
 import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
@@ -45,11 +45,11 @@ class PlaygroundApp {
 		
 		System.out.println("Up and running...");
 	}
-	private void firstGesturePlaygroundSetup(final Injector injector, final MotionListener listener) {
+	private void firstGesturePlaygroundSetup(final Injector injector, final MotionSupplierListener listener) {
 		final Connector connector = injector.getInstance(Connector.class);
 		final Connection connection = connector.openConnection();
-		final MotionSeparatorCache cache = injector.getInstance(MotionSeparatorCache.class);
-		final MotionSeparator separator = cache.lookupMotionSeparator(connection);
+		final MotionSupplierFactory cache = injector.getInstance(MotionSupplierFactory.class);
+		final MotionSupplier separator = cache.create(connection);
 		
 		connection.getUserService().addListener(new UserServiceListener() {
 			@Override public void onUserWaiting(final User user) {
@@ -74,13 +74,13 @@ class PlaygroundApp {
 //			public void onUserProcessing(User user) {
 //				u = ...
 		
-		final MotionSeparatorCache cache = new MotionSeparatorCache() { // singleton!
-			@Override public MotionSeparator lookupMotionSeparator(final Connection c2) {
+		final MotionSupplierFactory cache = new MotionSupplierFactory() { // singleton!
+			@Override public MotionSupplier create(final Connection c2) {
 				return null; } };
-//		final MotionSeparator ms = Joseleton.getMotionSeparator(c); { internally calls lookupMotionSeparator }
-		final MotionSeparator ms = cache.lookupMotionSeparator(c);
+//		final MotionSupplier ms = Joseleton.getMotionSeparator(c); { internally calls lookupMotionSeparator }
+		final MotionSupplier ms = cache.create(c);
 //		
-		final MotionListener msl = new MotionListener() {
+		final MotionSupplierListener msl = new MotionSupplierListener() {
 			@Override public void onMoved(final Joint joint, final Coordinate coordinate, final Skeleton skeleton) {
 				System.out.println("moved " + joint + " to coordinate: " + coordinate);
 		} };

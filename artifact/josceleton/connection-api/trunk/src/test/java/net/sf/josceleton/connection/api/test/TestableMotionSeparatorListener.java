@@ -3,12 +3,12 @@ package net.sf.josceleton.connection.api.test;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.sf.josceleton.connection.api.service.motion.MotionListener;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 
-public class TestableMotionSeparatorListener implements MotionListener {
+public class TestableMotionSeparatorListener implements MotionSupplierListener {
 	
 	private final List<OnMovedParameter> onMovedInvocations = new LinkedList<OnMovedParameter>();
 		

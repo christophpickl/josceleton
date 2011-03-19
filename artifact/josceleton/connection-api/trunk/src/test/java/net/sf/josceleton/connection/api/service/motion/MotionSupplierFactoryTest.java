@@ -11,27 +11,27 @@ import net.sf.josceleton.connection.api.Connection;
 
 import org.testng.annotations.Test;
 
-public abstract class MotionSeparatorCacheTest<C extends MotionSeparatorCache> extends AbstractMockeryTest {
+public abstract class MotionSupplierFactoryTest<C extends MotionSupplierFactory> extends AbstractMockeryTest {
 	
-	protected abstract MotionSeparatorCache createTestee(
+	protected abstract MotionSupplierFactory createTestee(
 			final Collection<ExpectedFactoryCreateInvocationsWithReturnValue> createInvocations);
 
 	@Test public final void everything() {
 		final Connection expectedConnection1 = this.mock(Connection.class, "connection1");
 		final Connection expectedConnection2 = this.mock(Connection.class, "connection2");
-		final MotionSeparator expectedSeparator1 = this.mock(MotionSeparator.class, "separator1");
-		final MotionSeparator expectedSeparator2 = this.mock(MotionSeparator.class, "separator2");
+		final MotionSupplier expectedSeparator1 = this.mock(MotionSupplier.class, "separator1");
+		final MotionSupplier expectedSeparator2 = this.mock(MotionSupplier.class, "separator2");
 		
-		final MotionSeparatorCache testee = this.createTestee(Arrays.asList(
+		final MotionSupplierFactory testee = this.createTestee(Arrays.asList(
 			new ExpectedFactoryCreateInvocationsWithReturnValue(expectedConnection1, expectedSeparator1),
 			new ExpectedFactoryCreateInvocationsWithReturnValue(expectedConnection2, expectedSeparator2)
 		));
 		
-		assertThat(testee.lookupMotionSeparator(expectedConnection1), is(expectedSeparator1));
-		assertThat(testee.lookupMotionSeparator(expectedConnection1), is(expectedSeparator1));
-		assertThat(testee.lookupMotionSeparator(expectedConnection2), is(expectedSeparator2));
-		assertThat(testee.lookupMotionSeparator(expectedConnection1), is(expectedSeparator1));
-		assertThat(testee.lookupMotionSeparator(expectedConnection2), is(expectedSeparator2));
+		assertThat(testee.create(expectedConnection1), is(expectedSeparator1));
+		assertThat(testee.create(expectedConnection1), is(expectedSeparator1));
+		assertThat(testee.create(expectedConnection2), is(expectedSeparator2));
+		assertThat(testee.create(expectedConnection1), is(expectedSeparator1));
+		assertThat(testee.create(expectedConnection2), is(expectedSeparator2));
 	}
 
 	
@@ -39,10 +39,10 @@ public abstract class MotionSeparatorCacheTest<C extends MotionSeparatorCache> e
 		
 		private final Connection connection;
 		
-		private final MotionSeparator separator;
+		private final MotionSupplier separator;
 		
 		public ExpectedFactoryCreateInvocationsWithReturnValue(final Connection connection,
-				final MotionSeparator separator) {
+				final MotionSupplier separator) {
 			this.connection = connection;
 			this.separator = separator;
 		}
@@ -51,7 +51,7 @@ public abstract class MotionSeparatorCacheTest<C extends MotionSeparatorCache> e
 			return this.connection;
 		}
 		
-		public final MotionSeparator getSeparator() {
+		public final MotionSupplier getSeparator() {
 			return this.separator;
 		}
 	}

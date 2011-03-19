@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.connection.api.service.motion.MotionListener;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.joint.Joint;
@@ -21,7 +21,7 @@ import com.google.inject.assistedinject.Assisted;
  * @since 0.4
  */
 class MotionSeparatorImpl
-	extends DefaultAsyncFor<User, MotionListener>
+	extends DefaultAsyncFor<User, MotionSupplierListener>
 	implements MotionSeparatorInternal {
 	
 	private final Connection connection;
@@ -42,7 +42,7 @@ class MotionSeparatorImpl
 	@Override public final void onJointMessage(final JointMessage message) {
 		final User msgUser = message.getUser();
 		if(this.skeletonByUser.containsKey(msgUser) == false) {
-			// no one is interested in joint messages for this user; see #beforeAddListener(User, MotionListener)
+			// no one is interested in joint messages for this user; see #beforeAddListener(User, MotionSupplierListener)
 			return;
 		}
 		
@@ -52,7 +52,7 @@ class MotionSeparatorImpl
 		final SkeletonInternal skeleton = this.skeletonByUser.get(msgUser);
 		skeleton.update(msgJoint, msgCoordinate);
 		
-		for (MotionListener currentListener : this.getListenersFor(msgUser)) {
+		for (MotionSupplierListener currentListener : this.getListenersFor(msgUser)) {
 			currentListener.onMoved(msgJoint, msgCoordinate, skeleton);
 		}
 	}
@@ -63,7 +63,7 @@ class MotionSeparatorImpl
 	}
 
 	/** {@inheritDoc} from {@link DefaultAsyncFor} */
-	@Override protected final void beforeAddListener(final User user, final MotionListener listener) {
+	@Override protected final void beforeAddListener(final User user, final MotionSupplierListener listener) {
 		if(this.getListenersFor(user).contains(listener) == false) {
 			this.countAddedListeners++;
 			
@@ -80,7 +80,7 @@ class MotionSeparatorImpl
 	}
 
 	/** {@inheritDoc} from {@link DefaultAsyncFor} */
-	@Override protected final void beforeRemoveListener(final User user, final MotionListener listener) {
+	@Override protected final void beforeRemoveListener(final User user, final MotionSupplierListener listener) {
 		if(this.getListenersFor(user).contains(listener) == true) {
 			this.countAddedListeners--;
 			

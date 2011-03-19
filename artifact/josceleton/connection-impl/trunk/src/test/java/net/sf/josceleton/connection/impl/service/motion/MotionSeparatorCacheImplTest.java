@@ -2,14 +2,14 @@ package net.sf.josceleton.connection.impl.service.motion;
 
 import java.util.Collection;
 
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorCache;
-import net.sf.josceleton.connection.api.service.motion.MotionSeparatorCacheTest;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierFactory;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierFactoryTest;
 
 import org.jmock.Expectations;
 
-public class MotionSeparatorCacheImplTest extends MotionSeparatorCacheTest<MotionSeparatorCacheImpl> {
+public class MotionSeparatorCacheImplTest extends MotionSupplierFactoryTest<MotionSeparatorCacheImpl> {
 
-	@Override protected final MotionSeparatorCache createTestee(
+	@Override protected final MotionSupplierFactory createTestee(
 			final Collection<ExpectedFactoryCreateInvocationsWithReturnValue> createInvocations) {
 		
 		final MotionSeparatorFactory factory = this.mock(MotionSeparatorFactory.class);
