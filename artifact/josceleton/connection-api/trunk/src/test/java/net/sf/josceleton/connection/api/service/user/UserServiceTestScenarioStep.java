@@ -6,8 +6,8 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.List;
 
 import net.sf.josceleton.connection.api.test.TestableUserServiceDispatcher;
-import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.UserState;
+import net.sf.josceleton.core.api.entity.user.User;
+import net.sf.josceleton.core.api.entity.user.UserState;
 
 @SuppressWarnings("boxing")
 class UserServiceTestScenarioStep {

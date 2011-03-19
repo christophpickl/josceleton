@@ -1,8 +1,8 @@
 package net.sf.josceleton.connection.api.service.user;
 
 import net.sf.josceleton.connection.api.test.TestableUserServiceDispatcher;
-import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.UserState;
+import net.sf.josceleton.core.api.entity.user.User;
+import net.sf.josceleton.core.api.entity.user.UserState;
 import net.sf.josceleton.core.api.test.TestableUser;
 
 import org.testng.annotations.Test;

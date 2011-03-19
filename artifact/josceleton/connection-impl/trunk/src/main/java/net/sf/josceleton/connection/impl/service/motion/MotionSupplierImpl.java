@@ -5,11 +5,11 @@ import java.util.Map;
 
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
-import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
+import net.sf.josceleton.core.api.entity.user.User;
 import net.sf.josceleton.core.impl.async.DefaultAsyncFor;
 import net.sf.josceleton.core.impl.entity.joint.SkeletonFactory;
 import net.sf.josceleton.core.impl.entity.joint.SkeletonInternal;

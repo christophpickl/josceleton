@@ -3,8 +3,8 @@ package net.sf.josceleton.motion.impl;
 import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.hasSinglePrivateNullifiedConstructorAndInvokeIt;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.Direction;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
+import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.core.api.test.TestableCoordinate;
 
 import org.testng.annotations.DataProvider;

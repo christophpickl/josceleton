@@ -1,9 +1,9 @@
 package net.sf.josceleton.motion.impl.gesture;
 
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
-import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.motion.api.gesture.GestureConfig;
 import net.sf.josceleton.motion.api.gesture.GestureListener;
 

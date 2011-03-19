@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.api.entity;
+package net.sf.josceleton.core.api.entity.user;
 
 /**
  * This value object represents a registered user by osceleton.

@@ -1,7 +1,7 @@
 package net.sf.josceleton.core.impl.entity;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
-import net.sf.josceleton.core.api.entity.User;
+import net.sf.josceleton.core.api.entity.user.User;
 
 class UserImpl implements User {
 

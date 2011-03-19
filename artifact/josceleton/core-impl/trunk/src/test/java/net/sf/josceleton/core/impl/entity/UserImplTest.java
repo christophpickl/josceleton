@@ -1,7 +1,7 @@
 package net.sf.josceleton.core.impl.entity;
 
-import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserTest;
+import net.sf.josceleton.core.api.entity.user.User;
 
 public class UserImplTest extends UserTest {
 

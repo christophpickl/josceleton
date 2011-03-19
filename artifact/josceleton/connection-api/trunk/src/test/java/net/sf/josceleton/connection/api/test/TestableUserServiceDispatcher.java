@@ -1,8 +1,8 @@
 package net.sf.josceleton.connection.api.test;
 
 import net.sf.josceleton.connection.api.service.user.UserService;
-import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.UserState;
+import net.sf.josceleton.core.api.entity.user.User;
+import net.sf.josceleton.core.api.entity.user.UserState;
 
 /**
  * Utility class for tests to have a cleaner API for emulating connection message dispatches.

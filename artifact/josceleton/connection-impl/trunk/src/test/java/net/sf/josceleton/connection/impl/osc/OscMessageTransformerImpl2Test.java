@@ -6,11 +6,11 @@ import static org.hamcrest.Matchers.sameInstance;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.impl.service.user.UserStore;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
-import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
+import net.sf.josceleton.core.api.entity.user.UserState;
 
 import org.testng.annotations.Test;
 

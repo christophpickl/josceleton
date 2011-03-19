@@ -3,7 +3,7 @@ package net.sf.josceleton.josceleton.test.integration;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
-import net.sf.josceleton.core.api.entity.Direction;
+import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallBuilder;
 
 import org.testng.annotations.Test;

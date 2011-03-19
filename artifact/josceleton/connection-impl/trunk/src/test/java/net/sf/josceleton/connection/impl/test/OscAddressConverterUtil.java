@@ -1,7 +1,7 @@
 package net.sf.josceleton.connection.impl.test;
 
 import net.sf.josceleton.connection.impl.osc.OscAddress;
-import net.sf.josceleton.core.api.entity.UserState;
+import net.sf.josceleton.core.api.entity.user.UserState;
 
 public final class OscAddressConverterUtil {
 	

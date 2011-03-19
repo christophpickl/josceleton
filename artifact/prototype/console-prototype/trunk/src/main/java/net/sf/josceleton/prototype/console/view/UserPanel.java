@@ -2,8 +2,8 @@ package net.sf.josceleton.prototype.console.view;
 
 import java.awt.Component;
 
-import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 public interface UserPanel {
 

@@ -10,9 +10,9 @@ import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
 import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
 import net.sf.josceleton.connection.api.test.TestableMotionSupplierListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
-import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.joint.Joints;
+import net.sf.josceleton.core.api.entity.user.User;
+import net.sf.josceleton.core.api.entity.user.UserState;
 
 import org.testng.annotations.Test;
 

@@ -1,10 +1,10 @@
 package net.sf.josceleton.motion.impl.gesture.hitwall;
 
 import net.sf.josceleton.commons.util.CollectionUtil;
-import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
+import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.core.api.test.TestableCoordinate;
 import net.sf.josceleton.motion.api.gesture.HitWallGestureTest;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;

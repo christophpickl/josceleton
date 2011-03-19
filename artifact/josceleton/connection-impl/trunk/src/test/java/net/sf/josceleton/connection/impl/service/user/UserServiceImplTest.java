@@ -2,7 +2,7 @@ package net.sf.josceleton.connection.impl.service.user;
 
 import net.sf.josceleton.connection.api.service.user.UserServiceTest;
 import net.sf.josceleton.connection.api.test.TestableUserServiceDispatcher;
-import net.sf.josceleton.core.api.entity.User;
+import net.sf.josceleton.core.api.entity.user.User;
 import net.sf.josceleton.core.impl.entity.UserFactory;
 
 import org.jmock.Expectations;

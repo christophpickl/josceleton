@@ -1,8 +1,8 @@
 package net.sf.josceleton.core.impl.entity;
 
 import net.sf.josceleton.commons.test.EqualsDescriptor;
-import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.CoordinateTest;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 public class CoordinateImplTest extends CoordinateTest {
 

@@ -4,9 +4,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import net.sf.josceleton.commons.test.EqualsDescriptor;
 import net.sf.josceleton.commons.test.util.TestUtil;
-import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
+import net.sf.josceleton.core.api.entity.user.User;
 
 import org.jmock.Mockery;
 import org.testng.annotations.BeforeMethod;

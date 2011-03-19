@@ -5,11 +5,11 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
-import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.SkeletonCoordinateUnavailableException;
 import net.sf.josceleton.core.api.entity.joint.JointParts.Head;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

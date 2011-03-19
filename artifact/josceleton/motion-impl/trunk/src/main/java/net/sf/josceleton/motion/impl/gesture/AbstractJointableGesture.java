@@ -2,9 +2,9 @@ package net.sf.josceleton.motion.impl.gesture;
 
 import java.util.Collection;
 
-import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.motion.api.gesture.GestureListener;
 import net.sf.josceleton.motion.api.gesture.JointableGesture;
 import net.sf.josceleton.motion.api.gesture.JointableGestureConfig;

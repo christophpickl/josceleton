@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.api.entity;
+package net.sf.josceleton.core.api.entity.user;
 
 /**
  * Represents OSC addresses used for user related messages sent by OSCeleton.
@@ -14,7 +14,7 @@ public enum UserState {
 	 * 
 	 * @since 0.1
 	 */
-	WAITING { @Override public <T> T callback(final UserStateFunction<T> callee) {
+	WAITING { @Override public <T> T callback(final UserStateCallback<T> callee) {
 		return callee.onStateWaiting();
 	}},
 
@@ -25,7 +25,7 @@ public enum UserState {
 	 * 
 	 * @since 0.1
 	 */
-	PROCESSING { @Override public <T> T callback(final UserStateFunction<T> callee) {
+	PROCESSING { @Override public <T> T callback(final UserStateCallback<T> callee) {
 		return callee.onStateProcessing();
 	}},
 
@@ -36,12 +36,12 @@ public enum UserState {
 	 * 
 	 * @since 0.1
 	 */
-	DEAD { @Override public <T> T callback(final UserStateFunction<T> callee) {
+	DEAD { @Override public <T> T callback(final UserStateCallback<T> callee) {
 		return callee.onStateDead();
 	}};
 	
 	/**
 	 * @since 0.3
 	 */
-	public abstract <T> T callback(UserStateFunction<T> callee);
+	public abstract <T> T callback(UserStateCallback<T> callee);
 }

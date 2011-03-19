@@ -1,9 +1,9 @@
 package net.sf.josceleton.motion.impl.gesture.hitwall;
 
-import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
+import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;

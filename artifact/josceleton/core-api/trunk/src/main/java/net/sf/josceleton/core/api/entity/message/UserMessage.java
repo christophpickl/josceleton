@@ -1,7 +1,7 @@
 package net.sf.josceleton.core.api.entity.message;
 
-import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.UserState;
+import net.sf.josceleton.core.api.entity.user.User;
+import net.sf.josceleton.core.api.entity.user.UserState;
 
 /**
  * @since 0.1

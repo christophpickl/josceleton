@@ -1,8 +1,8 @@
 package net.sf.josceleton.motion.impl.test;
 
-import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 /**
  * @since 0.1

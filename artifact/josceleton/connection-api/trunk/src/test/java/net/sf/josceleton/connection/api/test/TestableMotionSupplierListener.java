@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
-import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 public class TestableMotionSupplierListener implements MotionSupplierListener {
 	

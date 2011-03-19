@@ -6,13 +6,13 @@ import java.util.Map;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.connection.impl.service.user.UserStore;
-import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
+import net.sf.josceleton.core.api.entity.user.User;
+import net.sf.josceleton.core.api.entity.user.UserState;
 import net.sf.josceleton.core.impl.entity.FactoryFacade;
 
 import com.google.inject.Inject;

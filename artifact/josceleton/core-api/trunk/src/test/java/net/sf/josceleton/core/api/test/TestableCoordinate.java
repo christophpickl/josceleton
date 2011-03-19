@@ -1,7 +1,7 @@
 package net.sf.josceleton.core.api.test;
 
-import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.Direction;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
+import net.sf.josceleton.core.api.entity.location.Direction;
 
 public class TestableCoordinate implements Coordinate {
 	

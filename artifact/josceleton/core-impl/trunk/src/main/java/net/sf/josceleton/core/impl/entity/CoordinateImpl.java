@@ -1,6 +1,6 @@
 package net.sf.josceleton.core.impl.entity;
 
-import net.sf.josceleton.core.api.entity.Coordinate;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;

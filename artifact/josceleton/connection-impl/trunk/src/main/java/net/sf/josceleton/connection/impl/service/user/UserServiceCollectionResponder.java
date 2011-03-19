@@ -1,6 +1,6 @@
 package net.sf.josceleton.connection.impl.service.user;
 
-import net.sf.josceleton.core.api.entity.User;
+import net.sf.josceleton.core.api.entity.user.User;
 
 public interface UserServiceCollectionResponder {
 

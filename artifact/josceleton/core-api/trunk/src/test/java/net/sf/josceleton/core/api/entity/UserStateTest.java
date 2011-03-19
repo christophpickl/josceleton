@@ -3,6 +3,8 @@ package net.sf.josceleton.core.api.entity;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import net.sf.josceleton.commons.test.AbstractEnumTest;
+import net.sf.josceleton.core.api.entity.user.UserState;
+import net.sf.josceleton.core.api.entity.user.UserStateCallback;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -45,7 +47,7 @@ public class UserStateTest extends AbstractEnumTest<UserState> {
 	private void assertCallback(final UserState state) {
 		final String expectedResult = "some passed through value";
 		final Mockery mockery = new Mockery();
-		final UserStateFunction<String> mockedCallback = mockery.mock(UserStateFunction.class);
+		final UserStateCallback<String> mockedCallback = mockery.mock(UserStateCallback.class);
 		mockery.checking(new Expectations() { {
 			if(state == UserState.WAITING) {
 				oneOf(mockedCallback).onStateWaiting();

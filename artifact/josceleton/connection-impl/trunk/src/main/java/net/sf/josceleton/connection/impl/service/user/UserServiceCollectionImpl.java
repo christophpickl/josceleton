@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.josceleton.commons.collection.SafeLinkedHashSet;
-import net.sf.josceleton.core.api.entity.User;
+import net.sf.josceleton.core.api.entity.user.User;
 
 /**
  * @since 0.3

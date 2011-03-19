@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.core.api.entity.CoordinateUtil;
-import net.sf.josceleton.core.api.entity.Direction;
 import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureConfig;
 

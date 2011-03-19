@@ -1,6 +1,6 @@
 package net.sf.josceleton.core.api.entity.joint;
 
-import net.sf.josceleton.core.api.entity.Coordinate;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 /**
  * @since 0.4

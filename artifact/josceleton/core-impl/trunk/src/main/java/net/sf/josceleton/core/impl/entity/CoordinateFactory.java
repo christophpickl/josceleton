@@ -2,7 +2,7 @@ package net.sf.josceleton.core.impl.entity;
 
 import com.google.inject.assistedinject.Assisted;
 
-import net.sf.josceleton.core.api.entity.Coordinate;
+import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 public interface CoordinateFactory {
 

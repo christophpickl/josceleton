@@ -3,9 +3,9 @@ package net.sf.josceleton.connection.impl.service.user;
 import java.util.Collection;
 
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
-import net.sf.josceleton.core.api.entity.User;
-import net.sf.josceleton.core.api.entity.UserState;
-import net.sf.josceleton.core.api.entity.UserStateFunction;
+import net.sf.josceleton.core.api.entity.user.User;
+import net.sf.josceleton.core.api.entity.user.UserState;
+import net.sf.josceleton.core.api.entity.user.UserStateCallback;
 import net.sf.josceleton.core.impl.async.DefaultAsync;
 import net.sf.josceleton.core.impl.entity.UserFactory;
 
@@ -36,7 +36,7 @@ class UserServiceImpl
 	/** {@inheritDoc} from {@link UserStore} */
 	@SuppressWarnings("synthetic-access")
 	@Override public final User lookupUserForUserMessage(final Integer osceletonUserId, final UserState userState) {
-		return userState.callback(new UserStateFunction<User>() {
+		return userState.callback(new UserStateCallback<User>() {
 			@Override public User onStateWaiting() {
 				UserServiceImpl.this.users.checkIfYetRegistered(osceletonUserId, UserServiceImpl.this);
 				return UserServiceImpl.this.newWaitingUser(osceletonUserId);

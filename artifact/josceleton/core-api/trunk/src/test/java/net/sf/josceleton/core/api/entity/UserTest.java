@@ -7,6 +7,7 @@ import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.commons.test.AbstractEqualsTest;
 import net.sf.josceleton.commons.test.EqualsDescriptor;
 import net.sf.josceleton.commons.test.util.TestUtil;
+import net.sf.josceleton.core.api.entity.user.User;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

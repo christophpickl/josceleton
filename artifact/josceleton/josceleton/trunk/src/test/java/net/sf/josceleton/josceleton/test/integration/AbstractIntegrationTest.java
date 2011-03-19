@@ -18,10 +18,10 @@ import net.sf.josceleton.connection.impl.test.OscAddressConverterUtil;
 import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.connection.impl.test.TestableOscPort;
-import net.sf.josceleton.core.api.entity.UserState;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
+import net.sf.josceleton.core.api.entity.user.UserState;
 import net.sf.josceleton.josceleton.JosceletonGuiceModule;
 
 import org.jmock.Expectations;

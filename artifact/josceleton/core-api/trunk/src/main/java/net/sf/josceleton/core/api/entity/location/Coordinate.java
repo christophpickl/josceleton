@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.api.entity;
+package net.sf.josceleton.core.api.entity.location;
 
 /**
  * @since 0.1
