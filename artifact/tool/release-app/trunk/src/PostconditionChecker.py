@@ -18,15 +18,16 @@ class PostconditionChecker:
         # http://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/_README.txt
         svnTagUrl = "%s/%s/tags/%s-%s/pom.xml" % (
                             config.urlSvnWebRoot, # == http://josceleton.svn.sourceforge.net/svnroot/josceleton
-                            artifact.svnRelativeToArtifactsBase, # == artifact/pom/corporate-pom
+                            artifact.svnRelativeToRoot, # == artifact/pom/corporate-pom
                             artifact.artifactId,
                             artifact.versionRelease
                             )
         if webFileExists(svnTagUrl) == False:
-            errorMessage = "No proper SVN tag was created: %s" % svnTagUrl
+            errorMessage = "Subversion Tag was not created: %s" % svnTagUrl
             notifye("Post Condition Failed!", errorMessage)
             return errorMessage
         else:
+            notifyt("Post Condition Succeeded", "Subversion Tag was created")
             return None
     
     def conditionArtifactDeployedToMavenReleaseRepo(self, config, artifact):
@@ -47,6 +48,7 @@ class PostconditionChecker:
             notifye("Post Condition Failed!", errorMessage)
             return errorMessage
         else:
+            notifyt("Post Condition Succeeded", "Artifact was deployed to Maven Repository")
             return None
     
     def conditionSiteDeployed(self, config, artifact):
@@ -60,6 +62,7 @@ class PostconditionChecker:
             notifye("Post Condition Failed!", errorMessage)
             return errorMessage
         else:
+            notifyt("Post Condition Succeeded", "Site was deployed")
             return None
         
         

@@ -28,8 +28,6 @@ class Releaser:
         if os.path.isdir(localSvnRootFolder) == False:
             raise Exception("Please checkout the whole artifact SVN tree to: %s" % localSvnRootFolder)
         
-        self.updateSvnTree(config, localSvnRootFolder)
-        
         preConditions = PreconditionChecker()
         if PRECONDITIONS_ENABLED == True:
             if preConditions.areSatisfied(config) == False:
@@ -38,13 +36,22 @@ class Releaser:
         
         if SYSEXEC_ENABLED == True:
             print
-            print "Configured artifacts:"
-            for i, artifact in enumerate(config.artifacts):
-                print "  %i. %s - Release Version: %s, Next Version: %s" % ( (i+1), artifact.artifactId, artifact.versionRelease, artifact.versionNext )
+            if len(config.artifacts) == 0:
+                print "No artifacts are configured at all"
+            else:
+                print "Configured artifacts:"
+                for i, artifact in enumerate(config.artifacts):
+                    print "  %i. %s - Release Version: %s, Next Version: %s, SVN Path: %s" % ( (i+1), 
+                                                                                             artifact.artifactId,
+                                                                                             artifact.versionRelease,
+                                                                                             artifact.versionNext,
+                                                                                             artifact.svnRelativeToRoot )
             print
             print "Are you really sure? SYSEXEC is enabled!"
             if inputConfirmation(True) == False:
                 return False
+        
+        self.updateSvnTree(config, localSvnRootFolder)
         
         artifact = None
         try:
@@ -55,7 +62,7 @@ class Releaser:
                 notifyi("Processing ...", "Artifact '%s-%s'" % (artifact.artifactId, artifact.versionRelease))
                 if config.sayEnabled: sayOsx("releasing artifact %s" % artifact.artifactId)
                 
-                currentArtifactFolder = "%s/%s/trunk" % (localSvnRootFolder, artifact.svnRelativeToArtifactsBase)
+                currentArtifactFolder = "%s/%s/trunk" % (localSvnRootFolder, artifact.svnRelativeToLocalArtifact)
                 chdir(currentArtifactFolder)
                 self.mvnRelease(config, artifact)
                 self.validatePostconditions(config, artifact)
@@ -85,38 +92,45 @@ class Releaser:
         
         artifactIdAndVersion = "%s-%s" % (reactor.artifactId, reactor.versionRelease)
         
-        svnReactorBasePath = "%s/%s" % (config.svnArtifactsRoot, reactor.svnRelativeToArtifactsBase)
+        # we need write access to svn via https as we are going to create a tag
+        httpsifiedUrlSvnWebRoot = config.urlSvnWebRoot.replace("http:", "https:")
+        svnReactorBasePath = "%s/%s" % (httpsifiedUrlSvnWebRoot, reactor.svnRelativeToRoot)
         svnTrunkPath = "%s/trunk" % svnReactorBasePath
         svnTagPath = "%s/tags/%s" % (svnReactorBasePath, artifactIdAndVersion)
         svnCommitMsg = "[release-app] svn tagging reactor '%s'" % artifactIdAndVersion
         
-        print "Going to create a tag of the reactor project."
-        print "Please GET SURE the POM in trunk has proper (fixed) VERSION NUMBERS!!!"
+        print "Going to create a Subversion Tag of Reactor Project '%s'." % artifactIdAndVersion
+        print
+        print "Please CONFIRM the trunk POM has properly fixed VERSION NUMBERS!"
+        print "   // it's own version and the submodules should reference ' ../../../foo/tags/foo-1.x/'"
+        reactorPomXmlFileWebUrl = "%s/pom.xml" % (svnTrunkPath)
+        print "  POM which should be checked: %s" % reactorPomXmlFileWebUrl
         if inputConfirmation() == False:
             logd("Aborted reactor processing.")
             return
         
         # LUXURY in here we could check if submodules, referenced in reactor project, are really existing (tags where created for specific modules)
-        notifyd("Reactor", "Creating Tag '%s' ..." % artifactIdAndVersion)
+        notifyt("svn copy", "Creating Tag: '%s'" % svnTagPath)
         svn("copy %s %s -m \"%s\" --username %s --password %s" % (svnTrunkPath, svnTagPath, svnCommitMsg, config.username, config.password))
         
         self.updateSvnTree(config, localSvnRootFolder)
         
-        reactorLocalSvnTagPath = "%s/tags/%s" % (os.path.join(localSvnRootFolder, reactor.svnRelativeToArtifactsBase), artifactIdAndVersion)
+        reactorLocalSvnTagPath = "%s/tags/%s" % (os.path.join(localSvnRootFolder, reactor.svnRelativeToLocalArtifact), artifactIdAndVersion)
         chdir(reactorLocalSvnTagPath)
         
-        notifyt("Reactor", "Generating Site ...")
+        notifyt("Site Reactor", "mvn clean site")
         mvn("clean site")
-        notifyt("Reactor", "Creating DashBoard Report ...")
+        notifyt("Site Reactor", "mvn dashboard:dashboard")
         mvn("dashboard:dashboard")
-        notifyt("Reactor", "Deploying ...")
+        notifyt("Site Reactor", "deploy site:deploy")
         mvn("deploy site:deploy")
         
         logi("Confirm there are no local changes (can not do it automatically):")
         svn("status")
         
         print
-        print "Please increment version numbers (and update module paths) of reactor project."
+        print "Finished creating Site Reactor."
+        print "Please update version numbers and update module paths in its pom.xml."
         hitEnter()
     
     def validatePostconditions(self, config, artifact):
@@ -154,10 +168,10 @@ class Releaser:
                 # --quiet # Quiet output - only show errors
              ])
         
-        notifyd("Maven Release", "Preparing %s ..." % artifact.artifactId)
+        notifyt("Preparing '%s'" % artifact.artifactId, "mvn clean release:prepare")
         self.mvnExecuteReleaseSafe("clean release:prepare " + releasePluginArgs)
-        
-        notifyd("Maven Release", "Performing %s ..." % artifact.artifactId)
+
+        notifyt("Releasing '%s'" % artifact.artifactId, "mvn release:perform")        
         self.mvnExecuteReleaseSafe("release:perform " + releasePluginArgs)
     
     def mvnExecuteReleaseSafe(self, args):
@@ -169,6 +183,7 @@ class Releaser:
                 mvn("release:rollback")
             except Exception as e2:
                 loge("Rolling back from failed release:perform failed! Ouch...", e2)
+                notifye("Maven Rollback Failed", "This should really not have happened :(")
             finally:
                 raise e
     

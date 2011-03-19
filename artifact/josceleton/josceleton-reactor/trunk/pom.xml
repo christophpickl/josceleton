@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
     
     <artifactId>josceleton-reactor</artifactId>
-    <version>0.4-SNAPSHOT</version>
+    <version>0.4</version>
     
     
     <!-- ******************************************************************* -->
@@ -21,8 +21,8 @@
     <parent>
         <groupId>net.sf.josceleton</groupId>
         <artifactId>java-pom</artifactId>
-        <version>0.4-SNAPSHOT</version>
-        <relativePath>../java-pom/</relativePath>
+        <version>0.4</version>
+    	<relativePath>../java-pom/pom.xml</relativePath>
     </parent>
     
     
@@ -32,14 +32,14 @@
     
     <!-- to be able to deploy this reactor (and its attached site) disable submodules temporarily (will be solved differently in future) -->
     <modules>
-    	<module>../commons</module>
-    	<module>../core-api</module>
-    	<module>../core-impl</module>
-<!--    	<module>../connection-api</module>-->
-<!--    	<module>../connection-impl</module>-->
-<!--    	<module>../motion-api</module>-->
-<!--    	<module>../motion-impl</module>-->
-<!--    	<module>../josceleton</module>-->
+    	<module>../../../commons/tags/commons-0.4</module>
+    	<module>../../../core-api/tags/core-api-0.4</module>
+    	<module>../../../core-impl/tags/core-impl-0.4</module>
+    	<module>../../../connection-api/tags/connection-api-0.4</module>
+    	<module>../../../connection-impl/tags/connection-impl-0.4</module>
+    	<module>../../../motion-api/tags/motion-api-0.1</module>
+    	<module>../../../motion-impl/tags/motion-impl-0.1</module>
+    	<module>../../../josceleton/tags/josceleton-0.4</module>
     	
 <!--    	<module>(system-)tests</module>-->
 <!--    	<module>samples</module>-->
@@ -87,30 +87,28 @@
 <!--  </plugins>-->
 <!--</build>-->
    
-	
-    
-    <!-- ******************************************************************* -->
-    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
-    <!-- ******************************************************************* -->
-    
-    <distributionManagement>
-    	<!-- change default site deploy path to webroot for this specific artifact -->
-		<site>
-			<id>josceleton-sourceforge-server</id>
-			<name>josceleton site server @sourceforge</name>
-			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
-		</site>
-	</distributionManagement>
-	
     
     <!-- ******************************************************************* -->
     <!--                                S C M                                -->
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton-reactor/trunk/</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton-reactor/trunk/</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/josceleton-reactor/trunk/</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton-reactor/tags/josceleton-reactor-0.4/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton-reactor/tags/josceleton-reactor-0.4/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/josceleton-reactor/tags/josceleton-reactor-0.4/</url>
     </scm>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+        
+    <distributionManagement>
+    	<!-- change default site deploy path to webroot for this specific artifact -->
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
+		</site>
+    </distributionManagement>
     
 </project>

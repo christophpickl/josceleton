@@ -34,13 +34,17 @@
     <!-- ******************************************************************* -->
     
     <properties>
-		<sourceEncoding>UTF-8</sourceEncoding><!-- for mvn3 -->
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!-- for mvn2 -->
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    	<!-- child poms will reuse this prefix to avoid wrong guess by site plugin; see: http://www.mail-archive.com/users@maven.apache.org/msg97100.html -->
+    	<distribution_site_url_prefix>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/documentation</distribution_site_url_prefix>
     	
     	<!-- mvn3 will be enabled automagically if mvn3 is used ;) -->
     	<version_mvn_being_used>2</version_mvn_being_used><!-- used to print to console -->
     	
+   		<!-- ************ BUILD SETTINGS ************ -->
+		<sourceEncoding>UTF-8</sourceEncoding><!-- for mvn3 -->
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!-- for mvn2 -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+   		
    		<!-- ************ BUILD PLUGINS ************ -->
     	<version_dependency_plugin>2.2</version_dependency_plugin>
     	<version_deploy-plugin>2.5</version_deploy-plugin>
@@ -370,7 +374,7 @@
 		<site>
 			<id>josceleton-sourceforge-server</id>
 			<name>josceleton site server @sourceforge</name>
-			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/documentation/${project.artifactId}/${project.version}/</url>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
 			<!-- using web.sf.net host ... mkdir failed (though would not dependent on terminal hacking... as shell.sf.net) -->
 			<!-- <url>scp://web.sourceforge.net/home/project-web/j/jo/josceleton/htdocs/artifacts/${project.groupId}/${project.artifactId}/${project.version}</url> -->
 		</site>

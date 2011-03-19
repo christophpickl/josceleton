@@ -16,7 +16,7 @@
     <parent>
     	<groupId>net.sf.josceleton</groupId>
     	<artifactId>java-pom</artifactId>
-        <version>0.4-SNAPSHOT</version>
+        <version>0.4</version>
     	<relativePath>../java-pom/pom.xml</relativePath>
     </parent>
     
@@ -77,5 +77,17 @@
         <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/connection-api/trunk/</developerConnection>
         <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/connection-api/trunk/</url>
     </scm>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+        
+    <distributionManagement>
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
+		</site>
+    </distributionManagement>
     
 </project>

@@ -1,34 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	
 	<properties>
 		<title>Submodules</title>
 	</properties>
+	
 	<body>
 	
 		<section name="Submodules">
 			
+			<p>
+				Josceleton is separated in several submodules:
+			</p>
+			
 			<ul>
 				<li>
 					Commons - 
-					<a href="http://josceleton.sf.net/documentation/commons/${version_josceleton_commons}/">
-						http://josceleton.sf.net/documentation/commons/${version_josceleton_commons}/
-					</a>
+					<a href="/documentation/commons/${version_josceleton_commons}/">Documentation</a>
 				</li>
 				<li>
 					Core API - 
-					<a href="http://josceleton.sf.net/documentation/core-api/${version_josceleton_core-api}/">
-						http://josceleton.sf.net/documentation/core-api/${version_josceleton_core-api}/
-					</a>
+					<a href="/documentation/core-api/${version_josceleton_core-api}/">Documentation</a>
 				</li>
 				<li>
-					... etc ...
+					Core Impl - 
+					<a href="/documentation/core-api/${version_josceleton_core-impl}/">Documentation</a>
 				</li>
-				<!-- TODO @site complete listing -->
+				<li>
+					Connection API - 
+					<a href="/documentation/core-api/${version_josceleton_connection-api}/">Documentation</a>
+				</li>
+				<li>
+					Connection Impl - 
+					<a href="/documentation/core-api/${version_josceleton_connection-impl}/">Documentation</a>
+				</li>
+				<li>
+					Motion API - 
+					<a href="/documentation/core-api/${version_josceleton_motion-api}/">Documentation</a>
+				</li>
+				<li>
+					Motion Impl - 
+					<a href="/documentation/core-api/${version_josceleton_motion-impl}/">Documentation</a>
+				</li>
+				<li>
+					Josceleton (itself) - 
+					<a href="/documentation/core-api/${version_josceleton_josceleton}/">Documentation</a>
+				</li>
 			</ul>
 						
 		</section>
 		
 	</body>
+	
 </document>
 

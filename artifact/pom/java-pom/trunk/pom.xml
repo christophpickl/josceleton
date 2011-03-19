@@ -15,7 +15,7 @@
     <parent>
         <groupId>net.sf.josceleton</groupId>
         <artifactId>java-abstract-pom</artifactId>
-        <version>0.4-SNAPSHOT</version>
+        <version>0.4</version>
     	<relativePath>../java-abstract-pom/pom.xml</relativePath>
     </parent>
     
@@ -34,18 +34,16 @@
 		    <artifactId>guice-dependencies</artifactId>
 		    <version>2.2-SNAPSHOT</version> ... should be updated, if corporate-pom has changed; and changes are needed for guice dep; i dont think so ...
    		-->
-    	<version_josceleton_guice>2.2</version_josceleton_guice><!-- we dont need any newer version -->
-    	
-    	<version_josceleton_commons>0.4-SNAPSHOT</version_josceleton_commons>
-    	<version_josceleton_core-api>0.4-SNAPSHOT</version_josceleton_core-api>
-    	<version_josceleton_core-impl>0.4-SNAPSHOT</version_josceleton_core-impl>
-    	<version_josceleton_connection-api>0.4-SNAPSHOT</version_josceleton_connection-api>
-    	<version_josceleton_connection-impl>0.4-SNAPSHOT</version_josceleton_connection-impl>
-    	<version_josceleton_motion-api>0.1-SNAPSHOT</version_josceleton_motion-api>
-    	<version_josceleton_motion-impl>0.1-SNAPSHOT</version_josceleton_motion-impl>
-    	<version_josceleton_josceleton>0.4-SNAPSHOT</version_josceleton_josceleton>
-    	
-   		<version_josceleton-checkstyle-config>0.4-SNAPSHOT</version_josceleton-checkstyle-config>
+    	<version_josceleton_guice>2.3</version_josceleton_guice><!-- maybe we dont need any newer version -->
+    	<version_josceleton_commons>0.4</version_josceleton_commons>
+    	<version_josceleton_core-api>0.4</version_josceleton_core-api>
+    	<version_josceleton_core-impl>0.4</version_josceleton_core-impl>
+    	<version_josceleton_connection-api>0.4</version_josceleton_connection-api>
+    	<version_josceleton_connection-impl>0.4</version_josceleton_connection-impl>
+    	<version_josceleton_motion-api>0.1</version_josceleton_motion-api>
+    	<version_josceleton_motion-impl>0.1</version_josceleton_motion-impl>
+    	<version_josceleton_josceleton>0.4</version_josceleton_josceleton>
+   		<version_josceleton-checkstyle-config>0.4</version_josceleton-checkstyle-config>
    		
         <!-- V E R S I O N S   E X T E R N A L -->
    		<!-- *********************************************************** -->
@@ -227,7 +225,7 @@
 					<dependencies>
 						<dependency>
 							<groupId>${project.groupId}</groupId>
-							<artifactId>josceleton-checkstyle-config</artifactId>
+							<artifactId>checkstyle-config</artifactId>
 							<version>${version_josceleton-checkstyle-config}</version>
 						</dependency>
 					</dependencies>
@@ -394,5 +392,17 @@
         <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-pom/trunk/</developerConnection>
         <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/java-pom/trunk/</url>
     </scm>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+        
+    <distributionManagement>
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
+		</site>
+    </distributionManagement>
     
 </project>

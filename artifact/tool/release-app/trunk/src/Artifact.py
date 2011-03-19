@@ -1,9 +1,10 @@
 
 class Artifact:
-    def __init__(self, artifactId, groupId, svnRelativeToArtifactsBase, versionRelease, versionNext, packaging = "jar"):
+    def __init__(self, artifactId, groupId, svnRelativeToRoot, versionRelease, versionNext, packaging = "jar"):
         self.artifactId = artifactId
         self.groupId = groupId
-        self.svnRelativeToArtifactsBase = svnRelativeToArtifactsBase
+        self.svnRelativeToRoot = "artifact/" + svnRelativeToRoot
+        self.svnRelativeToLocalArtifact = svnRelativeToRoot
         self.versionRelease = versionRelease
         self.versionNext = versionNext
         self.packaging = packaging

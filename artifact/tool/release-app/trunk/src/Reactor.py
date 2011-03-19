@@ -1,10 +1,11 @@
 
 class Reactor(object):
     
-    def __init__(self, artifactId, groupId, svnRelativeToArtifactsBase, versionRelease ):
+    def __init__(self, artifactId, groupId, svnRelativeToRoot, versionRelease ):
         self.artifactId = artifactId
         self.groupId = groupId
-        self.svnRelativeToArtifactsBase = svnRelativeToArtifactsBase
+        self.svnRelativeToRoot = "artifact/" + svnRelativeToRoot
+        self.svnRelativeToLocalArtifact = svnRelativeToRoot
         self.versionRelease = versionRelease
     
     def __str__(self):
