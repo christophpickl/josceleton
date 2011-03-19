@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
     
     <artifactId>java-abstract-pom</artifactId>
-    <version>0.4</version>
+    <version>0.5-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -680,9 +680,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-abstract-pom/tags/java-abstract-pom-0.4</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-abstract-pom/tags/java-abstract-pom-0.4</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/java-abstract-pom/tags/java-abstract-pom-0.4</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-abstract-pom/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/java-abstract-pom/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/java-abstract-pom/trunk/</url>
     </scm>
     
     
