@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     
     <artifactId>connection-impl</artifactId>
-    <version>0.4</version>
+    <version>0.5-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -80,9 +80,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/connection-impl/tags/connection-impl-0.4</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/connection-impl/tags/connection-impl-0.4</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/connection-impl/tags/connection-impl-0.4</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/connection-impl/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/connection-impl/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/connection-impl/trunk/</url>
     </scm>
     
     
