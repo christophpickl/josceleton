@@ -25,27 +25,27 @@
 				</li>
 				<li>
 					Core Impl - 
-					<a href="/documentation/core-api/${version_josceleton_core-impl}/">Documentation</a>
+					<a href="/documentation/core-impl/${version_josceleton_core-impl}/">Documentation</a>
 				</li>
 				<li>
 					Connection API - 
-					<a href="/documentation/core-api/${version_josceleton_connection-api}/">Documentation</a>
+					<a href="/documentation/connection-api/${version_josceleton_connection-api}/">Documentation</a>
 				</li>
 				<li>
 					Connection Impl - 
-					<a href="/documentation/core-api/${version_josceleton_connection-impl}/">Documentation</a>
+					<a href="/documentation/connection-api/${version_josceleton_connection-impl}/">Documentation</a>
 				</li>
 				<li>
 					Motion API - 
-					<a href="/documentation/core-api/${version_josceleton_motion-api}/">Documentation</a>
+					<a href="/documentation/motion-api/${version_josceleton_motion-api}/">Documentation</a>
 				</li>
 				<li>
 					Motion Impl - 
-					<a href="/documentation/core-api/${version_josceleton_motion-impl}/">Documentation</a>
+					<a href="/documentation/motion-api/${version_josceleton_motion-impl}/">Documentation</a>
 				</li>
 				<li>
 					Josceleton (itself) - 
-					<a href="/documentation/core-api/${version_josceleton_josceleton}/">Documentation</a>
+					<a href="/documentation/josceleton/${version_josceleton_josceleton}/">Documentation</a>
 				</li>
 			</ul>
 						

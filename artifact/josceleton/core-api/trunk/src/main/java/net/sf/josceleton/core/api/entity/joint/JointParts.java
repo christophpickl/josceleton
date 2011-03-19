@@ -8,7 +8,7 @@ package net.sf.josceleton.core.api.entity.joint;
  * 
  * @since 0.1
  */
-final class JointParts {
+public final class JointParts {
 	
 	private JointParts() {
 		// not instantiable

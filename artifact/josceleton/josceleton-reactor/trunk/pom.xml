@@ -29,17 +29,17 @@
     <!-- ******************************************************************* -->
     <!--                            M O D U L E S                            -->
     <!-- ******************************************************************* -->
-    
+   
     <!-- to be able to deploy this reactor (and its attached site) disable submodules temporarily (will be solved differently in future) -->
     <modules>
-    	<module>../commons</module>
-    	<module>../core-api</module>
-    	<module>../core-impl</module>
-    	<module>../connection-api</module>
-    	<module>../connection-impl</module>
-    	<module>../motion-api</module>
-    	<module>../motion-impl</module>
-    	<module>../josceleton</module>
+<!--    	<module>../commons</module>-->
+<!--    	<module>../core-api</module>-->
+<!--    	<module>../core-impl</module>-->
+<!--    	<module>../connection-api</module>-->
+<!--    	<module>../connection-impl</module>-->
+<!--    	<module>../motion-api</module>-->
+<!--    	<module>../motion-impl</module>-->
+<!--    	<module>../josceleton</module>-->
     	
     	
 <!--    	<module>../../../commons/tags/commons-0.4</module>-->

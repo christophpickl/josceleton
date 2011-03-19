@@ -40,11 +40,16 @@
 		</menu>
 		
 		<menu name="Reports">
-			<item name="JavaDoc" href="apidocs/index.html" />
-			<item name="Browse Source" href="xref/index.html" />
+			<item name="Browse JavaDoc" href="apidocs/" /><!-- aggregated -->
+			<item name="Browse Source" href="xref/" /><!-- aggregated -->
+			<item name="Browse Testsource" href="test-xref/" /><!-- aggregated -->
+			
+			<item name="Developer Activity" href="dev-activity.html" />
+			<item name="File Activity" href="file-activity.html" />
+			<!-- aggregated reports via dashboard for: cobertura, surefire, checkstyle taglist, pmd, cpd, findbugs, jdepend -->
 			
 			<item name="Metrics" href="development/project_metrics.html" />
-			<item name="DashBoard Report" href="dashboard-report.html" />
+			<item name="DashBoard" href="dashboard-report.html" />
 			<item name="Dashboard Details" href="dashboard-report-details.html" />
 		</menu>
 		

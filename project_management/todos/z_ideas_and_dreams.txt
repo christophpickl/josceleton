@@ -22,8 +22,6 @@ IDEAS
 	* auf eigener seite dann diese eigenen youtube videos referenzieren... plus gute von anderen auch
 ! irgendwo das wort KINECTOR verwenden (evtl facade klasse Josceleton?)
 * kinect ideen
-	* projektor verwenden, und sich vor/hinter leinwand stellen http://www.youtube.com/watch?v=hkHUGxP3ecI#at=53
-	* das ist lustig, wenn beruehrt dann gibts punch-comic zeigen: http://vimeo.com/20366678
 	! kollaborative puppet control: http://vimeo.com/20367106
 	* PoC spiel, aber schoene grafik/animationen: http://vimeo.com/20514415
 		=> gscheite (animierte) GUI gehoert her (die mit java sprechen kann)
@@ -51,10 +49,6 @@ IDEAS
 			enter ... nach vorne irgendwas (wie zb relative hitwall)
 			escape/no/cancel ... xbox position
 			vor/zurueck ... indem man nach links/rechts wischt
-		!!! genau so was: http://vimeo.com/20855586 JA
-	!!!! kinect + ableton (kommt schon nahe vom pulse projekt): http://www.youtube.com/watch?v=zG8dIOoPhdI
-	!! boah, automatisiertes haus: http://www.youtube.com/watch?v=L7jeJSdJPpk
-
 // gute software == stabile software == einfache schnell zu bedienende software
 
 ==========================================

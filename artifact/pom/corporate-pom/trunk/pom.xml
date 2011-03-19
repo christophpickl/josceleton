@@ -305,6 +305,14 @@
 					<plugin>
 						<artifactId>maven-changelog-plugin</artifactId>
 						<version>${version_changelog-plugin}</version>
+						<configuration>
+							<!-- http://maven.apache.org/plugins/maven-changelog-plugin -->
+							
+							<issueIDRegexPattern>#\d+.</issueIDRegexPattern><!-- match own commit msg format "#13 foobar" -->
+							<!-- default is: "[a-zA-Z]{2,}-\d+." -->
+							
+							<issueLinkUrl>https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=%ISSUE%</issueLinkUrl>
+						</configuration>
 					</plugin>
 			     	
 		            <plugin>

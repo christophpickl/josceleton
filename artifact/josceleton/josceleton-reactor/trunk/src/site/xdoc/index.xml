@@ -16,7 +16,7 @@
 			
 			<table>
 				<caption align="bottom">
-					Image: Kinect and Java (by 
+					Image: Kinect combined with Java (by 
 					<a href="http://flickr.com/photos/dekuwa/4699355300/" target="_blank">Dekuwa</a> and 
 					<a href="http://flickr.com/photos/silveiraneto/2270445344/" target="_blank">Silveira Neto</a>)
 				</caption>
@@ -35,8 +35,17 @@
 				<i>&quot; ... it enables users to control and interact, 
 						  ... through a natural user interface using gestures ...
 				&quot;</i> 
-					-- <a href="http://en.wikipedia.org/wiki/Kinect" target="_blank">Wikipedia</a>
+					- <a href="http://en.wikipedia.org/wiki/Kinect" target="_blank">Wikipedia</a>
 			</p>
+		
+			<table>
+				<caption align="bottom">
+					Video: OpenNI-compliant real time skeleton tracking by <a href="http://primesense.com/">PrimeSense</a>
+				</caption>
+				<tr valign="middle"><td align="center" style="background-color:white;">
+					<iframe title="YouTube video player" width="640" height="390" src="http://www.youtube.com/embed/nr8vgCnb9_0" frameborder="0"></iframe>
+				</td></tr>
+			</table>
 			
 			<p>
 				Technicaly speaking Josceleton provides a high-level API to communicate with a 
@@ -45,17 +54,6 @@
 				which is done by internally using the
 				<a href="http://illposed.com/software/javaosc.html" target="_blank">Java OSC</a> library. 
 			</p>
-		
-			<table>
-				<caption align="bottom">
-					Video: XBox Kinect OSCeleton Showcase (by <a href="http://vimeo.com/17978808">Tiago Serra</a>)
-				</caption>
-				<tr valign="middle"><td align="center" style="background-color:white;">
-					
-					<iframe src="http://player.vimeo.com/video/17978808" width="400" height="225" frameborder="0"></iframe>
-					
-				</td></tr>
-			</table>
 				
 		</section>
 		

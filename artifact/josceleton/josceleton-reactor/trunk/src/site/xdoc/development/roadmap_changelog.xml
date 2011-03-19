@@ -44,17 +44,9 @@
 				<h4>Version 0.5</h4>
 				<p><i>Work in prgoress</i></p>
 				<ul>
-					<li>Not yet available :)</li>
-				</ul>
-				
-			    <!-- 0.4 -->
-		    	<!-- *********************************************************** -->
-				<h4>Version 0.4</h4>
-				<p>Finished (part of) foundation logic and introducing first <b>Gesture</b>.</p>
-				<ul>
-					<li>Add <code>MotionSeparator</code></li>
-					<li>Add first gesture detection: <code>HitWallGesture</code></li>
-					<li>Console Window Prototype (with Growl integration!)</li>
+					<li>[New Feature] Automatic Motion Separator</li>
+					<li>[New Feature] Range Scaling</li>
+					<li>[Prototype] MIDI Prototype</li>
 				</ul>
 				
 			</subsection>
@@ -65,18 +57,39 @@
 		    <!-- ******************************************************************* -->
 		    
 			<subsection name="Changelog">
+
+			    <!-- 0.4 -->
+		    	<!-- *********************************************************** -->
+				<h4>Version 0.4 (2011-03-19)</h4>
+				<p>Partly finished foundation logic and introducing first <b>Gesture</b>.</p>
+				<ul>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=18">#0000018</a> 
+						<code>[New Feature]</code> HitWall Gesture</li>
+
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=22">#0000022</a> 
+						<code>[New Feature]</code> Add MotionSupplier</li>
+
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=11">#0000011</a> 
+						<code>[Prototype]</code> Console Window Prototype</li>
+
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=16">#0000016</a> 
+						<code>[Documentation]</code> Aggregate Reports</li>
+
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=29">#0000029</a> 
+						<code>[Build and Release]</code> Rework project directory structure</li>
+				</ul>
 				
 			    <!-- 0.3 -->
 		    	<!-- *********************************************************** -->
-				<h4>Version 0.3 (2001-03-15)</h4>
+				<h4>Version 0.3 (2011-03-15)</h4>
 				<p>
 					Enhanced foundation logic: Introducing new <code>UserService</code> to provide a consistent user management.
 				</p>
 				<ul>
 					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=15">#0000015</a> 
-						<code>[API Enhancement]</code> Add UserService to properly keep track of available users</li>
+						<code>[New Feature]</code> Add UserService to properly keep track of available users</li>
 					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=20">#0000020</a> 
-						<code>[API Enhancement]</code> Bugfix: Crash when OSCeleton gets restarted and reuses user IDs</li>
+						<code>[New Feature]</code> Bugfix: Crash when OSCeleton gets restarted and reuses user IDs</li>
 					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=7">#0000007</a> 
 						<code>[Test]</code> Add Integration Tests</li>
 				</ul>
@@ -90,7 +103,7 @@
 				</p>
 				<ul>
 					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=10">#0000010</a> 
-						<code>[API Enhancement]</code> Implement new Josceleton Facade Module</li>
+						<code>[New Feature]</code> Implement new Josceleton Facade Module</li>
 					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=3">#0000003</a> 
 						<code>[Build Management]</code> Enhance developer environment</li>
 					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=4">#0000004</a> 
@@ -106,7 +119,7 @@
 				</p>
 				<ul>
 					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=12">#0000012</a> 
-						<code>[API Enhancement]</code> Implement basic connection to OSCeleton</li>
+						<code>[New Feature]</code> Implement basic connection to OSCeleton</li>
 					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=13">#0000013</a> 
 						<code>[Code Quality]</code> Comply with comprehensive Coding Policies</li>
 				</ul>

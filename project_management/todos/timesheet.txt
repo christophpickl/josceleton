@@ -62,5 +62,6 @@
 18.03. - 18:00 -  2h - finished restructuring; improved reports 
 18.03. - 23:00 -  5h - prepared release-app for new release v0.4 
              ~~ 180h~~
-19.03. - 04:00 -  h - executing release-app for v0.4; architecture redesign 
-             ~~ 180h~~
+19.03. - 04:00 -  4h - executing release-app for v0.4; architecture redesign 
+19.03. - 21:00 -  h -  
+             ~~ 184h~~

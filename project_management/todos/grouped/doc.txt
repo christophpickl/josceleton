@@ -80,6 +80,7 @@
 ======================================================
 @JAVADOC
 ======================================================
+- confirm links in javadoc higher modules, with references to submodules (eg Async in core-api) are available
 - script schreiben, dass von allen klassen ein @since ausspuckt (svn history durchgehen, date vergleichen die konfiguriert wurden)
 - exclude non-api/impl.* classes in javadoc
 	<excludePackageNames>_templates:net:sf:josceleton:core:impl ... etc</excludePackageNames>-->

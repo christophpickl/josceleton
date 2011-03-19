@@ -1,3 +1,8 @@
+- @release-app: check nicht nur nach index.html, sondern auch nach was anderem + warning ausgeben wenn dass der fall ist
+- Async(For).remove() soll boolean zuruecklieferen wenn removed war
+  + ebenso fuer add()
+!!! @RELEASE mvn release plugin's update dependencies verwenden (um josceleton interne dep versions zu bumpen)
+! @pulse subversion: mkinector-debugger-app kann geloescht werden (ist nun josceleton-console-prototype)
 
 
 
