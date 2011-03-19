@@ -4,6 +4,7 @@ import time
 from logging import * #@UnusedWildImport
 from config_global import SYSEXEC_ENABLED
 from sysexec import mkdir
+from logging import logt
 
 # returns: "/maven/release/net/sf/josceleton/delme/playground/release/release-playground/0.2/release-playground-0.2.pom"
 def formatArtifactRelativeUrlBy(artifact):
@@ -25,16 +26,22 @@ def prepareTargetFolder(workspacePath, suffix):
     mkdir(targetFolder)
     return targetFolder
 
-def webFileExists(baseWebUrl, fileToCheck):
-    logd("Checking if web file exists: http://%s%s" % (baseWebUrl, fileToCheck))
+def webFileExists(fullUrl):
+    logd("Checking if web file exists: %s" % fullUrl)
     if SYSEXEC_ENABLED == False: return True
-    
+
+    baseWithoutProtocol = fullUrl[len("http://"):]
+    idxBaseSlash = baseWithoutProtocol.index("/")
+    baseWebUrl = fullUrl[len("http://"):idxBaseSlash + len("http://")]
+    fileToCheck = fullUrl[len("http://") + idxBaseSlash:]
+    logt("Base URL [%s]; File URL [%s]" % (baseWebUrl, fileToCheck))
     connection = httplib.HTTPConnection(baseWebUrl)
     connection.request("HEAD", fileToCheck)
     response = connection.getresponse()
     connection.close()
     return response.status == 200
 
+    
 def removeSlashTrunk(fromSvnUrl):
     token = "/trunk"
     idxToken = fromSvnUrl.find(token)

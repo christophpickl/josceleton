@@ -51,12 +51,14 @@ class Releaser:
             for i, artifact in enumerate(config.artifacts):
                 logi("---------------------- Releasing artifact '%s' with version %s (%i of %i)" %
                      (artifact.artifactId, artifact.versionRelease, i+1, len(config.artifacts)))
+                
+                notifyi("Processing ...", "Artifact '%s-%s'" % (artifact.artifactId, artifact.versionRelease))
                 if config.sayEnabled: sayOsx("releasing artifact %s" % artifact.artifactId)
                 
                 currentArtifactFolder = "%s/%s/trunk" % (localSvnRootFolder, artifact.svnRelativeToArtifactsBase)
                 chdir(currentArtifactFolder)
-                self.mvnRelease(artifact, config)
-#                self.validatePostconditions(artifact)
+                self.mvnRelease(config, artifact)
+                self.validatePostconditions(config, artifact)
                 
                 logi("---------------------- Finished releasing '%s'" % artifact.artifactId)
             logi("RELEASE SUCCESS")
@@ -79,6 +81,7 @@ class Releaser:
         
         reactor = config.reactor
         logi("Processing reactor: %s" % reactor)
+        notifyi("Processing ...", "Reactor '%s-%s'" % (reactor.artifactId, reactor.versionRelease))
         
         artifactIdAndVersion = "%s-%s" % (reactor.artifactId, reactor.versionRelease)
         
@@ -94,6 +97,7 @@ class Releaser:
             return
         
         # LUXURY in here we could check if submodules, referenced in reactor project, are really existing (tags where created for specific modules)
+        notifyd("Reactor", "Creating Tag '%s' ..." % artifactIdAndVersion)
         svn("copy %s %s -m \"%s\" --username %s --password %s" % (svnTrunkPath, svnTagPath, svnCommitMsg, config.username, config.password))
         
         self.updateSvnTree(config, localSvnRootFolder)
@@ -101,8 +105,11 @@ class Releaser:
         reactorLocalSvnTagPath = "%s/tags/%s" % (os.path.join(localSvnRootFolder, reactor.svnRelativeToArtifactsBase), artifactIdAndVersion)
         chdir(reactorLocalSvnTagPath)
         
+        notifyt("Reactor", "Generating Site ...")
         mvn("clean site")
+        notifyt("Reactor", "Creating DashBoard Report ...")
         mvn("dashboard:dashboard")
+        notifyt("Reactor", "Deploying ...")
         mvn("deploy site:deploy")
         
         logi("Confirm there are no local changes (can not do it automatically):")
@@ -112,15 +119,14 @@ class Releaser:
         print "Please increment version numbers (and update module paths) of reactor project."
         hitEnter()
     
-    def validatePostconditions(self, artifact):
+    def validatePostconditions(self, config, artifact):
         logd("Checking post-conditions ...")
-        failedPostCond = PostconditionChecker().lookupErrorsForArtifact(artifact)
-        if len(failedPostCond) == 0:
-            return
-        raise Exception("Failed postconditions for artifact %s!\n%s" % (artifact, "\n".join(failedPostCond)))
+        notifyd("Post Conditions", "Checking postconditions for %s" % artifact.artifactId)
+        failedPostCond = PostconditionChecker().lookupErrorsForArtifact(config, artifact)
+        if len(failedPostCond) != 0:
+            raise Exception("Failed postconditions for artifact %s!\n%s" % (artifact, "\n".join(failedPostCond)))
     
-    
-    def mvnRelease(self, artifact, config):
+    def mvnRelease(self, config, artifact):
         releasePluginArgs = " ".join([
              # common release plugin options (http://maven.apache.org/plugins/maven-release-plugin/prepare-mojo.html)
              "-Dusername=%s" % config.username,
@@ -148,7 +154,10 @@ class Releaser:
                 # --quiet # Quiet output - only show errors
              ])
         
+        notifyd("Maven Release", "Preparing %s ..." % artifact.artifactId)
         self.mvnExecuteReleaseSafe("clean release:prepare " + releasePluginArgs)
+        
+        notifyd("Maven Release", "Performing %s ..." % artifact.artifactId)
         self.mvnExecuteReleaseSafe("release:perform " + releasePluginArgs)
     
     def mvnExecuteReleaseSafe(self, args):
@@ -166,14 +175,6 @@ class Releaser:
     def updateSvnTree(self, config, targetPath):
         svn("update %s --username %s --password %s" % (targetPath, config.username, config.password))
         
-#        logd("Checking out artifact: %s" % artifact.artifactId)
-#        
-#        targetPath = "%s-%s-SNAPSHOT" % (os.path.join(targetFolder, artifact.artifactId), artifact.versionRelease)
-#        svnCheckoutPath = "%s/%s/trunk" % (config.svnRoot, artifact.svnRelativeToArtifactsBase)
-#        svn("checkout %s %s --username %s --password %s" % (svnCheckoutPath, targetPath, config.username, config.password))
-#
-#        return targetPath
-
 # PYTHON CHEAT SHEET
 #
 # os.path.exists/isfile/isabs("bob.txt")

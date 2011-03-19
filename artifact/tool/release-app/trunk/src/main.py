@@ -7,7 +7,7 @@ from logging import * #@UnusedWildImport
 from Releaser import Releaser #@UnusedImport
 from Packager import Packager #@UnusedImport
 from config_global import PRECONDITIONS_ENABLED
-from sysexec import uname, sayOsx
+from sysexec import uname, sayOsx, notifye, notifys, notifyi
 
 def loadDynamicConfiguration(configModuleName):
     exec('from %s import Configuration' % configModuleName)
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     try:
         wasReleased = Releaser().createNewWith(config)
         if wasReleased == True:
-#            Packager().wrapUp(config)
+            Packager().wrapUp(config)
             wasAnError = False
         
     except Exception as e:
@@ -57,9 +57,11 @@ if __name__ == "__main__":
     logi()
     if wasAnError == False:
         logi("SUCCESS")
+        notifys("Release Success!", "Yipieee!")
         if config.sayEnabled == True: sayOsx("Success, yipieh! Release is done!")
     else:
         loge("ERROR!!!")
+        notifye("Release Failed!", "There was an error; please check the logs!")
         if config.sayEnabled == True: sayOsx("Error! Error! Error!")
     
     

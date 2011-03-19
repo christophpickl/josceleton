@@ -56,8 +56,11 @@ def filterDashDashPasswd(subject):
 
 _HIT_ENTER_MESSAGE = "        <================ HIT ENTER ================>"
 def hitEnter():
-    if INTERACTIVE == True: raw_input(_HIT_ENTER_MESSAGE)
-    else: print _HIT_ENTER_MESSAGE
+    if INTERACTIVE == True:
+        notifyi("ATTENTION", "Interaction required.")
+        raw_input(_HIT_ENTER_MESSAGE)
+    else:
+        print _HIT_ENTER_MESSAGE
 
 def uname():
     return getpass.getuser()
@@ -77,9 +80,9 @@ def writeFile(path, content):
     openfile.write(content)
     openfile.close()
 
-def sysexec(command, displayedCommand = None):
+def sysexec(command, displayedCommand = None, overrideSysexecWithTrue = False):
     if displayedCommand == None: displayedCommand = command
-    if SYSEXEC_ENABLED == True:
+    if SYSEXEC_ENABLED == True or overrideSysexecWithTrue == True:
         logd(">> %s" % displayedCommand)
         retCode = os.system(command)
         if retCode != 0: raise Exception("Could not execute command: [%s]!" % displayedCommand)
@@ -103,22 +106,41 @@ def svn(arguments):
 def wget(arguments):
     sysexec("wget %s" % arguments) 
 
+_LOGS_APPNAME = "LogSmiley Dispatcher"
+_LOGS_APPICON = "LogSmiley"
+_LOGE_APPNAME = "LogError Dispatcher"
+_LOGE_APPICON = "LogError"
+_LOGW_APPNAME = "LogWarning Dispatcher"
+_LOGW_APPICON = "LogWarning"
+_LOGI_APPNAME = "LogInfo Dispatcher"
+_LOGI_APPICON = "LogInfo"
+_LOGD_APPNAME = "LogDebug Dispatcher"
+_LOGD_APPICON = "LogDebug"
+_LOGT_APPNAME = "LogTrace Dispatcher"
+_LOGT_APPICON = "LogTrace"
 
-_GROWL_NOTIFICATION_NAME = "Common Notification"
-_GROWL_APP_NAME = "Josceleton Release Application"
 def registerGrowl():
-    _osascript(["register as application \\\"%s\\\" all notifications { \\\"%s\\\" } default notifications { \\\"%s\\\" } icon of application \\\"%s\\\"" %
-                    (_GROWL_APP_NAME, _GROWL_NOTIFICATION_NAME, _GROWL_NOTIFICATION_NAME, "Script Editor") ])
-def notify(title, message):
-    _osascript([ "notify with name \\\"%s\\\" title \\\"%s\\\" description \\\"%s\\\" application name \\\"%s\\\"" %
-                       (_GROWL_NOTIFICATION_NAME, title.replace("\"", "'"), message.replace("\"", "'"), _GROWL_APP_NAME), ])
+    _register(_LOGS_APPNAME, _LOGS_APPICON)
+    _register(_LOGE_APPNAME, _LOGE_APPICON)
+    _register(_LOGW_APPNAME, _LOGW_APPICON)
+    _register(_LOGI_APPNAME, _LOGI_APPICON)
+    _register(_LOGD_APPNAME, _LOGD_APPICON)
+    _register(_LOGT_APPNAME, _LOGT_APPICON)
+def _register(logLevelAppName, logLevelAppIcon):
+    _osascript(["register as application \\\"%s\\\" all notifications { \\\"LOG\\\" } default notifications { \\\"LOG\\\" } icon of application \\\"%s\\\"" %
+                    (logLevelAppName, logLevelAppIcon) ])
+    
+def notifys(title, message): _notify(title, message, _LOGS_APPNAME)
+def notifye(title, message): _notify("ERROR! %s" % title, message, _LOGE_APPNAME)
+def notifyw(title, message): _notify("WARNING! %s" % title, message, _LOGW_APPNAME)
+def notifyi(title, message): _notify(title, message, _LOGI_APPNAME)
+def notifyd(title, message): _notify(title, message, _LOGD_APPNAME)
+def notifyt(title, message): _notify(title, message, _LOGT_APPNAME)
+def _notify(title, message, logLevelAppName):
+    _osascript([ "notify with name \\\"LOG\\\" title \\\"%s\\\" description \\\"%s\\\" application name \\\"%s\\\"" %
+                       (title.replace("\"", "'"), message.replace("\"", "'"), logLevelAppName), ])
+    
 def _osascript(lines):
     lines.insert(0, "tell application \\\"GrowlHelperApp\\\"")
     lines.append("end tell")
-    sysexec("osascript " + " ".join([ "-e \"" + i + "\"" for i in lines ]), "osascript -e ...")
-
-if __name__ == "__main__":
-    registerGrowl()
-    notify("myTitle", "myMessage")
-    notify("myTitle", "myMessage 2")
-    
+    sysexec("osascript " + " ".join([ "-e \"" + i + "\"" for i in lines ]), "osascript -e ...", True) # override SYSEXEC
