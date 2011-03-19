@@ -1,7 +1,7 @@
 
 import net.pulseproject.mkinector.josceleton.api.entity.BodyPart;
 import net.pulseproject.mkinector.josceleton.api.entity.Coordinate;
-import net.pulseproject.mkinector.josceleton.api.entity.XyzDirection;
+import net.pulseproject.mkinector.josceleton.api.entity.Direction;
 import net.pulseproject.mkinector.josceleton.api.gesture.GestureListener;
 import net.pulseproject.mkinector.josceleton.api.message.JointMessage;
 import net.pulseproject.mkinector.josceleton.api.message.UserMessage;
@@ -22,7 +22,7 @@ public class HitWallGestureImpl
 	
 	private static final double DEVIATION_TOLERANCE = 0.02;
 	
-	private final XyzDirection xyzDirection;
+	private final Direction direction;
 	
 	private final double triggerValue;
 	
@@ -37,18 +37,18 @@ public class HitWallGestureImpl
 	
 	public HitWallGestureImpl(// TODO create GestureArguments object
 			final BodyPart bodyPart,
-			final XyzDirection xyzDirection,
+			final Direction direction,
 			final double triggerValue,
 			final boolean checkTriggerForHigher) {
 		this.bodyPart = bodyPart;
-		this.xyzDirection = xyzDirection;
+		this.direction = direction;
 		this.triggerValue = triggerValue;
 		this.checkTriggerForHigher = checkTriggerForHigher;
 		
 		this.triggerValueDeviation = this.triggerValue +
 			(this.checkTriggerForHigher ? -DEVIATION_TOLERANCE : DEVIATION_TOLERANCE);
 		
-		LOG.debug("new HitWallGesture(filterer, jointType=" + bodyPart + ", xyzDirection=" + xyzDirection + ", " +
+		LOG.debug("new HitWallGesture(filterer, jointType=" + bodyPart + ", direction=" + direction + ", " +
 				"triggerValue=[" + triggerValue + "], checkTriggerForHigher=" + checkTriggerForHigher + ") ... " +
 				"triggerValueDeviation=[" + this.triggerValueDeviation + "]");
 	}
@@ -65,7 +65,7 @@ public class HitWallGestureImpl
 			return;
 		}
 		
-		final double value = this.xyzDirection.extractValue(message.getCoordinate());
+		final double value = this.direction.extractValue(message.getCoordinate());
 		if(this.checkTriggerForHigher == true) {
 			
 			if(value > this.triggerValue && this.wasTriggered == false) {

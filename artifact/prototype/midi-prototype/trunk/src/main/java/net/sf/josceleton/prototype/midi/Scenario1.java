@@ -23,13 +23,13 @@ public class Scenario1 {
 	
 	private void createHitWallGestureAndRegister(
 			final SimpleMidiSender sender, final Joint bodyPart, final boolean isSendingHighTones) {
-		final XyzDirection xyzDirection = XyzDirection.Z;
+		final Direction direction = Direction.Z;
 		final double triggerValue = 0.9;
 		final boolean checkTriggerForHigher = false;
 		
 		// TODO @Scenario1 reimplement gesture
 //		final HitWallGesture hitWallGesture =
-//			new HitWallGestureImpl(bodyPart, xyzDirection, triggerValue, checkTriggerForHigher);
+//			new HitWallGestureImpl(bodyPart, direction, triggerValue, checkTriggerForHigher);
 //		final HitWallListener listener = new HitWallMidiSender(sender, isSendingHighTones);
 //		hitWallGesture.addListener(listener);
 //		this.connection.addListener(hitWallGesture);

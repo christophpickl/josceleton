@@ -21,7 +21,7 @@ public abstract class AbstractEnumTest<E extends Enum<?>> {
 
 	protected abstract EnumValueOfDescriptor<E> getValueOfDescriptor();
 
-	/** Shorthand for e.g.: "assertThat(XyzDirection.valueOf("X"), equalTo(XyzDirection.X));" */
+	/** Shorthand for e.g.: "assertThat(Direction.valueOf("X"), equalTo(Direction.X));" */
 	@SuppressWarnings({ "unchecked", "synthetic-access" })
 	@Test
 	public final void testValueOf() throws Exception {
