@@ -16,7 +16,7 @@
     <parent>
         <groupId>net.sf.josceleton</groupId>
         <artifactId>corporate-pom</artifactId>
-        <version>0.4</version>
+        <version>0.5-SNAPSHOT</version>
     	<relativePath>../corporate-pom/pom.xml</relativePath>
     </parent>
     
@@ -484,6 +484,30 @@
 		    -->
 		    <reporting>
 		        <plugins>
+		            
+		            <plugin>
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-jxr-plugin</artifactId>
+		                <version>2.1</version>
+		                <!-- see http://stackoverflow.com/questions/1212960/maven2-how-to-stage-jxr-plugin-result-when-using-mvn-site -->
+<!--						<reportSets>-->
+<!--							<reportSet>-->
+<!--								<id>src-xref</id>-->
+<!--								<reports>-->
+<!--									<report>jxr</report>-->
+<!--								</reports>-->
+<!--							</reportSet>-->
+<!--							<reportSet>-->
+<!--								<id>test-xref</id>-->
+<!--								<reports>-->
+<!--									<report>test-jxr</report>-->
+<!--								</reports>-->
+<!--							</reportSet>-->
+<!--						</reportSets>-->
+						<configuration>
+							<aggregate>true</aggregate>
+						</configuration>
+		            </plugin>
 		
 		           <plugin>
 		                <artifactId>maven-surefire-report-plugin</artifactId>
@@ -547,57 +571,38 @@
 		                <artifactId>cobertura-maven-plugin</artifactId>
 		                <version>${version_cobertura}</version>
 		            </plugin>
-		            
-		            <plugin>
-		                <groupId>org.apache.maven.plugins</groupId>
-		                <artifactId>maven-jxr-plugin</artifactId>
-		                <version>2.1</version>
-		                <!-- see http://stackoverflow.com/questions/1212960/maven2-how-to-stage-jxr-plugin-result-when-using-mvn-site -->
-<!--						<reportSets>-->
-<!--							<reportSet>-->
-<!--								<id>src-xref</id>-->
-<!--								<reports>-->
-<!--									<report>jxr</report>-->
-<!--								</reports>-->
-<!--							</reportSet>-->
-<!--							<reportSet>-->
-<!--								<id>test-xref</id>-->
-<!--								<reports>-->
-<!--									<report>test-jxr</report>-->
-<!--								</reports>-->
-<!--							</reportSet>-->
-<!--						</reportSets>-->
-						<configuration>
-							<aggregate>true</aggregate>
-						</configuration>
-		                
-		            </plugin>
 					
-		            <plugin>
+		            <plugin><!-- taglist has to be invoked after jxr -->
+		            	<!-- MINOR @SITE while building reactor, was warning about ...
+							Generating "Tag List" report.
+							Taglist plugin MUST be executed after the JXR plugin.  No links to xref were generated.
+							Unable to locate Source XRef to link to - DISABLED
+		            	-->
 		                <groupId>org.codehaus.mojo</groupId>
 		                <artifactId>taglist-maven-plugin</artifactId>
 		                <version>2.4</version>
 		                <configuration>
 		                	<!-- http://mojo.codehaus.org/taglist-maven-plugin/taglist-mojo.html -->
 		                	<skipTestSources>false</skipTestSources>
+		                	<!-- MINOR @SITE set "aggregate" to true for reactor. if its even necessary... see dashboard report -->
 		                    <tagListOptions>
 		                        <tagClasses>
 		                        	<!-- enforce correct order by prefixing with number ;) -->
 		                            <tagClass>
-		                                <displayName>1. FIXME - Heavy issues which need to be solved immediately!</displayName>
+		                                <displayName>1. FIXME - Now!</displayName>
 		                                <tags><tag><matchString>FIXME</matchString><matchType>ignoreCase</matchType></tag>
 		                                </tags>
 		                            </tagClass>
 		                            <tagClass>
-		                                <displayName>2. TODO - General issue to work on sooner or later.</displayName>
+		                                <displayName>2. TODO - Tomorrow</displayName>
 		                                <tags><tag><matchString>TODO</matchString><matchType>ignoreCase</matchType></tag></tags>
 		                            </tagClass>
 		                            <tagClass>
-		                                <displayName>3. MINORs - Little enhancements, not really important.</displayName>
+		                                <displayName>3. MINORs - Somewhen</displayName>
 		                                <tags><tag><matchString>MINOR</matchString><matchType>ignoreCase</matchType></tag></tags>
 		                            </tagClass>
 		                            <tagClass>
-		                                <displayName>4. LUXURYs - Additional stuff which would be cool to have, but not mandatory anyway.</displayName>
+		                                <displayName>4. LUXURYs - Anytime</displayName>
 		                                <tags><tag><matchString>LUXURY</matchString><matchType>ignoreCase</matchType></tag></tags>
 		                            </tagClass>
 		                        </tagClasses>

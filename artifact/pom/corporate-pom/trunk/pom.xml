@@ -40,6 +40,8 @@
     	<!-- mvn3 will be enabled automagically if mvn3 is used ;) -->
     	<version_mvn_being_used>2</version_mvn_being_used><!-- used to print to console -->
     	
+    	<report_linkcheck_skip>true</report_linkcheck_skip>
+    	
    		<!-- ************ BUILD SETTINGS ************ -->
 		<sourceEncoding>UTF-8</sourceEncoding><!-- for mvn3 -->
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!-- for mvn2 -->
@@ -256,9 +258,8 @@
 			</build>
 		</profile>
 		
-		
 		<profile>
-			<id>create-reports-corporate-pom</id>
+			<id>create-reports-corporate-pom-profile</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 				<property>
@@ -305,21 +306,6 @@
 						<artifactId>maven-changelog-plugin</artifactId>
 						<version>${version_changelog-plugin}</version>
 					</plugin>
-					
-					<plugin>
-				        <artifactId>maven-linkcheck-plugin</artifactId>
-				        <version>${version_linkcheck_plugin}</version>
-				        <configuration>
-							<!-- https://maven.apache.org/plugins/maven-linkcheck-plugin/linkcheck-mojo.html -->
-				        	<!-- excludedLinks -->
-				        	 <excludedPages>
-				        	 	<!-- TODO @DOC maybe include javadoc/xref in linkcheck from time to time to verify links even in javadoc (but takes veeery long) -->
-								<excludedPage>apidocs/**</excludedPage>
-				        	 	<excludedPage>xref/**</excludedPage>
-				        	 	<excludedPage>xref-test/**</excludedPage>
-				        	 </excludedPages> 
-				        </configuration>
-			     	</plugin>
 			     	
 		            <plugin>
 		                <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -344,6 +330,24 @@
 		                </reportSets>
 					</plugin>
 					
+					<plugin>
+				        <artifactId>maven-linkcheck-plugin</artifactId>
+				        <version>${version_linkcheck_plugin}</version>
+				        <configuration>
+							<!-- https://maven.apache.org/plugins/maven-linkcheck-plugin/linkcheck-mojo.html -->
+							<skip>${report_linkcheck_skip}</skip>
+							<timeout>500</timeout><!-- default is 2000 -->
+				        	<!-- excludedLinks -->
+				        	 <excludedPages><!-- FIXME enable linkcheck before releasing a version; maybe let release app go through all projects (clean svn update), build all site reports (multithreaded) and open sites in browser so one can esaily verify clean state -->
+		        	 			<!-- MINOR @DOC maybe include javadoc/xref in linkcheck from time to time to verify links even in javadoc;
+		        	 						but takes veeery long; NO: takes veery long anyway :-/ -->
+								<excludedPage>apidocs/**</excludedPage>
+				        	 	<excludedPage>xref/**</excludedPage>
+				        	 	<excludedPage>xref-test/**</excludedPage>
+				        	 </excludedPages> 
+				        </configuration>
+			     	</plugin>
+					
 				</plugins>
 				
 			</reporting>
@@ -351,7 +355,7 @@
 	    </profile>
 	    
 	</profiles>
-    
+	    
     
     <!-- ******************************************************************* -->
     <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
