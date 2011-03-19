@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.sf.josceleton.core.api.entity.Coordinate;
-import net.sf.josceleton.core.api.entity.CoordinateUtil;
 import net.sf.josceleton.core.api.entity.Direction;
+import net.sf.josceleton.prototype.console.SomeUtil;
 
 public class JointPanel extends JPanel {
 	
@@ -91,7 +91,7 @@ public class JointPanel extends JPanel {
 
 	public final void updateCoordinate(final Coordinate coordinate) {
 		for(final Entry<Direction, JTextField> entry : this.labelsByDirection.entrySet()) {
-			final String newText = String.valueOf(CoordinateUtil.prettyPrint(coordinate, entry.getKey()));
+			final String newText = String.valueOf(SomeUtil.prettyPrint(coordinate, entry.getKey()));
 			entry.getValue().setText(newText);
 		}
 	}

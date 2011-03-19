@@ -1,9 +1,10 @@
-package net.sf.josceleton.core.api.entity;
+package net.sf.josceleton.motion.impl;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.sf.josceleton.core.api.entity.Direction;
 
 /**
  * @since 0.4
@@ -30,24 +31,13 @@ public final class CoordinateUtil {
 	/**
 	 * @since 0.4
 	 */
-	public static int prettyPrint(final Coordinate coordinate, final Direction direction) {
-		final float rawValue;
-		
-		if(direction == Direction.X) {
-			rawValue = coordinate.x();
-		} else if(direction == Direction.Y) {
-			rawValue = coordinate.y();
-		} else { // there should be no 4th dimension in the near future ;)
-			rawValue = coordinate.z();
-		}
-		
-		return Math.round(rawValue * 100);
-	}
-	
 	public static boolean isCorrectValue(final float value, final Direction direction) {
 		return value >= LOWER_LIMIT_XYZ && value <= UPPER_LIMITS.get(direction).floatValue();
 	}
-	
+
+	/**
+	 * @since 0.4
+	 */
 	public static String getCorrectValueLabel(final Direction direction) {
 		return "[" + LOWER_LIMIT_XYZ + "-" + UPPER_LIMITS.get(direction) + "]";
 	}
