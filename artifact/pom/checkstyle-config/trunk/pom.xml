@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
     
     <artifactId>checkstyle-config</artifactId>
-    <version>0.4</version>
+    <version>0.5-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -67,9 +67,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/checkstyle-config/tags/checkstyle-config-0.4</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/checkstyle-config/tags/checkstyle-config-0.4</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/checkstyle-config/tags/checkstyle-config-0.4</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/checkstyle-config/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/pom/checkstyle-config/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/pom/checkstyle-config/trunk/</url>
     </scm>
     
     
