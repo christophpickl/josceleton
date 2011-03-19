@@ -5,13 +5,13 @@
     
 	<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
     <artifactId>model</artifactId>
-    <version>0.4-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
 	
 	<parent>
 		<groupId>net.sf.josceleton.playground.releaseapp.playground1</groupId>
 	    <artifactId>java-pom</artifactId>
 	    <version>0.4</version>
-	    <relativePath>../../java-pom/trunk/</relativePath>
+	    <relativePath>../../../java-pom/tags/java-pom-0.4/pom.xml</relativePath>
 	</parent>
 	
     <scm>
