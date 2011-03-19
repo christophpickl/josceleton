@@ -8,7 +8,7 @@ import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 
-public class TestableMotionSeparatorListener implements MotionSupplierListener {
+public class TestableMotionSupplierListener implements MotionSupplierListener {
 	
 	private final List<OnMovedParameter> onMovedInvocations = new LinkedList<OnMovedParameter>();
 		

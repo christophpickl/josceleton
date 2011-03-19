@@ -6,7 +6,7 @@ import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
 /**
  * @since 0.4
  */
-public interface MotionSeparatorFactory {
+public interface MotionSupplierInternalFactory {
 
 	/**
 	 * @since 0.4

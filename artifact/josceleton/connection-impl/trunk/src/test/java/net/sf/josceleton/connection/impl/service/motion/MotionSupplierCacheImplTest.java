@@ -7,20 +7,20 @@ import net.sf.josceleton.connection.api.service.motion.MotionSupplierFactoryTest
 
 import org.jmock.Expectations;
 
-public class MotionSeparatorCacheImplTest extends MotionSupplierFactoryTest<MotionSeparatorCacheImpl> {
+public class MotionSupplierCacheImplTest extends MotionSupplierFactoryTest<MotionSupplierFactoryImpl> {
 
 	@Override protected final MotionSupplierFactory createTestee(
 			final Collection<ExpectedFactoryCreateInvocationsWithReturnValue> createInvocations) {
 		
-		final MotionSeparatorFactory factory = this.mock(MotionSeparatorFactory.class);
+		final MotionSupplierInternalFactory factory = this.mock(MotionSupplierInternalFactory.class);
 		
 		this.checking(new Expectations() { {
 			for (final ExpectedFactoryCreateInvocationsWithReturnValue invocation : createInvocations) {
-				oneOf(factory).create(invocation.getConnection()); will(returnValue(invocation.getSeparator()));
+				oneOf(factory).create(invocation.getConnection()); will(returnValue(invocation.getSupplier()));
 			}
 		}});
 		
-		return new MotionSeparatorCacheImpl(factory);
+		return new MotionSupplierFactoryImpl(factory);
 	}
 	
 }

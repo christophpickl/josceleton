@@ -20,9 +20,9 @@ import com.google.inject.assistedinject.Assisted;
 /**
  * @since 0.4
  */
-class MotionSeparatorImpl
+class MotionSupplierImpl
 	extends DefaultAsyncFor<User, MotionSupplierListener>
-	implements MotionSeparatorInternal {
+	implements MotionSupplierInternal {
 	
 	private final Connection connection;
 	
@@ -33,7 +33,7 @@ class MotionSeparatorImpl
 	private int countAddedListeners = 0;
 	
 	
-	@Inject MotionSeparatorImpl(@Assisted final Connection connection, final SkeletonFactory skeletonFactory) {
+	@Inject MotionSupplierImpl(@Assisted final Connection connection, final SkeletonFactory skeletonFactory) {
 		this.connection = connection;
 		this.skeletonFactory = skeletonFactory;
 	}

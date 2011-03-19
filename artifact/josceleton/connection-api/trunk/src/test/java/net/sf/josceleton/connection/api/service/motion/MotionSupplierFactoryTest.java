@@ -17,21 +17,21 @@ public abstract class MotionSupplierFactoryTest<C extends MotionSupplierFactory>
 			final Collection<ExpectedFactoryCreateInvocationsWithReturnValue> createInvocations);
 
 	@Test public final void everything() {
-		final Connection expectedConnection1 = this.mock(Connection.class, "connection1");
-		final Connection expectedConnection2 = this.mock(Connection.class, "connection2");
-		final MotionSupplier expectedSeparator1 = this.mock(MotionSupplier.class, "separator1");
-		final MotionSupplier expectedSeparator2 = this.mock(MotionSupplier.class, "separator2");
+		final Connection expConn1 = this.mock(Connection.class, "expConn1");
+		final Connection expConn2 = this.mock(Connection.class, "expConn2");
+		final MotionSupplier expSupp1 = this.mock(MotionSupplier.class, "expSupp1");
+		final MotionSupplier expSupp2 = this.mock(MotionSupplier.class, "expSupp2");
 		
 		final MotionSupplierFactory testee = this.createTestee(Arrays.asList(
-			new ExpectedFactoryCreateInvocationsWithReturnValue(expectedConnection1, expectedSeparator1),
-			new ExpectedFactoryCreateInvocationsWithReturnValue(expectedConnection2, expectedSeparator2)
+			new ExpectedFactoryCreateInvocationsWithReturnValue(expConn1, expSupp1),
+			new ExpectedFactoryCreateInvocationsWithReturnValue(expConn2, expSupp2)
 		));
 		
-		assertThat(testee.create(expectedConnection1), is(expectedSeparator1));
-		assertThat(testee.create(expectedConnection1), is(expectedSeparator1));
-		assertThat(testee.create(expectedConnection2), is(expectedSeparator2));
-		assertThat(testee.create(expectedConnection1), is(expectedSeparator1));
-		assertThat(testee.create(expectedConnection2), is(expectedSeparator2));
+		assertThat(testee.create(expConn1), is(expSupp1));
+		assertThat(testee.create(expConn1), is(expSupp1));
+		assertThat(testee.create(expConn2), is(expSupp2));
+		assertThat(testee.create(expConn1), is(expSupp1));
+		assertThat(testee.create(expConn2), is(expSupp2));
 	}
 
 	
@@ -39,20 +39,20 @@ public abstract class MotionSupplierFactoryTest<C extends MotionSupplierFactory>
 		
 		private final Connection connection;
 		
-		private final MotionSupplier separator;
+		private final MotionSupplier supplier;
 		
 		public ExpectedFactoryCreateInvocationsWithReturnValue(final Connection connection,
-				final MotionSupplier separator) {
+				final MotionSupplier supplier) {
 			this.connection = connection;
-			this.separator = separator;
+			this.supplier = supplier;
 		}
 		
 		public final Connection getConnection() {
 			return this.connection;
 		}
 		
-		public final MotionSupplier getSeparator() {
-			return this.separator;
+		public final MotionSupplier getSupplier() {
+			return this.supplier;
 		}
 	}
 }

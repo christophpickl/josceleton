@@ -45,7 +45,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 	private TestableOscPort testableOscPort;
 	private TestableConnectionListener connectionCollector;
 	private TestableUserServiceListener userServiceCollector;
-	private MotionSupplierFactory separatorCache;
+	private MotionSupplierFactory supplierFactory;
 	
 	@BeforeMethod public final void setUpConnection() {
 		this.testableOscPort = new TestableOscPort();
@@ -66,7 +66,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		this.injector = Guice.createInjector(functionalTestModule);
 		final Connector connector = this.injector.getInstance(Connector.class);
 		
-		this.separatorCache = this.injector.getInstance(MotionSupplierFactory.class);
+		this.supplierFactory = this.injector.getInstance(MotionSupplierFactory.class);
 		
 		this.connection = connector.openConnection();
 		this.connectionCollector = new TestableConnectionListener();
@@ -81,8 +81,8 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		return this.injector;
 	}
 	
-	protected final MotionSupplier getMotionSeparator() {
-		return this.separatorCache.create(this.connection);
+	protected final MotionSupplier getMotionSupplier() {
+		return this.supplierFactory.create(this.connection);
 	}
 	
 	@AfterMethod public final void tearDownConnection() {
@@ -92,7 +92,7 @@ public abstract class AbstractIntegrationTest extends AbstractMockeryTest {
 		this.userService = null;
 		this.connection.close();
 		this.connection = null;
-		this.separatorCache = null;
+		this.supplierFactory = null;
 		// MINOR @TEST maybe remove all listeners in tear down 
 	}
 

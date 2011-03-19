@@ -12,9 +12,9 @@ import com.google.inject.assistedinject.FactoryProvider;
 public class ConnectionImplServiceMotionModule extends AbstractModule {
 
 	@Override protected final void configure() {
-		bind(MotionSupplierFactory.class).to(MotionSeparatorCacheImpl.class).in(Scopes.SINGLETON);
-		bind(MotionSeparatorFactory.class).toProvider(
-				FactoryProvider.newFactory(MotionSeparatorFactory.class, MotionSeparatorImpl.class));
+		bind(MotionSupplierFactory.class).to(MotionSupplierFactoryImpl.class).in(Scopes.SINGLETON);
+		bind(MotionSupplierInternalFactory.class).toProvider(
+				FactoryProvider.newFactory(MotionSupplierInternalFactory.class, MotionSupplierImpl.class));
 	}
 
 }

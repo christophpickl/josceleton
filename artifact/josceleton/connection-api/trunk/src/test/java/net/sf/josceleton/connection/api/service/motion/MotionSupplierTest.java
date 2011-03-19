@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.ConnectionListener;
-import net.sf.josceleton.connection.api.test.TestableMotionSeparatorListener;
+import net.sf.josceleton.connection.api.test.TestableMotionSupplierListener;
 import net.sf.josceleton.core.api.entity.Coordinate;
 import net.sf.josceleton.core.api.entity.User;
 import net.sf.josceleton.core.api.entity.UserState;
@@ -36,10 +36,10 @@ public abstract class MotionSupplierTest<M extends MotionSupplier> extends Abstr
 	
 	@Test public final void justEverything() {
 		final User user = this.mock(User.class);
-		final Torso jointMsg1Joint = Joints.TORSO();
+		final Joint jointMsg1Joint = Joints.TORSO();
 		final Coordinate jointMsg1Coord = this.mock(Coordinate.class);
 		final TestableJointMessage jointMsg1 = new TestableJointMessage(user, jointMsg1Joint, jointMsg1Coord);
-		final TestableMotionSeparatorListener listener = new TestableMotionSeparatorListener();
+		final TestableMotionSupplierListener listener = new TestableMotionSupplierListener();
 		
 		final Connection connection = this.mock(Connection.class);
 		final SkeletonInternal skeleton = this.mock(SkeletonInternal.class);

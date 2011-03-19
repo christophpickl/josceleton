@@ -49,7 +49,7 @@ class PlaygroundApp {
 		final Connector connector = injector.getInstance(Connector.class);
 		final Connection connection = connector.openConnection();
 		final MotionSupplierFactory cache = injector.getInstance(MotionSupplierFactory.class);
-		final MotionSupplier separator = cache.create(connection);
+		final MotionSupplier supplier = cache.create(connection);
 		
 		connection.getUserService().addListener(new UserServiceListener() {
 			@Override public void onUserWaiting(final User user) {
@@ -57,11 +57,11 @@ class PlaygroundApp {
 			
 			@Override public void onUserProcessing(final User user) {
 				System.out.println("onUserProcessing(user=" + user + ")");
-				separator.addListenerFor(user, listener); }
+				supplier.addListenerFor(user, listener); }
 			
 			@Override public void onUserDead(final User user) {
 				System.out.println("onUserDead(user=" + user + ")");
-				separator.removeListenerFor(user, listener); }
+				supplier.removeListenerFor(user, listener); }
 			});
 	}
 
@@ -77,7 +77,7 @@ class PlaygroundApp {
 		final MotionSupplierFactory cache = new MotionSupplierFactory() { // singleton!
 			@Override public MotionSupplier create(final Connection c2) {
 				return null; } };
-//		final MotionSupplier ms = Joseleton.getMotionSeparator(c); { internally calls lookupMotionSeparator }
+//		final MotionSupplier ms = Joseleton.getMotionSupplier(c); { internally calls lookupMotionSupplier }
 		final MotionSupplier ms = cache.create(c);
 //		
 		final MotionSupplierListener msl = new MotionSupplierListener() {
