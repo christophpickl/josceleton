@@ -7,7 +7,7 @@ from logging import * #@UnusedWildImport
 from Releaser import Releaser #@UnusedImport
 from Packager import Packager #@UnusedImport
 from config_global import PRECONDITIONS_ENABLED
-from sysexec import uname, sayOsx, notifye, notifys, notifyi
+from sysexec import * #@UnusedWildImport
 
 def loadDynamicConfiguration(configModuleName):
     exec('from %s import Configuration' % configModuleName)
