@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     
     <artifactId>commons</artifactId>
-    <version>0.4</version>
+    <version>0.5-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -26,9 +26,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/commons/tags/commons-0.4</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/commons/tags/commons-0.4</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/commons/tags/commons-0.4</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/commons/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/commons/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/commons/trunk/</url>
     </scm>
     
     
