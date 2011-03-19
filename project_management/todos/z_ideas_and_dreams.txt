@@ -14,6 +14,12 @@
 ==========================================
 IDEAS
 ==========================================
+! irgendwie das multiuser ding nutzen!
+	zb ein spiel (klavier spielen) koennen mehrere gleichzeitig (jeder ein anderes ton/instrument)
+! eigener youtube account ist eine wirklich gute idee!
+	* eigene videos hochstellen (standard gui skeleton sample, ableton-midi, hitwall klavier, ... sehr simples roboter-ext sample)
+	* gute favourites list von anderen kinecthacks machen
+	* auf eigener seite dann diese eigenen youtube videos referenzieren... plus gute von anderen auch
 ! irgendwo das wort KINECTOR verwenden (evtl facade klasse Josceleton?)
 * kinect ideen
 	* projektor verwenden, und sich vor/hinter leinwand stellen http://www.youtube.com/watch?v=hkHUGxP3ecI#at=53

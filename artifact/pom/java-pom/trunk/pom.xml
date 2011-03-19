@@ -2,7 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>${project.artifactId}</name>
-    <description>The super POM for all josceleton java artifacts.</description>
+    <description>
+    	TODO: Will be => The super POM for all josceleton java artifacts.
+    	Currently provides non-java-only related, but somehow more josceleton specific,
+    	but in josceleton-pom only version numbers.
+    </description>
     <packaging>pom</packaging>
     
     <artifactId>java-pom</artifactId>

@@ -1,3 +1,66 @@
+! get rid of ugly sourceforge FORUM!
+	// sourceforge wird eigentlich nur benutzt fuer download link verweise, ansonsten sollte man nix von sourceforge sehen!
+@ javadoc manual gscheid anschaun: http://download.oracle.com/javase/1.5.0/docs/tooldocs/windows/javadoc.html#javadoctags
+- @SITE enhancement fuer site reactor:
+  * nicht nur versions fuer parent,dep.version.property, sonder auch =>
+	im reactor updaten path: modules,parent + eigene version + einchecken
+	!!! release-app muss trunk nehmen und selbst mit svn taggen (NICHT MVN!!)
+		dann svn update SVN_ROOT selbst wieder
+		dann auf tag arbeiten und ein (mvn dashboard:dashboard) mvn deploy ausfuehren, damit site available ist!
+	+ selbst muss man dann reactor wieder updaten
+- architektur diagram aktuell halten
+	* vor allem wichtig diagrame von api (fuer user)
+	* ein kleineres diagram mit grober uebersicht ueber submodule
+	* ein grosses diagram mit allen (relevanten) api klassen, ohne _besonders_ darauf achten dass es verschiedene submodule gibt
+	* aber auch ein internes diagram warten fuer impls
+@site:
+	=> zielgruppe sind entwickler, dh einfache seite (kein flash)
+	* was machen mit mvn site? => es ist dokumentation only!
+	* auf josceleton.sf.net/ feine seite (typo3?) geben
+		// stil wie hirt seite: weisser bg; wenig drauf; feine linien; schoene codesamles (abgerundete ecken)
+	* in navi gibt es dann "external links" sektion, mit inhalt zb: dokumentation (mvn site), forum? (evtl schoeneres in die seite einbaun)
+- @DOC wegen javadoc/doclet @since problem => google guice leute direkt fragen wie sie das gemacht haben
+- @site/download: auch svn pfad zum checkout hinschreiben
+- @site/startsite: kontakt einfach machen (mail, sf forum, bug/feature reporten, ...)
+	* evtl sogar skype? sowas wie: auf der startseite typischen browser-skype-builtin-call-button reingeben mit "get in touch with me"
+- @site: eigentlich ist seite komplett zweigeteilt:
+	1. extern: download, documentation (getting started, samples, help)
+	~ so zwischendrinnen: changelog, roadmap, sourcecode (main+test von xref + aggregiert), reports (javadoc, cobertura, etc)
+	2. intern: fuer developer; coding policy, release guide, build erklaert, etc
+
+@JavaDoc: in Josceleton facade klasse zb:
+	/**
+	 * Simply instantiates and returns a {@link JosceletonGuiceModule}, which then can be used with your own module.
+	 * 
+	 * Reusing a Guice Module is done by installing it into your own which can be done pretty straight forward: 
+	 * 
+	 * <pre>
+	 * {@code
+	 * Module myModule = new AbstractModule() {
+	 *   @Override protected void configure() {
+	 *     install(Josceleton.newGuiceModule());
+	 *     
+	 *     // and of course your own bindings:
+	 *     bind(Xyz.class).to(..);
+	 *   }
+	 * }
+	 * }
+	 * </pre>
+	 * 
+	 * @return a ready to use, fully object wired, Google Guice module   
+	 * @since 0.4
+	 */
+	public static Module newGuiceModule() {
+		return new JosceletonGuiceModule();
+	}
+@site:
+	simian duplication -= http://www.harukizaemon.com/simian/index.html
+	javadoc warnings report
+	// cobertura vs clover
+	* rename "Cobertura" to => Coverage
+	* rename Surefire to => Test report
+- @site: javadoc merged, aber OHNE impl konfigureren!
+- @site: change tasktag description to something shorter (wird in dashboard report so schirch anzeigt)
 
 ======================================================
 @METRICS

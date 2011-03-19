@@ -1,4 +1,22 @@
-
+- @API CODE GestureListener:  which argument should be passed to GestureListener?
+ *) skeleton, yes, definetely useful 
+ *) relevantJoints, yep... maybe create own type
+ *) gesture itself? maybe... maybe not, as introduces additional dependency (but would be handy)
+ *) old approach!!! was nice introducing <R ext GestureResult> type => each Gesture can have its specific result!
+ *) maybe also user? DEFINETELY NO!!! ... because when added gesture, one knew which user he passed!
+- @motions: emulatoren schreiben
+	* emulieren gaengige bewegungen
+	* nuetzlich fuer unit/integration tests (oder auch manuelle tests)
+! @API gesture idee: CoordinateFixationGesture(Joint toFixate, int msToWaitToFix, double deviationMovement, int msToTimeout)
+	- dispatches onFixated(Coordinate)
+	- dispatches timeout if msToTimeout is reached
+- josceleotn sollte motion timeout selbst haben (wenn zb selber osceleton prozess killt, dann lauft josceleton weiter mit user...)
+	// dh man darf aber NICHT PERFORMANCE toeten => background thread alle ~20sek laufen lassen, der schaut ob eh dazwischen aktion war (motion == joint message)
+!!! motion-prototype erstellen (playground fuer neue motion sachen)
+	-> armcoordinate, position, "arm-abgewinkelt-winkel-wert"
+- @motion idee: zb wenn man sich vor/zurueck/links/rechts beugt, dann zb im spiel sich in die richtung bewegen/fahren
+	=> dh geste muss verschiedene "states" als resultat liefern (=> evtl doch ein Result type?)
+- @api: fuer advanced gestures (zb swipe) muss auch geschwindigkeit mitberuecksichtigt werden
 - zwei verschiedenen kategorien (bis jetzt):
 	1. geste == dynamisch
 		"geste wird erkannt anhand von bewegungen"

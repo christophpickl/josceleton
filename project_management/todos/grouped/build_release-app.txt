@@ -1,3 +1,6 @@
+@release app: growl notification einbaun: http://growl.info/documentation/developer/python-support.php
+	(neben: print und say, dritte moeglichkeit sich auszudruecken)
+
 - @release-app: anstatt nur datum im targetOrdner, auch sowas wie zb "2010-xx-yy-releaser-coroporate-pom" und "2010-xx-yy-package-josceleton"
 - @release-app: soll report ausprinten koennen (der text der in site/release_handbook.xml drinnen war soll exakt nachbaut werden! aber halt dynamisch generiert ;)
 ! release-app fixen wenn svn pfad anders ist:

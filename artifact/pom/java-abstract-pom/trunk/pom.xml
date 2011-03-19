@@ -2,7 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>${project.artifactId}</name>
-    <description>An additional Java super POM abstraction layer, to split up those huge monster files :)</description>
+    <description>
+    	Contains project independent settings for any Java based artifact.
+    	And also an additional Java super POM abstraction layer, to split up those huge monster files :)
+    </description>
     <packaging>pom</packaging>
     
     <artifactId>java-abstract-pom</artifactId>
@@ -521,7 +524,7 @@
 		            	<configuration>
 		            		<!-- for configuration options see: http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html -->
 		            		
-		            		<!-- TODO @SITE JAVADOC POM: excludePackageNames does not work -->
+		            		<!-- TODO @SITE JAVADOC POM: excludePackageNames does not work; additionaly this should not be in java-abstract-pom but in java-pom -->
             				<excludePackageNames>net.sf.josceleton.core.impl.*:net.sf.josceleton.connection.impl.*:net.sf.josceleton.motion.impl.*</excludePackageNames>
             				
 		            		<!-- in community software we dont want to show up names, it belongs to all of us -->

@@ -1,3 +1,25 @@
+! grundlegende release-plugin sachen schon im POM konfigurieren, und nur was notwendig ist von release-app setzen lassen (credentials muss von release-app kommen)
+! wenn artifacts->artifact move: checkstyle-config ghoert ...wohin?  aufjeden nicht in pom/
+	=> wichtig das als einzelnes projekt in eclipse ist (nicht wie bisher in poms-reactor drinnen)
+- um java POM noch weiter aufzuteilen => introduce "common-java-dependencies" dependency-pom (auch NUR <dependencies> section)
+* irgendwie versuchen eigene dependencies rausbekommen (vor allem guice 2.0-josceleton)
+!!! evtl funktionieren reaktor projekte doch besser als gedacht mit "advanced reactor options"
+	URL: http://www.sonatype.com/people/2009/10/maven-tips-and-tricks-advanced-reactor-options/
+	-pl, Ðprojects
+		$ mvn --projects sample-client-connector,sample-rest install
+	        "Build specified reactor projects instead of all projects"
+	+++ make dependent projects
+		mvn --projects sample-services --also-make-dependents install
+	// resume: mvn --projects sample-webapp --also-make \ --resume-from sample-services install
+-- @POM erklaert have a look at http://maven.apache.org/guides/introduction/introduction-to-the-pom.html
+! @BUILD use mvn dependency:analyze
+- @BUILD mvn bietet build timestamp propert ${maven.build.timestamp}
+  * formatieren mit <properties><maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format></properties>
+- @custom mojo idee:
+	* zusaetzlich was schreiben, dass growl notification ausgibt wenn bestimmte stellen passiert werden (compile, test, verify, report/site, package, install, deploy
+	* am anfang liste von definierten properties ausgaben + wichtigsten infos (basedir, profile aktiviert, etc)
+	* neben logging moeglichkeit natuerlich
+- @build: doch ein release profil einfuehren, wo dann reports eingeschalten werden, zb: linkcheck und dependencies report
 
 ==========================================
 @DISTRIBUTION

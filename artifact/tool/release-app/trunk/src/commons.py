@@ -4,7 +4,6 @@ import time
 from logging import * #@UnusedWildImport
 from config_global import SYSEXEC_ENABLED
 from sysexec import mkdir
-from logging import logt
 
 # returns: "/maven/release/net/sf/josceleton/delme/playground/release/release-playground/0.2/release-playground-0.2.pom"
 def formatArtifactRelativeUrlBy(artifact):

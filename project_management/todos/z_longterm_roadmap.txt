@@ -1,9 +1,39 @@
 
+grober plan:
+	1.0: alles fuer pulse fertig; midi; range
+	2.0: eigener prototyp wo man anwendung bedient: piano demo app
+	3.0: eigenes application framework
+
+
+- @version 2.0: alle osceleton.exe argumente unterstuetzen
+	zb: x/y/z multiplizier optiopn; andere modes/formats, network, ...
+		// Coordinate muesste dann aufgesplittet werden, da ja nicht fix (standard) float angenommen werden kann; andere typen geben muessen
+	=> also von "openConnectionOnPort(23)" zu: "openConnectionWithArgs( { port: 23, multiplier: Foo, format: Bar } )"
+		// all args can be left null by user, as osceleton does not require any
+! evtl schon mal gaaanz weit planen: // demanch JETZT auch schon namen/gruppierungen waehlen (stabiler fuer zukunft)
+	-- application framework: braucht viele fertige motions, bietet viel gui fertiges an
+	-- "interoperability-bridge" modules, wie zb MIDI, LEGO, ... andere protokolle was gerne von kuenstlern verwendet werden
+	-- ersten spiele (wiifit like)
+	-- abhaengigkeit zu OSCeleton raus
+		* unschoen dass zusaetzliche abhaengigkeit (prozess muss gestartet werden, etc); kann aber noch zeitlang dauern bis alternative gibt
+		* evtl gibts was direkt fuer java (bzw ueber JNI)
+
+
+pre 1.0
 	* basic osceleton connection
 	* connection services (UserManager, ~motioneventdispatcher)
 	* position detector (psi, xbox)
 	* gesture detector (hit wall)
-	
+pre 2.0
+       * spin-off module: debugger app
+       * spin-off module: midi rerouter
+pre 3.0        
+       * spin-off module: mindstorm bridge
+       
+       
+       
+       
+       
         A
         |
   +-----+-------+
@@ -12,8 +42,6 @@
         |
         V
         
-       * spin-off module: debugger app
-       * spin-off module: midi rerouter
 
         A
         |
@@ -22,5 +50,3 @@
   +-----+-------+
         |
         V
-        
-       * spin-off module: mindstorm bridge

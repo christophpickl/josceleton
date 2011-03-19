@@ -1,3 +1,7 @@
+-- idee: tests evtl in groovy schreiben ?!
+! @TEst jmock capability of States anschauen [http://www.jmock.org/cheat-sheet.html]
+- log4j in tests programatically configuren (am besten via AOP ;) da man sonst super AbstractTest klasse braeuchte
+!! igitt, GuiUtilTest macht gui ding auf waehrend unittests ! :(
 
 ======================================================
 @EXCEPTION HANDLING

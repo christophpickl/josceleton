@@ -1,4 +1,19 @@
-
+! toString fuer Joint: net.sf.josceleton.core.api.entity.body.JointsImplProvider$RightHipImpl@4463a1ae
+!! oja doch: auf jeden fall fuer guice module PrivateModule verwenden
+	=> je weniger nach aussen hin zugreifbar/bekannt desto besser => weniger abhaengigkeiten, weniger API == besser!
+- @CODE rename ClassAdapter to ClassWrapper
+-- @CODE mehr eigene exception typen (auch fuer tests wichtig)
+- refactor core module:
+	* ist eigentlich ein "entity" module
+	* async raus geben aus josceleton scope => commons (evtl commons daweil noch nicht aufsplitten in commons-async etc)
+- remove Util classes (not all, only some) from pulse, as were already moved to josceleton commons
+- equals/hashcode/toString schreiben; vor allem VOs, zb: SkeletonImpl!!! GestureConfigs
+!! @code: unbedingt auf SYNCHRONIZED achten ob gebraucht (da ja alles async ist, multi-threaded!!)
+- @CODE very LUXURY: listeners komplett mit events umbauen
+	* in Listeners, alle onXyz(..) ersetzen durch:
+		on(XyzMovedEvent)
+		on(XyzAbortedEvent)
+	+ Event.getSource():Object
 ======================================================
 
 !!! @code: BodyRecentStorage.getBodyPartCoordinate(BodyPart):Coordinate THROWS NoCoordinatesDataAvailableException == CheckedException!
