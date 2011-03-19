@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     
     <artifactId>josceleton</artifactId>
-    <version>0.4</version>
+    <version>0.5-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -72,9 +72,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton/tags/josceleton-0.4</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton/tags/josceleton-0.4</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/josceleton/tags/josceleton-0.4</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/josceleton/trunk/</url>
     </scm>
     
     
