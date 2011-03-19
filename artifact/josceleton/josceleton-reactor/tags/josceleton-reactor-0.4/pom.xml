@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- Will be used in site, and as this reactor project deploys its site as the "frontpage", have to name it that way -->
+    <name>Josceleton</name>
+    <description>
+    	The reactor project for all public josceleton artifacts.
+    	This reactor is actually just used to create aggregated reports
+    	and will be processed by the custom release-app tool.
+    </description>
+    <packaging>pom</packaging>
+    
+    <artifactId>josceleton-reactor</artifactId>
+    <version>0.4</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+        <groupId>net.sf.josceleton</groupId>
+        <artifactId>java-pom</artifactId>
+        <version>0.4</version>
+    	<relativePath>../java-pom/pom.xml</relativePath>
+    </parent>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                            M O D U L E S                            -->
+    <!-- ******************************************************************* -->
+    
+    <!-- to be able to deploy this reactor (and its attached site) disable submodules temporarily (will be solved differently in future) -->
+    <modules>
+    	<module>../../../commons/tags/commons-0.4</module>
+    	<module>../../../core-api/tags/core-api-0.4</module>
+    	<module>../../../core-impl/tags/core-impl-0.4</module>
+    	<module>../../../connection-api/tags/connection-api-0.4</module>
+    	<module>../../../connection-impl/tags/connection-impl-0.4</module>
+    	<module>../../../motion-api/tags/motion-api-0.1</module>
+    	<module>../../../motion-impl/tags/motion-impl-0.1</module>
+    	<module>../../../josceleton/tags/josceleton-0.4</module>
+    	
+<!--    	<module>(system-)tests</module>-->
+<!--    	<module>samples</module>-->
+<!--    	<module>console-api</module>-->
+<!--    	<module>console-impl</module>-->
+<!--    	<module>NO commons-midi</module>-->
+<!--    	<module>NO commons-gui</module>-->
+
+<!--    	<module>joscelton-debugger-reactor {joscelton-debugger-app/-logic/-view/-model}</module>-->
+    </modules>
+    
+    <!-- TODO @POM build proper assemblies/packages for josceleton reactor -->
+    <!-- see: http://docs.codehaus.org/display/MAVENUSER/FAQs-1#FAQs-1-HowdoIexecutetheassemblypluginwithdifferentconfigurations -->
+<!--   <build>-->
+<!--  <plugins>-->
+<!--    <plugin>-->
+<!--      <groupId>org.apache.maven.plugins</groupId>-->
+<!--      <artifactId>maven-assembly-plugin</artifactId>-->
+<!--      <executions>-->
+<!--        <execution>-->
+<!--          <id>1</id>-->
+<!--          <phase>install</phase>-->
+<!--          <goals>-->
+<!--            <goal>assembly</goal>-->
+<!--          </goals>-->
+<!--          <configuration>-->
+<!--            <descriptor>src/main/descriptors/bin.xml</descriptor>-->
+<!--            <finalName>${project.build.finalName}-bin</finalName>-->
+<!--          </configuration>-->
+<!--        </execution>-->
+<!---->
+<!--        <execution>-->
+<!--          <id>2</id>-->
+<!--          <phase>install</phase>-->
+<!--          <goals>-->
+<!--            <goal>assembly</goal>-->
+<!--          </goals>-->
+<!--          <configuration>-->
+<!--            <descriptor>src/main/descriptors/src.xml</descriptor>-->
+<!--            <finalName>${project.build.finalName}-src</finalName>-->
+<!--          </configuration>-->
+<!--        </execution>-->
+<!--      </executions>-->
+<!--    </plugin>-->
+<!--  </plugins>-->
+<!--</build>-->
+   
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton-reactor/tags/josceleton-reactor-0.4/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/josceleton-reactor/tags/josceleton-reactor-0.4/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/josceleton-reactor/tags/josceleton-reactor-0.4/</url>
+    </scm>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+        
+    <distributionManagement>
+    	<!-- change default site deploy path to webroot for this specific artifact -->
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>scp://shell.sourceforge.net/home/project-web/josceleton/htdocs/</url>
+		</site>
+    </distributionManagement>
+    
+</project>

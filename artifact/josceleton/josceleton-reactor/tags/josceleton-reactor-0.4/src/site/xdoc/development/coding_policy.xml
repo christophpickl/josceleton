@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Coding Policy</title>
+	</properties>
+	<body>
+	
+		<section name="Coding Policy">
+			
+			<p>
+				TODO!
+			</p>
+			
+		<!--
+
+coding policy categories:
+	. format
+	. architektur
+	. design
+	. naming
+	. code
+	. comments
+	. exception
+	. best pracices
+
+* law of diameter
+* one (and only one!) stmt per line
+* first of all: provide user a code template sample, including: indentation, final, whitespace
+* 100% coverage + design for testability + TDD
+* split API from IMPL (got internal API)
+	- hide implementation completely from API!
+* immutability, final, no setters, no state
+  - copy/immutable collections, array system copy
+  - design for extension (just as checkstyle says)
+* favour interfaces over classes (even for VOs? => YES!)
+* favour unchecked exceptions
+	- all extending single base (JosceletonException)
+	- favour static factory methods => protected constructor
+	- provide verbose (templated) exception message with adequat factory method's arguments
+* fail often, fail early
+* refactor often, refactory early ;)
+* no overloading => use different name
+* no null values! at all!
+* keep managable sizes:
+	short methods, short classes;
+	less classes in pgk, less packages in module;
+	less modules in projects;
+* DRY
+* SoC
+* explicity dependencies
+* toString pattern
+* javadoc (@since) mandatory for API types
+* proper exception handling, no "try { ... } catch(Exception e) { ... } " => catch(SpecificException e)!
+* statisc is discouraged => use guice singleton scoped dependency
+* generally "defensive"; eg argument checks
+		
+		LINKS TO REPORTS
+		coverage
+		!!!checkstyle!!! (hat saemtlich rules in summary (hat halt schirches format wenn ohne namespace))
+		pmd, cpd, findbugs
+		tasktags
+		
+		
+		METRICS/BUILD
+		100% coverage (line and branch!)
+		pmd, cpd, findbugs
+		tasktags
+		
+		
+		TOPICS
+		fluent interfaces
+		no classes just interfaces (especially for public APIs)
+		immutability (final & co); but still open for extensions (hooks, empty non-final methods)
+		keep visibility as low as possible (common methods, constructor, even class to package private)
+		low coupling, high cohesion
+		defensive
+		importance of naming
+		testability
+		SoC
+		small parts (methods, classes, packages, modules, reactors, projects)
+		DRY
+		~KISS
+		exceptions (unchecked, chaining)
+		 -->
+
+		</section>
+		
+	</body>
+</document>

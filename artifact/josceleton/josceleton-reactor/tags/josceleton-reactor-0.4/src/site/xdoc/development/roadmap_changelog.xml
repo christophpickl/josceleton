@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	
+	<properties>
+		<title>Roadmap an Changelog</title>
+	</properties>
+	
+	<body>
+		
+		<section name="The Future and the Past">
+		
+			<p>
+				On this page you will find two subsections: a roadmap about planned features (representing the future) 
+				and a changelog with a list of closed issues (representing the past).
+			</p>
+			
+			
+		    <!-- ******************************************************************* -->
+		    <!--                            R O A D M A P                            -->
+		    <!-- ******************************************************************* -->
+		    
+			<subsection name="Roadmap">
+			
+				<p>
+					The following list shows a very rough and high-level view of upcoming milestones/features.
+					For a more concrete list of features please have a look at the 
+					<a href="https://sourceforge.net/apps/mantisbt/josceleton/roadmap_page.php">Mantis Roadmap</a>.
+				</p>
+				
+				
+			    <!-- 0.6 -->
+		    	<!-- *********************************************************** -->
+				<h4>Version 0.6</h4>
+				<p><i>Test and Code cleanup version only.</i></p>
+				<ul>
+					<li>General Tests Improvements (enhanced, refactoring)</li>
+					<li>System Tests (use <code>osceletion -i some_recorded_session.oni</code>)</li>
+					<li>Code Cleanup (refactoring, DRY)</li>
+				</ul>
+				
+			    <!-- 0.5 -->
+		    	<!-- *********************************************************** -->
+				<h4>Version 0.5</h4>
+				<p><i>Work in prgoress</i></p>
+				<ul>
+					<li>Not yet available :)</li>
+				</ul>
+				
+			    <!-- 0.4 -->
+		    	<!-- *********************************************************** -->
+				<h4>Version 0.4</h4>
+				<p>Finished (part of) foundation logic and introducing first <b>Gesture</b>.</p>
+				<ul>
+					<li>Add <code>MotionSeparator</code></li>
+					<li>Add first gesture detection: <code>HitWallGesture</code></li>
+					<li>Console Window Prototype (with Growl integration!)</li>
+				</ul>
+				
+			</subsection>
+			
+			
+		    <!-- ******************************************************************* -->
+		    <!--                          C H A N G E L O G                          -->
+		    <!-- ******************************************************************* -->
+		    
+			<subsection name="Changelog">
+				
+			    <!-- 0.3 -->
+		    	<!-- *********************************************************** -->
+				<h4>Version 0.3 (2001-03-15)</h4>
+				<p>
+					Enhanced foundation logic: Introducing new <code>UserService</code> to provide a consistent user management.
+				</p>
+				<ul>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=15">#0000015</a> 
+						<code>[API Enhancement]</code> Add UserService to properly keep track of available users</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=20">#0000020</a> 
+						<code>[API Enhancement]</code> Bugfix: Crash when OSCeleton gets restarted and reuses user IDs</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=7">#0000007</a> 
+						<code>[Test]</code> Add Integration Tests</li>
+				</ul>
+				
+			    <!-- 0.2 -->
+		    	<!-- *********************************************************** -->
+				<h4>Version 0.2 (2011-03-11)</h4>
+				<p>
+					Introducing Josceleton Facade providing a simplified access to the API. This module also provides a 
+					<a href="http://code.google.com/p/google-guice/" target="_blank">Guice</a> module for immediate usage.
+				</p>
+				<ul>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=10">#0000010</a> 
+						<code>[API Enhancement]</code> Implement new Josceleton Facade Module</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=3">#0000003</a> 
+						<code>[Build Management]</code> Enhance developer environment</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=4">#0000004</a> 
+						<code>[Documentation]</code> Setup initial documentation</li>
+				</ul>
+		
+			    <!-- 0.1 -->
+		    	<!-- *********************************************************** -->
+				<h4>Version 0.1 (2011-03-08)</h4>
+				<p>
+					Initial version providing simple access to a OSCeleton server.
+					Mostly working on project setup and build management.
+				</p>
+				<ul>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=12">#0000012</a> 
+						<code>[API Enhancement]</code> Implement basic connection to OSCeleton</li>
+					<li><a href="https://sourceforge.net/apps/mantisbt/josceleton/view.php?id=13">#0000013</a> 
+						<code>[Code Quality]</code> Comply with comprehensive Coding Policies</li>
+				</ul>
+				
+			</subsection>
+			
+		</section>
+			
+	</body>
+	
+</document>
+ 

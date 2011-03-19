@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	
+	<properties>
+		<title>Introduction</title>
+	</properties>
+	
+	<body>
+	
+		<section name="Introduction">
+				
+			<p>
+				A picture is worth a thousand words:
+			</p>
+			
+			<table>
+				<caption align="bottom">
+					Image: Kinect and Java (by 
+					<a href="http://flickr.com/photos/dekuwa/4699355300/" target="_blank">Dekuwa</a> and 
+					<a href="http://flickr.com/photos/silveiraneto/2270445344/" target="_blank">Silveira Neto</a>)
+				</caption>
+				<tr valign="middle"><td align="center" style="background-color:white;">
+					<img src="image/kinect_plus_java.jpg" alt="kinect plus java" title="Josceleton, a library which combines the Kinect with Java" width="700" height="190" />
+				</td></tr>
+			</table>
+			
+			<p>
+				To put it simple Josceleton is a <i>free open-source</i> Java library providing access to the
+				<a href="http://xbox.com/kinect" target="_blank">Microsoft Kinect</a> device.
+				It allows you interact with multiple users by either looking at their raw coordinates of several joints,
+				or simply use the pre-built detectors for certain gestures and positions!
+			</p>
+			<p align="center">
+				<i>&quot; ... it enables users to control and interact, 
+						  ... through a natural user interface using gestures ...
+				&quot;</i> 
+					-- <a href="http://en.wikipedia.org/wiki/Kinect" target="_blank">Wikipedia</a>
+			</p>
+			
+			<p>
+				Technicaly speaking Josceleton provides a high-level API to communicate with a 
+				<a href="https://github.com/Sensebloom/OSCeleton" target="_blank">OSceleton</a> server instance via OSC 
+				(<a href="http://en.wikipedia.org/wiki/OpenSound_Control" target="_blank">Open Sound Control Protocol</a>), 
+				which is done by internally using the
+				<a href="http://illposed.com/software/javaosc.html" target="_blank">Java OSC</a> library. 
+			</p>
+		
+			<table>
+				<caption align="bottom">
+					Video: XBox Kinect OSCeleton Showcase (by <a href="http://vimeo.com/17978808">Tiago Serra</a>)
+				</caption>
+				<tr valign="middle"><td align="center" style="background-color:white;">
+					
+					<iframe src="http://player.vimeo.com/video/17978808" width="400" height="225" frameborder="0"></iframe>
+					
+				</td></tr>
+			</table>
+				
+		</section>
+		
+	</body>
+</document>
