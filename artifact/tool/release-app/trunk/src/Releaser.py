@@ -41,7 +41,7 @@ class Releaser:
             else:
                 print "Configured artifacts:"
                 for i, artifact in enumerate(config.artifacts):
-                    print "  %i. %s - Release Version: %s, Next Version: %s, SVN Path: %s" % ( (i+1), 
+                    print "  %i. %s - Release / Next Version: %s / %s, SVN Path: %s" % ( (i+1), 
                                                                                              artifact.artifactId,
                                                                                              artifact.versionRelease,
                                                                                              artifact.versionNext,
@@ -52,6 +52,8 @@ class Releaser:
                 return False
         
         self.updateSvnTree(config, localSvnRootFolder)
+        
+        # TODO hier noch kompletten testrun machen: mvn verify site fuer alle + reaktor machen, bevor mvn release machen
         
         artifact = None
         try:
@@ -71,6 +73,7 @@ class Releaser:
             logi("RELEASE SUCCESS")
         except Exception as e:
             loge("Error while releasing artifact %s: %s" % (artifact, e.message), e)
+            loge("If this happened during a mvn release:perform, please get sure to delete the Subversion Tag.") # TODO move this inside the loop (to get exact svn tag path)
             return False
         
         try:
@@ -119,11 +122,11 @@ class Releaser:
         chdir(reactorLocalSvnTagPath)
         
         notifyt("Site Reactor", "mvn clean site")
-        mvn("clean site")
+        mvn("clean site") # FIXME this will build all reports for all modules AGAIN! any solution? is it really necessary?
         notifyt("Site Reactor", "mvn dashboard:dashboard")
         mvn("dashboard:dashboard")
         notifyt("Site Reactor", "deploy site:deploy")
-        mvn("deploy site:deploy")
+        mvn("deploy site:deploy") # FIXME this will redeploy all tagged artifacts a second time ==> disable submodules!
         
         logi("Confirm there are no local changes (can not do it automatically):")
         svn("status")
@@ -188,7 +191,7 @@ class Releaser:
                 raise e
     
     def updateSvnTree(self, config, targetPath):
-        svn("update %s --username %s --password %s" % (targetPath, config.username, config.password))
+        svn("update %s --set-depth infinity --force --username %s --password %s" % (targetPath, config.username, config.password))
         
 # PYTHON CHEAT SHEET
 #

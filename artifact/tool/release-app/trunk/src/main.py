@@ -58,7 +58,7 @@ if __name__ == "__main__":
     if wasAnError == False:
         logi("SUCCESS")
         notifys("Release Success!", "Yipieee!")
-        if config.sayEnabled == True: sayOsx("Success, yipieh! Release is done!")
+        if config.sayEnabled == True: sayOsx("Success! Release done!")
     else:
         loge("ERROR!!!")
         notifye("Release Failed!", "There was an error; please check the logs!")

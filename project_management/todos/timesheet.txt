@@ -60,5 +60,7 @@
              ~~ 170h~~
 18.03. - 09:00 -  3h - site reports; rewritten ${version.foo} to ${version_foo}, as dot made it unable to use it in site 
 18.03. - 18:00 -  2h - finished restructuring; improved reports 
-18.03. - 23:00 -  h -  
-             ~~ 175h~~
+18.03. - 23:00 -  5h - prepared release-app for new release v0.4 
+             ~~ 180h~~
+19.03. - 04:00 -  h - executing release-app for v0.4; architecture redesign 
+             ~~ 180h~~

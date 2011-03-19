@@ -14,6 +14,7 @@ def inputConfirmation(overwriteInteractiveFlag = False):
         print "%s DEFAULT YES" % prompt
         return True
     
+    notifyi("ATTENTION", "Confirmation required.")
     while True:
         userEntered = raw_input(prompt)
         if userEntered == yesCmd:

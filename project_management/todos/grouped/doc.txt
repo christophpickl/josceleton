@@ -37,6 +37,8 @@
 	* http://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html ... ${basedir}/src/main/javadoc/overview.html
 	* @doclava: make use of custom tags: http://code.google.com/p/doclava/wiki/JavadocTags
 	* @doclava: make since tag appear; officially not supported, but guice doc has it!!!
+@Javadoc custom skin
+// http://code.google.com/p/doclava/ threw an nullpoint exception; but i think i can remember it worked once; if it was this one...
 
 ======================================================
 @MORE REPORTS
