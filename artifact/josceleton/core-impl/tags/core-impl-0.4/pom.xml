@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId}</name>
+    <description>Implementation of Core API (should not be used by user).</description>
+    <packaging>jar</packaging>
+    
+    <artifactId>core-impl</artifactId>
+    <version>0.4</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+        <groupId>net.sf.josceleton</groupId>
+        <artifactId>java-pom</artifactId>
+        <version>0.4</version>
+    	<relativePath>../java-pom/pom.xml</relativePath>
+    </parent>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       D E P E N D E N C I E S                       -->
+    <!-- ******************************************************************* -->
+    
+    <dependencies>
+        
+	    <!-- I N T E R N A L -->
+    	<!-- *********************************************************** -->
+    	
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core-api</artifactId>
+		</dependency>
+	    
+	    <!-- T E S T -->
+    	<!-- *********************************************************** -->
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>commons</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core-api</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+	    	    
+	</dependencies>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/core-impl/tags/core-impl-0.4</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/josceleton/core-impl/tags/core-impl-0.4</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/josceleton/core-impl/tags/core-impl-0.4</url>
+    </scm>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+        
+    <distributionManagement>
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
+		</site>
+    </distributionManagement>
+	
+</project>
