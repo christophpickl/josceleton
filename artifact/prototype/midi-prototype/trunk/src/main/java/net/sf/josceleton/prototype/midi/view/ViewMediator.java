@@ -56,7 +56,6 @@ public class ViewMediator implements MainWindowListener {
 		final String rawMappings = this.model.getMidiMappings();
 		new Thread(new Runnable() {
 			public void run() {
-				boolean isRunningSuccessfully = false;
 				try {
 					ViewMediator.this.model.setRunning(true);
 					LogUtil.clearLog();
@@ -75,17 +74,15 @@ public class ViewMediator implements MainWindowListener {
 					
 					LogUtil.log("Connection established (displaying every " + LogUtil.LOG_JOINT_EVERY +"th messages) ...");
 					LogUtil.log("");
-					isRunningSuccessfully = true;
+					
 				} catch (InvalidInputException e) {
 //					LogUtil.log("WARNING: Invalid input: " + e.getMessage());
+					ViewMediator.this.model.setRunning(false);
 					JOptionPane.showMessageDialog(null, e.getMessage(), "Configuration Error", JOptionPane.WARNING_MESSAGE);
 					
 				} catch (Exception e) {
+					ViewMediator.this.model.setRunning(false);
 					SomeUtil.handleException(e);
-				} finally {
-					if(isRunningSuccessfully == false) {
-						ViewMediator.this.model.setRunning(false);
-					}
 				}
 			}
 		}).start();

@@ -1,8 +1,5 @@
 package net.sf.josceleton.prototype.midi;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import net.sf.josceleton.core.impl.async.DefaultAsyncFor;
 import net.sf.josceleton.prototype.midi.logic.bindable.BindingListener;
 import net.sf.josceleton.prototype.midi.logic.bindable.BindingProvider;
@@ -11,75 +8,25 @@ import net.sf.josceleton.prototype.midi.logic.preference.PersistAsPreference;
 
 public class Model extends DefaultAsyncFor<String, BindingListener> implements BindingProvider {
 
+	public static final String RUNNING = "RUNNING";
 	private boolean running = false;
-
-	@PersistAsPreference
-	private String midiPort;
-
+	public boolean getRunning() { return this.running; }
+	@BindingSetter(Key = RUNNING) public void setRunning(boolean running) { this.running = running; }
 	
-	public static final String BIND_MIDI_MAPPINGS = "BIND_MIDI_MAPPINGS";
-	@PersistAsPreference
-	private String midiMappings = "default init";
+	public static final String MIDI_PORT = "MIDI_PORT";
+	@PersistAsPreference private String midiPort;
+	public String getMidiPort() { return this.midiPort; }
+	@BindingSetter(Key = MIDI_PORT) public void setMidiPort(String midiPort) { this.midiPort = midiPort; }
 	
-	public String getMidiMappings() {
-		return this.midiMappings;
-	}
+	public static final String MIDI_MAPPINGS = "MIDI_MAPPINGS";
+	@PersistAsPreference private String midiMappings;
+	public String getMidiMappings() { return this.midiMappings; }
+	@BindingSetter(Key = MIDI_MAPPINGS) public void setMidiMappings(String midiMappings) { this.midiMappings = midiMappings; }
+	
 	
 	@Override public Iterable<BindingListener> getBindingListenersFor(final String attributeKey) {
+		// TODO das bekommt man auch noch raus => DefaultAsyncFor muss teilweise dafuer ein interface hergeben, wo dann aspekt getListenersFor direkt aufrufen kann!
 		return this.getListenersFor(attributeKey);
 	}
-	
-	@BindingSetter(Key = BIND_MIDI_MAPPINGS)
-	public void setMidiMappings(String midiMappings) {
-		System.out.println("MODEL setMappings");
-		this.midiMappings = midiMappings;
-		// TODO return this?
-	}
-	
-	
-	public static interface OnMidiPortChanged {
-		void onChanged(String newMidiPort);
-	}
-	
-	private Set<OnMidiPortChanged> onMidiPortChangeds = new HashSet<OnMidiPortChanged>();
-	
-	public void addOnMidiPortChanged(OnMidiPortChanged listener) {
-		System.out.println("Model.addMidiChangeListener("+listener+")");
-		this.onMidiPortChangeds.add(listener);
-		this.dispatchMidiPortChanged();
-	}
-	
-	public String getMidiPort() {
-		return this.midiPort;
-	}
-
-	public void setMidiPort(String midiPort) {
-		System.out.println("Model.setMidiPort("+midiPort+")");
-		
-		if(this.midiPort == null && midiPort == null) {
-			return;
-		}
-		if(this.midiPort != null && midiPort != null &&
-				this.midiPort.equals(midiPort)) {
-			return;
-		}
-		
-		this.midiPort = midiPort;
-		this.dispatchMidiPortChanged();
-	}
-	private void dispatchMidiPortChanged() {
-		for (OnMidiPortChanged changed : this.onMidiPortChangeds) {
-			changed.onChanged(this.midiPort);
-		}
-	}
-
-	public boolean isRunning() {
-		return this.running;
-	}
-
-	public void setRunning(boolean running) {
-		this.running = running;
-	}
-
 	
 }

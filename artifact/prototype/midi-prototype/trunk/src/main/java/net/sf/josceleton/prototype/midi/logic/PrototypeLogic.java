@@ -47,9 +47,13 @@ public class PrototypeLogic implements ConnectionListener {
 	
 	public void close() {
 		LOG.info("close()");
-		this.oscConnection.removeListener(this);
-		this.oscConnection.close();
-		this.midiConnection.close();
+		if(this.oscConnection != null) { // TODO check hack
+			this.oscConnection.removeListener(this);
+			this.oscConnection.close();
+			this.oscConnection = null;
+			
+			this.midiConnection.close();
+		}
 	}
 	
 	public void onJointMessage(JointMessage message) {

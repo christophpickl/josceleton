@@ -20,11 +20,16 @@ public class MappingsParser {
 			}
 			
 			String[] tokens = line.split(",");
-			Joint part = SomeUtil.bodyPartByOsceletonId(tokens[0].trim());
+			
+			if(tokens.length != 4) {
+				throw new RuntimeException("Expected 4 arguments, but given: " + tokens.length);
+			}
+			
+			Joint joint = SomeUtil.jointByOsceletonId(tokens[0].trim());
 			Direction direction = Direction.valueOf(tokens[1].trim());
 			int midiChannel = parseInt(tokens[2]);
 			int controllerNumber = parseInt(tokens[3]);
-			mappings.add(new MidiMapping(part, direction, midiChannel, controllerNumber));
+			mappings.add(new MidiMapping(joint, direction, midiChannel, controllerNumber));
 		}
 		
 		return mappings.toArray(new MidiMapping[mappings.size()]);

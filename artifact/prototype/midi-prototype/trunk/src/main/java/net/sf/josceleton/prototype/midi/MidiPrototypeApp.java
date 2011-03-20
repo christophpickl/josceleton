@@ -4,7 +4,6 @@ import java.util.Properties;
 
 import javax.swing.SwingUtilities;
 
-import net.sf.josceleton.prototype.midi.logic.bindable.BindingListener;
 import net.sf.josceleton.prototype.midi.util.LogUtil;
 import net.sf.josceleton.prototype.midi.util.SomeUtil;
 import net.sf.josceleton.prototype.midi.view.MainWindow;
@@ -13,19 +12,7 @@ import net.sf.josceleton.prototype.midi.view.ViewMediator;
 public class MidiPrototypeApp {
 
 	public static void main(String[] args) throws Exception {
-//		startUp();
-		
-		Model m = new Model();
-		m.addListenerFor(Model.BIND_MIDI_MAPPINGS, new BindingListener() {
-			@Override
-			public void onValueChanged(Object newValue) {
-				System.out.println("MAIN value changed: ["+newValue+"]");
-			}
-		});
-		
-		System.out.println("MAIN: setting midi mappings to BAZ ...");
-		m.setMidiMappings("BAZ");
-		System.out.println("MAIN: setting midi mappings to BAZ ... END");
+		startUp();
 	}
 	
 	public static void startUp() {

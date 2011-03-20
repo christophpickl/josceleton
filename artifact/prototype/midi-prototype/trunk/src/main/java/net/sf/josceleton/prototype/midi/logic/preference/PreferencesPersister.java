@@ -29,35 +29,29 @@ public class PreferencesPersister {
 	
 	private final TypeConverters converters = new TypeConverters();
 	
-	public void persist(final Object instance, final String prefId) {
+	public void init(final Object instance, final String prefId) {
 		final Class<?> clazz = instance.getClass();
-		System.out.println("PERSIST XXXXXXX: " + clazz.getName());
 		final PreferencesManager internal = new PreferencesManager(clazz);
 		
 		for(final Field field : filterPersistAnnotatedFields(instance)) {
-			System.out.println("* persisting field [" + field.getName() + "]");
-			final TypeConverter converter = this.converters.getConverterFor(field);
-			
 			final String fieldPrefKey = buildPrefKey(clazz, prefId, field);
-			final Object value = TypeUtil.getField(instance, field);
-			converter.store(internal, fieldPrefKey, value);
+			final TypeConverter converter = this.converters.getConverterFor(field);
+			final Object value = converter.load(internal, fieldPrefKey);
+			System.out.println("PreferencesPersister -- initiating ["+clazz.getSimpleName()+"." + field.getName() + "] with value [" + value + "]");
+			TypeUtil.setField(instance, field, value);
 		}
 	}
 	
-	public void init(final Object instance, final String prefId) {
+	public void persist(final Object instance, final String prefId) {
 		final Class<?> clazz = instance.getClass();
-		System.out.println("INIT XXXXXXX: " + clazz.getName());
 		final PreferencesManager internal = new PreferencesManager(clazz);
 		
 		for(final Field field : filterPersistAnnotatedFields(instance)) {
-			System.out.println("* initiating field [" + field.getName() + "]");
-			
-			final String fieldPrefKey = buildPrefKey(clazz, prefId, field);
-			
 			final TypeConverter converter = this.converters.getConverterFor(field);
-			final Object value = converter.load(internal, fieldPrefKey);
-			System.out.println("  found stored value: " + value);
-			TypeUtil.setField(instance, field, value);
+			final String fieldPrefKey = buildPrefKey(clazz, prefId, field);
+			final Object value = TypeUtil.getField(instance, field);
+			System.out.println("PreferencesPersister -- persisting ["+clazz.getSimpleName()+"." + field.getName() + "] with value [" + value + "]");
+			converter.store(internal, fieldPrefKey, value);
 		}
 	}
 	

@@ -49,13 +49,13 @@ public class SomeUtil {
 	}
 	
 
-	public static Joint bodyPartByOsceletonId(String rawPart) {
-		for (Joint part : Joints.values()) {
-			if(part.getOsceletonId().equals(rawPart)) {
-				return part;
+	public static Joint jointByOsceletonId(String rawJointName) {
+		for (Joint joint : Joints.values()) {
+			if(joint.getOsceletonId().equals(rawJointName)) {
+				return joint;
 			}
 		}
-		throw new RuntimeException("unkown body part: " + rawPart);
+		throw new RuntimeException("unkown body part: " + rawJointName);
 	}
 	
 
