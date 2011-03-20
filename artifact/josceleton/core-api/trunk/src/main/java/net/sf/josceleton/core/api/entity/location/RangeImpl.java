@@ -51,5 +51,14 @@ class RangeImpl implements Range {
 		return this.toEnd;
 	}
 	
-	// TODO equals/hash/tostring
+	// TODO equals/hash
+	
+	@Override public final String toString() {
+		return "RangeImpl[" +
+				"fromStart=" + this.fromStart + ", " +
+				"fromEnd=" + this.fromEnd + ", " +
+				"toStart=" + this.toStart + ", " +
+				"toEnd=" + this.toEnd +
+				"]";
+	}
 }

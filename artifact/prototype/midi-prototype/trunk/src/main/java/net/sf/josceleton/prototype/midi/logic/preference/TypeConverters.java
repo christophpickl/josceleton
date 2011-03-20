@@ -22,7 +22,7 @@ public class TypeConverters {
 				prefPersister.setInteger(fieldPrefKey, Integer.class.cast(value));
 			}
 			@Override public Object load(PreferencesManager prefPersister, String fieldPrefKey) {
-				return prefPersister.getInteger(fieldPrefKey, 0);
+				return prefPersister.getInteger(fieldPrefKey, -1);
 			}
 		});
 	}

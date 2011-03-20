@@ -1,18 +1,20 @@
 package net.sf.josceleton.prototype.midi.view;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.text.JTextComponent;
 
 import net.sf.josceleton.prototype.midi.Model;
 import net.sf.josceleton.prototype.midi.logic.bindable.BindingListener;
@@ -25,44 +27,74 @@ public class ConfigurationPanel extends JPanel {
 		final JTextField inpPort = new JTextField(50);
 		final JTextArea inpMappings = new JTextArea(14, 45);
 
-		model.addListenerFor(Model.MIDI_PORT, new BindingListener() { @Override public final void onValueChanged(Object newValue) {
-			inpPort.setText((String) newValue); }});
-		inpPort.addKeyListener(new KeyAdapter() { @Override public void keyReleased(KeyEvent e) {
-				model.setMidiPort(inpPort.getText()); }});
-		
-		model.addListenerFor(Model.MIDI_MAPPINGS, new BindingListener() { @Override public final void onValueChanged(Object newValue) {
-			inpMappings.setText((String) newValue); }});
-		inpMappings.addKeyListener(new KeyAdapter() { @Override public void keyReleased(KeyEvent e) {
-			model.setMidiMappings(inpMappings.getText()); }});
+		model.addListenerFor(Model.MIDI_PORT, new BoundTextFieldListener(inpPort));
+		model.addListenerFor(Model.MIDI_MAPPINGS, new BoundTextFieldListener(inpMappings));
+		inpPort.addKeyListener(new Foo(model, Model.MIDI_PORT));
+		inpMappings.addKeyListener(new Foo(model, Model.MIDI_MAPPINGS));
 		
 		this.initComponents(inpPort, inpMappings);
+	}
+	public static class Foo extends KeyAdapter {
+		private final Model model;
+		private final String key;
+		
+		public Foo(Model model, String key) {
+			this.model = model;
+			this.key = key;
+		}
+		@Override public void keyReleased(KeyEvent e) {
+			final JTextComponent text = (JTextComponent) e.getSource();
+			
+			if(this.model.get(this.key).equals(text.getText()) == true) {
+				return;
+			}
+			
+			this.model.set(this.key, text.getText());
+		}
+	}
+	public static class BoundTextFieldListener implements BindingListener {
+		private final JTextComponent text;
+		
+		public BoundTextFieldListener(final JTextComponent text) {
+			this.text = text;
+		}
+
+		@Override
+		public void onValueChanged(Object newValue) {
+			final String newText = (String) newValue;
+			if(this.text.getText().equals(newText) == false) {
+				this.text.setText(newText);
+			}
+		}
+		
 	}
 
 	private void initComponents(final JTextField inpPort, final JTextArea inpMappings) {
 		inpPort.setToolTipText("Enter a (receivable) MIDI Port Name");
-		inpMappings.setToolTipText("Define MIDI Mappings, e.g.: 'l_hand, X, 1, 1'");
+		inpMappings.setToolTipText("Define MIDI Mappings, e.g.: 'l_hand(#torso), X, [0.0 .. 1.0 => 0 .. 127], 0, 1'");
 		inpPort.setFont(StyleConstants.FONT);
 		inpMappings.setFont(StyleConstants.FONT);
 		
 		
 		final JScrollPane mappingsScrollable = new JScrollPane(inpMappings);
+		inpMappings.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 		mappingsScrollable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		this.setLayout(new GridBagLayout());
+		final JPanel northPanel = new JPanel(new GridBagLayout());
 		final GridBagConstraints c = new GridBagConstraints();
 		
-		c.anchor = GridBagConstraints.LINE_START;
+		c.anchor = GridBagConstraints.WEST;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		
-		this.add(new JLabel("MIDI Port:"), c);
-		
+		c.weightx = 1.0;
+		c.gridy = 0;
+		northPanel.add(new JLabel("MIDI Port:"), c);
 		c.gridy = 1;
-		this.add(inpPort, c);
-		
+		northPanel.add(inpPort, c);
 		c.gridy = 2;
-		this.add(new JLabel("MIDI Mappings:"), c);
+		northPanel.add(new JLabel("MIDI Mappings:"), c);
 		
-		c.gridy = 3; c.insets = new Insets(2, 2, 2, 2);
-		this.add(mappingsScrollable, c);
+		this.setLayout(new BorderLayout());
+		this.add(northPanel, BorderLayout.NORTH);
+		this.add(mappingsScrollable, BorderLayout.CENTER);
 	}
 }

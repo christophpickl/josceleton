@@ -1,5 +1,6 @@
 package net.sf.josceleton.prototype.midi;
 
+import java.awt.Point;
 import java.util.Properties;
 
 import javax.swing.SwingUtilities;
@@ -24,6 +25,7 @@ public class MidiPrototypeApp {
 				final Model model = new Model();
 				final ViewMediator mediator = new ViewMediator(model);
 				final MainWindow window = new MainWindow(model, mediator, applicationVersion);
+				
 				window.setVisible(true);
 				MidiPrototypeApp.logWelcomeMessage();
 			}

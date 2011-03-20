@@ -5,6 +5,8 @@ import java.util.List;
 
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.location.Direction;
+import net.sf.josceleton.core.api.entity.location.Range;
+import net.sf.josceleton.josceleton.Josceleton;
 import net.sf.josceleton.prototype.midi.util.SomeUtil;
 
 public class MappingsParser {
@@ -21,18 +23,66 @@ public class MappingsParser {
 			
 			String[] tokens = line.split(",");
 			
-			if(tokens.length != 4) {
-				throw new RuntimeException("Expected 4 arguments, but given: " + tokens.length);
+			if(tokens.length != 5) {
+				throw new RuntimeException("Expected 5 arguments, but given: " + tokens.length);
 			}
 			
-			Joint joint = SomeUtil.jointByOsceletonId(tokens[0].trim());
+			final String jointPart = tokens[0].trim();
+			final String rawJointOsceletonId;
+			final Joint relativeToJoint;
+			if(jointPart.contains("#") == true) {
+				final String[] jointPartParts = jointPart.split("#");
+				rawJointOsceletonId = jointPartParts[0];
+				final String rawRelativeToJoint = jointPartParts[1];
+				relativeToJoint = SomeUtil.jointByOsceletonId(rawRelativeToJoint);
+			} else {
+				rawJointOsceletonId = jointPart;
+				relativeToJoint = null;
+			}
+			Joint joint = SomeUtil.jointByOsceletonId(rawJointOsceletonId);
 			Direction direction = Direction.valueOf(tokens[1].trim());
-			int midiChannel = parseInt(tokens[2]);
-			int controllerNumber = parseInt(tokens[3]);
-			mappings.add(new MidiMapping(joint, direction, midiChannel, controllerNumber));
+			Range range = parseRange(tokens[2].trim());
+			int midiChannel = parseInt(tokens[3]);
+			int controllerNumber = parseInt(tokens[4]);
+			mappings.add(new MidiMapping(joint, direction, range, midiChannel, controllerNumber, relativeToJoint));
 		}
 		
 		return mappings.toArray(new MidiMapping[mappings.size()]);
+	}
+	
+	private static Range parseRange(String in) {
+		System.out.println("parsing: ["+in+"]");
+		if(in.charAt(0) != '[') {
+			throw new RuntimeException("Invalid: " + in);
+		}
+		if(in.charAt(in.length() - 1) != ']') {
+			throw new RuntimeException("Invalid: " + in);
+		}
+		final String inBracketsCleanded = in.substring(1, in.length() - 1).trim();
+//		System.out.println("inBracketsCleanded: ["+inBracketsCleanded+"]");
+		if(inBracketsCleanded.indexOf("=") == -1) {
+			throw new RuntimeException("Invalid: " + in);
+		}
+		
+		final String[] inFromToPair = inBracketsCleanded.split("=>");
+		if(inFromToPair.length != 2) {
+			throw new RuntimeException("Invalid: " + in);
+		}
+//		System.out.println("inFromToPair: ["+Arrays.toString(inFromToPair)+"]");
+		final String rawFrom = inFromToPair[0].trim();
+		final String rawTo = inFromToPair[1].trim();
+//		System.out.println("rawTo: ["+rawTo+"]");
+		
+		final String[] rawFromParts = rawFrom.split("\\.\\.");
+		final float fromStart = Float.parseFloat(rawFromParts[0].trim());
+		final float fromEnd = Float.parseFloat(rawFromParts[1].trim());
+		
+		final String[] rawToParts = rawTo.split("\\.\\.");
+//		System.out.println("rawToParts: [" + Arrays.toString(rawToParts) + "]");
+		final int toStart = Integer.parseInt(rawToParts[0].trim());
+		final int toEnd = Integer.parseInt(rawToParts[1].trim());
+		
+		return Josceleton.newRange(fromStart, fromEnd, toStart, toEnd);
 	}
 	
 	private static int parseInt(String s) throws InvalidInputException {

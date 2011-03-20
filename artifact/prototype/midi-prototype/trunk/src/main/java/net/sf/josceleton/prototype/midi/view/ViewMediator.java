@@ -47,6 +47,7 @@ public class ViewMediator implements MainWindowListener {
 							"r_hand, Y, 0, 2";
 		}
 		this.model.setMidiMappings(midiMappings);
+		
 	}
 	
 	@SuppressWarnings("synthetic-access")
@@ -59,20 +60,22 @@ public class ViewMediator implements MainWindowListener {
 				try {
 					ViewMediator.this.model.setRunning(true);
 					LogUtil.clearLog();
-					LogUtil.log("Opening connection ...");
+					
 					final MidiMapping[] mappings = MappingsParser.parseMappings(rawMappings);
-					ViewMediator.this.recentLogic = new PrototypeLogic(port, mappings);
-					ViewMediator.this.recentLogic.open();
 
-					LogUtil.log("Successfully parsed MIDI mappings:");
+					LogUtil.log("Successfully parsed " + mappings.length + " MIDI mapping(s):");
 					LogUtil.log("");
 					int i = 1;
 					for (final MidiMapping map : mappings) {
 						LogUtil.log("  "+(i++)+". " + map);
 					}
 					LogUtil.log("");
+
+					LogUtil.log("Opening connection ...");
+					ViewMediator.this.recentLogic = new PrototypeLogic(port, mappings);
+					ViewMediator.this.recentLogic.open();
 					
-					LogUtil.log("Connection established (displaying every " + LogUtil.LOG_JOINT_EVERY +"th messages) ...");
+					LogUtil.log("Connection established (displaying every " + LogUtil.LOG_JOINT_EVERY +"th messages).");
 					LogUtil.log("");
 					
 				} catch (InvalidInputException e) {

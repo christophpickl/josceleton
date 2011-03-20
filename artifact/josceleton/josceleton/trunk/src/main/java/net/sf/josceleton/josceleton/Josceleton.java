@@ -3,6 +3,8 @@ package net.sf.josceleton.josceleton;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
 import net.sf.josceleton.connection.impl.service.motion.ContinuousMotionSupplierFactory;
+import net.sf.josceleton.core.api.entity.location.Range;
+import net.sf.josceleton.core.api.entity.location.RangeScaler;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -62,8 +64,25 @@ public final class Josceleton /* statically implements JosceletonFacade */ {
 		return Josceleton.facade.getConnector();
 	}
 
+	/**
+	 * @since 0.5
+	 */
+	public static RangeScaler getRangeScaler() {
+		return Josceleton.facade.getRangeScaler();
+	}
+
+	/**
+	 * @since 0.5
+	 */
 	public static ContinuousMotionSupplierFactory getContinuousMotionSupplierFactory() {
 		return Josceleton.facade.getContinuousMotionSupplierFactory();
+	}
+
+	/**
+	 * @since 0.5
+	 */
+	public static Range newRange(final float fromStart, final float fromEnd, final int toStart, final int toEnd) {
+		return Josceleton.facade.newRange(fromStart, fromEnd, toStart, toEnd);
 	}
 	
 	// LUXURY provide more static facade API (remember: make it as simple as possible,... and as complex as necessary)

@@ -66,5 +66,6 @@
 19.03. - 22:00 -  6h - #21 finished implementation of continuous motion supplier
              ~~ 190h~~
 20.03. - 04:00 -  2h - #23 started and finished functionality of range scaling feature :)
-20.03. - 06:00 -  h - 
-             ~~ 192h~~
+20.03. - 06:00 -  8h - #24 major improvements for midi prototype (some gui)
+             ~~ 200h~~
+20.03. - 16:00 -  h - 

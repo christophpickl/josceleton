@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
@@ -34,7 +35,9 @@ public class MainPanel extends JPanel {
 	
 	private final JButton btnStartStop = new JButton();
 	
+	private final Model model;
 	public MainPanel(final Model model, final MainPanelListener listener) {
+		this.model = model;
 		this.listener = listener;
 		
 		LogUtil.setLogField(this.logField);
@@ -74,12 +77,15 @@ public class MainPanel extends JPanel {
 		final JScrollPane logScrolled = new JScrollPane(this.logField);
 		logScrolled.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-		this.setLayout(new BorderLayout(5, 0));
-		this.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-		this.add(westPanel, BorderLayout.WEST);
-		this.add(logScrolled, BorderLayout.CENTER);
+		
+		this.split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, westPanel, logScrolled);
+		this.split.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+		this.split.setResizeWeight(0.0);
+		this.split.setDividerLocation(model.recentDividerLocation);
+		this.setLayout(new BorderLayout());
+		this.add(this.split, BorderLayout.CENTER);
 	}
-	
+	private JSplitPane split;
 	public JButton getDefaultButton() {
 		return this.btnStartStop;
 	}
@@ -90,5 +96,9 @@ public class MainPanel extends JPanel {
 		} else {
 			this.listener.onStop();
 		}
+	}
+
+	public void tearDown() {
+		this.model.recentDividerLocation = this.split.getDividerLocation();
 	}
 }

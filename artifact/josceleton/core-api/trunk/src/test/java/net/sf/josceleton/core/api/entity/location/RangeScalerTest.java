@@ -98,6 +98,11 @@ public abstract class RangeScalerTest {
 				new Object[] { -0.20F,   0 }
 		};
 	}
+
+	@Test public final void wasOnceABug() {
+		assertThat(newTestee().scale(0.20667548F, new TestableRange(0.9F, 0.5F, 50, 80)), equalTo(80));
+		assertThat(newTestee().scale(0.20667548F, new TestableRange(0.5F, 0.9F, 80, 50)), equalTo(80));
+	}
 	
 	private void assertScale(
 			final float coordinate,

@@ -57,19 +57,6 @@ public class SomeUtil {
 		}
 		throw new RuntimeException("unkown body part: " + rawJointName);
 	}
-	
-
-	public static int transformControllerValue(Coordinate coordinate, Direction direction) {
-		final float f = direction.extractValue(coordinate);
-		
-		float roughly127 = f * 120;
-		int rounded127 = Math.round(roughly127);
-		
-		if(roughly127 < 0) roughly127 = 0;
-		if(roughly127 > 127) roughly127 = 127;
-		
-		return rounded127;
-	}
 
 	public static String toString(final Collection<MidiMapping> maps) {
 		StringBuilder sb = new StringBuilder();
