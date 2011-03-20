@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashSet;
 
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
-import net.sf.josceleton.core.api.entity.CoordinateUtil;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.location.Direction;
@@ -13,6 +12,7 @@ import net.sf.josceleton.motion.api.gesture.hitwall.HitWallBuilder;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallConfig;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallGesture;
 import net.sf.josceleton.motion.api.gesture.hitwall.HitWallListener;
+import net.sf.josceleton.motion.impl.CoordinateUtil;
 import net.sf.josceleton.motion.impl.gesture.AbstractJointableGestureBuilder;
 
 import com.google.inject.Inject;

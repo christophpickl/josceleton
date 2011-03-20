@@ -2,7 +2,7 @@ package net.sf.josceleton.prototype.console.view;
 
 import javax.swing.JFrame;
 
-import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
+import net.sf.josceleton.connection.api.service.user.UsersCollection;
 
 public class ConsoleWindowImpl extends JFrame implements ConsoleWindow {
 
@@ -40,7 +40,7 @@ public class ConsoleWindowImpl extends JFrame implements ConsoleWindow {
 		this.pack();
 	}
 
-	@Override public final void onUserCountChanged(final AvailableUsersCollection users) {
+	@Override public final void onUserCountChanged(final UsersCollection users) {
 		this.mainPanel.onUserCountChanged(users);
 	}
 	

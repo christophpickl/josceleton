@@ -42,7 +42,7 @@ class MotionSupplierImpl
 	@Override public final void onJointMessage(final JointMessage message) {
 		final User msgUser = message.getUser();
 		if(this.skeletonByUser.containsKey(msgUser) == false) {
-			// no one is interested in joint messages for this user; see #beforeAddListener(User, MotionSupplierListener)
+			// no one is interested in joint messages for this user; see #beforeAddListener(..)
 			return;
 		}
 		

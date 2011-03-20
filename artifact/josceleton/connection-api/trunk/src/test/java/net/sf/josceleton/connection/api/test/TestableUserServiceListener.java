@@ -8,38 +8,46 @@ import net.sf.josceleton.core.api.entity.user.User;
 import net.sf.josceleton.core.api.entity.user.UserState;
 
 public class TestableUserServiceListener implements UserServiceListener {
-	private final List<UserAndState> receivedMessages = new LinkedList<UserAndState>();
+	
+	// no custom OnUserXxxParameter type necessary, as it is only a single parameter
+	private final List<User> onUserWaitingParameters = new LinkedList<User>();
+	private final List<User> onUserProcessingParameters = new LinkedList<User>();
+	private final List<User> onUserDeadParameters = new LinkedList<User>();
+	
+	private final List<UserAndState> onAnyParameter = new LinkedList<UserAndState>();
+	
+	@Override public final void onUserWaiting(final User user) {
+		this.onUserWaitingParameters.add(user);
+		this.onAnyParameter.add(new UserAndState(user, UserState.WAITING));
+	}
+	
+	@Override public final void onUserProcessing(final User user) {
+		this.onUserProcessingParameters.add(user);
+		this.onAnyParameter.add(new UserAndState(user, UserState.PROCESSING));
+	}
 	
 	@Override public final void onUserDead(final User user) {
-		this.receivedMessages.add(new UserAndState(user, UserState.DEAD));
-	}
-	@Override public final void onUserProcessing(final User user) {
-		this.receivedMessages.add(new UserAndState(user, UserState.PROCESSING));
-	}
-	@Override public final void onUserWaiting(final User user) {
-		this.receivedMessages.add(new UserAndState(user, UserState.WAITING));
+		this.onUserDeadParameters.add(user);
+		this.onAnyParameter.add(new UserAndState(user, UserState.DEAD));
 	}
 	
-	public final List<UserAndState> getReceivedMessages() {
-		return this.receivedMessages;
+	public final List<User> getOnUserWaitingParameters() {
+		return this.onUserWaitingParameters;
 	}
-	// MINOR @TEST REFACTOR: instead of these, use getReceivedMessages() instead, as it provides messages in right order
-	public final List<User> getWaitingUsers() {
-		return this.getUsersWith(UserState.WAITING);
+	
+	public final List<User> getOnUserProcessingParameters() {
+		return this.onUserProcessingParameters;
 	}
-	public final List<User> getProcessingUsers() {
-		return this.getUsersWith(UserState.PROCESSING);
+	
+	public final List<User> getOnUserDeadParameters() {
+		return this.onUserDeadParameters;
 	}
-	public final List<User> getDeadUsers() {
-		return this.getUsersWith(UserState.DEAD);
+	
+	/**
+	 * @return all parameters for any method invocation in right ORDER.
+	 */
+	public final List<UserAndState> getOnAnyParameter() {
+		return this.onAnyParameter;
 	}
-	private List<User> getUsersWith(final UserState state) {
-		final List<User> result = new LinkedList<User>();
-		for (UserAndState uas : this.receivedMessages) {
-			if(uas.getState() == state) {
-				result.add(uas.getUser());
-			}
-		}
-		return result;
-	}
+	
 }

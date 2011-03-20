@@ -17,7 +17,8 @@ import net.sf.josceleton.motion.impl.gesture.AbstractJointableGesture;
 public class TestableAbstractJointableGesture
 	extends AbstractJointableGesture<JointableGestureConfig, GestureListener> {
 	
-	private final List<OnMovedRelevantJointParameter> parameters = new LinkedList<OnMovedRelevantJointParameter>();
+	private final List<OnMovedRelevantJointParameter> onMovedRelevantJointParamters =
+		new LinkedList<OnMovedRelevantJointParameter>();
 	
 	public TestableAbstractJointableGesture(final Collection<Joint> relevantJoints) {
 		super(new JointableGestureConfig() {
@@ -31,11 +32,12 @@ public class TestableAbstractJointableGesture
 			final Joint movedJoint,
 			final Coordinate updatedCoordinate,
 			final Skeleton skeleton) {
-		this.parameters.add(new OnMovedRelevantJointParameter(movedJoint, updatedCoordinate, skeleton));
+		this.onMovedRelevantJointParamters.add(
+			new OnMovedRelevantJointParameter(movedJoint, updatedCoordinate, skeleton));
 	}
 
 	public final List<OnMovedRelevantJointParameter> getParameters() {
-		return this.parameters;
+		return this.onMovedRelevantJointParamters;
 	}
 	
 }

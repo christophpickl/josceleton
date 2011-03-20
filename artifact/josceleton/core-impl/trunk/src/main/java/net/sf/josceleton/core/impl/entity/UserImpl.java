@@ -18,10 +18,9 @@ class UserImpl implements User {
 		if(osceletonId < 1) {
 			throw InvalidArgumentException.newInstance("osceletonId", Integer.valueOf(osceletonId), "< 1");
 		}
-		if(uniqueId < osceletonId) { // internal (unique) ID must always be >= than (ID-reusing) osceleton ID
-			throw InvalidArgumentException.newInstance("uniqueId, osceletonId", uniqueId + ", " + osceletonId,
-					"uniqueId >= osceletonId");
-		}
+		
+		// NO!!! if(uniqueId < osceletonId) { // internal (unique) ID must always be >= than (ID-reusing) osceleton ID
+		// come on, dont be that restrictive :) ... we could, for example, replay a recorded osceleton session.
 		
 		this.uniqueId = uniqueId;
 		this.osceletonId = osceletonId;

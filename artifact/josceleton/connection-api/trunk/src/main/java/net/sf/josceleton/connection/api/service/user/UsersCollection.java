@@ -7,7 +7,7 @@ import net.sf.josceleton.core.api.entity.user.User;
 /**
  * @since 0.3
  */
-public interface AvailableUsersCollection {
+public interface UsersCollection {
 
 	/**
 	 * @since 0.3

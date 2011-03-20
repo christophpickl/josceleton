@@ -2,6 +2,7 @@ package net.sf.josceleton.connection.impl.service.user;
 
 import java.util.Collection;
 
+import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.user.User;
 import net.sf.josceleton.core.api.entity.user.UserState;
@@ -16,7 +17,7 @@ import com.google.inject.Inject;
  */
 class UserServiceImpl
 	extends DefaultAsync<UserServiceListener>
-	implements UserServiceInternal /* == { UserService, UserStore, UsersCollectionResponder } */ {
+		implements UserServiceInternal /* = UserService (UsersCollection), UserStore, UsersCollectionResponder */ {
 	
 	private final UserServiceCollection users;
 	
@@ -87,12 +88,12 @@ class UserServiceImpl
 		return newUser;
 	}
 
-	/** {@inheritDoc} from {@link AvailableUsersCollection} */
+	/** {@inheritDoc} from {@link UsersCollection} */
 	@Override public final Collection<User> getProcessing() {
 		return this.users.getProcessing();
 	}
 
-	/** {@inheritDoc} from {@link AvailableUsersCollection} */
+	/** {@inheritDoc} from {@link UsersCollection} */
 	@Override public final Collection<User> getWaiting() {
 		return this.users.getWaiting();
 	}

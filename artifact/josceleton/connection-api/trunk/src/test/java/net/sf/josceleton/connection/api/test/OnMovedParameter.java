@@ -40,4 +40,17 @@ public class OnMovedParameter {
 		return this.skeleton;
 	}
 	
+	@Override public final boolean equals(final Object other) {
+		if(this == other) { return true; }
+		if((other instanceof OnMovedParameter) == false) { return false; }
+		final OnMovedParameter that = (OnMovedParameter) other;
+		return	this.getMovedJoint().equals(that.getMovedJoint()) &&
+				this.getUpdatedCoordinate().equals(that.getUpdatedCoordinate()) &&
+				this.getSkeleton().equals(that.getSkeleton());
+	}
+	
+	@Override public final int hashCode() {
+		return this.skeleton.hashCode();
+	}
+	
 }

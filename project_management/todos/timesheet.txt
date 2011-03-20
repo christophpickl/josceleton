@@ -63,5 +63,7 @@
 18.03. - 23:00 -  5h - prepared release-app for new release v0.4 
              ~~ 180h~~
 19.03. - 04:00 -  4h - executing release-app for v0.4; architecture redesign 
-19.03. - 21:00 -  h -  
-             ~~ 184h~~
+19.03. - 22:00 -  6h - #21 finished implementation of continuous motion supplier
+             ~~ 190h~~
+20.03. - 04:00 -  h - 
+             ~~ 190h~~

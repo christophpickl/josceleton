@@ -10,15 +10,15 @@ import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 public class TestableMotionSupplierListener implements MotionSupplierListener {
 	
-	private final List<OnMovedParameter> onMovedInvocations = new LinkedList<OnMovedParameter>();
+	private final List<OnMovedParameter> onMovedParameters = new LinkedList<OnMovedParameter>();
 		
 	@Override
 	public final void onMoved(final Joint movedJoint, final Coordinate updatedCoordinate, final Skeleton skeleton) {
-		this.onMovedInvocations.add(new OnMovedParameter(movedJoint, updatedCoordinate, skeleton));
+		this.onMovedParameters.add(new OnMovedParameter(movedJoint, updatedCoordinate, skeleton));
 	}
 
-	public final List<OnMovedParameter> getOnMovedInvocations() {
-		return this.onMovedInvocations;
+	public final List<OnMovedParameter> getOnMovedParameters() {
+		return this.onMovedParameters;
 	}
 	
 }

@@ -8,7 +8,6 @@ import net.sf.josceleton.connection.api.ConnectionListener;
 import net.sf.josceleton.connection.api.test.TestableMotionSupplierListener;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
-import net.sf.josceleton.core.api.entity.joint.JointParts.Torso;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
@@ -60,9 +59,9 @@ public abstract class MotionSupplierTest<M extends MotionSupplier> extends Abstr
 		}});
 		testee.addListenerFor(user, listener);
 		
-		assertThat(listener.getOnMovedInvocations().size(), equalTo(0));
+		assertThat(listener.getOnMovedParameters().size(), equalTo(0));
 		this.dispatch(jointMsg1, testee);
-		assertThat(listener.getOnMovedInvocations().size(), equalTo(1));
+		assertThat(listener.getOnMovedParameters().size(), equalTo(1));
 	}
 	
 	@Test public final void nothingWillBeDoneOnReceivingUserMessages() {

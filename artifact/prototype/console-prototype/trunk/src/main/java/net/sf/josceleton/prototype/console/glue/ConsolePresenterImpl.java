@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
 import net.sf.josceleton.connection.api.Connection;
-import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
+import net.sf.josceleton.connection.api.service.user.UsersCollection;
 import net.sf.josceleton.prototype.console.notification.GrowlNotifier;
 import net.sf.josceleton.prototype.console.notification.GrowlNotifierFactory;
 import net.sf.josceleton.prototype.console.view.ConsoleWindow;
@@ -33,7 +33,7 @@ class ConsolePresenterImpl implements ConsolePresenter {
 
 	@Override
 	public void init() {
-		final AvailableUsersCollection users = this.connection.getUserService();
+		final UsersCollection users = this.connection.getUserService();
 		
 		final GrowlNotifier growl = this.growlFactory.create("Josceleton Console App").registerApp();
 		final GlueCode windowGlue = this.glueFactory.create(this.window, users, growl);

@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
+import net.sf.josceleton.connection.api.service.user.UsersCollection;
 import net.sf.josceleton.prototype.console.glue.GlueCodeListener;
 
 import org.apache.commons.logging.Log;
@@ -36,7 +36,7 @@ public class UserPanelsWrapper extends JPanel implements GlueCodeListener {
 		this.remove(userPanel.asComponent());
 	}
 
-	@Override public final void onUserCountChanged(final AvailableUsersCollection users) {
+	@Override public final void onUserCountChanged(final UsersCollection users) {
 		// nothing to do
 	}
 }

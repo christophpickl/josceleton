@@ -20,7 +20,7 @@ class CoordinateImpl implements Coordinate {
 			@Assisted("z") final float z) {
 //		if((x >= 0.0 && x <= 1.0) == false) { throw new InvalidArgumentException("x", x, "x >= 0.0 && x <= 1.0"); }
 		this.x = x;
-		// MINOR ??? COORDINATE-RANGE y can be > 1.0... other coordinates as well
+		// TODO ??? COORDINATE-RANGE y can be > 1.0... other coordinates as well
 //		if((y >= 0.0 && y <= 1.0) == false) { throw new InvalidArgumentException("y", y, "y >= 0.0 && y <= 1.0"); }
 		this.y = y;
 //		if((z >= 0.0 && z <= 7.0) == false) { throw new InvalidArgumentException("z", z, "z >= 0.0 && z <= 1.0"); }

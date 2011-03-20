@@ -17,7 +17,7 @@ import net.sf.josceleton.core.api.entity.user.UserState;
 import org.testng.annotations.Test;
 
 @SuppressWarnings("boxing")
-public class MotionSupplierIntegrationTest extends AbstractIntegrationTest {
+public class MotionSupplierIntegrationTest extends AbstractIntegrationTest<MotionSupplierIntegrationTest> {
 	
 	@Test
 	public final void motionSupplierSeparatesJointMessagesForTwoDifferentUsers() {
@@ -27,16 +27,16 @@ public class MotionSupplierIntegrationTest extends AbstractIntegrationTest {
 		final TestableMotionSupplierListener listener2 = new TestableMotionSupplierListener();
 		this.emulateTwoNewUsers(u1, u2, listener1, listener2);
 
-		assertThat(listener1.getOnMovedInvocations().size(), equalTo(0));
-		assertThat(listener2.getOnMovedInvocations().size(), equalTo(0));
+		assertThat(listener1.getOnMovedParameters().size(), equalTo(0));
+		assertThat(listener2.getOnMovedParameters().size(), equalTo(0));
 		
 		dispatchJointMessage(u1, Joints.HEAD(), 0, 0, 0);
-		assertThat(listener1.getOnMovedInvocations().size(), equalTo(1));
-		assertThat(listener2.getOnMovedInvocations().size(), equalTo(0));
+		assertThat(listener1.getOnMovedParameters().size(), equalTo(1));
+		assertThat(listener2.getOnMovedParameters().size(), equalTo(0));
 
 		dispatchJointMessage(u2, Joints.HEAD(), 0, 0, 0);
-		assertThat(listener1.getOnMovedInvocations().size(), equalTo(1));
-		assertThat(listener2.getOnMovedInvocations().size(), equalTo(1));
+		assertThat(listener1.getOnMovedParameters().size(), equalTo(1));
+		assertThat(listener2.getOnMovedParameters().size(), equalTo(1));
 	}
 	
 	private void emulateTwoNewUsers(final int u1, final int u2,
@@ -59,12 +59,12 @@ public class MotionSupplierIntegrationTest extends AbstractIntegrationTest {
 		}
 		final User user2 = this.getReceivedUserServiceMessages().get(3).getUser();
 		{
-			assertThat(this.getRawReceivedJointMessages().size(), equalTo(0)); // sanity check
+			assertThat(this.getReceivedJointMessages().size(), equalTo(0)); // sanity check
 			assertThat(user1, not(equalTo(user2)));
 		}
 		
 		dispatchJointMessage(u1, Joints.HEAD(), 0, 0, 0);
-		assertThat(this.getRawReceivedJointMessages().size(), equalTo(1));
+		assertThat(this.getReceivedJointMessages().size(), equalTo(1));
 		
 		motionSupplier.addListenerFor(user1, listener1);
 		motionSupplier.addListenerFor(user2, listener2);

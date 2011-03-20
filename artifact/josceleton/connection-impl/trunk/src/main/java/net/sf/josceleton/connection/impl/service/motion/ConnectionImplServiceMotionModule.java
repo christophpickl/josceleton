@@ -15,6 +15,10 @@ public class ConnectionImplServiceMotionModule extends AbstractModule {
 		bind(MotionSupplierFactory.class).to(MotionSupplierFactoryImpl.class).in(Scopes.SINGLETON);
 		bind(MotionSupplierInternalFactory.class).toProvider(
 				FactoryProvider.newFactory(MotionSupplierInternalFactory.class, MotionSupplierImpl.class));
+		
+		bind(ContinuousMotionSupplierInternalFactory.class).toProvider(FactoryProvider.newFactory(
+			ContinuousMotionSupplierInternalFactory.class, ContinuousMotionSupplierInternalImpl.class));
+		bind(ContinuousMotionSupplierFactory.class).to(ContinuousMotionSupplierFactoryImpl.class);
 	}
 
 }

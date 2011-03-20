@@ -82,6 +82,7 @@ class ConnectionImpl
 		// } catch(...Exception ex) {
 		//   throw new WrappingException("Could not transform malformed joint message " + oscMessage, ex);
 		// }
+		
 		for (final ConnectionListener currentListener : this.getListeners()) {
 			currentListener.onJointMessage(message);
 		}

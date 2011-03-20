@@ -36,6 +36,7 @@ public final class CoordinateUtil {
 	}
 
 	/**
+	 * @return e.g.: "[0.0-1.0]" for X and Y, "[0.0-7.0]" for Z
 	 * @since 0.4
 	 */
 	public static String getCorrectValueLabel(final Direction direction) {

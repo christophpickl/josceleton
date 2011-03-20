@@ -2,11 +2,13 @@ package net.sf.josceleton.josceleton;
 
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
-import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
+import net.sf.josceleton.connection.api.service.motion.ContinuousMotionSupplier;
 import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
 import net.sf.josceleton.connection.api.service.motion.MotionSupplierFactory;
+import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
 import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
+import net.sf.josceleton.connection.impl.service.motion.ContinuousMotionSupplierFactory;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
@@ -22,7 +24,27 @@ import com.google.inject.Injector;
 class PlaygroundApp {
 	
 	public static void main(final String[] args) {
-		new PlaygroundApp().firstGesturePlayground();
+		new PlaygroundApp().firstContinuousMotionSupplierPlayground();
+	}
+	
+	
+	public final void firstContinuousMotionSupplierPlayground() {
+		final Injector injector = Josceleton.newGuiceInjector();
+		final Connector connector = injector.getInstance(Connector.class);
+		final Connection connection = connector.openConnection();
+		final ContinuousMotionSupplierFactory factory = injector.getInstance(ContinuousMotionSupplierFactory.class);
+		final ContinuousMotionSupplier supplier = factory.create(connection);
+		
+		supplier.addListener(new MotionSupplierListener() {
+			// FIXME evtl hat ContinuousMotionSupplier eigenen listener typ
+			// um auch den User durchzureichen! (eigentlich selbe methode, nur mit zusaetzlichem parameter
+			@Override public void onMoved(final Joint joint, final Coordinate coordinate, final Skeleton skeleton) {
+				if(joint.equals(Joints.HEAD())) {
+					System.out.println("MOOOOOVED z: " + Math.round(coordinate.z() * 100));
+				}
+			}
+		});
+		
 	}
 
 	public final void firstGesturePlayground() {
@@ -48,8 +70,8 @@ class PlaygroundApp {
 	private void firstGesturePlaygroundSetup(final Injector injector, final MotionSupplierListener listener) {
 		final Connector connector = injector.getInstance(Connector.class);
 		final Connection connection = connector.openConnection();
-		final MotionSupplierFactory cache = injector.getInstance(MotionSupplierFactory.class);
-		final MotionSupplier supplier = cache.create(connection);
+		final MotionSupplierFactory factory = injector.getInstance(MotionSupplierFactory.class);
+		final MotionSupplier supplier = factory.create(connection);
 		
 		connection.getUserService().addListener(new UserServiceListener() {
 			@Override public void onUserWaiting(final User user) {

@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * @since 0.4
  */
-public class HitWallBuilderIntegrationTest extends AbstractMotionIntegrationTest {
+public class HitWallBuilderIntegrationTest extends AbstractMotionIntegrationTest<HitWallBuilderIntegrationTest> {
 	
 	private HitWallBuilder createTemporarilyInvalidBuilder() {
 		return this.newGesture().newHitWall().direction(Direction.X).coordinate(4.2F);

@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import net.sf.josceleton.commons.util.GuiUtil;
-import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
+import net.sf.josceleton.connection.api.service.user.UsersCollection;
 import net.sf.josceleton.prototype.console.glue.GlueCodeListener;
 
 public class MainPanel extends JPanel implements GlueCodeListener {
@@ -64,7 +64,7 @@ public class MainPanel extends JPanel implements GlueCodeListener {
 		this.userPanelsWrapper.onRemoveUserPanel(userPanel);
 	}
 
-	@Override public final void onUserCountChanged(final AvailableUsersCollection users) {
+	@Override public final void onUserCountChanged(final UsersCollection users) {
 		this.userPanelsWrapper.onUserCountChanged(users);
 		this.updatedUserCountLabel(users.getProcessing().size(), users.getWaiting().size());
 	}

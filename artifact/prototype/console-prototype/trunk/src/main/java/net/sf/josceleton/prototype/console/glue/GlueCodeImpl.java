@@ -3,7 +3,7 @@ package net.sf.josceleton.prototype.console.glue;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
+import net.sf.josceleton.connection.api.service.user.UsersCollection;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.connection.impl.ConnectionAdapter;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
@@ -28,7 +28,7 @@ class GlueCodeImpl extends ConnectionAdapter implements GlueCode {
 
 	private final GlueCodeListener listener;
 
-	private final AvailableUsersCollection users;
+	private final UsersCollection users;
 	
 	private final GrowlNotifier growlNotifier;
 	
@@ -36,7 +36,7 @@ class GlueCodeImpl extends ConnectionAdapter implements GlueCode {
 			final UserPanelFactory userPanelFactory,
 			@Assisted final GrowlNotifier growlNotifier,
 			@Assisted final GlueCodeListener listener,
-			@Assisted final AvailableUsersCollection users) {
+			@Assisted final UsersCollection users) {
 		this.userPanelFactory = userPanelFactory;
 		this.listener = listener;
 		this.users = users;

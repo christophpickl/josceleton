@@ -67,9 +67,9 @@ abstract class AbstractUserServiceTest extends AbstractMockeryTest {
 			this.assertUsersEquals(step + "#processing", service.getProcessing(), step.getExpectedGetProcUsers());
 			
 			step.assertExpects(
-				collectingListener.getWaitingUsers(),
-				collectingListener.getProcessingUsers(),
-				collectingListener.getDeadUsers()
+				collectingListener.getOnUserWaitingParameters(),
+				collectingListener.getOnUserProcessingParameters(),
+				collectingListener.getOnUserDeadParameters()
 			);
 		}
 	}

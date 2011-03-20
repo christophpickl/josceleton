@@ -68,7 +68,8 @@ public final class Joints {
 		return ALL_JOINTS;
 	}
 	
-	
+	// FIXME erkenntnis!!! es gibt keinen typ Head, sondern dieses HEAD() ding liefert nur Joint zurueck!
+	// (dann ist auch dieses komische probleme von wegen cast zu (Joint) xy nicht mehr notwendig, aha!!!)
 	/** @since 0.1 */
 	public static Head HEAD() { return Joints.HEAD; }
 

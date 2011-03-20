@@ -10,5 +10,5 @@ public interface MotionSupplierFactory {
 	/**
 	 * @since 0.4
 	 */
-	MotionSupplier create(Connection openedConnection);
+	MotionSupplier create(Connection connection);
 }

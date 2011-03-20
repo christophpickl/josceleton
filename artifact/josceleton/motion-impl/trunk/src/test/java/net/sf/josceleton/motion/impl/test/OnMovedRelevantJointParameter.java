@@ -5,6 +5,7 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 /**
+ * @see TestableAbstractJointableGesture
  * @since 0.1
  */
 public class OnMovedRelevantJointParameter {

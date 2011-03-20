@@ -6,7 +6,12 @@ package net.sf.josceleton.core.api.entity.user;
  * @since 0.1
  */
 public enum UserState {
-
+	
+	// TODO maybe UserState WAITING to ...
+	// 			INITIALIZING ... so la la, a little bit too generic
+	// 			CALIBRATING ... would be correct/more specific/obvious -good!
+	//                          but would introduce name clash with own coming "calibration process" feature!
+	
 	/**
 	 * Represents the message sent for address <code>/new_user</code>.
 	 * 

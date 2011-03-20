@@ -1,6 +1,6 @@
 package net.sf.josceleton.prototype.console.glue;
 
-import net.sf.josceleton.connection.api.service.user.AvailableUsersCollection;
+import net.sf.josceleton.connection.api.service.user.UsersCollection;
 import net.sf.josceleton.prototype.console.view.UserPanel;
 
 public interface GlueCodeListener {
@@ -9,6 +9,6 @@ public interface GlueCodeListener {
 	
 	void onRemoveUserPanel(UserPanel userPanel);
 	
-	void onUserCountChanged(final AvailableUsersCollection users);
+	void onUserCountChanged(final UsersCollection users);
 	
 }
