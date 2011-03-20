@@ -1,0 +1,4 @@
+- sepm latex sources wieder anschaun
+- latex2html generieren (neben pdf)
+problem/target setting - requirements - context
+ ==> http://www.informatik.uni-kiel.de/inf/deRoever/arbeiten/vorschlaege/javatoolcasestudy.html
