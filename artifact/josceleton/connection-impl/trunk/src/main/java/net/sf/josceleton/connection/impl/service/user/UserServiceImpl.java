@@ -7,7 +7,7 @@ import net.sf.josceleton.core.api.entity.user.User;
 import net.sf.josceleton.core.api.entity.user.UserState;
 import net.sf.josceleton.core.api.entity.user.UserStateCallback;
 import net.sf.josceleton.core.impl.async.DefaultAsync;
-import net.sf.josceleton.core.impl.entity.UserFactory;
+import net.sf.josceleton.core.impl.entity.user.UserFactory;
 
 import com.google.inject.Inject;
 

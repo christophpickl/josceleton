@@ -9,6 +9,7 @@ import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.api.entity.user.User;
 import net.sf.josceleton.core.api.entity.user.UserState;
+import net.sf.josceleton.core.impl.entity.location.CoordinateFactory;
 import net.sf.josceleton.core.impl.entity.message.JointMessageFactory;
 import net.sf.josceleton.core.impl.entity.message.UserMessageFactory;
 

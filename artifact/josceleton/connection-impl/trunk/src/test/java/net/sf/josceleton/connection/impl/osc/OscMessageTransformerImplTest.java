@@ -11,7 +11,7 @@ import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.api.entity.user.User;
 import net.sf.josceleton.core.api.entity.user.UserState;
 import net.sf.josceleton.core.impl.entity.FactoryFacade;
-import net.sf.josceleton.core.impl.entity.UserFactory;
+import net.sf.josceleton.core.impl.entity.user.UserFactory;
 
 import org.jmock.Expectations;
 import org.testng.annotations.Test;

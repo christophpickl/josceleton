@@ -42,5 +42,13 @@ public final class CoordinateUtil {
 	public static String getCorrectValueLabel(final Direction direction) {
 		return "[" + LOWER_LIMIT_XYZ + "-" + UPPER_LIMITS.get(direction) + "]";
 	}
+
+	public static float getLowerLimit(/*not necessary ;) final Direction direction*/) {
+		return LOWER_LIMIT_XYZ;
+	}
+
+	public static float getUpperLimit(final Direction direction) {
+		return UPPER_LIMITS.get(direction).floatValue();
+	}
 	
 }

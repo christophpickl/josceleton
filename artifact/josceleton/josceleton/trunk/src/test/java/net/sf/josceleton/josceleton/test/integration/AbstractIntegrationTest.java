@@ -25,6 +25,8 @@ import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
 import net.sf.josceleton.connection.impl.test.TestableOscPort;
 import net.sf.josceleton.core.api.entity.joint.Joint;
+import net.sf.josceleton.core.api.entity.location.RangeFactory;
+import net.sf.josceleton.core.api.entity.location.RangeScaler;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.core.api.entity.user.User;
@@ -156,6 +158,14 @@ public class AbstractIntegrationTest<T extends AbstractIntegrationTest<T>> exten
 
 	protected final ContinuousMotionSupplier getContinuousMotionSupplier() {
 		return this.injector.getInstance(ContinuousMotionSupplierFactory.class).create(this.connection);
+	}
+
+	protected final RangeScaler getRangeScaler() {
+		return this.injector.getInstance(RangeScaler.class);
+	}
+
+	protected final RangeFactory getRangeFactory() {
+		return this.injector.getInstance(RangeFactory.class);
 	}
 	
 	

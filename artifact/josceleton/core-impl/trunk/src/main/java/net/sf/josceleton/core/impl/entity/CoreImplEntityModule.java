@@ -1,8 +1,10 @@
 package net.sf.josceleton.core.impl.entity;
 
+import net.sf.josceleton.core.impl.entity.location.CoreImplLocationModule;
+import net.sf.josceleton.core.impl.entity.user.CoreImplUserModule;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
-import com.google.inject.assistedinject.FactoryProvider;
 
 /**
  * 
@@ -12,10 +14,8 @@ public class CoreImplEntityModule extends AbstractModule {
 
 	@Override protected final void configure() {
 		
-		bind(CoordinateFactory.class).toProvider(
-			FactoryProvider.newFactory(CoordinateFactory.class, CoordinateImpl.class));
-		
-		bind(UserFactory.class).to(UserFactoryImpl.class).in(Scopes.SINGLETON);
+		install(new CoreImplLocationModule());
+		install(new CoreImplUserModule());
 
 		bind(FactoryFacade.class).to(FactoryFacadeImpl.class).in(Scopes.SINGLETON);
 		

@@ -23,6 +23,7 @@ public final class MathUtil {
 	/**
 	 * @since 0.4
 	 */
+	@Deprecated // unused
 	public static int computeCubicEaseOut(final float percent, final int startValue, final int endValue) {
         final int diff = Math.abs(endValue - startValue);
         
@@ -40,59 +41,9 @@ public final class MathUtil {
 	/**
 	 * @since 0.4
 	 */
-	public static int relativateTo(final StartEnd real, final int realValue,
-                final StartEnd expected) {
-
-        final int diffExpected = Math.abs(expected.start() - expected.end());
-        final double diffRealPercentExpectedAdjusted = MathUtil.calcDiffRealPercentExpectedAdjusted(
-        		real, realValue, expected.start() < expected.end());
-        
-        return (int) Math.round(diffExpected * diffRealPercentExpectedAdjusted);
-	}
-
-	private static double calcDiffRealPercentExpectedAdjusted(final StartEnd real,
-                final int realValue, final boolean expectedStartLower) {
-        final double diffRealPercent = MathUtil.calcDiffRealPercent(real, realValue);
-        final double diffRealPercentExpectedAdjusted;
-        
-        if(expectedStartLower) {
-                diffRealPercentExpectedAdjusted = diffRealPercent;
-        } else {
-                diffRealPercentExpectedAdjusted = 1 - diffRealPercent;
-        }
-        
-        return diffRealPercentExpectedAdjusted;
-	}
-
-	private static double calcDiffRealPercent(final StartEnd real, final int realValue) {
-        final int diffReal = Math.abs(real.start() - real.end());
-        final int realAdjustedValue = MathUtil.calcRealAdjustedValue(real, realValue);
-        
-        final int realMin = Math.min(real.start(), real.end());
-        
-        final double diffRealPercent;
-        if(real.start() < real.end()) {
-                diffRealPercent = (realAdjustedValue - realMin) / ((double) diffReal);
-        } else {
-                diffRealPercent = 1.0d - (realAdjustedValue - realMin) / ((double) diffReal);
-        }
-        
-        return diffRealPercent;
-	}
-
-	private static int calcRealAdjustedValue(final StartEnd real, final int realValue) {
-        final int realAdjustedValue;
-        final int realMin = Math.min(real.start(), real.end());
-        final int realMax = Math.max(real.start(), real.end());
-        
-        if(realValue < realMin) {
-                realAdjustedValue = realMin;
-        } else if(realValue > realMax) {
-                realAdjustedValue = realMax;
-        } else {
-                realAdjustedValue = realValue;
-        }
-        return realAdjustedValue;
+	@Deprecated @SuppressWarnings("unused")
+	public static int relativateTo(final StartEnd real, final int realValue, final StartEnd expected) {
+		return 0; // FIXME MathUtil in console-prototype => use RangeScaler instead
 	}
 	
 	/**

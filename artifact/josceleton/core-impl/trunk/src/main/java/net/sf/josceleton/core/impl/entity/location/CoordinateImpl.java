@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.impl.entity;
+package net.sf.josceleton.core.impl.entity.location;
 
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 

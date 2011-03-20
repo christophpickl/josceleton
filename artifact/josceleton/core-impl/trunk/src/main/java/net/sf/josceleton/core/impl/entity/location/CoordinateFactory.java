@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.impl.entity;
+package net.sf.josceleton.core.impl.entity.location;
 
 import com.google.inject.assistedinject.Assisted;
 

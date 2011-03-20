@@ -65,5 +65,6 @@
 19.03. - 04:00 -  4h - executing release-app for v0.4; architecture redesign 
 19.03. - 22:00 -  6h - #21 finished implementation of continuous motion supplier
              ~~ 190h~~
-20.03. - 04:00 -  h - 
-             ~~ 190h~~
+20.03. - 04:00 -  2h - #23 started and finished functionality of range scaling feature :)
+20.03. - 06:00 -  h - 
+             ~~ 192h~~

@@ -1,4 +1,4 @@
-package net.sf.josceleton.core.impl.entity;
+package net.sf.josceleton.core.impl.entity.user;
 
 import net.sf.josceleton.core.api.entity.UserTest;
 import net.sf.josceleton.core.api.entity.user.User;
