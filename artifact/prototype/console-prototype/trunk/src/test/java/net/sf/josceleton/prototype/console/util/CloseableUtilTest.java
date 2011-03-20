@@ -1,4 +1,4 @@
-package net.sf.josceleton.commons.util;
+package net.sf.josceleton.prototype.console.util;
 
 import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.hasSinglePrivateNullifiedConstructorAndInvokeIt;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -6,6 +6,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.io.Closeable;
 import java.io.IOException;
+
+import net.sf.josceleton.prototype.console.util.CloseableUtil;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;

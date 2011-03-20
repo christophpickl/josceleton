@@ -1,6 +1,9 @@
 package net.sf.josceleton.motion.impl.gesture;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 
 import net.sf.josceleton.commons.util.CollectionUtil;
 import net.sf.josceleton.core.api.entity.joint.Joint;
@@ -27,7 +30,7 @@ public abstract class AbstractJointableGestureBuilder<
 	/** {@inheritDoc} from {@link JointableGestureBuilder} */
 	@SuppressWarnings("unchecked")
 	@Override public final B relevantJoints(final Joint[] joints) {
-		this.pAttachedJoints = CollectionUtil.toUnmodifiableSet(joints);
+		this.pAttachedJoints = Collections.unmodifiableSet(new HashSet<Joint>(Arrays.asList(joints)));
 		return (B) this;
 	}
 

@@ -1,10 +1,11 @@
-package net.sf.josceleton.commons.util;
+package net.sf.josceleton.prototype.console.util;
 
 import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.hasSinglePrivateNullifiedConstructorAndInvokeIt;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import net.sf.josceleton.commons.util.MathUtil.StartEnd;
+import net.sf.josceleton.prototype.console.util.MathUtil;
+import net.sf.josceleton.prototype.console.util.MathUtil.StartEnd;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

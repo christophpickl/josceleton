@@ -35,6 +35,8 @@ class PlaygroundApp {
 		final ContinuousMotionSupplierFactory factory = injector.getInstance(ContinuousMotionSupplierFactory.class);
 		final ContinuousMotionSupplier supplier = factory.create(connection);
 		
+		
+		
 		supplier.addListener(new MotionSupplierListener() {
 			// FIXME evtl hat ContinuousMotionSupplier eigenen listener typ
 			// um auch den User durchzureichen! (eigentlich selbe methode, nur mit zusaetzlichem parameter

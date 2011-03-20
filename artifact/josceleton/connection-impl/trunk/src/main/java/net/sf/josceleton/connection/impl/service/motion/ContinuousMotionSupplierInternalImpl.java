@@ -5,7 +5,6 @@ import java.util.Collection;
 import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
 import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
 import net.sf.josceleton.connection.api.service.user.UsersCollection;
-import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;

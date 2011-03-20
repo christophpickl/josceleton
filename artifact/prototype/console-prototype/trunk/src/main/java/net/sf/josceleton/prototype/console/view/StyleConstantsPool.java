@@ -5,7 +5,7 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-import net.sf.josceleton.commons.util.GuiUtil;
+import net.sf.josceleton.prototype.console.util.GuiUtil;
 
 public final class StyleConstantsPool {
 	

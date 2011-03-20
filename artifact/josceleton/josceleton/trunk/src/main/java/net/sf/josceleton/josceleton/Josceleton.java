@@ -1,6 +1,8 @@
 package net.sf.josceleton.josceleton;
 
 import net.sf.josceleton.connection.api.Connection;
+import net.sf.josceleton.connection.api.Connector;
+import net.sf.josceleton.connection.impl.service.motion.ContinuousMotionSupplierFactory;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -51,6 +53,17 @@ public final class Josceleton /* statically implements JosceletonFacade */ {
 	 */
 	public static Module newGuiceModule() {
 		return new JosceletonGuiceModule();
+	}
+	
+	/**
+	 * @since 0.5
+	 */
+	public static Connector getConnector() {
+		return Josceleton.facade.getConnector();
+	}
+
+	public static ContinuousMotionSupplierFactory getContinuousMotionSupplierFactory() {
+		return Josceleton.facade.getContinuousMotionSupplierFactory();
 	}
 	
 	// LUXURY provide more static facade API (remember: make it as simple as possible,... and as complex as necessary)

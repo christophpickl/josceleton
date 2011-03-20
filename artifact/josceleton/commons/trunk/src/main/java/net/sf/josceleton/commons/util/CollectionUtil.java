@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @since 0.
+ * @since 0.4
  */
 public final class CollectionUtil {
 
@@ -14,13 +14,19 @@ public final class CollectionUtil {
 		// utility class is not instantiable
 	}
 	
-	public static <T> Set<T> toUnmodifiableSet(final T... items) {
+	/**
+	 * @since 0.4
+	 */
+	public static <T> Set<T> toUnmodifiableSet(final T... items) { // MINOR yet unused :-|
 		if(items.length == 0) {
 			return Collections.emptySet();
 		}
 		return Collections.unmodifiableSet(new HashSet<T>(Arrays.asList(items)));
 	}
 
+	/**
+	 * @since 0.4
+	 */
 	public static <T> Set<T> mergeToUnmodifiableSet(final T item, final T[] optionallyMoreItems) {
 		final Set<T> set = new HashSet<T>(1 + optionallyMoreItems.length);
 		

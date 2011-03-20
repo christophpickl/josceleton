@@ -1,10 +1,12 @@
-package net.sf.josceleton.commons.util;
+package net.sf.josceleton.prototype.console.util;
 
 import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.hasSinglePrivateNullifiedConstructorAndInvokeIt;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.awt.Color;
+
+import net.sf.josceleton.prototype.console.util.ColorUtil;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;

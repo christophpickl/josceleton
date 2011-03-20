@@ -6,9 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import net.sf.josceleton.commons.util.GuiUtil;
 import net.sf.josceleton.connection.api.service.user.UsersCollection;
 import net.sf.josceleton.prototype.console.glue.GlueCodeListener;
+import net.sf.josceleton.prototype.console.util.GuiUtil;
 
 public class MainPanel extends JPanel implements GlueCodeListener {
 

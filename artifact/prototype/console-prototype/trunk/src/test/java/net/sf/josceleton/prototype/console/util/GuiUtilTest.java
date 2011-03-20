@@ -1,4 +1,4 @@
-package net.sf.josceleton.commons.util;
+package net.sf.josceleton.prototype.console.util;
 
 import static net.sf.josceleton.commons.test.matcher.JosceletonMatchers.hasSinglePrivateNullifiedConstructorAndInvokeIt;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 
 import net.sf.josceleton.commons.test.TestableComponent;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
+import net.sf.josceleton.prototype.console.util.GuiUtil;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;

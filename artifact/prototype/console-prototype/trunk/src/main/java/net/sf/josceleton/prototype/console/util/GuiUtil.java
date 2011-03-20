@@ -1,4 +1,4 @@
-package net.sf.josceleton.commons.util;
+package net.sf.josceleton.prototype.console.util;
 
 import java.awt.Color;
 import java.awt.Component;

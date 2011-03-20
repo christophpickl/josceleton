@@ -1,4 +1,4 @@
-package net.sf.josceleton.commons.util;
+package net.sf.josceleton.prototype.console.util;
 
 import java.io.Closeable;
 import java.io.IOException;

@@ -7,8 +7,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import net.sf.josceleton.commons.util.MathUtil;
-import net.sf.josceleton.commons.util.MathUtil.StartEnd;
+import net.sf.josceleton.prototype.console.util.MathUtil;
+import net.sf.josceleton.prototype.console.util.MathUtil.StartEnd;
 
 class Location2DView extends JPanel {
 	

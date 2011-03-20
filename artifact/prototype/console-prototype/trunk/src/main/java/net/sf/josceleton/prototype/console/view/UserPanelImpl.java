@@ -15,13 +15,13 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import net.sf.josceleton.commons.util.ColorUtil;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.core.api.entity.user.User;
 import net.sf.josceleton.prototype.console.SomeUtil;
+import net.sf.josceleton.prototype.console.util.ColorUtil;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
