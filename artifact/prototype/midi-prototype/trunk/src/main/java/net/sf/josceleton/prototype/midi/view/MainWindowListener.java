@@ -4,7 +4,7 @@ public interface MainWindowListener {
 
 	void onStop();
 
-	void onStart(String rawMappings, String port);
+	void onStart();
 
 	void onQuit();
 

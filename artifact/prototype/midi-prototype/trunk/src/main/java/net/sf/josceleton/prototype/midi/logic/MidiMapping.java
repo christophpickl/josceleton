@@ -4,6 +4,8 @@ import net.pulseproject.commons.midi.entity.ControllerMessage;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.location.Direction;
+import net.sf.josceleton.prototype.midi.util.LogUtil;
+import net.sf.josceleton.prototype.midi.util.SomeUtil;
 
 public class MidiMapping {
 
@@ -26,13 +28,13 @@ public class MidiMapping {
 	}
 	
 	public ControllerMessage buildMidiMessage(Coordinate coord) {
-		final int controllerValue = ProtoUtil.transformControllerValue(coord, this.direction);
+		final int controllerValue = SomeUtil.transformControllerValue(coord, this.direction);
 		
 		this.currentLogCount++;
-		if(this.currentLogCount == ProtoUtil.LOG_JOINT_EVERY) {
+		if(this.currentLogCount == LogUtil.LOG_JOINT_EVERY) {
 			this.currentLogCount = 0;
-			ProtoUtil.log("Captured " +
-					ProtoUtil.fillString(this.part.getLabel(), 12) + " -> " +
+			LogUtil.log("Captured " +
+					SomeUtil.fillString(this.part.getLabel(), 12) + " -> " +
 					"MIDI ch |ctl|val: " +
 						this.midiChannel + " | " +
 						this.controllerNumber + " | " +

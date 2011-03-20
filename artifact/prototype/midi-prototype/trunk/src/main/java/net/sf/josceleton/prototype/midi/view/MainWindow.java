@@ -20,7 +20,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 import net.pulseproject.commons.util.GuiUtil;
-import net.sf.josceleton.prototype.midi.logic.ProtoUtil;
+import net.sf.josceleton.prototype.midi.util.LogUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -47,7 +47,7 @@ public class MainWindow extends JFrame {
 		
 		this.listener = listener;
 		
-		ProtoUtil.setLogField(this.logField);
+		LogUtil.setLogField(this.logField);
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			@Override public void windowClosing(WindowEvent e) {
@@ -67,16 +67,6 @@ public class MainWindow extends JFrame {
 		this.inpPort.setFont(FONT);
 		this.inpMappings.setFont(FONT);
 		this.logField.setFont(FONT);
-		
-//		this.inpPort.setText("IAC Driver - XXX");
-		this.inpPort.setText("IAC Driver - Chrisi A");
-		this.inpMappings.setText(
-			"# Format for each line:\n" +
-			"#   <JOINT>, <XYZ>, <MIDI-CH>, <CTRL-NR>\n" +
-			"\n" +
-			"l_hand, X, 0, 1\n" +
-			"r_hand, Y, 0, 2"
-		);
 		
 		this.inpPort.setToolTipText("Name of an receivable MIDI Port");
 		this.inpMappings.setToolTipText("MIDI Mappings");
@@ -143,18 +133,33 @@ public class MainWindow extends JFrame {
 	}
 	
 	void doStart() {
-		final String rawMappings = this.inpMappings.getText();
-		final String port = this.inpPort.getText();
-		this.listener.onStart(rawMappings, port);
+		this.listener.onStart();
 	}
 	
 	public void logWelcomeMessage() {
-		ProtoUtil.log("====================================================================");
-		ProtoUtil.log("                               WELCOME");
-		ProtoUtil.log("====================================================================");
-		ProtoUtil.log("");
-		ProtoUtil.log("Enter port, define mappings and hit start ...");
-		ProtoUtil.log("");
-		ProtoUtil.log("");
+		LogUtil.log("====================================================================");
+		LogUtil.log("                               WELCOME");
+		LogUtil.log("====================================================================");
+		LogUtil.log("");
+		LogUtil.log("Enter port, define mappings and hit start ...");
+		LogUtil.log("");
+		LogUtil.log("");
 	}
+	
+	public String getMidiPort() {
+		return this.inpPort.getText();
+	}
+	
+	public void setMidiPort(final String midiPort) {
+		this.inpPort.setText(midiPort);
+	}
+
+	public String getMidiMappings() {
+		return this.inpMappings.getText();
+	}
+
+	public void setMidiMappings(String midiMappings) {
+		this.inpMappings.setText(midiMappings);
+	}
+
 }

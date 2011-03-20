@@ -12,6 +12,7 @@ import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.message.JointMessage;
 import net.sf.josceleton.core.api.entity.message.UserMessage;
 import net.sf.josceleton.josceleton.Josceleton;
+import net.sf.josceleton.prototype.midi.util.LogUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -67,6 +68,6 @@ public class PrototypeLogic implements ConnectionListener {
 	}
 
 	public void onUserMessage(UserMessage message) {
-		ProtoUtil.log("Received " + message.getUserState() + " state for user " + message.getUser().getOsceletonId());
+		LogUtil.log("Received " + message.getUserState() + " state for user " + message.getUser().getOsceletonId());
 	}
 }
