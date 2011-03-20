@@ -11,13 +11,8 @@ import net.sf.josceleton.prototype.midi.logic.preference.PreferencesPersister;
 import net.sf.josceleton.prototype.midi.util.LogUtil;
 import net.sf.josceleton.prototype.midi.util.SomeUtil;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 public class ViewMediator implements MainWindowListener {
 	
-	private static final Log LOG = LogFactory.getLog(ViewMediator.class);
-
 	private final static String MODEL_PREF_ID = "MyMainWindow";
 	
 	private PrototypeLogic recentLogic;
@@ -95,7 +90,6 @@ public class ViewMediator implements MainWindowListener {
 		ViewMediator.this.model.setRunning(false);
 		
 		try {
-			LOG.info("doStop() ... recentLogic=" + this.recentLogic);
 			if(this.recentLogic != null) {
 				this.recentLogic.close();
 				this.recentLogic = null;

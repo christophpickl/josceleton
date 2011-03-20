@@ -1,6 +1,5 @@
 package net.sf.josceleton.prototype.midi;
 
-import java.awt.Point;
 import java.util.Properties;
 
 import javax.swing.SwingUtilities;
@@ -14,6 +13,10 @@ public class MidiPrototypeApp {
 
 	public static void main(String[] args) throws Exception {
 		startUp();
+//		PrototypeLogic l = new PrototypeLogic("");
+//		l.foo1("myS");
+//		l.foo2(42, true, Arrays.asList(Direction.X, Direction.Y));
+//		MappingsParser.fooAdd(3, 2);
 	}
 	
 	public static void startUp() {

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import net.pulseproject.commons.midi.entity.ControllerMessage;
+import net.sf.josceleton.Josceleton;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
 import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
@@ -13,14 +14,9 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.user.User;
-import net.sf.josceleton.josceleton.Josceleton;
 import net.sf.josceleton.prototype.midi.util.LogUtil;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 public class PrototypeLogic implements MotionStreamListener, UserServiceListener {
-	private static final Log LOG = LogFactory.getLog(PrototypeLogic.class);
 	
 	private Connection joscConnection;
 	private final MidiConnection midiConnection;
@@ -40,20 +36,15 @@ public class PrototypeLogic implements MotionStreamListener, UserServiceListener
 	}
 	
 	public void open() throws InvalidInputException {
-		LOG.info("open()");
-		
 		this.midiConnection.connect();
 		
 		this.joscConnection = Josceleton.openConnection();
 		this.cms = Josceleton.getContinuousMotionStreamFactory().create(this.joscConnection);
 		this.joscConnection.getUserService().addListener(this);
 		this.cms.addListener(this);
-		
-		LOG.info("Running ...");
 	}
 	
 	public void close() {
-		LOG.info("close()");
 		if(this.joscConnection != null) { // TODO check hack
 			this.cms.removeListener(this);
 			this.cms = null;

@@ -3,14 +3,16 @@ package net.sf.josceleton.prototype.midi.logic;
 import java.util.LinkedList;
 import java.util.List;
 
+import net.sf.josceleton.Josceleton;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.core.api.entity.location.Range;
-import net.sf.josceleton.josceleton.Josceleton;
 import net.sf.josceleton.prototype.midi.util.SomeUtil;
 
 public class MappingsParser {
-
+	public static int fooAdd(int x, int y) {
+		return x + y;
+	}
 	public static MidiMapping[] parseMappings(String raw) throws InvalidInputException {
 		List<MidiMapping> mappings = new LinkedList<MidiMapping>();
 		
@@ -51,7 +53,6 @@ public class MappingsParser {
 	}
 	
 	private static Range parseRange(String in) {
-		System.out.println("parsing: ["+in+"]");
 		if(in.charAt(0) != '[') {
 			throw new RuntimeException("Invalid: " + in);
 		}
@@ -59,7 +60,6 @@ public class MappingsParser {
 			throw new RuntimeException("Invalid: " + in);
 		}
 		final String inBracketsCleanded = in.substring(1, in.length() - 1).trim();
-//		System.out.println("inBracketsCleanded: ["+inBracketsCleanded+"]");
 		if(inBracketsCleanded.indexOf("=") == -1) {
 			throw new RuntimeException("Invalid: " + in);
 		}
@@ -68,17 +68,14 @@ public class MappingsParser {
 		if(inFromToPair.length != 2) {
 			throw new RuntimeException("Invalid: " + in);
 		}
-//		System.out.println("inFromToPair: ["+Arrays.toString(inFromToPair)+"]");
 		final String rawFrom = inFromToPair[0].trim();
 		final String rawTo = inFromToPair[1].trim();
-//		System.out.println("rawTo: ["+rawTo+"]");
 		
 		final String[] rawFromParts = rawFrom.split("\\.\\.");
 		final float fromStart = Float.parseFloat(rawFromParts[0].trim());
 		final float fromEnd = Float.parseFloat(rawFromParts[1].trim());
 		
 		final String[] rawToParts = rawTo.split("\\.\\.");
-//		System.out.println("rawToParts: [" + Arrays.toString(rawToParts) + "]");
 		final int toStart = Integer.parseInt(rawToParts[0].trim());
 		final int toEnd = Integer.parseInt(rawToParts[1].trim());
 		

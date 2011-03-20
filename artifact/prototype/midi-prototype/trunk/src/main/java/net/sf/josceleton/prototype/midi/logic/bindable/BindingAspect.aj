@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import org.aspectj.lang.reflect.MethodSignature;
 
 // http://www.eclipse.org/aspectj/doc/released/progguide/starting-aspectj.html
+// http://www.eclipse.org/aspectj/sample-code.html
 public aspect BindingAspect {
 
 	pointcut bindingAddFor(BindingProvider bp, String key, BindingListener listener):
@@ -16,8 +17,6 @@ public aspect BindingAspect {
 		//call(void *.addListenerFor(String, BindingListener));
 	
 	after(BindingProvider bp, String key, BindingListener listener) returning: bindingAddFor(bp, key, listener) {
-		
-		System.out.println("BindingAspect --- "+bp.getClass().getSimpleName()+".addListenerFor("+key+", "+listener+")");
 		final Method setter = findSetterByKey(bp, key);
 		final Object newValue = safeInvokeMethod(bp, lookupGetterForSetter(bp.getClass(), setter.getName()));
 		this.dispatchValueChanged(bp, key, newValue);
@@ -56,8 +55,6 @@ public aspect BindingAspect {
 		// TODO use thisJoinPoint.getArgs instead!
 		final Object newValue = safeInvokeMethod(bindingProvider, getter);
 		
-		System.out.println("BindingAspect -- " + _target.getClass().getSimpleName() + "." + signature.getName() + "; old/new: [" + oldValue + "] / [" + newValue + "]");
-
 		if(oldValue == null && newValue == null) {
 			return proceedResult;
 		}
@@ -69,7 +66,6 @@ public aspect BindingAspect {
 	}
 	
 	private void dispatchValueChanged(BindingProvider bindingProvider, final String key, Object newValue) {
-		System.out.println("ASPECT: dispatchValueChanged key ["+key+"] new value ["+newValue+"]");
 		for(BindingListener listener : bindingProvider.getBindingListenersFor(key)) {
 			listener.onValueChanged(newValue);
 		}

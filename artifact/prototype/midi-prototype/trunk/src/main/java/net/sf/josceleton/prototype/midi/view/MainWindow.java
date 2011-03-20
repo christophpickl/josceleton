@@ -14,12 +14,8 @@ import net.sf.josceleton.prototype.console.util.GuiUtil;
 import net.sf.josceleton.prototype.midi.Model;
 import net.sf.josceleton.prototype.midi.util.OSXAdapter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 public class MainWindow extends JFrame {
 	
-	private static final Log LOG = LogFactory.getLog(MainWindow.class);
 	private static final long serialVersionUID = -2564259433681771255L;
 	
 	private final MainWindowListener listener;
@@ -80,7 +76,6 @@ public class MainWindow extends JFrame {
 	}
 	
 	public final void osxQuit() {
-		System.out.println("osxQuit()");
 		this.tearDown();
 	}
 
@@ -90,7 +85,6 @@ public class MainWindow extends JFrame {
 	}
 	
 	void onWindowClosing() {
-		LOG.info("onWindowClosing()");
 		this.tearDown();
 	}
 	

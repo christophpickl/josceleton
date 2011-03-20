@@ -17,7 +17,6 @@ class PreferencesManager {
 	}
 	
 	public void setInteger(final String key, final Integer value) {
-		System.out.println("  prefs.put: " + key + " => [" + value+ "]");
 		this.javaPreferences.putInt(key, value.intValue());
 		safeFlush();
 	}

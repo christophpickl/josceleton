@@ -123,7 +123,10 @@
 					</execution>
 				</executions>
 				<configuration>
-					<source>1.6</source>
+					<!-- http://mojo.codehaus.org/aspectj-maven-plugin/ -->
+					<source>1.6</source><!-- TODO Default value is: ${mojo.java.target} -->
+					<target>1.6</target><!-- TODO Default value is: ${project.build.java.target} -->
+					<complianceLevel>1.6</complianceLevel>
 <!--					<aspectLibraries>-->
 <!--						<aspectLibrary>-->
 <!--							<groupId>org.thirdparty</groupId>-->

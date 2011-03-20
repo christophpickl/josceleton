@@ -10,8 +10,6 @@ import javax.swing.JOptionPane;
 import net.pulseproject.commons.util.StringUtil;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
-import net.sf.josceleton.core.api.entity.location.Coordinate;
-import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.prototype.console.util.CloseableUtil;
 import net.sf.josceleton.prototype.midi.logic.MidiMapping;
 
