@@ -28,7 +28,7 @@ public abstract class AbstractJointableGesture<C extends JointableGestureConfig,
 	 */
 	protected abstract void onMovedRelevantJoint(Joint movedJoint, Coordinate updatedCoordinate, Skeleton skeleton);	
 	
-	/** {@inheritDoc} from {@link MotionSupplierListener} */
+	/** {@inheritDoc} from {@link MotionStreamListener} */
 	@Override public final void onMoved(
 			final Joint movedJoint, final Coordinate updatedCoordinate, final Skeleton skeleton) {
 		

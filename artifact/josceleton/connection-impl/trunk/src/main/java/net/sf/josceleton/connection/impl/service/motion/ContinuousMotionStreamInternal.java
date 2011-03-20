@@ -1,12 +1,12 @@
 package net.sf.josceleton.connection.impl.service.motion;
 
-import net.sf.josceleton.connection.api.service.motion.ContinuousMotionSupplier;
-import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
+import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
+import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 
-interface ContinuousMotionSupplierInternal
-	extends ContinuousMotionSupplier,
-			MotionSupplierListener,
+interface ContinuousMotionStreamInternal
+	extends ContinuousMotionStream,
+			MotionStreamListener,
 			UserServiceListener {
 	
 	/**
