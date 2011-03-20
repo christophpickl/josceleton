@@ -11,18 +11,18 @@ import net.sf.josceleton.connection.api.Connection;
 
 import org.testng.annotations.Test;
 
-public abstract class MotionSupplierFactoryTest<C extends MotionSupplierFactory> extends AbstractMockeryTest {
+public abstract class MotionStreamFactoryTest<C extends MotionStreamFactory> extends AbstractMockeryTest {
 	
-	protected abstract MotionSupplierFactory createTestee(
+	protected abstract MotionStreamFactory createTestee(
 			final Collection<ExpectedFactoryCreateInvocationsWithReturnValue> createInvocations);
 
 	@Test public final void everything() {
 		final Connection expConn1 = this.mock(Connection.class, "expConn1");
 		final Connection expConn2 = this.mock(Connection.class, "expConn2");
-		final MotionSupplier expSupp1 = this.mock(MotionSupplier.class, "expSupp1");
-		final MotionSupplier expSupp2 = this.mock(MotionSupplier.class, "expSupp2");
+		final MotionStream expSupp1 = this.mock(MotionStream.class, "expSupp1");
+		final MotionStream expSupp2 = this.mock(MotionStream.class, "expSupp2");
 		
-		final MotionSupplierFactory testee = this.createTestee(Arrays.asList(
+		final MotionStreamFactory testee = this.createTestee(Arrays.asList(
 			new ExpectedFactoryCreateInvocationsWithReturnValue(expConn1, expSupp1),
 			new ExpectedFactoryCreateInvocationsWithReturnValue(expConn2, expSupp2)
 		));
@@ -39,20 +39,20 @@ public abstract class MotionSupplierFactoryTest<C extends MotionSupplierFactory>
 		
 		private final Connection connection;
 		
-		private final MotionSupplier supplier;
+		private final MotionStream stream;
 		
 		public ExpectedFactoryCreateInvocationsWithReturnValue(final Connection connection,
-				final MotionSupplier supplier) {
+				final MotionStream stream) {
 			this.connection = connection;
-			this.supplier = supplier;
+			this.stream = stream;
 		}
 		
 		public final Connection getConnection() {
 			return this.connection;
 		}
 		
-		public final MotionSupplier getSupplier() {
-			return this.supplier;
+		public final MotionStream getStream() {
+			return this.stream;
 		}
 	}
 }

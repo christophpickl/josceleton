@@ -10,7 +10,7 @@ import net.sf.josceleton.core.api.entity.location.Coordinate;
  * 
  * @since 0.4
  */
-public interface MotionSupplierListener extends Listener {
+public interface MotionStreamListener extends Listener {
 	
 	/**
 	 * Will be invoked whenever the specific user has moved any joint/body part.

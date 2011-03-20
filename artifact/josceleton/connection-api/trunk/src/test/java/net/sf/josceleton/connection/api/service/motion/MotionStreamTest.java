@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.ConnectionListener;
-import net.sf.josceleton.connection.api.test.TestableMotionSupplierListener;
+import net.sf.josceleton.connection.api.test.TestableMotionStreamListener;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
@@ -22,7 +22,7 @@ import org.jmock.Expectations;
 import org.testng.annotations.Test;
 
 @SuppressWarnings("boxing")
-public abstract class MotionSupplierTest<M extends MotionSupplier> extends AbstractMockeryTest {
+public abstract class MotionStreamTest<M extends MotionStream> extends AbstractMockeryTest {
 	
 	protected abstract M createTestee(Connection connection, SkeletonFactory skeletonFactory);
 
@@ -38,7 +38,7 @@ public abstract class MotionSupplierTest<M extends MotionSupplier> extends Abstr
 		final Joint jointMsg1Joint = Joints.TORSO();
 		final Coordinate jointMsg1Coord = this.mock(Coordinate.class);
 		final TestableJointMessage jointMsg1 = new TestableJointMessage(user, jointMsg1Joint, jointMsg1Coord);
-		final TestableMotionSupplierListener listener = new TestableMotionSupplierListener();
+		final TestableMotionStreamListener listener = new TestableMotionStreamListener();
 		
 		final Connection connection = this.mock(Connection.class);
 		final SkeletonInternal skeleton = this.mock(SkeletonInternal.class);
@@ -93,9 +93,9 @@ public abstract class MotionSupplierTest<M extends MotionSupplier> extends Abstr
 		
 
 		final User user = this.mock(User.class);
-		final MotionSupplierListener listener1 = this.mock(MotionSupplierListener.class, "listener1");
-		final MotionSupplierListener listener2 = this.mock(MotionSupplierListener.class, "listener2");
-		final MotionSupplierListener listener3NotAdded = this.mock(MotionSupplierListener.class, "listener3NotAdded");
+		final MotionStreamListener listener1 = this.mock(MotionStreamListener.class, "listener1");
+		final MotionStreamListener listener2 = this.mock(MotionStreamListener.class, "listener2");
+		final MotionStreamListener listener3NotAdded = this.mock(MotionStreamListener.class, "listener3NotAdded");
 		
 		testee.addListenerFor(user, listener1);
 		testee.addListenerFor(user, listener2);
@@ -106,7 +106,7 @@ public abstract class MotionSupplierTest<M extends MotionSupplier> extends Abstr
 	
 	@Test public final void afterAddingAndRemvoingOneselfOneDoesntGetAnyFurtherMessages() {
 		final M testee = this.createSimpleTestee();
-		final MotionSupplierListener listener = this.mock(MotionSupplierListener.class); // no expectations confirms test assertion
+		final MotionStreamListener listener = this.mock(MotionStreamListener.class); // no expectations confirms test assertion
 		final User user = this.mock(User.class);
 		testee.addListenerFor(user, listener);
 		testee.removeListenerFor(user, listener);
@@ -122,7 +122,7 @@ public abstract class MotionSupplierTest<M extends MotionSupplier> extends Abstr
 	@Test
 	public final void addingSameListenerTwiceDoesntDoAnythingCheckedViaMockExpectations() {
 		final M testee = this.createSimpleTestee();
-		final MotionSupplierListener listener = this.mock(MotionSupplierListener.class);
+		final MotionStreamListener listener = this.mock(MotionStreamListener.class);
 		final User user = this.mock(User.class);
 		testee.addListenerFor(user, listener);
 		testee.addListenerFor(user, listener);
@@ -132,8 +132,8 @@ public abstract class MotionSupplierTest<M extends MotionSupplier> extends Abstr
 	@Test
 	public final void addAndRemoveSomeListeners() {
 		final M testee = this.createSimpleTestee();
-		final MotionSupplierListener listener1 = this.mock(MotionSupplierListener.class, "listener1");
-		final MotionSupplierListener listener2 = this.mock(MotionSupplierListener.class, "listener2");
+		final MotionStreamListener listener1 = this.mock(MotionStreamListener.class, "listener1");
+		final MotionStreamListener listener2 = this.mock(MotionStreamListener.class, "listener2");
 		final User user = this.mock(User.class);
 		testee.addListenerFor(user, listener1);
 		testee.addListenerFor(user, listener2);

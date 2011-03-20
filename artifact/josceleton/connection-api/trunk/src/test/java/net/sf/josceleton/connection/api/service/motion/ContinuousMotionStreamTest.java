@@ -1,5 +1,5 @@
 package net.sf.josceleton.connection.api.service.motion;
 
-public class ContinuousMotionSupplierTest {
+public class ContinuousMotionStreamTest {
 
 }

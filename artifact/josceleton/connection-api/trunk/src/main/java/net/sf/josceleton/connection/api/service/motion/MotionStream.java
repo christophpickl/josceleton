@@ -6,7 +6,7 @@ import net.sf.josceleton.core.api.entity.user.User;
 /**
  * @since 0.4
  */
-public interface MotionSupplier extends AsyncFor<User, MotionSupplierListener> {
+public interface MotionStream extends AsyncFor<User, MotionStreamListener> {
 	
 	// async communication only
 	

@@ -5,10 +5,10 @@ import net.sf.josceleton.connection.api.Connection;
 /**
  * @since 0.4
  */
-public interface MotionSupplierFactory {
+public interface MotionStreamFactory {
 
 	/**
 	 * @since 0.4
 	 */
-	MotionSupplier create(Connection connection);
+	MotionStream create(Connection connection);
 }

@@ -5,7 +5,7 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 /**
- * Value object containing method arguments for {@link MotionSupplierListener}.
+ * Value object containing method arguments for {@link MotionStreamListener}.
  * 
  * @since 0.4
  */
