@@ -28,6 +28,8 @@
     <!-- ******************************************************************* -->
 	
     <properties>
+    	
+    	<java_version_osxappbundle>1.6+</java_version_osxappbundle>
     	<josceleton.create.reports>true</josceleton.create.reports>
     	<cobertura.haltOnFailure>true</cobertura.haltOnFailure>
     	
@@ -52,9 +54,11 @@
     	<version_cobertura>2.3</version_cobertura><!-- 2.3 is compatible with site3.0-beta (current is 2.4) -->
 
    		<!-- ************ BUILD PLUGINS ************ -->
+   		<version_assembly_plugin>2.2.1</version_assembly_plugin>
 		<version_clean_plugin>2.4.1</version_clean_plugin>
 		<version_compiler_plugin>2.3.2</version_compiler_plugin>
 		<version_jar_plugin>2.3.1</version_jar_plugin>
+		<version_osxappbundle_plugin>1.0-alpha-2</version_osxappbundle_plugin>
 		<version_source_plugin>2.1.2</version_source_plugin>
    		
    		<!-- ************ REPORT PLUGINS ************ -->
@@ -219,6 +223,11 @@
                 <!-- *********************************************************** -->
                 
 				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${version_assembly_plugin}</version>
+				</plugin>
+				
+				<plugin>
 					<artifactId>maven-checkstyle-plugin</artifactId>
 					<version>${verison_checkstyle}</version>
 				</plugin>
@@ -236,6 +245,15 @@
 				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${version_jar_plugin}</version>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>osxappbundle-maven-plugin</artifactId>
+					<version>${version_osxappbundle_plugin}</version>
+					<configuration>
+						<jvmVersion>${java_version_osxappbundle}</jvmVersion>
+					</configuration>
 				</plugin>
 				
 				<plugin>
