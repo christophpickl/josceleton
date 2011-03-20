@@ -6,9 +6,9 @@ import static org.hamcrest.Matchers.not;
 
 import java.util.List;
 
-import net.sf.josceleton.connection.api.service.motion.MotionSupplierListener;
-import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
-import net.sf.josceleton.connection.api.test.TestableMotionSupplierListener;
+import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
+import net.sf.josceleton.connection.api.service.motion.MotionStream;
+import net.sf.josceleton.connection.api.test.TestableMotionStreamListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.user.User;
@@ -17,14 +17,14 @@ import net.sf.josceleton.core.api.entity.user.UserState;
 import org.testng.annotations.Test;
 
 @SuppressWarnings("boxing")
-public class MotionSupplierIntegrationTest extends AbstractIntegrationTest<MotionSupplierIntegrationTest> {
+public class MotionStreamIntegrationTest extends AbstractIntegrationTest<MotionStreamIntegrationTest> {
 	
 	@Test
-	public final void motionSupplierSeparatesJointMessagesForTwoDifferentUsers() {
+	public final void motionStreamSeparatesJointMessagesForTwoDifferentUsers() {
 		final int u1 = 1;
 		final int u2 = 2;
-		final TestableMotionSupplierListener listener1 = new TestableMotionSupplierListener();
-		final TestableMotionSupplierListener listener2 = new TestableMotionSupplierListener();
+		final TestableMotionStreamListener listener1 = new TestableMotionStreamListener();
+		final TestableMotionStreamListener listener2 = new TestableMotionStreamListener();
 		this.emulateTwoNewUsers(u1, u2, listener1, listener2);
 
 		assertThat(listener1.getOnMovedParameters().size(), equalTo(0));
@@ -40,8 +40,8 @@ public class MotionSupplierIntegrationTest extends AbstractIntegrationTest<Motio
 	}
 	
 	private void emulateTwoNewUsers(final int u1, final int u2,
-			final MotionSupplierListener listener1, final MotionSupplierListener listener2) {
-		final MotionSupplier motionSupplier = this.getMotionSupplier();
+			final MotionStreamListener listener1, final MotionStreamListener listener2) {
+		final MotionStream motionStream = this.getMotionStream();
 		
 		dispatchUserMessage(u1, UserState.WAITING);
 		{
@@ -66,8 +66,8 @@ public class MotionSupplierIntegrationTest extends AbstractIntegrationTest<Motio
 		dispatchJointMessage(u1, Joints.HEAD(), 0, 0, 0);
 		assertThat(this.getReceivedJointMessages().size(), equalTo(1));
 		
-		motionSupplier.addListenerFor(user1, listener1);
-		motionSupplier.addListenerFor(user2, listener2);
+		motionStream.addListenerFor(user1, listener1);
+		motionStream.addListenerFor(user2, listener2);
 	}
 	
 }

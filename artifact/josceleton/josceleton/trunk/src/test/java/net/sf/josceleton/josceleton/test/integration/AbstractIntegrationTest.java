@@ -11,15 +11,15 @@ import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
-import net.sf.josceleton.connection.api.service.motion.ContinuousMotionSupplier;
-import net.sf.josceleton.connection.api.service.motion.MotionSupplier;
-import net.sf.josceleton.connection.api.service.motion.MotionSupplierFactory;
+import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
+import net.sf.josceleton.connection.api.service.motion.MotionStream;
+import net.sf.josceleton.connection.api.service.motion.MotionStreamFactory;
 import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.test.TestableUserServiceListener;
 import net.sf.josceleton.connection.api.test.UserAndState;
 import net.sf.josceleton.connection.impl.osc.OscAddress;
 import net.sf.josceleton.connection.impl.osc.OscPortOpener;
-import net.sf.josceleton.connection.impl.service.motion.ContinuousMotionSupplierFactory;
+import net.sf.josceleton.connection.impl.service.motion.ContinuousMotionStreamFactory;
 import net.sf.josceleton.connection.impl.test.OscAddressConverterUtil;
 import net.sf.josceleton.connection.impl.test.TestableConnectionListener;
 import net.sf.josceleton.connection.impl.test.TestableOSCMessage;
@@ -150,14 +150,14 @@ public class AbstractIntegrationTest<T extends AbstractIntegrationTest<T>> exten
 		return this.injector;
 	}
 	
-	protected final MotionSupplier getMotionSupplier() {
+	protected final MotionStream getMotionStream() {
 		// yes, always ask injector, as it will be more like how the enduser will user josceleton.
-		final MotionSupplierFactory factory = this.injector.getInstance(MotionSupplierFactory.class);
+		final MotionStreamFactory factory = this.injector.getInstance(MotionStreamFactory.class);
 		return factory.create(this.connection);
 	}
 
-	protected final ContinuousMotionSupplier getContinuousMotionSupplier() {
-		return this.injector.getInstance(ContinuousMotionSupplierFactory.class).create(this.connection);
+	protected final ContinuousMotionStream getContinuousMotionStream() {
+		return this.injector.getInstance(ContinuousMotionStreamFactory.class).create(this.connection);
 	}
 
 	protected final RangeScaler getRangeScaler() {

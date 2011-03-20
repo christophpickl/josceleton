@@ -2,7 +2,7 @@ package net.sf.josceleton.josceleton;
 
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
-import net.sf.josceleton.connection.impl.service.motion.ContinuousMotionSupplierFactory;
+import net.sf.josceleton.connection.impl.service.motion.ContinuousMotionStreamFactory;
 import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.core.api.entity.location.Range;
 import net.sf.josceleton.core.api.entity.location.RangeFactory;
@@ -44,8 +44,8 @@ public class JosceletonFacadeImpl implements JosceletonFacade {
 	}
 
 	/** {@inheritDoc} from {@link JosceletonFacade} */
-	@Override public final ContinuousMotionSupplierFactory getContinuousMotionSupplierFactory() {
-		return this.injector.getInstance(ContinuousMotionSupplierFactory.class); // MINOR maybe cache instance as well
+	@Override public final ContinuousMotionStreamFactory getContinuousMotionStreamFactory() {
+		return this.injector.getInstance(ContinuousMotionStreamFactory.class); // MINOR maybe cache instance as well
 	}
 
 	/** {@inheritDoc} from {@link JosceletonFacade} */

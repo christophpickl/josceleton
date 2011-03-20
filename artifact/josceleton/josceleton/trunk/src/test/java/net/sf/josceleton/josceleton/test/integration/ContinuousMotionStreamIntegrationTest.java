@@ -2,8 +2,8 @@ package net.sf.josceleton.josceleton.test.integration;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import net.sf.josceleton.connection.api.service.motion.ContinuousMotionSupplier;
-import net.sf.josceleton.connection.api.test.TestableMotionSupplierListener;
+import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
+import net.sf.josceleton.connection.api.test.TestableMotionStreamListener;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 
@@ -12,20 +12,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @SuppressWarnings("boxing")
-public class ContinuousMotionSupplierIntegrationTest extends AbstractIntegrationTest<ContinuousMotionSupplierIntegrationTest> {
+public class ContinuousMotionStreamIntegrationTest extends AbstractIntegrationTest<ContinuousMotionStreamIntegrationTest> {
 	
 	private static final Joint ALWAYS_MOVING_SAME_JOINT = Joints.HEAD();
 
-	private ContinuousMotionSupplier testee;
+	private ContinuousMotionStream testee;
 	
-	private TestableMotionSupplierListener testeeListener;
+	private TestableMotionStreamListener testeeListener;
 	
 	private int expectedTesteeReceivedMoves;
 	
 	
 	@BeforeMethod public final void setUpState() {
-		this.testee = this.getContinuousMotionSupplier();
-		this.testeeListener = new TestableMotionSupplierListener();
+		this.testee = this.getContinuousMotionStream();
+		this.testeeListener = new TestableMotionStreamListener();
 		this.testee.addListener(this.testeeListener);
 		
 		this.expectedTesteeReceivedMoves = 0;
@@ -35,7 +35,7 @@ public class ContinuousMotionSupplierIntegrationTest extends AbstractIntegration
 		this.testee = null;
 	}
 	
-	@Test public final void continuousMotionSupplierWorksJustAsExpected() {
+	@Test public final void continuousMotionStreamWorksJustAsExpected() {
 		// regular start case
 		login(1).move(1).andExpectedReceived("fresh user 1 moved");
 		
@@ -62,7 +62,7 @@ public class ContinuousMotionSupplierIntegrationTest extends AbstractIntegration
 		move(42).andExpectedNotReceived("ignoring younger u42");
 	}
 	
-	private ContinuousMotionSupplierIntegrationTest move(final int userId) {
+	private ContinuousMotionStreamIntegrationTest move(final int userId) {
 		this.dispatchJointMessage(userId, ALWAYS_MOVING_SAME_JOINT);
 		return this;
 	}
