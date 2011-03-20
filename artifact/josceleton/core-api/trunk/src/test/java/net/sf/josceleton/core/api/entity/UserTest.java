@@ -35,8 +35,7 @@ public abstract class UserTest extends AbstractEqualsTest<User> {
 			new Object[] {  1,  0 },
 			new Object[] {  1, -1 },
 			new Object[] {  0,  1 },
-			new Object[] { -1,  1 },
-			new Object[] {  2,  4 } // internal (unique) ID must always be higher then osceleton ID
+			new Object[] { -1,  1 }
 		};
 	}
 	
@@ -50,6 +49,7 @@ public abstract class UserTest extends AbstractEqualsTest<User> {
 		return new Object[][] {
 			new Object[] {  1,  1 },
 			new Object[] {  2,  1 },
+			new Object[] {  2,  4 }, // greater osceleton ID is also valid
 			new Object[] { 10, 10 },
 			new Object[] { 42, 21 }
 		};

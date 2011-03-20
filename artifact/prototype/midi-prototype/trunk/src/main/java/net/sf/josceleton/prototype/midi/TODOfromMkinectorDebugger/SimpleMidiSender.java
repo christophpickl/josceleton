@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.midi;
+package net.sf.josceleton.prototype.midi.TODOfromMkinectorDebugger;
 
 public interface SimpleMidiSender {
 

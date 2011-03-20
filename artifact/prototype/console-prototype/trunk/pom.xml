@@ -33,6 +33,17 @@
             <artifactId>josceleton</artifactId>
         </dependency>
         
+        
+	    <!-- T E S T -->
+    	<!-- *********************************************************** -->
+    	
+	    <dependency>
+			<groupId>net.sf.josceleton</groupId>
+			<artifactId>commons</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+        
 	</dependencies>
     
     

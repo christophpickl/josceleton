@@ -20,6 +20,16 @@
     	<relativePath>../java-pom/pom.xml</relativePath>
     </parent>
     
+    
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+    
+    <properties>
+    	<fqn_of_mainclass>net.sf.josceleton.prototype.midi.MidiPrototypeApp</fqn_of_mainclass>
+    </properties>
+    
+    
     <!-- ******************************************************************* -->
     <!--                       D E P E N D E N C I E S                       -->
     <!-- ******************************************************************* -->
@@ -50,6 +60,84 @@
         </dependency>
         
 	</dependencies>
+
+    
+    <!-- ******************************************************************* -->
+    <!--                              B U I L D                              -->
+    <!-- ******************************************************************* -->
+    
+	<build>
+		
+		<!-- TODO @POM make use of external properties file for filtering -->
+<!--		<filters>-->
+<!--			<filter>some_centrally_organized.properties</filter>-->
+<!--		</filters>-->
+		
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+<!--					<include>**/*.properties</include>-->
+					<include>app.properties</include>
+<!--					<targetPath></targetPath>-->
+				</includes>
+			</resource>
+			<!-- just to get sure that no other (binaries) things are being filtered -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>app.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
+	
+		<plugins>
+		
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>osxappbundle-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>${fqn_of_mainclass}</mainClass>
+					
+					<bundleName>MidirouteApp</bundleName>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>${fqn_of_mainclass}</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<!-- TODO maybe executions configuration of assembly plugin should be moved to super pom's build mgmt section? -->
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
     
     <!-- ******************************************************************* -->
     <!--                                S C M                                -->

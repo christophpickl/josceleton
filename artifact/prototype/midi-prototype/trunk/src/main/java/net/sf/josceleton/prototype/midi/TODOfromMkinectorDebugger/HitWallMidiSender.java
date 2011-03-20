@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.midi;
+package net.sf.josceleton.prototype.midi.TODOfromMkinectorDebugger;
 
 
 class HitWallMidiSender { /*write it*/ } // TODO MIDI @HitWallMidiSender reimplement 

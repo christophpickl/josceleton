@@ -1,4 +1,4 @@
-package net.sf.josceleton.prototype.midi;
+package net.sf.josceleton.prototype.midi.TODOfromMkinectorDebugger;
 
 import javax.sound.midi.MidiDevice;
 import javax.sound.midi.Receiver;
