@@ -1,4 +1,4 @@
-package net.sf.josceleton.playground.motion.app2.framework;
+package net.sf.josceleton.playground.motion.app2.framework.world;
 
 import java.awt.Point;
 

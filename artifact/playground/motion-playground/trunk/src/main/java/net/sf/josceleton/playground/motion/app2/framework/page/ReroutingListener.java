@@ -1,12 +1,14 @@
 /**
  * 
  */
-package net.sf.josceleton.playground.motion.app2.framework;
+package net.sf.josceleton.playground.motion.app2.framework.page;
 
 import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldChangedListener;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
 
 class ReroutingListener implements MotionStreamListener {
 	private final WorldSnapshotFactory factory;

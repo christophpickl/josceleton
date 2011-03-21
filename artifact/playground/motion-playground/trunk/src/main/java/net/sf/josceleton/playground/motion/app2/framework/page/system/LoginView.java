@@ -1,9 +1,15 @@
-package net.sf.josceleton.playground.motion.app2.framework;
+package net.sf.josceleton.playground.motion.app2.framework.page.system;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 
 import net.sf.josceleton.core.impl.async.DefaultAsync;
+import net.sf.josceleton.playground.motion.app2.framework.view.Button;
+import net.sf.josceleton.playground.motion.app2.framework.view.ButtonListener;
+import net.sf.josceleton.playground.motion.app2.framework.view.PageView;
+import net.sf.josceleton.playground.motion.app2.framework.view.PageViewListener;
+import net.sf.josceleton.playground.motion.app2.framework.view.StyleConstants;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class LoginView extends DefaultAsync<PageViewListener> implements PageView {
 	

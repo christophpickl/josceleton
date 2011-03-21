@@ -1,8 +1,10 @@
-package net.sf.josceleton.playground.motion.app2.framework;
+package net.sf.josceleton.playground.motion.app2.framework.page;
 
 import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
 import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
 import net.sf.josceleton.core.api.async.Closeable;
+import net.sf.josceleton.playground.motion.app2.framework.Navigation;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
 import net.sf.josceleton.playground.motion.common.DrawSurface;
 
 public class PageManager implements Closeable, PageListener {

@@ -8,9 +8,9 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
-import net.sf.josceleton.playground.motion.app2.framework.PageView;
-import net.sf.josceleton.playground.motion.app2.framework.WorldChangedListener;
-import net.sf.josceleton.playground.motion.app2.framework.WorldSnapshot;
+import net.sf.josceleton.playground.motion.app2.framework.view.PageView;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldChangedListener;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class DrawSurface extends JPanel implements WorldChangedListener {
 

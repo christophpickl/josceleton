@@ -1,6 +1,8 @@
-package net.sf.josceleton.playground.motion.app2.framework;
+package net.sf.josceleton.playground.motion.app2.framework.page;
 
 import net.sf.josceleton.core.impl.async.DefaultAsync;
+import net.sf.josceleton.playground.motion.app2.framework.view.PageView;
+import net.sf.josceleton.playground.motion.app2.framework.view.PageViewListener;
 
 public abstract class Page extends DefaultAsync<PageListener> implements PageViewListener {
 	

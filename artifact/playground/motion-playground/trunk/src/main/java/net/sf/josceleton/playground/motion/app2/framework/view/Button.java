@@ -1,4 +1,4 @@
-package net.sf.josceleton.playground.motion.app2.framework;
+package net.sf.josceleton.playground.motion.app2.framework.view;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import net.sf.josceleton.core.impl.async.DefaultAsync;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class Button extends DefaultAsync<ButtonListener> implements Drawable {
 
