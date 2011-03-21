@@ -4,8 +4,8 @@ import java.awt.Graphics2D;
 
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
-public interface Drawable {
+public interface AbsoluteDrawable {
 	
-	void drawOnPosition(Graphics2D g, int x, int y, WorldSnapshot world);
+	void draw(Graphics2D g, WorldSnapshot world);
 	
 }

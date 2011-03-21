@@ -1,20 +1,18 @@
 package net.sf.josceleton.playground.motion.app2;
 
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.net.URL;
-
-import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 import net.sf.josceleton.Josceleton;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.location.Range;
-import net.sf.josceleton.playground.motion.ImageLoadingApp;
 import net.sf.josceleton.playground.motion.app2.framework.Navigation;
+import net.sf.josceleton.playground.motion.app2.framework.page.Page;
 import net.sf.josceleton.playground.motion.app2.framework.page.PageManager;
-import net.sf.josceleton.playground.motion.app2.framework.page.system.LoginPage;
+import net.sf.josceleton.playground.motion.app2.framework.view.AbstractPageView;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
 import net.sf.josceleton.playground.motion.common.DrawSurface;
 import net.sf.josceleton.playground.motion.common.ThrottledMotionStream;
@@ -26,6 +24,9 @@ public class App2 {
 		new App2().start();
 	}
 	
+	// FIXME pages sind alle Hibernateable (wenn sie zb intern animation/thread haben, dass das pausiert wird)
+	private static final boolean FULLSCREEN_ENABLED = false;
+	
 	private static final int FPS = 24;
 	
 	public void start() {
@@ -34,11 +35,12 @@ public class App2 {
 		
 		final ThrottledMotionStream throttledStream = new ThrottledMotionStream(motionStream, FPS);
 		
-		final Image continueImage = this.lookupImage("/image/next.png");
-		final Navigation navigation = new Navigation(new LoginPage("asdf", continueImage));
-		final DrawSurface drawSurface = new DrawSurface(navigation.getStartPage().getView());
+		final MainPage mainPage = new MainPage("main");
+		final Navigation navigation = new Navigation(mainPage.getId(), mainPage);
+//		final DrawSurface drawSurface = new DrawSurface(navigation.getStartPage().getView());
+		final DrawSurface drawSurface = new DrawSurface();
 		
-		final MainWindow window = new MainWindow(drawSurface, new WindowXListener() {
+		final WindowX window = new WindowX(FULLSCREEN_ENABLED, drawSurface, new WindowXListener() {
 			@Override public void onQuit(WindowX quittingWindow) {
 				quittingWindow.setVisible(false);
 				quittingWindow.dispose();
@@ -57,15 +59,15 @@ public class App2 {
 		window.displayLater();
 	}
 	
-	private Image lookupImage(String path) {
-//		final Image foundImage = Toolkit.getDefaultToolkit().getImage(path);
-//		if(foundImage == null) {
-//			throw new RuntimeException("Could not find image: [" + path + "]!");
-//		}
-//		return foundImage;
-		final URL url = ImageLoadingApp.class.getResource(path);
-		System.out.println("url: " + url);
-		final ImageIcon img = new ImageIcon(url);
-		return img.getImage();
+	static class MainPage extends Page {
+		public MainPage(String id) {
+			super(id, new AbstractPageView() {
+				@Override public void drawWithMaxSize(WorldSnapshot world, Graphics2D g, int width, int height) {
+					g.setColor(Color.PINK);
+					g.drawString("YES", world.getHorizontalCenter(), world.getVerticalCenter());
+				}
+			});
+		}
 	}
+	
 }

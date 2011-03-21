@@ -1,6 +1,7 @@
 package net.sf.josceleton.playground.motion.common;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,56 +13,63 @@ import net.sf.josceleton.playground.motion.app2.framework.view.PageView;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldChangedListener;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
-public class DrawSurface extends JPanel implements WorldChangedListener {
+public class DrawSurface implements WorldChangedListener {
 
 	private static final long serialVersionUID = 8697192042852384195L;
-	private static final int CURSOR_HALF_SIZE = 15;
-	private static final Color CURSOR_COLOR = Color.WHITE;
 	
 	private PageView currentView;
+	
 	private WorldSnapshot recentWorld;
 	
 	
-	public DrawSurface(final PageView startView) {
-		this.currentView = startView;
-	}
 	
-	public void overrideSize(final int width, final int height) {
-		final Dimension d = new Dimension(width, height);
-		this.setPreferredSize(d);
-		this.setMinimumSize(d);
-		this.setSize(d);
-	}
+	private final JPanel internalUiComponent = new JPanel() {
+		private static final long serialVersionUID = -896244269322870882L;
+		@Override public void paintComponent(final Graphics g) {
+			super.paintComponent(g); 
+			paintInternalUiComponent((Graphics2D) g);
+		}
+	};
 	
-	@Override public void paintComponent(final Graphics g) {
-		super.paintComponent(g); 
-		final Graphics2D g2 = (Graphics2D) g;
-		
+	void paintInternalUiComponent(Graphics2D g) {
 		if(this.recentWorld == null) {
 			return; // wait until data has arrived
 		}
+		this.currentView.drawWithMaxSize(this.recentWorld, g,
+			this.internalUiComponent.getWidth(), this.internalUiComponent.getHeight());
 		
-		this.currentView.drawWithMaxSize(this.recentWorld, g2, this.getWidth(), this.getHeight());
-		this.drawCursor(g2);
+//		FIXME this.drawCursor(g);
 	}
-	
-	private void drawCursor(Graphics2D g2) {
-		final Point locationRHand = this.recentWorld.getLocationRHand();
-		if(locationRHand != null) {
-			g2.setColor(CURSOR_COLOR);
-			g2.drawLine(locationRHand.x, locationRHand.y - CURSOR_HALF_SIZE, locationRHand.x, locationRHand.y + CURSOR_HALF_SIZE);
-			g2.drawLine(locationRHand.x - CURSOR_HALF_SIZE, locationRHand.y, locationRHand.x + CURSOR_HALF_SIZE, locationRHand.y);
-		}
+
+	@Override public void onUpdated(WorldSnapshot world) {
+		this.recentWorld = world;
+		this.internalUiComponent.repaint();
 	}
 
 	public void setView(final PageView view) {
 		System.out.println("DrawSurface: setView(" + view + ")");
 		this.currentView = view;
-		this.repaint();
+		this.internalUiComponent.repaint();
+	}
+	
+	
+	public Component asComponent() {
+		return this.internalUiComponent;
 	}
 
-	@Override public void onUpdated(WorldSnapshot world) {
-		this.recentWorld = world;
-		this.repaint();
+	public void enforceSize(int width, int height) {
+		final Dimension d = new Dimension(width, height);
+		this.internalUiComponent.setPreferredSize(d);
+		this.internalUiComponent.setMinimumSize(d);
+		this.internalUiComponent.setSize(d);
 	}
+
+	public int getWidth() {
+		return this.internalUiComponent.getWidth();
+	}
+
+	public int getHeight() {
+		return this.internalUiComponent.getHeight();
+	}
+	
 }

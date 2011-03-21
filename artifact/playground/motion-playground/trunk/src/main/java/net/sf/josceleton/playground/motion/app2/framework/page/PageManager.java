@@ -20,34 +20,35 @@ public class PageManager implements Closeable, PageListener {
 		this.navigation = navigation;
 		this.motionStream = motionStream;
 		this.surface = surface;
+		
+		// directly redirect messages from motion strema to surface
 		this.addedListener = new ReroutingListener(factory, this.surface);
-		this.currentPage = navigation.getStartPage();
 		this.factory = factory;
 	}
 	
 	public void start() {
 		System.out.println("PageManger: start()");
+		this.currentPage = this.navigation.getStartPage();
 		this.currentPage.addListener(this);
+		this.surface.setView(this.currentPage.getView());
 		
 		this.motionStream.addListener(this.addedListener);
 		this.surface.onUpdated(this.factory.createInitialDummy());
-//		final PageView view = page.getView();
-//		this.surface.setView(view);
+	}
+
+	@Override
+	public void onNavigate(String pageId) {
+		System.out.println("on NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE  ==> " + pageId);
+		this.currentPage.removeListener(this);
+		
+		final Page newPage = this.navigation.getPageById(pageId);
+		newPage.addListener(this);
+		this.surface.setView(newPage.getView());
 	}
 	
 	@Override
 	public void close() {
 		this.motionStream.removeListener(this.addedListener);
 	}
-
-	@Override
-	public void onNavigate(String pageId) {
-		
-		System.out.println("on NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE  ==> " + pageId);
-		
-		this.currentPage.removeListener(this);
-		// lookup navigation next page
-	}
-	
 	
 }

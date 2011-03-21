@@ -1,4 +1,4 @@
-package net.sf.josceleton.playground.motion.app2.framework.view;
+package net.sf.josceleton.playground.motion.app2.framework.view.component;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import net.sf.josceleton.core.impl.async.DefaultAsync;
+import net.sf.josceleton.playground.motion.app2.framework.view.Drawable;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class Button extends DefaultAsync<ButtonListener> implements Drawable {
@@ -29,7 +30,8 @@ public class Button extends DefaultAsync<ButtonListener> implements Drawable {
 		this.image = image;
 	}
 
-	@Override public void drawOnPosition(WorldSnapshot world, Graphics2D g, int x, int y) { // maybe move x/y coordinates into constructor (could set area instance final and hittest would need no null check)
+	// maybe move x/y coordinates into constructor (could set area instance final and hittest would need no null check)
+	@Override public void drawOnPosition(Graphics2D g, int x, int y, WorldSnapshot world) {
 		this.update(world);
 		
 		if(this.area == null) {
