@@ -1,15 +1,13 @@
-package net.sf.josceleton.playground.motion.common;
+package net.sf.josceleton.playground.motion.app2.framework.view;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 
 import javax.swing.JPanel;
 
-import net.sf.josceleton.playground.motion.app2.framework.view.PageView;
+import net.sf.josceleton.playground.motion.app2.framework.view.component.Cursor;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldChangedListener;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
@@ -21,7 +19,11 @@ public class DrawSurface implements WorldChangedListener {
 	
 	private WorldSnapshot recentWorld;
 	
+	private final Cursor cursor;
 	
+	public DrawSurface(final Cursor cursor) {
+		this.cursor = cursor;
+	}
 	
 	private final JPanel internalUiComponent = new JPanel() {
 		private static final long serialVersionUID = -896244269322870882L;
@@ -38,7 +40,9 @@ public class DrawSurface implements WorldChangedListener {
 		this.currentView.drawWithMaxSize(this.recentWorld, g,
 			this.internalUiComponent.getWidth(), this.internalUiComponent.getHeight());
 		
-//		FIXME this.drawCursor(g);
+		if(this.recentWorld.getSkeleton() != null) { // now we really got some data ;)
+			this.cursor.draw(g, this.recentWorld);
+		}
 	}
 
 	@Override public void onUpdated(WorldSnapshot world) {

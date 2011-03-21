@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 import net.sf.josceleton.playground.motion.app2.framework.view.common.Styles;
 
 public class WindowX extends JFrame {

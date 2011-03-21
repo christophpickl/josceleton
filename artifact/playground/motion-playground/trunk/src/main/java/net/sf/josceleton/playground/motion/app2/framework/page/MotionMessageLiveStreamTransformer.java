@@ -7,13 +7,13 @@ import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldChangedListener;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
 
-class ReroutingListener implements MotionStreamListener {
+class MotionMessageLiveStreamTransformer implements MotionStreamListener {
 
 	private final WorldSnapshotFactory factory;
 	
 	private final WorldChangedListener listener;
 	
-	public ReroutingListener(WorldSnapshotFactory factory, WorldChangedListener listener) {
+	public MotionMessageLiveStreamTransformer(WorldSnapshotFactory factory, WorldChangedListener listener) {
 		this.factory = factory;
 		this.listener = listener;
 	}

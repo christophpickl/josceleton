@@ -1,4 +1,4 @@
-package net.sf.josceleton.playground.motion.common;
+package net.sf.josceleton.playground.motion.app2.framework;
 
 import java.io.Closeable;
 import java.util.Timer;
@@ -9,6 +9,7 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.impl.async.DefaultAsync;
+import net.sf.josceleton.playground.motion.common.TimerTaskRunner;
 
 public class ThrottledMotionStream
 	extends DefaultAsync<MotionStreamListener>
@@ -18,7 +19,7 @@ public class ThrottledMotionStream
 	private int sysoutCount = SYSOUT_EVERY - 1;
 	
 	private final ContinuousMotionStream motionStream;
-	private final Timer timer = new Timer();
+	private final Timer timer = new Timer(ThrottledMotionStream.class.getSimpleName() + "-TimerThread");
 	
 	private Joint recentJoint;
 	private Coordinate recentCoordinate;

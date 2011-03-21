@@ -13,7 +13,7 @@ public class SimpleCursor implements Cursor {
 	
 	@Override
 	public void draw(Graphics2D g, WorldSnapshot world) {
-		final Point locationRHand = world.getLocationRHand();
+		final Point locationRHand = world.getCursorLocation();
 		if(locationRHand != null) {
 			
 			g.setColor(CURSOR_COLOR);

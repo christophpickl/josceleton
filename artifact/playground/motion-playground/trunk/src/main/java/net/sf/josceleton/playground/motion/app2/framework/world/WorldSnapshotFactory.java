@@ -7,7 +7,7 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.location.Range;
 import net.sf.josceleton.core.api.entity.location.RangeScaler;
-import net.sf.josceleton.playground.motion.common.DrawSurface;
+import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 
 public class WorldSnapshotFactory {
 	
@@ -37,13 +37,13 @@ public class WorldSnapshotFactory {
 		}
 		
 		final Coordinate coordinate = skeleton.getNullSafe(this.cursorJoint);
-		final Point locationRHand = new Point(this.scaler.scale(coordinate.x(), this.rangeX) + this.gap,
+		final Point cursorLocation = new Point(this.scaler.scale(coordinate.x(), this.rangeX) + this.gap,
 						 this.scaler.scale(coordinate.y(), this.rangeY) + this.gap);
-		return new WorldSnapshot(locationRHand, skeleton, this.surface);
+		return new WorldSnapshot(cursorLocation, skeleton, this.surface);
 	}
 
 	public WorldSnapshot createInitialDummy() {
 		System.out.println("WorldSnapshotFactory: createInitialDummy()");
-		return new WorldSnapshot(new Point(), null, this.surface);
+		return new WorldSnapshot(new Point(-1, -1)/*faked cursor location*/, null, this.surface);
 	}
 }

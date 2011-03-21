@@ -1,7 +1,5 @@
 package net.sf.josceleton.playground.motion.app2;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 
 import net.sf.josceleton.Josceleton;
 import net.sf.josceleton.connection.api.Connection;
@@ -9,13 +7,12 @@ import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.location.Range;
 import net.sf.josceleton.playground.motion.app2.framework.Navigation;
-import net.sf.josceleton.playground.motion.app2.framework.page.Page;
+import net.sf.josceleton.playground.motion.app2.framework.ThrottledMotionStream;
 import net.sf.josceleton.playground.motion.app2.framework.page.PageManager;
-import net.sf.josceleton.playground.motion.app2.framework.view.AbstractPageView;
-import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
+import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
+import net.sf.josceleton.playground.motion.app2.framework.view.component.Cursor;
+import net.sf.josceleton.playground.motion.app2.framework.view.component.ImageCursor;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
-import net.sf.josceleton.playground.motion.common.DrawSurface;
-import net.sf.josceleton.playground.motion.common.ThrottledMotionStream;
 import net.sf.josceleton.playground.motion.common.WindowX;
 import net.sf.josceleton.playground.motion.common.WindowXListener;
 
@@ -32,13 +29,16 @@ public class App2 {
 	public void start() {
 		final Connection connection = Josceleton.openConnection();
 		final ContinuousMotionStream motionStream = Josceleton.getContinuousMotionStreamFactory().create(connection);
-		
 		final ThrottledMotionStream throttledStream = new ThrottledMotionStream(motionStream, FPS);
 		
-		final MainPage mainPage = new MainPage("main");
-		final Navigation navigation = new Navigation(mainPage.getId(), mainPage);
-//		final DrawSurface drawSurface = new DrawSurface(navigation.getStartPage().getView());
-		final DrawSurface drawSurface = new DrawSurface();
+		final String idMain = "main";
+		final String idGame = "game";
+		final MainPage mainPage = new MainPage(idMain, idGame);
+		final Navigation navigation = new Navigation(mainPage.getId(), mainPage, new GamePage(idGame, idMain));
+		
+//		final Cursor cursor = new SimpleCursor();
+		final Cursor cursor = new ImageCursor();
+		final DrawSurface drawSurface = new DrawSurface(cursor);
 		
 		final WindowX window = new WindowX(FULLSCREEN_ENABLED, drawSurface, new WindowXListener() {
 			@Override public void onQuit(WindowX quittingWindow) {
@@ -57,17 +57,6 @@ public class App2 {
 		pageManager.start();
 		
 		window.displayLater();
-	}
-	
-	static class MainPage extends Page {
-		public MainPage(String id) {
-			super(id, new AbstractPageView() {
-				@Override public void drawWithMaxSize(WorldSnapshot world, Graphics2D g, int width, int height) {
-					g.setColor(Color.PINK);
-					g.drawString("YES", world.getHorizontalCenter(), world.getVerticalCenter());
-				}
-			});
-		}
 	}
 	
 }
