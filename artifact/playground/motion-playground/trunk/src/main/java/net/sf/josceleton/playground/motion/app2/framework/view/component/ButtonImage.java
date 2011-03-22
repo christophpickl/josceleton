@@ -9,8 +9,9 @@ import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 public class ButtonImage extends AbstractButton {
 
 	public ButtonImage(Image image) {
-		super(image, null, null);
+		super(image, null);
 	}
+	
 	// maybe move x/y coordinates into constructor (could set area instance final and hittest would need no null check)
 	@Override public void _drawOnPosition(Graphics2D g, int x, int y, WorldSnapshot world) {
 	    g.drawImage(this.getImage(), x, y, null);
@@ -18,7 +19,7 @@ public class ButtonImage extends AbstractButton {
 	}
 	
 	@Override
-	protected Rectangle updateHitArea(Rectangle hitArea, int x, int y) {
+	protected Rectangle updateHitArea(Rectangle hitArea, int x, int y, Graphics2D g) {
 		if(hitArea == null) {
 			return new Rectangle(x, y, this.getImage().getWidth(null), this.getImage().getHeight(null));
 		}

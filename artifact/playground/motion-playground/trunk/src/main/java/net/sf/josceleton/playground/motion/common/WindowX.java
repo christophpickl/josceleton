@@ -21,27 +21,31 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import net.sf.josceleton.core.api.async.Async;
+import net.sf.josceleton.core.impl.async.DefaultAsync;
 import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Styles;
+import net.sf.josceleton.playground.motion.app2.framework.view.common.Style;
 
-public class WindowX extends JFrame {
+public class WindowX extends JFrame implements Async<WindowXListener> {
 
 	private static final long serialVersionUID = -4156677040212891948L;
 	private static final float MAX_SIZE_PERCENT_OF_IT = 0.7F;
+	
+	private final DefaultAsync<WindowXListener> async = new DefaultAsync<WindowXListener>();
 	
 	private final GraphicsDevice device;
 	
 	private final boolean fullscreen;
 	
 	
-	public WindowX(UsersPanel usersPanel, boolean fullscreen, DrawSurface drawSurface, final WindowXListener listener) {
+	public WindowX(UsersPanel usersPanel, boolean fullscreen, DrawSurface drawSurface) {
 		this.fullscreen = fullscreen;
 		this.setBackground(Color.BLACK);
 		
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			@Override public void windowClosing(WindowEvent windowevent) {
-				listener.onQuit(WindowX.this);
+				dispatchQuit();
 		}});
 		
 		final GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -54,20 +58,21 @@ public class WindowX extends JFrame {
 		}
 		
 		JPanel panel = new JPanel(new BorderLayout());
-		panel.add(this.createCommandPanel(usersPanel, listener), BorderLayout.SOUTH);
+		panel.add(this.createCommandPanel(usersPanel), BorderLayout.SOUTH);
 		panel.add(drawSurface.asComponent(), BorderLayout.CENTER);
 		this.getContentPane().add(panel);
 		
 		if(fullscreen == false) {
 			this.pack();
-			GuiUtil.setCenterLocation(this);
+			this.setLocation(10, 0); // TODO uncomment
+//			GuiUtil.setCenterLocation(this);
 			// TODO lock minimum size
 		} else {
 			this.setUndecorated(true);
 		}
 	}
 	
-	private JComponent createCommandPanel(UsersPanel usersPanel, final WindowXListener listener) {
+	private JComponent createCommandPanel(UsersPanel usersPanel) {
 		final int gapLeftRight = 10;
 		
 		final JButton btnQuit = new JButton("Quit");
@@ -75,15 +80,15 @@ public class WindowX extends JFrame {
 		btnQuit.putClientProperty("JButton.buttonType", "textured");
 		btnQuit.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
-				listener.onQuit(WindowX.this);
+				dispatchQuit();
 		}});
 		
 		final JLabel lblInfo = new JLabel("Josceleton Motion Playground");
-		lblInfo.setFont(Styles.styleAsComment(lblInfo).deriveFont(12.0F));
+		lblInfo.setFont(Style.styleAsComment(lblInfo).deriveFont(12.0F));
 		
 		JPanel commandPanel = new JPanel(new GridBagLayout());
-		commandPanel.setBorder(BorderFactory.createLineBorder(Styles.LINE_PRIMARY));
-		commandPanel.setBackground(Styles.BACKGROUND_SECONDARY);
+		commandPanel.setBorder(BorderFactory.createLineBorder(Style.LINE_PRIMARY));
+		commandPanel.setBackground(Style.BACKGROUND_SECONDARY);
 		
 		final GridBagConstraints c = new GridBagConstraints();
 		
@@ -113,5 +118,18 @@ public class WindowX extends JFrame {
 					WindowX.this.setVisible(true);
 				}
 		}});
+	}
+	
+	private void dispatchQuit() {
+		for(WindowXListener listener : this.async.getListeners()) {
+			listener.onQuit();
+		}
+	}
+
+	@Override public final void addListener(WindowXListener listener) {
+		this.async.addListener(listener);
+	}
+	@Override public final void removeListener(WindowXListener listener) {
+		this.async.removeListener(listener);
 	}
 }

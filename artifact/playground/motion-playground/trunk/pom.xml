@@ -40,6 +40,12 @@
 			<groupId>net.sf.josceleton</groupId>
 			<artifactId>josceleton</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.josceleton.prototype</groupId>
+			<artifactId>console-prototype</artifactId>
+		</dependency>
+		
     </dependencies>
     
     

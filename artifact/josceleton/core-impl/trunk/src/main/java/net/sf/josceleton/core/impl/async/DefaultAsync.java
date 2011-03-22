@@ -19,7 +19,7 @@ public class DefaultAsync<L extends Listener> implements Async<L> {
 	private final Set<L> registeredListeners = new HashSet<L>();
 	
 	
-	protected final Iterable<L> getListeners() {
+	public final Iterable<L> getListeners() {
 		return this.registeredListeners;
 	}
 

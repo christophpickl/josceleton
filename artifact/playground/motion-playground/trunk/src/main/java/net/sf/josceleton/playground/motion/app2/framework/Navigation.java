@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.josceleton.playground.motion.app2.framework.page.Page;
-import net.sf.josceleton.playground.motion.app2.framework.page.system.LoginPage;
 
 
 public class Navigation {

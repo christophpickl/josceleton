@@ -11,18 +11,18 @@ import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 
 public class WorldSnapshotFactory {
 	
-	private final RangeScaler scaler;
-	private final Range rangeX;
-	private final Range rangeY;
+	private final RangeScaler cursorToGlobalScaler;
+	private final Range cursorToGlobalX;
+	private final Range cursorToGlobalY;
 	private final int gap;
 	private final Joint cursorJoint;
 	private final DrawSurface surface;
 	
 	public WorldSnapshotFactory(Joint cursorJoint, RangeScaler scaler, Range rangeX, Range rangeY, int gap, DrawSurface surface) {
 		this.cursorJoint = cursorJoint;
-		this.scaler = scaler;
-		this.rangeX = rangeX;
-		this.rangeY = rangeY;
+		this.cursorToGlobalScaler = scaler;
+		this.cursorToGlobalX = rangeX;
+		this.cursorToGlobalY = rangeY;
 		this.gap = gap;
 		this.surface = surface;
 	}
@@ -37,8 +37,8 @@ public class WorldSnapshotFactory {
 		}
 		
 		final Coordinate coordinate = skeleton.getNullSafe(this.cursorJoint);
-		final Point cursorLocation = new Point(this.scaler.scale(coordinate.x(), this.rangeX) + this.gap,
-						 this.scaler.scale(coordinate.y(), this.rangeY) + this.gap);
+		final Point cursorLocation = new Point(this.cursorToGlobalScaler.scale(coordinate.x(), this.cursorToGlobalX) + this.gap,
+						 this.cursorToGlobalScaler.scale(coordinate.y(), this.cursorToGlobalY) + this.gap);
 		return new WorldSnapshot(cursorLocation, skeleton, this.surface);
 	}
 

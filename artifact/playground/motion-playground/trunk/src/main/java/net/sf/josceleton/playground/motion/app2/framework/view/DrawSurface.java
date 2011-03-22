@@ -7,7 +7,9 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.Cursor;
+import net.sf.josceleton.playground.motion.app2.framework.view.component.SkeletonDrawer;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldChangedListener;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
@@ -26,10 +28,27 @@ public class DrawSurface implements WorldChangedListener {
 	}
 	
 	private final JPanel internalUiComponent = new JPanel() {
+		
 		private static final long serialVersionUID = -896244269322870882L;
-		@Override public void paintComponent(final Graphics g) {
-			super.paintComponent(g); 
-			paintInternalUiComponent((Graphics2D) g);
+		
+
+		private static final int SKELETON_WIDTH = 200;
+		private static final int SKELETON_HEIGHT = 200;
+		private static final int SKELETON_GAP = 10;
+		private final SkeletonDrawer skeletonDrawerXy = new SkeletonDrawer(new Dimension(SKELETON_WIDTH, SKELETON_HEIGHT), Direction.X, Direction.Y);
+		private final SkeletonDrawer skeletonDrawerXz = new SkeletonDrawer(new Dimension(SKELETON_WIDTH, SKELETON_HEIGHT), Direction.X, Direction.Z);
+		private final SkeletonDrawer skeletonDrawerYz = new SkeletonDrawer(new Dimension(SKELETON_WIDTH, SKELETON_HEIGHT), Direction.Y, Direction.Z);
+		
+		
+		@Override public void paintComponent(final Graphics g1) {
+			super.paintComponent(g1); 
+			final Graphics2D g = (Graphics2D) g1;
+			paintInternalUiComponent(g);
+			
+			this.skeletonDrawerXy.drawOnPosition(g, 50,                                       10, DrawSurface.this.recentWorld);
+			this.skeletonDrawerXz.drawOnPosition(g, 50 +      SKELETON_WIDTH + SKELETON_GAP , 10, DrawSurface.this.recentWorld);
+			this.skeletonDrawerYz.drawOnPosition(g, 50 + 2 * (SKELETON_WIDTH + SKELETON_GAP), 10, DrawSurface.this.recentWorld);
+			
 		}
 	};
 	

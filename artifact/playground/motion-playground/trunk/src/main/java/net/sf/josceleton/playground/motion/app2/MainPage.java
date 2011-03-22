@@ -20,7 +20,7 @@ class MainPage extends Page {
 	
 	static class MainView extends AbstractPageView {
 		
-		private final Button btnStartGame = new ButtonString("Start Game", new Dimension(80, 30));
+		private final Button btnStartGame = new ButtonString("Start Game");
 		
 		public MainView(final String pageIdGame) {
 			this.btnStartGame.addListener(new ButtonListener() {

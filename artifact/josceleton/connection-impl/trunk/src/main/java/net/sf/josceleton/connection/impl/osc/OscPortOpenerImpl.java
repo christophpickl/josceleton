@@ -38,7 +38,7 @@ class OscPortOpenerImpl implements OscPortOpener {
 		try {
 			LOG.debug("Connecting to OSCPortIn with port number [" + port + "] ..."); // replace with AOP
 			
-			// a.k.a. new OSCPortIn(port);
+			// a.k.a. new OSCPortIn(port) which internall opens the connection within its constructor :-/
 			oscPortIn = this.instantiator.create(this.oscPortInType, Integer.valueOf(port));
 			
 			LOG.debug("Connection to OSCPortIn established.");

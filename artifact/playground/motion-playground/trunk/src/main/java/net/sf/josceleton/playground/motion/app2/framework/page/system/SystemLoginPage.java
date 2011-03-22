@@ -3,10 +3,12 @@ package net.sf.josceleton.playground.motion.app2.framework.page.system;
 import net.sf.josceleton.playground.motion.app2.framework.page.Page;
 import net.sf.josceleton.playground.motion.app2.framework.view.common.Resources;
 
-public class LoginPage extends Page {
+public class SystemLoginPage extends Page {
+	
+	public static final String ID = "__system_login";
 
-	public LoginPage(String idOfNextPage) {
-		super("login", new LoginView(idOfNextPage, Resources.NEXT));
+	public SystemLoginPage(String idOfNextPage) {
+		super(ID, new SystemLoginView(idOfNextPage, Resources.NEXT));
 	}
 
 }

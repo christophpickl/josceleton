@@ -1,7 +1,9 @@
 package net.sf.josceleton.playground.motion.common;
 
-public interface WindowXListener {
+import net.sf.josceleton.core.api.async.Listener;
+
+public interface WindowXListener extends Listener {
 	
-	void onQuit(WindowX window);
+	void onQuit();
 	
 }

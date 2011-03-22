@@ -11,7 +11,9 @@ public class Resources {
 	
 	public static final Image CURSOR = lookupImage("/image/cursor.png");
 	public static final Image OKAY   = lookupImage("/image/okay.png");
+	public static final Image NOKAY  = lookupImage("/image/nokay.png");
 	public static final Image NEXT   = lookupImage("/image/next.png");
+	public static final Image DUMB_FACE = lookupImage("/image/dumb_face.png");
 
 	
 	private static Image lookupImage(String path) {
@@ -25,6 +27,7 @@ public class Resources {
 			throw new RuntimeException("Could not find image by path [" + path + "]!");
 		}
 		final ImageIcon img = new ImageIcon(url);
+		System.out.println("Resources: loaded image: " + path);
 		return img.getImage();
 	}
 }

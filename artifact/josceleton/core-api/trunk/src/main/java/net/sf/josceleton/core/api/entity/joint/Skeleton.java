@@ -34,7 +34,7 @@ public interface Skeleton {
 	 * @param joint
 	 * @return
 	 * @since 0.4
-	 * @deprecated since 0.5; see {@link #coordinatesAvailable(Joint...)} instead.
+	 * @deprecated since 0.5; see {@link #isAvailableFor(Joint...)} instead.
 	 */
 	@Deprecated
 	boolean isCoordinateAvailable(Joint joint);

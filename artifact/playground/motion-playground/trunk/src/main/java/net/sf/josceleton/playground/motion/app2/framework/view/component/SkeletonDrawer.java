@@ -15,7 +15,7 @@ import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.motion.impl.CoordinateUtil;
 import net.sf.josceleton.playground.motion.app2.framework.view.Drawable;
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Styles;
+import net.sf.josceleton.playground.motion.app2.framework.view.common.Style;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class SkeletonDrawer implements Drawable {
@@ -34,16 +34,16 @@ public class SkeletonDrawer implements Drawable {
 
 	@Override
 	public void drawOnPosition(Graphics2D g, int x, int y, WorldSnapshot world) {
-		g.setColor(Color.LIGHT_GRAY);
+		g.setColor(Color.GRAY);
 		g.drawRect(x, y, this.size.width, this.size.height);
 		
-		g.setColor(Styles.TEXT_PRIMARY);
-		g.drawString(this.headerText, x + this.size.width / 2 - 30, y + 10);
+		Style.Text.H3.on(g);
+		g.drawString(this.headerText, x + this.size.width / 2 - 50, y + 20);
 		
 		final Skeleton skeleton = world.getSkeleton();
 		if(skeleton == null || skeleton.allCoordinatesAvailable() == false) {
 			g.setColor(Color.RED);
-			g.drawString("Skeleton Data N/A", x + 10, y + 20);
+			g.drawString("Skeleton Data N/A", x + 20, this.size.height / 2);
 			return;
 		}
 		
