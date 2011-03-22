@@ -3,8 +3,10 @@ package net.sf.josceleton.core.api.entity.location;
 /**
  * @since 0.5
  */
-public interface Range {
-
+public interface Range { // FIXME rename "Range" to "Scaling"
+	
+	// LUXURY easeIn/Out-function = { LINEAR, EXPONENTIAL, CUBIC, QUADRATIC }
+	
 	/**
 	 * @since 0.5
 	 */

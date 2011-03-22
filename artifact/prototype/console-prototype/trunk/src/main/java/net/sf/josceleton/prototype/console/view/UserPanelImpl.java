@@ -52,7 +52,7 @@ class UserPanelImpl extends JPanel implements UserPanel {
 			this.jointPanels.put(currentBodyPart, new JointPanel(currentBodyPart.getLabel()));
 		}
 		
-		this.baseColor = ColorUtil.newRandomColor();
+		this.baseColor = new Color(user.getColor());
 		final Color borderColor = ColorUtil.darken(this.baseColor, 120);
 		final Color backgroundWaitingColor = ColorUtil.darken(this.baseColor, 80);
 		

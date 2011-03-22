@@ -9,6 +9,7 @@ import net.sf.josceleton.core.api.entity.location.Direction;
 /**
  * @since 0.4
  */
+@Deprecated // TODO completely delete this class, as we dont have (may have!) any assumptions about coordinate values
 public final class CoordinateUtil {
 
 	private static final float LOWER_LIMIT_XYZ = 0.0F;

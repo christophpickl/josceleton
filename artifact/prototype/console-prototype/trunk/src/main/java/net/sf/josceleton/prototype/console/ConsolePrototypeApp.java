@@ -39,19 +39,20 @@ public class ConsolePrototypeApp {
 		consolePresenter.init();
 		
 		// 4. create own gui
-		final JFrame frame = new JFrame("My Application");
-		final JButton btn = new JButton("Display Josceleton Console");
-		btn.addActionListener(new ActionListener() {
-			@Override public void actionPerformed(final ActionEvent event) {
-				consoleWindow.setVisible(true);
-			}
-		});
+//		final JFrame frame = new JFrame("My Application");
+//		final JButton btn = new JButton("Display Josceleton Console");
+//		btn.addActionListener(new ActionListener() {
+//			@Override public void actionPerformed(final ActionEvent event) {
+//				consoleWindow.setVisible(true);
+//			}
+//		});
 		
-		frame.getContentPane().add(btn);
-		frame.pack();
+//		frame.getContentPane().add(btn);
+//		frame.pack();
 	
 		SwingUtilities.invokeLater(new Runnable() { @Override public void run() {
-			frame.setVisible(true);	
+//			frame.setVisible(true);
+			consoleWindow.setVisible(true);
 		}});
 	}
 
