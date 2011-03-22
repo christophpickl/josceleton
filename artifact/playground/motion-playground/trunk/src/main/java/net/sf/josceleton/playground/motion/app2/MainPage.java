@@ -20,7 +20,7 @@ class MainPage extends Page {
 	
 	static class MainView extends AbstractPageView {
 		
-		private final Button btnStartGame = new ButtonString("Start Game", new Dimension(80, 20));
+		private final Button btnStartGame = new ButtonString("Start Game", new Dimension(80, 30));
 		
 		public MainView(final String pageIdGame) {
 			this.btnStartGame.addListener(new ButtonListener() {
@@ -35,7 +35,7 @@ class MainPage extends Page {
 		@Override
 		public void drawWithMaxSize(WorldSnapshot world, Graphics2D g, int width, int height) {
 			g.setColor(Color.PINK);
-			g.drawString("YES", world.getHorizontalCenter(), world.getVerticalCenter());
+			g.drawString("MAIN PAGE", world.getHorizontalCenter(), world.getVerticalCenter());
 			
 			this.btnStartGame.drawOnPosition(g, world.getHorizontalCenter(), world.getVerticalCenter() + 100, world);
 			

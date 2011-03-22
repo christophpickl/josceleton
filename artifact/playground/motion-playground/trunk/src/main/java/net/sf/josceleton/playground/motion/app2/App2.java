@@ -13,16 +13,19 @@ import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.Cursor;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.ImageCursor;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
+import net.sf.josceleton.playground.motion.common.UsersPanel;
 import net.sf.josceleton.playground.motion.common.WindowX;
 import net.sf.josceleton.playground.motion.common.WindowXListener;
 
 public class App2 {
 	public static void main(String[] args) {
+		// TODO splash screen!
 		new App2().start();
 	}
 	
 	// FIXME pages sind alle Hibernateable (wenn sie zb intern animation/thread haben, dass das pausiert wird)
 	private static final boolean FULLSCREEN_ENABLED = false;
+//	private static final boolean FULLSCREEN_ENABLED = true;
 	
 	private static final int FPS = 24;
 	
@@ -40,7 +43,10 @@ public class App2 {
 		final Cursor cursor = new ImageCursor();
 		final DrawSurface drawSurface = new DrawSurface(cursor);
 		
-		final WindowX window = new WindowX(FULLSCREEN_ENABLED, drawSurface, new WindowXListener() {
+		final UsersPanel usersPanel = new UsersPanel(connection.getUserService());
+		connection.getUserService().addListener(usersPanel); // FIXME @API: UserServiceListener bekommt auch UsersColleciton uebergeben (so wie Skeleton auch funkt)!!!
+		
+		final WindowX window = new WindowX(usersPanel, FULLSCREEN_ENABLED, drawSurface, new WindowXListener() {
 			@Override public void onQuit(WindowX quittingWindow) {
 				quittingWindow.setVisible(false);
 				quittingWindow.dispose();

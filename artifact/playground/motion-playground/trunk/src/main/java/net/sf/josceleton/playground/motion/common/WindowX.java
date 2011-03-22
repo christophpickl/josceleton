@@ -27,8 +27,15 @@ import net.sf.josceleton.playground.motion.app2.framework.view.common.Styles;
 public class WindowX extends JFrame {
 
 	private static final long serialVersionUID = -4156677040212891948L;
+	private static final float MAX_SIZE_PERCENT_OF_IT = 0.7F;
 	
-	public WindowX(boolean fullscreen, DrawSurface drawSurface, final WindowXListener listener) {
+	private final GraphicsDevice device;
+	
+	private final boolean fullscreen;
+	
+	
+	public WindowX(UsersPanel usersPanel, boolean fullscreen, DrawSurface drawSurface, final WindowXListener listener) {
+		this.fullscreen = fullscreen;
 		this.setBackground(Color.BLACK);
 		
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -38,26 +45,29 @@ public class WindowX extends JFrame {
 		}});
 		
 		final GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		final GraphicsDevice device = env.getDefaultScreenDevice();
-		final Dimension monitorSize = device.getDefaultConfiguration().getBounds().getSize();
+		this.device = env.getDefaultScreenDevice();
+		final Dimension monitorSize = this.device.getDefaultConfiguration().getBounds().getSize();
 		
 		if(fullscreen == false) {
-			drawSurface.enforceSize(monitorSize.width - 100, monitorSize.height - 100);
+			drawSurface.enforceSize(Math.round(monitorSize.width * MAX_SIZE_PERCENT_OF_IT),
+					Math.round(monitorSize.height * MAX_SIZE_PERCENT_OF_IT));
 		}
 		
 		JPanel panel = new JPanel(new BorderLayout());
-		panel.add(this.createCommandPanel(listener), BorderLayout.SOUTH);
+		panel.add(this.createCommandPanel(usersPanel, listener), BorderLayout.SOUTH);
 		panel.add(drawSurface.asComponent(), BorderLayout.CENTER);
 		this.getContentPane().add(panel);
 		
 		if(fullscreen == false) {
 			this.pack();
 			GuiUtil.setCenterLocation(this);
+			// TODO lock minimum size
+		} else {
+			this.setUndecorated(true);
 		}
-		// TODO lock minimum size
 	}
 	
-	private JComponent createCommandPanel(final WindowXListener listener) {
+	private JComponent createCommandPanel(UsersPanel usersPanel, final WindowXListener listener) {
 		final int gapLeftRight = 10;
 		
 		final JButton btnQuit = new JButton("Quit");
@@ -78,14 +88,17 @@ public class WindowX extends JFrame {
 		final GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
-		c.weightx = 0.5;
 		c.anchor = GridBagConstraints.WEST;
 		c.insets = new Insets(2, gapLeftRight, 2, 0);
 		commandPanel.add(lblInfo, c);
 		
 		c.gridx = 1;
+		commandPanel.add(usersPanel, c);
+		
+		c.gridx = 2;
+		c.weightx = 0.9;
 		c.anchor = GridBagConstraints.EAST;
-		c.insets = new Insets(2, 0, 2, gapLeftRight);
+		c.insets = new Insets(2, 10, 2, gapLeftRight);
 		commandPanel.add(btnQuit, c);
 		
 		return commandPanel;
@@ -94,7 +107,11 @@ public class WindowX extends JFrame {
 	public void displayLater() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override public void run() {
-				WindowX.this.setVisible(true);
+				if(fullscreen == true) {
+					device.setFullScreenWindow(WindowX.this);
+				} else {
+					WindowX.this.setVisible(true);
+				}
 		}});
 	}
 }

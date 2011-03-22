@@ -133,10 +133,10 @@ public final class JointParts {
 	public interface Feet extends SymetricJoint<Foot, LeftFoot, RightFoot> { /* marker interface */ }
 
 
-	interface LeftJoint<J> {
+	public interface LeftJoint<J> extends Joint {
 		// marker interface only
 	}
-	interface RightJoint<J> {
+	public interface RightJoint<J> extends Joint {
 		// marker interface only
 	}
 	

@@ -1,5 +1,7 @@
 package net.sf.josceleton.core.api.entity.joint;
 
+import net.sf.josceleton.core.api.entity.joint.JointParts.LeftJoint;
+import net.sf.josceleton.core.api.entity.joint.JointParts.RightJoint;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 /**
@@ -25,14 +27,33 @@ public interface Skeleton {
 	 * @since 0.4
 	 * @see #get(Joint)
 	 */
-	Coordinate getNullSafe(Joint joint);
+	Coordinate getNullSafe(Joint joint); // FIXME rename "getNullSafe" to simply "get", and old "get" to something like "getOrNull"
 	
 	/**
 	 * 
 	 * @param joint
 	 * @return
 	 * @since 0.4
+	 * @deprecated since 0.5; see {@link #coordinatesAvailable(Joint...)} instead.
 	 */
+	@Deprecated
 	boolean isCoordinateAvailable(Joint joint);
 	
+	/**
+	 * @since 0.5
+	 */
+	boolean isAvailableFor(Joint... joint);
+	
+	/**
+	 * Allows to pass symmetric joint parts, e.g.: <code>Joints.HANDS()</code>.
+	 * @since 0.5
+	 */
+	<J extends Joint, SJ extends SymetricJoint<J, LJ, RJ>, LJ extends LeftJoint<J>, RJ extends RightJoint<J>> boolean
+		areAvailableFor(SJ symetricJoint);
+	
+	/**
+	 * @return true if there is data for all joints available.
+	 * @since 0.5
+	 */
+	boolean allCoordinatesAvailable();
 }

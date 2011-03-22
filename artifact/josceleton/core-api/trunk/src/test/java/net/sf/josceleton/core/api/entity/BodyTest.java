@@ -41,8 +41,8 @@ public class BodyTest {
 			new Object[] { Joints.HIP().RIGHT(), "r_hip" },
 			new Object[] { Joints.KNEE().LEFT(), "l_knee" },
 			new Object[] { Joints.KNEE().RIGHT(), "r_knee" },
-			new Object[] { Joints.ANKLE().LEFT(), "l_ankle" },
-			new Object[] { Joints.ANKLE().RIGHT(), "r_ankle" },
+//			new Object[] { Joints.ANKLE().LEFT(), "l_ankle" },
+//			new Object[] { Joints.ANKLE().RIGHT(), "r_ankle" },
 			new Object[] { Joints.FOOT().LEFT(), "l_foot" },
 			new Object[] { Joints.FOOT().RIGHT(), "r_foot" }
 		};

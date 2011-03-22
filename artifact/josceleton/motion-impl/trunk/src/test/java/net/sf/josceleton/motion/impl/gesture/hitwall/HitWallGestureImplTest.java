@@ -26,8 +26,8 @@ public class HitWallGestureImplTest extends HitWallGestureTest {
 	
 	// MINOR @TEST this actually belong to JointableGestureTest class!!!
 	@Test public final void nothingHappensOnIrrelevantJointMove() {
-		final Joint relevantJoint = Joints.ANKLE().LEFT();
-		final Joint irrelevantJoint = Joints.ANKLE().RIGHT();
+		final Joint relevantJoint = Joints.HIP().LEFT();
+		final Joint irrelevantJoint = Joints.ELBOW().RIGHT();
 		
 		final HitWallGesture gesture = this.createJointableGesture(relevantJoint);
 		final HitWallListener listener = this.mock(HitWallListener.class);

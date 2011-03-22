@@ -20,7 +20,7 @@ public class PrototypeLogic implements MotionStreamListener, UserServiceListener
 	
 	private Connection joscConnection;
 	private final MidiConnection midiConnection;
-	private final Collection<MidiMapping> mappings;
+	private Collection<MidiMapping> mappings;
 	
 	private ContinuousMotionStream cms;
 
@@ -30,9 +30,9 @@ public class PrototypeLogic implements MotionStreamListener, UserServiceListener
 //		new MidiMapping(Body.HAND().LEFT(),   XyzDirection.Y,  1,           2               )
 //	).startUp();
 	
-	public PrototypeLogic(String midiPort, MidiMapping... maps) {
+	public PrototypeLogic(String midiPort, Collection<MidiMapping> mappings) {
 		this.midiConnection = new MidiConnection(midiPort);
-		this.mappings = new LinkedList<MidiMapping>(Arrays.asList(maps));
+		this.mappings = mappings;
 	}
 	
 	public void open() throws InvalidInputException {
@@ -56,9 +56,16 @@ public class PrototypeLogic implements MotionStreamListener, UserServiceListener
 			this.midiConnection.close();
 		}
 	}
+	
+	public Connection getJoscConnection() {
+		return this.joscConnection;
+	}
 
+	public synchronized void updateMappings(final Collection<MidiMapping> mappings) {
+		this.mappings = mappings;
+	}
 	@Override
-	public void onMoved(Joint part, Coordinate updatedCoordinate, Skeleton skeleton) {
+	public synchronized void onMoved(Joint part, Coordinate updatedCoordinate, Skeleton skeleton) {
 		for (final MidiMapping map : this.mappings) {
 			if(map.appliesPart(part) == false) {
 				continue;

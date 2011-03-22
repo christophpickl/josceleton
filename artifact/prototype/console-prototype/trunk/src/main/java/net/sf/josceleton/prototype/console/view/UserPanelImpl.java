@@ -102,8 +102,8 @@ class UserPanelImpl extends JPanel implements UserPanel {
 		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.HIP().RIGHT()), c, 3, 3);
 		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.KNEE().LEFT()), c, 1, 4);
 		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.KNEE().RIGHT()), c, 3, 4);
-		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.ANKLE().LEFT()), c, 0, 4);
-		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.ANKLE().RIGHT()), c, 4, 4);
+//		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.ANKLE().LEFT()), c, 0, 4);
+//		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.ANKLE().RIGHT()), c, 4, 4);
 		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.FOOT().LEFT()), c, 0, 5);
 		this.addBody(jointPanelsWrapper, this.jointPanels.get(Joints.FOOT().RIGHT()), c, 4, 5);
 		

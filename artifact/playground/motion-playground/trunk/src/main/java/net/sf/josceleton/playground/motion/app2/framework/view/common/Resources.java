@@ -21,7 +21,9 @@ public class Resources {
 //		}
 //		return foundImage;
 		final URL url = ImageLoadingApp.class.getResource(path);
-		System.out.println("url: " + url);
+		if(url == null) {
+			throw new RuntimeException("Could not find image by path [" + path + "]!");
+		}
 		final ImageIcon img = new ImageIcon(url);
 		return img.getImage();
 	}

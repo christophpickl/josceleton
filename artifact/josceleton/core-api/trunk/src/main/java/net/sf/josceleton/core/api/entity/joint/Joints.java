@@ -3,7 +3,6 @@ package net.sf.josceleton.core.api.entity.joint;
 import java.util.Arrays;
 import java.util.Collections;
 
-import net.sf.josceleton.core.api.entity.joint.JointImplProvider.AnklesImpl;
 import net.sf.josceleton.core.api.entity.joint.JointImplProvider.ElbowsImpl;
 import net.sf.josceleton.core.api.entity.joint.JointImplProvider.FeetImpl;
 import net.sf.josceleton.core.api.entity.joint.JointImplProvider.HandsImpl;
@@ -13,7 +12,6 @@ import net.sf.josceleton.core.api.entity.joint.JointImplProvider.KneesImpl;
 import net.sf.josceleton.core.api.entity.joint.JointImplProvider.NeckImpl;
 import net.sf.josceleton.core.api.entity.joint.JointImplProvider.ShouldersImpl;
 import net.sf.josceleton.core.api.entity.joint.JointImplProvider.TorsoImpl;
-import net.sf.josceleton.core.api.entity.joint.JointParts.Ankles;
 import net.sf.josceleton.core.api.entity.joint.JointParts.Elbows;
 import net.sf.josceleton.core.api.entity.joint.JointParts.Feet;
 import net.sf.josceleton.core.api.entity.joint.JointParts.Hands;
@@ -39,7 +37,7 @@ public final class Joints {
 	private static final Hands HANDS         = new HandsImpl();
 	private static final Hips HIPS           = new HipsImpl();
 	private static final Knees KNEES         = new KneesImpl();
-	private static final Ankles ANKLES       = new AnklesImpl();
+//	private static final Ankles ANKLES       = new AnklesImpl();
 	private static final Feet FEET           = new FeetImpl();
 
 	private static final Iterable<Joint> ALL_JOINTS;
@@ -53,7 +51,7 @@ public final class Joints {
 			HANDS.LEFT(),     HANDS.RIGHT(),
 			HIPS.LEFT(),      HIPS.RIGHT(),
 			KNEES.LEFT(),     KNEES.RIGHT(),
-			ANKLES.LEFT(),    ANKLES.RIGHT(),
+//			ANKLES.LEFT(),    ANKLES.RIGHT(),
 			FEET.LEFT(),      FEET.RIGHT()
 		));
 		
@@ -96,7 +94,7 @@ public final class Joints {
 	public static Knees KNEE() { return Joints.KNEES; }
 
 	/** @since 0.1 */
-	public static Ankles ANKLE() { return Joints.ANKLES; }
+//	public static Ankles ANKLE() { return Joints.ANKLES; }
 
 	/** @since 0.1 */
 	public static Feet FOOT() { return Joints.FEET; }

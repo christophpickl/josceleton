@@ -7,6 +7,9 @@ import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.joint.SkeletonCoordinateUnavailableException;
+import net.sf.josceleton.core.api.entity.joint.SymetricJoint;
+import net.sf.josceleton.core.api.entity.joint.JointParts.LeftJoint;
+import net.sf.josceleton.core.api.entity.joint.JointParts.RightJoint;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 
 /**
@@ -33,6 +36,35 @@ class SkeletonImpl implements SkeletonInternal {
 	/** {@inheritDoc} from {@link Skeleton} */
 	@Override public final boolean isCoordinateAvailable(final Joint joint) {
 		return this.coordinateByJoint.containsKey(joint);
+	}
+
+	/** {@inheritDoc} from {@link Skeleton} */
+	@Override public boolean isAvailableFor(final Joint... joint) {
+		for (final Joint currentJoint : joint) {
+			if(this.coordinateByJoint.containsKey(currentJoint) == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/** {@inheritDoc} from {@link Skeleton} */
+	@Override
+	public final // TODO maybe get rid of generics completely (at least for public API)
+		<J extends Joint, SJ extends SymetricJoint<J, LJ, RJ>, LJ extends LeftJoint<J>, RJ extends RightJoint<J>>
+		boolean areAvailableFor(final SJ symetricJoint) {
+		return this.coordinateByJoint.containsKey(symetricJoint.LEFT()) &&
+		this.coordinateByJoint.containsKey(symetricJoint.RIGHT());
+	}
+
+	/** {@inheritDoc} from {@link Skeleton} */
+	@Override public final boolean allCoordinatesAvailable() {
+		for(final Joint currentJoint : Joints.values()) {
+			if(this.isCoordinateAvailable(currentJoint) == false) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/** {@inheritDoc} from {@link SkeletonInternal} */
@@ -70,4 +102,5 @@ class SkeletonImpl implements SkeletonInternal {
 		}
 		return 0;
 	}
+
 }

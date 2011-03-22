@@ -8,7 +8,9 @@ import net.sf.josceleton.playground.motion.app2.framework.Navigation;
 import net.sf.josceleton.playground.motion.app2.framework.motionx.Position;
 import net.sf.josceleton.playground.motion.app2.framework.motionx.PositionListener;
 import net.sf.josceleton.playground.motion.app2.framework.motionx.PsiPosition;
+import net.sf.josceleton.playground.motion.app2.framework.page.system.LoginPage;
 import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
+import net.sf.josceleton.playground.motion.app2.framework.view.common.AudioFile;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
 
 public class PageManager implements Closeable, PageListener {
@@ -33,7 +35,7 @@ public class PageManager implements Closeable, PageListener {
 	
 	public void start() {
 		System.out.println("PageManger: start()");
-		this.currentPage = this.navigation.getStartPage();
+		this.currentPage = new LoginPage(this.navigation.getPageIdAfterLogin());
 		this.currentPage.addListener(this);
 		this.surface.setView(this.currentPage.getView());
 		
@@ -46,18 +48,24 @@ public class PageManager implements Closeable, PageListener {
 			// A. confirm: quit
 			// B. abort: register psiposition again and continue with previous page (restore state!)
 			System.out.println("JIPI KA JEEEEEEEEEEEEEEEEEE");
+			System.out.println("JIPI KA JEEEEEEEEEEEEEEEEEE");
+			System.out.println("JIPI KA JEEEEEEEEEEEEEEEEEE");
+			System.out.println("JIPI KA JEEEEEEEEEEEEEEEEEE");
 		}});
 		this.motionStream.addListener(this.quitPosition);
 	}
 
 	@Override
 	public void onNavigate(String pageId) {
+//		AudioFile.S1.start();
 		System.out.println("on NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE  ==> " + pageId);
 		this.currentPage.removeListener(this);
 		
 		final Page newPage = this.navigation.getPageById(pageId);
+		this.currentPage = newPage;
 		newPage.addListener(this);
 		this.surface.setView(newPage.getView());
+		
 	}
 	
 	@Override

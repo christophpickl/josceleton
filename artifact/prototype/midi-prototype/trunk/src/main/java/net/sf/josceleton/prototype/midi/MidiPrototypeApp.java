@@ -3,6 +3,7 @@ package net.sf.josceleton.prototype.midi;
 import java.util.Properties;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import net.sf.josceleton.prototype.midi.util.LogUtil;
 import net.sf.josceleton.prototype.midi.util.SomeUtil;
@@ -26,7 +27,11 @@ public class MidiPrototypeApp {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				final Model model = new Model();
-				final ViewMediator mediator = new ViewMediator(model);
+				final ViewMediator mediator = new ViewMediator(applicationVersion, model);
+				
+				UIManager.put("swing.boldMetal", Boolean.FALSE);
+
+				
 				final MainWindow window = new MainWindow(model, mediator, applicationVersion);
 				
 				window.setVisible(true);

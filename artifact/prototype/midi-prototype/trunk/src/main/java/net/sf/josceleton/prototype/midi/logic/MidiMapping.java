@@ -66,6 +66,7 @@ public class MidiMapping {
 	
 	
 	@Override public String toString() {
-		return "Mapping: " + this.joint.getLabel() +", "+this.direction+"-direction, MIDI ch/ctrl="+this.midiChannel+"/"+this.controllerNumber+"; range: " + this.range;
+		return "On " + this.joint.getLabel() +" in "+this.direction+"-direction " +
+				"with MIDI settings "+this.midiChannel+"/"+this.controllerNumber;
 	}
 }

@@ -49,7 +49,7 @@ public class PsiPosition extends AbstractPosition implements Runnable {
 		final float diffYHeadRHand = Math.abs(Direction.Y.extractValue(coordHead) - Direction.Y.extractValue(coordRHand));
 //		System.out.println("PsiPosition: diffYHeadRHand: " + diffYHeadRHand);
 		
-		
+		// FIXME implement me
 		// step 2: elbows-shoulders are Y-similar
 		// step 3: head-neck-torso X+Y-similar; "staying straight"
 		// step 4: all joints are _roughly_ Z-similar
@@ -57,9 +57,11 @@ public class PsiPosition extends AbstractPosition implements Runnable {
 		return true;
 	}
 	@Override public void run() {
-		System.out.println("PageManager: XXXXXXXXXXXXXXXXX");
+		System.out.println("PsiPosition: timer run() finished and detectedm");
 		this.timer.cancel(); // just to get sure
 		this.timer = null;
 		
+		this.dispatchPositionDetected();
+		// TODO danach soll er kurz aufhoeren nach position zu suchen, is naemlich unnoetig (und hoechst unwahrscheinlich das gewollt)
 	}
 }

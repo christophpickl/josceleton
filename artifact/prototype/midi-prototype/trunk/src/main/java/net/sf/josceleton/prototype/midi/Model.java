@@ -14,10 +14,14 @@ public class Model extends DefaultAsyncFor<String, BindingListener> implements B
 	@PersistAsPreference public int recentWindowHeight;
 	@PersistAsPreference public int recentDividerLocation;
 	
-	public static final String RUNNING = "RUNNING";
-	private boolean running = false;
-	public boolean getRunning() { return this.running; }
-	@BindingSetter(Key = RUNNING) public void setRunning(boolean running) { this.running = running; }
+	public static final int STATE_IDLE = 0;
+	public static final int STATE_CONNECTING = 1;
+	public static final int STATE_PROCESSING = 2;
+	public static final String STATE = "STATE";
+	private int state = STATE_IDLE;
+	public int getState() { return this.state; }
+	@BindingSetter(Key = STATE) public void setState(int state) { this.state = state; }
+	
 	
 	public static final String MIDI_PORT = "MIDI_PORT";
 	@PersistAsPreference private String midiPort;
@@ -31,8 +35,8 @@ public class Model extends DefaultAsyncFor<String, BindingListener> implements B
 	@BindingSetter(Key = MIDI_MAPPINGS) public void setMidiMappings(String midiMappings) { this.midiMappings = midiMappings; }
 
 	public final Object get(final String propertyName) {
-		if(propertyName.equals(RUNNING)) {
-			return Boolean.valueOf(this.getRunning());
+		if(propertyName.equals(STATE)) {
+			return Integer.valueOf(this.getState());
 		} else if(propertyName.equals(MIDI_PORT)) {
 			return this.getMidiPort();
 		} else if(propertyName.equals(MIDI_MAPPINGS)) {
@@ -43,8 +47,8 @@ public class Model extends DefaultAsyncFor<String, BindingListener> implements B
 	}
 
 	public final void set(final String propertyName, final Object value) {
-		if(propertyName.equals(RUNNING)) {
-			this.setRunning(((Boolean) value).booleanValue());
+		if(propertyName.equals(STATE)) {
+			this.setState(((Integer) value).intValue());
 		} else if(propertyName.equals(MIDI_PORT)) {
 			this.setMidiPort((String) value);
 		} else if(propertyName.equals(MIDI_MAPPINGS)) {

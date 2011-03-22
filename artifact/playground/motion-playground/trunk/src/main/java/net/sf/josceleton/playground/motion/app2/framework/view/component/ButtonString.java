@@ -19,16 +19,22 @@ public class ButtonString extends AbstractButton {
 
 	@Override
 	public void _drawOnPosition(Graphics2D g, int x, int y, WorldSnapshot world) {
-		g.setPaint(Color.MAGENTA);
+		g.setPaint(Color.BLUE);
 		g.fillRect(x, y, this.size.width, this.size.height);
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.setFont(Styles.FONT_REGULAR);
 		g.drawString(this.getLabel(), x + 2, y + 2); // TODO exact position calculaten (wieviel platz braucht label?!)
 	}
 
 	@Override
 	protected Rectangle updateHitArea(Rectangle hitArea, int x, int y) {
-		return null;
+		if(hitArea == null) {
+			return new Rectangle(x, y, this.size.width, this.size.height);
+		}
+		
+		hitArea.x = x;
+		hitArea.y = y;
+		return hitArea;
 	}
 
 }

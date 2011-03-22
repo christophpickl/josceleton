@@ -19,7 +19,7 @@ public abstract class AbstractJointableGestureConfigTest<C extends JointableGest
 	
 	@Test
 	public final void getterReturnsIdenticalRelevantJoints() {
-		final Collection<Joint> relevantJoints = Arrays.asList(Joints.ANKLE().LEFT(), Joints.HEAD());
+		final Collection<Joint> relevantJoints = Arrays.asList(Joints.KNEE().LEFT(), Joints.HEAD());
 		final C config = this.newTestee(relevantJoints);
 		assertThat(config.getRelevantJoints(), is(relevantJoints));
 	}

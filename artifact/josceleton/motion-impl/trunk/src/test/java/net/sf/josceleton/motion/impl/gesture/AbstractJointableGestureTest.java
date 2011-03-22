@@ -27,7 +27,7 @@ public class AbstractJointableGestureTest<
 	
 	@Test public final void onMovedCallsInternalMovedMethodOnlyForRelevantJoints() {
 		final Joint relevantJoint = Joints.HEAD();
-		final Joint irrelevantJoint = Joints.ANKLE().RIGHT();
+		final Joint irrelevantJoint = Joints.FOOT().RIGHT();
 		
 		final TestableAbstractJointableGesture gesture = new TestableAbstractJointableGesture(Arrays.asList(relevantJoint));
 		final Skeleton skeleton = this.mock(Skeleton.class);

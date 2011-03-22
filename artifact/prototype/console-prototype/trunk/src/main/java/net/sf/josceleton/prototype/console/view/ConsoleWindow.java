@@ -5,5 +5,9 @@ import net.sf.josceleton.prototype.console.glue.GlueCodeListener;
 public interface ConsoleWindow extends GlueCodeListener /* MINOR only for internal API*/ {
 	
 	void setVisible(boolean visible);
+
+	boolean isVisible();
+
+	void dispose();
 	
 }

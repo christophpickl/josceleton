@@ -27,6 +27,11 @@
     <!-- ******************************************************************* -->
     
     <dependencies>
+    
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
         
 	    <!-- I N T E R N A L -->
     	<!-- *********************************************************** -->
@@ -37,6 +42,30 @@
 		</dependency>
     </dependencies>
     
+    
+    <!-- ******************************************************************* -->
+    <!--                              B U I L D                              -->
+    <!-- ******************************************************************* -->
+    
+	<build>
+		<plugins>
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<ajdtVersion>${version_eclipse_ajdt}</ajdtVersion>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
     
     <!-- ******************************************************************* -->
     <!--                                S C M                                -->

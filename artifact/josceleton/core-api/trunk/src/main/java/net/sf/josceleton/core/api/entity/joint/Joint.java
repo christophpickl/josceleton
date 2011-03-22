@@ -27,4 +27,6 @@ public interface Joint {
 	/** @return the unique name of a joint as known from osceleton; e.g.: "head" or "l_hand". */
 	String getOsceletonId();
 	
+	// FIXME !!!!!!!!!!!!!!!!!!!!! ANKLE joint rausnehmen!
+	
 }

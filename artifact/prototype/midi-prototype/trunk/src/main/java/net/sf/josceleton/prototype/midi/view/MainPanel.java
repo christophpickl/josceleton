@@ -2,6 +2,8 @@ package net.sf.josceleton.prototype.midi.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,10 +27,11 @@ public class MainPanel extends JPanel {
 	
 	private final MainPanelListener listener;
 
-	private static final String LBL_START = "Start";
-	private static final String LBL_STOP = "Stop";
-	
 	private final JButton btnStartStop = new JButton();
+	private final JButton btnReload = new JButton();
+	private final JButton btnViewConsole = new JButton();
+	
+	
 	
 	private final Model model;
 	public MainPanel(final Model model, final MainPanelListener listener) {
@@ -40,33 +43,64 @@ public class MainPanel extends JPanel {
 
 		this.logField.setFont(StyleConstants.FONT);
 
-		model.addListenerFor(Model.RUNNING, new BindingListener() { @Override public final void onValueChanged(Object newValue) {
-			boolean isRunning = ((Boolean) newValue).booleanValue();
-			if(isRunning) {
-				btnStartStop.setText(LBL_STOP);
+		model.addListenerFor(Model.STATE, new BindingListener() { @Override public final void onValueChanged(Object newValue) {
+			final int state = ((Integer) newValue).intValue();
+			
+			btnReload.setEnabled(state == Model.STATE_PROCESSING);
+			btnViewConsole.setEnabled(state == Model.STATE_PROCESSING);
+			btnStartStop.setEnabled(state != Model.STATE_CONNECTING);
+			
+			if(state == Model.STATE_PROCESSING) {
+				btnStartStop.setText("Stop");
 				btnStartStop.setToolTipText("Click to close Connection");
-			} else {
-				btnStartStop.setText(LBL_START);
+			} else if(state == Model.STATE_IDLE){
+				btnStartStop.setText("Start");
 				btnStartStop.setToolTipText("Click to open Connection");
 			}
 		}});
 		
-		this.initComponents(model);
+		this.initComponents();
 	}
-
-	private void initComponents(final Model model) {
-		this.btnStartStop.setPreferredSize(new Dimension(200, 40));
+	
+	@SuppressWarnings("synthetic-access")
+	private void initComponents() {
+		this.btnStartStop.setPreferredSize(new Dimension(130, 40));
+		this.btnReload.setPreferredSize(new Dimension(130, 40));
+		this.btnViewConsole.setPreferredSize(new Dimension(130, 40));
+		this.btnReload.setText("Reload Mappings");
+		this.btnViewConsole.setText("View Console");
+		
 		this.btnStartStop.addActionListener(new ActionListener() {
-			@SuppressWarnings("synthetic-access")
 			public void actionPerformed(ActionEvent e) {
-				onBtnStartStopClicked();
+				listener.onToggleStartStop();
+			}
+		});
+		this.btnReload.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listener.onReloadMidiMappings();
+			}
+		});
+		this.btnViewConsole.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listener.onToggleConsole();
 			}
 		});
 		
 		final JPanel westPanel = new JPanel(new BorderLayout());
-		westPanel.add(new ConfigurationPanel(model), BorderLayout.CENTER);
-		final JPanel cmdPanel = new JPanel();
-		cmdPanel.add(this.btnStartStop);
+		westPanel.add(new ConfigurationPanel(this.model, listener), BorderLayout.CENTER);
+		final JPanel cmdPanel = new JPanel(new GridBagLayout());
+		final GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.weightx = 1.0;
+		cmdPanel.add(this.btnStartStop, c);
+		
+		c.weightx = 0.0;
+		c.anchor = GridBagConstraints.LINE_END;
+		c.gridx = 1;
+		cmdPanel.add(this.btnReload, c);
+		c.gridx = 2;
+		cmdPanel.add(this.btnViewConsole, c);
 		westPanel.add(cmdPanel, BorderLayout.SOUTH);
 		
 		final JScrollPane logScrolled = new JScrollPane(this.logField);
@@ -76,7 +110,7 @@ public class MainPanel extends JPanel {
 		this.split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, westPanel, logScrolled);
 		this.split.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 		this.split.setResizeWeight(0.0);
-		this.split.setDividerLocation(model.recentDividerLocation);
+		this.split.setDividerLocation(this.model.recentDividerLocation);
 		this.setLayout(new BorderLayout());
 		this.add(this.split, BorderLayout.CENTER);
 	}
@@ -85,14 +119,6 @@ public class MainPanel extends JPanel {
 		return this.btnStartStop;
 	}
 	
-	private void onBtnStartStopClicked() {
-		if(this.btnStartStop.getText().equals(LBL_START)) {
-			this.listener.onStart();
-		} else {
-			this.listener.onStop();
-		}
-	}
-
 	public void tearDown() {
 		this.model.recentDividerLocation = this.split.getDividerLocation();
 	}

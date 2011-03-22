@@ -9,20 +9,19 @@ import net.sf.josceleton.playground.motion.app2.framework.page.system.LoginPage;
 
 public class Navigation {
 	
-	private final Page startPage;
-	
 	private final Map<String, Page> pagesById = new HashMap<String, Page>();
+	private final String pageIdAfterLogin;
 	
 	public Navigation(String pageIdAfterLogin, Page... pages) {
-		this.startPage = new LoginPage(pageIdAfterLogin);
-		// MINOR integrity check
+		this.pageIdAfterLogin = pageIdAfterLogin;
+		// MINOR integrity check of referenced ids
 		for (Page page : pages) {
 			this.pagesById.put(page.getId(), page);
 		}
 	}
 
-	public Page getStartPage() {
-		return this.startPage;
+	public String getPageIdAfterLogin() {
+		return this.pageIdAfterLogin;
 	}
 
 	public Page getPageById(String pageId) {

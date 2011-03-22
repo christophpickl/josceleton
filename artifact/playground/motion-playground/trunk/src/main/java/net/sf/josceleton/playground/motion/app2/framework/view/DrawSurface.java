@@ -44,6 +44,10 @@ public class DrawSurface implements WorldChangedListener {
 			this.cursor.draw(g, this.recentWorld);
 		}
 	}
+	
+	// FIXME if received userLost => clear view! (remove cursor, update skeleton drawer)
+	// TODO if userLost, draw Red line and delay removal a bit
+	// TODO new feature: support multiple cursors with multiple users
 
 	@Override public void onUpdated(WorldSnapshot world) {
 		this.recentWorld = world;
