@@ -1,30 +1,83 @@
 
-%kapiteln:
-%* description: mission statement
-%* architectures: viele diagramme
-%* technologies: osceleton, java, java osc, maven, coding policies
-%* vision, roadmap
-%* appendix: links
-
-
-
 \documentclass[a4paper,12pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
+% pkg: url, href
 
 \title{Josceleton}
-\author{A Gesture based Application Framework}
+\author{A Gesture-Based Application Framework}
 
 \begin{document}
 
 \maketitle
+%\tableofcontents
 
 \section{Target Setting}
+description
+mission stmt
+FOTOs von skelet zeugs
+quer-referenz pulse project
+
+= gesture-based interface.
 
 
-%Let's include some text: \input{foo.txt}.
+\section{Nerdy Stuff}
 
+\subsection{Technology Stack}
+
+Kinect, OpenNI Framework (``Natural Interaction'' Framework; opensourced by PrimeSense; performs ``skeletonization''), NITE (is a toolbox to allow application to build flows base don the user's hands movement and is built upon OpenNI), OSCeleton (an OSC proxy that broadcasts skeleton data from the Kinect middleware as OSC messages, which is standard format for real time messaging similar to midi), Java OSC, Josceleton, YOU
+
+? PrimeSense sensore modul?
+
+3D kubus, wie koordinaten daherkommen.
+
+\subsection{Software Architecture}
+
+Module, Klassen wie sie zusammenarbeiten; strikte API/impl trennung, Codesamples, Diagrams \ldots
+
+zb: Connector, rohe ConnectionListener joint/user messages; was macht UserService (artificial login), unterschied MotionStream und ContinuousMotionStream
+
+Stuff: maven (build infrastructure, release-app), guice, coding policies (100\% coverage, several -build enforced- code quality plugins), \ldots aop/jcontractor
+
+screenshot von prototypen + papierprototypen wie es aussehen soll.
+
+
+\section{Roadmap}
+
+\begin{itemize}
+	\item Version 1.0: MIDI Support for Pulse project finished; several prototypes.
+	\item Version 2.0: Piano Sample App and Console App finished; some gestures available.
+	\item Version 3.0: Application Framework; many gestures, positions and stream based motion data.
+\end{itemize}
+
+See Mantis.
+
+Visions \ldots lego mindstorm extension, 3d visualisation
+
+
+\subsection{Supported Gestures}
+
+Gestures: HitWall, Relative
+Positions: 
+Streams: 
+Misc: Callibration
+
+\section{Appendix}
+
+\subsection*{Glossary}
+
+Joint
+Motion(Stream)
+
+
+
+\subsection*{Links}
+
+\begin{tabular}{ll}
+	foo was & http://osceleton.com \\
+	faa & http://sensebloom.com
+\end{tabular}
 
 
 \end{document}
