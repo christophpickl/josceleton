@@ -9,22 +9,19 @@ import net.sf.josceleton.core.api.entity.location.RangeFactory;
 import net.sf.josceleton.core.api.entity.location.RangeScaler;
 import net.sf.josceleton.motion.api.gesture.GestureFactoryFacade;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-
 /**
- * Facade class with static methods, acting as a single point of entry.
+ * Static variant of the <code>JosceletonFacade</code> type acting as a single point of entry.
  * 
  * It is highly recommended to NOT make use of this class. Only exception is quick hacky code...
  * Please see documentation on the website for further help about this topic.
  * 
  * @since 0.2
+ * @see JosceletonFacade
  */
 public final class Josceleton /* statically implements JosceletonFacade */ {
 	
 	private static /*non-final for testability*/ JosceletonFacade facade =
-		new JosceletonFacadeImpl(Josceleton.newGuiceInjector());
+		new JosceletonFacadeImpl(JosceletonGuice.newInjector());
 	
 	private Josceleton() {
 		// non instantiable, as just static methods available
@@ -42,22 +39,6 @@ public final class Josceleton /* statically implements JosceletonFacade */ {
 	 */
 	public static Connection openConnectionOnPort(final int port) {
 		return Josceleton.facade.openConnectionOnPort(port);
-	}
-	
-	/**
-	 * Handy utility method only, creating a new "instance realm" and should only be invoked once.
-	 * 
-	 * @since 0.2
-	 */
-	public static Injector newGuiceInjector() {
-		return Guice.createInjector(new JosceletonGuiceModule());
-	}
-	
-	/**
-	 * @since 0.4
-	 */
-	public static Module newGuiceModule() {
-		return new JosceletonGuiceModule();
 	}
 	
 	/**

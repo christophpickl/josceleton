@@ -15,7 +15,7 @@ import com.google.inject.AbstractModule;
  * 
  * @since 0.2
  */
-public class JosceletonGuiceModule extends AbstractModule { // NO extends PrivateModule; dont limit access to internals.
+public class JosceletonModule extends AbstractModule { // NO extends PrivateModule; dont limit access to internals.
 	
 	@Override protected final void configure() {
 		

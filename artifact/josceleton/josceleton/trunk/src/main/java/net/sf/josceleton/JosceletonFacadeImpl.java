@@ -12,6 +12,19 @@ import net.sf.josceleton.motion.api.gesture.GestureFactoryFacade;
 import com.google.inject.Injector;
 
 /**
+ * Facade hiding anything which is anyhow related to the internal dependency injection framework.
+ * 
+ * <p>Sample usage:
+ * <pre>
+ * Injector injector = JosceletonGuice.newInjector();
+ * JosceletonFacade josceleton = new JosceletonFacadeImpl(injector);
+ * // josceleton.getConnector()
+ * // josceleton.getContinuousMotionStreamFactory()
+ * // josceleton.getGestureFactoryFacade()
+ * // josceleton.getMotionStreamFactory()
+ * // josceleton.get...
+ * </pre>
+ * 
  * @since 0.2
  */
 public class JosceletonFacadeImpl implements JosceletonFacade {

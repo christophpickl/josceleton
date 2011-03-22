@@ -58,7 +58,7 @@ public class JosceletonTest extends AbstractMockeryTest {
 	
 	@Test public final void newGuiceInjectior() {
 		// we cant say more about it :-/
-		assertThat(Josceleton.newGuiceInjector(), notNullValue());
+		assertThat(JosceletonGuice.newInjector(), notNullValue());
 		
 		// NO: unfortunately, it seems as the Injector implementation checks for identity in its equals() method :(
 //		final Injector expectedInjector = Guice.createInjector(new JosceletonGuiceModule());
@@ -75,10 +75,9 @@ public class JosceletonTest extends AbstractMockeryTest {
 	@AfterMethod public final void tearDown() throws Exception {
 		this.bruteForceSetFacade(this.previousFacade);
 	}
-	
-	@Test
-	public final void newGuiceModule() {
-		assertThat(Josceleton.newGuiceModule(), is(JosceletonGuiceModule.class));
+	// FIXME move these tests to JosceletionGuiceTest 
+	@Test public final void newGuiceModule() {
+		assertThat(JosceletonGuice.newModule(), is(JosceletonModule.class));
 	}
 
 	

@@ -1,13 +1,12 @@
 package net.sf.josceleton.experimental;
 
-import net.sf.josceleton.Josceleton;
+import net.sf.josceleton.JosceletonGuice;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
 import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
 import net.sf.josceleton.connection.api.service.motion.MotionStream;
 import net.sf.josceleton.connection.api.service.motion.MotionStreamFactory;
 import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
-import net.sf.josceleton.connection.api.service.user.UserService;
 import net.sf.josceleton.connection.api.service.user.UserServiceListener;
 import net.sf.josceleton.connection.impl.service.motion.ContinuousMotionStreamFactory;
 import net.sf.josceleton.core.api.entity.joint.Joint;
@@ -29,7 +28,7 @@ class PlaygroundApp {
 	}
 	
 	public final void firstContinuousMotionStreamPlayground() {
-		final Injector injector = Josceleton.newGuiceInjector();
+		final Injector injector = JosceletonGuice.newInjector();
 		final Connector connector = injector.getInstance(Connector.class);
 		final Connection connection = connector.openConnection();
 		final ContinuousMotionStreamFactory factory = injector.getInstance(ContinuousMotionStreamFactory.class);
@@ -48,7 +47,7 @@ class PlaygroundApp {
 	}
 
 	public final void firstGesturePlayground() {
-		final Injector injector = Josceleton.newGuiceInjector();
+		final Injector injector = JosceletonGuice.newInjector();
 		final Joint joint = Joints.HAND().RIGHT();
 		
 		final GestureFactoryFacade factory = injector.getInstance(GestureFactoryFacade.class);

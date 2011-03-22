@@ -22,4 +22,12 @@ public interface User {
 	 */
 	int getOsceletonId();
 	
+	/**
+	 * TODO you can override user colors by injecting (and thereby overriding the default) a {@link UserColorFactory} 
+	 * 
+	 * @return a number (e.g. 0xFFCC00) which can be used for any colorized representation of this user.
+	 * @since 0.5
+	 */
+	int getColor();
+	
 }

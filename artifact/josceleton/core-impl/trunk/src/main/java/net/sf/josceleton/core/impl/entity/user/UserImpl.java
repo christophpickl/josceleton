@@ -9,9 +9,11 @@ class UserImpl implements User {
 	
 	private final int osceletonId;
 	
+	private final int color;
+	
 	
 //	@Inject UserImpl(@Assisted("uniqueId") final int uniqueId, @Assisted("osceletonId") final int osceletonId) {
-	UserImpl(final int uniqueId, final int osceletonId) {
+	UserImpl(final int uniqueId, final int osceletonId, final int color) {
 		if(uniqueId < 1) {
 			throw InvalidArgumentException.newInstance("uniqueId", Integer.valueOf(uniqueId), "< 1");
 		}
@@ -24,8 +26,7 @@ class UserImpl implements User {
 		
 		this.uniqueId = uniqueId;
 		this.osceletonId = osceletonId;
-		
-		
+		this.color = color;
 	}
 
 	/** {@inheritDoc} from {@link User} */
@@ -38,11 +39,19 @@ class UserImpl implements User {
 		return this.osceletonId;
 	}
 
+	/** {@inheritDoc} from {@link User} */
+	@Override public final int getColor() {
+		return this.color;
+	}
+
 	@Override public final boolean equals(final Object other) {
 		if(this == other) { return true; }
 		if((other instanceof User) == false) { return false; }
 		final User that = (User) other;
-		return this.getOsceletonId() == that.getOsceletonId() && this.getUniqueId() == that.getUniqueId();
+		return
+			this.getUniqueId() == that.getUniqueId() &&
+			this.getOsceletonId() == that.getOsceletonId() &&
+			this.getColor() == that.getColor();
 	}
 	
 	@Override public final int hashCode() {
@@ -50,7 +59,11 @@ class UserImpl implements User {
 	}
 	
 	@Override public final String toString() {
-		return "UserImpl[uniqueId=" + this.uniqueId + ", osceletonId=" + this.osceletonId + "]";
+		return "UserImpl[" +
+				"uniqueId=" + this.uniqueId + ", " +
+				"osceletonId=" + this.osceletonId + ", " +
+				"color=" + this.color +
+				"]";
 	}
 	
 }

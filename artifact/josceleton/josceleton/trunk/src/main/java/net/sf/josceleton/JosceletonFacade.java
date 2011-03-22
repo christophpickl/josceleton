@@ -56,5 +56,8 @@ public interface JosceletonFacade {
 	
 	// TODO HitWallGesture gesture = facade.create(HitWallGesture.class).propertyX(xValue).build();
 	
+	/**
+	 * @since 0.5
+	 */
 	GestureFactoryFacade getGestureFactoryFacade();
 }

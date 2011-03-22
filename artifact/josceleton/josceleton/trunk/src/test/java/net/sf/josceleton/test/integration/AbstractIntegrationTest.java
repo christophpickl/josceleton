@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import net.sf.josceleton.JosceletonGuiceModule;
+import net.sf.josceleton.JosceletonGuice;
 import net.sf.josceleton.commons.exception.InvalidArgumentException;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
@@ -41,7 +41,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import com.google.inject.util.Modules;
 
 @SuppressWarnings({ "boxing", "synthetic-access", "unchecked" })
 public class AbstractIntegrationTest<T extends AbstractIntegrationTest<T>> extends AbstractMockeryTest {
@@ -64,13 +63,10 @@ public class AbstractIntegrationTest<T extends AbstractIntegrationTest<T>> exten
 			will(returnValue(AbstractIntegrationTest.this.testableOscPort));
 		}});
 		
-		// see http://google-guice.googlecode.com/svn/trunk/latest-javadoc/com/google/inject/util/Modules.html
-		final Module functionalTestModule = Modules.override(new JosceletonGuiceModule()).with(new AbstractModule() {
-			@Override protected void configure() {
-				bind(OscPortOpener.class).toInstance(mockedPortOpener);
-			}
-		});
 		
+		final Module functionalTestModule = JosceletonGuice.newModuleOverriddenBy(new AbstractModule() {
+			@Override protected void configure() {
+				bind(OscPortOpener.class).toInstance(mockedPortOpener); } } );
 		this.injector = Guice.createInjector(functionalTestModule);
 		final Connector connector = this.injector.getInstance(Connector.class);
 		

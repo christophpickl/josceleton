@@ -1,6 +1,5 @@
 package net.sf.josceleton.playground.motion.app2;
 
-
 import net.sf.josceleton.Josceleton;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
@@ -24,8 +23,8 @@ public class App2 {
 	}
 	
 	// FIXME pages sind alle Hibernateable (wenn sie zb intern animation/thread haben, dass das pausiert wird)
-	private static final boolean FULLSCREEN_ENABLED = false;
-//	private static final boolean FULLSCREEN_ENABLED = true;
+//	private static final boolean FULLSCREEN_ENABLED = false;
+	private static final boolean FULLSCREEN_ENABLED = true;
 	
 	private static final int FPS = 24;
 	

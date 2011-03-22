@@ -12,7 +12,7 @@ public final class RandomUtil {
 	private RandomUtil() {
 		// utility class is not instantiable
 	}
-
+	
 	/**
 	 * @since 0.4
 	 */
