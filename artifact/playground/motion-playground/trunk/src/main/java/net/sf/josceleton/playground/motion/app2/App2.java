@@ -16,6 +16,8 @@ import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.Cursor;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.ImageCursor;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
+import net.sf.josceleton.playground.motion.app2.game1.GamePage;
+import net.sf.josceleton.playground.motion.app2.game1.MainPage;
 import net.sf.josceleton.playground.motion.common.UsersPanel;
 import net.sf.josceleton.playground.motion.common.WindowX;
 import net.sf.josceleton.playground.motion.common.WindowXListener;
@@ -44,7 +46,7 @@ public class App2 {
 	final PageManager pageManager;
 	final Navigation navigation;
 	final WindowX window;
-	final ConsoleWindow consoleWindow;
+//	final ConsoleWindow consoleWindow;
 	
 	public App2() {
 	
@@ -55,11 +57,11 @@ public class App2 {
 		final ContinuousMotionStream motionStream = injector.getInstance(ContinuousMotionStreamFactory.class).create(connection);
 		throttledStream = new ThrottledMotionStream(motionStream, FPS);
 
-		consoleWindow = injector.getInstance(ConsoleWindow.class);
-		final ConsolePresenter consolePresenter = injector.getInstance(ConsolePresenterFactory.class).create(consoleWindow, connection);
-		consolePresenter.init();
-		consoleWindow.setLocation(1200, 500);
-		consoleWindow.setVisible(true);
+//		consoleWindow = injector.getInstance(ConsoleWindow.class);
+//		final ConsolePresenter consolePresenter = injector.getInstance(ConsolePresenterFactory.class).create(consoleWindow, connection);
+//		consolePresenter.init();
+//		consoleWindow.setLocation(1200, 500);
+//		consoleWindow.setVisible(true);
 		
 		
 		final String idMain = "main";
@@ -102,8 +104,8 @@ public class App2 {
 		window.setVisible(false);
 		window.dispose();
 		
-		consoleWindow.setVisible(true);
-		consoleWindow.dispose();
+//		consoleWindow.setVisible(true);
+//		consoleWindow.dispose();
 		
 		throttledStream.close();
 		connection.close();

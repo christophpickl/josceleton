@@ -11,6 +11,8 @@ import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 
 public class WorldSnapshotFactory {
 	
+	private final CoordinateStabilizer cursorStabilizer = new CoordinateStabilizer();
+	
 	private final RangeScaler cursorToGlobalScaler;
 	private final Range cursorToGlobalX;
 	private final Range cursorToGlobalY;
@@ -37,11 +39,13 @@ public class WorldSnapshotFactory {
 		}
 		
 		final Coordinate coordinate = skeleton.getNullSafe(this.cursorJoint);
-		final Point cursorLocation = new Point(this.cursorToGlobalScaler.scale(coordinate.x(), this.cursorToGlobalX) + this.gap,
-						 this.cursorToGlobalScaler.scale(coordinate.y(), this.cursorToGlobalY) + this.gap);
+		
+		final int[] xy = this.cursorStabilizer.stabilize(this.cursorToGlobalScaler.scale(coordinate.x(), this.cursorToGlobalX),
+				this.cursorToGlobalScaler.scale(coordinate.y(), this.cursorToGlobalY));
+		final Point cursorLocation = new Point(xy[0] + this.gap, xy[1] + this.gap);
 		return new WorldSnapshot(cursorLocation, skeleton, this.surface);
 	}
-
+	
 	public WorldSnapshot createInitialDummy() {
 		System.out.println("WorldSnapshotFactory: createInitialDummy()");
 		return new WorldSnapshot(new Point(-1, -1)/*faked cursor location*/, null, this.surface);

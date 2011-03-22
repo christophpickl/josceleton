@@ -3,6 +3,7 @@ package net.sf.josceleton.playground.motion.app2.framework.view.common;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
@@ -24,7 +25,11 @@ public class Style {
 			g.setFont(Style.FONT_REGULAR);
 			g.setColor(Style.TEXT_PRIMARY);
 		}},
-		H3() { @Override public void on(Graphics2D g) {
+		H1() { @Override public void on(Graphics2D g) {
+			g.setFont(Style.FONT_COMMENT);
+			g.setColor(Style.TEXT_PRIMARY);
+		}},
+		COMMENT() { @Override public void on(Graphics2D g) {
 			g.setFont(Style.FONT_COMMENT);
 			g.setColor(Style.TEXT_SECONDARY);
 		}}
@@ -32,14 +37,11 @@ public class Style {
 		
 		public abstract void on(Graphics2D g);
 
-//		public Dimension calculateDimension(String label, FontRenderContext fontRenderContext) {
-//			FontRenderContext frc = g2.getFontRenderContext();
-//			Font f = new Font("Helvetica",Font.BOLD, 24);
-//			String s = new String("24 Pont Helvetica Bold");
-//			TextLayout tl = new TextLayout(s, f, frc);
-//			Dimension theSize= getSize();
-//			
-//		}
+		public Dimension calculateSize(String label, Graphics2D g) {
+			final FontMetrics metrics = g.getFontMetrics();
+			return new Dimension(metrics.stringWidth(label), metrics.getAscent());
+		}
+
 	}
 	
 	public static Color TEXT_PRIMARY = Color.WHITE;

@@ -19,12 +19,12 @@ public class DefaultAsync<L extends Listener> implements Async<L> {
 	private final Set<L> registeredListeners = new HashSet<L>();
 	
 	
-	public final Iterable<L> getListeners() {
+	public final synchronized Iterable<L> getListeners() {
 		return this.registeredListeners;
 	}
 
 	/** {@inheritDoc} from {@link Async} */
-	@Override public final void addListener(final L listener) {
+	@Override public final synchronized void addListener(final L listener) {
 		this.beforeAddListener(listener);
 		
 		final boolean wasChanged = this.registeredListeners.add(listener);
@@ -34,7 +34,7 @@ public class DefaultAsync<L extends Listener> implements Async<L> {
 	}
 
 	/** {@inheritDoc} from {@link Async} */
-	@Override public final void removeListener(final L listener) {
+	@Override public final synchronized void removeListener(final L listener) {
 		this.beforeRemoveListener(listener);
 		
 		final boolean wasRemoved = this.registeredListeners.remove(listener);

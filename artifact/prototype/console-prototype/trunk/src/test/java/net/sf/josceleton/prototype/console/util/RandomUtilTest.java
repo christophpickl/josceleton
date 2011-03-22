@@ -23,7 +23,7 @@ public class RandomUtilTest {
 	@Test public final void randFromZeroToExclusive() {
 		final int exclusive = 5;
 		for (int i = 0; i < 50; i++) {
-			assertThat(RandomUtil.randFromZeroToExclusive(exclusive),
+			assertThat(RandomUtil.nextIntZeroToExclusive(exclusive),
 				allOf(greaterThanOrEqualTo(0), lessThan(exclusive))
 			);
 		}
@@ -33,7 +33,7 @@ public class RandomUtilTest {
 		final int deviation = 10;
 		final int middle = 50;
 		for (int i = 0; i < deviation; i++) {
-			assertThat(RandomUtil.generateWithinRange(middle, deviation),
+			assertThat(RandomUtil.nextIntWithinRange(middle, deviation),
 				allOf(greaterThanOrEqualTo(middle - deviation), lessThanOrEqualTo(middle + deviation)));
 		}
 	}

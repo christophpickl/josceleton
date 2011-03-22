@@ -5,15 +5,12 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import bsh.commands.dir;
-
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Joints;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.joint.SymetricJoint;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.location.Direction;
-import net.sf.josceleton.motion.impl.CoordinateUtil;
 import net.sf.josceleton.playground.motion.app2.framework.view.Drawable;
 import net.sf.josceleton.playground.motion.app2.framework.view.common.Style;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
@@ -37,8 +34,8 @@ public class SkeletonDrawer implements Drawable {
 		g.setColor(Color.GRAY);
 		g.drawRect(x, y, this.size.width, this.size.height);
 		
-		Style.Text.H3.on(g);
-		g.drawString(this.headerText, x + this.size.width / 2 - 50, y + 20);
+		Style.Text.COMMENT.on(g);
+		g.drawString(this.headerText, x + this.size.width / 2 - 60, y + 20);
 		
 		final Skeleton skeleton = world.getSkeleton();
 		if(skeleton == null || skeleton.allCoordinatesAvailable() == false) {

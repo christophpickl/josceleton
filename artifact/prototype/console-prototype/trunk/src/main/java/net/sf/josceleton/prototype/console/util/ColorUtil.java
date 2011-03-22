@@ -17,7 +17,7 @@ public final class ColorUtil {
 	 */
 	public static Color newRandomColor() {
         final int[] rgb = new int[3];
-        final int rgbIndexSelected = RandomUtil.randFromZeroToExclusive(rgb.length);
+        final int rgbIndexSelected = RandomUtil.nextIntZeroToExclusive(rgb.length);
         
         for (int i = 0; i < rgb.length; i++) {
                 final int middle;
@@ -26,7 +26,7 @@ public final class ColorUtil {
                 } else {
                 	middle = 30;
                 }
-                rgb[i] = RandomUtil.generateWithinRange(middle, 20);
+                rgb[i] = RandomUtil.nextIntWithinRange(middle, 20);
         }
         
         return new Color(rgb[0], rgb[1], rgb[2]);

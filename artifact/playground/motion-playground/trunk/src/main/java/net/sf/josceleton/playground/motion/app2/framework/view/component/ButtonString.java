@@ -17,7 +17,6 @@ public class ButtonString extends AbstractButton {
 	private Dimension backgroundSize;
 	
 	public ButtonString(String label) {
-		super(null, null); // TODO seems as a subclass hack ;)
 		this.label = label;
 	}
 
@@ -34,12 +33,10 @@ public class ButtonString extends AbstractButton {
 	protected Rectangle updateHitArea(Rectangle hitArea, int x, int y, Graphics2D g) {
 		if(this.size == null) { // delayed initialization as we need g to calculate label size
 			STYLE.on(g);
-			final FontMetrics metrics = g.getFontMetrics();
-			final int width = metrics.stringWidth(this.label);
-			final int height = metrics.getAscent();
-			this.size = new Dimension(width, height);
-			this.backgroundSize = new Dimension(width, height + 10);
-			return new Rectangle(x, y, width, height);
+			this.size = STYLE.calculateSize(this.label, g);
+			
+			this.backgroundSize = new Dimension(this.size.width, this.size.height + 10);
+			return new Rectangle(x, y, this.size.width, this.size.height);
 		}
 		
 		hitArea.x = x;

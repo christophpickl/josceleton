@@ -17,9 +17,9 @@ public class PsiPosition extends AbstractPosition implements Runnable {
 	private static boolean SYSOUT_VALIDATE = false;
 //	private static boolean SYSOUT_VALIDATE = true;
 	
-	private static float SIMILARITY_HANDS_WITH_HEAD = 0.07F;
-	private static float SIMILARITY_ELBOWS_WITH_SHOULDERS = 0.09F;
-	private static float SIMILARITY_HEAD_NECK_TORSO = 0.06F;
+	private static float SIMILARITY_HANDS_WITH_HEAD = 0.09F;
+	private static float SIMILARITY_ELBOWS_WITH_SHOULDERS = 0.11F;
+	private static float SIMILARITY_HEAD_NECK_TORSO = 0.08F;
 	
 	private Timer timer;
 	

@@ -13,12 +13,12 @@ public class SimpleCursor implements Cursor {
 	
 	@Override
 	public void draw(Graphics2D g, WorldSnapshot world) {
-		final Point locationRHand = world.getCursorLocation();
-		if(locationRHand != null) {
+		final Point cursor = world.getCursorLocation();
+		if(cursor != null) {
 			
 			g.setColor(CURSOR_COLOR);
-			g.drawLine(locationRHand.x, locationRHand.y - CURSOR_HALF_SIZE, locationRHand.x, locationRHand.y + CURSOR_HALF_SIZE);
-			g.drawLine(locationRHand.x - CURSOR_HALF_SIZE, locationRHand.y, locationRHand.x + CURSOR_HALF_SIZE, locationRHand.y);
+			g.drawLine(cursor.x, cursor.y - CURSOR_HALF_SIZE, cursor.x, cursor.y + CURSOR_HALF_SIZE);
+			g.drawLine(cursor.x - CURSOR_HALF_SIZE, cursor.y, cursor.x + CURSOR_HALF_SIZE, cursor.y);
 		}
 	}
 
