@@ -49,6 +49,10 @@
     	<version_josceleton_josceleton>0.5-SNAPSHOT</version_josceleton_josceleton>
    		<version_josceleton-checkstyle-config>0.5-SNAPSHOT</version_josceleton-checkstyle-config>
    		
+   		<!-- PROTOTYPES -->
+   		<version_josceleton_console_prototype>0.1-SNAPSHOT</version_josceleton_console_prototype>
+   		
+   		
         <!-- V E R S I O N S   E X T E R N A L -->
    		<!-- *********************************************************** -->
    		
@@ -165,6 +169,13 @@
 				<type>test-jar</type>
 			</dependency>
     		
+	        <dependency>
+	            <groupId>net.sf.josceleton.prototype</groupId>
+	            <artifactId>console-prototype</artifactId>
+	            <version>${version_josceleton_console_prototype}</version>
+	        </dependency>
+	        
+	        
 	        <!-- P S E U D O   E X T E R N A L -->
     		<!-- *********************************************************** -->
     		
