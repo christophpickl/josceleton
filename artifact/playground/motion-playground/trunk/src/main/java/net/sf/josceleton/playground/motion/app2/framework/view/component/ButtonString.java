@@ -6,7 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Style;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Style;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class ButtonString extends AbstractButton {

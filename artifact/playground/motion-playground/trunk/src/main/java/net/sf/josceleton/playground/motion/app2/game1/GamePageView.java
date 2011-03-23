@@ -5,13 +5,13 @@ import java.awt.Image;
 
 import net.sf.josceleton.playground.motion.app2.framework.motionx.RelativeHitWallGesture;
 import net.sf.josceleton.playground.motion.app2.framework.view.AbstractPageView;
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Resources;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Images;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 import net.sf.josceleton.prototype.console.util.RandomUtil;
 
 class GamePageView extends AbstractPageView {
 		
-	private static final Image IMG = Resources.DUMB_FACE;
+	private static final Image IMG = Images.DUMB_FACE;
 		private final String pageIdBack;
 		
 		private boolean isEnabled = false;

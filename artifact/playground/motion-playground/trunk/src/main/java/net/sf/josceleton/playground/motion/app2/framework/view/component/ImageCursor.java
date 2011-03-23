@@ -3,12 +3,12 @@ package net.sf.josceleton.playground.motion.app2.framework.view.component;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Resources;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Images;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class ImageCursor implements Cursor {
 	
-	private static final Image IMAGE = Resources.CURSOR;
+	private static final Image IMAGE = Images.CURSOR;
 	private static final int X_ADJUSTMENT = -19;
 	private static final int Y_ADJUSTMENT = -3;
 	

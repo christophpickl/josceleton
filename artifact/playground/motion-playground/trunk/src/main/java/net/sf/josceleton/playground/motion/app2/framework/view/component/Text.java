@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 
 import net.sf.josceleton.playground.motion.app2.framework.view.Drawable;
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Style;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Style;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class Text implements Drawable {

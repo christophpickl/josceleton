@@ -5,17 +5,17 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 import net.sf.josceleton.playground.motion.app2.framework.view.AbstractPageView;
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Style;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.Button;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.ButtonImage;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.ButtonListener;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.Text;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Style;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class SystemLoginView extends AbstractPageView {
 	
 	private final Button btnContinue;
-	private final Text txtWaiting = new Text("Calibrating, please stand in Psi-position ...", Style.Text.MAIN);
+	private final Text txtWaiting = new Text("Calibrating ...", Style.Text.MAIN);
 	private final int continueImageHalfWidth;
 	
 	public SystemLoginView(final String idOfNextPage, Image continueImage) {

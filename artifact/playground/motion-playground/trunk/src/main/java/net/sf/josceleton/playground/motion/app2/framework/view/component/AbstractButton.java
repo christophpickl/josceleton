@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 import java.util.Timer;
 
 import net.sf.josceleton.core.impl.async.DefaultAsync;
-import net.sf.josceleton.playground.motion.app2.framework.sound.Sound;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Sounds;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 import net.sf.josceleton.playground.motion.common.TimerTaskRunner;
 
@@ -115,7 +115,7 @@ abstract class AbstractButton
 	}
 	
 	private void dispatchClicked() {
-		Sound.BLIP.start();
+		Sounds.BLIP.start();
 		
 		for(ButtonListener listener : this.getListeners()) {
 			listener.onClicked(this);

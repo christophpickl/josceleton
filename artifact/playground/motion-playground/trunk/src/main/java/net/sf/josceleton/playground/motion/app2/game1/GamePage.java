@@ -14,7 +14,7 @@ import net.sf.josceleton.playground.motion.app2.framework.motionx.GestureListene
 import net.sf.josceleton.playground.motion.app2.framework.motionx.RelativeHitWallGesture;
 import net.sf.josceleton.playground.motion.app2.framework.motionx.RelativeHitWallResult;
 import net.sf.josceleton.playground.motion.app2.framework.page.Page;
-import net.sf.josceleton.playground.motion.app2.framework.sound.Sound;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Sounds;
 
 public class GamePage extends Page<GamePageView> implements GestureListener<RelativeHitWallResult> {
 	
@@ -68,7 +68,7 @@ public class GamePage extends Page<GamePageView> implements GestureListener<Rela
 		if(coord.x() < this.view.xRand + HIT_DEVIATION && coord.x() > this.view.xRand - HIT_DEVIATION && // TODO use rectangle + provided hit test!
 		   coord.y() < this.view.yRand + HIT_DEVIATION && coord.y() > this.view.yRand - HIT_DEVIATION) {
 			
-			Sound.PUNCH_HIT.start();
+			Sounds.PUNCH_HIT.start();
 			
 			this.countHit++;
 			if(this.countHit == COUNT_HIT_MAX) {
@@ -77,7 +77,7 @@ public class GamePage extends Page<GamePageView> implements GestureListener<Rela
 				this.view.updateNewDumbFace();
 			}
 		} else {
-			Sound.PUNCH_MISS.start();
+			Sounds.PUNCH_MISS.start();
 		}
 	}
 	

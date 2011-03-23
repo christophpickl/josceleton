@@ -12,7 +12,7 @@ import net.sf.josceleton.core.api.entity.joint.SymetricJoint;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.playground.motion.app2.framework.view.Drawable;
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Style;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Style;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class SkeletonDrawer implements Drawable {

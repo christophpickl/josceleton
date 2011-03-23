@@ -24,7 +24,7 @@ import javax.swing.SwingUtilities;
 import net.sf.josceleton.core.api.async.Async;
 import net.sf.josceleton.core.impl.async.DefaultAsync;
 import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
-import net.sf.josceleton.playground.motion.app2.framework.view.common.Style;
+import net.sf.josceleton.playground.motion.app2.framework.view.resources.Style;
 
 public class WindowX extends JFrame implements Async<WindowXListener> {
 

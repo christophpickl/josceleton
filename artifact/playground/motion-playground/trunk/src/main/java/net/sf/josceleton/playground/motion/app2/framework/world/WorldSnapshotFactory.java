@@ -2,6 +2,9 @@ package net.sf.josceleton.playground.motion.app2.framework.world;
 
 import java.awt.Point;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import net.sf.josceleton.core.api.entity.joint.Joint;
 import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
@@ -43,9 +46,10 @@ public class WorldSnapshotFactory {
 		final int[] xy = this.cursorStabilizer.stabilize(this.cursorToGlobalScaler.scale(coordinate.x(), this.cursorToGlobalX),
 				this.cursorToGlobalScaler.scale(coordinate.y(), this.cursorToGlobalY));
 		final Point cursorLocation = new Point(xy[0] + this.gap, xy[1] + this.gap);
-		return new WorldSnapshot(cursorLocation, skeleton, this.surface);
+		LOG.fatal("on updated new cursor location: " + cursorLocation);
+		return new WorldSnapshot(cursorLocation, skeleton, this.surface); // TODO reuse same object!
 	}
-	
+	private static final Log LOG = LogFactory.getLog(WorldSnapshotFactory.class);
 	public WorldSnapshot createInitialDummy() {
 		System.out.println("WorldSnapshotFactory: createInitialDummy()");
 		return new WorldSnapshot(new Point(-1, -1)/*faked cursor location*/, null, this.surface);
