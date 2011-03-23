@@ -29,4 +29,14 @@ public class ButtonImage extends AbstractButton {
 		hitArea.y = y;
 		return hitArea;
 	}
+
+	@Override
+	public int calculateHalfWidth(Graphics2D g) {
+		return this.image.getWidth(null) / 2;
+	}
+
+	@Override
+	public int calculateHeight(Graphics2D g) {
+		return this.image.getHeight(null);
+	}
 }

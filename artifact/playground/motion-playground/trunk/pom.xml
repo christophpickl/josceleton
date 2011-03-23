@@ -21,6 +21,14 @@
     	<relativePath>../java-pom/pom.xml</relativePath>
 	</parent>
     
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+    
+    <properties>
+    	<fqn_of_mainclass>net.sf.josceleton.playground.motion.app2.App2</fqn_of_mainclass>
+    </properties>
+    
     
     <!-- ******************************************************************* -->
     <!--                       D E P E N D E N C I E S                       -->
@@ -49,11 +57,36 @@
     </dependencies>
     
     
+    
     <!-- ******************************************************************* -->
     <!--                              B U I L D                              -->
     <!-- ******************************************************************* -->
     
 	<build>
+		
+		<!-- TODO @POM make use of external properties file for filtering -->
+<!--		<filters>-->
+<!--			<filter>some_centrally_organized.properties</filter>-->
+<!--		</filters>-->
+		
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>app.properties</include>
+				</includes>
+			</resource>
+			<!-- just to get sure that no other (binaries) things are being filtered -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>app.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		
 		<plugins>
 		
 			<plugin>
@@ -67,6 +100,45 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>osxappbundle-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>${fqn_of_mainclass}</mainClass>
+					<bundleName>MidirouteApp</bundleName>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>${fqn_of_mainclass}</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			
 		</plugins>

@@ -8,7 +8,7 @@ public class SystemLoginPage extends Page {
 	public static final String ID = "__system_login";
 
 	public SystemLoginPage(String idOfNextPage) {
-		super(ID, new SystemLoginView(idOfNextPage, Images.NEXT));
+		super(ID, new SystemLoginView(idOfNextPage));
 	}
 
 }

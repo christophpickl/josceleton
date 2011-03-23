@@ -1,12 +1,8 @@
 package net.sf.josceleton.playground.motion.app2.game1;
 
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.util.Arrays;
 import java.util.Collection;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.Timer;
 
 import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
@@ -15,28 +11,33 @@ import net.sf.josceleton.playground.motion.app2.framework.motionx.RelativeHitWal
 import net.sf.josceleton.playground.motion.app2.framework.motionx.RelativeHitWallResult;
 import net.sf.josceleton.playground.motion.app2.framework.page.Page;
 import net.sf.josceleton.playground.motion.app2.framework.view.resources.Sounds;
+import net.sf.josceleton.playground.motion.common.TimerTaskRunner;
 
-public class GamePage extends Page<GamePageView> implements GestureListener<RelativeHitWallResult> {
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class GamePlayingPage extends Page<GamePlayingView> implements GestureListener<RelativeHitWallResult>, Runnable {
 	
-	private static final Log LOG = LogFactory.getLog(GamePage.class);
-	
-	private static final int COUNT_HIT_MAX = 3;
+	private static final Log LOG = LogFactory.getLog(GamePlayingPage.class);
+	public static final String ID = GamePlayingPage.class.getName();
+	private static final float HIT_DEVIATION = 0.12F;
+	private static final int SECONDS_TO_PLAY = 2;
 	
 	private final Collection<MotionStreamListener> streamListeners;
-//	private final MotionStreamDispatcher dispatcher;
-	private final GamePageView view;
+	private final GamePlayingView view;
 
+	private int currentSecond = 0;
 	private int countHit = 0;
+	private int countMiss = 0;
+	
 	private final RelativeHitWallGesture gesture = new RelativeHitWallGesture();
-	private final String pageIdMain;
-	public GamePage(String id, String pageIdMain) {
-		super(id, new GamePageView(pageIdMain));
+	private Timer timer;
+	
+	public GamePlayingPage() {
+		super(GamePlayingPage.ID, new GamePlayingView());
 		this.view = this.getView();
-		this.pageIdMain = pageIdMain;
 		
-		this.gesture.addListener(this);
 		this.streamListeners = Arrays.asList((MotionStreamListener) this.gesture);
-//		this.dispatcher = new MotionStreamDispatcher();
 	}
 
 	@Override public Collection<MotionStreamListener> getMotionStreamListeners() {
@@ -45,14 +46,24 @@ public class GamePage extends Page<GamePageView> implements GestureListener<Rela
 
 	@Override public void start() {
 		LOG.info("start()");
+		this.gesture.addListener(this);
+		
+		this.currentSecond = 0;
 		this.countHit = 0;
+		this.countMiss = 0;
+		
 		this.view.updateNewDumbFace();
+		this.timer = new Timer();
+		this.timer.scheduleAtFixedRate(new TimerTaskRunner(this), 0, 1000);
 	}
 
 	@Override public void stop() {
 		LOG.info("stop()");
+		this.timer.cancel();
+		this.timer = null;
+		this.gesture.removeListener(this);
 	}
-	private final static float HIT_DEVIATION = 0.12F;
+	
 	@Override
 	public void onGestureDetected(RelativeHitWallResult result) {
 		final Coordinate coord = result.getCoordinate();
@@ -61,9 +72,6 @@ public class GamePage extends Page<GamePageView> implements GestureListener<Rela
 //			// https://github.com/robbeofficial/KinectTouch/blob/master/src/KinectTouch.cpp
 		
 		LOG.debug("onGestureDetected() coord: " + coord);
-//		System.out.println("GamePage onGestureDetected:");
-//		System.out.println("	CORD " + coord.x() + "/" + coord.y());
-//		System.out.println("	VIEW "+this.view.xRand+"/" + this.view.yRand);
 		
 		if(coord.x() < this.view.xRand + HIT_DEVIATION && coord.x() > this.view.xRand - HIT_DEVIATION && // TODO use rectangle + provided hit test!
 		   coord.y() < this.view.yRand + HIT_DEVIATION && coord.y() > this.view.yRand - HIT_DEVIATION) {
@@ -71,13 +79,28 @@ public class GamePage extends Page<GamePageView> implements GestureListener<Rela
 			Sounds.PUNCH_HIT.start();
 			
 			this.countHit++;
-			if(this.countHit == COUNT_HIT_MAX) {
-				this.dispatchNavigateTo(this.pageIdMain);
-			} else {
-				this.view.updateNewDumbFace();
-			}
+			this.view.updateNewDumbFace();
+			this.view.setCountHit(this.countHit);
+			
 		} else {
+			this.countMiss++;
 			Sounds.PUNCH_MISS.start();
+		}
+	}
+
+	@Override
+	public void run() {
+		LOG.info("run() ... currentSecond=" + this.currentSecond);
+		this.view.setCurrentSecond(SECONDS_TO_PLAY - this.currentSecond); // transform to countdown
+		
+		if(this.currentSecond == SECONDS_TO_PLAY) {
+			System.out.println("========================== GAME ENDED");
+			System.out.println("HITS: " + this.countHit);
+			System.out.println("MISSES: " + this.countMiss);
+			this.dispatchNavigateTo(GameOverPage.ID); // will invoke stop()
+			
+		} else {
+			this.currentSecond++;
 		}
 	}
 	

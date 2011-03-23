@@ -34,11 +34,10 @@ public class WindowX extends JFrame implements Async<WindowXListener> {
 	private final DefaultAsync<WindowXListener> async = new DefaultAsync<WindowXListener>();
 	
 	private final GraphicsDevice device;
-	
+	private final Dimension monitorSize;
 	private final boolean fullscreen;
 	
-	
-	public WindowX(UsersPanel usersPanel, boolean fullscreen, DrawSurface drawSurface) {
+	public WindowX(UsersPanel usersPanel, boolean fullscreen, DrawSurface drawSurface, String applicationVersion) {
 		this.fullscreen = fullscreen;
 		this.setBackground(Color.BLACK);
 		
@@ -50,7 +49,7 @@ public class WindowX extends JFrame implements Async<WindowXListener> {
 		
 		final GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		this.device = env.getDefaultScreenDevice();
-		final Dimension monitorSize = this.device.getDefaultConfiguration().getBounds().getSize();
+		this.monitorSize = this.device.getDefaultConfiguration().getBounds().getSize();
 		
 		if(fullscreen == false) {
 			drawSurface.enforceSize(Math.round(monitorSize.width * MAX_SIZE_PERCENT_OF_IT),
@@ -58,7 +57,7 @@ public class WindowX extends JFrame implements Async<WindowXListener> {
 		}
 		
 		JPanel panel = new JPanel(new BorderLayout());
-		panel.add(this.createCommandPanel(usersPanel), BorderLayout.SOUTH);
+		panel.add(this.createCommandPanel(usersPanel, applicationVersion), BorderLayout.SOUTH);
 		panel.add(drawSurface.asComponent(), BorderLayout.CENTER);
 		this.getContentPane().add(panel);
 		
@@ -72,7 +71,7 @@ public class WindowX extends JFrame implements Async<WindowXListener> {
 		}
 	}
 	
-	private JComponent createCommandPanel(UsersPanel usersPanel) {
+	private JComponent createCommandPanel(UsersPanel usersPanel, String applicationVersion) {
 		final int gapLeftRight = 10;
 		
 		final JButton btnQuit = new JButton("Quit");
@@ -83,7 +82,7 @@ public class WindowX extends JFrame implements Async<WindowXListener> {
 				dispatchQuit();
 		}});
 		
-		final JLabel lblInfo = new JLabel("Josceleton Motion Playground");
+		final JLabel lblInfo = new JLabel("Josceleton Motion Prototype v" + applicationVersion);
 		lblInfo.setFont(Style.styleAsComment(lblInfo).deriveFont(12.0F));
 		
 		JPanel commandPanel = new JPanel(new GridBagLayout());
@@ -124,6 +123,10 @@ public class WindowX extends JFrame implements Async<WindowXListener> {
 		for(WindowXListener listener : this.async.getListeners()) {
 			listener.onQuit();
 		}
+	}
+	
+	public final Dimension getMonitorSize() {
+		return this.monitorSize;
 	}
 
 	@Override public final void addListener(WindowXListener listener) {

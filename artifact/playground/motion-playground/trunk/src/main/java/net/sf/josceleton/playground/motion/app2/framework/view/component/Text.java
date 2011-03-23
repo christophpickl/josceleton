@@ -33,6 +33,7 @@ public class Text implements Drawable {
 	}
 
 	public Dimension calculateSize(Graphics2D g) {
+		this.style.on(g); // FIXME duplicate invocation! but was necessary to get proper calculated size back (client should have not done this by himself..)
 		return this.style.calculateSize(this.label, g);
 	}
 	

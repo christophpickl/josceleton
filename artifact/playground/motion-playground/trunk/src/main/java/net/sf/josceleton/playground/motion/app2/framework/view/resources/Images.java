@@ -14,7 +14,9 @@ public class Images {
 	public static final Image NOKAY  = lookupImage("/image/nokay.png");
 	public static final Image NEXT   = lookupImage("/image/next.png");
 	public static final Image DUMB_FACE = lookupImage("/image/dumb_face.png");
-
+	public static final Image PSI_TRANSPARENT = lookupImage("/image/psi_transparent.png");
+	public static final Image BOXER = lookupImage("/image/boxer.png");
+	
 	
 	private static Image lookupImage(String path) {
 //		final Image foundImage = Toolkit.getDefaultToolkit().getImage(path);

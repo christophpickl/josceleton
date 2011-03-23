@@ -15,7 +15,7 @@ public class Navigation {
 	public Navigation(String pageIdAfterLogin, Page<? extends PageView>... pages) {
 		this.pageIdAfterLogin = pageIdAfterLogin;
 		// MINOR integrity check of referenced ids
-		for (Page page : pages) {
+		for (Page<? extends PageView> page : pages) {
 			this.pagesById.put(page.getId(), page);
 		}
 	}
@@ -25,7 +25,7 @@ public class Navigation {
 	}
 
 	public Page<? extends PageView> getPageById(String pageId) {
-		final Page page = this.pagesById.get(pageId);
+		final Page<? extends PageView> page = this.pagesById.get(pageId);
 		if(page == null) {
 			throw new RuntimeException("Could not find page by ID [" + pageId + "]!");
 		}

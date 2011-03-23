@@ -3,6 +3,9 @@ package net.sf.josceleton.playground.motion.app2.framework.page.system;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import net.sf.josceleton.playground.motion.app2.framework.view.AbstractPageView;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.Button;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.ButtonImage;
@@ -14,14 +17,15 @@ import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class SystemQuitView extends AbstractPageView {
 	
+	private static final Log LOG = LogFactory.getLog(SystemQuitView.class);
+	
 	private final Button btnOkay;
 	private final Button btnNokay;
-	private final Text txtComfirm = new Text("Really Quit?", Style.Text.MAIN);
-	private Dimension txtConfirmSize;
+	private final Text txtConfirm = new Text("Really Quit?", Style.Text.MAIN);
 	
 	@SuppressWarnings("synthetic-access")
 	public SystemQuitView(final String idOfContinuingPage, final String idOfNokay) {
-		System.out.println("new SystemQuitView(idOfContinuingPage="+idOfContinuingPage+", idOfNokay="+idOfNokay+")");
+		LOG.info("new SystemQuitView(idOfContinuingPage="+idOfContinuingPage+", idOfNokay="+idOfNokay+")");
 		
 		this.btnOkay = new ButtonImage(Images.OKAY);
 		this.btnNokay = new ButtonImage(Images.NOKAY);
@@ -33,14 +37,11 @@ public class SystemQuitView extends AbstractPageView {
 	}
 	
 	@Override public void drawWithMaxSize(WorldSnapshot world, Graphics2D g, int width, int height) {
-		if(txtConfirmSize == null) {
-			txtConfirmSize = this.txtComfirm.calculateSize(g);
-		}
+		final Dimension size = this.txtConfirm.calculateSize(g);
+		this.txtConfirm.drawOnPosition(g, world.getHorizontalCenter() - size.width / 2 + /*WTF?!*/20, world.getVerticalCenter() - 100, world);
 		
-		this.txtComfirm.drawOnPosition(g, world.getHorizontalCenter() - this.txtConfirmSize.width / 2, world.getVerticalCenter(), world);
-		
-		this.btnOkay.drawOnPosition(g, world.getHorizontalCenter() - 200, world.getVerticalCenter(), world);
-		this.btnNokay.drawOnPosition(g, world.getHorizontalCenter() + 200, world.getVerticalCenter(), world);
+		this.btnOkay.drawOnPosition(g, world.getHorizontalCenter() - 200, world.getVerticalCenter() + 20, world);
+		this.btnNokay.drawOnPosition(g, world.getHorizontalCenter() + 200, world.getVerticalCenter() + 20, world);
 	}
 
 }

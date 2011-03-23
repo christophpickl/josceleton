@@ -14,6 +14,8 @@ import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 
 public class WorldSnapshotFactory {
 	
+	private static final Log LOG = LogFactory.getLog(WorldSnapshotFactory.class);
+	
 	private final CoordinateStabilizer cursorStabilizer = new CoordinateStabilizer();
 	
 	private final RangeScaler cursorToGlobalScaler;
@@ -43,13 +45,19 @@ public class WorldSnapshotFactory {
 		
 		final Coordinate coordinate = skeleton.getNullSafe(this.cursorJoint);
 		
-		final int[] xy = this.cursorStabilizer.stabilize(this.cursorToGlobalScaler.scale(coordinate.x(), this.cursorToGlobalX),
-				this.cursorToGlobalScaler.scale(coordinate.y(), this.cursorToGlobalY));
-		final Point cursorLocation = new Point(xy[0] + this.gap, xy[1] + this.gap);
-		LOG.fatal("on updated new cursor location: " + cursorLocation);
+//		final int[] xy = this.cursorStabilizer.stabilize(
+//				this.cursorToGlobalScaler.scale(coordinate.x(), this.cursorToGlobalX),
+//				this.cursorToGlobalScaler.scale(coordinate.y(), this.cursorToGlobalY));
+//		final Point cursorLocation = new Point(xy[0] + this.gap, xy[1] + this.gap);
+		final Point cursorLocation = new Point(this.cursorToGlobalScaler.scale(coordinate.x(), this.cursorToGlobalX) + this.gap,
+											   this.cursorToGlobalScaler.scale(coordinate.y(), this.cursorToGlobalY) + this.gap);
+		
+//		LOG.warn("coordinate => "+coordinate+"....... cursor => " + cursorLocation);
+		// coordinate => CoordinateImpl[x=0.6082467, y=0.4017404, z=1.2116178]....... cursor => java.awt.Point[x=-10,y=0]
+		
 		return new WorldSnapshot(cursorLocation, skeleton, this.surface); // TODO reuse same object!
 	}
-	private static final Log LOG = LogFactory.getLog(WorldSnapshotFactory.class);
+	
 	public WorldSnapshot createInitialDummy() {
 		System.out.println("WorldSnapshotFactory: createInitialDummy()");
 		return new WorldSnapshot(new Point(-1, -1)/*faked cursor location*/, null, this.surface);

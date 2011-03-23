@@ -32,6 +32,14 @@ public class Style {
 		COMMENT() { @Override public void on(Graphics2D g) {
 			g.setFont(Style.FONT_COMMENT);
 			g.setColor(Style.TEXT_SECONDARY);
+		}},
+		TIME_INDICATOR() { @Override public void on(Graphics2D g) {
+			g.setFont(Style.FONT_TIME_INDICATOR);
+			g.setColor(Style.TEXT_PRIMARY);
+		}},
+		BOXER_BUBBLE() { @Override public void on(Graphics2D g) {
+			g.setFont(Style.FONT_BOXER_BUBBLE);
+			g.setColor(Color.RED);
 		}}
 		;
 		
@@ -41,9 +49,17 @@ public class Style {
 			final FontMetrics metrics = g.getFontMetrics();
 			return new Dimension(metrics.stringWidth(label), metrics.getAscent());
 		}
-
 	}
-	
+	public enum Shape {
+		BUTTON_BOX_BG() { @Override public void on(Graphics2D g) {
+			g.setPaint(Style.BACKGROUND_SECONDARY);
+		}},
+		BUTTON_BOX_LINE() { @Override public void on(Graphics2D g) {
+			g.setColor(Style.LINE_PRIMARY);
+		}}
+		;
+		public abstract void on(Graphics2D g);
+	}
 	public static Color TEXT_PRIMARY = Color.WHITE;
 	public static Color TEXT_SECONDARY = Color.GRAY;
 	
@@ -52,7 +68,9 @@ public class Style {
 	
 	private static int FONT_REGULAR_SIZE = 36;
 	public static Font FONT_REGULAR = new Font("monaco", Font.PLAIN, FONT_REGULAR_SIZE);
+	public static Font FONT_TIME_INDICATOR = new Font("monaco", Font.ITALIC, 24);
 	public static Font FONT_COMMENT = new Font("monaco", Font.PLAIN, 16);
+	public static Font FONT_BOXER_BUBBLE = new Font("Marker Felt", Font.ITALIC, 48);
 
 	public static void setCommentFont(Graphics2D g) {
 		g.setFont(FONT_COMMENT);

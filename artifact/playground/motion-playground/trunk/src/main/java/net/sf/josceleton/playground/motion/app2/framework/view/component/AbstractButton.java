@@ -21,21 +21,11 @@ abstract class AbstractButton
 	private static final Log LOG = LogFactory.getLog(AbstractButton.class);
 	private static final int TIMER_TASK_FINISHED_COUNT = 6;
 	private static final int TIMER_TASK_GAP_IN_MS = 300;
-	
-	private boolean mouseOver;
-	private Timer timer;
-	private int timerTaskCount;
-	private Rectangle hitArea;
-	
 
-	protected abstract Rectangle updateHitArea(Rectangle area, int x, int y, Graphics2D g);
-
-	protected abstract void _drawOnPosition(Graphics2D g, int x, int y, WorldSnapshot world);
-	
+	private static final int INDICATOR_HEIGHT = 6;
+	private static final int INDICATOR_WIDTH = 13;
+	private static final int INDICATOR_INSET_X = 3;
 	private static final int INDICATOR_GAP_Y = 10;
-	private static final int INDICATOR_HEIGHT = 5;
-	private static final int INDICATOR_WIDTH = 9;
-	private static final int INDICATOR_GAP_X = 2;
 	private static final Color[] INDICATOR_COLORS;
 	static {
 		INDICATOR_COLORS = new Color[TIMER_TASK_FINISHED_COUNT];
@@ -46,6 +36,13 @@ abstract class AbstractButton
 			previousColor = INDICATOR_COLORS[i];
 		}
 	}
+	private boolean mouseOver;
+	private Timer timer;
+	private int timerTaskCount;
+	private Rectangle hitArea;
+	
+	protected abstract Rectangle updateHitArea(Rectangle area, int x, int y, Graphics2D g);
+	protected abstract void _drawOnPosition(Graphics2D g, int x, int y, WorldSnapshot world);
 	
 	// maybe move x/y coordinates into constructor (could set area instance final and hittest would need no null check)
 	
@@ -77,7 +74,7 @@ abstract class AbstractButton
 	
 	private void drawTopBottomIndicator(Graphics2D g, int i, int x, int y, int xByCenterMultiplicator, boolean isTop) {
 		g.fillRect(
-				x + this.hitArea.width / 2 + (i * (INDICATOR_WIDTH + INDICATOR_GAP_X)) * (xByCenterMultiplicator),
+				x + this.hitArea.width / 2 + (i * (INDICATOR_WIDTH + INDICATOR_INSET_X)) * (xByCenterMultiplicator),
 				y + (isTop ? (- (INDICATOR_GAP_Y + INDICATOR_HEIGHT)) : (this.hitArea.height + INDICATOR_GAP_Y)),
 				INDICATOR_WIDTH, INDICATOR_HEIGHT);
 	}
