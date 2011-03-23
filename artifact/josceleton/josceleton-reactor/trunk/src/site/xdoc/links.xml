@@ -41,7 +41,9 @@
 			<h4>Backstage Tools</h4>
 			
 			<ul>
-				<li><b>Sensebloom's OSCeleton</b> - <a href="https://github.com/Sensebloom/OSCeleton" target="_blank">https://github.com/Sensebloom/OSCeleton</a></li>
+				<li><b>OSCeleton</b> - <a href="https://github.com/Sensebloom/OSCeleton" target="_blank">https://github.com/Sensebloom/OSCeleton</a></li>
+				<li><b>NITE Middleware</b> - <a href="http://www.primesense.com/?p=515" target="_blank">http://www.primesense.com/?p=515</a></li>
+				<li><b>OpenNI</b> - <a href="http://www.openni.org/" target="_blank">http://www.openni.org/</a></li>
 				<li><b>Java OSC</b> - <a href="http://illposed.com/software/javaosc.html" target="_blank">http://illposed.com/software/javaosc.html</a></li>
 				<li>Apache Maven - <a href="http://maven.apache.org" target="_blank">http://maven.apache.org</a></li>
 				<li>Google Guice - <a href="http://code.google.com/p/google-guice" target="_blank">http://code.google.com/p/google-guice</a></li>
@@ -52,22 +54,13 @@
 			
 			<h4>Kinect Demo Videos</h4>
 			
-			<p>Projects using OSCeleton as well:</p>
 			<ul>
 				<li>Animata - <a href="http://animata.kibu.hu/" target="_blank">http://animata.kibu.hu/</a></li>
-				<li>Collaborative Puppet Control - <a href="http://vimeo.com/20367106" target="_blank">http://vimeo.com/20367106</a></li>
 				<li>Graffiti/Ribbon Test - <a href="http://vimeo.com/20866868" target="_blank">http://vimeo.com/20866868</a></li>
-<!--				<li>Tryplex Toolkit Demo - <a href="http://vimeo.com/19967846" target="_blank">http://vimeo.com/19967846</a></li>-->
-<!--				<li> - <a href="" target="_blank"></a></li>-->
-			</ul>
-			
-			<ul>
 				<li>Interactive Puppet - <a href="http://vimeo.com/16985224" target="_blank">http://vimeo.com/16985224</a></li>
 				<li>Human Wall Game - <a href="http://vimeo.com/20104529" target="_blank">http://vimeo.com/20104529</a></li>
-				<li>Home Automation - <a href="http://youtube.com/watch?v=L7jeJSdJPpk" target="_blank">http://youtube.com/watch?v=L7jeJSdJPpk</a></li>
-				<li>Gesture Based TV Control - <a href="http://vimeo.com/20855586" target="_blank">http://vimeo.com/20855586</a></li>
-				<li>Data Visualization Tool - <a href="http://youtube.com/watch?v=ZNt9Q3tqu9Y" target="_blank">http://youtube.com/watch?v=ZNt9Q3tqu9Y</a></li>
 				<li>Data Visualization Tool (Faked by BBC) - <a href="http://youtube.com/watch?v=jbkSRLYSojo" target="_blank">http://youtube.com/watch?v=jbkSRLYSojo</a></li>
+				<li>Data Visualization Tool (Real) - <a href="http://youtube.com/watch?v=ZNt9Q3tqu9Y" target="_blank">http://youtube.com/watch?v=ZNt9Q3tqu9Y</a></li>
 				<li>Active Projection Mapping - <a href="http://youtube.com/watch?v=hkHUGxP3ecI" target="_blank">http://youtube.com/watch?v=hkHUGxP3ecI</a></li>
 <!--				<li> - <a href="" target="_blank"></a></li>-->
 			</ul>

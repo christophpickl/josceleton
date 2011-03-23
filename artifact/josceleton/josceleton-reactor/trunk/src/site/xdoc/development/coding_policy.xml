@@ -9,6 +9,34 @@
 		<section name="Coding Policy">
 			
 			<p>
+				First of all, for those who do not already know them, may I present you the <i>21 laws of programming</i>:
+			</p>
+			
+			<ol>
+				<li>Any given program, once deployed, is already obsolete.</li>
+				<li>It is easier to change the specification to fit the program than vice versa.</li>
+				<li>If a program is useful, it will have to be changed.</li>
+				<li>If a program is useless, it will have to be documented.</li>
+				<li>Only ten percent of the code in any given program will ever execute.</li>
+				<li>Software expands to consume all available resources.</li>
+				<li>Any non-trivial program contains at least one error.</li>
+				<li>The probability of a flawless demo is inversely proportional to the number of people watching, raised to the power of the amount of money involved.</li>
+				<li>Not until a program has been in production for at least six months will its most harmful error be discovered.</li>
+				<li>Undetectable errors are infinite in variety, in contrast to detectable errors, which by definition are limited.</li>
+				<li>The effort required to correct an error increases exponentially with time.</li>
+				<li>Program complexity grows until it exceeds the capabilities of the programmer who must maintain it.</li>
+				<li>Any code of your own that you haven't looked at in months might as well have been written by someone else.</li>
+				<li>Inside every small program is a large program struggling to get out.</li>
+				<li>The sooner you start coding a program, the longer it will take.</li>
+				<li>A carelessly planned project takes three times longer to complete than expected; a carefully planned project takes only twice as long.</li>
+				<li>Adding programmers to a late project makes it later.</li>
+				<li>A program is never less than 90% complete, and never more than 95% complete.</li>
+				<li>If you automate a mess, you get an automated mess.</li>
+				<li>Build a program that even a fool can use, and only a fool will want to use it.</li>
+				<li>Users truly don't know what they want in a program until they use it</li>
+			</ol>
+			
+			<p>
 				TODO!
 			</p>
 			

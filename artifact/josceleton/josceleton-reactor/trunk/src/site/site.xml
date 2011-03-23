@@ -12,7 +12,7 @@
 			<item name="Download" href="download.html" /> 
 <!--			<item name="Prerequisites" href="" />--><!-- contains how to setup osceleton+openni+nite -->
 
-			<item name="Samples" href="samples.html" />
+			<item name="Tutorial" href="tutorial.html" />
 <!--			<item name="FAQ/Help" href="..." />-->
 <!--			<item name="NO: maybe add as appendix (merge together with other things) Links" href="links.html" />-->
 			<item name="Forum" href="https://sourceforge.net/projects/josceleton/forums/" />
@@ -21,6 +21,7 @@
 <!--		<menu name="Documentation">-->
 				<!-- link to: javadoc, sourcecode, samples project -->
 <!--			<item name="Getting Started" href="" />-->
+<!--			<item name="Samples" href="" />-->
 
 <!--			<item name="Connections and Services" href="" />-->
 <!--			<item name="Position and Gestures" href="" />-->

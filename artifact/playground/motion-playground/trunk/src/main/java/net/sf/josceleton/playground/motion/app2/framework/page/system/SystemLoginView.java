@@ -1,5 +1,6 @@
 package net.sf.josceleton.playground.motion.app2.framework.page.system;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
@@ -14,7 +15,7 @@ import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 public class SystemLoginView extends AbstractPageView {
 	
 	private final Button btnContinue;
-	private final Text txtWaiting = new Text("Waiting for incoming data ...", Style.Text.MAIN);
+	private final Text txtWaiting = new Text("Calibrating, please stand in Psi-position ...", Style.Text.MAIN);
 	private final int continueImageHalfWidth;
 	
 	public SystemLoginView(final String idOfNextPage, Image continueImage) {
@@ -33,7 +34,8 @@ public class SystemLoginView extends AbstractPageView {
 	@Override public void drawWithMaxSize(WorldSnapshot world, Graphics2D g, int width, int height) {
 		
 		if(world.getSkeleton() == null) { // will only get dispatched once at early beginning
-			this.txtWaiting.drawOnPosition(g, world.getHorizontalCenter() - 260, world.getVerticalCenter(), world);
+			final Dimension size = this.txtWaiting.calculateSize(g);
+			this.txtWaiting.drawOnPosition(g, world.getHorizontalCenter() - size.width / 2, world.getVerticalCenter(), world);
 			
 		} else {
 			this.btnContinue.drawOnPosition(g, world.getHorizontalCenter() - this.continueImageHalfWidth, world.getVerticalCenter(), world);

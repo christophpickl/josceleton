@@ -15,6 +15,7 @@ public class ImageCursor implements Cursor {
 	@Override public void draw(Graphics2D g, WorldSnapshot world) {
 		final int x = world.getCursorLocation().x + X_ADJUSTMENT;
 		final int y = world.getCursorLocation().y + Y_ADJUSTMENT;
+//		System.out.println("CURSOR DRAW: " + x + "/" + y);
 		g.drawImage(IMAGE, x, y, null);
 	}
 

@@ -2,7 +2,7 @@
 <document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 	<properties>
-		<title>Samples</title>
+		<title>Tutorial</title>
 	</properties>
 	<body>
 	
@@ -50,7 +50,7 @@ connection.addListener(new ConnectionListener() {
     // this will be invoked quiet often ;)
 
     String output = "[user " + jointMessage.getUser().getOsceletonId() + "] moved";
-    if(jointMessage.getJointPart() == Body.HAND().LEFT()) {
+    if(jointMessage.getJoint() == Joints.HAND().LEFT()) {
   	  output += "left hand: ";
     }
 
@@ -93,28 +93,10 @@ System.out.println("Running ...");
 					</caption>
 					<tr valign="middle"><td align="center" style="background-color:white;text-align:left;font-size:10pt;">
 						<source><![CDATA[
-// #1 - this is the most common way you will use (recommended approach)
-// ===============================================================================
-JosceletonFacade facade = Josceleton.newFacade();
-... = facade.openConnection();
-
-// #2 - internally instantiates a facade implementation
-// ===============================================================================
-JosceletonFacade facade = new JosceletonFacadeImpl(Josceleton.newGuiceInjector());
-... = facade.openConnection();
-
-// #3 - then invokes guice directly to create an injector
-// ===============================================================================
-Injector injector = Guice.createInjector(new JosceletonGuiceModule());
-JosceletonFacade facade = new JosceletonFacadeImpl(injector);
-... = facade.openConnection();
-
-// #4 - tweak: outline module creation (this represents what is actually done internally)
-// ===============================================================================
-Module module = new JosceletonGuiceModule();
-Injector injector = Guice.createInjector(module);
-JosceletonFacade facade = new JosceletonFacadeImpl(injector);
-... = facade.openConnection();
+Injector injector = JosceletonGuice.newInjector();
+JosceletonFacade josceleton = new JosceletonFacadeImpl(injector);
+Connector connector = josceleton.getConnector();
+... connector.openConnection();
 ]]></source>
 					</td></tr>
 				</table>

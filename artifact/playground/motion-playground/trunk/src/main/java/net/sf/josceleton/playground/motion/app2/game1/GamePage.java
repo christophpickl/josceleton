@@ -14,6 +14,7 @@ import net.sf.josceleton.playground.motion.app2.framework.motionx.GestureListene
 import net.sf.josceleton.playground.motion.app2.framework.motionx.RelativeHitWallGesture;
 import net.sf.josceleton.playground.motion.app2.framework.motionx.RelativeHitWallResult;
 import net.sf.josceleton.playground.motion.app2.framework.page.Page;
+import net.sf.josceleton.playground.motion.app2.framework.sound.Sound;
 
 public class GamePage extends Page<GamePageView> implements GestureListener<RelativeHitWallResult> {
 	
@@ -51,7 +52,7 @@ public class GamePage extends Page<GamePageView> implements GestureListener<Rela
 	@Override public void stop() {
 		LOG.info("stop()");
 	}
-
+	private final static float HIT_DEVIATION = 0.12F;
 	@Override
 	public void onGestureDetected(RelativeHitWallResult result) {
 		final Coordinate coord = result.getCoordinate();
@@ -64,16 +65,10 @@ public class GamePage extends Page<GamePageView> implements GestureListener<Rela
 //		System.out.println("	CORD " + coord.x() + "/" + coord.y());
 //		System.out.println("	VIEW "+this.view.xRand+"/" + this.view.yRand);
 		
-		final float deviation = 0.2F;
-		if(coord.x() < this.view.xRand + deviation && coord.x() > this.view.xRand - deviation && // TODO use rectangle + provided hit test!
-		   coord.y() < this.view.yRand + deviation && coord.y() > this.view.yRand - deviation) {
+		if(coord.x() < this.view.xRand + HIT_DEVIATION && coord.x() > this.view.xRand - HIT_DEVIATION && // TODO use rectangle + provided hit test!
+		   coord.y() < this.view.yRand + HIT_DEVIATION && coord.y() > this.view.yRand - HIT_DEVIATION) {
 			
-			System.out.println("GAME DAMAGE, KABOOM");
-			System.out.println("GAME DAMAGE, KABOOM");
-			System.out.println("GAME DAMAGE, KABOOM");
-			System.out.println("GAME DAMAGE, KABOOM");
-			System.out.println("GAME DAMAGE, KABOOM");
-			Toolkit.getDefaultToolkit().beep();
+			Sound.PUNCH_HIT.start();
 			
 			this.countHit++;
 			if(this.countHit == COUNT_HIT_MAX) {
@@ -81,6 +76,8 @@ public class GamePage extends Page<GamePageView> implements GestureListener<Rela
 			} else {
 				this.view.updateNewDumbFace();
 			}
+		} else {
+			Sound.PUNCH_MISS.start();
 		}
 	}
 	
