@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId}</name>
+    <description>Playground for new gestures/movements and stuff.</description>
+    <packaging>jar</packaging>
+    
+    <groupId>net.sf.josceleton.playground</groupId>
+    <artifactId>motion-playground</artifactId>
+    <version>0.1</version>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                             P A R E N T                             -->
+    <!-- ******************************************************************* -->
+    
+    <parent>
+		<groupId>net.sf.josceleton</groupId>
+		<artifactId>java-pom</artifactId>
+        <version>0.5-SNAPSHOT</version>
+    	<relativePath>../java-pom/pom.xml</relativePath>
+	</parent>
+    
+    <!-- ******************************************************************* -->
+    <!--                         P R O P E R T I E S                         -->
+    <!-- ******************************************************************* -->
+    
+    <properties>
+    	<fqn_of_mainclass>net.sf.josceleton.playground.motion.app2.App2</fqn_of_mainclass>
+    	<coverage_percent>0</coverage_percent>
+    </properties>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                       D E P E N D E N C I E S                       -->
+    <!-- ******************************************************************* -->
+    
+    <dependencies>
+    
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+        
+	    <!-- I N T E R N A L -->
+    	<!-- *********************************************************** -->
+    	
+    	<!-- actually already defined by console-prototype ;) -->
+<!--		<dependency>-->
+<!--			<groupId>net.sf.josceleton</groupId>-->
+<!--			<artifactId>josceleton</artifactId>-->
+<!--		</dependency>-->
+		
+		<dependency>
+			<groupId>net.sf.josceleton.prototype</groupId>
+			<artifactId>console-prototype</artifactId>
+		</dependency>
+		
+    </dependencies>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--                              B U I L D                              -->
+    <!-- ******************************************************************* -->
+    
+	<build>
+		<finalName>JosceletonBoxing</finalName>
+		<!-- TODO @POM make use of external properties file for filtering -->
+<!--		<filters>-->
+<!--			<filter>some_centrally_organized.properties</filter>-->
+<!--		</filters>-->
+		
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>app.properties</include>
+				</includes>
+			</resource>
+			<!-- just to get sure that no other (binaries) things are being filtered -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>app.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		
+		<plugins>
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<ajdtVersion>${version_eclipse_ajdt}</ajdtVersion>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>osxappbundle-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>${fqn_of_mainclass}</mainClass>
+					<bundleName>JosceletonBoxing</bundleName>
+					<iconFile>${basedir}/src/main/osx-resources/josceleton_boxing.icns</iconFile>
+<!--					<additionalResources>-->
+<!--						<additionalResource>${project.build.finalName}.app???</additionalResource>-->
+<!--					</additionalResources>-->
+					<!-- TODO <dictionaryFile>${basedir}/src/main/app-resources/Info.plist</dictionaryFile>
+					 -->
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>${fqn_of_mainclass}</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
+    
+    <!-- ******************************************************************* -->
+    <!--                                S C M                                -->
+    <!-- ******************************************************************* -->
+    
+    <scm>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/motion-playground/tags/motion-playground-0.1</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/motion-playground/tags/motion-playground-0.1</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/playground/motion-playground/tags/motion-playground-0.1</url>
+    </scm>
+    
+    
+    <!-- ******************************************************************* -->
+    <!--            D I S T R I B U T I O N   M A N A G E M E N T            -->
+    <!-- ******************************************************************* -->
+        
+    <distributionManagement>
+		<site>
+			<id>josceleton-sourceforge-server</id>
+			<url>${distribution_site_url_prefix}/${project.artifactId}/${project.version}/</url>
+		</site>
+    </distributionManagement>
+    
+    
+</project>
