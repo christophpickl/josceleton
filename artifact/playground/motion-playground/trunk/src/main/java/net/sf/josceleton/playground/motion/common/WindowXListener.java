@@ -6,4 +6,6 @@ public interface WindowXListener extends Listener {
 	
 	void onQuit();
 	
+	// TODO onEscapeEntered(); ==> change fullscreen mode; needs some positioning fixes, as would not work properly as it is right now... :-|
+	
 }

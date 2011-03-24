@@ -14,7 +14,7 @@ public enum Sounds {
 	
 	private static final String AUDIO_RESOURCES_PATH = "audio/";
 	
-	private final String fileName;
+	final String fileName;
 	
 	private Sounds(String fileName) {
 		this.fileName = AUDIO_RESOURCES_PATH + fileName;

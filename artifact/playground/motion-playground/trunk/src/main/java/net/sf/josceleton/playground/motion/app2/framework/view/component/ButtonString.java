@@ -1,7 +1,6 @@
 package net.sf.josceleton.playground.motion.app2.framework.view.component;
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.Graphics2D;

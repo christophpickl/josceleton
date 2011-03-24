@@ -20,7 +20,11 @@ public class Text implements Drawable {
 	
 	public Text(String label, Style.Text style) {
 		this.label = label;
-		this.style = style;
+		if(style == null) {
+			this.style = Style.Text.MAIN;
+		} else {
+			this.style = style;
+		}
 	}
 
 	@Override public void drawOnPosition(Graphics2D g, int x, int y, WorldSnapshot world) {

@@ -14,7 +14,7 @@ import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public class SystemLoginView extends AbstractPageView {
 	
-	private final Text txtContinue = new Text("Hover over the Button to continue.", Style.Text.MAIN);
+	private final Text txtContinue = new Text("Hover over the Button to continue", Style.Text.MAIN);
 	private final Button btnContinue;
 	
 	private final Text txtWaiting = new Text("Calibrating ...", Style.Text.MAIN);
@@ -24,7 +24,7 @@ public class SystemLoginView extends AbstractPageView {
 		this.btnContinue = new ButtonImage(Images.NEXT);
 //		this.btnContinue = new ButtonString("Continue");
 		
-		this.psiTransparentImageHalfWidth = Images.PSI_TRANSPARENT.getWidth(null) / 2;;
+		this.psiTransparentImageHalfWidth = Images.PSI_TRANSPARENT.getWidth(null) / 2;
 		this.btnContinue.addListener(new ButtonListener() {
 			@SuppressWarnings("synthetic-access")
 			@Override public void onClicked(Button source) {

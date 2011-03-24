@@ -22,6 +22,7 @@ public class UsersPanel extends JPanel implements UserServiceListener {
 	public UsersPanel(UsersCollection users) {
 		this.users = users;
 		this.updateUsers();
+		this.setOpaque(false);
 	}
 
 	@Override public void paintComponent(final Graphics g) {

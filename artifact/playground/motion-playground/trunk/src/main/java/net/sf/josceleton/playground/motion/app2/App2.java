@@ -21,6 +21,7 @@ import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.Cursor;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.ImageCursor;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory.ScalerAndRanges;
 import net.sf.josceleton.playground.motion.app2.game1.GameOverPage;
 import net.sf.josceleton.playground.motion.app2.game1.GamePlayingPage;
 import net.sf.josceleton.playground.motion.app2.game1.MenuPage;
@@ -40,14 +41,20 @@ public class App2 {
 	
 	public static void main(String[] args) {
 		// TODO splash screen!
-		new App2().start();
+		try {
+			new App2().start();
+		} catch(Exception e) {
+			System.err.println("Could not start up application :(");
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 	private static final Log LOG = LogFactory.getLog(App2.class);
 	// FIXME pages sind alle Hibernateable (wenn sie zb intern animation/thread haben, dass das pausiert wird)
-	private static final boolean FULLSCREEN_ENABLED = false;
-//	private static final boolean FULLSCREEN_ENABLED = true;
+//	private static final boolean FULLSCREEN_ENABLED = false;
+	private static final boolean FULLSCREEN_ENABLED = true;
 	
-	private static final int FPS = 24;
+//	private static final int FPS = 24;
 	
 	final Connection connection;
 	final ThrottledMotionStream throttledStream;
@@ -65,14 +72,13 @@ public class App2 {
 		this.connection = connector.openConnection();
 		
 		final ContinuousMotionStream motionStream = injector.getInstance(ContinuousMotionStreamFactory.class).create(this.connection);
-		this.throttledStream = new ThrottledMotionStream(motionStream, FPS);
+		this.throttledStream = new ThrottledMotionStream(motionStream);
 
 //		consoleWindow = injector.getInstance(ConsoleWindow.class);
 //		final ConsolePresenter consolePresenter = injector.getInstance(ConsolePresenterFactory.class).create(consoleWindow, connection);
 //		consolePresenter.init();
 //		consoleWindow.setLocation(1200, 500);
 //		consoleWindow.setVisible(true);
-		
 		
 		final MenuPage mainPage = new MenuPage();
 		this.navigation = new Navigation(mainPage.getId(), mainPage, new GamePlayingPage(), new GameOverPage());
@@ -84,8 +90,9 @@ public class App2 {
 		final UsersPanel usersPanel = new UsersPanel(this.connection.getUserService());
 		this.connection.getUserService().addListener(usersPanel); // FIXME @API: UserServiceListener bekommt auch UsersColleciton uebergeben (so wie Skeleton auch funkt)!!!
 		
-		window = new WindowX(usersPanel, FULLSCREEN_ENABLED, drawSurface, applicationVersion);
-		window.addListener(new WindowXListener() {
+		final String subtitle = "Josceleton Boxing Prototype v" + applicationVersion;
+		this.window = new WindowX(usersPanel, FULLSCREEN_ENABLED, drawSurface, subtitle);
+		this.window.addListener(new WindowXListener() {
 			@Override public void onQuit() {
 				doQuit();
 			}});
@@ -96,7 +103,7 @@ public class App2 {
 		final int actualScreenWidth;
 		final int actualScreenHeight;
 		if(FULLSCREEN_ENABLED == true) {
-			final Dimension fullScreenSize = window.getMonitorSize();
+			final Dimension fullScreenSize = this.window.getMonitorSize();
 			actualScreenWidth = fullScreenSize.width;
 			actualScreenHeight = fullScreenSize.height;
 		} else {
@@ -108,29 +115,32 @@ public class App2 {
 		
 		final Range rangeX = Josceleton.newRange(0.3F, 0.6F, 0, actualScreenWidth - (2 * gap));
 		final Range rangeY = Josceleton.newRange(0.2F, 0.6F, 0, actualScreenHeight - (2 * gap));
-		WorldSnapshotFactory factory = new WorldSnapshotFactory(cursorJoint, Josceleton.getRangeScaler(), rangeX, rangeY, gap, drawSurface);
+		ScalerAndRanges scaler = new ScalerAndRanges(Josceleton.getRangeScaler(), rangeX, rangeY, gap);
+		WorldSnapshotFactory factory = new WorldSnapshotFactory(cursorJoint, scaler, drawSurface);
 
-		pageManager = new PageManager(navigation, throttledStream, drawSurface, factory);
-		pageManager.addListener(new PageManagerListener() {
+		this.pageManager = new PageManager(this.navigation, this.throttledStream, drawSurface, this.window, factory);
+		this.pageManager.addListener(new PageManagerListener() {
 			@Override public void onQuit() {
 				doQuit();
 		}});
 	}
 	
 	public void start() {
-		pageManager.start();
-		window.displayLater();
+		this.pageManager.start();
+		this.window.displayLater();
 	}
 	
 	void doQuit() {
-		window.setVisible(false);
-		window.dispose();
+		LOG.info("doQuit()");
+		this.window.setVisible(false);
+		this.window.dispose();
+		this.pageManager.close();
 		
 //		consoleWindow.setVisible(true);
 //		consoleWindow.dispose();
 		
-		throttledStream.close();
-		connection.close();
+		this.throttledStream.close();
+		this.connection.close();
 	}
 	
 	// FIXME copied from midi-prototype SomeUtil

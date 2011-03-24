@@ -15,12 +15,15 @@ import net.sf.josceleton.playground.motion.app2.framework.page.system.SystemLogi
 import net.sf.josceleton.playground.motion.app2.framework.page.system.SystemQuitPage;
 import net.sf.josceleton.playground.motion.app2.framework.view.DrawSurface;
 import net.sf.josceleton.playground.motion.app2.framework.view.PageView;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldChangedListener;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshotFactory;
+import net.sf.josceleton.playground.motion.common.WindowX;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class PageManager extends DefaultAsync<PageManagerListener> implements Closeable, PageListener {
+public class PageManager extends DefaultAsync<PageManagerListener> implements Closeable, PageListener, WorldChangedListener {
 	
 	private static final Log LOG = LogFactory.getLog(PageManager.class);
 	
@@ -32,35 +35,91 @@ public class PageManager extends DefaultAsync<PageManagerListener> implements Cl
 	private Page<? extends PageView> currentPage;
 	private final WorldSnapshotFactory factory;
 	private final SystemLoginPage loginPage;
+	private WorldSnapshot recentWorld;
+	final WindowX window;
 	
-	public PageManager(Navigation navigation, IThrottledMotionStream motionStream, DrawSurface surface, WorldSnapshotFactory factory) {
+	public PageManager(Navigation navigation, IThrottledMotionStream motionStream, DrawSurface surface, WindowX window, WorldSnapshotFactory factory) {
 		this.navigation = navigation;
 		this.motionStream = motionStream;
 		this.surface = surface;
 		this.loginPage = new SystemLoginPage(this.navigation.getPageIdAfterLogin());
 		// directly redirect messages from motion strema to surface
-		this.liveTransformer = new MotionMessageLiveStreamTransformer(factory, this.surface);
+		this.liveTransformer = new MotionMessageLiveStreamTransformer(factory, this);
+		this.window = window;
 		this.factory = factory;
 	}
 	
 	public void start() {
-		System.out.println("PageManger: start()");
+		LOG.info("start()");
 
 		this.motionStream.addListener(this.liveTransformer);
 		this.surface.onUpdated(this.factory.createInitialDummy()); // create first/artifical world snapshot
 		
-		this.quitPosition.addListener(new PositionListener() { @Override public void onPositionDetected() {
+		this.quitPosition.addListener(new PositionListener() { // TODO PageManager could implement PositionListener (if only one position is of interest)
+		@Override public void onPositionDetected() {
 			onQuitPositionDetected();
+		}
+		@Override public void onTimerStarted() {
+			PageManager.this.window.setPsiIndicatorEnabled(true);
+		}
+		@Override public void onTimerAborted() {
+			PageManager.this.window.setPsiIndicatorEnabled(false);
 		}});
 		this.motionStream.addListener(this.quitPosition);
 		
-		this.updateForNewPage(this.loginPage);
+		this.updateForNewPage(this.loginPage, null/*no args*/);
+	}
+
+	/** {@inheritDoc} from {@link PageListener} */
+	@Override public void onNavigate(String pageId) {
+		this.onNavigate(pageId, null);
 	}
 	
 	/** {@inheritDoc} from {@link PageListener} */
-	@Override public void onNavigate(String pageId) {
+	@Override public void onNavigate(String pageId, PageArgs args) {
 //		TODO implement some beep sound when user interaction fired: AudioFile.S1.start();
-		LOG.info("on NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE =============> " + pageId);
+		LOG.info("on NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE NAVIGATE =============> " + pageId + "; args: " + args);
+		
+		this.stopCurrentPage();
+
+		if(this.currentPage instanceof SystemQuitPage) {
+			LOG.info("quit was not confirmed; continue navigating to recent page");
+			this.motionStream.addListener(this.quitPosition);
+			this.window.setPsiIndicatorEnabled(false);
+		}
+		
+		// quit is only exception (no other special cases leading to an if-else-cascade!)
+		if(pageId.equals(SystemQuitPage.ARTIFICIAL_ID_CONFIRMED)) {
+			LOG.info("Quit was confirmed by user.");
+			for(PageManagerListener listener : this.getListeners()) {
+				listener.onQuit();
+			}
+			// everything else will be cleaned up when close() was invoked by managing class
+			return;
+			
+		}
+		
+		final Page<? extends PageView> newPage;
+		if(pageId.equals(this.loginPage.getId())) { // user stood in psi position while in login page
+//			this.updateForNewPage(this.loginPage, null/*no args*/);
+			newPage = this.loginPage;
+			
+		} else if(pageId.equals(SystemQuitPage.ID)) {
+			newPage = new SystemQuitPage(this.currentPage.getId());
+		} else if(pageId.equals(this.loginPage.getId())) { // user tried aborted (but not confirmed) to quit while in login 
+			newPage = this.loginPage;
+		} else {
+			newPage = this.navigation.getPageById(pageId);
+		}
+		
+		if(newPage == null) {
+			throw new RuntimeException("Could not find page by id [" + pageId + "]! (implement precheck validation!)");
+		}
+		this.updateForNewPage(newPage, args);
+	}
+	
+	private void stopCurrentPage() {
+		LOG.debug("stopCurrentPage() ... currentPage=" + this.currentPage);
 		this.currentPage.stop();
 		
 		final Collection<MotionStreamListener> listeners = this.currentPage.getMotionStreamListeners();
@@ -69,45 +128,16 @@ public class PageManager extends DefaultAsync<PageManagerListener> implements Cl
 			this.motionStream.requestForRemove(listener);
 		}
 		this.currentPage.removeListener(this);
-		
-		// quit is only exception (no other special cases leading to an if-else-cascade!)
-		if(pageId.equals(SystemQuitPage.ID_CONFIRMED)) {
-			LOG.info("Quit was confirmed by user.");
-			for(PageManagerListener listener : this.getListeners()) {
-				listener.onQuit();
-			}
-			return;
-			
-		} else if(pageId.equals(this.loginPage.getId())) { // user stood in psi position while in login page
-			this.updateForNewPage(this.loginPage);
-		}
-		if(this.currentPage instanceof SystemQuitPage) {
-			LOG.info("quit was not confirmed; continue navigating to recent page");
-			this.motionStream.addListener(this.quitPosition);
-		}
-		
-		final Page<? extends PageView> newPage;
-		if(pageId.equals(SystemQuitPage.ID)) {
-			newPage = new SystemQuitPage(this.currentPage.getId());
-			
-		} else {
-			newPage = this.navigation.getPageById(pageId);
-		}
-		
-		if(newPage == null) {
-			throw new RuntimeException("Could not find page by id [" + pageId + "]! (implement precheck validation!)");
-		}
-		this.updateForNewPage(newPage);
 	}
 	
-	private void updateForNewPage(Page<? extends PageView> newPage) {
+	private void updateForNewPage(Page<? extends PageView> newPage, PageArgs args) {
 		this.currentPage = newPage;
-		this.currentPage.addListener(this);
+		this.currentPage.addListener(this); // TODO strangely, when in login page, then psi, then decline and back to login page => listener was yet added!
 		final Collection<MotionStreamListener> listeners = this.currentPage.getMotionStreamListeners();
 		for (MotionStreamListener listener : listeners) {
 			this.motionStream.addListener(listener);
 		}
-		this.currentPage.start();
+		this.currentPage.start(this.recentWorld, args);
 		
 		this.surface.setView(newPage.getView());
 	}
@@ -118,9 +148,11 @@ public class PageManager extends DefaultAsync<PageManagerListener> implements Cl
 			return;
 		}
 		LOG.info("onQuitPositionDetected()");
+		
 		this.motionStream.requestForRemove(this.quitPosition);
-		// safe old state?
-		this.onNavigate(SystemQuitPage.ID); // FIXME current page soll dann nur in sleep mode gesetzt werden, nicht gleich stop
+		
+		final PageArgs recentArgs = this.currentPage.getArgs(); // safe old state
+		this.onNavigate(SystemQuitPage.ID, recentArgs); // FIXME current page soll dann nur in sleep mode gesetzt werden, nicht gleich stop
 
 		// A. confirm: quit
 		// B. abort: register psiposition again and continue with previous page (restore state!)
@@ -128,9 +160,19 @@ public class PageManager extends DefaultAsync<PageManagerListener> implements Cl
 	
 	@Override
 	public void close() {
+		LOG.info("close()");
+		
+		this.stopCurrentPage();
+		
 		// TODO use aspectj to ensure all opened resources are closed again!
 		this.motionStream.requestForRemove(this.liveTransformer);
 		this.motionStream.requestForRemove(this.quitPosition);
+	}
+	
+	@Override
+	public void onUpdated(WorldSnapshot world) {
+		this.recentWorld = world;
+		this.surface.onUpdated(world); // bubble down ;)
 	}
 	
 }

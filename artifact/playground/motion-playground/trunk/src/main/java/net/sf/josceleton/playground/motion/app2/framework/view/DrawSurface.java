@@ -8,15 +8,15 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.Cursor;
 import net.sf.josceleton.playground.motion.app2.framework.view.component.SkeletonDrawer;
 import net.sf.josceleton.playground.motion.app2.framework.view.resources.Style;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldChangedListener;
 import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class DrawSurface implements WorldChangedListener {
 
@@ -71,13 +71,21 @@ public class DrawSurface implements WorldChangedListener {
 	
 	void paintInternalUiComponent(Graphics2D g) {
 		if(this.recentWorld == null) {
+			
+			Style.Text.COMMENT.on(g);
+			final int x = this.internalUiComponent.getWidth() / 2 - 300;
+			g.drawString("Unsufficient data!", x, this.internalUiComponent.getHeight() / 2);
+			g.drawString("Try to move around so your body can be fully seen.", x, this.internalUiComponent.getHeight() / 2 + 50);
+			
 			return; // wait until data has arrived
 		}
 		
 		this.currentView.drawWithMaxSize(this.recentWorld, g,
 			this.internalUiComponent.getWidth(), this.internalUiComponent.getHeight());
 		
-		if(this.recentWorld.getSkeleton() != null) { // now we really got some data ;)
+		if(this.recentWorld.getSkeleton() != null && // now we really got some data ;)
+			this.recentWorld.isCursorVisible() == true
+				) {
 			this.cursor.draw(g, this.recentWorld);
 		}
 	}
@@ -87,7 +95,7 @@ public class DrawSurface implements WorldChangedListener {
 	// TODO new feature: support multiple cursors with multiple users
 
 	@Override public void onUpdated(WorldSnapshot world) {
-//		System.out.println("DrawSurface: ..... onUpdated with world: " + world);
+//		LOG.trace("DrawSurface: ..... onUpdated with world: " + world);
 		this.recentWorld = world;
 		this.internalUiComponent.repaint();
 	}

@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
-import java.awt.font.FontRenderContext;
-import java.awt.font.TextLayout;
 
 import javax.swing.JLabel;
 
@@ -25,8 +23,8 @@ public class Style {
 			g.setFont(Style.FONT_REGULAR);
 			g.setColor(Style.TEXT_PRIMARY);
 		}},
-		H1() { @Override public void on(Graphics2D g) {
-			g.setFont(Style.FONT_COMMENT);
+		P() { @Override public void on(Graphics2D g) {
+			g.setFont(Style.FONT_P);
 			g.setColor(Style.TEXT_PRIMARY);
 		}},
 		COMMENT() { @Override public void on(Graphics2D g) {
@@ -70,6 +68,7 @@ public class Style {
 	public static Font FONT_REGULAR = new Font("monaco", Font.PLAIN, FONT_REGULAR_SIZE);
 	public static Font FONT_TIME_INDICATOR = new Font("monaco", Font.ITALIC, 24);
 	public static Font FONT_COMMENT = new Font("monaco", Font.PLAIN, 16);
+	public static Font FONT_P = new Font("monaco", Font.PLAIN, 26);
 	public static Font FONT_BOXER_BUBBLE = new Font("Marker Felt", Font.ITALIC, 48);
 
 	public static void setCommentFont(Graphics2D g) {

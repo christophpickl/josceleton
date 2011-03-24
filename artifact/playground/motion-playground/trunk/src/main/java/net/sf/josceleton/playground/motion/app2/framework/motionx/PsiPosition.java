@@ -10,8 +10,12 @@ import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.api.entity.location.Direction;
 import net.sf.josceleton.playground.motion.common.TimerTaskRunner;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class PsiPosition extends AbstractPosition implements Runnable {
 	
+	private static final Log LOG = LogFactory.getLog(PsiPosition.class);
 	private static final int TRIGGER_TIME = 3000;
 
 	private static boolean SYSOUT_VALIDATE = false;
@@ -28,15 +32,17 @@ public class PsiPosition extends AbstractPosition implements Runnable {
 		// FIXME wenn ganze zeit hin&her wackelt zwischen valid und invalid ==> timewindow darueber bauen, um das zu begrenzen
 		if(valid == true) {
 			if(this.timer == null) {
-				System.out.println("PsiPosition: Starting trigger time ...");
+				LOG.trace("PsiPosition: Starting trigger time ...");
 				this.timer = new Timer();
 				this.timer.schedule(new TimerTaskRunner(this), TRIGGER_TIME);
+				this.dispatchTimerStarted();
 			}
 		} else {
 			if(this.timer != null) {
-				System.out.println("PsiPosition: close; you just missed staying in Psi");
+				LOG.trace("PsiPosition: close; you just missed staying in Psi");
 				this.timer.cancel();
 				this.timer = null;
+				this.dispatchTimerAborted();
 			}
 		}
 	}
@@ -85,6 +91,8 @@ public class PsiPosition extends AbstractPosition implements Runnable {
 		
 		return true;
 	}
+	
+	// TODO oustource this method
 	private static boolean areInOneLine(Skeleton skeleton, Direction direction, float diffTolerance, Joint... joints) {
 		float minValue = Float.MAX_VALUE;
 		float maxValue = Float.MIN_VALUE;
@@ -96,8 +104,7 @@ public class PsiPosition extends AbstractPosition implements Runnable {
 		return Math.abs(minValue - maxValue) < diffTolerance;
 	}
 	
-	@Override public void run() {
-
+	@Override public void run() { // timer complete! position detected!
 		if(SYSOUT_VALIDATE) {
 			System.out.println(" P S I     POSITION DETECTED");
 			System.out.println(" P S I     POSITION DETECTED");

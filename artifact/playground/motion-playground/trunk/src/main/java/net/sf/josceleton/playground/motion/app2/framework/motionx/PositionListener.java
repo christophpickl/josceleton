@@ -5,5 +5,9 @@ import net.sf.josceleton.core.api.async.Listener;
 public interface PositionListener extends Listener {
 	
 	void onPositionDetected();
+
+	void onTimerStarted();
+
+	void onTimerAborted();
 	
 }

@@ -6,9 +6,6 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 public class ImageLoadingApp {
 
 	public static void main(String[] args) throws Exception {

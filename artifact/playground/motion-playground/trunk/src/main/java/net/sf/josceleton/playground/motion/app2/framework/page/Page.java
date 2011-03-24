@@ -7,6 +7,7 @@ import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
 import net.sf.josceleton.core.impl.async.DefaultAsync;
 import net.sf.josceleton.playground.motion.app2.framework.view.PageView;
 import net.sf.josceleton.playground.motion.app2.framework.view.PageViewListener;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 
 public abstract class Page<V extends PageView> extends DefaultAsync<PageListener> implements PageViewListener {
 	
@@ -31,17 +32,29 @@ public abstract class Page<V extends PageView> extends DefaultAsync<PageListener
 	}
 
 	/** {@inheritDoc} from {@link PageViewListener} */
-	@Override public final void onNavigateTo(String pageId) {
-		this.dispatchNavigateTo(pageId);
+	@Override public final void onNavigateTo(String pageId, PageArgs passingArgs) {
+		this.dispatchNavigateTo(pageId, passingArgs);
 	}
-	
-	protected final void dispatchNavigateTo(String pageId) {
+//	protected final void dispatchNavigateTo(String pageId) {
+//		this.dispatchNavigateTo(pageId, null);
+//	}
+
+	protected final void dispatchNavigateTo(String pageId, PageArgs passingArgs) {
 		for(PageListener listener : this.getListeners()) {
-			listener.onNavigate(pageId);
+			listener.onNavigate(pageId, passingArgs);
 		}
 	}
+	private PageArgs args;
+	public final PageArgs getArgs() {
+		return this.args;
+	}
+	public final void start(WorldSnapshot world, PageArgs pArgs) {
+		this.args = pArgs;
+		this._start(world, this.args);
+	}
 
-	public void start() {
+	@SuppressWarnings("unused")
+	protected void _start(WorldSnapshot world, PageArgs pArgs) {
 		// can be overridden
 	}
 

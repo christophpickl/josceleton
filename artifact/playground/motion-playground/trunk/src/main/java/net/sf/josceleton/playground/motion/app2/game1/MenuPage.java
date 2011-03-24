@@ -3,6 +3,8 @@ package net.sf.josceleton.playground.motion.app2.game1;
 import java.util.Timer;
 
 import net.sf.josceleton.playground.motion.app2.framework.page.Page;
+import net.sf.josceleton.playground.motion.app2.framework.page.PageArgs;
+import net.sf.josceleton.playground.motion.app2.framework.world.WorldSnapshot;
 import net.sf.josceleton.playground.motion.common.TimerTaskRunner;
 
 import org.apache.commons.logging.Log;
@@ -27,7 +29,7 @@ public class MenuPage extends Page<MenuView> implements Runnable {
 		this.view = this.getView();
 	}
 
-	@Override public void start() {
+	@Override protected void _start(WorldSnapshot world, PageArgs args) {
 		LOG.info("start()");
 		this.timer = new Timer();
 		this.timer.scheduleAtFixedRate(new TimerTaskRunner(this), 0, TIME_TO_ROTATE_BOXER_MSG);

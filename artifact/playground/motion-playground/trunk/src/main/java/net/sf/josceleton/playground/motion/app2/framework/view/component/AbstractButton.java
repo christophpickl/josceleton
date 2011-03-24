@@ -3,7 +3,6 @@ package net.sf.josceleton.playground.motion.app2.framework.view.component;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.util.Timer;
 
 import net.sf.josceleton.core.impl.async.DefaultAsync;

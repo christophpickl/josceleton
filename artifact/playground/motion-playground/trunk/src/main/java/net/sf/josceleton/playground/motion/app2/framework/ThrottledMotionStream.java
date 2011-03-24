@@ -5,9 +5,6 @@ import java.util.Collection;
 import java.util.Timer;
 import java.util.Vector;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import net.sf.josceleton.connection.api.service.motion.ContinuousMotionStream;
 import net.sf.josceleton.connection.api.service.motion.MotionStreamListener;
 import net.sf.josceleton.core.api.entity.joint.Joint;
@@ -15,6 +12,9 @@ import net.sf.josceleton.core.api.entity.joint.Skeleton;
 import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.core.impl.async.DefaultAsync;
 import net.sf.josceleton.playground.motion.app2.IThrottledMotionStream;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class ThrottledMotionStream
 	extends DefaultAsync<MotionStreamListener>
@@ -30,7 +30,7 @@ public class ThrottledMotionStream
 	private Coordinate recentCoordinate;
 	private Skeleton recentSkeleton;
 	
-	public ThrottledMotionStream(final ContinuousMotionStream motionStream, final int framesPerSecond) {
+	public ThrottledMotionStream(final ContinuousMotionStream motionStream /*TODO final int framesPerSecond*/) {
 		this.motionStream = motionStream;
 		this.motionStream.addListener(this);
 //		this.timer.scheduleAtFixedRate(new TimerTaskRunner(this), 0, 1000 / framesPerSecond);
@@ -61,7 +61,7 @@ public class ThrottledMotionStream
 			this.sysoutCount++;
 			if(this.sysoutCount == SYSOUT_EVERY) {
 				this.sysoutCount = 0;
-				System.out.println("ThrottledMotionStream: not dispatching timed event as no data was yet received!");
+				LOG.info("not dispatching timed event as no data was yet received!");
 			}
 			return;
 		}

@@ -1,6 +1,5 @@
 package net.sf.josceleton.playground.motion.app2.game1;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 

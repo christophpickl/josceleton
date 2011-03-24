@@ -29,7 +29,7 @@ public class DefaultAsync<L extends Listener> implements Async<L> {
 		
 		final boolean wasChanged = this.registeredListeners.add(listener);
 		if(wasChanged == false) {
-			LOG.warn("Not added listener [" + listener + "] as it was yet added!");
+			LOG.warn("Not added listener [" + listener + "] as it was yet added!", new Exception("Stacktrace:"));
 		}
 	}
 
@@ -39,7 +39,7 @@ public class DefaultAsync<L extends Listener> implements Async<L> {
 		
 		final boolean wasRemoved = this.registeredListeners.remove(listener);
 		if(wasRemoved == false) {
-			LOG.warn("Not removed listener [" + listener + "] as it was not yet added!");
+			LOG.warn("Not removed listener [" + listener + "] as it was not yet added!", new Exception("Stacktrace:"));
 		}
 	}
 
