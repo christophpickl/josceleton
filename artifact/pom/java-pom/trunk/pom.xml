@@ -239,7 +239,7 @@
 					<!-- the following dependency contains the checkstyle config and suppresion XMLs in its src/main/resources folder -->
 					<dependencies>
 						<dependency>
-							<groupId>${project.groupId}</groupId>
+							<groupId>net.sf.josceleton</groupId>
 							<artifactId>checkstyle-config</artifactId>
 							<version>${version_josceleton-checkstyle-config}</version>
 						</dependency>

@@ -11,6 +11,7 @@
     </description>
     <packaging>jar</packaging>
     
+    <groupId>net.sf.josceleton</groupId>
     <artifactId>checkstyle-config</artifactId>
     <version>0.5-SNAPSHOT</version>
     
