@@ -19,6 +19,7 @@ import net.sf.josceleton.core.api.entity.location.Coordinate;
 import net.sf.josceleton.playground.motion.app1.MainWindow.MainWindowListener;
 
 public class App1 {
+	/*
 	public static void main(String[] args) { new App1().start(); }
 	
 	private static final int FPS = 20;
@@ -73,5 +74,5 @@ public class App1 {
 		}});
 //		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	}
-
+	*/
 }

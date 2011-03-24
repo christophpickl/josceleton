@@ -27,6 +27,7 @@
     
     <properties>
     	<fqn_of_mainclass>net.sf.josceleton.playground.motion.app2.App2</fqn_of_mainclass>
+    	<coverage_percent>0</coverage_percent>
     </properties>
     
     
@@ -44,10 +45,11 @@
 	    <!-- I N T E R N A L -->
     	<!-- *********************************************************** -->
     	
-		<dependency>
-			<groupId>net.sf.josceleton</groupId>
-			<artifactId>josceleton</artifactId>
-		</dependency>
+    	<!-- actually already defined by console-prototype ;) -->
+<!--		<dependency>-->
+<!--			<groupId>net.sf.josceleton</groupId>-->
+<!--			<artifactId>josceleton</artifactId>-->
+<!--		</dependency>-->
 		
 		<dependency>
 			<groupId>net.sf.josceleton.prototype</groupId>
@@ -62,7 +64,7 @@
     <!-- ******************************************************************* -->
     
 	<build>
-		
+		<finalName>JosceletonBoxing</finalName>
 		<!-- TODO @POM make use of external properties file for filtering -->
 <!--		<filters>-->
 <!--			<filter>some_centrally_organized.properties</filter>-->
@@ -106,7 +108,13 @@
 				<artifactId>osxappbundle-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>${fqn_of_mainclass}</mainClass>
-					<bundleName>MidirouteApp</bundleName>
+					<bundleName>JosceletonBoxing</bundleName>
+					<iconFile>${basedir}/src/main/osx-resources/josceleton_boxing.icns</iconFile>
+<!--					<additionalResources>-->
+<!--						<additionalResource>${project.build.finalName}.app???</additionalResource>-->
+<!--					</additionalResources>-->
+					<!-- TODO <dictionaryFile>${basedir}/src/main/app-resources/Info.plist</dictionaryFile>
+					 -->
 				</configuration>
 				<executions>
 					<execution>
