@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 @SuppressWarnings("boxing")
-public class BodyTest {
+public class JointsTest {
 	
 	@Test
 	public final void hasSinglePrivateNullifiedConstructor() {
@@ -19,10 +19,10 @@ public class BodyTest {
 	}
 	
 	@Test
-	public final void valuesCountShouldBeEqualsTo17() {
+	public final void valuesCountShouldBeEqualsTo15() {
 		final Iterable<Joint> joints = Joints.values();
 		final int jointsCount = TestUtil.countIterable(joints);
-		assertThat(jointsCount, equalTo(17));
+		assertThat(jointsCount, equalTo(15));
 	}
 	
 	@DataProvider(name = "provideJointOsceletonId")

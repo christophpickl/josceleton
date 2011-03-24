@@ -4,6 +4,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import net.sf.josceleton.commons.test.jmock.AbstractMockeryTest;
 import net.sf.josceleton.connection.api.Connection;
 import net.sf.josceleton.connection.api.Connector;
+import net.sf.josceleton.connection.api.service.motion.MotionStreamFactory;
+import net.sf.josceleton.core.api.entity.location.RangeFactory;
+import net.sf.josceleton.motion.api.gesture.GestureFactoryFacade;
 
 import org.hamcrest.Matchers;
 import org.jmock.Expectations;
@@ -41,11 +44,16 @@ public class JosceletonFacadeImplTest extends AbstractMockeryTest {
 			}
 			will(returnValue(expectedConnection));
 		}});
-
+		final RangeFactory mockedRangeFactory = this.mock(RangeFactory.class);
+		final MotionStreamFactory mockedMotionStreamFactory = this.mock(MotionStreamFactory.class);
+		final GestureFactoryFacade mockedGestureFactoryFacade = this.mock(GestureFactoryFacade.class);
+		
 		final Injector mockedInjector = this.mock(Injector.class);
 		this.checking(new Expectations() { {
-			oneOf(mockedInjector).getInstance(Connector.class);
-			will(returnValue(mockedConnector));
+			oneOf(mockedInjector).getInstance(Connector.class); will(returnValue(mockedConnector));
+			oneOf(mockedInjector).getInstance(RangeFactory.class); will(returnValue(mockedRangeFactory));
+			oneOf(mockedInjector).getInstance(MotionStreamFactory.class); will(returnValue(mockedMotionStreamFactory));
+			oneOf(mockedInjector).getInstance(GestureFactoryFacade.class); will(returnValue(mockedGestureFactoryFacade));
 		}});
 		
 		return new JosceletonFacadeImpl(mockedInjector);

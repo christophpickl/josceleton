@@ -22,11 +22,11 @@ public class UserFactoryImplTest extends AbstractMockeryTest {
 		
 		final int expectedUser1Id = uniqueIdCounter++;
 		final int expectedUser1OscId = 1;
-		final int expectedUser1Color = 0xFF0000;
+		final int expectedUser1Color = 21;
 		
 		final int expectedUser2Id = uniqueIdCounter++;
 		final int expectedUser2OscId = 1;
-		final int expectedUser2Color = 0x00FF00;
+		final int expectedUser2Color = 22;
 		
 		final UserColorFactory colorFactory = mock(UserColorFactory.class);
 		this.checking(new Expectations() { {
@@ -43,7 +43,7 @@ public class UserFactoryImplTest extends AbstractMockeryTest {
 		final User user2 = factory.create(expectedUser2OscId);
 		assertThat(user2.getUniqueId(), equalTo(expectedUser2Id));
 		assertThat(user2.getOsceletonId(), equalTo(expectedUser2OscId));
-		assertThat(user1.getColor(), equalTo(expectedUser2Color));
+		assertThat(user2.getColor(), equalTo(expectedUser2Color));
 	}
 	
 	// LUXURY @TEST enhance UserFactoryImplTest (check illegal argument, ...)
