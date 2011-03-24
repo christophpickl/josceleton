@@ -7,7 +7,7 @@
     
     <groupId>net.sf.josceleton.playground</groupId>
     <artifactId>motion-playground</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     
     
     <!-- ******************************************************************* -->
@@ -157,9 +157,9 @@
     <!-- ******************************************************************* -->
     
     <scm>
-        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/motion-playground/tags/motion-playground-0.1</connection>
-        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/motion-playground/tags/motion-playground-0.1</developerConnection>
-        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/playground/motion-playground/tags/motion-playground-0.1</url>
+        <connection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/motion-playground/trunk/</connection>
+        <developerConnection>scm:svn:https://josceleton.svn.sourceforge.net/svnroot/josceleton/artifact/playground/motion-playground/trunk/</developerConnection>
+        <url>http://josceleton.svn.sourceforge.net/viewvc/josceleton/artifact/playground/motion-playground/trunk/</url>
     </scm>
     
     
