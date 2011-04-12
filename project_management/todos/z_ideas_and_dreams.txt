@@ -21,7 +21,7 @@ IDEAS
 	* gute favourites list von anderen kinecthacks machen
 	* auf eigener seite dann diese eigenen youtube videos referenzieren... plus gute von anderen auch
 ! irgendwo das wort KINECTOR verwenden (evtl facade klasse Josceleton?)
-* kinect ideen
+* ideen
 	! kollaborative puppet control: http://vimeo.com/20367106
 	* PoC spiel, aber schoene grafik/animationen: http://vimeo.com/20514415
 		=> gscheite (animierte) GUI gehoert her (die mit java sprechen kann)

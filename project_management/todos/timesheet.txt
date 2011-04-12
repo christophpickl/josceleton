@@ -68,4 +68,17 @@
 20.03. - 04:00 -  2h - #23 started and finished functionality of range scaling feature :)
 20.03. - 06:00 -  8h - #24 major improvements for midi prototype (some gui)
              ~~ 200h~~
-20.03. - 16:00 -  h - 
+20.03. - 16:00 -  8h - #24 some more improvements; replanning roadmap
+21.03. - 08:00 -  2h - ableton live synthi
+             ~~ 210h~~
+21.03. - 10:00 -  6h - started with motion/app-framework prototype
+22.03. - xx:00 -  4h - finished first gesture based app prototype
+             ~~ 220h~~
+23.03. - 16:00 - 10h - wrapping up first prototype
+             ~~ 230h~~
+24.03. - 02:00 -  3h - wrapping up first prototype
+2X.03. - XX:00 -  3h - JNI relearning
+2X.03. - XX:00 -  4h - CPP relearning
+             ~~ 240h~~
+2X.03. - XX:00 - 10h - OpenNI Wrapper
+             ~~ 250h~~

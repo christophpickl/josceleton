@@ -152,6 +152,7 @@ class Releaser:
               (artifact.artifactId, artifact.versionRelease)),
              # release:prepare specific options
              "-DallowTimestampedSnapshots=false", # default=false
+             "-DignoreSnapshots=false", # undocumented property (allowTimestampedSnapshots is documented, but does not work!)
              "-DreleaseVersion=%s" % artifact.versionRelease,
              "-DdevelopmentVersion=%s" % artifact.versionNext,
              "-DupdateDependencies=false", # default=true

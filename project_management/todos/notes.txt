@@ -15,6 +15,34 @@
 - eigenen playground aufbauen wo josceleton benutzt wird so als waere man aussenstehender => folder yet created: svn/artifact/playground/usage-playground/
 ! mathe lernen: computergrafik { matrizen, vektoren, vektoren in 3d, trigonomentrie}
 	- zb fuer: winkel von arm im ellbogen messen
+!! rename motion-api/impl to gesture-api/impl
+
+- osceleton process starter
+- animata mal selbst ausprobieren
+? koennen mehrere prozesse/anwendungen laufen und alle gleichzeitig auf kinect daten zugreifen?
+	// warum wird bind exception geworfen? evtl wie mal wo im web stand, osceleton wohin schicken alles, wo einfach nur an mehrere ports redistributed wird ==> network connection spiegeln...
+- neue commons module
+- midi-extension ist eine eigene gruppierung (wird mehrere maven artifakte {app, midi (statt common/common-midi)} dafuer geben)! also ===> /svn/josceleton/artifact/midiext/
+  (neben artifact/legoext/)
+
+! mehr fertige binaries finishen/in sf files downloadable machen (also auch prototype hin&wieder taggen, wenn was stabiles da ist)
+
+
+!!! @scaling: convert all data into mm to reverse normalization
+jointCoords[0] = off_x + (mult_x * (1280 - joint.position.X) / 2560);
+//Normalize coords to 0..1 interval
+jointCoords[1] = off_y + (mult_y * (960 - joint.position.Y) / 1920);
+//Normalize coords to 0..1 interval
+jointCoords[2] = off_z + (mult_z * joint.position.Z * 7.8125 / 10000);
+//Normalize coords to 0..7.8125 interval
+I just reversed that in my code
+
+
+
+
+@GUI java 2d rendering:
+	g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
 
 ==========================================

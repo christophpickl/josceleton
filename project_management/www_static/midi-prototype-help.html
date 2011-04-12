@@ -1,0 +1,42 @@
+<html>
+<body>
+<h1>You kneed help?</h1>
+
+<p>Sample:</p>
+<pre><code>r_hand, X, [0.0 .. 1.0 => 0 .. 127], 1, 1</code></pre>
+
+<p>Format:</p>
+<pre><code>Joint, Direction, Range, MIDI Channel, MIDI Controller Number</code></pre>
+
+<ol>
+	<li><b>Joint</b>: any of the following<br/>
+		can be set relative to another joint by eg: <code>r_hand#torso</code>
+		
+	<ul>
+		<li>head</li>
+		<li>neck</li>
+		<li>torso</li>
+		<li>r_hand</li>
+		<li>l_hand</li>
+		<li>r_shoulder</li>
+		<li>l_shoulder</li>
+		<li>r_elbow</li>
+		<li>l_elbow</li>
+		<li>r_shoulder</li>
+		<li>l_shoulder</li>
+		<li>r_hip</li>
+		<li>l_hip</li>
+		<li>r_knee</li>
+		<li>l_knee</li>
+		<li>r_foot</li>
+		<li>l_foot</li>
+	</ul>
+		</li>
+	<li><b>Direction</b>: one of { X, Y, Z }</li>
+	<li><b>Range</b>:format <code>fromStart .. fromEnd => toStart .. toEnd</code></li>
+	<li><b>MIDI Channel</b>: one of { 1-16 } </li>
+	<li><b>MIDI Controller Number</b>: one of { 1-16 } </li>
+</ol>
+
+</body>
+</html>
